@@ -1,15 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
   <metadata>
-    <id>Axe.Windows.RulesLibrary</id>
+    <id>Axe.Windows.Rules</id>
     <version>$buildnumber$</version>
-    <title>Axe.Windows Rules Library</title>
-    <summary>Run rules from the Axe.Windows.Rules library</summary>
-    <description>This package exposes the Axe.Windows Rules</description>
-    <authors>Axe.Windows</authors>
+    <title>axe-windows-rules</title>
+    <summary>Accessibility validation rules for Windows applications</summary>
+    <description>Run accessibility validation rules from the Axe.Windows.Rules library on your Windows applications</description>
+    <ProjectURL>https://github.com/Microsoft/axe-windows</ProjectURL>
+    <authors>Microsoft</authors>
     <owners></owners>
-    <copyright>© 2018. All rights reserved.</copyright>
-    <tags>Axe.Windows Accessibility Rules</tags>
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+            <language>en-US</language>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Axe.Windows axe-windows accessibility rules</tags>
   </metadata>
   <files>
     <file src="bin\$configuration$\Axe.Windows.Core.dll" target="lib\net471" />
