@@ -41,7 +41,7 @@ namespace Axe.Windows.Actions.Contexts
         public ElementContext (A11yElement element)
         {
             this.Element = element;
-            if (this.Element == null || this.Element.PlatformObject == null)
+            if (this.Element.PlatformObject == null)
             {
                 this.SelectType = SelectType.Loaded;
                 this.ProcessName = "Unknown";
