@@ -39,11 +39,6 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: release
 
-  - task: ms.build-release-task.custom-build-release-task.wpf-static-analysis@0
-    displayName: 'WPF Static Analysis'
-    inputs:
-      input: 'src\AccessibilityInsights\bin\Release'
-
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
     inputs:
