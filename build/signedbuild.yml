@@ -110,18 +110,18 @@ jobs:
       ArtifactName: 'Compliance'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-    displayName: 'Run BinSkim '
+    displayName: 'Run BinSkim'
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\AccessibilityInsights\\bin\\Debug\\*.exe;\
-                      src\\AccessibilityInsights\\bin\\Debug\\*.dll;\
+      AnalyzeTarget: "src\\AccessibilityInsights.Actions\\bin\\Debug\\*.dll;\
                       src\\AccessibilityInsights.Automation\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.AzureDevOps\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.GitHub\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.GitHubAutoUpdate\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.Telemetry\\bin\\Debug\\*.dll;"
+                      src\\AccessibilityInsights.Core\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Desktop\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Rules\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Win32\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
     displayName: 'Run CredScan'
@@ -134,14 +134,14 @@ jobs:
     inputs:
       inputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\AccessibilityInsights\\bin\\Debug\\*.exe;\
-                src\\AccessibilityInsights\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Automation\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.AzureDevOps\\bin\\Debug\\AccessibilityInsights.*.dll\
-                src\\AccessibilityInsights.Extensions.GitHub\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.GitHubAutoUpdate\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.Telemetry\\bin\\Debug\\AccessibilityInsights.*.dll;"
+      targets: "src\\AccessibilityInsights.Actions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Core\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Win32\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;"
       ignoreGeneratedCode: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
@@ -219,18 +219,18 @@ jobs:
       ArtifactName: 'msi'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-    displayName: 'Run BinSkim '
+    displayName: 'Run BinSkim'
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\AccessibilityInsights\\bin\\Release\\*.exe;\
-                      src\\AccessibilityInsights\\bin\\Release\\*.dll;\
-                      src\\AccessibilityInsights.Automation\\bin\\Release\\*.dll;\
-                      src\\AccessibilityInsights.Extensions\\bin\\Release\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.AzureDevOps\\bin\\Release\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.GitHub\\bin\\Release\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.GitHubAutoUpdate\\bin\\Release\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.Telemetry\\bin\\Release\\*.dll;"
+      AnalyzeTarget: "src\\AccessibilityInsights.Actions\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Automation\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Core\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Desktop\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Rules\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Win32\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
@@ -353,14 +353,14 @@ jobs:
     inputs:
       inputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\AccessibilityInsights\\bin\\Debug\\*.exe;\
-                src\\AccessibilityInsights\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Automation\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.AzureDevOps\\bin\\Debug\\AccessibilityInsights.*.dll\
-                src\\AccessibilityInsights.Extensions.GitHub\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.GitHubAutoUpdate\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.Telemetry\\bin\\Debug\\AccessibilityInsights.*.dll;"
+      targets: "src\\AccessibilityInsights.Actions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Core\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Win32\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
