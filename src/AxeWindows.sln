@@ -6,18 +6,30 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actions", "AccessibilityInsights.Actions\Actions.csproj", "{B2FA5150-470A-4864-A191-7BCAE39DF35A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionsTests", "AccessibilityInsights.ActionsTests\ActionsTests.csproj", "{1E26E004-331B-49DF-88C0-D8780B7566AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation", "AccessibilityInsights.Automation\Automation.csproj", "{AE5EC69F-158A-41C8-AD2B-EC7B84D820EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationTests", "AccessibilityInsights.AutomationTests\AutomationTests.csproj", "{6DEDB6A2-2D5D-45E9-9B71-8ED6AFD8167C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "AccessibilityInsights.Core\Core.csproj", "{2DA36FA6-4FF8-4DB4-AA7E-2F1CACAE6E35}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTests", "AccessibilityInsights.CoreTests\CoreTests.csproj", "{BD29FE9B-6FB1-4141-92A5-34C4CAED8274}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "AccessibilityInsights.Desktop\Desktop.csproj", "{0B9855FD-7B04-415C-A813-DA9697693FDA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTests", "AccessibilityInsights.DesktopTests\DesktopTests.csproj", "{AB9E59B6-54CE-4F5D-8055-8AD6745F3B84}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fakes.Prebuild", "AccessibilityInsights.Fakes.Prebuild\Fakes.Prebuild.csproj", "{149576B1-9947-4BE0-9008-DFFD0DA36E00}"
 EndProject
@@ -32,12 +44,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32", "AccessibilityInsights.Win32\Win32.csproj", "{608E7EF9-C670-4152-A056-46448E2F1E18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Tests", "AccessibilityInsights.Win32Tests\Win32Tests.csproj", "{89B6DFE3-5FC4-461C-8D8A-7382AC89AD28}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axe.Windows.Telemetry", "Axe.Windows.Telemetry\Axe.Windows.Telemetry.csproj", "{5C394271-6D27-4A48-8A32-F8080025431C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axe.Windows.TelemetryTests", "Axe.Windows.TelemetryTests\Axe.Windows.TelemetryTests.csproj", "{4E218637-EA46-483D-88C3-B679D90809BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesTests", "AccessibilityInsights.RulesTest\RulesTests.csproj", "{EB28AA55-C07A-4EE4-AAAE-49338F3590A6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
