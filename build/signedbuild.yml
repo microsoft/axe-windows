@@ -266,32 +266,6 @@ jobs:
       SearchPattern: '**\bin\**\*.pdb'
     continueOnError: true
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: $(DropFolder)'
-    inputs:
-      PathtoPublish: 'src\MSI\bin\Release\msi'
-      ArtifactName: '$(DropFolder)'
-      publishLocation: FilePath
-      TargetPath: '$(DropRoot)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact (NuGet): AccessibilityInsights.Automation.Windows'
-    inputs:
-      PathtoPublish: 'src\AccessibilityInsights.CI\bin\Release\NuGet'
-      ArtifactName: '$(DropFolder)'
-      publishLocation: FilePath
-      TargetPath: '$(DropRoot)'
-    continueOnError: true
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: (NuGet): AccessibilityInsights.RulesLibrary'
-    inputs:
-      PathtoPublish: 'src\AccessibilityInsights.Rules\bin\Release\NuGet'
-      ArtifactName: '$(DropFolder)'
-      publishLocation: FilePath
-      TargetPath: '$(DropRoot)'
-    continueOnError: true
-
   - task: ms-vscs-artifact.build-tasks.artifactSymbolTask-1.artifactSymbolTask@0
     displayName: 'Publish Symbols'
     inputs:
