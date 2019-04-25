@@ -96,7 +96,16 @@ jobs:
     continueOnError: true
 
   - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: (NuGet)'
+    displayName: 'Publish Artifact: (NuGet CI)'
+    inputs:
+      PathtoPublish: 'src\AccessibilityInsights.CI\bin\Release\NuGet'
+      ArtifactName: '$(DropFolder)'
+      publishLocation: FilePath
+      TargetPath: '$(DropRoot)'
+    continueOnError: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: (NuGet Rules)'
     inputs:
       PathtoPublish: 'src\AccessibilityInsights.Rules\bin\Release\NuGet'
       ArtifactName: '$(DropFolder)'
