@@ -10,13 +10,12 @@ variables:
   TeamName: 'Accessibility Insights Windows'
   system.debug: 'true' #set to true in case our signed build flakes out again
   FAKES_SUPPORTED: 1
+  Major: '0'
+  Minor: '1'
+  Patch: '0'
 
 jobs:
 - job: SignedRelease
-  variables:
-    Major: '0'
-    Minor: '1'
-    Patch: '0'
   pool: VSEng-MicroBuildVS2017
   steps:
   - task: ms-vseng.MicroBuildTasks.a0262b21-fb8f-46f8-bb9a-60ed560d4a87.MicroBuildLocalizationPlugin@1
