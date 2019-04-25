@@ -13,10 +13,10 @@ jobs:
   pool:
     vmImage: 'vs2017-win2016'
   steps:
-  - task: NuGetToolInstaller@1
+  - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
-       inputs:
-        versionSpec: '5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -76,10 +76,10 @@ jobs:
   pool:
     vmImage: 'vs2017-win2016'
   steps:
-  - task: NuGetToolInstaller@1
+  - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
-       inputs:
-        versionSpec: '5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'

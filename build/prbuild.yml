@@ -16,8 +16,8 @@ jobs:
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
-       inputs:
-        versionSpec: '5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -68,8 +68,8 @@ jobs:
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
-       inputs:
-        versionSpec: '5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -109,8 +109,8 @@ jobs:
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
-       inputs:
-        versionSpec: '5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
