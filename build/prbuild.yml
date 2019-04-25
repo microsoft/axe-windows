@@ -15,7 +15,9 @@ jobs:
     FAKES_SUPPORTED: 1
   steps:
   - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 4.3.0'
+    displayName: 'Use NuGet 5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -65,7 +67,9 @@ jobs:
     FAKES_SUPPORTED: 1
   steps:
   - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 4.3.0'
+    displayName: 'Use NuGet 5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -104,7 +108,9 @@ jobs:
     vmImage: 'vs2017-win2016'
   steps:
   - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 4.3.0'
+    displayName: 'Use NuGet 5.0.0'
+    inputs:
+      versionSpec: '5.0.0'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
