@@ -10,12 +10,168 @@ variables:
   TeamName: 'Accessibility Insights Windows'
   system.debug: 'true' #set to true in case our signed build flakes out again
   FAKES_SUPPORTED: 1
-  Major: '0'
-  Minor: '1'
-  Patch: '0'
 
 jobs:
+- job: ComplianceRelease
+  pool:
+    vmImage: 'vs2017-win2016'
+  variables:
+    PublicRelease: 'false'
+    SignAppForRelease: 'false'
+  steps:
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 4.3.0'
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+
+  - task: PowerShell@2
+    displayName: 'License Header Check'
+    inputs:
+      targetType: "filePath"
+      filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
+      arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
+
+  - task: VSBuild@1
+    displayName: 'Build Solution **\*.sln'
+    inputs:
+      vsVersion: 15.0
+      platform: '$(BuildPlatform)'
+      configuration: release
+
+  - task: ms.build-release-task.custom-build-release-task.wpf-static-analysis@0
+    displayName: 'WPF Static Analysis'
+    inputs:
+      input: 'src\AccessibilityInsights\bin\Release'
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\bin\release\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Compliance'
+    inputs:
+      ArtifactName: 'Compliance'
+
+  - task: VSTest@2
+    displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
+    inputs:
+      testAssemblyVer2: |
+        **\*test*.dll
+        !**\obj\**
+      vsTestVersion: 15.0
+      codeCoverageEnabled: false
+      platform: '$(BuildPlatform)'
+      configuration: release
+      rerunFailedTests: true
+
+  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+    displayName: 'Component Detection'
+
+- job: ComplianceDebug
+  pool:
+    vmImage: 'vs2017-win2016'
+  variables:
+    PublicRelease: 'false'
+    SignAppForRelease: 'false'
+  steps:
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 4.3.0'
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+
+  - task: VSBuild@1
+    displayName: 'Build Solution **\*.sln'
+    inputs:
+      vsVersion: 15.0
+      platform: '$(BuildPlatform)'
+      configuration: debug
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\bin\debug\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Compliance'
+    inputs:
+      ArtifactName: 'Compliance'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
+    displayName: 'Run BinSkim'
+    inputs:
+      InputType: Basic
+      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
+      AnalyzeTarget: "src\\AccessibilityInsights.Actions\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Automation\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Core\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Desktop\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Rules\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\*.dll;\
+                      src\\AccessibilityInsights.Win32\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;"
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+    displayName: 'Run CredScan'
+    inputs:
+      verboseOutput: true
+      debugMode: false
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-fxcop.FxCop@2
+    displayName: 'Run FxCop'
+    inputs:
+      inputType: Basic
+      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
+      targets: "src\\AccessibilityInsights.Actions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Core\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Win32\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;"
+      ignoreGeneratedCode: true
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
+    displayName: 'Create Security Analysis Report'
+    inputs:
+      BinSkim: true
+      CredScan: true
+      FxCop: true
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
+    displayName: 'Publish Security Analysis Logs'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
+    displayName: 'Post Analysis'
+    inputs:
+      BinSkim: true
+      CredScan: true
+      FxCop: true
+      FxCopBreakOn: CriticalError
+
+  - task: VSTest@2
+    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
+    inputs:
+      testAssemblyVer2: |
+        **\*test*.dll
+        !**\obj\**
+      testFiltercriteria: 'TestCategory!=RequiresNetwork'
+      vsTestVersion: 15.0
+      codeCoverageEnabled: false
+      platform: '$(BuildPlatform)'
+      configuration: debug
+      rerunFailedTests: true
+
 - job: SignedRelease
+  dependsOn: 
+  - ComplianceRelease
+  - ComplianceDebug
+  condition: and(succeeded(), succeeded())
   pool: VSEng-MicroBuildVS2017
   steps:
   - task: ms-vseng.MicroBuildTasks.a0262b21-fb8f-46f8-bb9a-60ed560d4a87.MicroBuildLocalizationPlugin@1
@@ -39,15 +195,6 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: release
 
-  - task: NuGetCommand@2
-    inputs:
-      command: pack
-      packagesToPack: '**/*.csproj'
-      versioningScheme: byPrereleaseNumber
-      majorVersion: '$(Major)'
-      minorVersion: '$(Minor)'
-      patchVersion: '$(Patch)'
-
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
     inputs:
@@ -57,20 +204,161 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: msi'
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
+    displayName: 'Run BinSkim'
     inputs:
-      PathtoPublish: 'src\bin\Release\NUGET'
-      ArtifactName: 'msi'
+      InputType: Basic
+      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
+      AnalyzeTarget: "src\\AccessibilityInsights.Actions\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Automation\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Core\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Desktop\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Rules\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.RuleSelection\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Win32\\bin\\Release\\*.dll;\
+                      src\\Axe.Windows.Telemetry\\bin\\Release\\*.dll;"
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
+    displayName: 'Create Security Analysis Report'
+    inputs:
+      CredScan: true
+      FxCop: true
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
+    displayName: 'Publish Security Analysis Logs'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
+    displayName: 'Post Analysis'
+    inputs:
+      CredScan: true
+      FxCop: true
+      FxCopBreakOn: CriticalError
+
+  - task: VSTest@2
+    displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
+    inputs:
+      testAssemblyVer2: |
+        **\*test*.dll
+        !**\obj\**
+      vsTestVersion: 15.0
+      codeCoverageEnabled: false
+      platform: '$(BuildPlatform)'
+      configuration: release
+      rerunFailedTests: true
+
+  - task: PublishSymbols@1
+    displayName: 'Index Sources'
+    inputs:
+      SearchPattern: '**\bin\**\*.pdb'
+    continueOnError: true
 
   - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact: $(DropFolder)'
-      inputs:
-        PathtoPublish: 'src\bin\Release\NUGET'
-        ArtifactName: '$(DropFolder)'
-        publishLocation: FilePath
-        TargetPath: '$(DropRoot)'
+    displayName: 'Publish Artifact: (NuGet)'
+    inputs:
+      PathtoPublish: 'src\AccessibilityInsights.Rules\bin\Release\NuGet'
+      ArtifactName: '$(DropFolder)'
+      publishLocation: FilePath
+      TargetPath: '$(DropRoot)'
+    continueOnError: true
 
+  - task: ms-vscs-artifact.build-tasks.artifactSymbolTask-1.artifactSymbolTask@0
+    displayName: 'Publish Symbols'
+    inputs:
+      symbolServiceURI: 'https://microsoft.artifacts.visualstudio.com/DefaultCollection'
+      requestName: 'CollectionId/$(System.CollectionId)/ProjectId/$(System.TeamProjectId)/BuildId/$(Build.BuildId)'
+      sourcePath: '$(Build.ArtifactStagingDirectory)'
+      detailedLog: true
+      usePat: false
+
+  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+    displayName: 'Component Detection'
+      
+  - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
+    displayName: 'Perform Cleanup Tasks'
+    condition: succeededOrFailed()
+
+- job: SignedDebug
+  dependsOn: 
+  - ComplianceRelease
+  - ComplianceDebug
+  condition: and(succeeded(), succeeded())
+  pool: VSEng-MicroBuildVS2017
+  steps:
+  - task: ms-vseng.MicroBuildTasks.a0262b21-fb8f-46f8-bb9a-60ed560d4a87.MicroBuildLocalizationPlugin@1
+    displayName: 'Install Localization Plugin'
+
+  - task: NuGetToolInstaller@0
+    displayName: 'Use NuGet 4.3.0'
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+
+  - task: VSBuild@1
+    displayName: 'Build Solution **\*.sln'
+    inputs:
+      vsVersion: 15.0
+      platform: '$(BuildPlatform)'
+      configuration: debug
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\bin\debug\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-autoapplicability.AutoApplicability@1
+    displayName: 'Run AutoApplicability'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+    displayName: 'Run CredScan'
+    inputs:
+      debugMode: false
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-fxcop.FxCop@2
+    displayName: 'Run FxCop'
+    inputs:
+      inputType: Basic
+      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
+      targets: "src\\AccessibilityInsights.Actions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Core\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\AccessibilityInsights.Win32\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;"
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
+    displayName: 'Create Security Analysis Report'
+    inputs:
+      CredScan: true
+      FxCop: true
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
+    displayName: 'Publish Security Analysis Logs'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
+    displayName: 'Post Analysis'
+    inputs:
+      CredScan: true
+      FxCop: true
+      FxCopBreakOn: CriticalError
+
+  - task: VSTest@2
+    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\** copy'
+    inputs:
+      testAssemblyVer2: |  
+        **\*test*.dll
+        !**\obj\**
+      vsTestVersion: 15.0
+      codeCoverageEnabled: false
+      platform: '$(BuildPlatform)'
+      configuration: debug
+      rerunFailedTests: true
+      
   - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
     displayName: 'Perform Cleanup Tasks'
     condition: succeededOrFailed()
