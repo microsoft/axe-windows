@@ -209,14 +209,14 @@ jobs:
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\AccessibilityInsights.Actions\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Automation\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Core\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Desktop\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Rules\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.RuleSelection\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Win32\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;"
+      AnalyzeTarget: "src\\AccessibilityInsights.Actions\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Automation\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Core\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Desktop\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Rules\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.RuleSelection\\bin\\Release\\*.dll;\
+                      src\\AccessibilityInsights.Win32\\bin\\Release\\*.dll;\
+                      src\\Axe.Windows.Telemetry\\bin\\Release\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
