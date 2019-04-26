@@ -7,7 +7,6 @@
       <ItemGroup>
         <FilesToSign Include="@(DropSignedFile)">
           <Authenticode>NuGet</Authenticode>
-          <StrongName>StrongName</StrongName>
         </FilesToSign>
       </ItemGroup>
     </When>
