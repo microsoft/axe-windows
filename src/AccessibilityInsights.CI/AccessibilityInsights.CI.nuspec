@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Axe.Windows</id>
-    <version>$buildnumber$</version>
+    <version>$VersionString$</version>
     <title>axe-windows</title>
     <summary>Automated accessibility analysis for Windows applications</summary>
     <description>The package provides the assemblies necessary to automate accessibility testing for Windows applications using the included axe-windows rule set. Analysis can be run either via a .NET app, or from PowerShell via "Install-Module Axe.Windows.Automation.dll", followed by "Start-AxeWindows", "Invoke-Snapshot" and "Stop-AxeWindows"</description>
