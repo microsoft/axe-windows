@@ -186,6 +186,7 @@ jobs:
     displayName: 'Install Signing Plugin'
     inputs:
       signType: real
+      esrpSigning: true
 
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
