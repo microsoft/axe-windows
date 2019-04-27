@@ -187,6 +187,7 @@ jobs:
     inputs:
       signType: real
       esrpSigning: true
+    condition: and(succeeded(), ne(variables['SignType'], ''))
 
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
