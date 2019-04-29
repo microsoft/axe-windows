@@ -18,6 +18,7 @@
     <CurrentDateString Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$([System.DateTime]::Now.ToString(`yyyy-MM-dd`))</CurrentDateString>
     <CountDate>$([System.DateTime]::ParseExact(`2017-01-01`,`yyyy-MM-dd`,null))</CountDate>
     <BuildNumber>1.1.$([System.Math]::Round($([System.DateTime]::ParseExact($(CurrentDateString),`yyyy-MM-dd`,null).Subtract($(CountDate)).TotalDays)).ToString(`0000`))$(Revision)</BuildNumber>
+	<SignOutput>true</SignOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <SignNuGet Include="$(TargetPath)">
+      <Authenticode>NuGet</Authenticode>
+    </SignNuGet>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccessibilityInsights.Automation\Automation.csproj">
