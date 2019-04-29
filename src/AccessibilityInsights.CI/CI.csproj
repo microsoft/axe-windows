@@ -73,4 +73,20 @@
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
     <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
   </Target>
+  <Target Name="SignNuGetPackage"
+          Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' "
+          DependsOnTargets="@(SignNuGetPackageDependsOn)"
+          AfterTargets="Pack">
+    <ItemGroup>
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" />
+    </ItemGroup>
+
+    <SignFiles Files="@(SignNuGetPackFiles)"
+               Type="$(SignType)"
+               BinariesDirectory="$(PackageOutputPath)"
+               IntermediatesDirectory="$(IntermediateOutputPath)"
+               ESRPSigning="$(ESRPSigning)"
+               UseBearerToken="$(UseBearerToken)"
+               Condition=" '@(SignNuGetPackFiles)' != '' " />
+  </Target>
 </Project>
