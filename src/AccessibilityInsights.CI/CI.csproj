@@ -17,7 +17,7 @@
     <CurrentDateString Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER.Substring(0, $(BUILD_BUILDNUMBER.LastIndexOf(`.`))))</CurrentDateString>
     <CurrentDateString Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$([System.DateTime]::Now.ToString(`yyyy-MM-dd`))</CurrentDateString>
     <CountDate>$([System.DateTime]::ParseExact(`2017-01-01`,`yyyy-MM-dd`,null))</CountDate>
-    <BuildNumber>1.1.$([System.Math]::Round($([System.DateTime]::ParseExact($(CurrentDateString),`yyyy-MM-dd`,null).Subtract($(CountDate)).TotalDays)).ToString(`0000`))$(Revision)</BuildNumber>
+    <BuildNumber>0.1.0</BuildNumber>
 	<SignOutput>true</SignOutput>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -66,27 +66,14 @@
     <DropSignedFile Include="$(OutDir)\Axe.Windows.$(BuildNumber).nupkg" />
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
+  <ItemGroup>
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" />
+    </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(OutputPath)Axe.Windows.$(BuildNumber).nupkg" DestinationFolder="$(OutputPath)\AccessibilityInsights.CI\bin\Release\NuGet" ContinueOnError="true" />
   </Target>
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
     <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
-  </Target>
-  <Target Name="SignNuGetPackage"
-          Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' "
-          DependsOnTargets="@(SignNuGetPackageDependsOn)"
-          AfterTargets="Pack">
-    <ItemGroup>
-      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" />
-    </ItemGroup>
-
-    <SignFiles Files="@(SignNuGetPackFiles)"
-               Type="$(SignType)"
-               BinariesDirectory="$(PackageOutputPath)"
-               IntermediatesDirectory="$(IntermediateOutputPath)"
-               ESRPSigning="$(ESRPSigning)"
-               UseBearerToken="$(UseBearerToken)"
-               Condition=" '@(SignNuGetPackFiles)' != '' " />
   </Target>
 </Project>
