@@ -24,7 +24,6 @@ jobs:
     inputs:
       signType: real
       esrpSigning: true
-      msbuildArguments: '/v:diag'
     condition: and(succeeded(), ne(variables['SignType'], ''))
 
   - task: NuGetToolInstaller@0
@@ -39,6 +38,7 @@ jobs:
     displayName: 'Build Solution **\*.sln'
     inputs:
       vsVersion: 15.0
+      msbuildArgs: '/v:diag'
       platform: '$(BuildPlatform)'
       configuration: release
 
