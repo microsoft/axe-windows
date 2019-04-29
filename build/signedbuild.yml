@@ -24,6 +24,7 @@ jobs:
     inputs:
       signType: real
       esrpSigning: true
+      msbuildArguments: '/v:diag'
     condition: and(succeeded(), ne(variables['SignType'], ''))
 
   - task: NuGetToolInstaller@0
