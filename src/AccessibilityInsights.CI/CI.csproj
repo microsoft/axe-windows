@@ -71,7 +71,7 @@
           DependsOnTargets="@(SignNuGetPackageDependsOn)"
           AfterTargets="Pack">
     <ItemGroup>
-      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" />
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix)\Axe.Windows.$(SemVerNumber)$(SemVerSuffix).nupkg" />
     </ItemGroup>
 
     <SignFiles Files="@(SignNuGetPackFiles)"
