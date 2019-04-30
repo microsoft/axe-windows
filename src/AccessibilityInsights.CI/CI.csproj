@@ -12,6 +12,12 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
+    <Revision Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER.Substring($(BUILD_BUILDNUMBER.LastIndexOf(`.`))))</Revision>
+    <Revision Condition=" '$(BUILD_BUILDNUMBER)' == '' ">.1</Revision>
+    <CurrentDateString Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER.Substring(0, $(BUILD_BUILDNUMBER.LastIndexOf(`.`))))</CurrentDateString>
+    <CurrentDateString Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$([System.DateTime]::Now.ToString(`yyyy-MM-dd`))</CurrentDateString>
+    <CountDate>$([System.DateTime]::ParseExact(`2017-01-01`,`yyyy-MM-dd`,null))</CountDate>
+    <BuildNumber>0.1.0</BuildNumber>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,11 +57,11 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-    <ItemGroup>
-    <NuGetPackOutput Include="$(OutDir)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
-  </ItemGroup>
+  <ItemGroup>
+      <SignNuGetPackFiles Include="$(OutDir)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
+  </ItemGroup>	  
   <Import Project="..\..\build\nugetsign.targets" />
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
-    <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);VersionString=&quot;$(SemVerNumber)$(SemVerSuffix)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix) -NonInteractive" />
+    <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
   </Target>
 </Project>
