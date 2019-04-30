@@ -78,12 +78,12 @@
           DependsOnTargets="@(SignNuGetPackageDependsOn)"
           AfterTargets="Pack">
     <ItemGroup>
-      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" />
     </ItemGroup>
 
     <SignFiles Files="@(SignNuGetPackFiles)"
                Type="$(SignType)"
-               BinariesDirectory="$(PackageOutputPath)"
+               BinariesDirectory="$(OutputPath)"
                IntermediatesDirectory="$(IntermediateOutputPath)"
                ESRPSigning="$(ESRPSigning)"
                UseBearerToken="$(UseBearerToken)"
