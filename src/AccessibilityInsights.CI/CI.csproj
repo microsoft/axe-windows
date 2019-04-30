@@ -52,7 +52,7 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <SignNuGet Include="$(TargetPath)">
+    <SignNuGet Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg">
       <Authenticode>NuGet</Authenticode>
     </SignNuGet>
   </ItemGroup>
@@ -67,14 +67,19 @@
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
   <ItemGroup>
-      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" 
-																	/>
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg">
+		<Authenticode>NuGet</Authenticode>
+	  </SignNuGetPackFiles>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  
+  <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
+    <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
+  </Target>
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(OutputPath)\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" DestinationFolder="$(OutputPath)\AccessibilityInsights.CI\bin\Release\NuGet" ContinueOnError="true" />
   </Target>
-  <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
-    <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(OutputPath)\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" DestinationFolder="$()" ContinueOnError="true" />
   </Target>
 </Project>
