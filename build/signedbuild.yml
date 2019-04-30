@@ -19,6 +19,7 @@ jobs:
   variables:
     PublicRelease: 'false'
     SignAppForRelease: 'false'
+    MicroBuild_NuPkgSigningEnabled: 'false'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -79,6 +80,7 @@ jobs:
   variables:
     PublicRelease: 'false'
     SignAppForRelease: 'false'
+    MicroBuild_NuPkgSigningEnabled: 'false'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
