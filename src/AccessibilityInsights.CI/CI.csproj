@@ -61,6 +61,9 @@
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
     <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
   </Target>
+  <ItemGroup>
+      <SignNuGetPackFiles Include="$(OutDir)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
+  </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
@@ -69,8 +72,4 @@
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
-  <ItemGroup>
-      <SignNuGetPackFiles Include="$(OutDir)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
-  </ItemGroup>	  
-  <Import Project="..\..\build\nugetsign.targets" />
 </Project>
