@@ -54,10 +54,6 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <DropSignedFile Include="$(OutDir)\Axe.Windows.CI.dll" />
-  </ItemGroup>
-  <Import Project="..\..\build\settings.targets" />
-  <ItemGroup>
     <ProjectReference Include="..\AccessibilityInsights.Automation\Automation.csproj">
       <Project>{ae5ec69f-158a-41c8-ad2b-ec7b84d820ef}</Project>
       <Name>Automation</Name>
