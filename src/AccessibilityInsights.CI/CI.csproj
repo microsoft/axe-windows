@@ -19,6 +19,8 @@
     <CurrentDateString Condition=" '$(BUILD_BUILDNUMBER)' == '' ">$([System.DateTime]::Now.ToString(`yyyy-MM-dd`))</CurrentDateString>
     <CountDate>$([System.DateTime]::ParseExact(`2017-01-01`,`yyyy-MM-dd`,null))</CountDate>
     <BuildNumber>1.1.$([System.Math]::Round($([System.DateTime]::ParseExact($(CurrentDateString),`yyyy-MM-dd`,null).Subtract($(CountDate)).TotalDays)).ToString(`0000`))$(Revision)</BuildNumber>
+	<NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -51,6 +53,10 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <DropSignedFile Include="$(OutDir)\Axe.Windows.CI.dll" />
+  </ItemGroup>
+  <Import Project="..\..\build\settings.targets" />
   <ItemGroup>
     <ProjectReference Include="..\AccessibilityInsights.Automation\Automation.csproj">
       <Project>{ae5ec69f-158a-41c8-ad2b-ec7b84d820ef}</Project>
