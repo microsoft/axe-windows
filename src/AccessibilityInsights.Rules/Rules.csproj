@@ -289,9 +289,6 @@
     <DropSignedFile Include="$(OutDir)\Axe.Windows.Rules.dll" />
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
-   <ItemGroup>
-      <SignNuGetPackFiles Include="$(OutDir)\NuGet\Axe.Windows.Rules.$(BuildNumber).nupkg" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
