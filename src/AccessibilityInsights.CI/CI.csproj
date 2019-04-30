@@ -67,8 +67,9 @@
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
   <ItemGroup>
-      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
-    </ItemGroup>
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)" 
+																	/>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(OutputPath)Axe.Windows.$(BuildNumber).nupkg" DestinationFolder="$(OutputPath)\AccessibilityInsights.CI\bin\Release\NuGet" ContinueOnError="true" />
