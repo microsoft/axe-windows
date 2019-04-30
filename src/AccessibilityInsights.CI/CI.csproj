@@ -67,7 +67,6 @@
    <ItemGroup>
       <SignNuGetPackFiles Include="$(OutDir)\NuGet\Axe.Windows.$(BuildNumber).nupkg" />
   </ItemGroup>	  
-  <Import Project="..\..\build\nugetsign.targets" />
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
     <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);buildnumber=&quot;$(BuildNumber)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(BuildNumber) -NonInteractive" />
   </Target>
@@ -79,4 +78,5 @@
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
-</Project>
+  <Import Project="..\..\build\nugetsign.targets" />
+  </Project>
