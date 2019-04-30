@@ -79,7 +79,21 @@
   <Target Name="AfterBuild">
     <Copy SourceFiles="$(OutputPath)\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" DestinationFolder="$(OutputPath)\AccessibilityInsights.CI\bin\Release\NuGet" ContinueOnError="true" />
   </Target>
-  <Target Name="AfterBuild">
-    <Copy SourceFiles="$(OutputPath)\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg" DestinationFolder="$()" ContinueOnError="true" />
+  <Target Name="SignNuGetPackage"
+          Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' "
+          DependsOnTargets="@(SignNuGetPackageDependsOn)"
+          AfterTargets="Pack">
+    <ItemGroup>
+      <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(BuildNumber)\Axe.Windows.$(BuildNumber).nupkg"
+                          Condition=" '%(Extension)' == '.nupkg' " />
+    </ItemGroup>
+
+    <FilesToSign Files="@(SignNuGetPackFiles)"
+               Type="$(SignType)"
+               BinariesDirectory="$(PackageOutputPath)"
+               IntermediatesDirectory="$(IntermediateOutputPath)"
+               ESRPSigning="$(ESRPSigning)"
+               UseBearerToken="$(UseBearerToken)"
+               Condition=" '@(SignNuGetPackFiles)' != '' " />
   </Target>
 </Project>
