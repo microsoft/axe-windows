@@ -7,6 +7,7 @@ variables:
   MAICreateNuget: 'true'
   PublicRelease: 'true'
   SignAppForRelease: 'true'
+  MicroBuild_NuPkgSigningEnabled: 'true'
   TeamName: 'Axe Windows'
   system.debug: 'true' #set to true in case our signed build flakes out again
   FAKES_SUPPORTED: 1
@@ -18,6 +19,7 @@ jobs:
   variables:
     PublicRelease: 'false'
     SignAppForRelease: 'false'
+    MicroBuild_NuPkgSigningEnabled: 'false'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -78,6 +80,7 @@ jobs:
   variables:
     PublicRelease: 'false'
     SignAppForRelease: 'false'
+    MicroBuild_NuPkgSigningEnabled: 'false'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -185,6 +188,8 @@ jobs:
     displayName: 'Install Signing Plugin'
     inputs:
       signType: real
+      esrpSigning: true
+    condition: and(succeeded(), ne(variables['SignType'], ''))
 
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -262,15 +267,6 @@ jobs:
     displayName: 'Publish Artifact: (NuGet Axe.Windows)'
     inputs:
       PathtoPublish: 'src\AccessibilityInsights.CI\bin\Release\NuGet'
-      ArtifactName: '$(DropFolder)'
-      publishLocation: FilePath
-      TargetPath: '$(DropRoot)'
-    continueOnError: true
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: (NuGet Axe.Windows.RulesLibrary)'
-    inputs:
-      PathtoPublish: 'src\AccessibilityInsights.Rules\bin\Release\NuGet'
       ArtifactName: '$(DropFolder)'
       publishLocation: FilePath
       TargetPath: '$(DropRoot)'
