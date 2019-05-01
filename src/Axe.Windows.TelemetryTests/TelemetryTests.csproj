@@ -72,9 +72,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Axe.Windows.Telemetry\Axe.Windows.Telemetry.csproj">
+    <ProjectReference Include="..\Axe.Windows.Telemetry\Telemetry.csproj">
       <Project>{5c394271-6d27-4a48-8a32-f8080025431c}</Project>
-      <Name>Axe.Windows.Telemetry</Name>
+      <Name>Telemetry</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

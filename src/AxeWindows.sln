@@ -48,9 +48,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Tests", "Axe.Windows.W
 		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axe.Windows.Telemetry", "Axe.Windows.Telemetry\Axe.Windows.Telemetry.csproj", "{5C394271-6D27-4A48-8A32-F8080025431C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telemetry", "Axe.Windows.Telemetry\Telemetry.csproj", "{5C394271-6D27-4A48-8A32-F8080025431C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axe.Windows.TelemetryTests", "Axe.Windows.TelemetryTests\Axe.Windows.TelemetryTests.csproj", "{4E218637-EA46-483D-88C3-B679D90809BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelemetryTests", "Axe.Windows.TelemetryTests\TelemetryTests.csproj", "{4E218637-EA46-483D-88C3-B679D90809BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesTests", "Axe.Windows.RulesTest\RulesTests.csproj", "{EB28AA55-C07A-4EE4-AAAE-49338F3590A6}"
 	ProjectSection(ProjectDependencies) = postProject
