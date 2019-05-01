@@ -271,9 +271,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Axe.Windows.RulesLibrary.nuspec">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="ReadME.MD" />
   </ItemGroup>
