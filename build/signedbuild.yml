@@ -119,8 +119,8 @@ jobs:
                       src\\Axe.Windows.Desktop\\bin\\Debug\\*.dll;\
                       src\\Axe.Windows.Rules\\bin\\Debug\\*.dll;\
                       src\\Axe.Windows.RuleSelection\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Win32\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;"
+                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Win32\\bin\\Debug\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
     displayName: 'Run CredScan'
@@ -139,8 +139,8 @@ jobs:
                 src\\Axe.Windows.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\Axe.Windows.Rules\\bin\\Debug\\Axe.Windows.*.dll\
                 src\\Axe.Windows.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Win32\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;"
+                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Win32\\bin\\Debug\\Axe.Windows.*.dll;"
       ignoreGeneratedCode: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
@@ -226,8 +226,8 @@ jobs:
                       src\\Axe.Windows.Desktop\\bin\\Release\\*.dll;\
                       src\\Axe.Windows.Rules\\bin\\Release\\*.dll;\
                       src\\Axe.Windows.RuleSelection\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Win32\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Telemetry\\bin\\Release\\*.dll;"
+                      src\\Axe.Windows.Telemetry\\bin\\Release\\*.dll;\
+                      src\\Axe.Windows.Win32\\bin\\Release\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
@@ -341,8 +341,8 @@ jobs:
                 src\\Axe.Windows.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\Axe.Windows.Rules\\bin\\Debug\\Axe.Windows.*.dll\
                 src\\Axe.Windows.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Win32\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;"
+                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Win32\\bin\\Debug\\Axe.Windows.*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
