@@ -67,7 +67,7 @@
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
   <Import Project="..\..\build\nugetsign.targets" />
   <Target Name="SignNuGetPackage"
-          Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' and '$(Configuration)' == 'Release'"
+          Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' and '$(SignAppForRelease)'=='true' and '$(Configuration)' == 'Release'"
           DependsOnTargets="@(SignNuGetPackageDependsOn)"
           AfterTargets="Pack">
     <ItemGroup>
