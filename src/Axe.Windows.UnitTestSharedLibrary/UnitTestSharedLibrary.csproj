@@ -82,7 +82,7 @@
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
+    <ProjectReference Include="..\Axe.Windows.Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>

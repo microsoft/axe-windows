@@ -50,7 +50,7 @@
     </Reference>
     <Reference Include="mscorlib.4.0.0.0.Fakes, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0ae41878053f6703, processorArchitecture=MSIL" Condition="$(FAKES_SUPPORTED) == 1">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AccessibilityInsights.Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
+      <HintPath>..\Axe.Windows.Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -71,7 +71,7 @@
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.Win32\Win32.csproj">
+    <ProjectReference Include="..\Axe.Windows.Win32\Win32.csproj">
       <Project>{608E7EF9-C670-4152-A056-46448E2F1E18}</Project>
       <Name>Win32</Name>
     </ProjectReference>

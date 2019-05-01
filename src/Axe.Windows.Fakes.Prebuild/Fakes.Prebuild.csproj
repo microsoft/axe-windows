@@ -7,8 +7,8 @@
     <ProjectGuid>{149576B1-9947-4BE0-9008-DFFD0DA36E00}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AccessibilityInsights.Fakes.Prebuild</RootNamespace>
-    <AssemblyName>AccessibilityInsights.Fakes.Prebuild</AssemblyName>
+    <RootNamespace>Axe.Windows.Fakes.Prebuild</RootNamespace>
+    <AssemblyName>Axe.Windows.Fakes.Prebuild</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -54,45 +54,45 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="AccessibilityInsights.Actions.fakes">
+    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Actions.fakes">
       <SubType>Designer</SubType>
     </Fakes>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="AccessibilityInsights.Automation.fakes" />
+    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Automation.fakes" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="AccessibilityInsights.Core.fakes" />
+    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Core.fakes" />
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="AccessibilityInsights.Desktop.fakes">
+    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Desktop.fakes">
       <SubType>Designer</SubType>
     </Fakes>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="AccessibilityInsights.RuleSelection.fakes" />
+    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.RuleSelection.fakes" />
   </ItemGroup>
   <ItemGroup>
     <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="mscorlib.fakes" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.Actions\Actions.csproj">
+    <ProjectReference Include="..\Axe.Windows.Actions\Actions.csproj">
       <Project>{b2fa5150-470a-4864-a191-7bcae39df35a}</Project>
       <Name>Actions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Automation\Automation.csproj">
+    <ProjectReference Include="..\Axe.Windows.Automation\Automation.csproj">
       <Project>{ae5ec69f-158a-41c8-ad2b-ec7b84d820ef}</Project>
       <Name>Automation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
+    <ProjectReference Include="..\Axe.Windows.Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.RuleSelection\RuleSelection.csproj">
+    <ProjectReference Include="..\Axe.Windows.RuleSelection\RuleSelection.csproj">
       <Project>{ab7195e3-a01d-4708-87af-08e9418ae33f}</Project>
       <Name>RuleSelection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Win32\Win32.csproj">
+    <ProjectReference Include="..\Axe.Windows.Win32\Win32.csproj">
       <Project>{608e7ef9-c670-4152-a056-46448e2f1e18}</Project>
       <Name>Win32</Name>
     </ProjectReference>

@@ -157,15 +157,15 @@
     <Compile Include="Utility\ProcessItem.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.RuleSelection\RuleSelection.csproj">
+    <ProjectReference Include="..\Axe.Windows.RuleSelection\RuleSelection.csproj">
       <Project>{ab7195e3-a01d-4708-87af-08e9418ae33f}</Project>
       <Name>RuleSelection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
+    <ProjectReference Include="..\Axe.Windows.Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Win32\Win32.csproj">
+    <ProjectReference Include="..\Axe.Windows.Win32\Win32.csproj">
       <Project>{608e7ef9-c670-4152-a056-46448e2f1e18}</Project>
       <Name>Win32</Name>
     </ProjectReference>

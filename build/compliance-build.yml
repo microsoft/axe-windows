@@ -38,7 +38,7 @@ jobs:
   - task: ms.build-release-task.custom-build-release-task.wpf-static-analysis@0
     displayName: 'WPF Accessibility Checks'
     inputs:
-      input: 'src\AccessibilityInsights\bin\Release'
+      input: 'src\Axe.Windows\bin\Release'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
@@ -105,14 +105,14 @@ jobs:
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\AccessibilityInsights\\bin\\Debug\\*.exe;\
-                      src\\AccessibilityInsights\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Automation\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.AzureDevOps\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.GitHub\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.GitHubAutoUpdate\\bin\\Debug\\*.dll;\
-                      src\\AccessibilityInsights.Extensions.Telemetry\\bin\\Debug\\*.dll"
+      AnalyzeTarget: "src\\Axe.Windows\\bin\\Debug\\*.exe;\
+                      src\\Axe.Windows\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Automation\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Extensions\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Extensions.AzureDevOps\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Extensions.GitHub\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Extensions.GitHubAutoUpdate\\bin\\Debug\\*.dll;\
+                      src\\Axe.Windows.Extensions.Telemetry\\bin\\Debug\\*.dll"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
     displayName: 'Run CredScan'
@@ -125,14 +125,14 @@ jobs:
     inputs:
       inputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\AccessibilityInsights\\bin\\Debug\\*.exe;\
-                src\\AccessibilityInsights\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Automation\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.AzureDevOps\\bin\\Debug\\AccessibilityInsights.*.dll;"\
-                src\\AccessibilityInsights.Extensions.GitHub\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.GitHubAutoUpdate\\bin\\Debug\\AccessibilityInsights.*.dll;\
-                src\\AccessibilityInsights.Extensions.Telemetry\\bin\\Debug\\AccessibilityInsights.*.dll"
+      targets: "src\\Axe.Windows\\bin\\Debug\\*.exe;\
+                src\\Axe.Windows\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Extensions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Extensions.AzureDevOps\\bin\\Debug\\Axe.Windows.*.dll;"\
+                src\\Axe.Windows.Extensions.GitHub\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Extensions.GitHubAutoUpdate\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Axe.Windows.Extensions.Telemetry\\bin\\Debug\\Axe.Windows.*.dll"
       ignoreGeneratedCode: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1

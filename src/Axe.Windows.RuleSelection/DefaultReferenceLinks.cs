@@ -3,7 +3,7 @@
 
 using System;
 using System.Globalization;
-using AccessibilityInsights.Extensions.Interfaces.ReferenceLinks;
+using Axe.Windows.Extensions.Interfaces.ReferenceLinks;
 using Axe.Windows.RuleSelection.Resources;
 using Axe.Windows.Telemetry;
 

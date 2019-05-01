@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using AccessibilityInsights.Extensions;
-using AccessibilityInsights.Extensions.Interfaces.ReferenceLinks;
+using Axe.Windows.Extensions;
+using Axe.Windows.Extensions.Interfaces.ReferenceLinks;
 using Axe.Windows.Rules;
 
 namespace Axe.Windows.RuleSelection

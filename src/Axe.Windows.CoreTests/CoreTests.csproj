@@ -45,7 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Axe.Windows.Core.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\AccessibilityInsights.Fakes.Prebuild\FakesAssemblies\Axe.Windows.Core.Fakes.dll</HintPath>
+      <HintPath>..\Axe.Windows.Fakes.Prebuild\FakesAssemblies\Axe.Windows.Core.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" Condition="$(FAKES_SUPPORTED) == 1">
       <SpecificVersion>False</SpecificVersion>
@@ -57,7 +57,7 @@
       <HintPath>..\packages\MSTest.TestFramework.1.4.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib.4.0.0.0.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\AccessibilityInsights.Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
+      <HintPath>..\Axe.Windows.Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -118,15 +118,15 @@
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.RuleSelection\RuleSelection.csproj">
+    <ProjectReference Include="..\Axe.Windows.RuleSelection\RuleSelection.csproj">
       <Project>{ab7195e3-a01d-4708-87af-08e9418ae33f}</Project>
       <Name>RuleSelection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
+    <ProjectReference Include="..\Axe.Windows.Core\Core.csproj">
       <Project>{2DA36FA6-4FF8-4DB4-AA7E-2F1CACAE6E35}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.UnitTestSharedLibrary\UnitTestSharedLibrary.csproj">
+    <ProjectReference Include="..\Axe.Windows.UnitTestSharedLibrary\UnitTestSharedLibrary.csproj">
       <Project>{01dc8363-73bc-47fa-bd23-12ac45618e1d}</Project>
       <Name>UnitTestSharedLibrary</Name>
     </ProjectReference>

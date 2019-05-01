@@ -60,11 +60,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.RuleSelection\RuleSelection.csproj">
+    <ProjectReference Include="..\Axe.Windows.RuleSelection\RuleSelection.csproj">
       <Project>{ab7195e3-a01d-4708-87af-08e9418ae33f}</Project>
       <Name>RuleSelection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Rules\Rules.csproj">
+    <ProjectReference Include="..\Axe.Windows.Rules\Rules.csproj">
       <Project>{7fe58829-560e-4142-bf81-291a66d3844b}</Project>
       <Name>Rules</Name>
     </ProjectReference>

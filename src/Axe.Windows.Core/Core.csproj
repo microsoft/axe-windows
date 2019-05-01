@@ -121,7 +121,7 @@
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.Win32\Win32.csproj">
+    <ProjectReference Include="..\Axe.Windows.Win32\Win32.csproj">
       <Project>{608e7ef9-c670-4152-a056-46448e2f1e18}</Project>
       <Name>Win32</Name>
     </ProjectReference>

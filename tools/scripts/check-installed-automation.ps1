@@ -3,27 +3,27 @@
 
 #environment variables
 param(
-    $installationDir = 'C:\Program Files (x86)\AccessibilityInsights\1.1\'
+    $installationDir = 'C:\Program Files (x86)\Axe.Windows\1.1\'
     )
 
 $VerbosePreference='continue'
 $currLocation=Get-Location
 $appPath=Join-path $currLocation '..\WildlifeManager\WildlifeManager.exe'
-$outputPath=Join-path $currLocation '..\..\src\AccessibilityInsights.CI\bin\AutomationCheck'
+$outputPath=Join-path $currLocation '..\..\src\Axe.Windows.CI\bin\AutomationCheck'
 
 Remove-Item $outputPath -Recurse -Force -ErrorAction Ignore | Out-Null
 New-Item $outputPath -ItemType Directory | Out-Null
 
-Write-Verbose "Register & start AccessibilityInsights"
+Write-Verbose "Register & start Axe.Windows"
 Push-Location
 Set-Location $installationDir
 Write-Verbose '------------------------'
 Write-Verbose 'Importing module'
-Import-Module .\AccessibilityInsights.Automation.dll
+Import-Module .\Axe.Windows.Automation.dll
 
 Write-Verbose '------------------------'
-Write-Verbose 'Starting AccessibilityInsights'
-Start-AccessibilityInsights -OutputPath $($outputPath)
+Write-Verbose 'Starting Axe.Windows'
+Start-Axe.Windows -OutputPath $($outputPath)
 
 Write-Verbose '------------------------'
 Write-Verbose 'Launching WildlifeManager'
@@ -41,9 +41,9 @@ Write-Verbose $($result)
 Stop-Process -Id $procId
 
 Write-Verbose '------------------------'
-Write-Verbose 'Stopping AccessibilityInsights'
-Stop-AccessibilityInsights
+Write-Verbose 'Stopping Axe.Windows'
+Stop-Axe.Windows
 Pop-Location
 
-Write-Host "Results stored in ..\..\src\AccessibilityInsights.CI\bin\AutomationCheck. Press ENTER to exit"
+Write-Host "Results stored in ..\..\src\Axe.Windows.CI\bin\AutomationCheck. Press ENTER to exit"
 Read-Host

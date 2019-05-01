@@ -271,7 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="AccessibilityInsights.RulesLibrary.nuspec">
+    <None Include="Axe.Windows.RulesLibrary.nuspec">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -282,7 +282,7 @@
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
+    <ProjectReference Include="..\Axe.Windows.Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>

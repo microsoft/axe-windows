@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 
-namespace AccessibilityInsights.Extensions.Interfaces.ReferenceLinks
+namespace Axe.Windows.Extensions.Interfaces.ReferenceLinks
 {
     public interface IReferenceLink
     {

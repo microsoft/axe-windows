@@ -45,10 +45,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Axe.Windows.Core.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\AccessibilityInsights.Fakes.Prebuild\FakesAssemblies\Axe.Windows.Core.Fakes.dll</HintPath>
+      <HintPath>..\Axe.Windows.Fakes.Prebuild\FakesAssemblies\Axe.Windows.Core.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Axe.Windows.Desktop.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\AccessibilityInsights.Fakes.Prebuild\FakesAssemblies\Axe.Windows.Desktop.Fakes.dll</HintPath>
+      <HintPath>..\Axe.Windows.Fakes.Prebuild\FakesAssemblies\Axe.Windows.Desktop.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" Condition="$(FAKES_SUPPORTED) == 1">
       <SpecificVersion>False</SpecificVersion>
@@ -61,7 +61,7 @@
     </Reference>
     <Reference Include="mscorlib.4.0.0.0.Fakes, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0ae41878053f6703, processorArchitecture=MSIL" Condition="$(FAKES_SUPPORTED) == 1">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AccessibilityInsights.Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
+      <HintPath>..\Axe.Windows.Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -94,15 +94,15 @@
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\AccessibilityInsights.RuleSelection\RuleSelection.csproj">
+    <ProjectReference Include="..\Axe.Windows.RuleSelection\RuleSelection.csproj">
       <Project>{ab7195e3-a01d-4708-87af-08e9418ae33f}</Project>
       <Name>RuleSelection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Core\Core.csproj">
+    <ProjectReference Include="..\Axe.Windows.Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccessibilityInsights.Desktop\Desktop.csproj">
+    <ProjectReference Include="..\Axe.Windows.Desktop\Desktop.csproj">
       <Project>{0b9855fd-7b04-415c-a813-da9697693fda}</Project>
       <Name>Desktop</Name>
     </ProjectReference>
