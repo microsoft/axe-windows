@@ -53,7 +53,6 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  	  
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
     <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);VersionString=&quot;$(SemVerNumber)$(SemVerSuffix)&quot; AccessibilityInsights.CI.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix) -NonInteractive" />
   </Target>
@@ -72,7 +71,6 @@
     <ItemGroup>
       <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix)\Axe.Windows.$(SemVerNumber)$(SemVerSuffix).nupkg" />
     </ItemGroup>
-
     <SignFiles Files="@(SignNuGetPackFiles)"
                Type="$(SignType)"
                BinariesDirectory="$(OutputPath)"
