@@ -63,7 +63,7 @@ namespace Axe.Windows.Desktop.Settings
         {
             this.Mode = mode;
             this.RuleVersion = ruleVersion;
-            this.Version = Axe.Windows.Core.Misc.Utility.GetAppVersion();
+            this.Version = Axe.Windows.Core.Misc.PackageInfo.InformationalVersion;
 
             if (selected.HasValue)
             {
