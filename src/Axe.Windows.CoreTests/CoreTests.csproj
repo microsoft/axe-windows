@@ -93,6 +93,7 @@
     <Compile Include="Fingerprint\OutputFileIssueStoreUnitTests.cs" />
     <Compile Include="Fingerprint\IssueStoreExtensionsUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Misc\MiscTests.cs" />
+    <Compile Include="Misc\PackageInfoTests.cs" />
     <Compile Include="Misc\PreconditionsUnitTests.cs" />
     <Compile Include="Misc\BoundedCounterUnitTests.cs" />
     <Compile Include="Misc\UtilityTests.cs" />

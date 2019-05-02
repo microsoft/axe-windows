@@ -8,16 +8,6 @@ namespace Axe.Windows.Core.Misc
 {
     public static class Utility
     {
-        /// <summary>
-        /// Get version from Axe.Windows.Core Assembly
-        /// </summary>
-        /// <returns></returns>
-        public static string GetAppVersion()
-        {
-            string fileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
-            return fileVersion;
-        }
-
         public static string GetProcessName(int processId)
         {
             if (!TryGetProcessById(processId, out Process process)) return null;
