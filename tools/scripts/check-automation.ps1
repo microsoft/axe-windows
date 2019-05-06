@@ -15,7 +15,7 @@ switch ($flavor)
 }
 
 $appPath='..\..\..\..\tools\WildlifeManager\WildlifeManager.exe'
-$rootPath=Join-Path '..\..\src\Axe.Windows.CI\bin\' $flavor
+$rootPath=Join-Path '..\..\src\CI\bin\' $flavor
 $outputPath=Join-Path $rootPath 'AutomationCheck'
 
 if (-Not (Test-Path (Join-Path $rootPath Axe.Windows.CI.exe)))
