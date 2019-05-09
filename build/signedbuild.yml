@@ -113,14 +113,14 @@ jobs:
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\Axe.Windows.Actions\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Automation\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Core\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Desktop\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Rules\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.RuleSelection\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Telemetry\\bin\\Debug\\*.dll;\
-                      src\\Axe.Windows.Win32\\bin\\Debug\\*.dll;"
+      AnalyzeTarget: "src\\Actions\\bin\\Debug\\*.dll;\
+                      src\\Automation\\bin\\Debug\\*.dll;\
+                      src\\Core\\bin\\Debug\\*.dll;\
+                      src\\Desktop\\bin\\Debug\\*.dll;\
+                      src\\Rules\\bin\\Debug\\*.dll;\
+                      src\\RuleSelection\\bin\\Debug\\*.dll;\
+                      src\\Telemetry\\bin\\Debug\\*.dll;\
+                      src\\Win32\\bin\\Debug\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
     displayName: 'Run CredScan'
@@ -133,14 +133,14 @@ jobs:
     inputs:
       inputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\Axe.Windows.Actions\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Core\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Rules\\bin\\Debug\\Axe.Windows.*.dll\
-                src\\Axe.Windows.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Win32\\bin\\Debug\\Axe.Windows.*.dll;"
+      targets: "src\\Actions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Core\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Win32\\bin\\Debug\\Axe.Windows.*.dll;"
       ignoreGeneratedCode: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
@@ -220,14 +220,14 @@ jobs:
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\Axe.Windows.Actions\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Automation\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Core\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Desktop\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Rules\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.RuleSelection\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Telemetry\\bin\\Release\\*.dll;\
-                      src\\Axe.Windows.Win32\\bin\\Release\\*.dll;"
+      AnalyzeTarget: "src\\Actions\\bin\\Release\\*.dll;\
+                      src\\Automation\\bin\\Release\\*.dll;\
+                      src\\Core\\bin\\Release\\*.dll;\
+                      src\\Desktop\\bin\\Release\\*.dll;\
+                      src\\Rules\\bin\\Release\\*.dll;\
+                      src\\RuleSelection\\bin\\Release\\*.dll;\
+                      src\\Telemetry\\bin\\Release\\*.dll;\
+                      src\\Win32\\bin\\Release\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
@@ -266,7 +266,7 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: (NuGet Axe.Windows)'
     inputs:
-      PathtoPublish: 'src\Axe.Windows.CI\bin\Release\NuGet'
+      PathtoPublish: 'src\CI\bin\Release\NuGet'
       ArtifactName: '$(DropFolder)'
       publishLocation: FilePath
       TargetPath: '$(DropRoot)'
@@ -335,14 +335,14 @@ jobs:
     inputs:
       inputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\Axe.Windows.Actions\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Automation\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Core\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Rules\\bin\\Debug\\Axe.Windows.*.dll\
-                src\\Axe.Windows.RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Axe.Windows.Win32\\bin\\Debug\\Axe.Windows.*.dll;"
+      targets: "src\\Actions\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Automation\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Core\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
+                src\\Win32\\bin\\Debug\\Axe.Windows.*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report'
