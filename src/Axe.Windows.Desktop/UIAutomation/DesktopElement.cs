@@ -110,11 +110,13 @@ namespace Axe.Windows.Desktop.UIAutomation
                     value = GetHeaderOfLabelBy(value);
                 }
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
                 value = null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return value;
         }
@@ -141,6 +143,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 }
                 base.Dispose(disposing);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
@@ -149,6 +152,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     System.Diagnostics.Debugger.Break();
                 }
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
     }
 }

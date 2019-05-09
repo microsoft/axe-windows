@@ -196,6 +196,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     listener(m);
                 }
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
@@ -203,6 +204,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 m.Properties = new List<KeyValuePair<string, dynamic>>() { new KeyValuePair<string, dynamic>("Message", $"Failed to unregister all listeners: {e.Message}") };
                 listener(m);
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -294,6 +296,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     listener(m);
                 }
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
@@ -309,6 +312,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 /// it is very unexpected situation. 
                 /// need to figure out a way to prevent it or handle it more gracefully
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -413,6 +417,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     this.EventListenerFocusChanged.ReadyToListen = true;
                 }
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
@@ -425,6 +430,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 };
                 msgData.Listener(m);
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>

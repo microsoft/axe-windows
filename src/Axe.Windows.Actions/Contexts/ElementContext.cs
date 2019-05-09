@@ -55,10 +55,9 @@ namespace Axe.Windows.Actions.Contexts
             this.Id = Guid.NewGuid();
         }
 
-        /// <summary>
-        /// it will be retrieved via GetSnapshotContext;
-        /// </summary>
-        ElementDataContext _DataContext = null;
+        // Backing property for DataContext - is disposed via DataContext property
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_dataContext")]
+        ElementDataContext _dataContext = null;
 
         /// <summary>
         /// Data context for this element context
@@ -67,13 +66,13 @@ namespace Axe.Windows.Actions.Contexts
         {
             get
             {
-                return _DataContext;
+                return _dataContext;
             }
 
             set
             {
-                _DataContext?.Dispose();
-                _DataContext = value;
+                _dataContext?.Dispose();
+                _dataContext = value;
             }
         }
 
@@ -89,7 +88,7 @@ namespace Axe.Windows.Actions.Contexts
                     this.ProcessName = null;
                     if (this.DataContext != null)
                     {
-                        this.DataContext?.Dispose();
+                        this.DataContext = null;
                     }
                     else
                     {

@@ -120,12 +120,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 {
                     child = walker.GetFirstChildElement(child);
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch (Exception ex)
                 {
                     ex.ReportException();
                     child = null;
                     System.Diagnostics.Trace.WriteLine("Tree walker exception: " + ex);
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
 
                 while (child != null && _elementCounter.TryIncrement())
                 {
@@ -140,12 +142,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     {
                         child = walker.GetNextSiblingElement(child);
                     }
+#pragma warning disable CA1031 // Do not catch general exception types
                     catch (Exception ex)
                     {
                         ex.ReportException();
                         child = null;
                         System.Diagnostics.Trace.WriteLine("Tree walker exception: " + ex);
                     }
+#pragma warning restore CA1031 // Do not catch general exception types
                 }
             }
 

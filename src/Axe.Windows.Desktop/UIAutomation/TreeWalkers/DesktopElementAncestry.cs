@@ -110,12 +110,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     }
                 }
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
                 ex.ReportException();
                 // ignore to show the best efforts.
                 System.Diagnostics.Trace.WriteLine(ex);
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -137,12 +139,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 {
                     child = walker.GetFirstChildElement((IUIAutomationElement)parentNode.PlatformObject);
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch (Exception ex)
                 {
                     ex.ReportException();
                     child = null;
                     System.Diagnostics.Trace.WriteLine("Tree walker exception: " + ex);
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
 
                 while (child != null)
                 {
@@ -167,12 +171,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     {
                         child = walker.GetNextSiblingElement(child);
                     }
+#pragma warning disable CA1031 // Do not catch general exception types
                     catch (Exception ex)
                     {
                         ex.ReportException();
                         child = null;
                         System.Diagnostics.Trace.WriteLine("Tree walker exception: " + ex);
                     }
+#pragma warning restore CA1031 // Do not catch general exception types
                 }
             }
 

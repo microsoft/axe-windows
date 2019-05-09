@@ -64,9 +64,8 @@ namespace Axe.Windows.Actions
 
         public TreeTracker TreeTracker { get; private set; } = null;
 
-        /// <summary>
-        /// actual object for POI ElementContext.
-        /// </summary>
+        // Backing property for POIElementContext - is disposed via POIElementContext property
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]
         ElementContext _POIElementContext = null;
 
         /// <summary>
@@ -85,6 +84,7 @@ namespace Axe.Windows.Actions
                 if (_POIElementContext != null)
                 {
                     dma.RemoveElementContext(_POIElementContext.Id);
+                    _POIElementContext.Dispose();
                 }
 
                 _POIElementContext = value;

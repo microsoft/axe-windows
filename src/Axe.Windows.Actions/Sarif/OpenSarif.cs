@@ -26,11 +26,13 @@ namespace Axe.Windows.Actions.Sarif
             {
                 baselineLogs.AddRange(JsonConvert.DeserializeObject<List<SarifLog>>(sarifData));
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
                 baselineLogs.Add(JsonConvert.DeserializeObject<SarifLog>(sarifData));
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             // Find first a11y file referenced by an attachment in any run result
             return baselineLogs.FirstOrDefault().Runs

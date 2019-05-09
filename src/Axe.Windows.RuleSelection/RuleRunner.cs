@@ -22,7 +22,8 @@ namespace Axe.Windows.RuleSelection
             {
                 RunUnsafe(e);
             }
-            catch (System.Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception ex)
             {
                 ex.ReportException();
                 if (System.Diagnostics.Debugger.IsAttached)
@@ -31,6 +32,7 @@ namespace Axe.Windows.RuleSelection
                     System.Diagnostics.Debugger.Break();
                 }
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         private static void RunUnsafe(A11yElement e)

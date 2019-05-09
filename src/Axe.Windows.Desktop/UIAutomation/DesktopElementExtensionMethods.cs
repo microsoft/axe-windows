@@ -194,10 +194,12 @@ namespace Axe.Windows.Desktop.UIAutomation
                 }
 
             }
-            catch(Exception e)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception e)
             {
                 e.ReportException();
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -295,10 +297,12 @@ namespace Axe.Windows.Desktop.UIAutomation
                 ppl?.Clear();
                 ptl?.Clear();
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -318,12 +322,14 @@ namespace Axe.Windows.Desktop.UIAutomation
                     ret = true;
                     pid = null;
                 }
+#pragma warning disable CA1031 // Do not catch general exception types
                 catch (Exception e)
                 {
                     // at this point, UIAElement is invalid. but don't remove. 
                     // element.PlatformObject = null;
                     e.ReportException();
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
             }
 
             return ret;
@@ -346,11 +352,13 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 value = ConvertVariantAsNeeded(temp);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
                 value = null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return value;
         }
@@ -372,11 +380,13 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 value = ConvertVariantAsNeeded(temp);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
                 value = null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return value;
         }

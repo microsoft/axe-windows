@@ -19,6 +19,7 @@ namespace Axe.Windows.Actions.Trackers
     /// </summary>
     public class TreeTracker : BaseTracker
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "SelectAction")]
         readonly SelectAction SelectAction = null;
         internal TreeViewMode TreeViewMode { get; set; } = TreeViewMode.Raw;
 

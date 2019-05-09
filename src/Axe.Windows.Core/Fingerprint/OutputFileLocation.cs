@@ -112,10 +112,12 @@ namespace Axe.Windows.Core.Fingerprint
             {
                 _file = Path.GetFullPath(file);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 throw new ArgumentException("Unable to get full path to file: " + file, nameof(file), e);
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             if (!File.Exists(_file))
                 throw new ArgumentException("File does not exist: " + _file, nameof(file));

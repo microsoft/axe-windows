@@ -138,10 +138,12 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             {
                 return this.UIATextRange.GetAttributeValue(attr);
             }
-            catch(Exception e)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception e)
             {
                 e.ReportException();
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return null;
         }

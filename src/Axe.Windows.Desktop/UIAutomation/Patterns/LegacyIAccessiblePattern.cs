@@ -39,10 +39,12 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                 this.Properties.Add(new A11yPatternProperty() { Name = "State", Value = this.Pattern.CurrentState });
                 this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
             }
-            catch(Exception e)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception e)
             {
                 e.ReportException();
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         [PatternMethod]
