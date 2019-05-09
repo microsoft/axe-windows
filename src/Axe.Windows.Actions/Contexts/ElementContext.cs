@@ -55,7 +55,7 @@ namespace Axe.Windows.Actions.Contexts
             this.Id = Guid.NewGuid();
         }
 
-        // Backing property for DataContext - is disposed via DataContext property
+        // Backing object for DataContext - is disposed via DataContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_dataContext")]
         ElementDataContext _dataContext = null;
 

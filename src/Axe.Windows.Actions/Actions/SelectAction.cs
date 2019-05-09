@@ -64,7 +64,7 @@ namespace Axe.Windows.Actions
 
         public TreeTracker TreeTracker { get; private set; } = null;
 
-        // Backing property for POIElementContext - is disposed via POIElementContext property
+        // Backing object for POIElementContext - is disposed via POIElementContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]
         ElementContext _POIElementContext = null;
 
