@@ -53,6 +53,7 @@ jobs:
         !**\obj\**
       vsTestVersion: 15.0
       codeCoverageEnabled: true
+      publishRunAttachments: true
       platform: '$(BuildPlatform)'
       configuration: release
       rerunFailedTests: true
