@@ -108,12 +108,14 @@ namespace Axe.Windows.Desktop.UIAutomation
                 }
                 return new UnKnownPattern(e, id, name);
             }
-            catch(Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception ex)
             {
                 ex.ReportException();
 
                 return null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
     }
 }

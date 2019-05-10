@@ -342,11 +342,13 @@ namespace Axe.Windows.Core.Misc
             {
                 txt = getString();
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
                 txt = "";
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return txt;
         }

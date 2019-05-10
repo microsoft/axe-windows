@@ -112,6 +112,9 @@ namespace Axe.Windows.Desktop.Keyboard
                     }
 
                     this.HotKeyList.Clear();
+
+                    source?.Dispose();
+                    source = null;
                 }
 
                 disposedValue = true;

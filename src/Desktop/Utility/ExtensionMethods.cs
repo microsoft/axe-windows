@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Net;
 using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
@@ -35,11 +34,13 @@ namespace Axe.Windows.Desktop.Utility
 
                 return prc.ProcessName;
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
                 ex.ReportException();
                 return null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -55,11 +56,13 @@ namespace Axe.Windows.Desktop.Utility
 
                 return prc.MainModule;
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
                 ex.ReportException();
                 return null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -204,44 +207,6 @@ namespace Axe.Windows.Desktop.Utility
         private static double GetDPIRate(uint dpi)
         {
             return dpi / 96.0; // 96 is 100% scale. 
-        }
-
-        // If a web exception contains one of the following status values, it might be transient.
-        private readonly static HashSet<WebExceptionStatus> TransientWebExceptions = new HashSet<WebExceptionStatus>()
-        {
-            WebExceptionStatus.ConnectionClosed,
-            WebExceptionStatus.Timeout,
-            WebExceptionStatus.RequestCanceled,
-            WebExceptionStatus.NameResolutionFailure
-        };
-
-        /// <summary>
-        /// Attempt to determine if we expect an exception to be transient.
-        /// Will check children of an aggregate exception.
-        /// Based on https://docs.microsoft.com/en-us/azure/architecture/patterns/retry
-        /// </summary>
-        /// <param name="ex">The exception to check</param>
-        /// <returns></returns>
-        public static bool IsTransient(this Exception ex)
-        {
-            switch (ex)
-            {
-                case null:
-                    return false;
-                case AggregateException agEx:
-                    foreach (var inner in agEx.InnerExceptions)
-                    {
-                        if (!inner.IsTransient()) return false;
-                    }
-                    return true;
-                case WebException webEx:
-                    return TransientWebExceptions.Contains(webEx.Status);
-                // This is what we saw happen to bug attachments in our telemetry
-                case TimeoutException tEx:
-                    return true;
-                default:
-                    return false;
-            }
         }
 
         /// <summary>

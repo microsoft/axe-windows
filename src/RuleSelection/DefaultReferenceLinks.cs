@@ -22,11 +22,13 @@ namespace Axe.Windows.RuleSelection
                 var shortDescription = DefaultGuidelineShortDescriptions.ResourceManager.GetString(lookupToken, CultureInfo.CurrentCulture);
                 return new ReferenceLink(shortDescription, url);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
                 return new ReferenceLink(DefaultGuidelineShortDescriptions.None);
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
     } // class
 } // namespace

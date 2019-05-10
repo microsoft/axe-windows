@@ -34,10 +34,12 @@ namespace Axe.Windows.Actions.Actions
 
                 changeCount = SessionIssueStore.GetInstance().MergeIssuesFromStore(storeToMerge);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
             {
                 e.ReportException();
             }
+#pragma warning restore CA1031 // Do not catch general exception types
             finally
             {
                 SelectAction.GetDefaultInstance().ClearSelectedContext();

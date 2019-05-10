@@ -82,10 +82,12 @@ namespace Axe.Windows.Desktop.Keyboard
                     throw new ArgumentException($"Hotkey format is not Modifier + Key: {txt}");
                 }
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch
             {
                 return null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return hk;
         }
