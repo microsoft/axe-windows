@@ -159,8 +159,8 @@ CommandConstStrings.TeamName | “TeamName” | Value for Team name in telemetry
 
 ### Using the assembly
 You can get the files via a NuGet package Configure NuGet to retrieve the
-**Axe.Windows** package from
-<https://TBD/nuget/v3/index.json>,
+**Microsoft.Axe.Windows** package from
+<https://api.nuget.org/v3/index.json>,
 then use the classes in the Axe.Windows.Automation namespace (see
 examples below):
 
@@ -259,3 +259,5 @@ Sample PowerShell script (the 2 second delay exists to give the app time to init
     Stop-Process -Id $appProcId
     Stop-AxeWindows
 ```
+
+**Note**: This script will work only if the instance of notepad.exe started is the only instance in the entire system. If there is more than one instance, the PowerShell layer will throw an Exception because it tries to convert something like "123 456" to a number, which will fail.
