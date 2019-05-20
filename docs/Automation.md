@@ -250,7 +250,7 @@ Sample `C#` code—this is interactive, but yours doesn’t need to be:
 
 Sample PowerShell script (the 2 second delay exists to give the app time to initialize before it is scanned):
 ```
-    Import-Module Axe.Windows.Automation.dll
+    Import-Module .\Axe.Windows.Automation.dll
     Start-AxeWindows -OutputPath c:\MyFolder
     Start-Process -FilePath notepad.exe
     Start-Sleep 2
