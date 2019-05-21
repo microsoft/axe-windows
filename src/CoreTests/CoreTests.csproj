@@ -87,11 +87,6 @@
     <Compile Include="Bases\A11yPropertyTests.cs" />
     <Compile Include="Fingerprint\ScanResultFingerprintUnitTests.cs" />
     <Compile Include="Fingerprint\FingerprintContributionUnitTests.cs" />
-    <Compile Include="Fingerprint\IssueUnitTests.cs" />
-    <Compile Include="Fingerprint\InMemoryIssueStoreUnitTests.cs" />
-    <Compile Include="Fingerprint\OutputFileLocationUnitTests.cs" />
-    <Compile Include="Fingerprint\OutputFileIssueStoreUnitTests.cs" />
-    <Compile Include="Fingerprint\IssueStoreExtensionsUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Misc\MiscTests.cs" />
     <Compile Include="Misc\PackageInfoTests.cs" />
     <Compile Include="Misc\PreconditionsUnitTests.cs" />
