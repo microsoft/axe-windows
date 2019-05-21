@@ -40,28 +40,12 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
-  <PropertyGroup Condition="$(FAKES_SUPPORTED) == 1">
-    <DefineConstants>$(DefineConstants);FAKES_SUPPORTED</DefineConstants>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Axe.Windows.Core.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\Fakes.Prebuild\FakesAssemblies\Axe.Windows.Core.Fakes.dll</HintPath>
-    </Reference>
-    <Reference Include="Axe.Windows.Desktop.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\Fakes.Prebuild\FakesAssemblies\Axe.Windows.Desktop.Fakes.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" Condition="$(FAKES_SUPPORTED) == 1">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.4.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.4.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorlib.4.0.0.0.Fakes, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0ae41878053f6703, processorArchitecture=MSIL" Condition="$(FAKES_SUPPORTED) == 1">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Fakes.Prebuild\FakesAssemblies\mscorlib.4.0.0.0.Fakes.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -84,7 +68,7 @@
     <Compile Include="ColorContrastAnalyzer\ImageTests.cs" />
     <Compile Include="Keyboard\HotkeyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\SnapshotMetaInfoTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
+    <Compile Include="Settings\SnapshotMetaInfoTests.cs" />
     <Compile Include="Utility\SupportedEventsTests.cs" />
   </ItemGroup>
   <ItemGroup>
