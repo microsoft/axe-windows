@@ -4,8 +4,8 @@
 To enable various automation scenarios, we have created an assembly
 (`Axe.Windows.Automation.dll`) that exposes a subset of core
 AxeWindows functionality to automation systems. This can be used in
-a variety of ways, including as part of a standalone test system, as part of a
-PowerShell script, or as part of a CI/CD solution. One or more scans can be
+a variety of ways, including as part of a standalone test system, 
+PowerShell script, or CI/CD solution. One or more scans can be
 performed during a test run, and the outputs will be saved to disk. No UI is
 provided in automation mode, and the code is intended to be compatible with
 Windows 7 or newer.
