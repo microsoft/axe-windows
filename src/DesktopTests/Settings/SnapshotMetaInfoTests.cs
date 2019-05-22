@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System.IO;
 using Axe.Windows.Desktop.Settings;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.QualityTools.Testing.Fakes;
-using System.IO.Fakes;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Axe.Windows.DesktopTests.Settings
 {
@@ -100,16 +98,12 @@ namespace Axe.Windows.DesktopTests.Settings
 
         private static Dictionary<SnapshotMetaPropertyName, object> GetDeserializedProperties(Dictionary<SnapshotMetaPropertyName, object> inputProperties)
         {
-            using (ShimsContext.Create())
+            SnapshotMetaInfo info = new SnapshotMetaInfo(A11yFileMode.Contrast,"Test", 0, 0, inputProperties);
+            var text = JsonConvert.SerializeObject(info);
+            using (var testStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(text)))
             {
-                SnapshotMetaInfo info = new SnapshotMetaInfo(A11yFileMode.Contrast,"Test", 0, 0, inputProperties);
-                var text = JsonConvert.SerializeObject(info);
-                ShimStreamReader.AllInstances.ReadToEnd = (_) => { return text; };
-                using (var testStream = new MemoryStream())
-                {
-                    SnapshotMetaInfo metaInfo = SnapshotMetaInfo.DeserializeFromStream(testStream);
-                    return metaInfo.OtherProperties;
-                }
+                SnapshotMetaInfo metaInfo = SnapshotMetaInfo.DeserializeFromStream(testStream);
+                return metaInfo.OtherProperties;
             }
         }
 

@@ -97,7 +97,6 @@
     <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
     <Compile Include="Actions\ControlPatternAction.cs" />
     <Compile Include="Actions\DataManager.cs" />
-    <Compile Include="Actions\FingerprintAction.cs" />
     <Compile Include="Actions\GetDataAction.cs" />
     <Compile Include="Actions\PrivacyExtensions.cs" />
     <Compile Include="Actions\SetDataAction.cs" />
@@ -110,7 +109,6 @@
     <Compile Include="Attributes\InteractionLevelAttribute.cs" />
     <Compile Include="Contexts\ElementDataContext.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Enums\CompletenessMode.cs" />
     <Compile Include="Misc\ExtensionMethods.cs" />
     <Compile Include="Misc\ResultsFileSarifMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

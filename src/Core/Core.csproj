@@ -70,17 +70,8 @@
     <Compile Include="Enums\HighlighterColor.cs" />
     <Compile Include="Enums\UrlType.cs" />
     <Compile Include="Exceptions\TreeNavigationFailedException.cs" />
-    <Compile Include="Fingerprint\AddResult.cs" />
-    <Compile Include="Fingerprint\IssueStoreExtensions.cs" />
-    <Compile Include="Fingerprint\OutputFileIssueStore.cs" />
-    <Compile Include="Fingerprint\OutputFileLocation.cs" />
     <Compile Include="Fingerprint\FingerprintFactory.cs" />
-    <Compile Include="Fingerprint\SessionIssueStore.cs" />
     <Compile Include="Fingerprint\IFingerprint.cs" />
-    <Compile Include="Fingerprint\IIssueStore.cs" />
-    <Compile Include="Fingerprint\ILocation.cs" />
-    <Compile Include="Fingerprint\InMemoryIssueStore.cs" />
-    <Compile Include="Fingerprint\Issue.cs" />
     <Compile Include="Fingerprint\ScanResultFingerprint.cs" />
     <Compile Include="HelpLinks\HelpUrl.cs" />
     <Compile Include="Misc\BoundedCounter.cs" />
