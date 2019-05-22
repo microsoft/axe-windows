@@ -109,7 +109,6 @@
     <Compile Include="Attributes\InteractionLevelAttribute.cs" />
     <Compile Include="Contexts\ElementDataContext.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Enums\CompletenessMode.cs" />
     <Compile Include="Misc\ExtensionMethods.cs" />
     <Compile Include="Misc\ResultsFileSarifMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

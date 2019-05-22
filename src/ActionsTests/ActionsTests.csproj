@@ -95,7 +95,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Actions\PrivacyExtensionsUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Actions\ScreenShotActionUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Actions\CaptureActionUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Misc\ExtensionMethodsTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />

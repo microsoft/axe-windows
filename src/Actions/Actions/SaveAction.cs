@@ -42,32 +42,21 @@ namespace Axe.Windows.Actions
         /// <param name="focusedElementId">The ID of the element with the current focus</param>
         /// <param name="mode">The type of file being saved</param>
         /// <param name="otherProperties">Properties to add to the snapshot metadata</param>
-        /// <param name="completenessMode">Mode to control selective removal of data from the output</param>
-        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, Dictionary<SnapshotMetaPropertyName, object> otherProperties = null, CompletenessMode completenessMode = CompletenessMode.Full)
+        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, Dictionary<SnapshotMetaPropertyName, object> otherProperties = null)
         {
             var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
-                if (completenessMode == CompletenessMode.Full)
-                {
-                    SaveSnapshotFromElement(focusedElementId, mode, otherProperties, completenessMode, ec, package, ec.DataContext.RootElment);
-                }
-                else
-                {
-                    using (A11yElement reducedRoot = SelectAction.GetDefaultInstance().POIElementContext.Element.GetScrubbedElementTree())
-                    {
-                        SaveSnapshotFromElement(focusedElementId, mode, otherProperties, completenessMode, ec, package, reducedRoot);
-                    }
-                }
+                SaveSnapshotFromElement(focusedElementId, mode, otherProperties, ec, package, ec.DataContext.RootElment);
             }
         }
 
         /// <summary>
         /// Private helper function (formerly in SaveSnapshotZip) to make it easier to call with different inputs
         /// </summary>
-        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Dictionary<SnapshotMetaPropertyName, object> otherProperties, CompletenessMode completenessMode, Contexts.ElementContext ec, Package package, A11yElement root)
+        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Dictionary<SnapshotMetaPropertyName, object> otherProperties, Contexts.ElementContext ec, Package package, A11yElement root)
         {
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
@@ -75,7 +64,7 @@ namespace Axe.Windows.Actions
                 AddStream(package, mStrm, elementFileName);
             }
 
-            if (completenessMode == CompletenessMode.Full && ec.DataContext.Screenshot != null)
+            if (ec.DataContext.Screenshot != null)
             {
                 using (MemoryStream mStrm = new MemoryStream())
                 {

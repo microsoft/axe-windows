@@ -549,7 +549,7 @@ namespace Axe.Windows.AutomationTests
 
             if (shimSnapshot)
             {
-                ShimSaveAction.SaveSnapshotZipStringGuidNullableOfInt32A11yFileModeDictionaryOfSnapshotMetaPropertyNameObjectCompletenessMode = (_, __, ___, ____, _____, ______) => { };
+                ShimSaveAction.SaveSnapshotZipStringGuidNullableOfInt32A11yFileModeDictionaryOfSnapshotMetaPropertyNameObject = (_, __, ___, ____, _____) => { };
             }
 
             if (shimSarif)
