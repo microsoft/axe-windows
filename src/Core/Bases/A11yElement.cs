@@ -20,7 +20,7 @@ namespace Axe.Windows.Core.Bases
     /// Define IUIElement for abstract UIElement for all platform
     /// This is the base class for elements implemented in Axe.Windows
     /// </summary>
-    public class A11yElement : IA11yElement, IDisposable
+    public class A11yElement : ICoreA11yElement, IDisposable
     {
         private string _ProcessName = null;
 
