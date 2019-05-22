@@ -250,7 +250,7 @@ Sample `C#` code—this is interactive, but yours doesn’t need to be:
 
 Sample PowerShell script (the 2 second delay exists to give the app time to initialize before it is scanned):
 ```
-    Import-Module Axe.Windows.Automation.dll
+    Import-Module .\Axe.Windows.Automation.dll
     Start-AxeWindows -OutputPath c:\MyFolder
     Start-Process -FilePath notepad.exe
     Start-Sleep 2
@@ -261,3 +261,5 @@ Sample PowerShell script (the 2 second delay exists to give the app time to init
 ```
 
 **Note**: This script will work only if the instance of notepad.exe started is the only instance in the entire system. If there is more than one instance, the PowerShell layer will throw an Exception because it tries to convert something like "123 456" to a number, which will fail.
+
+**Warning**: Downloading this package using nonstandard methods, such as directly from a web browser, may cause PowerShell's Import-Module command to fail. We recommend using NuGet to acquire the package.
