@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Bases;
+using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.QualityTools.Testing.Fakes;
-using Moq;
-using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Bases.Fakes;
-using Axe.Windows.Core.Misc.Fakes;
 using System.Globalization;
 
 namespace Axe.Windows.Actions.Misc.Tests
@@ -33,7 +31,7 @@ namespace Axe.Windows.Actions.Misc.Tests
                     offscreen.Add(false);
                 }
                 var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = Axe.Windows.Actions.Misc.ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
+                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
                 Assert.AreEqual(3, answer.UniqueId);
             }
         }
@@ -57,7 +55,7 @@ namespace Axe.Windows.Actions.Misc.Tests
                 }
                 offscreen[3] = true;
                 var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = Axe.Windows.Actions.Misc.ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
+                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
                 Assert.AreEqual(4, answer.UniqueId);
             }
         }
@@ -79,7 +77,7 @@ namespace Axe.Windows.Actions.Misc.Tests
                     offscreen.Add(false);
                 }
                 var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = Axe.Windows.Actions.Misc.ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
+                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
                 Assert.AreEqual(null, answer);
             }
         }
