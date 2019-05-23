@@ -5,10 +5,11 @@ using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Contexts.Fakes;
 using Axe.Windows.Actions.Fakes;
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Bases.Fakes;
+using Axe.Windows.Core.Types;
 using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Fakes;
 
@@ -17,6 +18,17 @@ namespace Axe.Windows.ActionsTests.Actions
     [TestClass]
     public class ScreenShotActionUnitTests
     {
+        // This sets the Bounding Rectangle. It breaks encapsulation in
+        // many reproachable ways
+        private void SetBoundingRectangle(A11yElement element, Rectangle b)
+        {
+            int typeId = PropertyType.UIA_BoundingRectanglePropertyId;
+            double[] data = { b.Left, b.Top, b.Right - b.Left, b.Bottom - b.Top };
+            if (element.Properties == null)
+                element.Properties = new Dictionary<int, A11yProperty>();
+            element.Properties.Add(typeId, new A11yProperty(typeId, data));
+        }
+
         [TestMethod]
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
@@ -26,10 +38,9 @@ namespace Axe.Windows.ActionsTests.Actions
                 bool bitmapsetcalled = false;
 
                 // no bounding rectangle.
-                A11yElement element = new ShimA11yElement
+                A11yElement element = new A11yElement
                 {
-                    ParentGet = () => null,
-                    BoundingRectangleGet = () => Rectangle.Empty,
+                    Parent = null,
                 };
 
                 ElementDataContext dc = new ShimElementDataContext()
@@ -66,12 +77,11 @@ namespace Axe.Windows.ActionsTests.Actions
                 bool bitmapsetcalled = false;
 
                 //  bounding rectangle exists.
-                A11yElement element = new ShimA11yElement
+                A11yElement element = new A11yElement
                 {
-                    ParentGet = () => null,
-                    BoundingRectangleGet = () => new Rectangle(0,0,10,10),
-                    UniqueIdGet = () => 1,
+                    UniqueId = 1,
                 };
+                SetBoundingRectangle(element, new Rectangle(0, 0, 10, 10));
 
                 ElementDataContext dc = new ShimElementDataContext()
                 {
@@ -109,12 +119,11 @@ namespace Axe.Windows.ActionsTests.Actions
                 bool bitmapsetcalled = false;
 
                 //  bounding rectangle exists.
-                A11yElement element = new ShimA11yElement
+                A11yElement element = new A11yElement
                 {
-                    ParentGet = () => null,
-                    BoundingRectangleGet = () => new Rectangle(0, 0, 10, 10),
-                    UniqueIdGet = () => 1,
+                    UniqueId = 1,
                 };
+                SetBoundingRectangle(element, new Rectangle(0, 0, 10, 10));
 
                 ElementDataContext dc = new ShimElementDataContext()
                 {
