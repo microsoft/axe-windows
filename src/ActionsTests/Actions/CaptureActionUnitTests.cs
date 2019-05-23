@@ -13,7 +13,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 #if FAKES_SUPPORTED
 using Axe.Windows.Actions.Contexts.Fakes;
 using Axe.Windows.Actions.Fakes;
-using Axe.Windows.Core.Bases.Fakes;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers.Fakes;
 using Microsoft.QualityTools.Testing.Fakes;
 #endif
@@ -74,7 +73,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 const DataContextMode expectedDcMode = DataContextMode.Test;
                 const TreeViewMode expectedTreeViewMode = TreeViewMode.Content;
 
-                A11yElement expectedElement = new ShimA11yElement();
+                A11yElement expectedElement = new A11yElement();
                 List<A11yElement> expectedElements = null;
                 ElementDataContext dataContext = new ElementDataContext(expectedElement, 1);
 
@@ -121,7 +120,7 @@ namespace Axe.Windows.ActionsTests.Actions
             {
                 const DataContextMode expectedDcMode = DataContextMode.Load;
                 const TreeViewMode expectedTreeViewMode = TreeViewMode.Control;
-                A11yElement expectedElement = new ShimA11yElement();
+                A11yElement expectedElement = new A11yElement();
 
                 ElementDataContext dataContext = new ElementDataContext(expectedElement, 1);
 
@@ -162,42 +161,38 @@ namespace Axe.Windows.ActionsTests.Actions
             Assert.AreEqual(3, counter.Attempts);
         }
 
-#if FAKES_SUPPORTED
         [TestMethod]
         [Timeout(1000)]
         public void AddElementAndChildrenIntoList_GeneralCase_BuildsCorrectDictionary()
         {
-            using (ShimsContext.Create())
+            const int elementCount = 7;
+
+            BoundedCounter counter = new BoundedCounter(100);
+            Dictionary<int, A11yElement> elementsOut = new Dictionary<int, A11yElement>();
+
+            // Build our tree
+            List<A11yElement> elements = new List<A11yElement>();
+            for (int loop = 0; loop < elementCount; loop++)
             {
-                const int elementCount = 7;
-
-                BoundedCounter counter = new BoundedCounter(100);
-                Dictionary<int, A11yElement> elementsOut = new Dictionary<int, A11yElement>();
-
-                // Build our tree
-                List<ShimA11yElement> elements = new List<ShimA11yElement>();
-                for (int loop = 0; loop < elementCount; loop++)
+                A11yElement element = new A11yElement
                 {
-                    int uniqueId = loop;
-                    elements.Add(new ShimA11yElement
-                    {
-                        UniqueIdGet = () => uniqueId,  // Don't use loop here, since it will get the final value, not the in-loop value
-                    });
-                }
-                elements[0].ChildrenGet = () => new List<A11yElement> { elements[1], elements[2] };
-                elements[2].ChildrenGet = () => new List<A11yElement> { elements[3] };
-                elements[3].ChildrenGet = () => new List<A11yElement> { elements[4], elements[5], elements[6] };
-                elements[6].ChildrenGet = () => new List<A11yElement>();
+                    UniqueId = loop
+                };
+                elements.Add(element);
+            }
 
-                CaptureAction.AddElementAndChildrenIntoList(elements[0], elementsOut, counter);
+            elements[0].Children = new List<A11yElement> { elements[1], elements[2] };
+            elements[2].Children = new List<A11yElement> { elements[3] };
+            elements[3].Children = new List<A11yElement> { elements[4], elements[5], elements[6] };
+            elements[6].Children = new List<A11yElement>();
 
-                Assert.AreEqual(elementCount, elementsOut.Count);
-                for (int loop = 0; loop < elementCount; loop++)
-                {
-                    Assert.AreEqual(loop, elementsOut[loop].UniqueId);
-                }
+            CaptureAction.AddElementAndChildrenIntoList(elements[0], elementsOut, counter);
+
+            Assert.AreEqual(elementCount, elementsOut.Count);
+            for (int loop = 0; loop < elementCount; loop++)
+            {
+                Assert.AreEqual(loop, elementsOut[loop].UniqueId);
             }
         }
-#endif
     }
 }
