@@ -57,10 +57,8 @@
     <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Win32Constants.cs" />
-    <Compile Include="Win32Delegates.cs" />
     <Compile Include="Win32Enums.cs" />
     <Compile Include="Win32Helper.cs" />
-    <Compile Include="Win32Structures.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
