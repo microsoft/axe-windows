@@ -1,38 +1,82 @@
 ## Axe.Windows - Automation
 
 ### Overview
-To enable various automation scenarios, we have created an assembly
-(`Axe.Windows.Automation.dll`) that exposes a subset of core
-AxeWindows functionality to automation systems. This can be used in
-a variety of ways, including as part of a standalone test system, 
+You can run Axe.Windows automated tests programmatically using the assembly `Axe.Windows.Automation.dll`.
+This is useful when checking your applications for accessibility issues as part of a standalone test system, 
 PowerShell script, or CI/CD solution. One or more scans can be
-performed during a test run and the outputs will be saved to disk. No UI is
-provided in automation mode, and the code is intended to be compatible with
+performed during a test run and the outputs can optionally be saved to disk. No UI is
+provided, and the code is intended to be compatible with
 Windows 7 or newer.
 
-### General Characteristics
+### General
 
 #### Fully Synchronous
-Since these commands are all stateful, they are intentionally synchronous within
-a process. If you attempt to call into the commands concurrently, the first one
+Automated scans are intentionally synchronous within a process,
+regardless of how many automation sessions you have created.
+If you attempt to call `IAutomationSession.Scan()` concurrently (even on multiple `IAutomationSession` objects), the first one
 to obtain the lock will execute, then another, then another. This is by design
-and is not expected to change at any future time. If you have a scenario that
+and is not expected to change. If you have a scenario that
 truly requires the command to execute in parallel, then you will need to create
 a solution where you can make those calls from separate processes.
 
-#### Specifying parameters
-Parameters are specified as a string-to-string dictionary. A hierarchical
-parameter structure is supported, as follows:
--   Tier 3 parameters can be read from a JSON-serialized disk file, which is
-    specified when the automation session begins. Each of these parameters
-    will be used unless they are overridden by a corresponding Tier 2 or Tier 1
-    parameter.
--   Tier 2 parameters can be specified via a .NET `Dictionary<string,string>`
-    parameter that is passed to the Start command. Each of these parameters will
-    be used for the lifetime of the automation session unless they are
-    overridden by a Tier 1 parameter.
--   Tier 1 parameters can be passed to some commands. Tier 1 parameters are
-    never overridden.
+### Configuration
+
+To begin an [automation session](#automation-session), you must first create a configuration
+object by calling `Axe.Windows.Automation.AutomationFactory`.CreateConfig().
+This returns an object implementing the `IAutomationConfig` interface. The following options are available:
+
+<DL>
+    <DT>
+        ProcessId
+    </DT>
+    <DD>
+        The process ID of the application you wish to scan.
+    </DD>
+    <DT>
+        OutputDirectory
+    </DT>
+    <DD>
+        The directory to which any output files should be written.
+        This value is ignored if OutputFileFormat is set to OutputFileFormat.None.
+        If this value is null, and if OutputFileFormat is not set to OutputFileFormat.None,
+        files will be written to a directory named "AxeWindowsScanResults" under the current directory.
+        If the value is not null, and the given directory does not exist, the automation session will throw an AxeWindowsAutomationException.
+    </DD>
+    <dt>
+        OutputFileFormat
+    </    dt>
+        <dd>
+        Flags from the OutputFileFormat enumeration specifying the type of output file to create.
+        Multiple values may be specified using the '|' (or) operator
+        See the section <a href="#Output-File-Formats">Output File Formats</a> for more information
+        </dd>
+    <dt>
+        IsRunningInPowerShell
+    </dt>
+    <dd>
+        Set to true when running an automation session in PowerShell.
+        Necessary because PowerShell requires a particular set of dependency assemblies.
+    </dd>
+</DL>
+
+#### Output File Formats
+
+<DL>
+    <DT>
+        None
+    </DT>
+    <dd>
+        Create no output files
+    </dd>
+    <dt>
+        A11yTest
+    </dt>
+    <DD>
+        Create output files which can be opened using <a href="https://accessibilityinsights.io/docs/en/windows/overview">Accessibility Insights for Windows</a>.
+    </DD>
+</DL>
+
+### Automation session
 
 #### Return Objects
 Each command will return a .NET object to summarize the result of the operation.

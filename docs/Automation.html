@@ -1,0 +1,435 @@
+<h2 id="axewindows---automation">Axe.Windows - Automation</h2>
+<h3 id="overview">Overview</h3>
+<p>You can run Axe.Windows automated tests programmatically using the assembly <code>Axe.Windows.Automation.dll</code>. This is useful when checking your applications for accessibility issues as part of a standalone test system, PowerShell script, or CI/CD solution. One or more scans can be performed during a test run and the outputs can optionally be saved to disk. No UI is provided, and the code is intended to be compatible with Windows 7 or newer.</p>
+<h3 id="general">General</h3>
+<h4 id="fully-synchronous">Fully Synchronous</h4>
+<p>Automated scans are intentionally synchronous within a process, regardless of how many automation sessions you have created. If you attempt to call <code>IAutomationSession.Scan()</code> concurrently (even on multiple <code>IAutomationSession</code> objects), the first one to obtain the lock will execute, then another, then another. This is by design and is not expected to change. If you have a scenario that truly requires the command to execute in parallel, then you will need to create a solution where you can make those calls from separate processes.</p>
+<h3 id="configuration">Configuration</h3>
+<p>To begin an <a href="#automation-session">automation session</a>, you must first create a configuration object by calling <code>Axe.Windows.Automation.AutomationFactory</code>.CreateConfig(). This returns an object implementing the <code>IAutomationConfig</code> interface. The following options are available:</p>
+<DL>
+    <DT>
+        ProcessId
+    </DT>
+    <DD>
+        The process ID of the application you wish to scan.
+    </DD>
+    <DT>
+        OutputDirectory
+    </DT>
+    <DD>
+        The directory to which any output files should be written.
+        This value is ignored if OutputFileFormat is set to OutputFileFormat.None.
+        If this value is null, and if OutputFileFormat is not set to OutputFileFormat.None,
+        files will be written to a directory named "AxeWindowsScanResults" under the current directory.
+        If the value is not null, and the given directory does not exist, the automation session will throw an AxeWindowsAutomationException.
+    </DD>
+    <dt>
+        OutputFileFormat
+    </    dt>
+        <dd>
+        Flags from the OutputFileFormat enumeration specifying the type of output file to create.
+        Multiple values may be specified using the '|' (or) operator
+        See the section <a href="#Output-File-Formats">Output File Formats</a> for more information
+        </dd>
+    <dt>
+        IsRunningInPowerShell
+    </dt>
+    <dd>
+        Set to true when running an automation session in PowerShell.
+        Necessary because PowerShell requires a particular set of dependency assemblies.
+    </dd>
+</DL>
+
+<h4 id="output-file-formats">Output File Formats</h4>
+<DL>
+    <DT>
+        None
+    </DT>
+    <dd>
+        Create no output files
+    </dd>
+    <dt>
+        A11yTest
+    </dt>
+    <DD>
+        Create output files which can be opened using <a href="https://accessibilityinsights.io/docs/en/windows/overview">Accessibility Insights for Windows</a>.
+    </DD>
+</DL>
+
+<h3 id="automation-session">Automation session</h3>
+<h4 id="return-objects">Return Objects</h4>
+<p>Each command will return a .NET object to summarize the result of the operation. These objects are detailed under each command:</p>
+<h3 id="command-details">Command Details</h3>
+<h4 id="start-command">Start Command</h4>
+<p>The Start command initializes the AxeWindows engine for automation. It is required for the session to begin, and each session requires a corresponding call to the Stop command. A given test process is allowed only one active session at a time, and subsequent calls to Start will fail.</p>
+<h5 id="inputs">Inputs</h5>
+<h6 id="net">.NET</h6>
+<p>The <strong>StartCommand.Execute</strong> method accepts the following parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>primaryConfig</td>
+<td><code>Dictionary&lt;string, string&gt;</code></td>
+<td>The set of Tier 2 parameters to apply during this session. See <a href="#defined-constants">Defined Constants</a> for specific parameters.</td>
+</tr>
+<tr class="even">
+<td>configFile</td>
+<td><code>string</code></td>
+<td>The full path to a file that contains JSON-serialized Tier 3 parameters. Can be <code>string.Empty</code>. Must point to a valid JSON-serialized file if non-empty.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="powershell">PowerShell</h6>
+<p>The <strong>Start-AxeWindows</strong> cmdlet accepts the following optional parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OutputFile</td>
+<td><code>string</code></td>
+<td>The location where output from this session will be written. The file extension can (and should) be omitted. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.</td>
+</tr>
+<tr class="even">
+<td>OutputFileFormat</td>
+<td><code>string</code></td>
+<td>The output file format to generate. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.</td>
+</tr>
+<tr class="odd">
+<td>TargetProcessId</td>
+<td><code>string</code></td>
+<td>The process id, expressed as a string, that will be scanned. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.</td>
+</tr>
+<tr class="even">
+<td>ConfigFile</td>
+<td><code>string</code></td>
+<td>The full path to a file that contains JSON-serialized Tier 3 parameters. Must point to a valid JSON-serialized file if specified.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="return-object">Return object</h5>
+<p>The <strong>StartCommandObject</strong> has the following properties:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Completed</td>
+<td><code>bool</code></td>
+<td>True if the command ran to completion. If true, then the Succeeded property indicates if the call succeeded.</td>
+</tr>
+<tr class="even">
+<td>SummaryMessage</td>
+<td><code>string</code></td>
+<td>A human-readable message to summarize the result. This message can change at any time, so do not rely on parsing it in tools.</td>
+</tr>
+<tr class="odd">
+<td>Succeeded</td>
+<td><code>bool</code></td>
+<td>True if the Start command completed successfully.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="snapshot-command">Snapshot Command</h4>
+<p>The Snapshot command scans a single process for accessibility issues and saves the output file for later analysis. It can only be called while an automation session is open (i.e., between the Start and Stop commands):</p>
+<h5 id="inputs-1">Inputs</h5>
+<h6 id="net-1">.NET</h6>
+<p>The <strong>SnapshotCommand.Execute</strong> method accepts the following parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>primaryConfig</td>
+<td><code>Dictionary&lt;string, string&gt;</code></td>
+<td>The set of Tier 1 parameters to apply during this call. See <a href="#defined-constants">Defined Constants</a> for specific parameters.</td>
+</tr>
+</tbody>
+</table>
+<h6 id="powershell-1">PowerShell</h6>
+<p>The <strong>Invoke-Snapshot</strong> cmdlet accepts the following parameters:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OutputFile</td>
+<td><code>string</code></td>
+<td>The location where output from this session will be written. Include the file name, but <strong>not</strong> the file extension.</td>
+</tr>
+<tr class="even">
+<td>TargetProcessId</td>
+<td><code>string</code></td>
+<td>The process id, expressed as a string, that will be scanned. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.</td>
+</tr>
+<tr class="odd">
+<td>OutputFileFormat</td>
+<td><code>string</code></td>
+<td>The output file format to generate. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot. See <a href="#defined-constants">Defined Constants</a> for details.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="return-object-1">Return object</h5>
+<p>The <strong>SnapshotCommandResult</strong> object has the following properties:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Completed</td>
+<td><code>bool</code></td>
+<td>True if the command ran to completion. If true, then the Succeeded property indicates if the call succeeded.</td>
+</tr>
+<tr class="even">
+<td>SummaryMessage</td>
+<td><code>string</code></td>
+<td>A human-readable message to summarize the result. This message can change at any time, so do not rely on parsing it in tools.</td>
+</tr>
+<tr class="odd">
+<td>Succeeded</td>
+<td><code>bool</code></td>
+<td>True if the Start command completed successfully.</td>
+</tr>
+<tr class="even">
+<td>ScanResultsPassed</td>
+<td><code>int</code></td>
+<td>The count of elements that passed all accessibility scans.</td>
+</tr>
+<tr class="odd">
+<td>ScanResultsFailed</td>
+<td><code>int</code></td>
+<td>The count of elements that failed one or more accessibility scans.</td>
+</tr>
+<tr class="even">
+<td>ScanResultsInconclusive</td>
+<td><code>int</code></td>
+<td>The count of elements that registered an inconclusive scan—these are typically cases where a human needs to evaluate the control and determine whether or not a fix is necessary.</td>
+</tr>
+<tr class="odd">
+<td>ScanResultsUnsupported</td>
+<td><code>int</code></td>
+<td>The count of elements that Accessibility Insights is unable to scan—these are typically elements like embedded web controls.</td>
+</tr>
+<tr class="even">
+<td>ScanResultsTotal</td>
+<td><code>int</code></td>
+<td>The sum of ScanResultsPassed, ScanResultsFailed, ScanResultsInconclusive, and ScanResultsUnsupported.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="stop-command">Stop Command</h4>
+<p>The Stop command terminates an automation session. State and associated resources are freed. The test framework can then exit or create another session (via the Start command).</p>
+<h5 id="inputs-2">Inputs</h5>
+<h6 id="net-2">.NET</h6>
+<p>The <strong>StopCommand.Execute</strong> method accepts no parameters.</p>
+<h6 id="powershell-2">PowerShell</h6>
+<p>The <strong>Stop-AxeWindows</strong> cmdlet accepts no parameters</p>
+<h5 id="return-object-2">Return object</h5>
+<p>The StopCommandResult object has the following properties:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Completed</td>
+<td><code>bool</code></td>
+<td>True if the command ran to completion. If true, then the Succeeded property indicates if the call succeeded.</td>
+</tr>
+<tr class="even">
+<td>SummaryMessage</td>
+<td><code>string</code></td>
+<td>A human-readable message to summarize the result. This message can change at any time, so do not rely on parsing it in tools.</td>
+</tr>
+<tr class="odd">
+<td>Succeeded</td>
+<td><code>bool</code></td>
+<td>True if the Start command completed successfully.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="defined-constants">Defined Constants</h4>
+<p>The following constants are defined in the assembly:</p>
+<table>
+<thead>
+<tr class="header">
+<th><strong>Name</strong></th>
+<th><strong>Value</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CommandConstStrings.TargetProcessId</td>
+<td>“TargetProcessId”</td>
+<td>The string representation (in decimal format) of the process ID to be scanned. Must be set in at least one tier (Tier 1/Tier 2/Tier 3).</td>
+</tr>
+<tr class="even">
+<td>CommandConstStrings.OutputPath</td>
+<td>“OutputPath”</td>
+<td>The file location where files from this automation session are to be written. If the target path directory does not exist, it will be created when the first output file is written to it. If the intent is for CI / CD, it is recommended that OutputPath not be set.</td>
+</tr>
+<tr class="odd">
+<td>CommandConstStrings.OutputFile</td>
+<td>“OutputFile”</td>
+<td>The specific file (without path) where scan results are to be written. If the file already exists, it will be overwritten. The file extension can (and should) be omitted. Must be set in at least one tier (Tier 1/Tier 2/Tier 3).</td>
+</tr>
+<tr class="even">
+<td>CommandConstStrings.OutputFileFormat</td>
+<td>“OutputFileFormat”</td>
+<td>The specific format that the output file should be generated in. The files generated will use the output path and the output filename provided. The three supported values are:<ul><li> <strong>a11yTest</strong> will generate "*.a11ytest" files.<li><strong>Sarif</strong> = will generate "*.sarif" files.<li><strong>All</strong> will generate both an a11ytest file and a sarif file.</ul>This parameter has lower precedence than if an extension was passed in as a part of the filename. If no extension is passed in the filename and this parameter is not passed in, then files will be generated in the sarif format. May be set in at least one tier (Tier 1/Tier 2/Tier 3). <em>Default value = <strong>Sarif</strong></em>.</td>
+</tr>
+<tr class="odd">
+<td>CommandConstStrings.NoViolationPolicy</td>
+<td>“NoViolationPolicy”</td>
+<td>Specifies how output files should be handled if no violations are found. <ul><li><strong>Discard</strong> will discard the results file.<li><strong>Retain</strong> will retain the results file.</ul><em>Default value = <strong>Retain</strong></em>. Valid only as a Tier 3 setting.</td>
+</tr>
+<tr class="even">
+<td>CommandConstStrings.Discard</td>
+<td>“Discard”</td>
+<td>Value for NoViolationPolicy.</td>
+</tr>
+<tr class="odd">
+<td>CommandConstStrings.Retain</td>
+<td>“Retain”</td>
+<td>Value for NoViolationPolicy.</td>
+</tr>
+<tr class="even">
+<td>CommandConstStrings.TeamName</td>
+<td>“TeamName”</td>
+<td>Value for Team name in telemetry.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="using-the-assembly">Using the assembly</h3>
+<p>You can get the files via a NuGet package Configure NuGet to retrieve the <strong>Microsoft.Axe.Windows</strong> package from <a href="https://api.nuget.org/v3/index.json">https://api.nuget.org/v3/index.json</a>, then use the classes in the Axe.Windows.Automation namespace (see examples below):</p>
+<h4 id="from-net-code">From .NET code</h4>
+<ul>
+<li>Prerequisite: Your project <em>must</em> use .NET 4.7.1 (this is required by Accessibility Insights).</li>
+<li>If you’re using NuGet, add the appropriate feed to your project.</li>
+<li>Add <strong>using Axe.Windows.Automation;</strong> to your code.</li>
+<li>Access the Start command via the <strong>StartCommand.Execute</strong> method.</li>
+<li>Access the Snapshot command via the <strong>SnapshotCommand.Execute</strong> method.</li>
+<li>Access the Stop command via the <strong>StopCommand.Execute</strong> method.</li>
+</ul>
+<p>Sample <code>C#</code> code—this is interactive, but yours doesn’t need to be:</p>
+<pre><code>    using System;
+    using System.Collections.Generic;
+    using AxeW.indows.Automation;
+
+    namespace AxeWindowsDemo
+    {
+        class Program
+        {
+            /// &lt;summary&gt;
+            /// This is a quick and easy demo of the automation code
+            /// &lt;/summary&gt;
+            static void Main(string[] args)
+            {
+                var parameters = new Dictionary&lt;string, string&gt;();
+                string secondaryConfigFile = string.Empty;
+                char[] delimiters = {&#39;=&#39;};
+                foreach (string arg in args)
+                {
+                    string[] pieces = arg.Split(delimiters);
+                    if (pieces.Length == 2)
+                    {
+                        string key = pieces[0].Trim();
+                        string value = pieces[1].Trim();
+                        if (!string.IsNullOrWhiteSpace(key) &amp;&amp; !string.IsNullOrWhiteSpace(value))
+                        {
+                            // Special case for SecondaryConfigFile
+                            if (key.Equals(&quot;SecondaryConfigFile&quot;, StringComparison.OrdinalIgnoreCase))
+                            {
+                                secondaryConfigFile = value;
+                            }
+                            else
+                            {
+                                parameters[key] = value;
+                            }
+                            continue;
+                        }
+                    }
+                    Console.WriteLine(&quot;Ignoring malformed input: {0}&quot;, arg);
+                };
+                Console.WriteLine(StartCommand.Execute(parameters secondaryConfigFile).ToString());
+                int autoFileId = 0;
+                while (true)
+                {
+                    Console.Write(&quot;Enter process ID to capture (blank to exit): &quot;);
+                    string input = Console.ReadLine();
+                    if (input == string.Empty)
+                        break;
+                    if (!int.TryParse(input, out int processId))
+                    {
+                        Console.WriteLine(&quot;Not a valid int: &quot; + input);
+                        continue;
+                    }
+                    Dictionary&lt;string, string&gt; snapshotParameters = new Dictionary&lt;string, string&gt;
+                    {
+                        { CommandConstStrings.TargetProcessId, input },
+                        { CommandConstStrings.OutputFile, autoFileId++.ToString() },
+                    };
+                    Console.WriteLine(SnapshotCommand.Execute(snapshotParameters).ToString());
+                }
+                Console.WriteLine(StopCommand.Execute().ToString());
+            }
+        }
+    }
+</code></pre>
+<h4 id="from-powershell">From PowerShell</h4>
+<ul>
+<li>Start your PowerShell script from the folder where the AxeWindows DLLs are located.</li>
+<li>Load the assembly via <strong>Import-Module Axe.Windows.Automation.dll</strong>.</li>
+<li>Access the Start command via the <strong>Start-AxeWindows</strong> cmdlet.</li>
+<li>Access the Snapshot command via the <strong>Invoke-Snapshot</strong> cmdlet.</li>
+<li>Access the Stop command via the <strong>Stop-AxeWindows</strong> cmdlet.</li>
+</ul>
+<p>Sample PowerShell script (the 2 second delay exists to give the app time to initialize before it is scanned):</p>
+<pre><code>    Import-Module .\Axe.Windows.Automation.dll
+    Start-AxeWindows -OutputPath c:\MyFolder
+    Start-Process -FilePath notepad.exe
+    Start-Sleep 2
+    $appProcId=get-process notepad |select -expand id
+    Invoke-Snapshot -OutputFile notepadSnapshot -TargetProcessId $appProcId
+    Stop-Process -Id $appProcId
+    Stop-AxeWindows
+</code></pre>
+<p><strong>Note</strong>: This script will work only if the instance of notepad.exe started is the only instance in the entire system. If there is more than one instance, the PowerShell layer will throw an Exception because it tries to convert something like "123 456" to a number, which will fail.</p>
+<p><strong>Warning</strong>: Downloading this package using nonstandard methods, such as directly from a web browser, may cause PowerShell's Import-Module command to fail. We recommend using NuGet to acquire the package.</p>
