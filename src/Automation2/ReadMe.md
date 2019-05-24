@@ -55,7 +55,7 @@ interface from the given one, e.g.,
     // IAutomationSessionFactory.CreateAutomationSession does not need to be 
     // modified because it takes an IAutomationConfig object as a parameter
     // and IAutomationConfig2 inherits from IAutomationConfig.
-    IAutomationSession = factory.CreateAutomationSession(config2);
+    IAutomationSession automationSession = factory.CreateAutomationSession(config2);
 ```
 
 Internally, the object that implements
