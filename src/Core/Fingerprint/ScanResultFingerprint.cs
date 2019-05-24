@@ -28,7 +28,7 @@ namespace Axe.Windows.Core.Fingerprint
         /// <param name="element">The element being fingerprinted</param>
         /// <param name="ruleId">The RuleIds value associated with this rule</param>
         /// <param name="status">The status of this rule for this element</param>
-        public ScanResultFingerprint(A11yElement element, RuleId ruleId, ScanStatus status)
+        public ScanResultFingerprint(IA11yElement element, RuleId ruleId, ScanStatus status)
         {
             element.ArgumentIsNotNull(nameof(element));
 
@@ -40,8 +40,8 @@ namespace Axe.Windows.Core.Fingerprint
 
             AddRuleSpecificContributions(contributions, ruleId, element);
 
-            A11yElement parent = element.Parent;
-            A11yElement grandparent = parent?.Parent;
+            IA11yElement parent = element.Parent;
+            IA11yElement grandparent = parent?.Parent;
             int ancestorLevel = 0;
             while (true)
             {
@@ -68,7 +68,7 @@ namespace Axe.Windows.Core.Fingerprint
         /// <param name="contributions">The set of contributions to update</param>
         /// <param name="ruleId">determines which properties to add</param>
         /// <param name="element">Element under consideration</param>
-        internal static void AddRuleSpecificContributions(IList<FingerprintContribution> contributions, RuleId ruleId, A11yElement element)
+        internal static void AddRuleSpecificContributions(IList<FingerprintContribution> contributions, RuleId ruleId, IA11yElement element)
         {
             switch (ruleId)
             {
@@ -94,17 +94,21 @@ namespace Axe.Windows.Core.Fingerprint
         /// <param name="element">Element under consideration</param>
         /// <param name="levelBaseName">The "base" to use when specifying contribution keys</param>
         /// <param name="ignoreNameProperty">If true, exclude the "Name" property from contributions</param>
-        private static void AddRuleAgnosticContributions(IList<FingerprintContribution> contributions, A11yElement element, int level,
+        private static void AddRuleAgnosticContributions(IList<FingerprintContribution> contributions, IA11yElement element, int level,
             bool ignoreNameProperty)
         {
             string levelBaseName = (level > 0) ?
                 Invariant($"Ancestor{level}.") :
                 string.Empty;
 
-            AddValidContribution(contributions, levelBaseName, "AcceleratorKey", element.AcceleratorKey);
-            AddValidContribution(contributions, levelBaseName, "AccessKey", element.AccessKey);
+            ICoreA11yElement coreElement = element as ICoreA11yElement;
+            if (coreElement != null)
+            {
+                AddValidContribution(contributions, levelBaseName, "AcceleratorKey", coreElement.AcceleratorKey);
+                AddValidContribution(contributions, levelBaseName, "AccessKey", coreElement.AccessKey);
+            }
             AddValidContribution(contributions, levelBaseName, "AutomationId", element.AutomationId);
-            AddValidContribution(contributions, levelBaseName, "ClassName", element.GetClassName());
+            AddValidContribution(contributions, levelBaseName, "ClassName", element.ClassName);
             AddValidContribution(contributions, levelBaseName, "ControlType", ControlType.GetInstance().GetNameById(element.ControlTypeId));
             AddValidContribution(contributions, levelBaseName, "FrameworkId", element.GetUIFramework());
             AddValidContribution(contributions, levelBaseName, "LocalizedControlType", element.LocalizedControlType);

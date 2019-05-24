@@ -11,11 +11,7 @@ using Axe.Windows.Core.Fingerprint;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-#if FAKES_SUPPORTED
-using Axe.Windows.Core.Bases.Fakes;
-using Axe.Windows.Core.Fingerprint.Fakes;
-using Microsoft.QualityTools.Testing.Fakes;
-#endif
+using Moq;
 
 namespace Axe.Windows.CoreTests.Fingerprint
 {
@@ -187,7 +183,7 @@ namespace Axe.Windows.CoreTests.Fingerprint
         }
 
         [TestMethod]
-        [Timeout (2000)]
+        [Timeout(2000)]
         public void ValidateTestMethod_GetAncestryTreeValues()
         {
             List<string> values = GetAncestryTreeValues(null);
@@ -268,290 +264,200 @@ namespace Axe.Windows.CoreTests.Fingerprint
             }
         }
 
-#if FAKES_SUPPORTED
+        private IA11yElement BuildTestElement(string name = null, string className = null,
+            string localizedControlType = null, string framework = null,
+            string acceleratorKey = null, string accessKey = null,
+            string automationId = null, int controlTypeId = 0,
+            IA11yElement parent = null, Rectangle? boundingRect = null,
+            bool isKeyboardFocusable = false, bool isControlElement = false,
+            bool isContentElement = false, string culture = null)
+        {
+            Mock<ICoreA11yElement> mockElement = new Mock<ICoreA11yElement>();
+
+            Rectangle boundingRectangle = boundingRect.HasValue ? boundingRect.Value : new Rectangle();
+
+            mockElement.Setup(x => x.AcceleratorKey).Returns(acceleratorKey);
+            mockElement.Setup(x => x.AccessKey).Returns(accessKey);
+            mockElement.Setup(x => x.AutomationId).Returns(automationId);
+            mockElement.Setup(x => x.BoundingRectangle).Returns(boundingRectangle);
+            mockElement.Setup(x => x.ClassName).Returns(className);
+            mockElement.Setup(x => x.Culture).Returns(culture);
+            mockElement.Setup(x => x.ControlTypeId).Returns(controlTypeId);
+            mockElement.Setup(x => x.Framework).Returns(framework);
+            mockElement.Setup(x => x.IsContentElement).Returns(isContentElement);
+            mockElement.Setup(x => x.IsControlElement).Returns(isControlElement);
+            mockElement.Setup(x => x.IsKeyboardFocusable).Returns(isKeyboardFocusable);
+            mockElement.Setup(x => x.LocalizedControlType).Returns(localizedControlType);
+            mockElement.Setup(x => x.Name).Returns(name);
+            mockElement.Setup(x => x.Parent).Returns(parent);
+
+            return mockElement.Object;
+        }
+
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasName_FingerprintIncludesName()
         {
-            using (ShimsContext.Create())
-            {
-                const string elementName = "MyElement";
+            const string elementName = "MyElement";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    NameGet = () => elementName,
-                };
+            IA11yElement element = BuildTestElement(name: elementName);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, nameValue: elementName);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, nameValue: elementName);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasClassName_FingerprintIncludesClassName()
         {
-            using (ShimsContext.Create())
-            {
-                const string className = "MyClass";
+            const string className = "MyClass";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    PropertiesGet = () => new Dictionary<int, A11yProperty>
-                    {
-                        { PropertyType.UIA_ClassNamePropertyId,
-                            new ShimA11yProperty
-                            {
-                                TextValueGet = () => className,
-                            }
-                        },
-                    }
-                };
+            IA11yElement element = BuildTestElement(className: className);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, classNameValue: className);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, classNameValue: className);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasLocalizedControlType_FingerprintIncludesLocalizedControlType()
         {
-            using (ShimsContext.Create())
-            {
-                const string localizedControlType = "MyLocalizedControlType";
+            const string localizedControlType = "MyLocalizedControlType";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    LocalizedControlTypeGet = () => localizedControlType,
-                };
+            IA11yElement element = BuildTestElement(localizedControlType: localizedControlType);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, localizedControlTypeValue: localizedControlType);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, localizedControlTypeValue: localizedControlType);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasUIFramework_FingerprintIncludesFrameworkId()
         {
-            using (ShimsContext.Create())
-            {
-                const string frameworkId = "MyFrameworkId";
+            const string frameworkId = "MyFrameworkId";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    FrameworkGet = () => frameworkId,
-                };
+            IA11yElement element = BuildTestElement(framework: frameworkId);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, frameworkIdValue: frameworkId);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, frameworkIdValue: frameworkId);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasAcceleratorKey_FingerprintIncludesAcceleratorKey()
         {
-            using (ShimsContext.Create())
-            {
-                const string acceleratorKey = "MyAcceleratorKey";
+            const string acceleratorKey = "MyAcceleratorKey";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    AcceleratorKeyGet = () => acceleratorKey,
-                };
+            IA11yElement element = BuildTestElement(acceleratorKey: acceleratorKey);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, acceleratorKeyValue: acceleratorKey);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, acceleratorKeyValue: acceleratorKey);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasAccessKey_FingerprintIncludesAccessKey()
         {
-            using (ShimsContext.Create())
-            {
-                const string accessKey = "MyAccessKey";
+            const string accessKey = "MyAccessKey";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    AccessKeyGet = () => accessKey,
-                };
+            IA11yElement element = BuildTestElement(accessKey: accessKey);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, accessKeyValue: accessKey);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, accessKeyValue: accessKey);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasAutomationId_FingerprintIncludesAutomationId()
         {
-            using (ShimsContext.Create())
-            {
-                const string automationId = "MyAutomationId";
+            const string automationId = "MyAutomationId";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    AutomationIdGet = () => automationId,
-                };
+            IA11yElement element = BuildTestElement(automationId: automationId);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, automationIdValue: automationId);
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, automationIdValue: automationId);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementHasOneLevelOfAncestry_FingerprintRemovesTopParentName()
         {
-            using (ShimsContext.Create())
-            {
-                const string elementName = "NameOfElement";
-                const string parentName = "NameOfParent";
-                const string desktopName = "NameOfDesktop";
+            const string elementName = "NameOfElement";
+            const string parentName = "NameOfParent";
+            const string desktopName = "NameOfDesktop";
 
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    ControlTypeIdGet = () => 50033,
-                    NameGet = () => elementName,
-                    ParentGet = () => new ShimA11yElement
-                    {
-                        ControlTypeIdGet = () => 50031,
-                        NameGet = () => parentName,
-                        ParentGet = () => new ShimA11yElement
-                        {
-                            NameGet = () => desktopName,
-                        }
-                    }
-                };
+            IA11yElement element =
+                BuildTestElement(controlTypeId: 50033, name: elementName, parent:
+                BuildTestElement(controlTypeId: 50031, name: parentName, parent:
+                BuildTestElement(name: desktopName)));
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, nameValue: elementName, controlTypeValue: "Pane(50033)|SplitButton(50031)");
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, nameValue: elementName, controlTypeValue: "Pane(50033)|SplitButton(50031)");
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_ElementBasedOnWordNavPane_FingerprintIncludesExpectedFields()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    BoundingRectangleGet = () => new Rectangle(132, 406, 402 - 132, 1928 - 406),
-                    ControlTypeIdGet = () => 50033,
-                    IsKeyboardFocusableGet = () => true,
-                    LocalizedControlTypeGet = () => "pane",
-                    NameGet = () => "Navigation",
-                    ParentGet = () => new ShimA11yElement
-                    {
-                        BoundingRectangleGet = () => new Rectangle(124, 335, 410 - 124, 1935 - 335),
-                        ControlTypeIdGet = () => 50021,
-                        IsKeyboardFocusableGet = () => false,
-                        LocalizedControlTypeGet = () => "tool bar",
-                        ParentGet = () => new ShimA11yElement
-                        {
-                            BoundingRectangleGet = () => new Rectangle(124, 335, 410 - 124, 1935 - 335),
-                            ControlTypeIdGet = () => 50033,
-                            IsKeyboardFocusableGet = () => true,
-                            LocalizedControlTypeGet = () => "pane",
-                            NameGet = () => "MsoDockLeft",
-                            ParentGet = () => new ShimA11yElement
-                            {
-                                BoundingRectangleGet = () => new Rectangle(111, 13, 3010 - 111, 2013 - 13),
-                                ControlTypeIdGet = () => 50032,
-                                IsKeyboardFocusableGet = () => true,
-                                LocalizedControlTypeGet = () => "window",
-                                NameGet = () => "Document 1 - Word",
-                                ParentGet = () => new ShimA11yElement
-                                {
-                                    BoundingRectangleGet = () => new Rectangle(0, 0, 3000, 2000),
-                                    ControlTypeIdGet = () => 50033,
-                                    IsKeyboardFocusableGet = () => true,
-                                    LocalizedControlTypeGet = () => "pane",
-                                    NameGet = () => "Desktop 1",
-                                }
-                            }
-                        }
-                    }
-                };
+            IA11yElement element =
+                BuildTestElement(boundingRect: new Rectangle(132, 406, 402 - 132, 1928 - 406), controlTypeId: 50033,
+                    isKeyboardFocusable: true, localizedControlType: "pane", name: "Navigation", parent:
+                BuildTestElement(boundingRect: new Rectangle(124, 335, 410 - 124, 1935 - 335), controlTypeId: 50021,
+                    isKeyboardFocusable: false, localizedControlType: "tool bar", parent:
+                BuildTestElement(boundingRect: new Rectangle(124, 335, 410 - 124, 1935 - 335), controlTypeId: 50033,
+                    isKeyboardFocusable: true, localizedControlType: "pane", name: "MsoDockLeft", parent:
+                BuildTestElement(boundingRect: new Rectangle(111, 13, 3010 - 111, 2013 - 13), controlTypeId: 50032,
+                    isKeyboardFocusable: true, localizedControlType: "window", name: "Document 1 - Word", parent:
+                BuildTestElement(boundingRect: new Rectangle(0, 0, 3000, 2000), controlTypeId: 50033,
+                    isKeyboardFocusable: true, localizedControlType: "pane", name: "Desktop 1")))));
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                ValidateFingerprint(fingerprint,
-                    nameValue: "Navigation||MsoDockLeft",
-                    controlTypeValue: "Pane(50033)|ToolBar(50021)|Pane(50033)|Window(50032)",
-                    localizedControlTypeValue: "pane|tool bar|pane|window"
-                    );
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+            ValidateFingerprint(fingerprint,
+                nameValue: "Navigation||MsoDockLeft",
+                controlTypeValue: "Pane(50033)|ToolBar(50021)|Pane(50033)|Window(50032)",
+                localizedControlTypeValue: "pane|tool bar|pane|window"
+                );
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_RuleIsControlElementPropertyCorrect_FingerprintIncludesIsControlElement()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    IsControlElementGet = () => true,
-                };
+            IA11yElement element = BuildTestElement(isControlElement: true);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsControlElementPropertyCorrect, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, ruleIdValue: "IsControlElementPropertyCorrect", isControlElementValue: "True");
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsControlElementPropertyCorrect, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, ruleIdValue: "IsControlElementPropertyCorrect", isControlElementValue: "True");
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_RuleIsContentElementPropertyCorrect_FingerprintIncludesIsContentElement()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    IsContentElementGet = () => false,
-                };
+            IA11yElement element = BuildTestElement(isContentElement: false);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsContentElementPropertyCorrect, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, ruleIdValue: "IsContentElementPropertyCorrect", isContentElementValue: "False");
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsContentElementPropertyCorrect, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, ruleIdValue: "IsContentElementPropertyCorrect", isContentElementValue: "False");
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_RuleIsKeyboardFocusable_FingerprintIncludesIsKeyboardFocusable()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    IsKeyboardFocusableGet = () => true,
-                };
+            IA11yElement element = BuildTestElement(isKeyboardFocusable: true);
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsKeyboardFocusable, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, ruleIdValue: "IsKeyboardFocusable", isKeyboardFocusableValue: "True");
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsKeyboardFocusable, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, ruleIdValue: "IsKeyboardFocusable", isKeyboardFocusableValue: "True");
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Ctor_RuleIsKeyboardFocusableBasedOnPatterns_FingerprintIncludesIsKeyboardFocusable()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement element = new ShimA11yElement
-                {
-                    IsKeyboardFocusableGet = () => false,
-                };
+            IA11yElement element = BuildTestElement();
 
-                IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsKeyboardFocusableBasedOnPatterns, DefaultScanStatus);
-                ValidateFingerprint(fingerprint, ruleIdValue: "IsKeyboardFocusableBasedOnPatterns", isKeyboardFocusableValue: "False");
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(element, RuleId.IsKeyboardFocusableBasedOnPatterns, DefaultScanStatus);
+            ValidateFingerprint(fingerprint, ruleIdValue: "IsKeyboardFocusableBasedOnPatterns", isKeyboardFocusableValue: "False");
         }
-#endif
 
         [TestMethod]
         [Timeout(2000)]
@@ -566,7 +472,7 @@ namespace Axe.Windows.CoreTests.Fingerprint
         }
 
         [TestMethod]
-        [Timeout (2000)]
+        [Timeout(2000)]
         public void GetHashCode_EquivalentMinimalContributions_ReturnsSameHashCode()
         {
             IFingerprint fingerprint1 = new ScanResultFingerprint(new A11yElement(), DefaultRule, DefaultScanStatus);
@@ -575,33 +481,22 @@ namespace Axe.Windows.CoreTests.Fingerprint
             Assert.AreEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
         }
 
-#if FAKES_SUPPORTED
         [TestMethod]
         [Timeout(2000)]
         public void GetHashCode_EquivalentComplexContributions_ReturnsSameHashCode()
         {
-            using (ShimsContext.Create())
-            {
-                A11yElement element1 = new ShimA11yElement
-                {
-                    NameGet = () => "ElementName",
-                    CultureGet = () => "ElementCulture",
-                    AutomationIdGet = () => "ElementAutomationId",
-                };
-                A11yElement element2 = new ShimA11yElement
-                {
-                    NameGet = () => "ElementName",
-                    CultureGet = () => "ElementCulture",
-                    AutomationIdGet = () => "ElementAutomationId",
-                };
+            const string name = "ElementName";
+            const string culture = "ElementCulture";
+            const string automationId = "ElementAutomationId";
 
-                IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+            IA11yElement element1 = BuildTestElement(name: name, culture: culture, automationId: automationId);
+            IA11yElement element2 = BuildTestElement(name: name, culture: culture, automationId: automationId);
 
-                Assert.AreEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
-            }
+            IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+
+            Assert.AreEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
         }
-#endif
 
         [TestMethod]
         [Timeout(2000)]
@@ -621,33 +516,21 @@ namespace Axe.Windows.CoreTests.Fingerprint
             Assert.AreNotEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
         }
 
-#if FAKES_SUPPORTED
         [TestMethod]
         [Timeout(2000)]
-        public void GetHashCode_DifferentComplexContributions_ReturnsSameHashCode()
+        public void GetHashCode_DifferentComplexContributions_ReturnsDifferentHashCode()
         {
-            using (ShimsContext.Create())
-            {
-                A11yElement element1 = new ShimA11yElement
-                {
-                    NameGet = () => "ElementName",
-                    CultureGet = () => "ElementCulture",
-                    AutomationIdGet = () => "ElementAutomationId",
-                };
-                A11yElement element2 = new ShimA11yElement
-                {
-                    NameGet = () => " ElementName",
-                    CultureGet = () => "ElementCulture",
-                    AutomationIdGet = () => "ElementAutomationId",
-                };
+            const string name = "ElementName";
+            const string culture = "ElementCulture";
 
-                IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+            IA11yElement element1 = BuildTestElement(name: name, culture: culture, automationId: "id1");
+            IA11yElement element2 = BuildTestElement(name: name, culture: culture, automationId: "id2");
 
-                Assert.AreNotEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
-            }
+            IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+
+            Assert.AreNotEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
         }
-#endif
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -667,79 +550,61 @@ namespace Axe.Windows.CoreTests.Fingerprint
             }
         }
 
-#if FAKES_SUPPORTED
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         [Timeout(2000)]
         public void CompareTo_OtherIsDifferentImplemention_ThrowsInvalidOperationException()
         {
-            using (ShimsContext.Create())
-            {
-                IFingerprint fingerprint = new ScanResultFingerprint(new A11yElement(), DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint = new ScanResultFingerprint(BuildTestElement(), DefaultRule, DefaultScanStatus);
 
-                StubIFingerprint other = new StubIFingerprint();
+            IFingerprint other = new Mock<IFingerprint>().Object;
 
-                fingerprint.CompareTo(other);
-            }
+            fingerprint.CompareTo(other);
         }
 
         [TestMethod]
         [Timeout (2000)]
         public void CompareTo_OneElementHasMoreContributions_SortByContributionCount()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement moreContributionsElement = new ShimA11yElement
-                {
-                    NameGet = () => "ElementWithTwoContributions",
-                    AutomationIdGet = () => "AutomationId",
-                };
-                ShimA11yElement fewerContributionsElement = new ShimA11yElement
-                {
-                    NameGet = () => "ElemetWithOneContribution",
-                };
+            IA11yElement moreContributionsElement = BuildTestElement(name: "ElementWith2Contributions", automationId: "blah");
+            IA11yElement fewerContributionsElement = BuildTestElement(name: "ElementWith1Contribution");
 
-                IFingerprint higherFingerprint = new ScanResultFingerprint(moreContributionsElement, DefaultRule, DefaultScanStatus);
-                IFingerprint lowerFingerprint = new ScanResultFingerprint(fewerContributionsElement, DefaultRule, DefaultScanStatus);
+            IFingerprint higherFingerprint = new ScanResultFingerprint(moreContributionsElement, DefaultRule, DefaultScanStatus);
+            IFingerprint lowerFingerprint = new ScanResultFingerprint(fewerContributionsElement, DefaultRule, DefaultScanStatus);
 
-                Assert.AreEqual(-1, lowerFingerprint.CompareTo(higherFingerprint));
-                Assert.AreEqual(1, higherFingerprint.CompareTo(lowerFingerprint));
-            }
+            Assert.AreEqual(-1, lowerFingerprint.CompareTo(higherFingerprint));
+            Assert.AreEqual(1, higherFingerprint.CompareTo(lowerFingerprint));
         }
 
         [TestMethod]
         [Timeout (2000)]
         public void CompareTo_ElementsWithSameNumberOfContributions_SortByHashValue()
         {
-            using (ShimsContext.Create())
+            var list = new SortedList<IFingerprint, string>();
+            const int max = 10;
+
+            string elementName = string.Empty;
+            for (int loop = 0; loop < max; loop++)
             {
-                var list = new SortedList<IFingerprint, string>();
-                const int max = 10;
+                elementName += "a";
+                IA11yElement element = BuildTestElement(name: elementName);
+                IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
+                list.Add(fingerprint, elementName);
+            }
 
-                string elementName = string.Empty;
-                for (int loop = 0; loop < max; loop++)
-                {
-                    elementName += "a";
-                    A11yElement element = new ShimA11yElement { NameGet = () => elementName };
-                    IFingerprint fingerprint = new ScanResultFingerprint(element, DefaultRule, DefaultScanStatus);
-                    list.Add(fingerprint, elementName);
-                }
+            // If the comparison worked correctly, then the hash codes of the list will be 
+            // sorted in ascending order
+            int oldHashCode = int.MinValue;
 
-                // If the comparison worked correctly, then the hash codes of the list will be 
-                // sorted in ascending order
-                int oldHashCode = int.MinValue;
-
-                for (int loop = 0; loop < max; loop++)
-                {
-                    int hashCode = list.Keys[loop].GetHashCode();
-                    string description = string.Format("Index {0}: Hash {1} should be less than Hash {2}",
-                        loop, oldHashCode, hashCode);
-                    Assert.IsTrue(oldHashCode < hashCode);
-                    oldHashCode = hashCode;
-                }
+            for (int loop = 0; loop < max; loop++)
+            {
+                int hashCode = list.Keys[loop].GetHashCode();
+                string description = string.Format("Index {0}: Hash {1} should be less than Hash {2}",
+                    loop, oldHashCode, hashCode);
+                Assert.IsTrue(oldHashCode < hashCode);
+                oldHashCode = hashCode;
             }
         }
-#endif
 
         [TestMethod]
         [Timeout (2000)]
@@ -749,139 +614,107 @@ namespace Axe.Windows.CoreTests.Fingerprint
             Assert.IsFalse(fingerprint.Equals(null));
         }
 
-#if FAKES_SUPPORTED
         [TestMethod]
         [Timeout (2000)]
         public void Equals_OtherIsDifferentImplementation_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                IFingerprint fingerprint = new ScanResultFingerprint(new A11yElement(), DefaultRule, DefaultScanStatus);
-                StubIFingerprint other = new StubIFingerprint();
-                Assert.IsFalse(fingerprint.Equals(other));
-            }
+            IFingerprint fingerprint = new ScanResultFingerprint(new A11yElement(), DefaultRule, DefaultScanStatus);
+            IFingerprint other = new Mock<IFingerprint>().Object;
+            Assert.IsFalse(fingerprint.Equals(other));
         }
 
         [TestMethod]
         [Timeout (2000)]
         public void Equals_OtherHasDifferentNumberOfContributions_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement moreContributionsElement = new ShimA11yElement
-                {
-                    NameGet = () => "MyTest",
-                    AutomationIdGet = () => "AutomationId",
-                };
-                ShimA11yElement fewerContributionsElement = new ShimA11yElement
-                {
-                    NameGet = () => "MyTest",
-                };
+            const string name = "MyTest";
+            IA11yElement moreContributionsElement = BuildTestElement(name: name, automationId: "myId");
+            IA11yElement fewerContributionsElement = BuildTestElement(name: name);
 
-                IFingerprint fingerprint1 = new ScanResultFingerprint(moreContributionsElement, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(fewerContributionsElement, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint1 = new ScanResultFingerprint(moreContributionsElement, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(fewerContributionsElement, DefaultRule, DefaultScanStatus);
 
-                Assert.AreNotEqual(fingerprint1.Contributions.Count(), fingerprint2.Contributions.Count());
-                Assert.IsFalse(fingerprint1.Equals(fingerprint2));
-                Assert.IsFalse(fingerprint2.Equals(fingerprint1));
-            }
+            Assert.AreNotEqual(fingerprint1.Contributions.Count(), fingerprint2.Contributions.Count());
+            Assert.IsFalse(fingerprint1.Equals(fingerprint2));
+            Assert.IsFalse(fingerprint2.Equals(fingerprint1));
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void Equals_OtherHasSameNumberOfContributionsButDifferentHash_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                A11yElement element1 = new ShimA11yElement { NameGet = () => "a" };
-                A11yElement element2 = new ShimA11yElement { NameGet = () => "A" };
+            IA11yElement element1 = BuildTestElement(name: "a");
+            IA11yElement element2 = BuildTestElement(name: "A");
 
-                IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
 
-                Assert.AreEqual(fingerprint1.Contributions.Count(), fingerprint2.Contributions.Count());
-                Assert.IsFalse(fingerprint1.Equals(fingerprint2));
-                Assert.IsFalse(fingerprint2.Equals(fingerprint1));
-            }
+            Assert.AreEqual(fingerprint1.Contributions.Count(), fingerprint2.Contributions.Count());
+            Assert.IsFalse(fingerprint1.Equals(fingerprint2));
+            Assert.IsFalse(fingerprint2.Equals(fingerprint1));
         }
 
         [TestMethod]
         [Timeout (2000)]
         public void Equals_OtherIsEquivalent_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                ShimA11yElement element1 = new ShimA11yElement
-                {
-                    AutomationIdGet = () => "AutomationId",
-                    ControlTypeIdGet = () => 50021,
-                };
-                ShimA11yElement element2 = new ShimA11yElement
-                {
-                    AutomationIdGet = () => "AutomationId",
-                    ControlTypeIdGet = () => 50021,
-                };
+            const string automationId = "AutomationId";
+            const int controlTypeId = 50021;
+            IA11yElement element1 = BuildTestElement(automationId: automationId, controlTypeId: controlTypeId);
+            IA11yElement element2 = BuildTestElement(automationId: automationId, controlTypeId: controlTypeId);
 
-                IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
 
-                Assert.IsTrue(fingerprint1.Equals(fingerprint2));
-                Assert.IsTrue(fingerprint2.Equals(fingerprint1));
-            }
+            Assert.IsTrue(fingerprint1.Equals(fingerprint2));
+            Assert.IsTrue(fingerprint2.Equals(fingerprint1));
         }
 
         [TestMethod]
         [Timeout (2000)]
         public void Equals_OtherHasSameContributionCountAndHashButDifferentContent_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                FingerprintContribution fc1 = new FingerprintContribution("Name", _specialNameValue1);
-                FingerprintContribution fc2 = new FingerprintContribution("Name", _specialNameValue2);
+            FingerprintContribution fc1 = new FingerprintContribution("Name", _specialNameValue1);
+            FingerprintContribution fc2 = new FingerprintContribution("Name", _specialNameValue2);
 
-                Assert.AreEqual(fc1.GetHashCode(), fc2.GetHashCode());
+            Assert.AreEqual(fc1.GetHashCode(), fc2.GetHashCode());
 
-                A11yElement element1 = new ShimA11yElement { NameGet = () => _specialNameValue1 };
-                A11yElement element2 = new ShimA11yElement { NameGet = () => _specialNameValue2 };
-                IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+            IA11yElement element1 = BuildTestElement(_specialNameValue1);
+            IA11yElement element2 = BuildTestElement(_specialNameValue2);
+            IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
 
-                Assert.AreEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
+            Assert.AreEqual(fingerprint1.GetHashCode(), fingerprint2.GetHashCode());
 
-                // Ensure that these differ only in specific content
-                Assert.AreEqual(0, fingerprint1.CompareTo(fingerprint2));
-                Assert.AreEqual(0, fingerprint2.CompareTo(fingerprint1));
+            // Ensure that these differ only in specific content
+            Assert.AreEqual(0, fingerprint1.CompareTo(fingerprint2));
+            Assert.AreEqual(0, fingerprint2.CompareTo(fingerprint1));
 
-                Assert.IsFalse(fingerprint1.Equals(fingerprint2));
-                Assert.IsFalse(fingerprint2.Equals(fingerprint1));
-            }
+            Assert.IsFalse(fingerprint1.Equals(fingerprint2));
+            Assert.IsFalse(fingerprint2.Equals(fingerprint1));
         }
 
         [TestMethod]
         [Timeout (2000)]
         public void DictionaryTest_FingerprintsAreDifferent_TreatsItemsCorrectly()
         {
-            using (ShimsContext.Create())
-            {
-                Dictionary<IFingerprint, int> store = new Dictionary<IFingerprint, int>();
+            Dictionary<IFingerprint, int> store = new Dictionary<IFingerprint, int>();
 
-                A11yElement element1 = new ShimA11yElement { NameGet = () => _specialNameValue1 };
-                A11yElement element2 = new ShimA11yElement { NameGet = () => _specialNameValue2 };
-                IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
-                IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
+            IA11yElement element1 = BuildTestElement(name: _specialNameValue1);
+            IA11yElement element2 = BuildTestElement(name: _specialNameValue2);
+            IFingerprint fingerprint1 = new ScanResultFingerprint(element1, DefaultRule, DefaultScanStatus);
+            IFingerprint fingerprint2 = new ScanResultFingerprint(element2, DefaultRule, DefaultScanStatus);
 
-                store.Add(fingerprint1, 1);
-                Assert.AreEqual(1, store.Count);
-                Assert.IsTrue(store.TryGetValue(fingerprint1, out int value));
-                Assert.AreEqual(1, value);
-                Assert.IsFalse(store.TryGetValue(fingerprint2, out value));
-                store.Add(fingerprint2, 2);
-                Assert.AreEqual(2, store.Count);
-                Assert.IsTrue(store.TryGetValue(fingerprint2, out value));
-                Assert.AreEqual(2, value);
-            }
+            store.Add(fingerprint1, 1);
+            Assert.AreEqual(1, store.Count);
+            Assert.IsTrue(store.TryGetValue(fingerprint1, out int value));
+            Assert.AreEqual(1, value);
+            Assert.IsFalse(store.TryGetValue(fingerprint2, out value));
+            store.Add(fingerprint2, 2);
+            Assert.AreEqual(2, store.Count);
+            Assert.IsTrue(store.TryGetValue(fingerprint2, out value));
+            Assert.AreEqual(2, value);
         }
-#endif
 
         [TestMethod]
         [Timeout(2000)]
