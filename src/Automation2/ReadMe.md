@@ -18,8 +18,8 @@ As requirements grow for existing concepts, new, versioned interfaces are
 created which inherit from the existing concepts' interfaces. For example,
 take the following interface:
 
-```
-	public interface IElementInfo
+```c#
+    public interface IElementInfo
     {
         int ParentId { get; }
         IReadOnlyDictionary<string, string> Properties { get; }
@@ -29,11 +29,11 @@ take the following interface:
 if we want to add more data about an element, we simply create a versioned
 interface which inherits from `IElementInfo`.
 
-```
-	public interface IElementInfo2 : IElementInfo
-	{
-		IEnumerable<string> AvailablePatterns { get; }
-	}
+```c#
+    public interface IElementInfo2 : IElementInfo
+    {
+        IEnumerable<string> AvailablePatterns { get; }
+    }
 ```
 
 This approach prevents breaking code because the original interface used by
@@ -44,18 +44,18 @@ in the new data. For example, if a new configuration option is added in
 `IAutomationConfig2`, consumers of the latest package can simply cast to the newer
 interface from the given one, e.g.,
 
-```
-	IAutomationSessionFactory factory = AutomationFactory.CreateAutomationSessionFactory();
+```c#
+    IAutomationSessionFactory factory = AutomationFactory.CreateAutomationSessionFactory();
 
-	IAutomationConfig config = factory.CreateAutomationConfig();
+    IAutomationConfig config = factory.CreateAutomationConfig();
 
-	// now we have access to the latest configuration options if we need them
-	var config2 = config as IAutomationConfig2
+    // now we have access to the latest configuration options if we need them
+    var config2 = config as IAutomationConfig2
 
-	// IAutomationSessionFactory.CreateAutomationSession does not need to be 
-	// modified because it takes an IAutomationConfig object as a parameter
-	// and IAutomationConfig2 inherits from IAutomationConfig.
-	IAutomationSession = factory.CreateAutomationSession(config2);
+    // IAutomationSessionFactory.CreateAutomationSession does not need to be 
+    // modified because it takes an IAutomationConfig object as a parameter
+    // and IAutomationConfig2 inherits from IAutomationConfig.
+    IAutomationSession automationSession = factory.CreateAutomationSession(config2);
 ```
 
 Internally, the object that implements
