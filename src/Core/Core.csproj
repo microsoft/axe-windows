@@ -68,7 +68,6 @@
     <Compile Include="Bases\ICoreA11yElement.cs" />
     <Compile Include="Enums\OrientationType.cs" />
     <Compile Include="Enums\RuleId.cs" />
-    <Compile Include="Enums\HighlighterColor.cs" />
     <Compile Include="Enums\UrlType.cs" />
     <Compile Include="Exceptions\TreeNavigationFailedException.cs" />
     <Compile Include="Fingerprint\FingerprintFactory.cs" />
