@@ -18,17 +18,11 @@ namespace Axe.Windows.Automation
         /// <returns>A StartCommandResult that describes the result of the command</returns>
         public static StartCommandResult Execute(Dictionary<string, string> primaryConfig, string configFile)
         {
-            return Execute(primaryConfig, configFile, isPowerShell:false);
-        }
-
-        internal static StartCommandResult Execute(Dictionary<string, string> primaryConfig, string configFile, bool isPowerShell)
-        {
             return ExecutionWrapper.ExecuteCommand(() =>
             {
                 // Custom assembly resolver needs to be created before anything else, but only for PowerShell
-                IDisposable customAssemblyResolver = isPowerShell ? new CustomAssemblyResolver() : null;
                 CommandParameters parameters = new CommandParameters(primaryConfig, configFile);
-                AutomationSession.NewInstance(parameters, customAssemblyResolver);
+                AutomationSession.NewInstance(parameters);
                 return new StartCommandResult
                 {
                     Completed = true,

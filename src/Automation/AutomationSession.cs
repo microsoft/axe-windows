@@ -15,18 +15,15 @@ namespace Axe.Windows.Automation
     {
         private readonly DataManager dataManager;
         private readonly SelectAction selectAction;
-        private readonly IDisposable _assemblyResolver;
 
         /// <summary>
         /// ctor - Initializes the app in automation mode
         /// </summary>
         /// <param name="parameters">The parameters from the command line</param>
-        /// <param name="assemblyResolver">The custom assembly resolver</param>
-        private AutomationSession(CommandParameters parameters, IDisposable assemblyResolver)
+        private AutomationSession(CommandParameters parameters)
         {
             try
             {
-                _assemblyResolver = assemblyResolver;
                 this.dataManager = DataManager.GetDefaultInstance();
                 this.selectAction = SelectAction.GetDefaultInstance();
                 this.SessionParameters = parameters;
@@ -42,7 +39,6 @@ namespace Axe.Windows.Automation
         {
             this.selectAction?.Dispose();
             this.dataManager?.Dispose();
-            this._assemblyResolver?.Dispose();
         }
 
         private static AutomationSession instance;
@@ -57,17 +53,16 @@ namespace Axe.Windows.Automation
         /// Obtain a new instance of the AutomationSession object. Only one can exist at a time
         /// </summary>
         /// <param name="parameters">The parameters to associate with the object</param>
-        /// <param name="customAssemblyResolver">The custom assembly resolver</param>
         /// <exception cref="A11yAutomationException">Thrown if session already exists</exception>
         /// <returns>The current AutomationSession object</returns>
-        internal static AutomationSession NewInstance(CommandParameters parameters, IDisposable customAssemblyResolver)
+        internal static AutomationSession NewInstance(CommandParameters parameters)
         {
             lock (lockObject)
             {
                 if (instance != null)
                     throw new A11yAutomationException(DisplayStrings.ErrorAlreadyStarted);
 
-                instance = new AutomationSession(parameters, customAssemblyResolver);
+                instance = new AutomationSession(parameters);
                 instance.SessionParameters = parameters;
 
                 return instance;

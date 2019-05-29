@@ -53,7 +53,7 @@ namespace Axe.Windows.AutomationTests
                 };
                 try
                 {
-                    AutomationSession.NewInstance(TestParameters, null);
+                    AutomationSession.NewInstance(TestParameters);
                 }
                 catch (StackOverflowException e)
                 {
@@ -70,7 +70,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                AutomationSession.NewInstance(TestParameters, null);
+                AutomationSession.NewInstance(TestParameters);
             }
             finally
             {
@@ -86,7 +86,7 @@ namespace Axe.Windows.AutomationTests
 
             try
             {
-                session = AutomationSession.NewInstance(TestParameters, null);
+                session = AutomationSession.NewInstance(TestParameters);
             }
             finally
             {
@@ -101,12 +101,12 @@ namespace Axe.Windows.AutomationTests
         [ExpectedException(typeof(A11yAutomationException))]
         public void NewInstance_InstanceAlreadyExists_ThrowsAutomationException_ErrorAutomation009()
         {
-            AutomationSession session = AutomationSession.NewInstance(TestParameters, null);
+            AutomationSession session = AutomationSession.NewInstance(TestParameters);
             Assert.IsNotNull(session);
 
             try
             {
-                AutomationSession.NewInstance(TestParameters, null);
+                AutomationSession.NewInstance(TestParameters);
             }
             catch (A11yAutomationException e)
             {
@@ -139,7 +139,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout (2000)]
         public void Instance_InstanceExists_ReturnsSameInstance()
         {
-            AutomationSession session = AutomationSession.NewInstance(TestParameters, null);
+            AutomationSession session = AutomationSession.NewInstance(TestParameters);
             Assert.IsNotNull(session);
             try
             {
@@ -173,31 +173,13 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                AutomationSession session = AutomationSession.NewInstance(TestParameters, null);
+                AutomationSession session = AutomationSession.NewInstance(TestParameters);
                 Assert.AreSame(TestParameters, session.SessionParameters);
             }
             finally
             {
                 AutomationSession.ClearInstance();
             }
-        }
-
-        [TestMethod]
-        [Timeout (2000)]
-        public void NewInstance_ClearInstance_AssemblyResolverIsDisposed()
-        {
-                DummyDisposable assemblyResolver = new DummyDisposable();
-
-                try
-                {
-                    AutomationSession session = AutomationSession.NewInstance(TestParameters, assemblyResolver);
-                    Assert.AreEqual(0, assemblyResolver.TimesDisposed);
-                }
-                finally
-                {
-                    AutomationSession.ClearInstance();
-                    Assert.AreEqual(1, assemblyResolver.TimesDisposed);
-                }
         }
     }
 }

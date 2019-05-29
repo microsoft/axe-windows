@@ -2,7 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.props" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Import Project="..\props\version.props"/>
+  <Import Project="..\props\version.props" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -42,6 +42,7 @@
     <None Include="Microsoft.Axe.Windows.nuspec">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -51,6 +52,11 @@
       <Project>{ae5ec69f-158a-41c8-ad2b-ec7b84d820ef}</Project>
       <Name>Automation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Condition=" '$(MAICreateNuget)' == 'true' " Name="Pack" AfterTargets="Build">
@@ -64,19 +70,10 @@
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
-  <Target Name="SignNuGetPackage"
-          Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' and '$(SignAppForRelease)'=='true' and '$(Configuration)' == 'Release'"
-          DependsOnTargets="@(SignNuGetPackageDependsOn)"
-          AfterTargets="Pack">
+  <Target Name="SignNuGetPackage" Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' and '$(SignAppForRelease)'=='true' and '$(Configuration)' == 'Release'" DependsOnTargets="@(SignNuGetPackageDependsOn)" AfterTargets="Pack">
     <ItemGroup>
       <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix)\Microsoft.Axe.Windows.$(SemVerNumber)$(SemVerSuffix).nupkg" />
     </ItemGroup>
-    <SignFiles Files="@(SignNuGetPackFiles)"
-               Type="$(SignType)"
-               BinariesDirectory="$(OutputPath)"
-               IntermediatesDirectory="$(IntermediateOutputPath)"
-               ESRPSigning="$(ESRPSigning)"
-               UseBearerToken="$(UseBearerToken)"
-               Condition=" '@(SignNuGetPackFiles)' != '' " />
-  </Target> 
- </Project>
+    <SignFiles Files="@(SignNuGetPackFiles)" Type="$(SignType)" BinariesDirectory="$(OutputPath)" IntermediatesDirectory="$(IntermediateOutputPath)" ESRPSigning="$(ESRPSigning)" UseBearerToken="$(UseBearerToken)" Condition=" '@(SignNuGetPackFiles)' != '' " />
+  </Target>
+</Project>

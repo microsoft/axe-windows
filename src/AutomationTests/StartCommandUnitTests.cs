@@ -22,7 +22,7 @@ namespace Axe.Windows.AutomationTests
             {
                 int callsToNewInstance = 0;
 
-                ShimAutomationSession.NewInstanceCommandParametersIDisposable = (_, __) =>
+                ShimAutomationSession.NewInstanceCommandParameters = (_) =>
                 {
                     callsToNewInstance++;
                     return new ShimAutomationSession();
@@ -46,7 +46,7 @@ namespace Axe.Windows.AutomationTests
             {
                 int callsToNewInstance = 0;
 
-                ShimAutomationSession.NewInstanceCommandParametersIDisposable = (_, __) =>
+                ShimAutomationSession.NewInstanceCommandParameters = (_) =>
                 {
                     callsToNewInstance++;
                     throw new A11yAutomationException(exceptionMessage);
