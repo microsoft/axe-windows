@@ -3,7 +3,6 @@
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Axe.Windows.Win32
 {
@@ -32,17 +31,8 @@ namespace Axe.Windows.Win32
         [DllImport("OleAut32.dll")]
         internal static extern uint VariantClear(ref dynamic pvarg);
 
-        [DllImport("kernel32.dll")]
-        internal static extern uint GetLastError();
-
         [DllImport("user32.dll")]
-        internal static extern System.UInt32 GetWindowLong(IntPtr hWnd, int nIndex);
-
-        // DLL libraries used to manage hotkeys
-        [DllImport("user32.dll")]
-        internal static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vlc);
-        [DllImport("user32.dll")]
-        internal static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+        internal static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
 
         [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
         [return: MarshalAs(UnmanagedType.Bool)]
