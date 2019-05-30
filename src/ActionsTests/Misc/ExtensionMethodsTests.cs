@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Bases;
+using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.QualityTools.Testing.Fakes;
-using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Bases.Fakes;
-using Axe.Windows.Core.Misc.Fakes;
+using System.Globalization;
 
 namespace Axe.Windows.Actions.Misc.Tests
 {
@@ -31,7 +31,7 @@ namespace Axe.Windows.Actions.Misc.Tests
                     offscreen.Add(false);
                 }
                 var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = Axe.Windows.Actions.Misc.ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
+                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
                 Assert.AreEqual(3, answer.UniqueId);
             }
         }
@@ -55,7 +55,7 @@ namespace Axe.Windows.Actions.Misc.Tests
                 }
                 offscreen[3] = true;
                 var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = Axe.Windows.Actions.Misc.ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
+                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
                 Assert.AreEqual(4, answer.UniqueId);
             }
         }
@@ -77,7 +77,7 @@ namespace Axe.Windows.Actions.Misc.Tests
                     offscreen.Add(false);
                 }
                 var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = Axe.Windows.Actions.Misc.ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
+                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
                 Assert.AreEqual(null, answer);
             }
         }
@@ -96,36 +96,29 @@ namespace Axe.Windows.Actions.Misc.Tests
         {
             using (ShimsContext.Create())
             {
-                Assert.ThrowsException<ArgumentException>(() => ExtensionMethods.GetSmallestElementFromPoint(new Dictionary<int, A11yElement>(), System.Drawing.Point.Empty));
+                Assert.ThrowsException<ArgumentException>(() => ExtensionMethods.GetSmallestElementFromPoint(new Dictionary<int, ICoreA11yElement>(), System.Drawing.Point.Empty));
             }
         }
 
         /// <summary>
         /// Creates and returns list of IA11yElements where 
         ///     returnedList[i].BoundingRectangle == boundingRects[i] and
-        ///     returnedList[i].UniqueId == i
-        ///     returnedList[i].IsOffScreen() == offSCreen[i]
+        ///     returnedList[i].UniqueId == i and
+        ///     returnedList[i].IsOffScreen() == offScreen[i]
         /// </summary>
         /// <returns></returns>
-        private static List<A11yElement> CreateA11yElementsFromBoundingRectangles(List<System.Drawing.Rectangle> boundingRects, List<bool> offScreen)
+        private static List<ICoreA11yElement> CreateA11yElementsFromBoundingRectangles(List<System.Drawing.Rectangle> boundingRects, List<bool> offScreen)
         {
-            var elementIndex = 0;
-            ShimA11yElement.Constructor = (@this) =>
-            {
-                var shim = new ShimA11yElement(@this);
-                shim.BoundingRectangleGet = () => { return boundingRects[@this.UniqueId]; };
-                shim.RuntimeIdGet = () => { return @this.UniqueId.ToString(); };
-                elementIndex++;
-            };
-
-            ShimExtensionMethods.IsOffScreenA11yElement = (el) => { return offScreen[el.UniqueId]; };
-
-            var elements = new List<A11yElement>();
+            var elements = new List<ICoreA11yElement>();
             for (int i = 0; i < boundingRects.Count; i++)
             {
-                A11yElement element = new A11yElement();
-                element.UniqueId = i;
-                elements.Add(element);
+                Mock<ICoreA11yElement> mockElement = new Mock<ICoreA11yElement>();
+
+                mockElement.Setup(x => x.UniqueId).Returns(i);
+                mockElement.Setup(x => x.BoundingRectangle).Returns(boundingRects[i]);
+                mockElement.Setup(x => x.RuntimeId).Returns(i.ToString(CultureInfo.InvariantCulture));
+                mockElement.Setup(x => x.IsOffScreen).Returns(offScreen[i]);
+                elements.Add(mockElement.Object);
             }
             return elements;
         }

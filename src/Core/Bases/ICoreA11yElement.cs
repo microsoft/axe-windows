@@ -23,5 +23,10 @@ namespace Axe.Windows.Core.Bases
         /// The Culture for this element (null if property does not exist)
         /// </summary>
         string Culture { get; }
+
+        /// <summary>
+        /// Unique Id of the element
+        /// </summary>
+        int UniqueId { get; }
     }
 }

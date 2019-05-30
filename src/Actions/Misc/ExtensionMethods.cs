@@ -40,7 +40,7 @@ namespace Axe.Windows.Actions.Misc
         /// </summary>
         /// <param name="position">Pixel location</param>
         /// <returns>element overlapping point with smallest area, or null if no elements overlap the given point</returns>
-        public static A11yElement GetSmallestElementFromPoint(Dictionary<int, A11yElement> allElements, System.Drawing.Point position)
+        internal static ICoreA11yElement GetSmallestElementFromPoint(Dictionary<int, ICoreA11yElement> allElements, System.Drawing.Point position)
         {
             if (allElements == null)
             {
@@ -52,7 +52,7 @@ namespace Axe.Windows.Actions.Misc
             }
             // Identify elements whose bounding rectangle contain clicked pixel point
             var containingElements = allElements.
-                Where(kv => !kv.Value.IsRootElement() && !kv.Value.IsOffScreen()).
+                Where(kv => !kv.Value.IsRootElement() && !kv.Value.IsOffScreen).
                 ToDictionary(kv => kv.Key, kv =>
                 {
                     System.Drawing.Rectangle rect = kv.Value.BoundingRectangle;
