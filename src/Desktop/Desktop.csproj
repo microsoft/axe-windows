@@ -75,8 +75,6 @@
     <Compile Include="ColorContrastAnalyzer\ColorContrastConfig.cs" />
     <Compile Include="ColorContrastAnalyzer\ColorContrastResult.cs" />
     <Compile Include="ColorContrastAnalyzer\ContrastTransition.cs" />
-    <Compile Include="Keyboard\HotKey.cs" />
-    <Compile Include="Keyboard\HotkeysHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SnapshotMetaInfo.cs" />
     <Compile Include="Styles\SayAsInterpretAs.cs" />
