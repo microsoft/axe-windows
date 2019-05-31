@@ -46,7 +46,7 @@ namespace Axe.Windows.Automation.PowerShell
 
             using (new AppDomainAdjuster())
             {
-                WriteObject(StartCommand.Execute(parameters, configFile, isPowerShell:true));
+                WriteObject(StartCommand.Execute(parameters, configFile));
             }
         }
     }
