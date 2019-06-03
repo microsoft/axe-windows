@@ -46,24 +46,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AxeWindowsAutomationException.cs" />
+    <Compile Include="Data\Config.cs" />
+    <Compile Include="Data\ScanResult.cs" />
     <Compile Include="Enums\OutputFileFormat.cs" />
-    <Compile Include="AutomationFactory.cs" />
-    <Compile Include="Interfaces\IAutomationConfig.cs" />
-    <Compile Include="Interfaces\IAutomationScanResult.cs" />
-    <Compile Include="Interfaces\IAutomationSessionFactory.cs" />
-    <Compile Include="Interfaces\IAutomationScanResults.cs" />
-    <Compile Include="Interfaces\IAutomationSession.cs" />
-    <Compile Include="Interfaces\IElementInfo.cs" />
+    <Compile Include="Data\ScanResults.cs" />
+    <Compile Include="Interfaces\IScanner.cs" />
+    <Compile Include="Data\ElementInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
+    <Compile Include="Scanner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Rules\Rules.csproj">
+      <Project>{7fe58829-560e-4142-bf81-291a66d3844b}</Project>
+      <Name>Rules</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

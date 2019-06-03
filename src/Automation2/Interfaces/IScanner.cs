@@ -7,22 +7,23 @@ namespace Automation2
     /// <summary>
     /// Runs AxeWindows automated tests
     /// </summary>
-    public interface IAutomationSession : IDisposable
+    public interface IScanner
     {
         /// <summary>
-        /// Runs a single AxeWindows automated scan.
-        /// Multiple scans may be run in a single automation session.
-        /// If a value was provided in <see cref="IAutomationConfig.OutputDirectory"/>,
+        /// Run AxeWindows automated tests
+        /// </summary>
+        /// <remarks>
+        /// If a value was provided in <see cref="Config.OutputDirectory"/>,
         /// output files may be written to the specified directory.
         /// (Note: no output files will be written if no errors were found.)
-        /// An exception may be thrown if the value of <see cref="IAutomationConfig.ProcessId"/> is invalid
-        /// or if the directory provided in <see cref="IAutomationConfig.OutputDirectory"/> does not exist.
+        /// An exception may be thrown if the value of <see cref="Config.ProcessId"/> is invalid
+        /// or if the directory provided in <see cref="Config.OutputDirectory"/> does not exist.
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
         /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
         /// will contain the exception.
-        /// </summary>
+        /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        IAutomationScanResults Scan();
+        ScanResults Scan();
     } // interface
 } // namespace

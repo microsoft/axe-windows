@@ -8,15 +8,12 @@ namespace Automation2
     /// <summary>
     /// Contains identifying information about an element
     /// </summary>
-    public interface IElementInfo
+    public class ElementInfo
     {
         /// <summary>
-        /// The id of this element's parent element.
+        /// This element's parent element.
         /// </summary>
-        /// <remarks>
-        /// The parent can be found by using the given id as an index into <see cref="IAutomationScanResults.Elements"/>
-        /// </remarks>
-        int ParentId { get; }
+        public ElementInfo Parent { get; private set;  }
 
         /// <summary>
         /// A string to string dictionary where the key is a UIAutomation property name
@@ -27,6 +24,14 @@ namespace Automation2
         /// without fear of breaking changes.
         /// Only properties with values set will be included.
         /// </remarks>
-        IReadOnlyDictionary<string, string> Properties { get; }
-    } // interface
+        public IReadOnlyDictionary<string, string> Properties { get; }
+
+        /// <summary>
+        /// A list of names of supported patterns
+        /// </summary>
+        /// <remarks>
+        /// The names are likely to be very stable.
+        /// </remarks>
+        public IEnumerable<string> Patterns { get; private set; }
+    } // class
 } // namespace
