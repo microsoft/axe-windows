@@ -3,7 +3,7 @@
 using System;
 using Axe.Windows.Rules;
 
-namespace Automation2
+namespace Axe.Windows.Automation
 {
     /// <summary>
     /// The result of a single rule test on a single element
@@ -13,11 +13,11 @@ namespace Automation2
         /// <summary>
         /// Information about the rule that evaluated the element specified by <see cref="Element"/>
         /// </summary>
-        public RuleInfo Rule { get; private set; }
+        public RuleInfo Rule { get; internal set; }
 
         /// <summary>
         /// The element which was tested against the rule specified in <see cref="Rule"/>
         /// </summary>
-        public ElementInfo Element { get; private set; }
+        public ElementInfo Element { get; internal set; }
     } // class
 } // namespace

@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Automation2
+namespace Axe.Windows.Automation
 {
     /// <summary>
     /// Contains identifying information about an element
@@ -13,7 +13,7 @@ namespace Automation2
         /// <summary>
         /// This element's parent element.
         /// </summary>
-        public ElementInfo Parent { get; private set;  }
+        public ElementInfo Parent { get; internal set;  }
 
         /// <summary>
         /// A string to string dictionary where the key is a UIAutomation property name
@@ -24,7 +24,7 @@ namespace Automation2
         /// without fear of breaking changes.
         /// Only properties with values set will be included.
         /// </remarks>
-        public IReadOnlyDictionary<string, string> Properties { get; }
+        public IReadOnlyDictionary<string, string> Properties { get; internal set; }
 
         /// <summary>
         /// A list of names of supported patterns
@@ -32,6 +32,6 @@ namespace Automation2
         /// <remarks>
         /// The names are likely to be very stable.
         /// </remarks>
-        public IEnumerable<string> Patterns { get; private set; }
+        public IEnumerable<string> Patterns { get; internal set; }
     } // class
 } // namespace

@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 
-namespace Automation2
+namespace Axe.Windows.Automation
 {
     /// <summary>
     /// Runs AxeWindows automated tests

@@ -17,6 +17,9 @@ using Microsoft.QualityTools.Testing.Fakes;
 
 namespace Axe.Windows.AutomationTests
 {
+    using ScanResult = Axe.Windows.Core.Results.ScanResult;
+    using ScanResults = Axe.Windows.Core.Results.ScanResults;
+
     [TestClass]
     public class SnapshotCommandUnitTests
     {

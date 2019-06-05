@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Automation2
+namespace Axe.Windows.Automation
 {
     /// <summary>
     /// Contains information about an AxeWindows automated scan
@@ -11,15 +11,16 @@ namespace Automation2
     public class ScanResults
     {
         /// <summary>
-        /// A Collection of paths to any output files written as a result of a scan.
+        /// A Tuple with paths to any output files written as a result of a scan.
+        /// Tuple members are A11yTest and Sarif (not implemented yet)
         /// </summary>
         /// <remarks>
-        /// This property may be null if no output files were written.
+        /// This property's members may be null if no output files were written.
         /// That may happen if no <see cref="Config.OutputFileFormat"/> was specified
         /// or was set to <see cref="OutputFileFormat.None"/>.
-        /// The value will also be null if no errors were found.
+        /// This property's members will also be null if no errors were found.
         /// </remarks>
-        public IEnumerable<string> OutputFiles { get; private set; }
+        public (string A11yTest, string Sarif) OutputFile { get; internal set; }
 
         /// <summary>
         /// A count of all errors across all elements scanned.
@@ -28,7 +29,7 @@ namespace Automation2
         /// This may be useful as a simple test to determine if the number of errors between scans of the same area
         /// of an application has increased or (hopefully) decreased.
         /// </remarks>
-        public int ErrorCount { get; private set; }
+        public int ErrorCount { get; internal set; }
 
         /// <summary>
         /// A collection of errors found during the scan.
@@ -36,6 +37,6 @@ namespace Automation2
         /// <remarks>
         /// Use this to get in-depth information about the rule + element combination for each error. 
         /// </remarks>
-        public IEnumerable<ScanResult> Errors { get; private set; }
+        public IEnumerable<ScanResult> Errors { get; internal set; }
     } // class 
 } // namespace

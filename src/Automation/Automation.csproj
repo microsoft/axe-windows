@@ -61,8 +61,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="AxeWindowsAutomationException.cs" />
     <Compile Include="CustomAssemblyResolver.cs" />
     <Compile Include="AutomationSession.cs" />
+    <Compile Include="Data\Config.cs" />
+    <Compile Include="Data\ElementInfo.cs" />
+    <Compile Include="Data\ScanResult.cs" />
+    <Compile Include="Data\ScanResults.cs" />
+    <Compile Include="Enums\OutputFileFormat.cs" />
+    <Compile Include="Interfaces\IScanner.cs" />
     <Compile Include="PowerShell\AppDomainAdjuster.cs" />
     <Compile Include="Results\BaseCommandResult.cs" />
     <Compile Include="DisplayStrings.Designer.cs">
@@ -76,6 +83,8 @@
     <Compile Include="A11yAutomationException.cs" />
     <Compile Include="LocationHelper.cs" />
     <Compile Include="PowerShell\InvokeSnapshotCmdlet.cs" />
+    <Compile Include="Scanner.cs" />
+    <Compile Include="ScannerFactory.cs" />
     <Compile Include="SnapshotCommand.cs" />
     <Compile Include="Results\SnapshotCommandResult.cs" />
     <Compile Include="StartCommand.cs" />
@@ -93,6 +102,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
     <DropSignedFile Include="$(OutDir)\Axe.Windows.Automation.dll" />

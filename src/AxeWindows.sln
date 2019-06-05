@@ -59,8 +59,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesTests", "RulesTest\Rul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CI", "CI\CI.csproj", "{32273060-8BBE-4BB6-9198-50F9C680BE60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation2", "Automation2\Automation2.csproj", "{2C2248C3-C4BF-4A5C-BECF-955A0441502E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -299,18 +297,6 @@ Global
 		{32273060-8BBE-4BB6-9198-50F9C680BE60}.Release|x64.Build.0 = Release|Any CPU
 		{32273060-8BBE-4BB6-9198-50F9C680BE60}.Release|x86.ActiveCfg = Release|Any CPU
 		{32273060-8BBE-4BB6-9198-50F9C680BE60}.Release|x86.Build.0 = Release|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Debug|x64.Build.0 = Debug|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Debug|x86.Build.0 = Debug|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Release|x64.ActiveCfg = Release|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Release|x64.Build.0 = Release|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Release|x86.ActiveCfg = Release|Any CPU
-		{2C2248C3-C4BF-4A5C-BECF-955A0441502E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
