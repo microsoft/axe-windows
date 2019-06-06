@@ -5,7 +5,7 @@ using System;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Implementation of IScanner
+    /// Implementation of <see cref="IScanner"/>
     /// </summary>
     class Scanner : IScanner
     {
