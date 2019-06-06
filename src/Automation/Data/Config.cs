@@ -20,7 +20,8 @@ namespace Axe.Windows.Automation
         /// This value is ignored if <see cref="Config.OutputFileFormat"/> is set to <see cref="OutputFileFormat.None"/>.
         /// If this value is null, and if <see cref="Config.OutputFileFormat"/> is not set to <see cref="OutputFileFormat.None"/>,
         /// files will be written to a directory named "AxeWindowsScanResults" under the current directory.
-        /// If the value is not null, and the given directory does not exist, the automation session will throw an <see cref="AxeWindowsAutomationException"/>.
+        /// If the value is not null, and the given directory does not exist, the <see cref="IScanner"/> object will attempt to create it.
+        /// If the directory cannot be created, an <see cref="AxeWindowsAutomationException"/> will be thrown.
         /// </summary>
         /// <remarks>
         /// No output files will be written if no errors were found during the automation session.

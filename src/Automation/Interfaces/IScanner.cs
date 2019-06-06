@@ -17,7 +17,7 @@ namespace Axe.Windows.Automation
         /// output files may be written to the specified directory.
         /// (Note: no output files will be written if no errors were found.)
         /// An exception may be thrown if the value of <see cref="Config.ProcessId"/> is invalid
-        /// or if the directory provided in <see cref="Config.OutputDirectory"/> does not exist.
+        /// or if the directory provided in <see cref="Config.OutputDirectory"/> cannot be created or accessed.
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
         /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
         /// will contain the exception.
