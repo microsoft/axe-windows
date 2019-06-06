@@ -5,7 +5,7 @@ using System;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Bit flags to specify which output file formats an automation session should write
+    /// Bit flags to specify which output file formats a <see cref="IScanner"/> should write
     /// </summary>
     [Flags]
     public enum OutputFileFormat
