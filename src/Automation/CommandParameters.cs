@@ -139,12 +139,12 @@ namespace Axe.Windows.Automation
                 return false;
 
             if (!File.Exists(secondaryConfigFile))
-                throw new A11yAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorCantFindSecondaryConfigFileFormat, secondaryConfigFile));
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorCantFindSecondaryConfigFileFormat, secondaryConfigFile));
 
             string jsonData = File.ReadAllText(secondaryConfigFile);
 
             if (string.IsNullOrWhiteSpace(jsonData))
-                throw new A11yAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorEmptySecondaryConfigFile, secondaryConfigFile));
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorEmptySecondaryConfigFile, secondaryConfigFile));
 
             try
             {
@@ -156,7 +156,7 @@ namespace Axe.Windows.Automation
             }
             catch (Exception e)
             {
-                throw new A11yAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidSecondaryConfigFile, secondaryConfigFile), e);
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidSecondaryConfigFile, secondaryConfigFile), e);
             }
         }
     }

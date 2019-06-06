@@ -50,7 +50,7 @@ namespace Axe.Windows.AutomationTests
                 ShimAutomationSession.NewInstanceCommandParameters = (_) =>
                 {
                     callsToNewInstance++;
-                    throw new A11yAutomationException(exceptionMessage);
+                    throw new AxeWindowsAutomationException(exceptionMessage);
                 };
 
                 StartCommandResult result = StartCommand.Execute(new Dictionary<string, string>(), string.Empty);

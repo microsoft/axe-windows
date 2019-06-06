@@ -28,7 +28,7 @@ namespace Axe.Windows.Automation
                     // No need to report this Exception, since telemetry is not available in automation
                     string errorDetail;
 
-                    A11yAutomationException automationException = ex as A11yAutomationException;
+                    AxeWindowsAutomationException automationException = ex as AxeWindowsAutomationException;
 
                     if (automationException == null)
                     {

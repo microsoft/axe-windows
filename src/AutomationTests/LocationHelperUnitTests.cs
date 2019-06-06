@@ -42,7 +42,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_OutputPathIsTrivial_ThrowsAutomationException_ErrorAutomation004()
         {
             CommandParameters parameters = BuildParameters(outputPath: string.Empty);
@@ -50,7 +50,7 @@ namespace Axe.Windows.AutomationTests
             {
                 new LocationHelper(parameters);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation004:"));
                 throw;
@@ -59,7 +59,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_OutputFileIsOmitted_ThrowsAutomationException_ErrorAutomation005()
         {
             CommandParameters parameters = BuildParameters(outputFile: null);
@@ -67,7 +67,7 @@ namespace Axe.Windows.AutomationTests
             {
                 new LocationHelper(parameters);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation005:"));
                 throw;
@@ -76,7 +76,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_OutputFileIsTrivial_ThrowsAutomationException_ErrorAutomation006()
         {
             CommandParameters parameters = BuildParameters(outputFile: string.Empty);
@@ -84,7 +84,7 @@ namespace Axe.Windows.AutomationTests
             {
                 new LocationHelper(parameters);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation006:"));
                 throw;
@@ -168,7 +168,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_OutputFileFormatTrivial_ThrowsAutomationException_ErrorAutomation015()
         {
             CommandParameters parameters = BuildParameters(outputFile: TestOutputFileWithoutExtension, outputFileFormat: " ");
@@ -176,7 +176,7 @@ namespace Axe.Windows.AutomationTests
             {
                 new LocationHelper(parameters);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation015:"));
                 throw;
@@ -185,7 +185,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_OutputFileFormatInvalid_ThrowsAutomationException_ErrorAutomation016()
         {
             CommandParameters parameters = BuildParameters(outputFile: TestOutputFileWithoutExtension, outputFileFormat: InvalidTestOutputFormat);
@@ -193,7 +193,7 @@ namespace Axe.Windows.AutomationTests
             {
                 new LocationHelper(parameters);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation016:"));
                 throw;

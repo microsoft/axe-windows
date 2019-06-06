@@ -30,11 +30,11 @@ namespace Axe.Windows.Automation
                 }
                 catch (Exception ex)
                 {
-                    throw new A11yAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorFailToGetRootElementOfProcess, parameterPid, ex), ex);
+                    throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorFailToGetRootElementOfProcess, parameterPid, ex), ex);
                 }
             }
 
-            throw new A11yAutomationException(DisplayStrings.ErrorNoProcessIdSet);
+            throw new AxeWindowsAutomationException(DisplayStrings.ErrorNoProcessIdSet);
         }
     }
 }

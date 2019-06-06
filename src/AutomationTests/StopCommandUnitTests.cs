@@ -48,7 +48,7 @@ namespace Axe.Windows.AutomationTests
                 ShimAutomationSession.ClearInstance = () =>
                 {
                     callsToClearInstance++;
-                    throw new A11yAutomationException(exceptionMessage);
+                    throw new AxeWindowsAutomationException(exceptionMessage);
                 };
 
                 StopCommandResult result = StopCommand.Execute();
