@@ -22,7 +22,8 @@ namespace Axe.Windows.AutomationTests
             {
                 int callsToNewInstance = 0;
 
-                ShimAutomationSession.NewInstanceCommandParameters = (_) =>
+                ShimAutomationSession.
+                    NewInstanceCommandParameters = (_) =>
                 {
                     callsToNewInstance++;
                     return new ShimAutomationSession();
