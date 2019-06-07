@@ -29,17 +29,7 @@ namespace Axe.Windows.Automation
                     SummaryMessage = DisplayStrings.SuccessStart,
                     Succeeded = true,
                 };
-            }, ErrorCommandResultFactory);
-        }
-
-        private static StartCommandResult ErrorCommandResultFactory(string errorDetail)
-        {
-            return new StartCommandResult
-            {
-                Completed = false,
-                SummaryMessage = errorDetail,
-                Succeeded = false,
-            };
+            });
         }
     }
 }

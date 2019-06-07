@@ -100,7 +100,7 @@ namespace Axe.Windows.AutomationTests
 #if FAKES_SUPPORTED
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_AutomationSessionInstanceThrowsAutomationException_ReturnsIncomplete_MessageMatchesException()
+        public void Execute_AutomationSessionInstanceThrowsAutomationException_MessageMatchesException()
         {
             using (ShimsContext.Create())
             {
@@ -114,10 +114,16 @@ namespace Axe.Windows.AutomationTests
 
                 InitializeShims();
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                try
+                {
+                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    Assert.IsTrue(ex.Message.Contains(TestMessage));
+                }
 
                 Assert.AreEqual(1, callsToInstance);
-                AssertIncompleteResult(result, TestMessage);
             }
         }
 
@@ -146,16 +152,22 @@ namespace Axe.Windows.AutomationTests
 
                 InitializeShims(populateLocationHelper: false);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                try
+                {
+                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    Assert.AreEqual(TestMessage, ex.InnerException.Message);
+                }
 
                 Utilities.AssertEqual(expectedParameters.ConfigCopy, actualParameters.ConfigCopy);
-                AssertIncompleteResult(result, TestMessage, false);
             }
         }
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_UnableToSelectCandidateElement_ReturnsIncomplete_ErrorAutomation008()
+        public void Execute_UnableToSelectCandidateElement_ThrowsAutomationException_ErrorAutomation008()
         {
             using (ShimsContext.Create())
             {
@@ -167,15 +179,20 @@ namespace Axe.Windows.AutomationTests
 
                 InitializeShims(selectAction:selectAction, populateLocationHelper: false, enableRetention: true, shimTargetElementLocator: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
-
-                AssertIncompleteResult(result, " Automation008:", false);
+                try
+                {
+                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    Assert.IsTrue(ex.Message.Contains(" Automation008:"));
+                }
             }
         }
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_UnableToSetTestModeDataContext_ReturnsIncomplete_ErrorAutomation008()
+        public void Execute_UnableToSetTestModeDataContext_ThrowsAutomationException_ErrorAutomation008()
         {
             using (ShimsContext.Create())
             {
@@ -189,15 +206,20 @@ namespace Axe.Windows.AutomationTests
                 InitializeShims(populateLocationHelper: false, enableRetention: true, shimTargetElementLocator: true,
                     shimUiFramework: true, setTestModeSucceeds: false);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
-
-                AssertIncompleteResult(result, " Automation008:", false);
+                try
+                {
+                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                }
+                catch (System.Exception ex)
+                {
+                    Assert.IsTrue(ex.Message.Contains(" Automation008:"));
+                }
             }
         }
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_NoScanResultsInPOI_ReturnsIncomplete_ErrorAutomation012()
+        public void Execute_NoScanResultsInPOI_ThrowsAutomationException_ErrorAutomation012()
         {
             using (ShimsContext.Create())
             {
@@ -212,15 +234,20 @@ namespace Axe.Windows.AutomationTests
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
-
-                AssertIncompleteResult(result, " Automation012:", false);
+                try
+                {
+                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    Assert.IsTrue(ex.Message.Contains(" Automation012:"));
+                }
             }
         }
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_UpperBoundIsReached_ReturnsIncomplete_ErrorAutomation017()
+        public void Execute_UpperBoundIsReached_ThrowsAutomationException_ErrorAutomation017()
         {
             using (ShimsContext.Create())
             {
@@ -236,9 +263,14 @@ namespace Axe.Windows.AutomationTests
                     selectAction: selectAction, elementBoundExceeded: true, shimUiFramework: true,
                     setTestModeSucceeds: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
-
-                AssertIncompleteResult(result, " Automation017:", false);
+                try
+                {
+                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                }
+                catch (System.Exception ex)
+                {
+                    Assert.IsTrue(ex.Message.Contains(" Automation017:"));
+                }
             }
         }
 

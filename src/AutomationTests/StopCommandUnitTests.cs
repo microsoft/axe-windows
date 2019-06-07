@@ -37,7 +37,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        public void Execute_ClearInstanceThrowsAutomationException_ReturnsFailedResult()
+        public void Execute_ClearInstanceThrowsAutomationExceptionWithExpectedMessage()
         {
             const string exceptionMessage = "Hello from your local exception!";
 
@@ -51,12 +51,16 @@ namespace Axe.Windows.AutomationTests
                     throw new AxeWindowsAutomationException(exceptionMessage);
                 };
 
-                StopCommandResult result = StopCommand.Execute();
+                try
+                {
+                    StopCommand.Execute();
+                }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    Assert.AreEqual(exceptionMessage, ex.Message);
+                }
 
                 Assert.AreEqual(1, callsToClearInstance);
-                Assert.AreEqual(false, result.Completed);
-                Assert.AreEqual(false, result.Succeeded);
-                Assert.AreEqual(exceptionMessage, result.SummaryMessage);
             }
         }
 #endif

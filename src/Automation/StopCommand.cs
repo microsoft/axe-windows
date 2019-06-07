@@ -24,7 +24,7 @@ namespace Axe.Windows.Automation
                     SummaryMessage = DisplayStrings.SuccessStop,
                     Succeeded = true,
                 };
-            }, ErrorCommandResultFactory);
+            });
         }
 
         private static StopCommandResult ErrorCommandResultFactory(string errorDetail)

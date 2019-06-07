@@ -112,8 +112,7 @@ namespace Axe.Windows.Automation
                     }
                 }
                 throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
-            },
-            ErrorCommandResultFactory);
+            });
         }
 
         /// <summary>
@@ -156,15 +155,6 @@ namespace Axe.Windows.Automation
                     AccumulateScanResults(accumulator, child);
                 }
             }
-        }
-
-        private static SnapshotCommandResult ErrorCommandResultFactory(string errorDetail)
-        {
-            return new SnapshotCommandResult
-            {
-                Completed = false,
-                SummaryMessage = errorDetail,
-            };
         }
     }
 }
