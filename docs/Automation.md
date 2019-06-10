@@ -159,7 +159,7 @@ CommandConstStrings.TeamName | “TeamName” | Value for Team name in telemetry
 
 ### Using the assembly
 You can get the files via a NuGet package Configure NuGet to retrieve the
-**Microsoft.Axe.Windows** package from
+**Axe.Windows** package from
 <https://api.nuget.org/v3/index.json>,
 then use the classes in the Axe.Windows.Automation namespace (see
 examples below):
