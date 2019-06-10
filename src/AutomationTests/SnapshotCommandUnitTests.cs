@@ -109,7 +109,7 @@ namespace Axe.Windows.AutomationTests
                 ShimAutomationSession.Instance = () =>
                 {
                     callsToInstance++;
-                    throw new A11yAutomationException(TestMessage);
+                    throw new AxeWindowsAutomationException(TestMessage);
                 };
 
                 InitializeShims();

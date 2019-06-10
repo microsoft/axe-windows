@@ -63,7 +63,7 @@ namespace Axe.Windows.Automation
 
                             if (dc.ElementCounter.UpperBoundExceeded)
                             {
-                                throw new A11yAutomationException(string.Format(CultureInfo.InvariantCulture,
+                                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
                                     DisplayStrings.ErrorTooManyElementsToSetDataContext,
                                     dc.ElementCounter.UpperBound));
                             }
@@ -111,7 +111,7 @@ namespace Axe.Windows.Automation
                         }
                     }
                 }
-                throw new A11yAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
             },
             ErrorCommandResultFactory);
         }
@@ -124,7 +124,7 @@ namespace Axe.Windows.Automation
         private static void AccumulateScanResults(ScanResultAccumulator accumulator, A11yElement element)
         {
             if (element.ScanResults == null || element.ScanResults.Items == null)
-                throw new A11yAutomationException(DisplayStrings.ErrorMissingScanResults);
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorMissingScanResults);
 
             foreach (var scanResult in element.ScanResults.Items)
             {

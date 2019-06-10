@@ -67,7 +67,7 @@ namespace Axe.Windows.AutomationTests
             TestResult result = ExecutionWrapper.ExecuteCommand<TestResult>(
                 () =>
                 {
-                    throw new A11yAutomationException(TestString);
+                    throw new AxeWindowsAutomationException(TestString);
                 },
                 (errorDetail) =>
                 {

@@ -32,13 +32,13 @@ namespace Axe.Windows.Automation
             }
 
             if (string.IsNullOrWhiteSpace(outputPath))
-                throw new A11yAutomationException(DisplayStrings.ErrorOutputPathIsTrivial);
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorOutputPathIsTrivial);
 
             if (!parameters.TryGetString(CommandConstStrings.OutputFile, out string outputFile))
-                throw new A11yAutomationException(DisplayStrings.ErrorOutputFileIsNotSpecified);
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorOutputFileIsNotSpecified);
 
             if (string.IsNullOrWhiteSpace(outputFile))
-                throw new A11yAutomationException(DisplayStrings.ErrorOutputFileIsTrivial);
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorOutputFileIsTrivial);
 
             if (!Directory.Exists(outputPath))
                 Directory.CreateDirectory(outputPath);
@@ -54,7 +54,7 @@ namespace Axe.Windows.Automation
                 {
                     if (string.IsNullOrWhiteSpace(outputFileFormat))
                     {
-                        throw new A11yAutomationException(DisplayStrings.ErrorOutputFileFormatIsTrivial);
+                        throw new AxeWindowsAutomationException(DisplayStrings.ErrorOutputFileFormatIsTrivial);
                     }
                     outputFileFormat = ValidateExtension(outputFileFormat);
                 }
@@ -87,7 +87,7 @@ namespace Axe.Windows.Automation
             // If extension is present in the file name make sure that it is a valid extension
             if (!Enum.TryParse(extension, true, out Actions.Enums.FileExtensionType enumExtension))
             {
-                throw new A11yAutomationException(DisplayStrings.ErrorInvalidOutputFileFormat);
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorInvalidOutputFileFormat);
             }
 
             return enumExtension.ToString();

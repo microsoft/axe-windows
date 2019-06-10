@@ -53,14 +53,14 @@ namespace Axe.Windows.Automation
         /// Obtain a new instance of the AutomationSession object. Only one can exist at a time
         /// </summary>
         /// <param name="parameters">The parameters to associate with the object</param>
-        /// <exception cref="A11yAutomationException">Thrown if session already exists</exception>
+        /// <exception cref="AxeWindowsAutomationException">Thrown if session already exists</exception>
         /// <returns>The current AutomationSession object</returns>
         internal static AutomationSession NewInstance(CommandParameters parameters)
         {
             lock (lockObject)
             {
                 if (instance != null)
-                    throw new A11yAutomationException(DisplayStrings.ErrorAlreadyStarted);
+                    throw new AxeWindowsAutomationException(DisplayStrings.ErrorAlreadyStarted);
 
                 instance = new AutomationSession(parameters);
                 instance.SessionParameters = parameters;
@@ -73,14 +73,14 @@ namespace Axe.Windows.Automation
         /// Obtain the current instance of the AutomationSession object. Only one can exist at a time.
         /// Will also track the action if an appropriate Action is provided
         /// </summary>
-        /// <exception cref="A11yAutomationException">Thrown if session object does not exist</exception>
+        /// <exception cref="AxeWindowsAutomationException">Thrown if session object does not exist</exception>
         /// <returns>The current AutomationSession object</returns>
         internal static AutomationSession Instance()
         {
             lock (lockObject)
             {
                 if (instance == null)
-                    throw new A11yAutomationException(DisplayStrings.ErrorNotStarted_Instance);
+                    throw new AxeWindowsAutomationException(DisplayStrings.ErrorNotStarted_Instance);
                 return instance;
             }
         }
@@ -88,13 +88,13 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Clear the current instance of the AutomationSession object
         /// </summary>
-        /// <exception cref="A11yAutomationException">Thrown if session object does not exist</exception>
+        /// <exception cref="AxeWindowsAutomationException">Thrown if session object does not exist</exception>
         internal static void ClearInstance()
         {
             lock (lockObject)
             {
                 if (instance == null)
-                    throw new A11yAutomationException(DisplayStrings.ErrorNotStarted_Clear);
+                    throw new AxeWindowsAutomationException(DisplayStrings.ErrorNotStarted_Clear);
                 instance.Cleanup();
                 instance = null;
             }

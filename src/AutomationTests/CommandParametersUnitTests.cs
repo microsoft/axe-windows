@@ -60,7 +60,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_ConfigFileDoesNotExist_ThrowsAutomationException_ErrorAutomation001()
         {
             try
@@ -69,7 +69,7 @@ namespace Axe.Windows.AutomationTests
                     "!@#$%^&()_+", FakeConfigFile);
                 CommandParameters parameters = new CommandParameters(EmptyInput, configFile);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation001:"));
                 throw;
@@ -79,7 +79,7 @@ namespace Axe.Windows.AutomationTests
 #if FAKES_SUPPORTED
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_ConfigFileIsEmpty_ThrowsAutomationException_ErrorAutomation013()
         {
             using (ShimsContext.Create())
@@ -91,7 +91,7 @@ namespace Axe.Windows.AutomationTests
 
                     CommandParameters parameters = new CommandParameters(EmptyInput, FakeConfigFile);
                 }
-                catch (A11yAutomationException e)
+                catch (AxeWindowsAutomationException e)
                 {
                     Assert.IsTrue(e.Message.Contains(" Automation013:"));
                     throw;
@@ -101,7 +101,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Ctor_ConfigFileIsInvalidJson_ThrowsAutomationException_ErrorAutomation014()
         {
             using (ShimsContext.Create())
@@ -113,7 +113,7 @@ namespace Axe.Windows.AutomationTests
 
                     CommandParameters parameters = new CommandParameters(EmptyInput, FakeConfigFile);
                 }
-                catch (A11yAutomationException e)
+                catch (AxeWindowsAutomationException e)
                 {
                     Assert.IsTrue(e.Message.Contains(" Automation014:"));
                     throw;

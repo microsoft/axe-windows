@@ -98,7 +98,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (2000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void NewInstance_InstanceAlreadyExists_ThrowsAutomationException_ErrorAutomation009()
         {
             AutomationSession session = AutomationSession.NewInstance(TestParameters);
@@ -108,7 +108,7 @@ namespace Axe.Windows.AutomationTests
             {
                 AutomationSession.NewInstance(TestParameters);
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation009:"));
                 throw;
@@ -121,14 +121,14 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (2000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void Instance_NoInstanceExists_ThrowsAutomationException_Automation010()
         {
             try
             {
                 AutomationSession.Instance();
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation010:"));
                 throw;
@@ -153,14 +153,14 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (2000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void ClearInstance_NoInstanceExists_ThrowsAutomationException_Automation011()
         {
             try
             {
                 AutomationSession.ClearInstance();
             }
-            catch (A11yAutomationException e)
+            catch (AxeWindowsAutomationException e)
             {
                 Assert.IsTrue(e.Message.Contains(" Automation011:"));
                 throw;

@@ -11,7 +11,7 @@ namespace Axe.Windows.AutomationTests
     {
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void LocateElement_NoTargetSpecifiedInParameters_ThrowsAutomationException_ErrorAutomation007()
         {
             try
@@ -19,7 +19,7 @@ namespace Axe.Windows.AutomationTests
                 CommandParameters parameters = new CommandParameters(new Dictionary<string, string>(), string.Empty);
                 TargetElementLocator.LocateElement(parameters);
             }
-            catch (A11yAutomationException ex)
+            catch (AxeWindowsAutomationException ex)
             {
                 Assert.IsTrue(ex.Message.Contains("Automation007:"));
                 throw;
@@ -29,7 +29,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        [ExpectedException(typeof(A11yAutomationException))]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void LocateElement_SpecifiedPIDNotExist_ThrowsAutomationException_ErrorAutomation017()
         {
             try
@@ -39,7 +39,7 @@ namespace Axe.Windows.AutomationTests
                 CommandParameters parameters = new CommandParameters(ps, string.Empty);
                 TargetElementLocator.LocateElement(parameters);
             }
-            catch (A11yAutomationException ex)
+            catch (AxeWindowsAutomationException ex)
             {
                 Assert.IsTrue(ex.Message.Contains("Automation017:"));
                 throw;

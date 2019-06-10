@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
+// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 
@@ -13,11 +13,16 @@ namespace Axe.Windows.Automation
     public class AxeWindowsAutomationException : Exception
     {
         /// <summary>
-        /// Constructor taking a text description of the exception
+        /// Constructor taking a message string
+        /// and an optional inner exception to wrap
         /// </summary>
-        /// <param name="message">A text description of the exception</param>
-        public AxeWindowsAutomationException(string message)
-            : base(message)
-        { }
-    } // class
-} // namespace
+        /// <param name="message"></param>
+        /// <param name="innerException"></param>
+        public AxeWindowsAutomationException(string message, Exception innerException = null)
+            : base(message, innerException)
+        {
+            if (string.IsNullOrWhiteSpace(nameof(message)))
+                throw new ArgumentException("message must be non-trivial", this);
+        }
+    }
+}
