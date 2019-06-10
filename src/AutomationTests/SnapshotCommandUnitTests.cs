@@ -122,7 +122,7 @@ namespace Axe.Windows.AutomationTests
 
             var result = new Automation.ScanResults();
             var errors = new List<Automation.ScanResult>();
-            SnapshotCommand.AccumulateNewScanResults(result, errors, e);
+            SnapshotCommand.AccumulateScanResultsFromElement(result, errors, e);
 
             Assert.AreEqual(2, result.ErrorCount);
             Assert.AreEqual(2, errors.Count);
@@ -141,7 +141,7 @@ namespace Axe.Windows.AutomationTests
 
             var result = new Automation.ScanResults();
             var errors = new List<Automation.ScanResult>();
-            SnapshotCommand.AccumulateNewScanResults(result, errors, e);
+            SnapshotCommand.AccumulateScanResultsFromElement(result, errors, e);
             Assert.AreEqual(0, result.ErrorCount);
             Assert.AreEqual(0, errors.Count);
         }

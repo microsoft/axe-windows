@@ -166,25 +166,36 @@ namespace Axe.Windows.Automation
         /// <param name="results">Where the results will be accumulated</param>
         /// <param name="errors">Where the results will be accumulated</param>
         /// <param name="element">The root element to check</param>
-        internal static void AccumulateNewScanResults(ScanResults results, List<ScanResult> errors, A11yElement element)
+        internal static void AccumulateScanResultsFromElement(ScanResults results, List<ScanResult> errors, A11yElement element)
         {
             if (element.ScanResults == null || element.ScanResults.Items == null)
                 throw new AxeWindowsAutomationException("");
 
+            ElementInfo elementInfo = new ElementInfo
+            {
+                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
+                Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+            };
 
-            foreach (var scanResult in element.ScanResults.Items)
+            AccumulateFromScanResults(results, errors, element.ScanResults.Items, elementInfo);
+
+            if (element.Children == null) return;
+
+            foreach (var child in element.Children)
+            {
+                AccumulateScanResultsFromElement(results, errors, child);
+            }
+        }
+
+        private static void AccumulateFromScanResults(ScanResults results, List<ScanResult> errors, List<Core.Results.ScanResult> scanResults, ElementInfo elementInfo)
+        {
+            foreach (var scanResult in scanResults)
             {
                 if (scanResult.Status != ScanStatus.Fail) continue;
 
                 foreach (var ruleResult in scanResult.Items)
                 {
                     if (ruleResult.Status != ScanStatus.Fail) continue;
-
-                    ElementInfo elementInfo = new ElementInfo
-                    {
-                        Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
-                        Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
-                    };
 
                     ScanResult result = new ScanResult()
                     {
@@ -195,14 +206,6 @@ namespace Axe.Windows.Automation
                     errors.Add(result);
                     results.ErrorCount++;
                 }
-
-            }
-
-            if (element.Children == null) return;
-
-            foreach (var child in element.Children)
-            {
-                AccumulateNewScanResults(results, errors, child);
             }
         }
 
