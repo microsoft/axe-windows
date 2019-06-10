@@ -6,9 +6,11 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Results;
 using Axe.Windows.Desktop.Settings;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Axe.Windows.Automation
 {
@@ -155,6 +157,52 @@ namespace Axe.Windows.Automation
                 {
                     AccumulateScanResults(accumulator, child);
                 }
+            }
+        }
+
+        /// <summary>
+        /// How many violations were found (starting at the target element)
+        /// </summary>
+        /// <param name="results">Where the results will be accumulated</param>
+        /// <param name="errors">Where the results will be accumulated</param>
+        /// <param name="element">The root element to check</param>
+        internal static void AccumulateNewScanResults(ScanResults results, List<ScanResult> errors, A11yElement element)
+        {
+            if (element.ScanResults == null || element.ScanResults.Items == null)
+                throw new AxeWindowsAutomationException("");
+
+
+            foreach (var scanResult in element.ScanResults.Items)
+            {
+                if (scanResult.Status != ScanStatus.Fail) continue;
+
+                foreach (var ruleResult in scanResult.Items)
+                {
+                    if (ruleResult.Status != ScanStatus.Fail) continue;
+
+                    ElementInfo elementInfo = new ElementInfo
+                    {
+                        Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
+                        Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+                    };
+
+                    ScanResult result = new ScanResult()
+                    {
+                        Element = elementInfo,
+                        Rule = Rules.Rules.All[ruleResult.Rule],
+                    };
+
+                    errors.Add(result);
+                    results.ErrorCount++;
+                }
+
+            }
+
+            if (element.Children == null) return;
+
+            foreach (var child in element.Children)
+            {
+                AccumulateNewScanResults(results, errors, child);
             }
         }
 

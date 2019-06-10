@@ -8,6 +8,8 @@ using Axe.Windows.Core.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using Axe.Windows.Core.Enums;
+using System.Linq;
 #if FAKES_SUPPORTED
 using Axe.Windows.Actions.Contexts.Fakes;
 using Axe.Windows.Actions.Fakes;
@@ -95,6 +97,53 @@ namespace Axe.Windows.AutomationTests
             }
 
             return element;
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void AccumulateNewScanResults_AccumulatesErrors()
+        {
+            A11yElement e = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
+
+            e.ScanResults.Items[0].Items = new List<RuleResult>(){ new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.ControlViewButtonStructure } };
+            e.Children[0].ScanResults.Items[0].Items = new List<RuleResult>() { new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleNotNull } };
+
+            ElementInfo parentInfo = new ElementInfo
+            {
+                Patterns = e.Patterns.ConvertAll<string>(x => x.Name),
+                Properties = e.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+            };
+
+            ElementInfo childInfo = new ElementInfo
+            {
+                Patterns = e.Children[0].Patterns.ConvertAll<string>(x => x.Name),
+                Properties = e.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+            };
+
+            var result = new Automation.ScanResults();
+            var errors = new List<Automation.ScanResult>();
+            SnapshotCommand.AccumulateNewScanResults(result, errors, e);
+
+            Assert.AreEqual(2, result.ErrorCount);
+            Assert.AreEqual(2, errors.Count);
+            Assert.AreEqual(Rules.Rules.All[RuleId.ControlViewButtonStructure], errors[0].Rule);
+            Assert.IsTrue(parentInfo.Patterns.SequenceEqual(errors[0].Element.Patterns));
+            Assert.IsTrue(parentInfo.Properties.SequenceEqual(errors[0].Element.Properties));
+            Assert.AreEqual(Rules.Rules.All[RuleId.BoundingRectangleNotNull], errors[1].Rule);
+        }
+
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void AccumulateNewScanResults_AccumulatesNoErrors()
+        {
+            A11yElement e = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
+
+            var result = new Automation.ScanResults();
+            var errors = new List<Automation.ScanResult>();
+            SnapshotCommand.AccumulateNewScanResults(result, errors, e);
+            Assert.AreEqual(0, result.ErrorCount);
+            Assert.AreEqual(0, errors.Count);
         }
 
 #if FAKES_SUPPORTED
