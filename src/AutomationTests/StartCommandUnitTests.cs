@@ -53,12 +53,16 @@ namespace Axe.Windows.AutomationTests
                     throw new AxeWindowsAutomationException(exceptionMessage);
                 };
 
-                StartCommandResult result = StartCommand.Execute(new Dictionary<string, string>(), string.Empty);
+                try
+                {
+                    StartCommandResult result = StartCommand.Execute(new Dictionary<string, string>(), string.Empty);
+                }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    Assert.AreEqual(exceptionMessage, ex.Message);
+                }
 
                 Assert.AreEqual(1, callsToNewInstance);
-                Assert.AreEqual(false, result.Completed);
-                Assert.AreEqual(false, result.Succeeded);
-                Assert.AreEqual(exceptionMessage, result.SummaryMessage);
             }
         }
 #endif

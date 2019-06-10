@@ -13,9 +13,8 @@ namespace Axe.Windows.Automation
         /// Synchronously (and blocking) execute the passed-in command, handling errors appropriately
         /// </summary>
         /// <param name="command">The command to execute</param>
-        /// <param name="errorFactory">The factory to create the appropriate error object</param>
         /// <returns>An object of Type T that describes the command result</returns>
-        internal static T ExecuteCommand<T>(Func<T> command, Func<string, T> errorFactory)
+        internal static T ExecuteCommand<T>(Func<T> command)
         {
             lock (lockObject)
             {
@@ -23,23 +22,14 @@ namespace Axe.Windows.Automation
                 {
                     return command();
                 }
+                catch (AxeWindowsAutomationException ex)
+                {
+                    throw ex;
+                }
                 catch (Exception ex)
                 {
-                    // No need to report this Exception, since telemetry is not available in automation
-                    string errorDetail;
-
-                    AxeWindowsAutomationException automationException = ex as AxeWindowsAutomationException;
-
-                    if (automationException == null)
-                    {
-                        errorDetail = string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorUnhandledExceptionFormat, ex.ToString());
-                    }
-                    else
-                    {
-                        errorDetail = automationException.Message;
-                    }
-
-                    return errorFactory(errorDetail);
+                    string message = string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorUnhandledExceptionFormat, ex.ToString());
+                    throw new AxeWindowsAutomationException(message, ex);
                 }
             }
         }

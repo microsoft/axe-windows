@@ -26,56 +26,55 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout (5000)]
-        public void ExecuteCommand_CommandIsNull_CallsErrorFactory_Automation003InDetail()
+        public void ExecuteCommand_CommandIsNull_ThrowsInnerNullReferenceException_Automation003InMessage()
         {
-            TestResult result = ExecutionWrapper.ExecuteCommand<TestResult>(
-                null,
-                (errorDetail) =>
-                {
-                    return new TestResult(errorDetail, true);
-                });
-
-            Assert.IsTrue(result.IsError);
-            Assert.IsTrue(result.Detail.Contains(" Automation003:"));
-            Assert.IsTrue(result.Detail.Contains("System.NullReferenceException"));
+            try
+            {
+                ExecutionWrapper.ExecuteCommand<TestResult>(null);
+            }
+            catch (AxeWindowsAutomationException ex)
+            {
+                Assert.IsInstanceOfType(ex.InnerException, typeof(NullReferenceException));
+                Assert.IsTrue(ex.Message.Contains(" Automation003:"));
+            }
         }
 
         [TestMethod]
         [Timeout (1000)]
-        public void ExecuteCommand_CommandThrowsNonAutomationException_CallsErrorFactory_Automation003InDetail()
+        public void ExecuteCommand_CommandThrowsNonAutomationException_WrapsInAutomationException_Automation003InMessage()
         {
-            TestResult result = ExecutionWrapper.ExecuteCommand<TestResult>(
-                () =>
-                {
-                    throw new ArgumentException(TestString);
-                },
-                (errorDetail) =>
-                {
-                    return new TestResult(errorDetail, true);
-                });
-
-            Assert.IsTrue(result.IsError);
-            Assert.IsTrue(result.Detail.Contains(" Automation003:"));
-            Assert.IsTrue(result.Detail.Contains("System.ArgumentException"));
-            Assert.IsTrue(result.Detail.Contains(TestString));
+            try
+            {
+                ExecutionWrapper.ExecuteCommand<TestResult>(
+                    () =>
+                    {
+                        throw new ArgumentException(TestString);
+                    });
+            }
+            catch (AxeWindowsAutomationException ex)
+            {
+                Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+                Assert.IsTrue(ex.Message.Contains(" Automation003:"));
+                Assert.IsTrue(ex.Message.Contains(TestString));
+            }
         }
 
         [TestMethod]
         [Timeout (1000)]
-        public void ExecuteCommand_CommandThrowsAutomationException_CallsErrorFactory_Automation003InDetail()
+        public void ExecuteCommand_CommandThrowsAutomationException_TestStringInMessage()
         {
-            TestResult result = ExecutionWrapper.ExecuteCommand<TestResult>(
+            try
+            {
+                ExecutionWrapper.ExecuteCommand<TestResult>(
                 () =>
                 {
                     throw new AxeWindowsAutomationException(TestString);
-                },
-                (errorDetail) =>
-                {
-                    return new TestResult(errorDetail, true);
                 });
-
-            Assert.IsTrue(result.IsError);
-            Assert.AreEqual(TestString, result.Detail);
+            }
+            catch (AxeWindowsAutomationException ex)
+            {
+                Assert.AreEqual(TestString, ex.Message);
+            }
         }
 
         [TestMethod]
@@ -83,8 +82,7 @@ namespace Axe.Windows.AutomationTests
         public void ExecuteCommand_CommandReturnsObject_SameObjectIsReturnedToCaller()
         {
             TestResult result = ExecutionWrapper.ExecuteCommand<TestResult>(
-                () => new TestResult(TestString),
-                null);
+                () => new TestResult(TestString));
 
             Assert.AreEqual(TestString, result.Detail);
         }
