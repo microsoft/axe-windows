@@ -81,6 +81,7 @@
     <Compile Include="LocationHelper.cs" />
     <Compile Include="Scanner.cs" />
     <Compile Include="ScannerFactory.cs" />
+    <Compile Include="ScanResultsAssembler.cs" />
     <Compile Include="SnapshotCommand.cs" />
     <Compile Include="Results\SnapshotCommandResult.cs" />
     <Compile Include="StartCommand.cs" />
