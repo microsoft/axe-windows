@@ -8,8 +8,6 @@ using Axe.Windows.Core.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using Axe.Windows.Core.Enums;
-using System.Linq;
 #if FAKES_SUPPORTED
 using Axe.Windows.Actions.Contexts.Fakes;
 using Axe.Windows.Actions.Fakes;

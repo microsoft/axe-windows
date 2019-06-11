@@ -6,11 +6,9 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
-using Axe.Windows.Core.Results;
 using Axe.Windows.Desktop.Settings;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 
 namespace Axe.Windows.Automation
 {
