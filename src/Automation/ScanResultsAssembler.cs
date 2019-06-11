@@ -37,13 +37,13 @@ namespace Axe.Windows.Automation
         /// <returns>Count of errors found</returns>
         internal static int AssembleScanResults(List<ScanResult> errors, A11yElement element, ElementInfo parent)
         {
-            int count = 0;
+            if (element.ScanResults == null) throw new ArgumentException("element.ScanResults must not be null");
 
-            if (element.ScanResults == null) throw new ArgumentException(nameof(element.ScanResults));
-
+            int failedCount = 0;
             ElementInfo elementInfo = MakeElementInfoFromElement(element, parent);
+            IEnumerable<RuleResult> results = GetFailedRuleResultsFromElement(element);
 
-            foreach (var res in GetRuleResultsFromElement(element))
+            foreach (var res in results)
             {
                 ScanResult result = new ScanResult()
                 {
@@ -52,17 +52,17 @@ namespace Axe.Windows.Automation
                 };
 
                 errors.Add(result);
-                count++;
+                failedCount++;
             }
 
-            if (element.Children == null) return count;
+            if (element.Children == null) return failedCount;
 
             foreach (var child in element.Children)
             {
-                count+= AssembleScanResults(errors, child, elementInfo);
+                failedCount+= AssembleScanResults(errors, child, elementInfo);
             }
 
-            return count;
+            return failedCount;
         }
 
         internal static ElementInfo MakeElementInfoFromElement(A11yElement element, ElementInfo parent)
@@ -75,7 +75,7 @@ namespace Axe.Windows.Automation
             };
         }
 
-        internal static IEnumerable<RuleResult> GetRuleResultsFromElement(A11yElement element)
+        internal static IEnumerable<RuleResult> GetFailedRuleResultsFromElement(A11yElement element)
         {
            return from scanResult in element.ScanResults.Items
                   where scanResult.Status == ScanStatus.Fail

@@ -1,13 +1,11 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Axe.Windows.Automation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Axe.Windows.Automation;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Results;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -16,15 +14,21 @@ namespace Axe.Windows.AutomationTests
     {
         [TestMethod]
         [Timeout(2000)]
-        public void AccumulateNewScanResults_AccumulatesErrors()
+        public void AssembleScanResultss_AssemblesErrors()
         {
-            A11yElement e = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
+            A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
 
-            e.ScanResults.Items[0].Items = new List<RuleResult>() { new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.ControlViewButtonStructure } };
-            e.Children[0].ScanResults.Items[0].Items = new List<RuleResult>() { new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleNotNull } };
+            element.ScanResults.Items[0].Items = new List<RuleResult>()
+            {
+                new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.ControlViewButtonStructure }
+            };
+            element.Children[0].ScanResults.Items[0].Items = new List<RuleResult>()
+            {
+                new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleNotNull }
+            };
 
             var errors = new List<Automation.ScanResult>();
-            int count = ScanResultsAssembler.AssembleScanResults(errors, e, null);
+            int count = ScanResultsAssembler.AssembleScanResults(errors, element, null);
 
             // there should be 2 errors
             Assert.AreEqual(2, count);
@@ -41,12 +45,12 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void AccumulateNewScanResults_AccumulatesNoErrors()
+        public void AssembleScanResults_AssemblesNoErrors()
         {
-            A11yElement e = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
+            A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
 
             var errors = new List<Automation.ScanResult>();
-            int count = ScanResultsAssembler.AssembleScanResults(errors, e, null);
+            int count = ScanResultsAssembler.AssembleScanResults(errors, element, null);
 
             // if there were no rule violations, there should be no results.
             Assert.AreEqual(0, count);
@@ -55,22 +59,22 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void AccumulateNewScanResults_Exception()
+        public void AssembleScanResults_ThrowsArgumentException()
         {
-            A11yElement e = new A11yElement() { ScanResults = null };
+            A11yElement element = new A11yElement() { ScanResults = null };
 
             var errors = new List<Automation.ScanResult>();
 
-            Assert.ThrowsException<ArgumentException>(() => ScanResultsAssembler.AssembleScanResults(errors, e, null));
+            Assert.ThrowsException<ArgumentException>(() => ScanResultsAssembler.AssembleScanResults(errors, element, null));
         }
 
         [TestMethod]
         [Timeout(2000)]
-        public void GetRuleResultsFromElementTest()
+        public void GetFailedRuleResultsFromElement_ReturnsRuleResults()
         {
-            A11yElement e = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
+            A11yElement element = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
 
-            e.ScanResults.Items.Add(new Core.Results.ScanResult()
+            element.ScanResults.Items.Add(new Core.Results.ScanResult()
             {
                 Items = new List<RuleResult>()
                 {
@@ -81,7 +85,7 @@ namespace Axe.Windows.AutomationTests
                 }
             });
 
-            e.ScanResults.Items.Add(new Core.Results.ScanResult()
+            element.ScanResults.Items.Add(new Core.Results.ScanResult()
             {
                 Items = new List<RuleResult>()
                 {
@@ -93,7 +97,7 @@ namespace Axe.Windows.AutomationTests
                 }
             });
 
-            var results = ScanResultsAssembler.GetRuleResultsFromElement(e).ToList();
+            var results = ScanResultsAssembler.GetFailedRuleResultsFromElement(element).ToList();
 
             Assert.AreEqual(4, results.Count);
             Assert.AreEqual(RuleId.BoundingRectangleCompletelyObscuresContainer, results[0].Rule);
@@ -104,23 +108,23 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void MakeElementInfoFromElementTest()
+        public void MakeElementInfoFromElement_ReturnsElementInfo()
         {
-            A11yElement e = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
+            A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
 
             ElementInfo parentInfo = new ElementInfo
             {
-                Patterns = e.Patterns.ConvertAll<string>(x => x.Name),
-                Properties = e.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
+                Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
             };
 
             ElementInfo expectedInfo = new ElementInfo
             {
-                Patterns = e.Children[0].Patterns.ConvertAll<string>(x => x.Name),
-                Properties = e.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+                Patterns = element.Children[0].Patterns.ConvertAll<string>(x => x.Name),
+                Properties = element.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
             };
 
-            var actualInfo = ScanResultsAssembler.MakeElementInfoFromElement(e.Children[0], parentInfo);
+            var actualInfo = ScanResultsAssembler.MakeElementInfoFromElement(element.Children[0], parentInfo);
 
             Assert.IsTrue(expectedInfo.Patterns.SequenceEqual(actualInfo.Patterns));
             Assert.IsTrue(expectedInfo.Properties.SequenceEqual(actualInfo.Properties));
