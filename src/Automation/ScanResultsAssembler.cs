@@ -9,7 +9,7 @@ using System.Linq;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Provides methods used to assemble a ScanResults object
+    /// Provides methods used to assemble a <see cref="ScanResults"/> object
     /// </summary>
     public static class ScanResultsAssembler
     {
@@ -21,53 +21,50 @@ namespace Axe.Windows.Automation
         public static ScanResults AssembleScanResultsFromElement(A11yElement element)
         {
             var errors = new List<ScanResult>();
-            int count = AssembleScanResults(errors, element, null);
+
+            AssembleErrorsFromElement(errors, element, null);
 
             return new ScanResults()
             {
                 Errors = errors,
-                ErrorCount = count,
+                ErrorCount = errors.Count,
             };
         }
 
         /// <summary>
-        /// Assembles errors recursively starting at the given element
+        /// Assembles errors recursively into a <see cref="ScanResult"/> list starting at the given element
         /// </summary>
-        /// <param name="errors">Where the results will be accumulated</param>
-        /// <param name="element">The root element to check</param>
-        /// <param name="parent">The root element to check</param>
-        /// <returns>Count of errors found</returns>
-        internal static int AssembleScanResults(List<ScanResult> errors, A11yElement element, ElementInfo parent)
+        /// <param name="errors">Where the <see cref="ScanResult"/> objects created from errors will be added</param>
+        /// <param name="element">Root element from which errors will be assembled</param>
+        /// <param name="parent">The parent of element</param>
+        internal static void AssembleErrorsFromElement(List<ScanResult> errors, A11yElement element, ElementInfo parent)
         {
-            if (element.ScanResults == null) throw new ArgumentException("element.ScanResults must not be null");
+            if (errors == null) throw new ArgumentNullException(nameof(errors));
 
-            int failedCount = 0;
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
+            if (element.ScanResults == null) return;
+
             ElementInfo elementInfo = MakeElementInfoFromElement(element, parent);
-            IEnumerable<RuleResult> results = GetFailedRuleResultsFromElement(element);
 
-            foreach (var res in results)
+            foreach (var res in GetFailedRuleResultsFromElement(element))
             {
-                ScanResult result = new ScanResult()
+                errors.Add(new ScanResult()
                 {
                     Element = elementInfo,
                     Rule = Rules.Rules.All[res.Rule],
-                };
-
-                errors.Add(result);
-                failedCount++;
+                });
             }
 
-            if (element.Children == null) return failedCount;
+            if (element.Children == null) return;
 
             foreach (var child in element.Children)
             {
-                failedCount+= AssembleScanResults(errors, child, elementInfo);
+                AssembleErrorsFromElement(errors, child, elementInfo);
             }
-
-            return failedCount;
         }
 
-        internal static ElementInfo MakeElementInfoFromElement(A11yElement element, ElementInfo parent)
+        private static ElementInfo MakeElementInfoFromElement(A11yElement element, ElementInfo parent)
         {
             return new ElementInfo
             {
@@ -77,7 +74,7 @@ namespace Axe.Windows.Automation
             };
         }
 
-        internal static IEnumerable<RuleResult> GetFailedRuleResultsFromElement(A11yElement element)
+        private static IEnumerable<RuleResult> GetFailedRuleResultsFromElement(A11yElement element)
         {
            return from scanResult in element.ScanResults.Items
                   where scanResult.Status == ScanStatus.Fail

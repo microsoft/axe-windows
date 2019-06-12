@@ -4,6 +4,7 @@ using Axe.Windows.Automation;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Results;
+using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -16,67 +17,150 @@ namespace Axe.Windows.AutomationTests
     {
         [TestMethod]
         [Timeout(2000)]
-        public void AssembleScanResultss_AssemblesErrors()
+        public void AssembleScanResultsFromElement_AssemblesErrors()
         {
-            A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
+            A11yElement element = GenerateA11yElementWithChild();
+            List<RuleId> expectedRuleIDs = GetExpectedRuleIDs();
 
-            element.ScanResults.Items[0].Items = new List<RuleResult>()
+            ElementInfo expectedParentInfo = new ElementInfo
             {
-                new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.ControlViewButtonStructure }
-            };
-            element.Children[0].ScanResults.Items[0].Items = new List<RuleResult>()
-            {
-                new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleNotNull }
+                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
+                Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
             };
 
-            var errors = new List<Automation.ScanResult>();
-            int count = ScanResultsAssembler.AssembleScanResults(errors, element, null);
+            ElementInfo expectedChildInfo = new ElementInfo
+            {
+                Patterns = element.Children[0].Patterns.ConvertAll<string>(x => x.Name),
+                Properties = element.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+            };
 
-            // there should be 2 errors
-            Assert.AreEqual(2, count);
-            Assert.AreEqual(2, errors.Count);
+            var scanResults = ScanResultsAssembler.AssembleScanResultsFromElement(element);
 
-            // the two results should have the correct rule results
-            Assert.AreEqual(Rules.Rules.All[RuleId.ControlViewButtonStructure], errors[0].Rule);
-            Assert.AreEqual(Rules.Rules.All[RuleId.BoundingRectangleNotNull], errors[1].Rule);
+            var errors = scanResults.Errors.ToList();
 
-            // the second error's parent is the same as the first error's element
-            Assert.AreEqual(errors[0].Element, errors[1].Element.Parent);
+            // the first half of the results are from the parent element; the second half are from the child element
+            // we'll separate them here to improve the clarity of later validations
+            var parentErrors = errors.GetRange(0, errors.Count / 2);
+            var childErrors = errors.GetRange(errors.Count / 2, errors.Count / 2);
+
+            // there should be the proper number of errors
+            Assert.AreEqual(8, errors.Count);
+            Assert.AreEqual(8, scanResults.ErrorCount);
+
+            // the patterns for the parent errors should be as expected
+            foreach (var error in parentErrors)
+            { 
+                Assert.IsTrue(expectedParentInfo.Properties.SequenceEqual(error.Element.Properties));
+                Assert.IsTrue(expectedParentInfo.Patterns.SequenceEqual(error.Element.Patterns));
+            }
+
+            // the patterns for the child errors and their parents should be as expected 
+            foreach (var error in childErrors)
+            {
+                Assert.IsTrue(expectedChildInfo.Patterns.SequenceEqual(error.Element.Patterns));
+                Assert.IsTrue(expectedChildInfo.Properties.SequenceEqual(error.Element.Properties));
+                Assert.IsTrue(expectedParentInfo.Properties.SequenceEqual(error.Element.Parent.Properties));
+                Assert.IsTrue(expectedParentInfo.Patterns.SequenceEqual(error.Element.Parent.Patterns));
+            }
+
+            // the errors should have the correct rule results
+            for (int x = 0; x < errors.Count; x++)
+            {
+                Assert.AreEqual(Rules.Rules.All[expectedRuleIDs[x]], errors[x].Rule, $"Error number {x}");
+            }
+
+            // the elements from the child element's parents are the same as the elements from the parent elements
+            for (int x = 0; x < errors.Count / 2; x++)
+            {
+                Assert.AreEqual(parentErrors[x].Element, childErrors[x].Element.Parent, $"Error number {x}");
+            }
         }
-
 
         [TestMethod]
         [Timeout(2000)]
-        public void AssembleScanResults_AssemblesNoErrors()
+        public void AssembleScanResultsFromElement_AssemblesNoErrors()
         {
             A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
 
-            var errors = new List<Automation.ScanResult>();
-            int count = ScanResultsAssembler.AssembleScanResults(errors, element, null);
+            var scanResults = ScanResultsAssembler.AssembleScanResultsFromElement(element);
 
             // if there were no rule violations, there should be no results.
-            Assert.AreEqual(0, count);
-            Assert.AreEqual(0, errors.Count);
+            Assert.AreEqual(0, scanResults.ErrorCount);
+            Assert.AreEqual(0, scanResults.Errors.Count());
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void AssembleScanResults_ThrowsArgumentException()
+        [Timeout(1000)]
+        public void AssembleScanResults_ThrowsArgumentNullException_NullErrors()
         {
             A11yElement element = new A11yElement() { ScanResults = null };
 
-            var errors = new List<Automation.ScanResult>();
-
-            Assert.ThrowsException<ArgumentException>(() => ScanResultsAssembler.AssembleScanResults(errors, element, null));
+            Assert.ThrowsException<ArgumentNullException>(() => ScanResultsAssembler.AssembleErrorsFromElement(null, element, null));
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void GetFailedRuleResultsFromElement_ReturnsRuleResults()
+        [Timeout(1000)]
+        public void AssembleScanResults_ThrowsArgumentNullException_NullElement()
+        {
+            var errors = new List<Automation.ScanResult>();
+
+            Assert.ThrowsException<ArgumentNullException>(() => ScanResultsAssembler.AssembleErrorsFromElement(errors, null, null));
+        }
+
+        private List<RuleId> GetExpectedRuleIDs() => new List<RuleId>()
+        {
+            RuleId.BoundingRectangleCompletelyObscuresContainer,
+            RuleId.ControlViewButtonStructure ,
+            RuleId.LandmarkNoDuplicateContentInfo ,
+            RuleId.BoundingRectangleCompletelyObscuresContainer,
+            RuleId.BoundingRectangleCompletelyObscuresContainer,
+            RuleId.ControlViewButtonStructure ,
+            RuleId.LandmarkNoDuplicateContentInfo ,
+            RuleId.BoundingRectangleCompletelyObscuresContainer,
+        };
+
+        private A11yElement GenerateA11yElementWithChild()
+        {
+            A11yElement element = new A11yElement()
+            {
+                ScanResults = new Core.Results.ScanResults(),
+                Children = new List<A11yElement>(),
+            };
+
+            element.Properties = GetFillerProperties();
+            element.Patterns = GetFillerPatterns();
+            element.ScanResults.Items.AddRange(GetFillerScanResults());
+            element.Children.Add(GenerateA11yElementWithoutChild());
+
+            return element;
+        }
+        private A11yElement GenerateA11yElementWithoutChild()
         {
             A11yElement element = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
 
-            element.ScanResults.Items.Add(new Core.Results.ScanResult()
+            element.Properties = GetFillerProperties();
+            element.Patterns = GetFillerPatterns();
+            element.ScanResults.Items.AddRange(GetFillerScanResults());
+
+            return element;
+        }
+
+        private Dictionary<int, A11yProperty> GetFillerProperties() => new Dictionary<int, A11yProperty>()
+        {
+            { PropertyType.UIA_AriaRolePropertyId, new A11yProperty(PropertyType.UIA_AriaRolePropertyId, "Nice property")},
+            { PropertyType.UIA_CulturePropertyId, new A11yProperty(PropertyType.UIA_CulturePropertyId, "A culture")},
+            { PropertyType.UIA_DescribedByPropertyId, new A11yProperty(PropertyType.UIA_DescribedByPropertyId, "Descriptor")},
+        };
+
+        private List<A11yPattern> GetFillerPatterns() => new List<A11yPattern>()
+        {
+            new A11yPattern() { Name = "Pat" },
+            new A11yPattern() { Name = "Tern" },
+        };
+
+        private List<Core.Results.ScanResult> GetFillerScanResults() => new List<Core.Results.ScanResult>()
+        {
+            new Core.Results.ScanResult()
             {
                 Items = new List<RuleResult>()
                 {
@@ -85,9 +169,8 @@ namespace Axe.Windows.AutomationTests
                     new RuleResult() { Status = ScanStatus.NoResult, Rule = RuleId.ListItemSiblingsUnique },
                     new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleCompletelyObscuresContainer },
                 }
-            });
-
-            element.ScanResults.Items.Add(new Core.Results.ScanResult()
+            },
+            new Core.Results.ScanResult()
             {
                 Items = new List<RuleResult>()
                 {
@@ -97,41 +180,7 @@ namespace Axe.Windows.AutomationTests
                     new RuleResult() { Status = ScanStatus.NoResult, Rule = RuleId.PatternsSupportedByControlType },
                     new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleCompletelyObscuresContainer },
                 }
-            });
-
-            var results = ScanResultsAssembler.GetFailedRuleResultsFromElement(element).ToList();
-
-            Assert.AreEqual(4, results.Count);
-            Assert.AreEqual(RuleId.BoundingRectangleCompletelyObscuresContainer, results[0].Rule);
-            Assert.AreEqual(RuleId.ControlViewButtonStructure, results[1].Rule);
-            Assert.AreEqual(RuleId.LandmarkNoDuplicateContentInfo, results[2].Rule);
-            Assert.AreEqual(RuleId.BoundingRectangleCompletelyObscuresContainer, results[3].Rule);
-        }
-
-        [TestMethod]
-        [Timeout(2000)]
-        public void MakeElementInfoFromElement_ReturnsElementInfo()
-        {
-            A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
-
-            ElementInfo parentInfo = new ElementInfo
-            {
-                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
-                Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
-            };
-
-            ElementInfo expectedInfo = new ElementInfo
-            {
-                Patterns = element.Children[0].Patterns.ConvertAll<string>(x => x.Name),
-                Properties = element.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
-            };
-
-            var actualInfo = ScanResultsAssembler.MakeElementInfoFromElement(element.Children[0], parentInfo);
-
-            Assert.IsTrue(expectedInfo.Patterns.SequenceEqual(actualInfo.Patterns));
-            Assert.IsTrue(expectedInfo.Properties.SequenceEqual(actualInfo.Properties));
-            Assert.IsTrue(parentInfo.Properties.SequenceEqual(actualInfo.Parent.Properties));
-            Assert.IsTrue(parentInfo.Properties.SequenceEqual(actualInfo.Parent.Properties));
-        }
+            }
+        };
     }
 }
