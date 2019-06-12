@@ -19,14 +19,14 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// ctor - Initializes the app in automation mode
         /// </summary>
-        /// <param name="parameters">The parameters from the command line</param>
-        private AutomationSession(CommandParameters parameters)
+        /// <param name="config">A set of configuration options</param>
+        private AutomationSession(Config config)
         {
             try
             {
                 this.dataManager = DataManager.GetDefaultInstance();
                 this.selectAction = SelectAction.GetDefaultInstance();
-                this.SessionParameters = parameters;
+                this.SessionParameters = config;
             }
             catch (Exception)
             {
@@ -47,23 +47,23 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Returns the CommandParameters for the session in question
         /// </summary>
-        internal CommandParameters SessionParameters { get; private set; }
+        internal Config SessionParameters { get; private set; }
 
         /// <summary>
         /// Obtain a new instance of the AutomationSession object. Only one can exist at a time
         /// </summary>
-        /// <param name="parameters">The parameters to associate with the object</param>
+        /// <param name="config">A set of configuration options</param>
         /// <exception cref="AxeWindowsAutomationException">Thrown if session already exists</exception>
         /// <returns>The current AutomationSession object</returns>
-        internal static AutomationSession NewInstance(CommandParameters parameters)
+        internal static AutomationSession NewInstance(Config config)
         {
             lock (lockObject)
             {
                 if (instance != null)
                     throw new AxeWindowsAutomationException(DisplayStrings.ErrorAlreadyStarted);
 
-                instance = new AutomationSession(parameters);
-                instance.SessionParameters = parameters;
+                instance = new AutomationSession(config);
+                instance.SessionParameters = config;
 
                 return instance;
             }

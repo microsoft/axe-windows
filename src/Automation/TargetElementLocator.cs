@@ -16,25 +16,20 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Locate the target element in the UIA tree
         /// </summary>
-        /// <param name="parameters">The caller-provided parameters</param>
+        /// <param name="processId">The process id of the application to scan</param>
         /// <returns>The ElementContext that matches the targeting parameters</returns>
-        internal static ElementContext LocateElement(CommandParameters parameters)
+        internal static ElementContext LocateRootElement(int processId)
         {
-            if (parameters.TryGetLong(CommandConstStrings.TargetProcessId, out long parameterPid))
+            try
             {
-                try
-                {
-                    var element = A11yAutomation.ElementFromProcessId((int)parameterPid);
+                var element = A11yAutomation.ElementFromProcessId(processId);
 
-                    return new ElementContext(element);
-                }
-                catch (Exception ex)
-                {
-                    throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorFailToGetRootElementOfProcess, parameterPid, ex), ex);
-                }
+                return new ElementContext(element);
             }
-
-            throw new AxeWindowsAutomationException(DisplayStrings.ErrorNoProcessIdSet);
+            catch (Exception ex)
+            {
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorFailToGetRootElementOfProcess, processId, ex), ex);
+            }
         }
     }
 }

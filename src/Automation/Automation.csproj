@@ -61,35 +61,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="Abstractions\ISystemDateTime.cs" />
+    <Compile Include="Abstractions\ISystemFactory.cs" />
+    <Compile Include="Abstractions\ISystemIODirectory.cs" />
+    <Compile Include="Abstractions\ISystemEnvironment.cs" />
     <Compile Include="AutomationSession.cs" />
+    <Compile Include="Concretions\SystemDateTime.cs" />
+    <Compile Include="Concretions\SystemEnvironment.cs" />
+    <Compile Include="Concretions\SystemFactory.cs" />
+    <Compile Include="Concretions\SystemIODirectory.cs" />
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\ElementInfo.cs" />
     <Compile Include="Data\ScanResult.cs" />
     <Compile Include="Data\ScanResults.cs" />
     <Compile Include="Enums\OutputFileFormat.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
+    <Compile Include="OutputFileHelper.cs" />
     <Compile Include="Results\BaseCommandResult.cs" />
     <Compile Include="DisplayStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DisplayStrings.resx</DependentUpon>
     </Compile>
-    <Compile Include="CommandParametersExtensions.cs" />
     <Compile Include="ExecutionWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AxeWindowsAutomationException.cs" />
-    <Compile Include="LocationHelper.cs" />
     <Compile Include="Scanner.cs" />
     <Compile Include="ScannerFactory.cs" />
     <Compile Include="SnapshotCommand.cs" />
     <Compile Include="Results\SnapshotCommandResult.cs" />
-    <Compile Include="StartCommand.cs" />
     <Compile Include="Results\StartCommandResult.cs" />
-    <Compile Include="StopCommand.cs" />
     <Compile Include="Results\StopCommandResult.cs" />
     <Compile Include="TargetElementLocator.cs" />
-    <Compile Include="CommandConstStrings.cs" />
-    <Compile Include="CommandParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -99,7 +102,7 @@
     <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
-    <DropSignedFile Include="$(OutDir)\Axe.Windows.Automation.dll" />
+    <DropSignedFile Include="bin\Debug\\Axe.Windows.Automation.dll" />
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
   <ItemGroup>

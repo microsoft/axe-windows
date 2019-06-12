@@ -43,10 +43,6 @@ namespace Axe.Windows.CI
                 Console.WriteLine("Ignoring malformed input: {0}", arg);
             };
 
-            Console.WriteLine(StartCommand.Execute(parameters, secondaryConfigFile).ToString());
-
-            int autoFileId = 0;
-
             while (true)
             {
                 Console.Write("Enter process ID to capture (blank to exit): ");
@@ -61,14 +57,10 @@ namespace Axe.Windows.CI
                     continue;
                 }
 
-                Dictionary<string, string> snapshotParameters = new Dictionary<string, string>
-                {
-                    { CommandConstStrings.TargetProcessId, input },
-                    { CommandConstStrings.OutputFile, autoFileId++.ToString(CultureInfo.InvariantCulture) },
-                };
-                Console.WriteLine(SnapshotCommand.Execute(snapshotParameters).ToString());
+                var config = Config.Builder.ForProcessId(Convert.ToInt32(input)).Build();
+                var results = SnapshotCommand.Execute(config);
+                Console.WriteLine(results);
             }
-            Console.WriteLine(StopCommand.Execute().ToString());
         }
     }
 }

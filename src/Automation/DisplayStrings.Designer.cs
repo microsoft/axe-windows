@@ -70,20 +70,11 @@ namespace Axe.Windows.Automation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation001: Can&apos;t find secondary config file: {0}.
+        ///   Looks up a localized string similar to The directory &quot;{0}&quot; was invalid..
         /// </summary>
-        internal static string ErrorCantFindSecondaryConfigFileFormat {
+        internal static string ErrorDirectoryInvalid {
             get {
-                return ResourceManager.GetString("ErrorCantFindSecondaryConfigFileFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation013: No data found in secondary config file: {0}.
-        /// </summary>
-        internal static string ErrorEmptySecondaryConfigFile {
-            get {
-                return ResourceManager.GetString("ErrorEmptySecondaryConfigFile", resourceCulture);
+                return ResourceManager.GetString("ErrorDirectoryInvalid", resourceCulture);
             }
         }
         
@@ -97,20 +88,11 @@ namespace Axe.Windows.Automation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation016: The file format is invalid.
+        ///   Looks up a localized string similar to The given path was not an absolute path..
         /// </summary>
-        internal static string ErrorInvalidOutputFileFormat {
+        internal static string ErrorIsNotFullPath {
             get {
-                return ResourceManager.GetString("ErrorInvalidOutputFileFormat", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation014: Can&apos;t load data from secondary config file: {0}.
-        /// </summary>
-        internal static string ErrorInvalidSecondaryConfigFile {
-            get {
-                return ResourceManager.GetString("ErrorInvalidSecondaryConfigFile", resourceCulture);
+                return ResourceManager.GetString("ErrorIsNotFullPath", resourceCulture);
             }
         }
         
@@ -147,42 +129,6 @@ namespace Axe.Windows.Automation {
         internal static string ErrorNotStarted_Instance {
             get {
                 return ResourceManager.GetString("ErrorNotStarted_Instance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation015: OutputFileFormat is missing and OutputFileName does not have an extension.
-        /// </summary>
-        internal static string ErrorOutputFileFormatIsTrivial {
-            get {
-                return ResourceManager.GetString("ErrorOutputFileFormatIsTrivial", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation005: OutputFile is not specified.
-        /// </summary>
-        internal static string ErrorOutputFileIsNotSpecified {
-            get {
-                return ResourceManager.GetString("ErrorOutputFileIsNotSpecified", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation006: OutputFile is trivial.
-        /// </summary>
-        internal static string ErrorOutputFileIsTrivial {
-            get {
-                return ResourceManager.GetString("ErrorOutputFileIsTrivial", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation004: OutputPath is trivial.
-        /// </summary>
-        internal static string ErrorOutputPathIsTrivial {
-            get {
-                return ResourceManager.GetString("ErrorOutputPathIsTrivial", resourceCulture);
             }
         }
         

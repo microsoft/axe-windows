@@ -19,7 +19,7 @@ namespace Axe.Windows.AutomationTests
 
         const bool suppressTelemetryOutput = true;
 
-        private readonly CommandParameters TestParameters = new CommandParameters(new Dictionary<string, string>(), string.Empty);
+        private readonly Config TestParameters = Config.Builder.ForProcessId(0).Build();
 
 #if FAKES_SUPPORTED
         /// <summary>

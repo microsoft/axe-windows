@@ -37,16 +37,15 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Execute the Start command. Used by both .NET and by PowerShell entry points
         /// </summary>
-        /// <param name="primaryConfig">The primary calling parameters</param>
+        /// <param name="config">A set of configuration options</param>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static SnapshotCommandResult Execute(Dictionary<string, string> primaryConfig)
+        public static SnapshotCommandResult Execute(Config config)
         {
             return ExecutionWrapper.ExecuteCommand<SnapshotCommandResult>(() =>
             {
-                CommandParameters parameters = new CommandParameters(primaryConfig,
-                    AutomationSession.Instance().SessionParameters);
-                LocationHelper locationHelper = new LocationHelper(parameters);
-                ElementContext ec = TargetElementLocator.LocateElement(parameters);
+                var outputFileHelper = new OutputFileHelper(config.OutputDirectory);
+
+                ElementContext ec = TargetElementLocator.LocateRootElement(config.ProcessId);
                 DataManager dataManager = DataManager.GetDefaultInstance();
                 SelectAction sa = SelectAction.GetDefaultInstance();
                 sa.SetCandidateElement(ec.Element);
@@ -70,28 +69,28 @@ namespace Axe.Windows.Automation
 
                             ScanResultAccumulator accumulator = new ScanResultAccumulator();
                             AccumulateScanResults(accumulator, ec2.Element);
-                            bool retainIfNoViolations = parameters.RetainIfNoViolations();
 
-                            if (accumulator.MayHaveErrors || retainIfNoViolations)
+                            string a11yTestOutputFile = outputFileHelper.GetNewA11yTestFilePath();
+
+                            if (accumulator.MayHaveErrors)
                             {
-                                ScreenShotAction.CaptureScreenShot(ec2.Id);
-                                SaveAction.SaveSnapshotZip(locationHelper.GetOutputFilePath(), ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
-                                if (locationHelper.IsSarifExtension())
+                                if (config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest))
                                 {
-                                    // Generate SARIF file.
-                                    SaveAction.SaveSarifFile(locationHelper.GetSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
+                                ScreenShotAction.CaptureScreenShot(ec2.Id);
+                                SaveAction.SaveSnapshotZip(a11yTestOutputFile, ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
                                 }
+
+#if NOT_CURRENTLY_SUPPORTED
+                                if (locationHelper.IsSarifExtension())
+                                    SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
+#endif
                             }
 
                             string summaryMessage;
 
                             if (accumulator.MayHaveErrors)
                             {
-                                summaryMessage = string.Format(CultureInfo.InvariantCulture, DisplayStrings.SnapshotDetailViolationsFormat, accumulator.Failed, accumulator.Inconclusive, locationHelper.OutputFile);
-                            }
-                            else if (retainIfNoViolations)
-                            {
-                                summaryMessage = string.Format(CultureInfo.InvariantCulture, DisplayStrings.SnapshotDetailNoViolationsDataRetainedFormat, locationHelper.OutputFile);
+                                summaryMessage = string.Format(CultureInfo.InvariantCulture, DisplayStrings.SnapshotDetailViolationsFormat, accumulator.Failed, accumulator.Inconclusive, a11yTestOutputFile);
                             }
                             else
                             {
@@ -111,6 +110,7 @@ namespace Axe.Windows.Automation
                         }
                     }
                 }
+
                 throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
             });
         }

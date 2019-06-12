@@ -16,8 +16,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                CommandParameters parameters = new CommandParameters(new Dictionary<string, string>(), string.Empty);
-                TargetElementLocator.LocateElement(parameters);
+                TargetElementLocator.LocateRootElement(42);
             }
             catch (AxeWindowsAutomationException ex)
             {
@@ -34,10 +33,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                var ps = new Dictionary<string, string>();
-                ps.Add(CommandConstStrings.TargetProcessId, "-1"); // invalid process id. 
-                CommandParameters parameters = new CommandParameters(ps, string.Empty);
-                TargetElementLocator.LocateElement(parameters);
+                TargetElementLocator.LocateRootElement(-1);
             }
             catch (AxeWindowsAutomationException ex)
             {
