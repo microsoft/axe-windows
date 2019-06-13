@@ -45,76 +45,78 @@ namespace Axe.Windows.Automation
         {
             return ExecutionWrapper.ExecuteCommand<SnapshotCommandResult>(() =>
             {
-            if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
+                if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
 
-                ElementContext ec = TargetElementLocator.LocateRootElement(config.ProcessId);
-                DataManager dataManager = DataManager.GetDefaultInstance();
-                SelectAction sa = SelectAction.GetDefaultInstance();
-                sa.SetCandidateElement(ec.Element);
-
-                if (sa.Select())
+                using (var dataManager = DataManager.GetDefaultInstance())
+                using (var sa = SelectAction.GetDefaultInstance())
                 {
-                    using (ElementContext ec2 = sa.POIElementContext)
+                    ElementContext ec = TargetElementLocator.LocateRootElement(config.ProcessId);
+                    sa.SetCandidateElement(ec.Element);
+
+                    if (sa.Select())
                     {
-                        GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id);
-                        if (CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
+                        using (ElementContext ec2 = sa.POIElementContext)
                         {
-                            // send telemetry of scan results. 
-                            var dc = GetDataAction.GetElementDataContext(ec2.Id);
-                            dc.PublishScanResults();
-
-                            if (dc.ElementCounter.UpperBoundExceeded)
+                            GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id);
+                            if (CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
                             {
-                                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
-                                    DisplayStrings.ErrorTooManyElementsToSetDataContext,
-                                    dc.ElementCounter.UpperBound));
-                            }
+                                // send telemetry of scan results. 
+                                var dc = GetDataAction.GetElementDataContext(ec2.Id);
+                                dc.PublishScanResults();
 
-                            ScanResultAccumulator accumulator = new ScanResultAccumulator();
-                            AccumulateScanResults(accumulator, ec2.Element);
-
-                            string a11yTestOutputFile = config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest) ? outputFileHelper.GetNewA11yTestFilePath() : string.Empty;
-
-                            if (accumulator.MayHaveErrors)
-                            {
-                                if (config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest))
+                                if (dc.ElementCounter.UpperBoundExceeded)
                                 {
-                                ScreenShotAction.CaptureScreenShot(ec2.Id);
-                                SaveAction.SaveSnapshotZip(a11yTestOutputFile, ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
+                                    throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
+                                        DisplayStrings.ErrorTooManyElementsToSetDataContext,
+                                        dc.ElementCounter.UpperBound));
                                 }
+
+                                ScanResultAccumulator accumulator = new ScanResultAccumulator();
+                                AccumulateScanResults(accumulator, ec2.Element);
+
+                                string a11yTestOutputFile = config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest) ? outputFileHelper.GetNewA11yTestFilePath() : string.Empty;
+
+                                if (accumulator.MayHaveErrors)
+                                {
+                                    if (config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest))
+                                    {
+                                        ScreenShotAction.CaptureScreenShot(ec2.Id);
+                                        SaveAction.SaveSnapshotZip(a11yTestOutputFile, ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
+                                    }
 
 #if NOT_CURRENTLY_SUPPORTED
                                 if (locationHelper.IsSarifExtension())
                                     // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
 #endif
-                            }
+                                }
 
-                            string summaryMessage;
+                                string summaryMessage;
 
-                            if (accumulator.MayHaveErrors)
-                            {
-                                summaryMessage = string.Format(CultureInfo.InvariantCulture, DisplayStrings.SnapshotDetailViolationsFormat, accumulator.Failed, accumulator.Inconclusive, a11yTestOutputFile);
-                            }
-                            else
-                            {
-                                summaryMessage = DisplayStrings.SnapshotDetailNoViolationsDataDiscarded;
-                            }
+                                if (accumulator.MayHaveErrors)
+                                {
+                                    summaryMessage = string.Format(CultureInfo.InvariantCulture, DisplayStrings.SnapshotDetailViolationsFormat, accumulator.Failed, accumulator.Inconclusive, a11yTestOutputFile);
+                                }
+                                else
+                                {
+                                    summaryMessage = DisplayStrings.SnapshotDetailNoViolationsDataDiscarded;
+                                }
 
-                            return new SnapshotCommandResult
-                            {
-                                Completed = true,
-                                SummaryMessage = summaryMessage,
-                                ScanResultsPassedCount = accumulator.Passed,
-                                ScanResultsFailedCount = accumulator.Failed,
-                                ScanResultsInconclusiveCount = accumulator.Inconclusive,
-                                ScanResultsUnsupportedCount = accumulator.Unsupported,
-                                ScanResultsTotalCount = accumulator.Total,
-                            };
+                                return new SnapshotCommandResult
+                                {
+                                    Completed = true,
+                                    SummaryMessage = summaryMessage,
+                                    ScanResultsPassedCount = accumulator.Passed,
+                                    ScanResultsFailedCount = accumulator.Failed,
+                                    ScanResultsInconclusiveCount = accumulator.Inconclusive,
+                                    ScanResultsUnsupportedCount = accumulator.Unsupported,
+                                    ScanResultsTotalCount = accumulator.Total,
+                                };
+                            }
                         }
                     }
-                }
 
-                throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                    throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                } // using
             });
         }
 
