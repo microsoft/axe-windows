@@ -78,11 +78,6 @@ namespace Axe.Windows.AutomationTests
 
                 Config config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
-                ShimAutomationSession.Instance = () =>
-                {
-                    return new ShimAutomationSession();
-                };
-
                 ShimTargetElementLocator.LocateRootElementInt32 = (processId) =>
                 {
                     actualProcessId = processId;
@@ -90,7 +85,6 @@ namespace Axe.Windows.AutomationTests
                 };
 
                 InitializeShims();
-
 
                 try
                 {

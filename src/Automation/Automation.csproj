@@ -65,7 +65,6 @@
     <Compile Include="Abstractions\ISystemFactory.cs" />
     <Compile Include="Abstractions\ISystemIODirectory.cs" />
     <Compile Include="Abstractions\ISystemEnvironment.cs" />
-    <Compile Include="AutomationSession.cs" />
     <Compile Include="Concretions\SystemDateTime.cs" />
     <Compile Include="Concretions\SystemEnvironment.cs" />
     <Compile Include="Concretions\SystemFactory.cs" />

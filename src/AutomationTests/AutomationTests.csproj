@@ -86,7 +86,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutomationSessionUnitTests.cs" />
     <Compile Include="DummyDisposable.cs" />
     <Compile Include="ExecutionWrapperUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
