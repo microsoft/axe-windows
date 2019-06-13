@@ -45,7 +45,7 @@ namespace Axe.Windows.Automation
         {
             return ExecutionWrapper.ExecuteCommand<SnapshotCommandResult>(() =>
             {
-            if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
+                if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
 
                 ElementContext ec = TargetElementLocator.LocateRootElement(config.ProcessId);
                 DataManager dataManager = DataManager.GetDefaultInstance();
