@@ -15,6 +15,8 @@ namespace Axe.Windows.AutomationTests
     [TestClass()]
     public class ScanResultsAssemblerTests
     {
+        ScanResultsAssembler assembler = new ScanResultsAssembler();
+
         [TestMethod]
         [Timeout(2000)]
         public void AssembleScanResultsFromElement_AssemblesErrors()
@@ -34,7 +36,7 @@ namespace Axe.Windows.AutomationTests
                 Properties = element.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
             };
 
-            var scanResults = ScanResultsAssembler.AssembleScanResultsFromElement(element);
+            var scanResults = assembler.AssembleScanResultsFromElement(element);
 
             var errors = scanResults.Errors.ToList();
 
@@ -82,7 +84,7 @@ namespace Axe.Windows.AutomationTests
         {
             A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
 
-            var scanResults = ScanResultsAssembler.AssembleScanResultsFromElement(element);
+            var scanResults = assembler.AssembleScanResultsFromElement(element);
 
             // if there were no rule violations, there should be no results.
             Assert.AreEqual(0, scanResults.ErrorCount);

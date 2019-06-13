@@ -68,6 +68,7 @@
     <Compile Include="Data\ScanResults.cs" />
     <Compile Include="Enums\OutputFileFormat.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
+    <Compile Include="Interfaces\IScanResultsAssembler.cs" />
     <Compile Include="Results\BaseCommandResult.cs" />
     <Compile Include="DisplayStrings.Designer.cs">
       <AutoGen>True</AutoGen>

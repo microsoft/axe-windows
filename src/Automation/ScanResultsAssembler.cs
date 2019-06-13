@@ -11,14 +11,14 @@ namespace Axe.Windows.Automation
     /// <summary>
     /// Provides methods used to assemble a <see cref="ScanResults"/> object
     /// </summary>
-    public static class ScanResultsAssembler
+    internal class ScanResultsAssembler : IScanResultsAssembler
     {
         /// <summary>
         /// Assembles failed scans from the provided element
         /// </summary>
         /// <param name="element">Root element from which scan results will be assembled</param>
         /// <returns>A ScanResults object containing the relevant errors and error count</returns>
-        public static ScanResults AssembleScanResultsFromElement(A11yElement element)
+        public ScanResults AssembleScanResultsFromElement(A11yElement element)
         {
             var errors = new List<ScanResult>();
 
