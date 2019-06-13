@@ -163,7 +163,6 @@ namespace Axe.Windows.AutomationTests
             mockDirectory.Setup(x => x.Exists(directory)).Returns(false);
             mockDirectory.Setup(x => x.CreateDirectory(directory)).Returns<System.IO.DirectoryInfo>(null);
 
-            
             var outputFileHelper = new OutputFileHelper(directory, mockSystemFactory.Object);
 
             // the folowing verifies that Exists was called
