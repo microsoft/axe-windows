@@ -19,33 +19,19 @@ namespace Axe.Windows.Automation
     /// </summary>
     static class SnapshotCommand
     {
-        private class ScanResultAccumulator
-        {
-            public int Passed { get; private set; }
-            public int Failed { get; private set; }
-            public int Inconclusive { get; private set;}
-            public int Unsupported { get; private set; }
-            public int Total { get => Passed + Failed + Inconclusive + Unsupported; }
-
-            public bool MayHaveErrors => (Failed > 0) || (Inconclusive > 0);
-
-            public void AddPass() => Passed++;
-            public void AddFail() => Failed++;
-            public void AddInconclusive() => Inconclusive++;
-            public void AddUnsupported() => Unsupported++;
-        }
-
         /// <summary>
         /// Execute the Start command. Used by both .NET and by PowerShell entry points
         /// </summary>
         /// <param name="config">A set of configuration options</param>
         /// <param name="outputFileHelper"/>
+        /// <param name="resultsAssembler"/>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static SnapshotCommandResult Execute(Config config, IOutputFileHelper outputFileHelper)
+        public static ScanResults Execute(Config config, IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler)
         {
-            return ExecutionWrapper.ExecuteCommand<SnapshotCommandResult>(() =>
+            return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
             {
                 if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
+                if (resultsAssembler == null) throw new ArgumentNullException(nameof(resultsAssembler));
 
                 using (var dataManager = DataManager.GetDefaultInstance())
                 using (var sa = SelectAction.GetDefaultInstance())
@@ -71,12 +57,11 @@ namespace Axe.Windows.Automation
                                         dc.ElementCounter.UpperBound));
                                 }
 
-                                ScanResultAccumulator accumulator = new ScanResultAccumulator();
-                                AccumulateScanResults(accumulator, ec2.Element);
+                                var results = resultsAssembler.AssembleScanResultsFromElement(ec2.Element);
 
                                 string a11yTestOutputFile = config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest) ? outputFileHelper.GetNewA11yTestFilePath() : string.Empty;
 
-                                if (accumulator.MayHaveErrors)
+                                if (results.ErrorCount > 0)
                                 {
                                     if (config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest))
                                     {
@@ -88,29 +73,11 @@ namespace Axe.Windows.Automation
                                 if (locationHelper.IsSarifExtension())
                                     // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
 #endif
+
+                                    results.OutputFile = (a11yTestOutputFile, null);
                                 }
 
-                                string summaryMessage;
-
-                                if (accumulator.MayHaveErrors)
-                                {
-                                    summaryMessage = string.Format(CultureInfo.InvariantCulture, DisplayStrings.SnapshotDetailViolationsFormat, accumulator.Failed, accumulator.Inconclusive, a11yTestOutputFile);
-                                }
-                                else
-                                {
-                                    summaryMessage = DisplayStrings.SnapshotDetailNoViolationsDataDiscarded;
-                                }
-
-                                return new SnapshotCommandResult
-                                {
-                                    Completed = true,
-                                    SummaryMessage = summaryMessage,
-                                    ScanResultsPassedCount = accumulator.Passed,
-                                    ScanResultsFailedCount = accumulator.Failed,
-                                    ScanResultsInconclusiveCount = accumulator.Inconclusive,
-                                    ScanResultsUnsupportedCount = accumulator.Unsupported,
-                                    ScanResultsTotalCount = accumulator.Total,
-                                };
+                                return results;
                             }
                         }
                     }
@@ -118,48 +85,6 @@ namespace Axe.Windows.Automation
                     throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
                 } // using
             });
-        }
-
-        /// <summary>
-        /// How many violations were found (starting at the target element)
-        /// </summary>
-        /// <param name="accumulator">Where the results will be accumulated</param>
-        /// <param name="element">The root element to check</param>
-        private static void AccumulateScanResults(ScanResultAccumulator accumulator, A11yElement element)
-        {
-            if (element.ScanResults == null || element.ScanResults.Items == null)
-                throw new AxeWindowsAutomationException(DisplayStrings.ErrorMissingScanResults);
-
-            foreach (var scanResult in element.ScanResults.Items)
-            {
-                // This intentionally ignores NoResult values
-                switch (scanResult.Status)
-                {
-                    case Core.Results.ScanStatus.Fail:
-                        accumulator.AddFail();
-                        break;
-
-                    case Core.Results.ScanStatus.Pass:
-                        accumulator.AddPass();
-                        break;
-
-                    case Core.Results.ScanStatus.Uncertain:
-                        accumulator.AddInconclusive();
-                        break;
-
-                    case Core.Results.ScanStatus.ScanNotSupported:
-                        accumulator.AddUnsupported();
-                        break;
-                }
-            }
-
-            if (element.Children != null)
-            {
-                foreach (var child in element.Children)
-                {
-                    AccumulateScanResults(accumulator, child);
-                }
-            }
         }
     }
 }
