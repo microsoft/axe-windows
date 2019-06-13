@@ -97,7 +97,7 @@ namespace Axe.Windows.AutomationTests
         {
             A11yElement element = new A11yElement() { ScanResults = null };
 
-            Assert.ThrowsException<ArgumentNullException>(() => assembler.AssembleErrorsFromElement(null, element, null));
+            Assert.ThrowsException<ArgumentNullException>(() => ScanResultsAssembler.AssembleErrorsFromElement(null, element, null));
         }
 
         [TestMethod]
@@ -106,7 +106,7 @@ namespace Axe.Windows.AutomationTests
         {
             var errors = new List<Automation.ScanResult>();
 
-            Assert.ThrowsException<ArgumentNullException>(() => assembler.AssembleErrorsFromElement(errors, null, null));
+            Assert.ThrowsException<ArgumentNullException>(() => ScanResultsAssembler.AssembleErrorsFromElement(errors, null, null));
         }
 
         private List<RuleId> GetExpectedRuleIDs() => new List<RuleId>()

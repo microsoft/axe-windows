@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Automation.Interfaces;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Results;
 using System;
@@ -12,7 +11,7 @@ namespace Axe.Windows.Automation
     /// <summary>
     /// Provides methods used to assemble a <see cref="ScanResults"/> object
     /// </summary>
-    public class ScanResultsAssembler : IScanResultsAssembler
+    internal class ScanResultsAssembler : IScanResultsAssembler
     {
         /// <summary>
         /// Assembles failed scans from the provided element
@@ -38,7 +37,7 @@ namespace Axe.Windows.Automation
         /// <param name="errors">Where the <see cref="ScanResult"/> objects created from errors will be added</param>
         /// <param name="element">Root element from which errors will be assembled</param>
         /// <param name="parent">The parent of element</param>
-        internal void AssembleErrorsFromElement(List<ScanResult> errors, A11yElement element, ElementInfo parent)
+        internal static void AssembleErrorsFromElement(List<ScanResult> errors, A11yElement element, ElementInfo parent)
         {
             if (errors == null) throw new ArgumentNullException(nameof(errors));
 
@@ -65,7 +64,7 @@ namespace Axe.Windows.Automation
             }
         }
 
-        private ElementInfo MakeElementInfoFromElement(A11yElement element, ElementInfo parent)
+        private static ElementInfo MakeElementInfoFromElement(A11yElement element, ElementInfo parent)
         {
             return new ElementInfo
             {
@@ -75,7 +74,7 @@ namespace Axe.Windows.Automation
             };
         }
 
-        private IEnumerable<RuleResult> GetFailedRuleResultsFromElement(A11yElement element)
+        private static IEnumerable<RuleResult> GetFailedRuleResultsFromElement(A11yElement element)
         {
            return from scanResult in element.ScanResults.Items
                   where scanResult.Status == ScanStatus.Fail
