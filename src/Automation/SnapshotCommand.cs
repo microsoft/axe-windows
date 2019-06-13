@@ -80,7 +80,7 @@ namespace Axe.Windows.Automation
                                 if (config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest))
                                 {
                                     ScreenShotAction.CaptureScreenShot(ec2.Id);
-                                SaveAction.SaveSnapshotZip(a11yTestOutputFile, ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
+                                    SaveAction.SaveSnapshotZip(a11yTestOutputFile, ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
                                 }
 
 #if NOT_CURRENTLY_SUPPORTED
