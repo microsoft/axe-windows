@@ -154,7 +154,7 @@ namespace Axe.Windows.AutomationTests
                 {
                     SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
                 }
-                catch (System.Exception ex)
+                catch (Exception ex)
                 {
                     Assert.IsTrue(ex.Message.Contains(" Automation008:"));
                 }
