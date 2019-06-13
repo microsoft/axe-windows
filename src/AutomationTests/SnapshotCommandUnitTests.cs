@@ -25,7 +25,9 @@ namespace Axe.Windows.AutomationTests
     {
         const string TestMessage = "I find his reaction most illogical";
 
+#if FAKES_SUPPORTED
         private IOutputFileHelper OutputFileHelperStub = new Axe.Windows.Automation.Fakes.StubIOutputFileHelper();
+#endif
 
         private static void AssertCompleteResult(SnapshotCommandResult result, int expectedPass, int expectedFail, int expectedInconclusive, int expectedUnsupported)
         {
