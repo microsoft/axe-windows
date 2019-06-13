@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using Axe.Windows.Automation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -11,18 +12,15 @@ namespace Axe.Windows.AutomationTests
     {
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void LocateElement_NoTargetSpecifiedInParameters_ThrowsAutomationException_ErrorAutomation007()
         {
             try
             {
-                CommandParameters parameters = new CommandParameters(new Dictionary<string, string>(), string.Empty);
-                TargetElementLocator.LocateElement(parameters);
+                TargetElementLocator.LocateRootElement(-1);
             }
             catch (AxeWindowsAutomationException ex)
             {
-                Assert.IsTrue(ex.Message.Contains("Automation007:"));
-                throw;
+                Assert.IsTrue(ex.Message.Contains("Automation017:"));
             }
         }
 
@@ -34,10 +32,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                var ps = new Dictionary<string, string>();
-                ps.Add(CommandConstStrings.TargetProcessId, "-1"); // invalid process id. 
-                CommandParameters parameters = new CommandParameters(ps, string.Empty);
-                TargetElementLocator.LocateElement(parameters);
+                TargetElementLocator.LocateRootElement(-1);
             }
             catch (AxeWindowsAutomationException ex)
             {

@@ -71,6 +71,7 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -85,15 +86,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutomationSessionUnitTests.cs" />
-    <Compile Include="CommandParametersUnitTests.cs" />
     <Compile Include="DummyDisposable.cs" />
     <Compile Include="ExecutionWrapperUnitTests.cs" />
-    <Compile Include="LocationHelperUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScanResultsAssemblerTests.cs" />
-    <Compile Include="StartCommandUnitTests.cs" />
-    <Compile Include="StopCommandUnitTests.cs" />
     <Compile Include="SnapshotCommandUnitTests.cs" />
     <Compile Include="TargetElementLocatorUnitTests.cs" />
     <Compile Include="Utilities.cs" />

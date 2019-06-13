@@ -121,24 +121,15 @@
     <value>ERROR Automation009: AxeWindows has already been started</value>
     <comment>Don't change error code!</comment>
   </data>
-  <data name="ErrorCantFindSecondaryConfigFileFormat" xml:space="preserve">
-    <value>ERROR Automation001: Can't find secondary config file: {0}</value>
-    <comment>Don't change error code! {0} is the specified config file</comment>
-  </data>
-  <data name="ErrorEmptySecondaryConfigFile" xml:space="preserve">
-    <value>ERROR Automation013: No data found in secondary config file: {0}</value>
-    <comment>Don't change error code! {0} is the specified config file</comment>
+  <data name="ErrorDirectoryInvalid" xml:space="preserve">
+    <value>The directory "{0}" was invalid.</value>
   </data>
   <data name="ErrorFailToGetRootElementOfProcess" xml:space="preserve">
     <value>ERROR Automation017: Fail to get the root element of a process({0}) : {1}</value>
   </data>
-  <data name="ErrorInvalidOutputFileFormat" xml:space="preserve">
-    <value>ERROR Automation016: The file format is invalid</value>
-    <comment>Don't change error code!</comment>
-  </data>
-  <data name="ErrorInvalidSecondaryConfigFile" xml:space="preserve">
-    <value>ERROR Automation014: Can't load data from secondary config file: {0}</value>
-    <comment>Don't change error code! {0} is the specified config file</comment>
+  <data name="ErrorIsNotFullPath" xml:space="preserve">
+    <value>The given path was not an absolute path.</value>
+    <comment>ErrorIsNotFullPath</comment>
   </data>
   <data name="ErrorMissingScanResults" xml:space="preserve">
     <value>ERROR Automation012: ScanResults are missing. Please check configuration.</value>
@@ -154,22 +145,6 @@
   </data>
   <data name="ErrorNotStarted_Instance" xml:space="preserve">
     <value>ERROR Automation010: AxeWindows has not yet been started, or has already been stopped</value>
-    <comment>Don't change error code!</comment>
-  </data>
-  <data name="ErrorOutputFileFormatIsTrivial" xml:space="preserve">
-    <value>ERROR Automation015: OutputFileFormat is missing and OutputFileName does not have an extension</value>
-    <comment>Don't change error code!</comment>
-  </data>
-  <data name="ErrorOutputFileIsNotSpecified" xml:space="preserve">
-    <value>ERROR Automation005: OutputFile is not specified</value>
-    <comment>Don't change error code!</comment>
-  </data>
-  <data name="ErrorOutputFileIsTrivial" xml:space="preserve">
-    <value>ERROR Automation006: OutputFile is trivial</value>
-    <comment>Don't change error code!</comment>
-  </data>
-  <data name="ErrorOutputPathIsTrivial" xml:space="preserve">
-    <value>ERROR Automation004: OutputPath is trivial</value>
     <comment>Don't change error code!</comment>
   </data>
   <data name="ErrorStartAlreadyStarted" xml:space="preserve">
