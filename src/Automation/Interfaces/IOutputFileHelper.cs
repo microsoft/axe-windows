@@ -1,0 +1,11 @@
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using System;
+
+namespace Axe.Windows.Automation
+{
+    internal interface IOutputFileHelper
+    {
+        string GetNewA11yTestFilePath();
+    } // interface
+} // namespace

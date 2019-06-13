@@ -75,6 +75,8 @@
     <Compile Include="Data\ScanResult.cs" />
     <Compile Include="Data\ScanResults.cs" />
     <Compile Include="Enums\OutputFileFormat.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="Interfaces\IOutputFileHelper.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
     <Compile Include="OutputFileHelper.cs" />
     <Compile Include="Results\BaseCommandResult.cs" />

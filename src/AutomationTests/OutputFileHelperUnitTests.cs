@@ -151,7 +151,10 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public void OutputFileHelperCtor_CreatesNonexistentDirectory()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            System.Diagnostics.Debug.WriteLine("here");
+            try
+            {
+                var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
@@ -163,6 +166,7 @@ namespace Axe.Windows.AutomationTests
             mockDirectory.Setup(x => x.Exists(directory)).Returns(false);
             mockDirectory.Setup(x => x.CreateDirectory(directory)).Returns<System.IO.DirectoryInfo>(null);
 
+            
             var outputFileHelper = new OutputFileHelper(directory, mockSystemFactory.Object);
 
             // the folowing verifies that Exists was called
@@ -171,6 +175,11 @@ namespace Axe.Windows.AutomationTests
             mockDateTime.VerifyAll();
             mockEnvironment.VerifyAll();
             mockDirectory.VerifyAll();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Here {ex}");
+            }
         }
 
         [TestMethod]

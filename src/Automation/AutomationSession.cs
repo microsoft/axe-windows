@@ -19,14 +19,12 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// ctor - Initializes the app in automation mode
         /// </summary>
-        /// <param name="config">A set of configuration options</param>
-        private AutomationSession(Config config)
+        private AutomationSession()
         {
             try
             {
                 this.dataManager = DataManager.GetDefaultInstance();
                 this.selectAction = SelectAction.GetDefaultInstance();
-                this.SessionParameters = config;
             }
             catch (Exception)
             {
@@ -45,26 +43,18 @@ namespace Axe.Windows.Automation
         private static readonly object lockObject = new object();
 
         /// <summary>
-        /// Returns the CommandParameters for the session in question
-        /// </summary>
-        internal Config SessionParameters { get; private set; }
-
-        /// <summary>
         /// Obtain a new instance of the AutomationSession object. Only one can exist at a time
         /// </summary>
-        /// <param name="config">A set of configuration options</param>
         /// <exception cref="AxeWindowsAutomationException">Thrown if session already exists</exception>
         /// <returns>The current AutomationSession object</returns>
-        internal static AutomationSession NewInstance(Config config)
+        internal static AutomationSession NewInstance()
         {
             lock (lockObject)
             {
                 if (instance != null)
                     throw new AxeWindowsAutomationException(DisplayStrings.ErrorAlreadyStarted);
 
-                instance = new AutomationSession(config);
-                instance.SessionParameters = config;
-
+                instance = new AutomationSession();
                 return instance;
             }
         }

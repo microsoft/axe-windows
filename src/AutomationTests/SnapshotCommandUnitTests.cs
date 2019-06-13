@@ -25,38 +25,7 @@ namespace Axe.Windows.AutomationTests
     {
         const string TestMessage = "I find his reaction most illogical";
 
-        static readonly Dictionary<string, string> TestParameters = new Dictionary<string, string>()
-        {
-            {"NCC-1700", "USS Constitution" },
-            {"NCC-1701", "USS Enterprise" },
-            {"NCC-1864", "USS Reliant" },
-        };
-
-        static readonly Dictionary<string, string> TestParametersNoRetention = new Dictionary<string, string>()
-        {
-            {"NoViolationPolicy",   "Discard" },
-            {"NCC-1700",            "USS Constitution" },
-            {"NCC-1701",            "USS Enterprise" },
-            {"NCC-1864",            "USS Reliant" },
-        };
-
-        private static void AssertIncompleteResult(SnapshotCommandResult result, string expectedString, bool matchExactString = true)
-        {
-            Assert.AreEqual(false, result.Completed);
-            Assert.AreEqual(0, result.ScanResultsFailedCount, "Mismatch in count of failures");
-            Assert.AreEqual(0, result.ScanResultsInconclusiveCount, "Mismatch in count of inconclusives");
-            Assert.AreEqual(0, result.ScanResultsPassedCount, "Mismatch in count of passes");
-            Assert.AreEqual(0, result.ScanResultsUnsupportedCount, "Mismatch in count of unsupporteds");
-            Assert.AreEqual(0, result.ScanResultsTotalCount);
-            if (matchExactString)
-            {
-                Assert.AreEqual(expectedString, result.SummaryMessage);
-            }
-            else
-            {
-                Assert.IsTrue(result.SummaryMessage.Contains(expectedString), "\"" + result.SummaryMessage+ "\" doesn't contain \"" + expectedString + "\"");
-            }
-        }
+        private IOutputFileHelper OutputFileHelperStub = new Axe.Windows.Automation.Fakes.StubIOutputFileHelper();
 
         private static void AssertCompleteResult(SnapshotCommandResult result, int expectedPass, int expectedFail, int expectedInconclusive, int expectedUnsupported)
         {
@@ -100,68 +69,39 @@ namespace Axe.Windows.AutomationTests
 #if FAKES_SUPPORTED
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_AutomationSessionInstanceThrowsAutomationException_MessageMatchesException()
-        {
-            using (ShimsContext.Create())
-            {
-                int callsToInstance = 0;
-
-                ShimAutomationSession.Instance = () =>
-                {
-                    callsToInstance++;
-                    throw new AxeWindowsAutomationException(TestMessage);
-                };
-
-                InitializeShims();
-
-                try
-                {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
-                }
-                catch (AxeWindowsAutomationException ex)
-                {
-                    Assert.IsTrue(ex.Message.Contains(TestMessage));
-                }
-
-                Assert.AreEqual(1, callsToInstance);
-            }
-        }
-
-        [TestMethod]
-        [Timeout(2000)]
         public void Execute_TargetElementLocatorReceivesExpectedParameters()
         {
             using (ShimsContext.Create())
             {
-                CommandParameters actualParameters = null;
-                CommandParameters expectedParameters = new CommandParameters(TestParameters, string.Empty);
+                int expectedProcessId = 42;
+                int actualProcessId = 0;
+
+                Config config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
                 ShimAutomationSession.Instance = () =>
                 {
-                    return new ShimAutomationSession()
-                    {
-                        SessionParametersGet = () => expectedParameters
-                    };
+                    return new ShimAutomationSession();
                 };
 
-                ShimTargetElementLocator.LocateElementCommandParameters = (commandParameters) =>
+                ShimTargetElementLocator.LocateRootElementInt32 = (processId) =>
                 {
-                    actualParameters = commandParameters;
+                    actualProcessId = processId;
                     throw new Exception(TestMessage);
                 };
 
-                InitializeShims(populateLocationHelper: false);
+                InitializeShims();
+
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
                 }
                 catch (AxeWindowsAutomationException ex)
                 {
                     Assert.AreEqual(TestMessage, ex.InnerException.Message);
                 }
 
-                Utilities.AssertEqual(expectedParameters.ConfigCopy, actualParameters.ConfigCopy);
+                Assert.AreEqual(expectedProcessId, actualProcessId);
             }
         }
 
@@ -177,11 +117,13 @@ namespace Axe.Windows.AutomationTests
                     Select = () => false,
                 };
 
-                InitializeShims(selectAction:selectAction, populateLocationHelper: false, enableRetention: true, shimTargetElementLocator: true);
+                InitializeShims(selectAction:selectAction, shimTargetElementLocator: true);
+
+                var config = Config.Builder.ForProcessId(-1).Build();
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
                 }
                 catch (AxeWindowsAutomationException ex)
                 {
@@ -203,12 +145,14 @@ namespace Axe.Windows.AutomationTests
                     POIElementContextGet = () => new ElementContext(CreateA11yElement()),
                 };
 
-                InitializeShims(populateLocationHelper: false, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     shimUiFramework: true, setTestModeSucceeds: false);
+
+                var config = Config.Builder.ForProcessId(-1).Build();
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
                 }
                 catch (System.Exception ex)
                 {
@@ -230,13 +174,15 @@ namespace Axe.Windows.AutomationTests
                     POIElementContextGet = () => new ElementContext(CreateA11yElement()),
                 };
 
-                InitializeShims(populateLocationHelper: false, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true);
 
+                var config = Config.Builder.ForProcessId(-1).Build();
+
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
                 }
                 catch (AxeWindowsAutomationException ex)
                 {
@@ -259,13 +205,15 @@ namespace Axe.Windows.AutomationTests
                         new A11yElement()),
                 };
 
-                InitializeShims(populateLocationHelper: false, enableRetention: false, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: true, shimUiFramework: true,
                     setTestModeSucceeds: true);
 
+                var config = Config.Builder.ForProcessId(-1).Build();
+
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
                 }
                 catch (System.Exception ex)
                 {
@@ -276,7 +224,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_NoScanResultsInPOI_RetentionIsDisabled_ReturnsCompleteWithNoIssues()
+        public void Execute_NoScanResultsInPOI_ReturnsCompleteWithNoIssues()
         {
             using (ShimsContext.Create())
             {
@@ -299,11 +247,13 @@ namespace Axe.Windows.AutomationTests
                         }),
                 };
 
-                InitializeShims(populateLocationHelper: false, enableRetention: false, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 AssertCompleteResult(result, 0, 0, 0, 0);
             }
@@ -311,7 +261,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_NoScanResultsInPOI_RetentionIsEnabled_SavesFile_ReturnsCompleteWithNoIssues()
+        public void Execute_NoScanResultsInPOI_SavesFile_ReturnsCompleteWithNoIssues()
         {
             using (ShimsContext.Create())
             {
@@ -334,11 +284,13 @@ namespace Axe.Windows.AutomationTests
                         }),
                 };
 
-                InitializeShims(populateLocationHelper: true, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 AssertCompleteResult(result, 0, 0, 0, 0);
             }
@@ -346,7 +298,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_OnlyPassesInPOI_RetentionIsEnabled_SavesFile_ReturnsComplete_PassesOnly()
+        public void Execute_OnlyPassesInPOI_SavesFile_ReturnsComplete_PassesOnly()
         {
             using (ShimsContext.Create())
             {
@@ -365,11 +317,13 @@ namespace Axe.Windows.AutomationTests
                             scanStatusPass))
                 };
 
-                InitializeShims(populateLocationHelper: true, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 AssertCompleteResult(result, 2, 0, 0, 0);
             }
@@ -377,7 +331,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_OnlyInconclusiveInPOI_RetentionIsEnabled_SavesFile_ReturnsComplete_InconclusivesOnly()
+        public void Execute_OnlyInconclusiveInPOI_SavesFile_ReturnsComplete_InconclusivesOnly()
         {
             using (ShimsContext.Create())
             {
@@ -396,11 +350,13 @@ namespace Axe.Windows.AutomationTests
                             scanScatusUncertain))
                 };
 
-                InitializeShims(populateLocationHelper: true, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 AssertCompleteResult(result, 0, 0, 2, 0);
             }
@@ -408,7 +364,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_OnlyFailuresInPOI_RetentionIsEnabled_SavesFile_ReturnsComplete_FailuresOnly()
+        public void Execute_OnlyFailuresInPOI_SavesFile_ReturnsComplete_FailuresOnly()
         {
             using (ShimsContext.Create())
             {
@@ -427,11 +383,13 @@ namespace Axe.Windows.AutomationTests
                             scanStatusFail))
                 };
 
-                InitializeShims(populateLocationHelper: true, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction:selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 AssertCompleteResult(result, 0, 2, 0, 0);
             }
@@ -439,7 +397,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_OnlyUnsupportedsInPOI_RetentionIsEnabled_SavesFile_ReturnsComplete_UnsupportedsOnly()
+        public void Execute_OnlyUnsupportedsInPOI_SavesFile_ReturnsComplete_UnsupportedsOnly()
         {
             using (ShimsContext.Create())
             {
@@ -458,11 +416,13 @@ namespace Axe.Windows.AutomationTests
                             scanStatusUnsupported))
                 };
 
-                InitializeShims(populateLocationHelper: true, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 AssertCompleteResult(result, 0, 0, 0, 2);
             }
@@ -470,7 +430,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(2000)]
-        public void Execute_MixedResultsInPOI_RetentionIsEnabled_SavesFile_ReturnsComplete_CorrectMixedResults()
+        public void Execute_MixedResultsInPOI_SavesFile_ReturnsComplete_CorrectMixedResults()
         {
             using (ShimsContext.Create())
             {
@@ -509,11 +469,13 @@ namespace Axe.Windows.AutomationTests
                             }))
                 };
 
-                InitializeShims(populateLocationHelper: true, enableRetention: true, shimTargetElementLocator: true,
+                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(new Dictionary<string, string>());
+                var config = Config.Builder.ForProcessId(-1).Build();
+
+                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
 
                 // Note: Results are for each A11yElement, not for each ScanStatus!
                 AssertCompleteResult(result, 2, 1, 2, 1);
@@ -521,8 +483,6 @@ namespace Axe.Windows.AutomationTests
         }
 
         private static void InitializeShims(
-            bool? populateLocationHelper = null,
-            bool? enableRetention = null,
             bool shimTargetElementLocator = false,
             bool? elementBoundExceeded = null,
             bool shimUiFramework = false,
@@ -532,28 +492,12 @@ namespace Axe.Windows.AutomationTests
             bool shimSarif = false,
             ShimSelectAction selectAction = null)
         {
-            if (enableRetention.HasValue)
-            {
-                ShimAutomationSession.Instance = () =>
-                {
-                    return new ShimAutomationSession()
-                    {
-                        SessionParametersGet = () => new CommandParameters(enableRetention.Value ? TestParameters : TestParametersNoRetention, string.Empty)
-                    };
-                };
-            }
-
             if (shimTargetElementLocator)
             {
-                ShimTargetElementLocator.LocateElementCommandParameters = (commandParameters) =>
+                ShimTargetElementLocator.LocateRootElementInt32 = (processId) =>
                 {
                     return new ElementContext(CreateA11yElement());
                 };
-            }
-
-            if (populateLocationHelper.HasValue)
-            {
-                ShimLocationHelper.ConstructorCommandParameters = (locationHelper, parameters) => CreateShimLocationHelper(locationHelper, populateLocationHelper.Value);
             }
 
             if (selectAction != null)
@@ -590,21 +534,6 @@ namespace Axe.Windows.AutomationTests
             if (shimSarif)
             {
                 ShimSaveAction.SaveSarifFileStringGuidBoolean = (_, __, ___) => { };
-            }
-        }
-
-        private static void CreateShimLocationHelper(LocationHelper locationHelper, bool populateData)
-        {
-            ShimLocationHelper shim = new ShimLocationHelper(locationHelper);
-
-            if (populateData)
-            {
-                shim.OutputPathGet = () => "path";
-                shim.OutputFileFormatGet = () => "format";
-                shim.OutputFileGet = () => "file";
-                shim.GetOutputFilePath = () => "a11y";
-                shim.GetSarifFilePath = () => "sarif";
-                shim.IsAllOption = () => true;
             }
         }
 

@@ -6,17 +6,13 @@ using Path = System.IO.Path;
 
 namespace Axe.Windows.Automation
 {
-    internal class OutputFileHelper
+    internal class OutputFileHelper : IOutputFileHelper
     {
         private readonly string _outputDirectory;
         private readonly ISystemDateTime _dateTime;
 
         public const string DefaultOutputDirectoryName = "AxeWindowsOutputFiles";
         public const string DefaultFileNameBase = "AxeWindows";
-
-        public OutputFileHelper(string outputDirectory)
-            : this(outputDirectory, new Axe.Windows.Concretions.SystemFactory())
-        { }
 
         public OutputFileHelper(string outputDirectory, ISystemFactory systemFactory)
         {

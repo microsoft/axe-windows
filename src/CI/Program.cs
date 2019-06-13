@@ -58,7 +58,8 @@ namespace Axe.Windows.CI
                 }
 
                 var config = Config.Builder.ForProcessId(Convert.ToInt32(input)).Build();
-                var results = SnapshotCommand.Execute(config);
+                var scanner = ScannerFactory.CreateScanner(config);
+                var results = scanner.Scan();
                 Console.WriteLine(results);
             }
         }

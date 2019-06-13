@@ -19,8 +19,6 @@ namespace Axe.Windows.AutomationTests
 
         const bool suppressTelemetryOutput = true;
 
-        private readonly Config TestParameters = Config.Builder.ForProcessId(0).Build();
-
 #if FAKES_SUPPORTED
         /// <summary>
         /// Set up all of the shims needed for the unit tests--we make no attempt to
@@ -53,7 +51,7 @@ namespace Axe.Windows.AutomationTests
                 };
                 try
                 {
-                    AutomationSession.NewInstance(TestParameters);
+                    AutomationSession.NewInstance();
                 }
                 catch (StackOverflowException e)
                 {
@@ -70,7 +68,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                AutomationSession.NewInstance(TestParameters);
+                AutomationSession.NewInstance();
             }
             finally
             {
@@ -86,7 +84,7 @@ namespace Axe.Windows.AutomationTests
 
             try
             {
-                session = AutomationSession.NewInstance(TestParameters);
+                session = AutomationSession.NewInstance();
             }
             finally
             {
@@ -101,12 +99,12 @@ namespace Axe.Windows.AutomationTests
         [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void NewInstance_InstanceAlreadyExists_ThrowsAutomationException_ErrorAutomation009()
         {
-            AutomationSession session = AutomationSession.NewInstance(TestParameters);
+            AutomationSession session = AutomationSession.NewInstance();
             Assert.IsNotNull(session);
 
             try
             {
-                AutomationSession.NewInstance(TestParameters);
+                AutomationSession.NewInstance();
             }
             catch (AxeWindowsAutomationException e)
             {
@@ -139,7 +137,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout (2000)]
         public void Instance_InstanceExists_ReturnsSameInstance()
         {
-            AutomationSession session = AutomationSession.NewInstance(TestParameters);
+            AutomationSession session = AutomationSession.NewInstance();
             Assert.IsNotNull(session);
             try
             {
@@ -164,21 +162,6 @@ namespace Axe.Windows.AutomationTests
             {
                 Assert.IsTrue(e.Message.Contains(" Automation011:"));
                 throw;
-            }
-        }
-
-        [TestMethod]
-        [Timeout (2000)]
-        public void SessionParameters_MatchesInputParameters()
-        {
-            try
-            {
-                AutomationSession session = AutomationSession.NewInstance(TestParameters);
-                Assert.AreSame(TestParameters, session.SessionParameters);
-            }
-            finally
-            {
-                AutomationSession.ClearInstance();
             }
         }
     }

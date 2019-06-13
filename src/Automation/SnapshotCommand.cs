@@ -7,6 +7,7 @@ using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Desktop.Settings;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -16,7 +17,7 @@ namespace Axe.Windows.Automation
     /// Class to take a snapshot (via ShapshotCommand.Execute). Can only be successfully called after
     /// a successful call to StartCommand.Execute
     /// </summary>
-    public static class SnapshotCommand
+    static class SnapshotCommand
     {
         private class ScanResultAccumulator
         {
@@ -38,17 +39,19 @@ namespace Axe.Windows.Automation
         /// Execute the Start command. Used by both .NET and by PowerShell entry points
         /// </summary>
         /// <param name="config">A set of configuration options</param>
+        /// <param name="outputFileHelper"/>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static SnapshotCommandResult Execute(Config config)
+        public static SnapshotCommandResult Execute(Config config, IOutputFileHelper outputFileHelper)
         {
             return ExecutionWrapper.ExecuteCommand<SnapshotCommandResult>(() =>
             {
-                var outputFileHelper = new OutputFileHelper(config.OutputDirectory);
+            if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
 
                 ElementContext ec = TargetElementLocator.LocateRootElement(config.ProcessId);
                 DataManager dataManager = DataManager.GetDefaultInstance();
                 SelectAction sa = SelectAction.GetDefaultInstance();
                 sa.SetCandidateElement(ec.Element);
+
                 if (sa.Select())
                 {
                     using (ElementContext ec2 = sa.POIElementContext)
@@ -70,7 +73,7 @@ namespace Axe.Windows.Automation
                             ScanResultAccumulator accumulator = new ScanResultAccumulator();
                             AccumulateScanResults(accumulator, ec2.Element);
 
-                            string a11yTestOutputFile = outputFileHelper.GetNewA11yTestFilePath();
+                            string a11yTestOutputFile = config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest) ? outputFileHelper.GetNewA11yTestFilePath() : string.Empty;
 
                             if (accumulator.MayHaveErrors)
                             {
@@ -82,7 +85,7 @@ namespace Axe.Windows.Automation
 
 #if NOT_CURRENTLY_SUPPORTED
                                 if (locationHelper.IsSarifExtension())
-                                    SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
+                                    // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
 #endif
                             }
 

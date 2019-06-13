@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using Axe.Windows.Automation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -11,17 +12,15 @@ namespace Axe.Windows.AutomationTests
     {
         [TestMethod]
         [Timeout (1000)]
-        [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void LocateElement_NoTargetSpecifiedInParameters_ThrowsAutomationException_ErrorAutomation007()
         {
             try
             {
-                TargetElementLocator.LocateRootElement(42);
+                TargetElementLocator.LocateRootElement(-1);
             }
             catch (AxeWindowsAutomationException ex)
             {
-                Assert.IsTrue(ex.Message.Contains("Automation007:"));
-                throw;
+                Assert.IsTrue(ex.Message.Contains("Automation017:"));
             }
         }
 
