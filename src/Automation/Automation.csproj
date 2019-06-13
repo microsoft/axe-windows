@@ -104,7 +104,7 @@
     <None Include="ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
-    <DropSignedFile Include="bin\Debug\\Axe.Windows.Automation.dll" />
+    <DropSignedFile Include="$(OutDir)\Axe.Windows.Automation.dll" />
   </ItemGroup>
   <Import Project="..\..\build\settings.targets" />
   <ItemGroup>
