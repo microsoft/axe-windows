@@ -71,7 +71,6 @@ namespace Axe.Windows.Automation
         private string GetNewFileName()
         {
             var now = _dateTime.Now;
-            if (now == null) throw new InvalidOperationException();
 
             var nowString = $"{now:yy-MM-dd_HH-mm-ss}";
             return $"{DefaultFileNameBase}_{nowString}";
