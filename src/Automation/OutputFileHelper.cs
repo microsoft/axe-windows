@@ -55,7 +55,7 @@ namespace Axe.Windows.Automation
                 if (!Path.IsPathRooted(path))
                     throw new Exception(DisplayStrings.ErrorIsNotFullPath);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 throw new AxeWindowsAutomationException(String.Format(DisplayStrings.ErrorDirectoryInvalid, path), ex);
             }
