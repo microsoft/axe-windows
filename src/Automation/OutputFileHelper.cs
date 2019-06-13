@@ -27,7 +27,7 @@ namespace Axe.Windows.Automation
             var directory = systemFactory.CreateSystemIODirectory();
             if (directory == null) throw new InvalidOperationException($"Expected {nameof(directory)} not to be null");
 
-            if (!String.IsNullOrWhiteSpace(outputDirectory))
+            if (!string.IsNullOrWhiteSpace(outputDirectory))
             {
                 VerifyPathOrThrow(outputDirectory);
                 _outputDirectory = outputDirectory;
