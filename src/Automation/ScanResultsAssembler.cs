@@ -69,8 +69,8 @@ namespace Axe.Windows.Automation
             return new ElementInfo
             {
                 Parent = parent,
-                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
-                Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+                Patterns = element.Patterns?.ConvertAll<string>(x => x.Name),
+                Properties = element.Properties?.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
             };
         }
 

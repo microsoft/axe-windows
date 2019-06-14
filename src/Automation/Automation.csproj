@@ -79,7 +79,6 @@
     <Compile Include="Interfaces\IScanner.cs" />
     <Compile Include="OutputFileHelper.cs" />
     <Compile Include="Interfaces\IScanResultsAssembler.cs" />
-    <Compile Include="Results\BaseCommandResult.cs" />
     <Compile Include="DisplayStrings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,9 +91,6 @@
     <Compile Include="ScannerFactory.cs" />
     <Compile Include="ScanResultsAssembler.cs" />
     <Compile Include="SnapshotCommand.cs" />
-    <Compile Include="Results\SnapshotCommandResult.cs" />
-    <Compile Include="Results\StartCommandResult.cs" />
-    <Compile Include="Results\StopCommandResult.cs" />
     <Compile Include="TargetElementLocator.cs" />
   </ItemGroup>
   <ItemGroup>

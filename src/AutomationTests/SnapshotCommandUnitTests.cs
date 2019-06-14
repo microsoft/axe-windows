@@ -3,6 +3,7 @@
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Automation;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -27,18 +28,8 @@ namespace Axe.Windows.AutomationTests
 
 #if FAKES_SUPPORTED
         private IOutputFileHelper OutputFileHelperStub = new Axe.Windows.Automation.Fakes.StubIOutputFileHelper();
+        private IScanResultsAssembler ResultsAssemblerStub = new Axe.Windows.Automation.Fakes.StubScanResultsAssembler();
 #endif
-
-        private static void AssertCompleteResult(SnapshotCommandResult result, int expectedPass, int expectedFail, int expectedInconclusive, int expectedUnsupported)
-        {
-            Assert.AreEqual(true, result.Completed);
-            Assert.AreEqual(expectedFail, result.ScanResultsFailedCount, "Mismatch in count of failures");
-            Assert.AreEqual(expectedInconclusive, result.ScanResultsInconclusiveCount, "Mismatch in count of inconclusives");
-            Assert.AreEqual(expectedPass, result.ScanResultsPassedCount, "Mismatch in count of passes");
-            Assert.AreEqual(expectedUnsupported, result.ScanResultsUnsupportedCount, "Mismatch in count of unsupporteds");
-            Assert.AreEqual(expectedPass + expectedFail + expectedInconclusive + expectedUnsupported, result.ScanResultsTotalCount);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(result.SummaryMessage), "SummaryMessage can't be trivial");
-        }
 
         private static A11yElement CreateA11yElement(List<A11yElement> children = null, List<ScanStatus> statuses = null)
         {
@@ -51,12 +42,12 @@ namespace Axe.Windows.AutomationTests
             {
                 ScanResult scanResult = new ScanResult
                 {
-                    Items = new List<RuleResult>()
+                    Items = new List<RuleResult>(),
                 };
 
                 foreach (ScanStatus status in statuses)
                 {
-                    scanResult.Items.Add(new RuleResult {Status = status});
+                    scanResult.Items.Add(new RuleResult {Status = status, Rule = RuleId.NameNotNull});
                 }
 
                 ScanResults elementScanResults = new ScanResults();
@@ -90,7 +81,7 @@ namespace Axe.Windows.AutomationTests
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
                 }
                 catch (AxeWindowsAutomationException ex)
                 {
@@ -119,7 +110,7 @@ namespace Axe.Windows.AutomationTests
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
                 }
                 catch (AxeWindowsAutomationException ex)
                 {
@@ -148,7 +139,7 @@ namespace Axe.Windows.AutomationTests
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
                 }
                 catch (Exception ex)
                 {
@@ -178,7 +169,7 @@ namespace Axe.Windows.AutomationTests
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
                 }
                 catch (AxeWindowsAutomationException ex)
                 {
@@ -209,7 +200,7 @@ namespace Axe.Windows.AutomationTests
 
                 try
                 {
-                    SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
                 }
                 catch (Exception ex)
                 {
@@ -248,10 +239,11 @@ namespace Axe.Windows.AutomationTests
                     setTestModeSucceeds: true);
 
                 var config = Config.Builder.ForProcessId(-1).Build();
+                var resultsAssembler = new ScanResultsAssembler();
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                    var results = SnapshotCommand.Execute(config, OutputFileHelperStub, resultsAssembler);
 
-                AssertCompleteResult(result, 0, 0, 0, 0);
+                    Assert.AreEqual(0, results.ErrorCount);
             }
         }
 
@@ -285,76 +277,11 @@ namespace Axe.Windows.AutomationTests
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
                 var config = Config.Builder.ForProcessId(-1).Build();
+                var resultsAssembler = new ScanResultsAssembler();
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
+                var results = SnapshotCommand.Execute(config, OutputFileHelperStub, resultsAssembler);
 
-                AssertCompleteResult(result, 0, 0, 0, 0);
-            }
-        }
-
-        [TestMethod]
-        [Timeout(2000)]
-        public void Execute_OnlyPassesInPOI_SavesFile_ReturnsComplete_PassesOnly()
-        {
-            using (ShimsContext.Create())
-            {
-                List<ScanStatus> scanStatusPass = new List<ScanStatus> { ScanStatus.Pass };
-
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        CreateA11yElement(
-                            new List<A11yElement>
-                            {
-                                CreateA11yElement(new List<A11yElement>(), scanStatusPass)
-                            },
-                            scanStatusPass))
-                };
-
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
-
-                AssertCompleteResult(result, 2, 0, 0, 0);
-            }
-        }
-
-        [TestMethod]
-        [Timeout(2000)]
-        public void Execute_OnlyInconclusiveInPOI_SavesFile_ReturnsComplete_InconclusivesOnly()
-        {
-            using (ShimsContext.Create())
-            {
-                List<ScanStatus> scanScatusUncertain = new List<ScanStatus> { ScanStatus.Uncertain };
-
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        CreateA11yElement(
-                            new List<A11yElement>
-                            {
-                                CreateA11yElement(new List<A11yElement>(), scanScatusUncertain)
-                            },
-                            scanScatusUncertain))
-                };
-
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
-
-                AssertCompleteResult(result, 0, 0, 2, 0);
+                Assert.AreEqual(0, results.ErrorCount);
             }
         }
 
@@ -380,101 +307,23 @@ namespace Axe.Windows.AutomationTests
                 };
 
                 InitializeShims(shimTargetElementLocator: true,
-                    selectAction:selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
-
-                AssertCompleteResult(result, 0, 2, 0, 0);
-            }
-        }
-
-        [TestMethod]
-        [Timeout(2000)]
-        public void Execute_OnlyUnsupportedsInPOI_SavesFile_ReturnsComplete_UnsupportedsOnly()
-        {
-            using (ShimsContext.Create())
-            {
-                List<ScanStatus> scanStatusUnsupported = new List<ScanStatus> { ScanStatus.ScanNotSupported };
-
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        CreateA11yElement(
-                            new List<A11yElement>
-                            {
-                                CreateA11yElement(new List<A11yElement>(), scanStatusUnsupported)
-                            },
-                            scanStatusUnsupported))
-                };
-
-                InitializeShims(shimTargetElementLocator: true,
                     selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
                     setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
 
                 var config = Config.Builder.ForProcessId(-1).Build();
+                var resultsAssembler = new ScanResultsAssembler();
+                Axe.Windows.Automation.ScanResults results = null;
 
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
-
-                AssertCompleteResult(result, 0, 0, 0, 2);
-            }
-        }
-
-        [TestMethod]
-        [Timeout(2000)]
-        public void Execute_MixedResultsInPOI_SavesFile_ReturnsComplete_CorrectMixedResults()
-        {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
+                try
                 {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        CreateA11yElement(
-                            new List<A11yElement>
-                            {
-                                CreateA11yElement(new List<A11yElement>(), new List<ScanStatus>
-                                {
-                                    ScanStatus.Fail, ScanStatus.Pass   // Will count as failure
-                                }),
-                                CreateA11yElement(new List<A11yElement>(), new List<ScanStatus>
-                                {
-                                    ScanStatus.Pass  // Will count as pass
-                                }),
-                                CreateA11yElement(new List<A11yElement>(), new List<ScanStatus>
-                                {
-                                    ScanStatus.Uncertain, ScanStatus.Uncertain, ScanStatus.ScanNotSupported  // Will count as unsupported
-                                }),
-                                CreateA11yElement(new List<A11yElement>(), new List<ScanStatus>
-                                {
-                                    ScanStatus.Pass, ScanStatus.Uncertain, ScanStatus.NoResult  // Will count as uncertain
-                                }),
-                                CreateA11yElement(new List<A11yElement>(), new List<ScanStatus>
-                                {
-                                    ScanStatus.Uncertain, ScanStatus.NoResult  // Will count as uncertain
-                                }),
-                            },
-                            new List<ScanStatus>
-                            {
-                                ScanStatus.Pass  // Will count as pass
-                            }))
-                };
+                    results = SnapshotCommand.Execute(config, OutputFileHelperStub, resultsAssembler);
+                }
+                catch (System.Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                }
 
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                SnapshotCommandResult result = SnapshotCommand.Execute(config, OutputFileHelperStub);
-
-                // Note: Results are for each A11yElement, not for each ScanStatus!
-                AssertCompleteResult(result, 2, 1, 2, 1);
+                Assert.AreEqual(2, results.ErrorCount);
             }
         }
 
