@@ -86,5 +86,26 @@ namespace Axe.Windows.AutomationTests
 
             Assert.AreEqual(TestString, result.Detail);
         }
+
+        [TestMethod]
+        [Timeout(1000)]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
+        public void ExecuteCommand_CommandThrowsAxeWindowsAutomationException_StackTraceIsComplete()
+        {
+            try
+            {
+                ExecutionWrapper.ExecuteCommand<TestResult>(ThrowAxeWindowsAutomationException);
+            }
+            catch (AxeWindowsAutomationException e)
+            {
+                Assert.IsTrue(e.StackTrace.Contains("ThrowAxeWindowsAutomationException"), "Stack Trace information has been lost");
+                throw;
+            }
+        }
+
+        private TestResult ThrowAxeWindowsAutomationException()
+        {
+            throw new AxeWindowsAutomationException("test");
+        }
     }
 }
