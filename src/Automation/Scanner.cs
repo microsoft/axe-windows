@@ -9,7 +9,6 @@ namespace Axe.Windows.Automation
     /// </summary>
     class Scanner : IScanner
     {
-        private static Object LockObject = new Object();
         private readonly Config _config;
         private readonly IOutputFileHelper _outputFileHelper;
         private readonly IScanResultsAssembler _scanResultsAssembler;
@@ -31,10 +30,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-            lock (LockObject)
-            {
-                return SnapshotCommand.Execute(_config, _outputFileHelper, _scanResultsAssembler);
-            } // lock
+            return SnapshotCommand.Execute(_config, _outputFileHelper, _scanResultsAssembler);
         }
     } // class
 } // namespace
