@@ -16,9 +16,9 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public static IScanner CreateScanner(Config config)
         {
-            return new Scanner(config
-                , Factory.CreateOutputFileHelper(config.OutputDirectory)
-                , new ScanResultsAssembler());
+            // Factory.CreateOutputFileHelper(config.OutputDirectory)
+            var scanTools = Factory.CreateScanTools();
+            return new Scanner(config, scanTools);
         }
     } // class
 } // namespace

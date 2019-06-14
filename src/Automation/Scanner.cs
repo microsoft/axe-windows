@@ -10,18 +10,15 @@ namespace Axe.Windows.Automation
     class Scanner : IScanner
     {
         private readonly Config _config;
-        private readonly IOutputFileHelper _outputFileHelper;
-        private readonly IScanResultsAssembler _scanResultsAssembler;
+        private readonly IScanTools _scanTools;
 
-        internal Scanner(Config config, IOutputFileHelper outputFileHelper, ScanResultsAssembler scanResultsAssembler)
+        internal Scanner(Config config, IScanTools scanTools)
         {
             if (config == null) throw new ArgumentNullException(nameof(config));
-            if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
-            if (scanResultsAssembler == null) throw new ArgumentNullException(nameof(scanResultsAssembler));
+            if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
 
             _config = config;
-            _outputFileHelper = outputFileHelper;
-            _scanResultsAssembler = scanResultsAssembler;
+            _scanTools = scanTools;
         }
 
         /// <summary>
@@ -30,7 +27,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-            return SnapshotCommand.Execute(_config, _outputFileHelper, _scanResultsAssembler);
+                return SnapshotCommand.Execute(_config, _scanTools);
         }
     } // class
 } // namespace

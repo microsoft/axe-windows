@@ -8,23 +8,15 @@ using System.Globalization;
 
 namespace Axe.Windows.Automation
 {
-    /// <summary>
-    /// Wraps up the logic of selecting a target element basd on the command parameters
-    /// </summary>
-    internal static class TargetElementLocator
+    class TargetElementLocator : ITargetElementLocator
     {
-        /// <summary>
-        /// Locate the target element in the UIA tree
-        /// </summary>
-        /// <param name="processId">The process id of the application to scan</param>
-        /// <returns>The ElementContext that matches the targeting parameters</returns>
-        internal static ElementContext LocateRootElement(int processId)
+        public A11yElement LocateRootElement(int processId)
         {
             try
             {
                 var element = A11yAutomation.ElementFromProcessId(processId);
 
-                return new ElementContext(element);
+                return new ElementContext(element).Element;
             }
             catch (Exception ex)
             {

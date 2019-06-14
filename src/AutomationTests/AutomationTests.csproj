@@ -90,9 +90,6 @@
     <Compile Include="ExecutionWrapperUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScanResultsAssemblerTests.cs" />
-    <Compile Include="SnapshotCommandUnitTests.cs" />
-    <Compile Include="TargetElementLocatorUnitTests.cs" />
-    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
