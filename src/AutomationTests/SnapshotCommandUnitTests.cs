@@ -3,6 +3,7 @@
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Automation;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,7 +14,6 @@ using Axe.Windows.Actions.Contexts.Fakes;
 using Axe.Windows.Actions.Fakes;
 using Axe.Windows.Automation.Fakes;
 using Microsoft.QualityTools.Testing.Fakes;
-using Axe.Windows.Core.Enums;
 #endif
 
 namespace Axe.Windows.AutomationTests
