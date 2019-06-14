@@ -9,7 +9,7 @@ namespace Axe.Windows.Automation
     /// </summary>
     class Scanner : IScanner
     {
-        private static Object LockObject = new Object();
+        private static readonly Object LockObject = new Object();
         private readonly Config _config;
         private readonly IOutputFileHelper _outputFileHelper;
         private readonly IScanResultsAssembler _scanResultsAssembler;
