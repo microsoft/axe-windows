@@ -88,6 +88,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         [ExpectedException(typeof(AxeWindowsAutomationException))]
         public void ExecuteCommand_CommandThrowsAxeWindowsAutomationException_StackTraceIsComplete()
         {
