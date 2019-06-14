@@ -9,15 +9,19 @@ namespace Axe.Windows.Automation
         public IOutputFileHelper OutputFileHelper { get; }
         public IScanResultsAssembler ResultsAssembler { get; }
         public ITargetElementLocator TargetElementLocator { get; }
+        public IInternalScanner InternalScanner { get; }
 
-        public ScanTools(IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler, ITargetElementLocator targetElementLocator)
+        public ScanTools(IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler, ITargetElementLocator targetElementLocator, IInternalScanner internalScanner)
         {
             if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
             if (resultsAssembler == null) throw new ArgumentNullException(nameof(resultsAssembler));
             if (targetElementLocator == null) throw new ArgumentNullException(nameof(targetElementLocator));
+            if (internalScanner == null) throw new ArgumentNullException(nameof(internalScanner));
+
             OutputFileHelper = outputFileHelper;
             ResultsAssembler = resultsAssembler;
             TargetElementLocator = targetElementLocator;
+            InternalScanner = internalScanner;
         }
     } // class
 } // namespace
