@@ -16,8 +16,8 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public static IScanner CreateScanner(Config config)
         {
-            // Factory.CreateOutputFileHelper(config.OutputDirectory)
-            var scanTools = Factory.CreateScanTools();
+            var scanToolsBuilder = Factory.CreateScanToolsBuilder();
+            var scanTools = scanToolsBuilder.WithOutputDirectory(config.OutputDirectory).Build();
             return new Scanner(config, scanTools);
         }
     } // class
