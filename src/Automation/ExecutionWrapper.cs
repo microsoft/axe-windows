@@ -22,9 +22,9 @@ namespace Axe.Windows.Automation
                 {
                     return command();
                 }
-                catch (AxeWindowsAutomationException ex)
+                catch (AxeWindowsAutomationException)
                 {
-                    throw ex;
+                    throw;
                 }
                 catch (Exception ex)
                 {
