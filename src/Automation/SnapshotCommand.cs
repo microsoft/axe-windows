@@ -70,8 +70,8 @@ namespace Axe.Windows.Automation
                                     }
 
 #if NOT_CURRENTLY_SUPPORTED
-                                if (locationHelper.IsSarifExtension())
-                                    // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
+                                    if (locationHelper.IsSarifExtension())
+                                        // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
 #endif
 
                                     results.OutputFile = (a11yTestOutputFile, null);
