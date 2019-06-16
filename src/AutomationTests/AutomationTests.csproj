@@ -79,10 +79,6 @@
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\Actions\Actions.csproj">
-      <Project>{B2FA5150-470A-4864-A191-7BCAE39DF35A}</Project>
-      <Name>Actions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Automation\Automation.csproj">
       <Project>{ae5ec69f-158a-41c8-ad2b-ec7b84d820ef}</Project>
       <Name>Automation</Name>
