@@ -91,10 +91,6 @@
       <Project>{2DA36FA6-4FF8-4DB4-AA7E-2F1CACAE6E35}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Desktop\Desktop.csproj">
-      <Project>{0b9855fd-7b04-415c-a813-da9697693fda}</Project>
-      <Name>Desktop</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rules\Rules.csproj">
       <Project>{7FE58829-560E-4142-BF81-291A66D3844B}</Project>
       <Name>Rules</Name>
