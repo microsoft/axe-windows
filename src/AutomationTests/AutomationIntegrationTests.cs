@@ -47,9 +47,9 @@ namespace Axe.Windows.AutomationTests
 
             var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
 
-            // Validate that we got the expected error count
-            Assert.AreEqual(12, output.ErrorCount);
-            Assert.AreEqual(12, output.Errors.Count());
+            // Validate that we got some errors
+            Assert.IsTrue(output.ErrorCount > 0);
+            Assert.AreEqual(output.ErrorCount, output.Errors.Count());
 
             // Validate that we got some properties and patterns
             Assert.IsTrue(output.Errors.All(error => error.Element.Properties != null));
