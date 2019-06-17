@@ -27,7 +27,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-                return SnapshotCommand.Execute(_config, _scanTools);
+            return SnapshotCommand.Execute(_config, _scanTools);
         }
     } // class
 } // namespace
