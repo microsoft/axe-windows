@@ -14,8 +14,7 @@ using System.Globalization;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Class to take a snapshot (via ShapshotCommand.Execute). Can only be successfully called after
-    /// a successful call to StartCommand.Execute
+    /// Class to take a snapshot (via SnapshotCommand.Execute). 
     /// </summary>
     static class SnapshotCommand
     {
@@ -23,21 +22,25 @@ namespace Axe.Windows.Automation
         /// Execute the Start command. Used by both .NET and by PowerShell entry points
         /// </summary>
         /// <param name="config">A set of configuration options</param>
-        /// <param name="outputFileHelper"/>
-        /// <param name="resultsAssembler"/>
+        /// <param name="scanTools">A set of tools for writing output files,
+        /// creating the expected results format, and finding the target element to scan</param>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static ScanResults Execute(Config config, IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler)
+        public static ScanResults Execute(Config config, IScanTools scanTools)
         {
             return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
             {
-                if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
-                if (resultsAssembler == null) throw new ArgumentNullException(nameof(resultsAssembler));
+                if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
+                if (scanTools.OutputFileHelper == null) throw new ArgumentNullException(nameof(scanTools.OutputFileHelper));
+                if (scanTools.ResultsAssembler == null) throw new ArgumentNullException(nameof(scanTools.ResultsAssembler));
+                if (scanTools.TargetElementLocator == null) throw new ArgumentNullException(nameof(scanTools.TargetElementLocator));
 
                 using (var dataManager = DataManager.GetDefaultInstance())
                 using (var sa = SelectAction.GetDefaultInstance())
                 {
-                    ElementContext ec = TargetElementLocator.LocateRootElement(config.ProcessId);
-                    sa.SetCandidateElement(ec.Element);
+                    var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
+                    if (rootElement == null) throw new ArgumentNullException(nameof(rootElement));
+
+                    sa.SetCandidateElement(rootElement);
 
                     if (sa.Select())
                     {
@@ -57,25 +60,10 @@ namespace Axe.Windows.Automation
                                         dc.ElementCounter.UpperBound));
                                 }
 
-                                var results = resultsAssembler.AssembleScanResultsFromElement(ec2.Element);
-
-                                string a11yTestOutputFile = config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest) ? outputFileHelper.GetNewA11yTestFilePath() : string.Empty;
+                                var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(ec2.Element);
 
                                 if (results.ErrorCount > 0)
-                                {
-                                    if (config.OutputFileFormat.HasFlag(OutputFileFormat.A11yTest))
-                                    {
-                                        ScreenShotAction.CaptureScreenShot(ec2.Id);
-                                        SaveAction.SaveSnapshotZip(a11yTestOutputFile, ec2.Id, ec2.Element.UniqueId, A11yFileMode.Test);
-                                    }
-
-#if NOT_CURRENTLY_SUPPORTED
-                                    if (locationHelper.IsSarifExtension())
-                                        // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
-#endif
-
-                                    results.OutputFile = (a11yTestOutputFile, null);
-                                }
+                                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools.OutputFileHelper, ec2);
 
                                 return results;
                             }
@@ -86,5 +74,25 @@ namespace Axe.Windows.Automation
                 } // using
             });
         }
-    }
-}
+
+        private static (string A11yTest, string Sarif) WriteOutputFiles(OutputFileFormat outputFileFormat, IOutputFileHelper outputFileHelper, ElementContext elementContext)
+        {
+            string a11yTestOutputFile = null;
+
+            if (outputFileFormat.HasFlag(OutputFileFormat.A11yTest))
+            {
+                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+
+                a11yTestOutputFile = outputFileHelper.GetNewA11yTestFilePath();
+                SaveAction.SaveSnapshotZip(a11yTestOutputFile, elementContext.Id, elementContext.Element.UniqueId, A11yFileMode.Test);
+            }
+
+#if NOT_CURRENTLY_SUPPORTED
+                                if (locationHelper.IsSarifExtension())
+                                    // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
+#endif
+
+            return (a11yTestOutputFile, null);
+        }
+    } // class
+} // namespace

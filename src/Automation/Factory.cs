@@ -8,6 +8,14 @@ namespace Axe.Windows.Automation
 {
     static class Factory
     {
+        static public IScanTools CreateScanTools()
+        {
+            return new ScanTools(
+                CreateOutputFileHelper(null),
+                CreateResultsAssembler(),
+                CreateTargetElementLocator());
+        }
+
         public static IOutputFileHelper CreateOutputFileHelper(string outputDirectory)
         {
             return new OutputFileHelper(outputDirectory, CreateSystemFactory());
@@ -16,6 +24,16 @@ namespace Axe.Windows.Automation
         private static ISystemFactory CreateSystemFactory()
         {
             return new SystemFactory();
+        }
+
+        private static IScanResultsAssembler CreateResultsAssembler()
+        {
+            return new ScanResultsAssembler();
+        }
+
+        private static ITargetElementLocator CreateTargetElementLocator()
+        {
+            return new TargetElementLocator();
         }
     } // class
 } // namespace
