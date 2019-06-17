@@ -15,9 +15,9 @@ namespace Axe.Windows.Automation
             if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
             if (resultsAssembler == null) throw new ArgumentNullException(nameof(resultsAssembler));
             if (targetElementLocator == null) throw new ArgumentNullException(nameof(targetElementLocator));
-            this.OutputFileHelper = outputFileHelper;
-            this.ResultsAssembler = resultsAssembler;
-            this.TargetElementLocator = targetElementLocator;
+            OutputFileHelper = outputFileHelper;
+            ResultsAssembler = resultsAssembler;
+            TargetElementLocator = targetElementLocator;
         }
     } // class
 } // namespace
