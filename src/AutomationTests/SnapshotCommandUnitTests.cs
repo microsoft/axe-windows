@@ -1,404 +1,327 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Automation;
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Enums;
-using Axe.Windows.Core.Misc;
-using Axe.Windows.Core.Results;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
-using System.Collections.Generic;
-#if FAKES_SUPPORTED
-using Axe.Windows.Actions.Contexts.Fakes;
-using Axe.Windows.Actions.Fakes;
-using Axe.Windows.Automation.Fakes;
-using Microsoft.QualityTools.Testing.Fakes;
-#endif
 
 namespace Axe.Windows.AutomationTests
 {
-    using ScanResult = Axe.Windows.Core.Results.ScanResult;
-    using ScanResults = Axe.Windows.Core.Results.ScanResults;
+    using ScanResults = Axe.Windows.Automation.ScanResults;
 
     [TestClass]
     public class SnapshotCommandUnitTests
     {
-        const string TestMessage = "I find his reaction most illogical";
+        private MockRepository _mockRepo;
+        private Mock<IScanTools> _scanToolsMock;
+        private Mock<ITargetElementLocator> _targetElementLocatorMock;
+        private Mock<IInternalScanner> _internalScannerMock;
+        private Mock<IOutputFileHelper> _outputFileHelperMock;
+        private Mock<IScanResultsAssembler> _resultsAssemblerMock;
+        private Config _minimalConfig;
 
-#if FAKES_SUPPORTED
-        private IOutputFileHelper OutputFileHelperStub = new Axe.Windows.Automation.Fakes.StubIOutputFileHelper();
-        private IScanResultsAssembler ResultsAssemblerStub = new Axe.Windows.Automation.Fakes.StubScanResultsAssembler();
-#endif
-
-        private static A11yElement CreateA11yElement(List<A11yElement> children = null, List<ScanStatus> statuses = null)
+        public SnapshotCommandUnitTests()
         {
-            A11yElement element = new A11yElement();
-
-            if (children != null)
-                element.Children = children;
-
-            if (statuses != null)
-            {
-                ScanResult scanResult = new ScanResult
-                {
-                    Items = new List<RuleResult>(),
-                };
-
-                foreach (ScanStatus status in statuses)
-                {
-                    scanResult.Items.Add(new RuleResult {Status = status, Rule = RuleId.NameNotNull});
-                }
-
-                ScanResults elementScanResults = new ScanResults();
-                elementScanResults.AddScanResult(scanResult);
-
-                element.ScanResults = elementScanResults;
-            }
-
-            return element;
+            _mockRepo = new MockRepository(MockBehavior.Strict) { DefaultValue = DefaultValue.Mock };
+            _minimalConfig = Config.Builder.ForProcessId(-1).Build();
         }
 
-#if FAKES_SUPPORTED
-        [TestMethod]
-        [Timeout(2000)]
-        public void Execute_TargetElementLocatorReceivesExpectedParameters()
+        [TestInitialize]
+        public void TestInit()
         {
-            using (ShimsContext.Create())
-            {
-                int expectedProcessId = 42;
-                int actualProcessId = 0;
+            _scanToolsMock = _mockRepo.Create<IScanTools>();
+            _targetElementLocatorMock = _mockRepo.Create<ITargetElementLocator>();
+            _internalScannerMock = _mockRepo.Create<IInternalScanner>();
+            _outputFileHelperMock = _mockRepo.Create<IOutputFileHelper>();
+            _resultsAssemblerMock = _mockRepo.Create<IScanResultsAssembler>();
+        }
 
-                Config config = Config.Builder.ForProcessId(expectedProcessId).Build();
+        private void InitResultsCallback(ScanResults results)
+        {
+            _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(results);
 
-                ShimTargetElementLocator.LocateRootElementInt32 = (processId) =>
-                {
-                    actualProcessId = processId;
-                    throw new Exception(TestMessage);
-                };
-
-                InitializeShims();
-
-                try
-                {
-                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
-                }
-                catch (AxeWindowsAutomationException ex)
-                {
-                    Assert.AreEqual(TestMessage, ex.InnerException.Message);
-                }
-
-                Assert.AreEqual(expectedProcessId, actualProcessId);
-            }
+            ScanResults tempResults = null;
+            _internalScannerMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<InternalScannerCallback<ScanResults>>()))
+                .Callback<A11yElement, InternalScannerCallback<ScanResults>>((e, cb) => tempResults = cb(e, Guid.Empty))
+                .Returns(() => tempResults);
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_UnableToSelectCandidateElement_ThrowsAutomationException_ErrorAutomation008()
+        [Timeout(1000)]
+        public void Execute_NullConfig_ThrowsException()
         {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => false,
-                };
-
-                InitializeShims(selectAction:selectAction, shimTargetElementLocator: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                try
-                {
-                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
-                }
-                catch (AxeWindowsAutomationException ex)
-                {
-                    Assert.IsTrue(ex.Message.Contains(" Automation008:"));
-                }
-            }
+            var action = new Action(() => SnapshotCommand.Execute(config: null, scanTools: _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsTrue(ex.Message.Contains("config"));
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_UnableToSetTestModeDataContext_ThrowsAutomationException_ErrorAutomation008()
+        [Timeout(1000)]
+        public void Execute_NullScanTools_ThrowsException()
         {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(CreateA11yElement()),
-                };
-
-                InitializeShims(shimTargetElementLocator: true,
-                    shimUiFramework: true, setTestModeSucceeds: false);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                try
-                {
-                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
-                }
-                catch (Exception ex)
-                {
-                    Assert.IsTrue(ex.Message.Contains(" Automation008:"));
-                }
-            }
+            var action = new Action(() => SnapshotCommand.Execute(config: _minimalConfig, scanTools: null));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsTrue(ex.Message.Contains("scanTools"));
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_NoScanResultsInPOI_ThrowsAutomationException_ErrorAutomation012()
+        [Timeout(1000)]
+        public void Execute_NullTargetElementLocator_ThrowsException()
         {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(CreateA11yElement()),
-                };
-
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                try
-                {
-                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
-                }
-                catch (AxeWindowsAutomationException ex)
-                {
-                    Assert.IsTrue(ex.Message.Contains(" Automation012:"));
-                }
-            }
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns<ITargetElementLocator>(null);
+            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsTrue(ex.Message.Contains("TargetElementLocator"));
+            _scanToolsMock.VerifyAll();
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_UpperBoundIsReached_ThrowsAutomationException_ErrorAutomation017()
+        [Timeout(1000)]
+        public void Execute_NullInternalScanner_ThrowsException()
         {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement= (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        new A11yElement()),
-                };
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns<IInternalScanner>(null);
 
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: true, shimUiFramework: true,
-                    setTestModeSucceeds: true);
-
-                var config = Config.Builder.ForProcessId(-1).Build();
-
-                try
-                {
-                    SnapshotCommand.Execute(config, OutputFileHelperStub, ResultsAssemblerStub);
-                }
-                catch (Exception ex)
-                {
-                    Assert.IsTrue(ex.Message.Contains(" Automation017:"));
-                }
-            }
+            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsTrue(ex.Message.Contains("InternalScanner"));
+            _scanToolsMock.VerifyAll();
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_NoScanResultsInPOI_ReturnsCompleteWithNoIssues()
+        [Timeout(1000)]
+        public void Execute_TargetElementLocatorReturnsNull_ThrowsException()
         {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        new A11yElement
-                        {
-                            ScanResults = new ScanResults(),
-                            Children = new List<A11yElement>
-                            {
-                                new A11yElement
-                                {
-                                    ScanResults = new ScanResults(),
-                                    Children = new List<A11yElement>(),
-                                }
-                            }
-                        }),
-                };
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns<A11yElement>(null);
 
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true);
+            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(InvalidOperationException));
+            Assert.IsTrue(ex.Message.Contains("rootElement"));
 
-                var config = Config.Builder.ForProcessId(-1).Build();
-                var resultsAssembler = new ScanResultsAssembler();
-
-                    var results = SnapshotCommand.Execute(config, OutputFileHelperStub, resultsAssembler);
-
-                    Assert.AreEqual(0, results.ErrorCount);
-            }
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_NoScanResultsInPOI_SavesFile_ReturnsCompleteWithNoIssues()
+        [Timeout(1000)]
+        public void Execute_TargetElementLocatorReceivesConfigProcessId()
         {
-            using (ShimsContext.Create())
-            {
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        new A11yElement
-                        {
-                            ScanResults = new ScanResults(),
-                            Children = new List<A11yElement>
-                            {
-                                new A11yElement
-                                {
-                                    ScanResults = new ScanResults(),
-                                    Children = new List<A11yElement>(),
-                                }
-                            }
-                        }),
-                };
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(42)).Returns<A11yElement>(null);
 
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
+            var config = Config.Builder.ForProcessId(42).Build();
 
-                var config = Config.Builder.ForProcessId(-1).Build();
-                var resultsAssembler = new ScanResultsAssembler();
+            var action = new Action(() => SnapshotCommand.Execute(config, _scanToolsMock.Object));
+            Assert.ThrowsException<AxeWindowsAutomationException>(action);
 
-                var results = SnapshotCommand.Execute(config, OutputFileHelperStub, resultsAssembler);
-
-                Assert.AreEqual(0, results.ErrorCount);
-            }
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
         }
 
         [TestMethod]
-        [Timeout(2000)]
-        public void Execute_OnlyFailuresInPOI_SavesFile_ReturnsComplete_FailuresOnly()
+        [Timeout(1000)]
+        public void Execute_InternalScannerScan_IsCalledWithExpectedElement()
         {
-            using (ShimsContext.Create())
-            {
-                List<ScanStatus> scanStatusFail = new List<ScanStatus> { ScanStatus.Fail };
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
 
-                ShimSelectAction selectAction = new ShimSelectAction()
-                {
-                    SetCandidateElementA11yElement = (element) => { },
-                    Select = () => true,
-                    POIElementContextGet = () => new ElementContext(
-                        CreateA11yElement(
-                            new List<A11yElement>
-                            {
-                                CreateA11yElement(new List<A11yElement>(), scanStatusFail)
-                            },
-                            scanStatusFail))
-                };
+            var element = new A11yElement();
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(element);
 
-                InitializeShims(shimTargetElementLocator: true,
-                    selectAction: selectAction, elementBoundExceeded: false, shimUiFramework: true,
-                    setTestModeSucceeds: true, shimScreenCapture: true, shimSnapshot: true, shimSarif: true);
+            _internalScannerMock.Setup(x => x.Scan(element, It.IsAny<InternalScannerCallback<ScanResults>>())).Returns<ScanResults>(null);
 
-                var config = Config.Builder.ForProcessId(-1).Build();
-                var resultsAssembler = new ScanResultsAssembler();
-                Axe.Windows.Automation.ScanResults results = null;
+            SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
-                try
-                {
-                    results = SnapshotCommand.Execute(config, OutputFileHelperStub, resultsAssembler);
-                }
-                catch (System.Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex);
-                }
-
-                Assert.AreEqual(2, results.ErrorCount);
-            }
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
         }
 
-        private static void InitializeShims(
-            bool shimTargetElementLocator = false,
-            bool? elementBoundExceeded = null,
-            bool shimUiFramework = false,
-            bool? setTestModeSucceeds = null,
-            bool shimScreenCapture = false,
-            bool shimSnapshot = false,
-            bool shimSarif = false,
-            ShimSelectAction selectAction = null)
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_ReturnsExpectedResults()
         {
-            if (shimTargetElementLocator)
-            {
-                ShimTargetElementLocator.LocateRootElementInt32 = (processId) =>
-                {
-                    return new ElementContext(CreateA11yElement());
-                };
-            }
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
 
-            if (selectAction != null)
-            {
-                ShimSelectAction.GetDefaultInstance = () => selectAction;
-            }
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
 
-            if (elementBoundExceeded.HasValue)
-            {
-                SetElementDataContext(elementBoundExceeded.Value);
-            }
+            var expectedResults = new ScanResults();
+            InitResultsCallback(expectedResults);
 
-            if (shimUiFramework)
-            {
-                ShimGetDataAction.GetProcessAndUIFrameworkOfElementContextGuid = (_) => new Tuple<string, string>("one", "two");
-            }
+            var actualResults = SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
+            Assert.AreEqual(expectedResults, actualResults);
 
-            if (setTestModeSucceeds.HasValue)
-            {
-                ShimCaptureAction.SetTestModeDataContextGuidDataContextModeTreeViewModeBoolean = (_, __, ___, _____) 
-                    => setTestModeSucceeds.Value;
-            }
-
-            if (shimScreenCapture)
-            {
-                ShimScreenShotAction.CaptureScreenShotGuid = (_) => { };
-            }
-
-            if (shimSnapshot)
-            {
-                ShimSaveAction.SaveSnapshotZipStringGuidNullableOfInt32A11yFileModeDictionaryOfSnapshotMetaPropertyNameObject = (_, __, ___, ____, _____) => { };
-            }
-
-            if (shimSarif)
-            {
-                ShimSaveAction.SaveSarifFileStringGuidBoolean = (_, __, ___) => { };
-            }
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
         }
 
-        private static void SetElementDataContext(bool upperBoundExceeded)
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_NullResultsAssembler_ThrosException()
         {
-            BoundedCounter counter = new BoundedCounter(1);
-            counter.TryIncrement();
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns<IScanResultsAssembler>(null);
 
-            if (upperBoundExceeded)  // if true, we're 1 over capacity. if false, we're exactly at capacity
-            {
-                counter.TryIncrement();
-            }
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
 
-            ShimElementDataContext dc = new ShimElementDataContext
-            {
-                ElementCounterGet = () => counter
-            };
+            ScanResults tempResults = null;
+            _internalScannerMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<InternalScannerCallback<ScanResults>>()))
+                .Callback<A11yElement, InternalScannerCallback<ScanResults>>((e, cb) => tempResults = cb(e, Guid.Empty))
+                .Returns(() => tempResults);
 
-            ShimGetDataAction.GetElementDataContextGuid = (_) => dc;
+            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsTrue(ex.Message.Contains("ResultsAssembler"));
+
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
         }
-#endif
-    }
-}
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_NoErrors_NoOutputFiles()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+
+            var expectedResults = new ScanResults();
+            expectedResults.ErrorCount = 0;
+            InitResultsCallback(expectedResults);
+
+            // In addition to throwing an ArgumentNullException
+            // The following call would cause mock exceptions for IInternalScann.CaptureScreenshot and IInternalScanner.SaveA11yTestFile.
+            // 
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .Build();
+
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            Assert.IsNull(actualResults.OutputFile.A11yTest);
+
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_OutputFileHelperIsNull_ThrowsException()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+
+            var expectedResults = new ScanResults();
+            expectedResults.ErrorCount = 1;
+            InitResultsCallback(expectedResults);
+
+            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
+
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_NullOutputFilePath_ThrowsException()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+
+            var expectedResults = new ScanResults();
+            expectedResults.ErrorCount = 1;
+            InitResultsCallback(expectedResults);
+
+            _internalScannerMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
+
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath()).Returns<string>(null);
+
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .Build();
+
+            var action = new Action(() => SnapshotCommand.Execute(config, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(InvalidOperationException));
+            Assert.IsTrue(ex.Message.Contains("a11yTestOutputFile"));
+
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_WithErrors_CreatesSnapshotAndA11yTestFile()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+
+            var expectedResults = new ScanResults();
+            expectedResults.ErrorCount = 75;
+            InitResultsCallback(expectedResults);
+
+            var expectedPath = "Test.file";
+
+            _internalScannerMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
+            _internalScannerMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
+
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath()).Returns(expectedPath);
+
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .Build();
+
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            Assert.AreEqual(75, actualResults.ErrorCount);
+            Assert.AreEqual(expectedPath, actualResults.OutputFile.A11yTest);
+
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _internalScannerMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
+        }
+    } // class
+} // namespace

@@ -6,6 +6,7 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Desktop.Settings;
 using System;
 using System.Globalization;
 
@@ -46,6 +47,16 @@ namespace Axe.Windows.Automation
                     return resultsCallback(ec2.Element, ec2.Id);
                 } // using
             } // using
+        }
+
+        public void CaptureScreenshot(Guid elementId)
+        {
+            ScreenShotAction.CaptureScreenShot(elementId);
+        }
+
+        public void SaveA11yTestFile(string path, A11yElement element, Guid elementId)
+        {
+            SaveAction.SaveSnapshotZip(path, elementId, element.UniqueId, A11yFileMode.Test);
         }
     } // class
 } // namespace

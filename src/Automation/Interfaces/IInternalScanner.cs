@@ -24,5 +24,19 @@ namespace Axe.Windows.Automation
         /// <param name="resultsCallback">A delegate which can act on results and transform them into a specified type</param>
         /// <returns></returns>
         T Scan<T>(A11yElement element, InternalScannerCallback<T> resultsCallback);
+
+        /// <summary>
+        /// Takes a screenshot, highlighting the given element
+        /// </summary>
+        /// <param name="elementId"></param>
+        void CaptureScreenshot(Guid elementId);
+
+        /// <summary>
+        /// Saves an a11ytest file to the given path
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="element"></param>
+        /// <param name="elementId"></param>
+        void SaveA11yTestFile(string path, A11yElement element, Guid elementId);
     } // interface
 } // namespace
