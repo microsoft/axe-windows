@@ -27,13 +27,13 @@ namespace Axe.Windows.AutomationTests
             ElementInfo expectedParentInfo = new ElementInfo
             {
                 Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
-                Properties = element.Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+                Properties = null,
             };
 
             ElementInfo expectedChildInfo = new ElementInfo
             {
-                Patterns = element.Children[0].Patterns.ConvertAll<string>(x => x.Name),
-                Properties = element.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
+                Patterns = null,
+                Properties = element.Children[0].Properties.ToDictionary(p => p.Value.Name, p => p.Value.TextValue),
             };
 
             var scanResults = assembler.AssembleScanResultsFromElement(element);
@@ -51,17 +51,17 @@ namespace Axe.Windows.AutomationTests
 
             // the patterns for the parent errors should be as expected
             foreach (var error in parentErrors)
-            { 
-                Assert.IsTrue(expectedParentInfo.Properties.SequenceEqual(error.Element.Properties));
+            {
+                Assert.AreEqual(expectedParentInfo.Properties, error.Element.Properties);
                 Assert.IsTrue(expectedParentInfo.Patterns.SequenceEqual(error.Element.Patterns));
             }
 
             // the patterns for the child errors and their parents should be as expected 
             foreach (var error in childErrors)
             {
-                Assert.IsTrue(expectedChildInfo.Patterns.SequenceEqual(error.Element.Patterns));
+                Assert.AreEqual(expectedChildInfo.Patterns, error.Element.Patterns);
                 Assert.IsTrue(expectedChildInfo.Properties.SequenceEqual(error.Element.Properties));
-                Assert.IsTrue(expectedParentInfo.Properties.SequenceEqual(error.Element.Parent.Properties));
+                Assert.AreEqual(expectedParentInfo.Properties, error.Element.Parent.Properties);
                 Assert.IsTrue(expectedParentInfo.Patterns.SequenceEqual(error.Element.Parent.Patterns));
             }
 
@@ -109,6 +109,16 @@ namespace Axe.Windows.AutomationTests
             Assert.ThrowsException<ArgumentNullException>(() => ScanResultsAssembler.AssembleErrorsFromElement(errors, null, null));
         }
 
+        [TestMethod]
+        [Timeout(1000)]
+        public void AssembleScanResults_ThrowsKeyNotFoundException_BadResults()
+        {
+            A11yElement element = GenerateA11yElementWithBadScanResults();
+            var errors = new List<Automation.ScanResult>();
+
+            Assert.ThrowsException<KeyNotFoundException>(() => ScanResultsAssembler.AssembleErrorsFromElement(errors, element, null));
+        }
+
         private List<RuleId> GetExpectedRuleIDs() => new List<RuleId>()
         {
             RuleId.BoundingRectangleCompletelyObscuresContainer,
@@ -129,7 +139,7 @@ namespace Axe.Windows.AutomationTests
                 Children = new List<A11yElement>(),
             };
 
-            element.Properties = GetFillerProperties();
+            element.Properties = null;
             element.Patterns = GetFillerPatterns();
             element.ScanResults.Items.AddRange(GetFillerScanResults());
             element.Children.Add(GenerateA11yElementWithoutChild());
@@ -141,8 +151,17 @@ namespace Axe.Windows.AutomationTests
             A11yElement element = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
 
             element.Properties = GetFillerProperties();
-            element.Patterns = GetFillerPatterns();
+            element.Patterns = null;
             element.ScanResults.Items.AddRange(GetFillerScanResults());
+
+            return element;
+        }
+
+        private A11yElement GenerateA11yElementWithBadScanResults()
+        {
+            A11yElement element = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
+
+            element.ScanResults.Items.AddRange(GetBadScanResults());
 
             return element;
         }
@@ -160,13 +179,27 @@ namespace Axe.Windows.AutomationTests
             new A11yPattern() { Name = "Tern" },
         };
 
+        private List<Core.Results.ScanResult> GetBadScanResults() => new List<Core.Results.ScanResult>()
+        {
+            new Core.Results.ScanResult()
+            {
+                Items = new List<RuleResult>()
+                {
+                    new RuleResult() { Status = ScanStatus.Uncertain, Rule = RuleId.BoundingRectangleNotNull },
+                    new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.Indecisive },
+                    new RuleResult() { Status = ScanStatus.NoResult, Rule = RuleId.ListItemSiblingsUnique },
+                    new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleCompletelyObscuresContainer },
+                }
+            }
+        };
+
         private List<Core.Results.ScanResult> GetFillerScanResults() => new List<Core.Results.ScanResult>()
         {
             new Core.Results.ScanResult()
             {
                 Items = new List<RuleResult>()
                 {
-                    new RuleResult() { Status = ScanStatus.Pass, Rule = RuleId.IsKeyboardFocusable },
+                    new RuleResult() { Status = ScanStatus.Pass, Rule = RuleId.Indecisive },
                     new RuleResult() { Status = ScanStatus.Uncertain, Rule = RuleId.BoundingRectangleNotNull },
                     new RuleResult() { Status = ScanStatus.NoResult, Rule = RuleId.ListItemSiblingsUnique },
                     new RuleResult() { Status = ScanStatus.Fail, Rule = RuleId.BoundingRectangleCompletelyObscuresContainer },
