@@ -358,7 +358,7 @@
     <value>A page must not have multiple elements with LocalizedLandmarkType "contentinfo."</value>
   </data>
   <data name="LandmarkOneMain" xml:space="preserve">
-      <value>A page must have exactly one element with the LocalizedLandmarkType "main."</value>
+    <value>A page must have exactly one element with the LocalizedLandmarkType "main."</value>
   </data>
   <data name="LocalizedLandmarkTypeExcludesSpecialCharacters" xml:space="preserve">
     <value>The LocalizedLandmarkType property must not contain any special characters.</value>
@@ -419,5 +419,8 @@
   </data>
   <data name="ListItemSiblingsUnique" xml:space="preserve">
     <value>The Name property of sibling list items should be unique.</value>
+  </data>
+  <data name="HyperlinkNameShouldBeUnique" xml:space="preserve">
+    <value>Links with different purposes and destinations should have different names.</value>
   </data>
 </root>

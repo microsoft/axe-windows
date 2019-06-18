@@ -155,9 +155,10 @@ namespace Axe.Windows.Core.Enums
         PatternsExpectedBasedOnControlType,
 
         HelpTextExists,
-
-        // Axe.Windows.Rules
         HelpTextNotEqualToName,
+
+        HyperlinkNameShouldBeUnique,
+
         IsControlElementPropertyExists,
         IsControlElementPropertyCorrect,
 

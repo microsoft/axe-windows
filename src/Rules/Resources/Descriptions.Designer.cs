@@ -430,6 +430,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Links with different purposes and destinations should have different names..
+        /// </summary>
+        internal static string HyperlinkNameShouldBeUnique {
+            get {
+                return ResourceManager.GetString("HyperlinkNameShouldBeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content..
         /// </summary>
         internal static string IsContentElementFalseOptional {

@@ -540,4 +540,7 @@ If possible, use a predefined (non-custom) control type and the default localize
   <data name="ListItemSiblingsUnique" xml:space="preserve">
     <value>Provide unique names for sibling list items.</value>
   </data>
+  <data name="HyperlinkNameShouldBeUnique" xml:space="preserve">
+    <value>If the sibling hyperlink with the same Name navigates to a different destination, change the Name of either hyperlink.</value>
+  </data>
 </root>

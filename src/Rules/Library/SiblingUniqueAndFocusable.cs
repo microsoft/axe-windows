@@ -19,7 +19,7 @@ namespace Axe.Windows.Rules.Library
 
         private static Condition CreateEligibleChildCondition()
         {
-            var ExcludedType = DataItem | Image | Pane | ScrollBar | Thumb | TreeItem | ListItem;
+            var ExcludedType = DataItem | Image | Pane | ScrollBar | Thumb | TreeItem | ListItem | Hyperlink;
 
             return IsKeyboardFocusable
                 & IsContentOrControlElement
