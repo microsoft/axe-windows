@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
+using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Diagnostics;
 using System.IO;
@@ -10,7 +11,7 @@ using System.Threading;
 
 namespace Axe.Windows.AutomationTests
 {
-    [TestClass]
+    [TestClass, TestCategory(TestCategory.Integration)]
     public class AutomationIntegrationTests
     {
         readonly string TestAppPath = Path.GetFullPath("../../../../tools/WildlifeManager/WildlifeManager.exe");
