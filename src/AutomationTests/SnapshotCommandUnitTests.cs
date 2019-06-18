@@ -226,7 +226,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_OutputFileHelperIsNull_ThrowsException()
+        public void Execute_NullOutputFileHelper_ThrowsException()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.InternalScanner).Returns(_internalScannerMock.Object);
