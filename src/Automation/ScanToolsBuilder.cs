@@ -4,7 +4,7 @@ using System;
 
 namespace Axe.Windows.Automation
 {
-    class ScanToolsBuilder : IScanToolsBuilder
+    internal class ScanToolsBuilder : IScanToolsBuilder
     {
         private IFactory _factory;
         private IOutputFileHelper _outputFileHelper;

@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Path = System.IO.Path;
+using Moq;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -11,28 +11,42 @@ namespace Axe.Windows.AutomationTests
     {
         [TestMethod]
         [Timeout(1000)]
-        public void ScanToolsBuilder_CreatesIOutputFileHelperWithExpectedPath()
+        public void Build_CreatesExpectedObject()
         {
-            const string testPath = @"c:\_TestPath";
+            var mockRepository = new MockRepository(MockBehavior.Strict);
 
-            // #ToDo update this test to use Moq
-            var builder = Factory.CreateScanToolsBuilder();
-            Assert.IsNotNull(builder);
+            var internalScannerMock = mockRepository.Create<IInternalScanner>();
+            var outputFileHelperMock = mockRepository.Create<IOutputFileHelper>();
+            var resultsAssemblerMock = mockRepository.Create<IScanResultsAssembler>();
+            var targetElementLocatorMock = mockRepository.Create<ITargetElementLocator>();
 
-            var scanTools = builder.WithOutputDirectory(testPath).Build();
+            var factoryMock = mockRepository.Create<IFactory>();
+            factoryMock.Setup(x => x.CreateInternalScanner()).Returns(internalScannerMock.Object);
+            factoryMock.Setup(x => x.CreateResultsAssembler()).Returns(resultsAssemblerMock.Object);
+            factoryMock.Setup(x => x.CreateTargetElementLocator()).Returns(targetElementLocatorMock.Object);
+
+            string tempString = null;
+            factoryMock.Setup(x => x.CreateOutputFileHelper(It.IsAny<string>()))
+                .Callback<string>(s => tempString = s)
+                .Returns(outputFileHelperMock.Object);
+
+            outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath())
+                .Returns(() => tempString);
+
+            var builder = new ScanToolsBuilder(factoryMock.Object);
+
+            const string expectedPath = @"c:\_TestPath";
+            var scanTools = builder.WithOutputDirectory(expectedPath).Build();
+
             Assert.IsNotNull(scanTools);
+            Assert.IsNotNull(scanTools.InternalScanner);
             Assert.IsNotNull(scanTools.OutputFileHelper);
+            Assert.IsNotNull(scanTools.ResultsAssembler);
+            Assert.IsNotNull(scanTools.TargetElementLocator);
 
-            var a11ytestFilePath = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
-            Assert.AreEqual(testPath, Path.GetDirectoryName(a11ytestFilePath));
-        }
+            Assert.AreEqual(expectedPath, scanTools.OutputFileHelper.GetNewA11yTestFilePath());
 
-        [TestMethod]
-        [Timeout(1000)]
-        public void ScanToolsBuilder_CreatesAllObjects()
-        {
-            // #ToDo use mock with the ScanResultsBuilder class to ensure 
-            // all IFactory methods are called
+            factoryMock.VerifyAll();
         }
     } // class
 } // namespace
