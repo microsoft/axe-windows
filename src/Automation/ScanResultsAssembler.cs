@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Results;
+using Axe.Windows.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,11 +50,7 @@ namespace Axe.Windows.Automation
 
             foreach (var res in GetFailedRuleResultsFromElement(element))
             {
-                errors.Add(new ScanResult()
-                {
-                    Element = elementInfo,
-                    Rule = Rules.Rules.All[res.Rule],
-                });
+                errors.Add(MakeScanResult(elementInfo, res));
             }
 
             if (element.Children == null) return;
@@ -62,6 +59,18 @@ namespace Axe.Windows.Automation
             {
                 AssembleErrorsFromElement(errors, child, elementInfo);
             }
+        }
+
+        private static ScanResult MakeScanResult(ElementInfo elementInfo, RuleResult res)
+        {
+            if (!Rules.Rules.All.TryGetValue(res.Rule, out RuleInfo rule))
+                throw new KeyNotFoundException($"{res.Rule} not found in {nameof(Rules)} dictionary.");
+
+            return new ScanResult()
+            {
+                Element = elementInfo,
+                Rule = rule,
+            };
         }
 
         private static ElementInfo MakeElementInfoFromElement(A11yElement element, ElementInfo parent)
