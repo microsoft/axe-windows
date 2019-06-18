@@ -1,4 +1,6 @@
-﻿using Axe.Windows.Core.Bases;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
@@ -30,7 +32,6 @@ namespace Axe.Windows.Rules.Library
             var siblings = SiblingCount(EligibleHyperlink
                 & Name.Is(e.Name));
             var count = siblings.GetValue(e);
-            if (count < 1) return EvaluationCode.RuleExecutionError;
 
             return count == 1 ? EvaluationCode.Pass : EvaluationCode.Warning;
         }
