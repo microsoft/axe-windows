@@ -27,7 +27,8 @@ namespace Axe.Windows.Automation
             return new ScanTools(
                 _outputFileHelper ?? _factory.CreateOutputFileHelper(null),
                     _factory.CreateResultsAssembler(),
-                    _factory.CreateTargetElementLocator());
+                    _factory.CreateTargetElementLocator(),
+                    _factory.CreateInternalScanner());
         }
     } // class
 } // namespace
