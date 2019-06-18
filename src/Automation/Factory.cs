@@ -6,17 +6,20 @@ using System;
 
 namespace Axe.Windows.Automation
 {
-    static class Factory
+    /// <summary>
+    /// Factory used to create objects for internal use
+    /// </summary>
+    internal class Factory : IFactory
     {
-        static public IScanTools CreateScanTools()
+        private Factory()
+        { }
+
+        static public IScanToolsBuilder CreateScanToolsBuilder()
         {
-            return new ScanTools(
-                CreateOutputFileHelper(null),
-                CreateResultsAssembler(),
-                CreateTargetElementLocator());
+            return new ScanToolsBuilder(new Factory());
         }
 
-        public static IOutputFileHelper CreateOutputFileHelper(string outputDirectory)
+        public IOutputFileHelper CreateOutputFileHelper(string outputDirectory)
         {
             return new OutputFileHelper(outputDirectory, CreateSystemFactory());
         }
@@ -26,12 +29,12 @@ namespace Axe.Windows.Automation
             return new SystemFactory();
         }
 
-        private static IScanResultsAssembler CreateResultsAssembler()
+        public IScanResultsAssembler CreateResultsAssembler()
         {
             return new ScanResultsAssembler();
         }
 
-        private static ITargetElementLocator CreateTargetElementLocator()
+        public ITargetElementLocator CreateTargetElementLocator()
         {
             return new TargetElementLocator();
         }

@@ -75,7 +75,9 @@
     <Compile Include="Data\ScanResults.cs" />
     <Compile Include="Enums\OutputFileFormat.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="Interfaces\IFactory.cs" />
     <Compile Include="Interfaces\IScanTools.cs" />
+    <Compile Include="Interfaces\IScanToolsBuilder.cs" />
     <Compile Include="Interfaces\ITargetElementLocator.cs" />
     <Compile Include="Interfaces\IOutputFileHelper.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="ScannerFactory.cs" />
     <Compile Include="ScanResultsAssembler.cs" />
     <Compile Include="ScanTools.cs" />
+    <Compile Include="ScanToolsBuilder.cs" />
     <Compile Include="SnapshotCommand.cs" />
     <Compile Include="TargetElementLocator.cs" />
   </ItemGroup>
