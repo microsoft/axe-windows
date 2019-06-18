@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Actions;
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Desktop.Settings;
 using System;
 
 namespace Axe.Windows.Automation
@@ -41,32 +39,30 @@ namespace Axe.Windows.Automation
 
         private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools)
         {
-            if (element == null) throw new ArgumentNullException(nameof(element));
-            if (config == null) throw new ArgumentNullException(nameof(config));
-            if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
-            if (scanTools.ResultsAssembler == null) throw new ArgumentNullException(nameof(scanTools.ResultsAssembler));
+            if (scanTools?.ResultsAssembler == null) throw new ArgumentNullException(nameof(scanTools.ResultsAssembler));
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
             if (results.ErrorCount > 0)
-                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools.OutputFileHelper, element, elementId);
+                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId);
 
             return results;
         }
 
-        private static (string A11yTest, string Sarif) WriteOutputFiles(OutputFileFormat outputFileFormat, IOutputFileHelper outputFileHelper, A11yElement element, Guid elementId)
+        private static (string A11yTest, string Sarif) WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId)
         {
-            if (outputFileHelper == null) throw new ArgumentNullException(nameof(OutputFileHelper));
-            if (element == null) throw new ArgumentNullException(nameof(element));
+            if (scanTools?.OutputFileHelper == null) throw new ArgumentNullException(nameof(scanTools.OutputFileHelper));
 
             string a11yTestOutputFile = null;
 
             if (outputFileFormat.HasFlag(OutputFileFormat.A11yTest))
             {
-                ScreenShotAction.CaptureScreenShot(elementId);
+                scanTools.InternalScanner.CaptureScreenshot(elementId);
 
-                a11yTestOutputFile = outputFileHelper.GetNewA11yTestFilePath();
-                SaveAction.SaveSnapshotZip(a11yTestOutputFile, elementId, element.UniqueId, A11yFileMode.Test);
+                a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
+                if (a11yTestOutputFile == null) throw new InvalidOperationException(nameof(a11yTestOutputFile));
+                
+scanTools.InternalScanner.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
             }
 
 #if NOT_CURRENTLY_SUPPORTED
