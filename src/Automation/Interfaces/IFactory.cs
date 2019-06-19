@@ -12,6 +12,6 @@ namespace Axe.Windows.Automation
         IOutputFileHelper CreateOutputFileHelper(string outputDirectory);
         IScanResultsAssembler CreateResultsAssembler();
         ITargetElementLocator CreateTargetElementLocator();
-        IInternalScanner CreateInternalScanner();
+        IAxeWindowsActions CreateAxeWindowsActions();
     } // interface
 } // namespace

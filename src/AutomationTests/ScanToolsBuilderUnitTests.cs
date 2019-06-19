@@ -15,13 +15,13 @@ namespace Axe.Windows.AutomationTests
         {
             var mockRepository = new MockRepository(MockBehavior.Strict);
 
-            var internalScannerMock = mockRepository.Create<IInternalScanner>();
+            var actionsMock = mockRepository.Create<IAxeWindowsActions>();
             var outputFileHelperMock = mockRepository.Create<IOutputFileHelper>();
             var resultsAssemblerMock = mockRepository.Create<IScanResultsAssembler>();
             var targetElementLocatorMock = mockRepository.Create<ITargetElementLocator>();
 
             var factoryMock = mockRepository.Create<IFactory>();
-            factoryMock.Setup(x => x.CreateInternalScanner()).Returns(internalScannerMock.Object);
+            factoryMock.Setup(x => x.CreateAxeWindowsActions()).Returns(actionsMock.Object);
             factoryMock.Setup(x => x.CreateResultsAssembler()).Returns(resultsAssemblerMock.Object);
             factoryMock.Setup(x => x.CreateTargetElementLocator()).Returns(targetElementLocatorMock.Object);
 
@@ -39,7 +39,7 @@ namespace Axe.Windows.AutomationTests
             var scanTools = builder.WithOutputDirectory(expectedPath).Build();
 
             Assert.IsNotNull(scanTools);
-            Assert.IsNotNull(scanTools.InternalScanner);
+            Assert.IsNotNull(scanTools.Actions);
             Assert.IsNotNull(scanTools.OutputFileHelper);
             Assert.IsNotNull(scanTools.ResultsAssembler);
             Assert.IsNotNull(scanTools.TargetElementLocator);

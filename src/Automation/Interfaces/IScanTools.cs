@@ -11,6 +11,6 @@ namespace Axe.Windows.Automation
         IOutputFileHelper OutputFileHelper { get; }
         IScanResultsAssembler ResultsAssembler { get; }
         ITargetElementLocator TargetElementLocator { get; }
-        IInternalScanner InternalScanner { get; }
+        IAxeWindowsActions Actions { get; }
     } // interface
 } // namespace

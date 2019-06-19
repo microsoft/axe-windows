@@ -5,7 +5,7 @@ using System;
 
 namespace Axe.Windows.Automation
 {
-    delegate T InternalScannerCallback<T>(A11yElement element, Guid elementId);
+    delegate T ScanActionCallback<T>(A11yElement element, Guid elementId);
 
     /// <summary>
     /// The Interface representing the boundary between this Automation library
@@ -13,7 +13,7 @@ namespace Axe.Windows.Automation
     /// The code behind this interface should be unit tested as part of the projects where it is implemented,
     /// not as part of this (Automation) project.
     /// </summary>
-    internal interface IInternalScanner
+    internal interface IAxeWindowsActions
     {
         /// <summary>
         /// Runs a scan and calls a callback which can transform the results
@@ -23,7 +23,7 @@ namespace Axe.Windows.Automation
         /// <param name="element">The element from which to start the scan</param>
         /// <param name="resultsCallback">A delegate which can act on results and transform them into a specified type</param>
         /// <returns></returns>
-        T Scan<T>(A11yElement element, InternalScannerCallback<T> resultsCallback);
+        T Scan<T>(A11yElement element, ScanActionCallback<T> resultsCallback);
 
         /// <summary>
         /// Takes a screenshot, highlighting the given element
