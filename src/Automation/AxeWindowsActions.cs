@@ -12,12 +12,12 @@ using System.Globalization;
 
 namespace Axe.Windows.Automation
 {
-    class InternalScanner : IInternalScanner
+    class AxeWindowsActions : IAxeWindowsActions
     {
-        public ResultsT Scan<ResultsT>(A11yElement element, InternalScannerCallback<ResultsT> resultsCallback)
+        public ResultsT Scan<ResultsT>(A11yElement element, ScanActionCallback<ResultsT> scanCallback)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
-            if (resultsCallback == null) throw new ArgumentNullException(nameof(resultsCallback));
+            if (scanCallback == null) throw new ArgumentNullException(nameof(scanCallback));
 
             using (var dataManager = DataManager.GetDefaultInstance())
             using (var sa = SelectAction.GetDefaultInstance())
@@ -44,7 +44,7 @@ namespace Axe.Windows.Automation
                                 dc.ElementCounter.UpperBound));
                         }
 
-                    return resultsCallback(ec2.Element, ec2.Id);
+                    return scanCallback(ec2.Element, ec2.Id);
                 } // using
             } // using
         }

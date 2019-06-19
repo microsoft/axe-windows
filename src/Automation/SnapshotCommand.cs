@@ -24,12 +24,12 @@ namespace Axe.Windows.Automation
                 if (config == null) throw new ArgumentNullException(nameof(config));
                 if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
                 if (scanTools.TargetElementLocator == null) throw new ArgumentNullException(nameof(scanTools.TargetElementLocator));
-                if (scanTools.InternalScanner == null) throw new ArgumentNullException(nameof(scanTools.InternalScanner));
+                if (scanTools.Actions == null) throw new ArgumentNullException(nameof(scanTools.Actions));
 
                 var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
                 if (rootElement == null) throw new InvalidOperationException(nameof(rootElement));
 
-                return scanTools.InternalScanner.Scan(rootElement,
+                return scanTools.Actions.Scan(rootElement,
                     (element, elementId) =>
                 {
                     return ProcessResults(element, elementId, config, scanTools);
@@ -57,12 +57,12 @@ namespace Axe.Windows.Automation
 
             if (outputFileFormat.HasFlag(OutputFileFormat.A11yTest))
             {
-                scanTools.InternalScanner.CaptureScreenshot(elementId);
+                scanTools.Actions.CaptureScreenshot(elementId);
 
                 a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
                 if (a11yTestOutputFile == null) throw new InvalidOperationException(nameof(a11yTestOutputFile));
                 
-scanTools.InternalScanner.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
+scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
             }
 
 #if NOT_CURRENTLY_SUPPORTED

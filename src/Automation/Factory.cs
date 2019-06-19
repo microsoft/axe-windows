@@ -39,9 +39,9 @@ namespace Axe.Windows.Automation
             return new TargetElementLocator();
         }
 
-        public IInternalScanner CreateInternalScanner()
+        public IAxeWindowsActions CreateAxeWindowsActions()
         {
-            return new InternalScanner();
+            return new AxeWindowsActions();
         }
     } // class
 } // namespace
