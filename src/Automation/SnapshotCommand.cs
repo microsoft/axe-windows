@@ -11,7 +11,7 @@ namespace Axe.Windows.Automation
     static class SnapshotCommand
     {
         /// <summary>
-        /// Execute the Start command. Used by both .NET and by PowerShell entry points
+        /// Execute the scan
         /// </summary>
         /// <param name="config">A set of configuration options</param>
         /// <param name="scanTools">A set of tools for writing output files,
