@@ -34,7 +34,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(10000)]
+        [Timeout(17000)]
         public void Scan_Integration()
         {
             var config = Config.Builder.ForProcessId(TestProcess.Id)
@@ -66,7 +66,9 @@ namespace Axe.Windows.AutomationTests
             TestProcess?.Kill();
             TestProcess = Process.Start(TestAppPath);
             TestProcess.WaitForInputIdle();
-            Thread.Sleep(3000);
+
+            // this is painfully long, but the build agents will fail the test without it
+            Thread.Sleep(10000);
         }
 
         private void StopTestApp()
