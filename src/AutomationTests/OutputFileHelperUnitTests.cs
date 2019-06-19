@@ -194,14 +194,15 @@ namespace Axe.Windows.AutomationTests
                 day: 1,
                 hour: 20,
                 minute: 8,
-                second: 8);
+                second: 8
+                ).AddTicks(12345);
 
             mockDateTime.Setup(x => x.Now).Returns(dateTime);
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystemFactory.Object);
             var result = outputFileHelper.GetNewA11yTestFilePath();
 
-            var expectedFileName = $"{OutputFileHelper.DefaultFileNameBase}_19-04-01_20-08-08.a11ytest";
+            var expectedFileName = $"{OutputFileHelper.DefaultFileNameBase}_19-04-01_20-08-08.0012345.a11ytest";
             var actualFileName = Path.GetFileName(result);
             Assert.AreEqual(expectedFileName, actualFileName);
 
