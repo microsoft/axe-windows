@@ -72,7 +72,7 @@ namespace Axe.Windows.Automation
         {
             var now = _dateTime.Now;
 
-            var nowString = $"{now:yy-MM-dd_HH-mm-ss.FFFFFFF}";
+            var nowString = $"{now:yy-MM-dd_HH-mm-ss.fffffff}";
             return $"{DefaultFileNameBase}_{nowString}";
         }
     } // class
