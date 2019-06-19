@@ -29,11 +29,8 @@ namespace Axe.Windows.Rules.Library
             if (e == null) throw new ArgumentException(nameof(e));
             if (e.Parent == null) throw new ArgumentNullException(nameof(e.Parent));
 
-            var siblings = SiblingCount(EligibleHyperlink
-                & Name.Is(e.Name));
-            var count = siblings.GetValue(e);
-
-            return count == 1 ? EvaluationCode.Pass : EvaluationCode.Warning;
+            var siblings = SiblingCount(EligibleHyperlink & Name.Is(e.Name)) <= 1;
+            return siblings.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
         }
 
         protected override Condition CreateCondition() => EligibleHyperlink;
