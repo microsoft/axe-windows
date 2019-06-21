@@ -37,7 +37,7 @@ namespace Axe.Windows.Rules.Library
                 // if the element is not contained in the parent element, go further 
                 var container = e.FindContainerElement();
 
-                return IsBoundingRectangleContained(container, e) ? EvaluationCode.Pass : EvaluationCode.Error;
+                return IsBoundingRectangleContained(container, e) ? EvaluationCode.Pass : EvaluationCode.Warning;
             }
 
             return EvaluationCode.Pass;
