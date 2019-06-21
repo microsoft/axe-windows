@@ -56,9 +56,6 @@
     </Fakes>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Automation.fakes" />
-  </ItemGroup>
-  <ItemGroup>
     <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Core.fakes" />
   </ItemGroup>
   <ItemGroup>
@@ -76,10 +73,6 @@
     <ProjectReference Include="..\Actions\Actions.csproj">
       <Project>{b2fa5150-470a-4864-a191-7bcae39df35a}</Project>
       <Name>Actions</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Automation\Automation.csproj">
-      <Project>{ae5ec69f-158a-41c8-ad2b-ec7b84d820ef}</Project>
-      <Name>Automation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
