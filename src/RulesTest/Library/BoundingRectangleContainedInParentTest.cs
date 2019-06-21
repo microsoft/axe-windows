@@ -108,7 +108,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandparent;
 
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Error);
+                Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
             } // using
         }
 
