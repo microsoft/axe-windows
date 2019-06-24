@@ -15,9 +15,13 @@
     <language>en-US</language>
     <copyright>© Microsoft and contributors</copyright>
     <tags>axe windows accessibility automation</tags>
+    <dependencies>
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+        <dependency id="Sarif.SDK" version="2.0.0" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="bin\$configuration$\*.dll" target="lib\net471" />
+    <file src="bin\$configuration$\*.dll" exclude="bin\$configuration$\newtonsoft.json.dll;bin\$configuration$\system.*.dll;bin\$configuration$\sarif.dll" target="lib\net471" />
     <file src="bin\$configuration$\Axe.Windows.Automation.xml" target="lib\net471" />
   </files> 
 </package>
