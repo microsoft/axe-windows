@@ -87,6 +87,7 @@
     <Compile Include="ScanResultsAssemblerTests.cs" />
     <Compile Include="ScanToolsBuilderUnitTests.cs" />
     <Compile Include="SnapshotCommandUnitTests.cs" />
+    <Compile Include="SystemUnitTests.cs" />
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>

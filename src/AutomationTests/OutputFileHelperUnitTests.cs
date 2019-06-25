@@ -15,90 +15,98 @@ namespace Axe.Windows.AutomationTests
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void OutputFileHelperCtor_NullSystemFactory_ThrowsException()
+        public void OutputFileHelperCtor_NullSystem_ThrowsException()
         {
-            new OutputFileHelper(outputDirectory: null, systemFactory: null);
+            new OutputFileHelper(outputDirectory: null, system: null);
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void OutputFileHelperCtor_NullSystemDateTime_ThrowsException()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns<ISystemDateTime>(null);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
+            mockSystem.Setup(x => x.DateTime).Returns<ISystemDateTime>(null);
 
-            Action action = () => new OutputFileHelper(outputDirectory: null, systemFactory: mockSystemFactory.Object);
+            Action action = () => new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
             var ex = Assert.ThrowsException<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("_dateTime"));
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void OutputFileHelperCtor_NullSystemEnvironment_ThrowsException()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns<ISystemEnvironment>(null);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns<ISystemEnvironment>(null);
 
-            Action action = () => new OutputFileHelper(outputDirectory: null, systemFactory: mockSystemFactory.Object);
+            Action action = () => new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
             var ex = Assert.ThrowsException<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("environment"));
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void OutputFileHelperCtor_NullSystemDirectory_ThrowsException()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns(mockEnvironment.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemIODirectory()).Returns<ISystemIODirectory>(null);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns<ISystemIODirectory>(null);
 
-            Action action = () => new OutputFileHelper(outputDirectory: null, systemFactory: mockSystemFactory.Object);
+            Action action = () => new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
             var ex = Assert.ThrowsException<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("directory"));
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
+            mockIO.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void OutputFileHelperCtor_InvalidOutputDirectory_ThrowsException()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns(mockEnvironment.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemIODirectory()).Returns(mockDirectory.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             var phonyDirectory = "flub";
-            Action action = () => new OutputFileHelper(phonyDirectory, mockSystemFactory.Object);
+            Action action = () => new OutputFileHelper(phonyDirectory, mockSystem.Object);
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
             Assert.AreEqual(String.Format(DisplayStrings.ErrorDirectoryInvalid, phonyDirectory), ex.Message);
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
+            mockIO.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void OutputFileHelperCtor_NullOutputDirectory_UsesEnvironment()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns(mockEnvironment.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemIODirectory()).Returns(mockDirectory.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             mockDateTime.Setup(x => x.Now).Returns(DateTime.Now);
 
@@ -108,14 +116,15 @@ namespace Axe.Windows.AutomationTests
             string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutputDirectoryName);
             mockDirectory.Setup(x => x.Exists(expectedDirectory)).Returns(true);
 
-            var outputFileHelper = new OutputFileHelper(outputDirectory: null, systemFactory: mockSystemFactory.Object);
+            var outputFileHelper = new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
             string result = outputFileHelper.GetNewA11yTestFilePath();
 
             Assert.AreEqual(expectedDirectory, Path.GetDirectoryName(result));
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
             mockEnvironment.VerifyAll();
+            mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
 
@@ -123,27 +132,30 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public void OutputFileHelperCtor_WithOutputDirectory_UsesProvidedDirectory()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns(mockEnvironment.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemIODirectory()).Returns(mockDirectory.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             mockDateTime.Setup(x => x.Now).Returns(DateTime.Now);
 
             string expectedDirectory = @"c:\TestDir";
             mockDirectory.Setup(x => x.Exists(expectedDirectory)).Returns(true);
 
-            var outputFileHelper = new OutputFileHelper(expectedDirectory, mockSystemFactory.Object);
+            var outputFileHelper = new OutputFileHelper(expectedDirectory, mockSystem.Object);
             string result = outputFileHelper.GetNewA11yTestFilePath();
 
             Assert.AreEqual(expectedDirectory, Path.GetDirectoryName(result));
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
             mockEnvironment.VerifyAll();
+            mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
 
@@ -151,25 +163,28 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public void OutputFileHelperCtor_CreatesNonexistentDirectory()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns(mockEnvironment.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemIODirectory()).Returns(mockDirectory.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             string directory = @"c:\NonexistentDirectory";
             mockDirectory.Setup(x => x.Exists(directory)).Returns(false);
             mockDirectory.Setup(x => x.CreateDirectory(directory)).Returns<System.IO.DirectoryInfo>(null);
 
-            var outputFileHelper = new OutputFileHelper(directory, mockSystemFactory.Object);
+            var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
 
             // the folowing verifies that Exists was called
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
             mockEnvironment.VerifyAll();
+            mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
 
@@ -177,13 +192,16 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public void OutputFileHelper_GetNewA11yTestFilePath_CreatesExpectedFileName()
         {
-            var mockSystemFactory = new Mock<ISystemFactory>(MockBehavior.Strict);
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
             var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystemFactory.Setup(x => x.CreateSystemDateTime()).Returns(mockDateTime.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemEnvironment()).Returns(mockEnvironment.Object);
-            mockSystemFactory.Setup(x => x.CreateSystemIODirectory()).Returns(mockDirectory.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             string directory = @"c:\TestDir";
             mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
@@ -199,16 +217,17 @@ namespace Axe.Windows.AutomationTests
 
             mockDateTime.Setup(x => x.Now).Returns(dateTime);
 
-            var outputFileHelper = new OutputFileHelper(directory, mockSystemFactory.Object);
+            var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
             var result = outputFileHelper.GetNewA11yTestFilePath();
 
             var expectedFileName = $"{OutputFileHelper.DefaultFileNameBase}_19-04-01_20-08-08.0012345.a11ytest";
             var actualFileName = Path.GetFileName(result);
             Assert.AreEqual(expectedFileName, actualFileName);
 
-            mockSystemFactory.VerifyAll();
+            mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
             mockEnvironment.VerifyAll();
+            mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
     } // class
