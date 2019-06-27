@@ -158,6 +158,7 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
     displayName: 'TSA upload (CredScan, FxCop, and PoliCheck)'
+
     inputs:
       tsaVersion: TsaV2
       codebase: NewOrUpdate
@@ -245,17 +246,17 @@ jobs:
                       src\\Win32\\bin\\Release\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
-    displayName: 'Create Security Analysis Report'
+    displayName: 'Create Security Analysis Report (BinSkim)'
     inputs:
-      CredScan: true
+      BinSkim: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-    displayName: 'Publish Security Analysis Logs'
+    displayName: 'Publish Security Analysis Logs (BinSkim)'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
-    displayName: 'Post Analysis'
+    displayName: 'Post Analysis (BinSkim)'
     inputs:
-      CredScan: true
+      BinSkim: true
 
   - task: VSTest@2
     displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
@@ -296,7 +297,29 @@ jobs:
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
-      
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
+    displayName: 'TSA upload (BinSkim)'
+    inputs:
+      tsaVersion: TsaV2
+      codebase: NewOrUpdate
+      codeBaseName: $(TSACodeBaseName)
+      notificationAlias: $(TSANotificationAlias)
+      codeBaseAdmins: $(TSACodeBaseAdmins)
+      instanceUrlForTsaV2: $(TSAInstance)
+      projectNameMSENG: $(TSAProjectName)
+      areaPath: $(TSAAreaPath)
+      iterationPath: $(TSAIterationPath)
+      uploadAPIScan: false
+      uploadCredScan: false
+      uploadFortifySCA: false
+      uploadFxCop: false
+      uploadModernCop: false
+      uploadPoliCheck: false
+      uploadPREfast: false
+      uploadRoslyn: false
+      uploadTSLint: false
+
   - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
     displayName: 'Perform Cleanup Tasks'
     condition: succeededOrFailed()
