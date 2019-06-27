@@ -3,7 +3,6 @@ trigger: none
 pr: none
 variables:
   BuildPlatform: 'x86'
-  DropFolder: 'signed'
   MAICreateNuget: 'true'
   PublicRelease: 'true'
   SignAppForRelease: 'true'
@@ -158,7 +157,6 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
     displayName: 'TSA upload (CredScan, FxCop, and PoliCheck)'
-
     inputs:
       tsaVersion: TsaV2
       codebase: NewOrUpdate
@@ -275,15 +273,6 @@ jobs:
     displayName: 'Index Sources'
     inputs:
       SearchPattern: '**\bin\**\*.pdb'
-    continueOnError: true
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: (NuGet Axe.Windows)'
-    inputs:
-      PathtoPublish: 'src\CI\bin\Release\NuGet'
-      ArtifactName: '$(DropFolder)'
-      publishLocation: FilePath
-      TargetPath: '$(DropRoot)'
     continueOnError: true
 
   - task: ms-vscs-artifact.build-tasks.artifactSymbolTask-1.artifactSymbolTask@0
