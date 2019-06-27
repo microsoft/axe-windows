@@ -149,6 +149,7 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
     displayName: 'TSA upload (CredScan, FxCop, and PoliCheck)'
+    enabled: false
     inputs:
       tsaVersion: TsaV2
       codebase: NewOrUpdate
@@ -285,6 +286,7 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
     displayName: 'TSA upload (BinSkim)'
+    enabled: false
     inputs:
       tsaVersion: TsaV2
       codebase: NewOrUpdate
