@@ -64,7 +64,7 @@
     <Error Condition="!Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.0.4.1\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
-  <Target Name="SignNuGetPackage" Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' and '$(SignAppForRelease)'=='true' and '$(Configuration)' == 'Release'" DependsOnTargets="@(SignNuGetPackageDependsOn)" AfterTargets="Pack">
+  <Target Name="SignNuGetPackage" Condition=" '$(MicroBuild_NuPkgSigningEnabled)' != 'false' and '$(MicroBuild_SigningEnabled)' == 'true' and '$(IsPackable)' == 'true' and '$(NonShipping)' != 'true' and '$(SignType)' != '' and '$(Configuration)' == 'Release'" DependsOnTargets="@(SignNuGetPackageDependsOn)" AfterTargets="Pack">
     <ItemGroup>
       <SignNuGetPackFiles Include="bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix)\Axe.Windows.$(SemVerNumber)$(SemVerSuffix).nupkg" />
     </ItemGroup>

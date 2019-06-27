@@ -3,11 +3,10 @@ trigger: none
 pr: none
 variables:
   BuildPlatform: 'x86'
-  DropFolder: 'signed'
   MAICreateNuget: 'true'
-  PublicRelease: 'true'
-  SignAppForRelease: 'true'
-  MicroBuild_NuPkgSigningEnabled: 'true'
+  PublicRelease: 'false'
+  SignAppForRelease: 'false'
+  MicroBuild_NuPkgSigningEnabled: 'false'
   TeamName: 'Axe Windows'
   system.debug: 'true' #set to true in case our signed build flakes out again
   FAKES_SUPPORTED: 1
@@ -16,10 +15,6 @@ jobs:
 - job: ComplianceRelease
   pool:
     vmImage: 'vs2017-win2016'
-  variables:
-    PublicRelease: 'false'
-    SignAppForRelease: 'false'
-    MicroBuild_NuPkgSigningEnabled: 'false'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -77,10 +72,6 @@ jobs:
 - job: ComplianceDebug
   pool:
     vmImage: 'vs2017-win2016'
-  variables:
-    PublicRelease: 'false'
-    SignAppForRelease: 'false'
-    MicroBuild_NuPkgSigningEnabled: 'false'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -108,19 +99,8 @@ jobs:
     inputs:
       ArtifactName: 'Compliance'
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-    displayName: 'Run BinSkim'
-    inputs:
-      InputType: Basic
-      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\Actions\\bin\\Debug\\*.dll;\
-                      src\\Automation\\bin\\Debug\\*.dll;\
-                      src\\Core\\bin\\Debug\\*.dll;\
-                      src\\Desktop\\bin\\Debug\\*.dll;\
-                      src\\Rules\\bin\\Debug\\*.dll;\
-                      src\\RuleSelection\\bin\\Debug\\*.dll;\
-                      src\\Telemetry\\bin\\Debug\\*.dll;\
-                      src\\Win32\\bin\\Debug\\*.dll;"
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-autoapplicability.AutoApplicability@1
+    displayName: 'Run AutoApplicability'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
     displayName: 'Run CredScan'
@@ -137,29 +117,55 @@ jobs:
                 src\\Automation\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\Core\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Rules\\bin\\Debug\\Axe.Windows.*.dll\
+                src\\Rules\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
                 src\\Win32\\bin\\Debug\\Axe.Windows.*.dll;"
       ignoreGeneratedCode: true
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
-    displayName: 'Create Security Analysis Report'
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
+    displayName: 'Run PoliCheck'
     inputs:
-      BinSkim: true
+      targetType: F
+    continueOnError: true
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
+    displayName: 'Create Security Analysis Report (CredScan, FxCop, and PoliCheck)'
+    inputs:
       CredScan: true
       FxCop: true
+      PoliCheck: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-    displayName: 'Publish Security Analysis Logs'
+    displayName: 'Publish Security Analysis Logs (CredScan, FxCop, and PoliCheck)'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
-    displayName: 'Post Analysis'
+    displayName: 'Post Analysis (CredScan, FxCop, and PoliCheck)'
     inputs:
-      BinSkim: true
       CredScan: true
       FxCop: true
       FxCopBreakOn: CriticalError
+      PoliCheck: true
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
+    displayName: 'TSA upload (CredScan, FxCop, and PoliCheck)'
+    inputs:
+      tsaVersion: TsaV2
+      codebase: NewOrUpdate
+      codeBaseName: $(TSACodeBaseName)
+      notificationAlias: $(TSANotificationAlias)
+      codeBaseAdmins: $(TSACodeBaseAdmins)
+      instanceUrlForTsaV2: $(TSAInstance)
+      projectNameMSENG: $(TSAProjectName)
+      areaPath: $(TSAAreaPath)
+      iterationPath: $(TSAIterationPath)
+      uploadAPIScan: false
+      uploadBinSkim: false
+      uploadFortifySCA: false
+      uploadModernCop: false
+      uploadPREfast: false
+      uploadRoslyn: false
+      uploadTSLint: false
 
   - task: VSTest@2
     displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
@@ -180,6 +186,10 @@ jobs:
   - ComplianceDebug
   condition: and(succeeded(), succeeded())
   pool: VSEng-MicroBuildVS2017
+  variables:
+    PublicRelease: 'true'
+    SignAppForRelease: 'true'
+    MicroBuild_NuPkgSigningEnabled: 'true'
   steps:
   - task: ms-vseng.MicroBuildTasks.a0262b21-fb8f-46f8-bb9a-60ed560d4a87.MicroBuildLocalizationPlugin@1
     displayName: 'Install Localization Plugin'
@@ -230,20 +240,17 @@ jobs:
                       src\\Win32\\bin\\Release\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
-    displayName: 'Create Security Analysis Report'
+    displayName: 'Create Security Analysis Report (BinSkim)'
     inputs:
-      CredScan: true
-      FxCop: true
+      BinSkim: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-    displayName: 'Publish Security Analysis Logs'
+    displayName: 'Publish Security Analysis Logs (BinSkim)'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
-    displayName: 'Post Analysis'
+    displayName: 'Post Analysis (BinSkim)'
     inputs:
-      CredScan: true
-      FxCop: true
-      FxCopBreakOn: CriticalError
+      BinSkim: true
 
   - task: VSTest@2
     displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
@@ -264,15 +271,6 @@ jobs:
       SearchPattern: '**\bin\**\*.pdb'
     continueOnError: true
 
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: (NuGet Axe.Windows)'
-    inputs:
-      PathtoPublish: 'src\CI\bin\Release\NuGet'
-      ArtifactName: '$(DropFolder)'
-      publishLocation: FilePath
-      TargetPath: '$(DropRoot)'
-    continueOnError: true
-
   - task: ms-vscs-artifact.build-tasks.artifactSymbolTask-1.artifactSymbolTask@0
     displayName: 'Publish Symbols'
     inputs:
@@ -284,96 +282,29 @@ jobs:
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
-      
-  - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
-    displayName: 'Perform Cleanup Tasks'
-    condition: succeededOrFailed()
 
-- job: SignedDebug
-  dependsOn: 
-  - ComplianceRelease
-  - ComplianceDebug
-  condition: and(succeeded(), succeeded())
-  pool: VSEng-MicroBuildVS2017
-  steps:
-  - task: ms-vseng.MicroBuildTasks.a0262b21-fb8f-46f8-bb9a-60ed560d4a87.MicroBuildLocalizationPlugin@1
-    displayName: 'Install Localization Plugin'
-
-  - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 5.0.0'
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
+    displayName: 'TSA upload (BinSkim)'
     inputs:
-      versionSpec: '5.0.0'
+      tsaVersion: TsaV2
+      codebase: NewOrUpdate
+      codeBaseName: $(TSACodeBaseName)
+      notificationAlias: $(TSANotificationAlias)
+      codeBaseAdmins: $(TSACodeBaseAdmins)
+      instanceUrlForTsaV2: $(TSAInstance)
+      projectNameMSENG: $(TSAProjectName)
+      areaPath: $(TSAAreaPath)
+      iterationPath: $(TSAIterationPath)
+      uploadAPIScan: false
+      uploadCredScan: false
+      uploadFortifySCA: false
+      uploadFxCop: false
+      uploadModernCop: false
+      uploadPoliCheck: false
+      uploadPREfast: false
+      uploadRoslyn: false
+      uploadTSLint: false
 
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 15.0
-      platform: '$(BuildPlatform)'
-      configuration: debug
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\debug\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-autoapplicability.AutoApplicability@1
-    displayName: 'Run AutoApplicability'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
-    displayName: 'Run CredScan'
-    inputs:
-      debugMode: false
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-fxcop.FxCop@2
-    displayName: 'Run FxCop'
-    inputs:
-      inputType: Basic
-      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\Actions\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Automation\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Core\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Rules\\bin\\Debug\\Axe.Windows.*.dll\
-                src\\RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Win32\\bin\\Debug\\Axe.Windows.*.dll;"
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
-    displayName: 'Create Security Analysis Report'
-    inputs:
-      CredScan: true
-      FxCop: true
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-    displayName: 'Publish Security Analysis Logs'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
-    displayName: 'Post Analysis'
-    inputs:
-      CredScan: true
-      FxCop: true
-      FxCopBreakOn: CriticalError
-
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\** copy'
-    inputs:
-      testAssemblyVer2: |  
-        **\*test*.dll
-        !**\obj\**
-      testFiltercriteria: 'TestCategory!=Integration'
-      vsTestVersion: 15.0
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: debug
-      rerunFailedTests: true
-      
   - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
     displayName: 'Perform Cleanup Tasks'
     condition: succeededOrFailed()
