@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using static System.FormattableString;
+
 namespace Axe.Windows.Automation
 {
     /// <summary>
@@ -64,7 +66,7 @@ namespace Axe.Windows.Automation
         private static ScanResult MakeScanResult(ElementInfo elementInfo, RuleResult res)
         {
             if (!Rules.Rules.All.TryGetValue(res.Rule, out RuleInfo rule))
-                throw new KeyNotFoundException($"{res.Rule} not found in {nameof(Rules)} dictionary.");
+                throw new KeyNotFoundException(Invariant($"{res.Rule} not found in {nameof(Rules)} dictionary."));
 
             return new ScanResult()
             {

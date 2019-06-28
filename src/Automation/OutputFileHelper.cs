@@ -4,6 +4,8 @@ using Axe.Windows.Abstractions;
 using System;
 using Path = System.IO.Path;
 
+using static System.FormattableString;
+
 namespace Axe.Windows.Automation
 {
     internal class OutputFileHelper : IOutputFileHelper
@@ -72,7 +74,7 @@ namespace Axe.Windows.Automation
         {
             var now = _dateTime.Now;
 
-            var nowString = $"{now:yy-MM-dd_HH-mm-ss.fffffff}";
+            var nowString = Invariant($"{now:yy-MM-dd_HH-mm-ss.fffffff}");
             return $"{DefaultFileNameBase}_{nowString}";
         }
     } // class

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Rules.Resources;
@@ -148,7 +149,7 @@ namespace Axe.Windows.Rules.PropertyConditions
                 Regex r = new Regex(s);
                 return r.IsMatch(GetStringPropertyValue(e));
             },
-            String.Format(ConditionDescriptions.MatchesRegEx, PropertyDescription, s));
+            String.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegEx, PropertyDescription, s));
         }
 
         public Condition MatchesRegEx(string s, RegexOptions options)
