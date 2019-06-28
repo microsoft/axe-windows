@@ -23,7 +23,7 @@ namespace Axe.Windows.Concretions
 
         public ISystemDateTime DateTime => _dateTime.Value;
 
-    public ISystemEnvironment Environment => _environment.Value;
+        public ISystemEnvironment Environment => _environment.Value;
 
         public ISystemIO IO => _io.Value;
     } // class
