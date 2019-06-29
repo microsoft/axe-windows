@@ -12,6 +12,9 @@ namespace Axe.Windows.AutomationTests
     [TestClass]
     public class OutputFileHelperUnitTests
     {
+        private static readonly ISystemDateTime InertDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict).Object;
+        private static readonly ISystemEnvironment InertEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict).Object;
+
         [TestMethod]
         [Timeout(1000)]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -39,8 +42,7 @@ namespace Axe.Windows.AutomationTests
         public void OutputFileHelperCtor_NullSystemEnvironment_ThrowsException()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
-            var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
             mockSystem.Setup(x => x.Environment).Returns<ISystemEnvironment>(null);
 
             Action action = () => new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
@@ -55,11 +57,9 @@ namespace Axe.Windows.AutomationTests
         public void OutputFileHelperCtor_NullSystemDirectory_ThrowsException()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
-            var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
-            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
-            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
             mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
             mockIO.Setup(x => x.Directory).Returns<ISystemIODirectory>(null);
 
@@ -76,12 +76,10 @@ namespace Axe.Windows.AutomationTests
         public void OutputFileHelperCtor_InvalidOutputDirectory_ThrowsException()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
-            var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
-            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
             mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
             mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
@@ -134,11 +132,10 @@ namespace Axe.Windows.AutomationTests
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
             mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
-            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
             mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
             mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
@@ -154,7 +151,6 @@ namespace Axe.Windows.AutomationTests
 
             mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
-            mockEnvironment.VerifyAll();
             mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
@@ -164,12 +160,10 @@ namespace Axe.Windows.AutomationTests
         public void OutputFileHelperCtor_CreatesNonexistentDirectory()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
-            var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
-            mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
-            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
             mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
             mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
@@ -182,8 +176,6 @@ namespace Axe.Windows.AutomationTests
             // the folowing verifies that Exists was called
 
             mockSystem.VerifyAll();
-            mockDateTime.VerifyAll();
-            mockEnvironment.VerifyAll();
             mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
@@ -194,11 +186,10 @@ namespace Axe.Windows.AutomationTests
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
-            var mockEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
             var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
             mockSystem.Setup(x => x.DateTime).Returns(mockDateTime.Object);
-            mockSystem.Setup(x => x.Environment).Returns(mockEnvironment.Object);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
             mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
 
             mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
@@ -226,7 +217,6 @@ namespace Axe.Windows.AutomationTests
 
             mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
-            mockEnvironment.VerifyAll();
             mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
