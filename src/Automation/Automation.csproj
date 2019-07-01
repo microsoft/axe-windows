@@ -60,7 +60,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
     <Compile Include="Abstractions\ISystemDateTime.cs" />
     <Compile Include="Abstractions\ISystemFactory.cs" />
     <Compile Include="Abstractions\ISystemIODirectory.cs" />

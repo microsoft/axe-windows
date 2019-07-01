@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
     <Compile Include="ExcludingExceptionWrapper.cs" />
     <Compile Include="IAxeWindowsTelemetry.cs" />
     <Compile Include="Logger.cs" />
