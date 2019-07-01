@@ -134,10 +134,10 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (that == null) throw new ArgumentNullException(nameof(that));
 
             string s1 = this.GetStringPropertyValue(e);
-            if (String.IsNullOrWhiteSpace(s1)) return false;
+            if (string.IsNullOrWhiteSpace(s1)) return false;
 
             string s2 = that.GetStringPropertyValue(e);
-            if (String.IsNullOrWhiteSpace(s2)) return false;
+            if (string.IsNullOrWhiteSpace(s2)) return false;
 
             return string.Equals(s1, s2, StringComparison.OrdinalIgnoreCase);
         }
@@ -149,7 +149,7 @@ namespace Axe.Windows.Rules.PropertyConditions
                 Regex r = new Regex(s);
                 return r.IsMatch(GetStringPropertyValue(e));
             },
-            String.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegEx, PropertyDescription, s));
+            string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegEx, PropertyDescription, s));
         }
 
         public Condition MatchesRegEx(string s, RegexOptions options)
@@ -159,7 +159,7 @@ namespace Axe.Windows.Rules.PropertyConditions
                 Regex r = new Regex(s, options);
                 return r.IsMatch(GetStringPropertyValue(e));
                 },
-                String.Format(ConditionDescriptions.MatchesRegExWithOptions, PropertyDescription, s, options.ToString()));
+                string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegExWithOptions, PropertyDescription, s, options.ToString()));
         }
     } // class
 } // namespace

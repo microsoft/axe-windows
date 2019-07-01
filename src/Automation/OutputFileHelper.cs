@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Abstractions;
 using System;
+using System.Globalization;
 using Path = System.IO.Path;
 
 using static System.FormattableString;
@@ -59,7 +60,7 @@ namespace Axe.Windows.Automation
             }
             catch (Exception ex)
             {
-                throw new AxeWindowsAutomationException(String.Format(DisplayStrings.ErrorDirectoryInvalid, path), ex);
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorDirectoryInvalid, path), ex);
             }
         }
 
