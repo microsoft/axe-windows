@@ -45,7 +45,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
     <Compile Include="DefaultReferenceLinks.cs" />
     <Compile Include="Interfaces\IReferenceLink.cs" />
     <Compile Include="Interfaces\IReferenceLinks.cs" />

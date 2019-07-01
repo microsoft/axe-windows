@@ -94,7 +94,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
     <Compile Include="Actions\ControlPatternAction.cs" />
     <Compile Include="Actions\DataManager.cs" />
     <Compile Include="Actions\GetDataAction.cs" />

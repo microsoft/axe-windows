@@ -268,7 +268,7 @@
     <Compile Include="Rules.cs" />
     <Compile Include="Library\NameIsNotEmpty.cs" />
     <Compile Include="Library\NameIsNotNull.cs" />
-    <Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />
+    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
