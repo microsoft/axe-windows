@@ -17,17 +17,17 @@ namespace Axe.Windows.Automation
         public const string DefaultOutputDirectoryName = "AxeWindowsOutputFiles";
         public const string DefaultFileNameBase = "AxeWindows";
 
-        public OutputFileHelper(string outputDirectory, ISystemFactory systemFactory)
+        public OutputFileHelper(string outputDirectory, ISystem system)
         {
-            if (systemFactory == null) throw new ArgumentNullException(nameof(systemFactory));
+            if (system == null) throw new ArgumentNullException(nameof(system));
 
-            _dateTime = systemFactory.CreateSystemDateTime();
+            _dateTime = system.DateTime;
             if (_dateTime == null) throw new InvalidOperationException($"Expected {nameof(_dateTime)} not to be null");
 
-            var environment = systemFactory.CreateSystemEnvironment();
+            var environment = system.Environment;
             if (environment == null) throw new InvalidOperationException($"Expected {nameof(environment)} not to be null");
 
-            var directory = systemFactory.CreateSystemIODirectory();
+            var directory = system.IO.Directory;
             if (directory == null) throw new InvalidOperationException($"Expected {nameof(directory)} not to be null");
 
             if (!string.IsNullOrWhiteSpace(outputDirectory))

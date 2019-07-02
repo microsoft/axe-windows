@@ -4,11 +4,21 @@ using Axe.Windows.Abstractions;
 
 namespace Axe.Windows.Concretions
 {
-    class SystemFactory : ISystemFactory
+    internal class SystemFactory : ISystemFactory
     {
-        public ISystemIODirectory CreateSystemIODirectory()
+        private readonly static ISystemFactory SystemFactoryInstance = new SystemFactory();
+
+        private SystemFactory()
+        { }
+
+        public static ISystem CreateSystem()
         {
-            return new SystemIODirectory();
+            return new System(SystemFactoryInstance);
+        }
+
+        public ISystemDateTime CreateSystemDateTime()
+        {
+            return new SystemDateTime();
         }
 
         public ISystemEnvironment CreateSystemEnvironment()
@@ -16,9 +26,14 @@ namespace Axe.Windows.Concretions
             return new SystemEnvironment();
         }
 
-        public ISystemDateTime CreateSystemDateTime()
+        public ISystemIO CreateSystemIO()
         {
-            return new SystemDateTime();
+            return new SystemIO(this);
+        }
+
+        public ISystemIODirectory CreateSystemIODirectory()
+        {
+            return new SystemIODirectory();
         }
     } // class
 } // namespace

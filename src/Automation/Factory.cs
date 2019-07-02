@@ -21,12 +21,7 @@ namespace Axe.Windows.Automation
 
         public IOutputFileHelper CreateOutputFileHelper(string outputDirectory)
         {
-            return new OutputFileHelper(outputDirectory, CreateSystemFactory());
-        }
-
-        private static ISystemFactory CreateSystemFactory()
-        {
-            return new SystemFactory();
+            return new OutputFileHelper(outputDirectory, SystemFactory.CreateSystem());
         }
 
         public IScanResultsAssembler CreateResultsAssembler()

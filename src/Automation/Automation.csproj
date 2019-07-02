@@ -61,13 +61,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
+    <Compile Include="Abstractions\ISystem.cs" />
     <Compile Include="Abstractions\ISystemDateTime.cs" />
     <Compile Include="Abstractions\ISystemFactory.cs" />
+    <Compile Include="Abstractions\ISystemIO.cs" />
     <Compile Include="Abstractions\ISystemIODirectory.cs" />
     <Compile Include="Abstractions\ISystemEnvironment.cs" />
+    <Compile Include="Concretions\System.cs" />
     <Compile Include="Concretions\SystemDateTime.cs" />
     <Compile Include="Concretions\SystemEnvironment.cs" />
     <Compile Include="Concretions\SystemFactory.cs" />
+    <Compile Include="Concretions\SystemIO.cs" />
     <Compile Include="Concretions\SystemIODirectory.cs" />
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\ElementInfo.cs" />

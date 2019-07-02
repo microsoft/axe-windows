@@ -6,8 +6,9 @@ namespace Axe.Windows.Abstractions
 {
     internal interface ISystemFactory
     {
-        ISystemIODirectory CreateSystemIODirectory();
-        ISystemEnvironment CreateSystemEnvironment();
         ISystemDateTime CreateSystemDateTime();
+        ISystemEnvironment CreateSystemEnvironment();
+        ISystemIO CreateSystemIO();
+        ISystemIODirectory CreateSystemIODirectory();
     } // interface
 } // namespace
