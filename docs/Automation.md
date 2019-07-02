@@ -19,9 +19,9 @@ a solution where you can make those calls from separate processes.
 
 Consumers should look to follow the processs below:
 
-1. Create `Config` using `ConfigBuilder`
-2. Create `Scanner` using `Config` created in step 1.
-3. Run `Scan` method on `Scanner` object.
+1. Create a `Config` object using the `ConfigBuilder` class
+2. Create a `Scanner` object using the `Config` object created in step 1.
+3. Run the `Scan` method on the `Scanner` object.
 4. Analyze the returned `ScanResults` object for your respective needs.
 
 The details of these objects/methods are below.
@@ -94,6 +94,24 @@ The **Errors** property contains **ScanResult** objects which are the result of 
 Rule | `RuleInfo` | Information about the rule (description, how to fix information, etc.) that was evaluated on the element.
 Element | `ElementInfo` | The element which was tested against the rule.
 
+`RuleInfo` contains the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+ID | `RuleId` | Contains a unique identifier for the rule from the RuleId enumeration.
+Description | `string` | Contains a short description of the rule.
+HowToFix | `string` | Detailed information on how to resolve a violation reported by the rule.
+Standard | `A11yCriteriaId` | An enum which identifies the standards documentation from which the rule was derived.
+PropertyID | `int` | In cases where the rule tests one specific UI Automation property, this contains the UI Automation property ID in question. This property is used to link elements with rule violations to relevant documentation.
+Condition | 'string' | A description of the conditions under which a rule will be evaluated.
+
+`ElementInfo` contains the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+Properties | `Dictionary<string, string>` | A string to string dictionary where the key is a UIAutomation property name and the value is the corresponding UI Automation property value.
+Patterns | `IEnumerable<string>` | A list of names of supported patterns.
+
 ### Using the assembly
 You can get the files via a NuGet package Configure NuGet to retrieve the
 **Axe.Windows** package from
@@ -101,8 +119,7 @@ You can get the files via a NuGet package Configure NuGet to retrieve the
 then use the classes in the Axe.Windows.Automation namespace (see
 example below):
 
--   Prerequisite: Your project *must* use .NET 4.7.1 (this is required by
-    Accessibility Insights).
+-   Prerequisite: Your project *must* use .NET 4.7.1 (this is required by Axe-Windows).
 -   If you’re using NuGet, add the appropriate feed to your project.
 -   Add **using Axe.Windows.Automation;** to your code.
 -   Follow the steps in **How To Use**.
@@ -122,19 +139,17 @@ example below):
             /// </summary>
             static void Main(string[] args)
             {
-                string TestAppPath = Path.GetFullPath("../myApplication.exe");
-                string OutputDir = Path.GetFullPath("./TestOutput");
-                Process TestProcess = Process.Start(TestAppPath);
-                var config = Config.Builder.ForProcessId(TestProcess.Id)
-                    .WithOutputDirectory(OutputDir)
+                string testAppPath = Path.GetFullPath("..\myApplication.exe");
+                string outputDir = Path.GetFullPath(".\TestOutput");
+                Process testProcess = Process.Start(testAppPath);
+                var config = Config.Builder.ForProcessId(testProcess.Id)
+                    .WithOutputDirectory(outputDir)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest)
                     .Build();
 
                 var scanner = ScannerFactory.CreateScanner(config);
 
                 var output = scanner.Scan();
-
-                var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
 
                 Assert.IsTrue(output.ErrorCount == 0);
             }
