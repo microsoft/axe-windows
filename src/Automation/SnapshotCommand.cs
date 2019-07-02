@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Automation.Data;
 using Axe.Windows.Core.Bases;
 using System;
 
@@ -49,7 +50,7 @@ namespace Axe.Windows.Automation
             return results;
         }
 
-        private static (string A11yTest, string Sarif) WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId)
+        private static OutputFile WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId)
         {
             if (scanTools?.OutputFileHelper == null) throw new ArgumentNullException(nameof(scanTools.OutputFileHelper));
 
@@ -70,7 +71,7 @@ scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
                                     // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
 #endif
 
-            return (a11yTestOutputFile, null);
+            return OutputFile.BuildFromA11yTestFile(a11yTestOutputFile);
         }
     } // class
 } // namespace

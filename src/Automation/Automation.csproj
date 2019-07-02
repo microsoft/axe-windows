@@ -71,6 +71,7 @@
     <Compile Include="Concretions\SystemIODirectory.cs" />
     <Compile Include="Data\Config.cs" />
     <Compile Include="Data\ElementInfo.cs" />
+    <Compile Include="Data\OutputFile.cs" />
     <Compile Include="Data\ScanResult.cs" />
     <Compile Include="Data\ScanResults.cs" />
     <Compile Include="Enums\OutputFileFormat.cs" />

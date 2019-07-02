@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Automation.Data;
 using System;
 using System.Collections.Generic;
 
@@ -11,8 +12,8 @@ namespace Axe.Windows.Automation
     public class ScanResults
     {
         /// <summary>
-        /// A Tuple with paths to any output files written as a result of a scan.
-        /// Tuple members are A11yTest and Sarif (not implemented yet)
+        /// An OutputFile object containing paths to any output files written as
+        /// a result of a scan.
         /// </summary>
         /// <remarks>
         /// This property's members may be null if no output files were written.
@@ -20,7 +21,7 @@ namespace Axe.Windows.Automation
         /// or was set to <see cref="OutputFileFormat.None"/>.
         /// This property's members will also be null if no errors were found.
         /// </remarks>
-        public (string A11yTest, string Sarif) OutputFile { get; internal set; }
+        public OutputFile OutputFile { get; internal set; }
 
         /// <summary>
         /// A count of all errors across all elements scanned.
