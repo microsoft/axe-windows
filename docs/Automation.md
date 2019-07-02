@@ -1,30 +1,26 @@
 ## Axe.Windows - Automation
 
 ### Overview
-To enable various automation scenarios, we have created an assembly
-(`Axe.Windows.Automation.dll`) that exposes a subset of core
+To provide automated  accessibility testing for Windows applications, we have created the  
+(`Axe.Windows.Automation.dll`) assembly which exposes a subset of core
 AxeWindows functionality to automation systems.
 
-### General Characteristics
+### General
 
 #### Fully Synchronous
-Since these commands are all stateful, they are intentionally synchronous within
-a process. If you attempt to call into the commands concurrently, the first one
+Because  automated scans are stateful, they are intentionally synchronous within
+a process. If you attempt to initiate multiple scans concurrently, the first one
 to obtain the lock will execute, then another, then another. This is by design
 and is not expected to change at any future time. If you have a scenario that
 truly requires the command to execute in parallel, then you will need to create
 a solution where you can make those calls from separate processes.
 
-#### How To Use (.NET)
-
-Consumers should look to follow the processs below:
+#### How To run an automated scan
 
 1. Create a `Config` object using the `ConfigBuilder` class
 2. Create a `Scanner` object using the `Config` object created in step 1.
-3. Run the `Scan` method on the `Scanner` object.
-4. Analyze the returned `ScanResults` object for your respective needs.
-
-The details of these objects/methods are below.
+3. Call  the `Scan` method on the `Scanner` object.
+4. Analyze the results.
 
 ### Implementation Details
 
