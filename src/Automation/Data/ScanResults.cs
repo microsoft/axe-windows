@@ -10,7 +10,7 @@ namespace Axe.Windows.Automation
     public class ScanResults
     {
         /// <summary>
-        /// An OutputFile object containing paths to any output files written as
+        /// An OutputFile object <see cref="OutputFile"/> containing paths to any output files written as
         /// a result of a scan.
         /// </summary>
         /// <remarks>
