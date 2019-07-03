@@ -1,10 +1,9 @@
 ## Axe.Windows - Automation
 
 ### Overview
-To enable various automation scenarios, we have created an assembly
-(`Axe.Windows.Automation.dll`) that exposes a subset of core
+To provide automated  accessibility testing for Windows applications, we have created the
+(`Axe.Windows.Automation.dll`) assembly which exposes a subset of core
 AxeWindows functionality to automation systems.
-
 
 ### How To Use (.NET)
 
@@ -30,7 +29,7 @@ Consumers should look to follow the processs below:
         // Create scanner using myConfig
         var scanner = ScannerFactory.CreateScanner(myConfig);
 
-3. Run the `Scan` method on the `Scanner` object.
+3. Call  the `Scan` method on the `Scanner` object.
 
     Snippet:
 
@@ -43,7 +42,7 @@ Consumers should look to follow the processs below:
             var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
         }
 
-4. Analyze the returned `ScanResults` object for your respective needs.
+4. Analyze the results.
 
     Example:
 
@@ -201,8 +200,8 @@ example below):
 ### Miscellaneous
 
 #### Fully Synchronous
-Since these commands are all stateful, they are intentionally synchronous within
-a process. If you attempt to call into the commands concurrently, the first one
+Because  automated scans are stateful, they are intentionally synchronous within
+a process. If you attempt to initiate multiple scans concurrently, the first one
 to obtain the lock will execute, then another, then another. This is by design
 and is not expected to change at any future time. If you have a scenario that
 truly requires the command to execute in parallel, then you will need to create
