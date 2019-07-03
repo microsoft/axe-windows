@@ -5,26 +5,53 @@ To enable various automation scenarios, we have created an assembly
 (`Axe.Windows.Automation.dll`) that exposes a subset of core
 AxeWindows functionality to automation systems.
 
-### General Characteristics
 
-#### Fully Synchronous
-Since these commands are all stateful, they are intentionally synchronous within
-a process. If you attempt to call into the commands concurrently, the first one
-to obtain the lock will execute, then another, then another. This is by design
-and is not expected to change at any future time. If you have a scenario that
-truly requires the command to execute in parallel, then you will need to create
-a solution where you can make those calls from separate processes.
-
-#### How To Use (.NET)
+### How To Use (.NET)
 
 Consumers should look to follow the processs below:
 
-1. Create a `Config` object using the `ConfigBuilder` class
-2. Create a `Scanner` object using the `Config` object created in step 1.
+1. Create a `Config` object using the `Config.Builder`.
+
+    Snippet:
+
+        // Create config to specifically target sampleProcess
+        var myConfigBuilder = Config.Builder.ForProcessId(sampleProcess.Id);
+
+        // Configure to return an A11yTest file
+        myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+        // Ready to use config
+        var myConfig = myConfigBuilder.build();
+
+2. Create a `Scanner` object using the `Config` object with the `ScannerFactory`.
+
+    Snippet:
+
+        // Create scanner using myConfig
+        var scanner = ScannerFactory.CreateScanner(myConfig);
+
 3. Run the `Scan` method on the `Scanner` object.
+
+    Snippet:
+
+        try {
+            // Simply get the scan results by using the scanner
+            var scanResults = scanner.Scan();
+        }
+        catch(AxeWindowsAutomationException e) {
+            // Get the message from an exception, if one is thrown.
+            var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
+        }
+
 4. Analyze the returned `ScanResults` object for your respective needs.
 
-The details of these objects/methods are below.
+    Example:
+
+        // Check to see if
+        Console.WriteLine("Number of errors found in scan: " + scanResults.errorCount);
+
+
+A [comprehensive code example](#example) can be found below. The details of these objects/methods are below.
 
 ### Implementation Details
 
@@ -41,15 +68,24 @@ The **ForProcessId** method accepts the following parameters:
 ---|---|---
 processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an `AxeWindowsAutomationException`.
 
+`AxeWindowsAutomationException` is thrown for all unhandled errors in Axe.Windows.Automation. If an exception was thrown from code not owned by Axe.Windows.Automation, that exception will be wrapped in the `Exception.InnerException` property.
+
 ##### Return object
 
 The **ForProcessId** method returns a **Config.Builder** object, which has the following methods:
 
 **Name** | **Parameters** | **Output** | **Description**
 ---|---|---|---
-WithOutputFileFormat | `(OutputFileFormat format)` | `Config.Builder` | Specify the type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified.
-WithOutputDirectory | `(string directory)` | `Config.Builder` | Specify the directory where any output files should be written. Output files will be created in the current directory under folder **AxeWindowsOutputFiles** if left unspecified.
+WithOutputFileFormat | `(OutputFileFormat format)` | `Config.Builder` | Specify the type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified. The default value is `None`.
+WithOutputDirectory | `(string directory)` | `Config.Builder` | Specify the directory where any output files should be written; is not used if output file format is `None`. Output files will be created in the current directory under folder **AxeWindowsOutputFiles** if left unspecified.
 Build | `N/A` | `Config` |  Build an instance of `Config`; to be consumed by `ScannerFactory`.
+
+The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs), currently has the following possible values:
+
+**Name** | **Value** | **Description**
+---|---|---
+None | `0` | Create no output files.
+A11yTest | `1` | Create output files which can be opened using [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/en/windows/overview).
 
 #### ScannerFactory Details/Methods
 
@@ -143,16 +179,31 @@ example below):
                 string outputDir = Path.GetFullPath(".\TestOutput");
                 Process testProcess = Process.Start(testAppPath);
                 var config = Config.Builder.ForProcessId(testProcess.Id)
-                    .WithOutputDirectory(outputDir)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                    .WithOutputDirectory(outputDir)
                     .Build();
 
                 var scanner = ScannerFactory.CreateScanner(config);
 
-                var output = scanner.Scan();
-
-                Assert.IsTrue(output.ErrorCount == 0);
+                try {
+                    var output = scanner.Scan();
+                    Assert.IsTrue(output.ErrorCount == 0);
+                }
+                catch(AxeWindowsAutomationException e) {
+                    var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
+                    Assert.IsTrue(false, errorMessage);
+                }
             }
         }
     }
 ```
+
+### Miscellaneous
+
+#### Fully Synchronous
+Since these commands are all stateful, they are intentionally synchronous within
+a process. If you attempt to call into the commands concurrently, the first one
+to obtain the lock will execute, then another, then another. This is by design
+and is not expected to change at any future time. If you have a scenario that
+truly requires the command to execute in parallel, then you will need to create
+a solution where you can make those calls from separate processes.
