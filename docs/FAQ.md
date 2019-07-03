@@ -1,9 +1,9 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved.
      Licensed under the MIT License. -->
      
-     ## FAQ
+## FAQ
 #### Q. What is Axe.Windows?
-Axe.Windows is a [NuGet](https://www.nuget.org/) package for running automated accessibility tests on Windows® applications. It is used extensively by [Accessibility Insights For Windows](https://accessibilityinsights.io/docs/en/windows/overview). It can be used by itself to run automated accessibility tests programmatically as well.
+Axe.Windows is a [NuGet](https://www.nuget.org/) package for running automated accessibility tests on WindowsÂ® applications. It is used extensively by [Accessibility Insights For Windows](https://accessibilityinsights.io/docs/en/windows/overview). It can be used by itself to run automated accessibility tests programmatically as well.
 
 #### Q. Why should I contribute to Axe.Windows?
 By contributing you will help ensure that people with disabilities have full access to applications. Make the world a better place!
