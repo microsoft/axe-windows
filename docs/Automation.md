@@ -1,62 +1,53 @@
 ## Axe.Windows - Automation
 
 ### Overview
-To provide automated  accessibility testing for Windows applications, we have created the
-(`Axe.Windows.Automation.dll`) assembly which exposes a subset of core
+To provide automated accessibility testing for Windows applications, we have created the `Axe.Windows.Automation` .NET assembly which exposes a subset of core
 AxeWindows functionality to automation systems.
 
-### How To Use (.NET)
+### How To Run An Automated Scan
 
-Consumers should look to follow the processs below:
+1. Create a `Config` object using `Config.Builder`.
 
-1. Create a `Config` object using the `Config.Builder`.
+        // Create config to specifically target a process
+        var myConfigBuilder = Config.Builder.ForProcessId(1234);
 
-    Snippet:
+        // Optional: configure to create an A11yTest file
+        myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
 
-        // Create config to specifically target sampleProcess
-        var myConfigBuilder = Config.Builder.ForProcessId(sampleProcess.Id);
-
-        // Configure to return an A11yTest file
+        // Optional: configure to output the file to a specific directory (otherwise, current directory will be used)
         myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
 
         // Ready to use config
         var myConfig = myConfigBuilder.build();
 
-2. Create a `Scanner` object using the `Config` object with the `ScannerFactory`.
-
-    Snippet:
+2. Create a `Scanner` object using the `ScannerFactory` object with the `Config`.
 
         // Create scanner using myConfig
         var scanner = ScannerFactory.CreateScanner(myConfig);
 
 3. Call  the `Scan` method on the `Scanner` object.
 
-    Snippet:
-
+        var scanResults;
         try {
-            // Simply get the scan results by using the scanner
-            var scanResults = scanner.Scan();
+            scanResults = scanner.Scan();
         }
         catch(AxeWindowsAutomationException e) {
             // Get the message from an exception, if one is thrown.
             var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
         }
 
-4. Analyze the results.
+4. Check the results.
 
-    Example:
-
-        // Check to see if
         Console.WriteLine("Number of errors found in scan: " + scanResults.errorCount);
 
 
-A [comprehensive code example](#example) can be found below. The details of these objects/methods are below.
+A [complete code example](#example) can be found below.
 
-### Implementation Details
+### Class Details
 
-#### Config.Builder Details/Methods
+#### Config.Builder
 
-##### ForProcessId
+##### ForProcessId (static)
 Create the builder for the config for the specified process.
 
 ##### Parameters
@@ -65,19 +56,15 @@ The **ForProcessId** method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an `AxeWindowsAutomationException`.
-
-`AxeWindowsAutomationException` is thrown for all unhandled errors in Axe.Windows.Automation. If an exception was thrown from code not owned by Axe.Windows.Automation, that exception will be wrapped in the `Exception.InnerException` property.
+processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an [`AxeWindowsAutomationException`](#error-handling).
 
 ##### Return object
 
-The **ForProcessId** method returns a **Config.Builder** object, which has the following methods:
+The **ForProcessId** method returns an instance of **Config.Builder**.
 
-**Name** | **Parameters** | **Output** | **Description**
----|---|---|---
-WithOutputFileFormat | `(OutputFileFormat format)` | `Config.Builder` | Specify the type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified. The default value is `None`.
-WithOutputDirectory | `(string directory)` | `Config.Builder` | Specify the directory where any output files should be written; is not used if output file format is `None`. Output files will be created in the current directory under folder **AxeWindowsOutputFiles** if left unspecified.
-Build | `N/A` | `Config` |  Build an instance of `Config`; to be consumed by `ScannerFactory`.
+##### WithOutputFileFormat
+
+Specify the type(s) of output files you wish AxeWindows to create.
 
 The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs), currently has the following possible values:
 
@@ -86,10 +73,50 @@ The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs), curr
 None | `0` | Create no output files.
 A11yTest | `1` | Create output files which can be opened using [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/en/windows/overview).
 
-#### ScannerFactory Details/Methods
+##### Parameters
+
+The **WithOutputFileFormat** method accepts the following parameters:
+
+**Name** | **Type** | **Description**
+---|---|---
+format | `OutputFileFormat` | The type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified. The default value is `None`.
+
+##### Return object
+
+The **WithOutputFileFormat** method returns the  `Config.Builder` configured with the specified format.
+
+##### WithOutputDirectory
+
+Specify the directory where any output files should be written.
+
+##### Parameters
+
+The **WithOutputDirectory** method accepts the following parameters:
+
+**Name** | **Type** | **Description**
+---|---|---
+directory | `string` | The directory where any output files should be written; is not used if output file format is `None`. Output files will be created in the current directory under folder **AxeWindowsOutputFiles** if left unspecified.
+
+##### Return object
+
+The **WithOutputDirectory** method returns the  `Config.Builder` configured with the specified output directory.
+
+##### Build
+
+Build an instance of `Config`.
+
+##### Parameters
+
+The **Build** method accepts no parameters.
+
+##### Return object
+
+The **Build** method returns an instance of `Config` with any modifications made through the `Config.Builder`.
+
+#### ScannerFactory
 
 ##### CreateScanner
-Create an object using config that implements `IScanner`.
+Create an object that implements `IScanner` using an instance of `Config`.
 
 ##### Parameters
 
@@ -103,9 +130,9 @@ config | `Config` | The configuration used by the returned `IScanner` object.
 
 The **ScannerFactory.CreateScanner** method returns an **IScanner** object.
 
-### IScanner Details/Methods
+#### IScanner
 
-#### Scan
+##### Scan
 The Scan runs AxeWindows automated tests using the config provided at the time of creation of the scanner.
 
 ##### Parameters
@@ -198,6 +225,10 @@ example below):
 ```
 
 ### Miscellaneous
+
+#### Error Handling
+
+`AxeWindowsAutomationException` is thrown for all unhandled errors in Axe.Windows.Automation. If an exception was thrown from code not owned by Axe.Windows.Automation, that exception will be wrapped in the `Exception.InnerException` property.
 
 #### Fully Synchronous
 Because  automated scans are stateful, they are intentionally synchronous within
