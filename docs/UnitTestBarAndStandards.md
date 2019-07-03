@@ -3,13 +3,13 @@
      
 ## Test requirements
 * All new code must have unit tests.
-* Unit tests need to accompany the code in the pull request. This provides implicit documentation of the expected behavior, and ensures that the behavior is being satisfied. In an exceptional circumstance, a PR might be approved without its unit tests, but that is not the normal expectation.
+* Unit tests should accompany the code in the pull request. This provides implicit documentation of the expected behavior, and ensures that the behavior is being satisfied. In an exceptional circumstance, a PR might be approved without its unit tests, but that is not the normal expectation.
 * All unit tests should be passing locally before the PR is created.
 * Unit tests must conform to the standards listed below.
 
 ## Standards
-* The test project is appropriately named (tests for the `Foo.Bar.dll` are in `Foo.BarTests.dll`)
-* The test namespace is appropriately named (the top level namespace matches the assembly name, then the hierarchy in the assembly is preserved. So if `Foo.Bar.dll` contains a namespace named `Widget`, the tests will be in the `Foo.BarTests.Widget` namespace)
+* The test project is appropriately named (tests for the `Foo.Bar.dll` are in `Foo.BarUnitTests.dll`)
+* The test namespace is appropriately named (the top level namespace matches the assembly name, then the hierarchy in the assembly is preserved. So if `Foo.Bar.dll` contains a namespace named `Widget`, the tests will be in the `Foo.BarUnitTests.Widget` namespace)
 * The test class is appropriately named (tests for the `ExplodingWidget` class will be in the `ExplodingWidgetTests` class)
 * Each test follows the naming conventions documented at [Unit Test Basics](https://msdn.microsoft.com/en-us/library/hh694602.aspx) Summarizing:
   * Name is in the general form `MethodName_TestCase_ExpectedBehavior`
