@@ -45,9 +45,6 @@ We use the unit test framework from Visual Studio. Find more information in our 
 ### More Information
 Visit the [Overview of Axe.Windows](./docs/Overview.md) page.
 
-## FAQ
-Please visit our [FAQ section](./docs/FAQ.md) to get answers to common questions.
-
 ## Data/Telemetry
 
 Axe.Windows does not collect any telemetric data. However, the package does support telemetry collection by caller applications such as
@@ -56,3 +53,6 @@ Please see the [Telemetry](./docs/telemetry.md) page for more details.
 
 ## Reporting security vulnerabilities
 If you believe you have found a security vulnerability in this project, please follow [these steps](https://technet.microsoft.com/en-us/security/ff852094.aspx) to report it. For more information on how vulnerabilities are disclosed, see [Coordinated Vulnerability Disclosure](https://technet.microsoft.com/en-us/security/dn467923).
+
+## FAQ
+Please visit our [FAQ section](./docs/FAQ.md) to get answers to common questions.
