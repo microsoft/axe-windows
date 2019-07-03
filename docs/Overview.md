@@ -1,7 +1,7 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved.
      Licensed under the MIT License. -->
      
-     ## Overview of Axe.Windows
+## Overview of Axe.Windows
 
 ### Tool Overview
 
