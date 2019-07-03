@@ -18,6 +18,6 @@
 * Each test specifies a reasonable `Timeout` value (default to 1 second each). The test output is much more readable if the test times out and fails than if the entire build loop hangs and reaches the 60 minute time constraint
   * One downside to the `Timeout` attribute--because the `Timeout` applies while debugging the unit test, it may need to be commented out to make debugging feasible.
 * Appropriate mocks or fakes decouple the test class from the underlying dependencies (Dependency Injection is a common pattern for this). This is required for new classes, best effort for changes to existing classes
-* `Microsoft Fakes` may not be used for any tests because not all editions of Visual Studio support them.
+* `Microsoft Fakes` may not be used for any new tests because not all editions of Visual Studio support them.
 * If Moq is used, mocks should ideally use `MockBehavior.Strict`--this isn't always possible, but using it makes for a much stronger test
 * If Moq is used, each Mock's `VerifyAll` should be called at the end of the test, to ensure that all configured methods were exercised as expected. Where both `MockBehavior.Strict` and `VerifyAll`, the resulting test will exactly pin down the interaction with dependency objects
