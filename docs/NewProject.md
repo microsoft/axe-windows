@@ -1,7 +1,7 @@
 ﻿<!-- Copyright (c) Microsoft Corporation. All rights reserved.
      Licensed under the MIT License. -->
      
-     ## Adding a new project
+## Adding a new project
 Do the following when adding a new project:
 
 ### For all projects
