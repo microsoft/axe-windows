@@ -2,7 +2,7 @@
      Licensed under the MIT License. -->
      
 ## Test requirements
-* All new non-UI code must have unit tests.
+* All new code must have unit tests.
 * Unit tests need to accompany the code in the pull request. This provides implicit documentation of the expected behavior, and ensures that the behavior is being satisfied. In an exceptional circumstance, a PR might be approved without its unit tests, but that is not the normal expectation.
 * All unit tests should be passing locally before the PR is created.
 * Unit tests must conform to the standards listed below.
