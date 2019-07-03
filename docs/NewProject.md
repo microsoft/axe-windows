@@ -21,7 +21,7 @@ Do the following when adding a new project:
    ```
 2. Close the solution and use your text editor to make the following changes to your `.csproj` file to properly configure the version and signing options:
    1. Add the following line with the other `.cs` files):<br>
-   `<Compile Include="$(TEMP)\A11yInsightsVersionInfo.cs" />`
+   `<Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />`
    2. Add the following below the last ItemGroup:<br>
    ```
    <ItemGroup>
