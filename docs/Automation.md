@@ -47,22 +47,22 @@ A [complete code example](#example) can be found below.
 
 #### Config.Builder
 
-##### *static* ForProcessId
+##### *`static`* `ForProcessId`
 Create the builder for the config for the specified process.
 
-##### Parameters
+###### Parameters
 
-The **ForProcessId** method accepts the following parameters:
+The `ForProcessId` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
 processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an [`AxeWindowsAutomationException`](#error-handling).
 
-##### Return object
+###### Return object
 
-The **ForProcessId** method returns an instance of **Config.Builder**.
+The `ForProcessId` method returns an instance of `Config.Builder`.
 
-##### WithOutputFileFormat
+##### `WithOutputFileFormat`
 
 Specify the type(s) of output files you wish AxeWindows to create.
 
@@ -73,75 +73,75 @@ The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs) curre
 None | `0` | Create no output files.
 A11yTest | `1` | Create output files which can be opened using [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/en/windows/overview).
 
-##### Parameters
+###### Parameters
 
-The **WithOutputFileFormat** method accepts the following parameters:
+The `WithOutputFileFormat` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
 format | `OutputFileFormat` | The type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified or 0 errors are found. The default value is `None`.
 
-##### Return object
+###### Return object
 
-The **WithOutputFileFormat** method returns the  `Config.Builder` configured with the specified format.
+The `WithOutputFileFormat` method returns the  `Config.Builder` configured with the specified format.
 
-##### WithOutputDirectory
+##### `WithOutputDirectory`
 
 Specify the directory where any output files should be written.
 
-##### Parameters
+###### Parameters
 
-The **WithOutputDirectory** method accepts the following parameters:
+The `WithOutputDirectory` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
 directory | `string` | The directory where any output files should be written; is not used if output file format is `None`. Output files will be created in the current directory under folder **AxeWindowsOutputFiles** if left unspecified.
 
-##### Return object
+###### Return object
 
-The **WithOutputDirectory** method returns the  `Config.Builder` configured with the specified output directory.
+The `WithOutputDirectory` method returns the  `Config.Builder` configured with the specified output directory.
 
 ##### Build
 
 Build an instance of `Config`.
 
-##### Parameters
+###### Parameters
 
-The **Build** method accepts no parameters.
+The `Build` method accepts no parameters.
 
-##### Return object
+###### Return object
 
-The **Build** method returns an instance of `Config` with any modifications made through the `Config.Builder`.
+The `Build` method returns an instance of `Config` with any modifications made through the `Config.Builder`.
 
 #### ScannerFactory
 
-##### CreateScanner
+##### `CreateScanner`
 Create an object that implements `IScanner` using an instance of `Config`.
 
-##### Parameters
+###### Parameters
 
-The **ScannerFactory.CreateScanner** method accepts the following parameters:
+The `ScannerFactory.CreateScanner` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
 config | `Config` | The configuration used by the returned `IScanner` object.
 
-##### Return object
+###### Return object
 
-The **ScannerFactory.CreateScanner** method returns an **IScanner** object.
+The `ScannerFactory.CreateScanner` method returns an `IScanner` object.
 
 #### IScanner
 
-##### Scan
+##### `Scan`
 The Scan runs AxeWindows automated tests using the config provided at the time of creation of the scanner.
 
-##### Parameters
+###### Parameters
 
-The **Scan** method accepts no parameters.
+The `Scan` method accepts no parameters.
 
-##### Return object
+###### Return object
 
-The **Scan** method returns a **ScanResults** object and has the following properties:
+The `Scan` method returns a `ScanResults` object and has the following properties:
 
 **Name** | **Type** | **Description**
 ---|---|---
@@ -149,7 +149,7 @@ ErrorCount | `int` | A count of all errors across all elements scanned.
 Errors | `IEnumerable<ScanResult>` | A collection of errors found during the scan.
 OutputFile | `(string A11yTest, string Sarif)` | A Tuple with paths to any output files written as a result of a scan. Tuple members are A11yTest and Sarif (**not implemented yet**).
 
-The **Errors** property contains **ScanResult** objects which are the result of a single rule test on a single element and have the following properties:
+The `Errors` property contains `ScanResult` objects which are the result of a single rule test on a single element and have the following properties:
 
 **Name** | **Type** | **Description**
 ---|---|---
