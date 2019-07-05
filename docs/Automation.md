@@ -15,7 +15,7 @@ AxeWindows functionality to automation systems.
         myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
 
         // Optional: configure to output the file to a specific directory (otherwise, current directory will be used)
-        myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
+        myConfigBuilder.WithOutputDirectory(".\test-directory");
 
         // Ready to use config
         var myConfig = myConfigBuilder.build();
@@ -47,7 +47,7 @@ A [complete code example](#example) can be found below.
 
 #### Config.Builder
 
-##### ForProcessId (static)
+##### *static* ForProcessId
 Create the builder for the config for the specified process.
 
 ##### Parameters
@@ -66,7 +66,7 @@ The **ForProcessId** method returns an instance of **Config.Builder**.
 
 Specify the type(s) of output files you wish AxeWindows to create.
 
-The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs), currently has the following possible values:
+The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs) currently has the following possible values:
 
 **Name** | **Value** | **Description**
 ---|---|---
@@ -79,7 +79,7 @@ The **WithOutputFileFormat** method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-format | `OutputFileFormat` | The type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified. The default value is `None`.
+format | `OutputFileFormat` | The type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified or 0 errors are found. The default value is `None`.
 
 ##### Return object
 
@@ -165,7 +165,7 @@ Description | `string` | Contains a short description of the rule.
 HowToFix | `string` | Detailed information on how to resolve a violation reported by the rule.
 Standard | `A11yCriteriaId` | An enum which identifies the standards documentation from which the rule was derived.
 PropertyID | `int` | In cases where the rule tests one specific UI Automation property, this contains the UI Automation property ID in question. This property is used to link elements with rule violations to relevant documentation.
-Condition | 'string' | A description of the conditions under which a rule will be evaluated.
+Condition | `string` | A description of the conditions under which a rule will be evaluated.
 
 `ElementInfo` contains the following properties:
 
@@ -175,7 +175,7 @@ Properties | `Dictionary<string, string>` | A string to string dictionary where 
 Patterns | `IEnumerable<string>` | A list of names of supported patterns.
 
 ### Using the assembly
-You can get the files via a NuGet package Configure NuGet to retrieve the
+You can get the files via a NuGet package; configure NuGet to retrieve the
 **Axe.Windows** package from
 <https://api.nuget.org/v3/index.json>,
 then use the classes in the Axe.Windows.Automation namespace (see
@@ -184,7 +184,7 @@ example below):
 -   Prerequisite: Your project *must* use .NET 4.7.1 (this is required by Axe-Windows).
 -   If you’re using NuGet, add the appropriate feed to your project.
 -   Add **using Axe.Windows.Automation;** to your code.
--   Follow the steps in **How To Use**.
+-   Follow the steps in [How To Run An Automated Scan](#how-to-run-an-automated-scan).
 
 #### Example
 ```
@@ -211,13 +211,15 @@ example below):
 
                 var scanner = ScannerFactory.CreateScanner(config);
 
-                try {
+                try
+                {
                     var output = scanner.Scan();
                     Assert.IsTrue(output.ErrorCount == 0);
                 }
-                catch(AxeWindowsAutomationException e) {
+                catch(AxeWindowsAutomationException e)
+                {
                     var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
-                    Assert.IsTrue(false, errorMessage);
+                    Assert.Fail(errorMessage);
                 }
             }
         }
