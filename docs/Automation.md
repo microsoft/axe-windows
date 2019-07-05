@@ -28,10 +28,12 @@ AxeWindows functionality to automation systems.
 3. Call  the `Scan` method on the `Scanner` object.
 
         var scanResults;
-        try {
+        try
+        {
             scanResults = scanner.Scan();
         }
-        catch(AxeWindowsAutomationException e) {
+        catch(AxeWindowsAutomationException e)
+        {
             // Get the message from an exception, if one is thrown.
             var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
         }
