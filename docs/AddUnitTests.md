@@ -41,7 +41,7 @@ When you build, this test will be built and made available for discovery. As lon
 
 If `widget.Delay` throws an exception, then the exception will be caught by the test framework and the test will also fail. In either case, all other tests will continue to execute and the aggregate result will be rolled up into the reports that are included as part of the build loop.
 
-The Assert methods also have versions that include messages, for cases where the basic assertion is unclear. For example,<br>
+The Assert methods also have versions that include messages for cases where the basic assertion is unclear. For example,<br>
 
 `Assert.IsTrue(dictionary.TryGetValue(key, out string value));` <br>
 
