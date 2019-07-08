@@ -45,7 +45,7 @@ The Assert methods also have versions that include messages for cases where the 
 
 `Assert.IsTrue(dictionary.TryGetValue(key, out string value));` <br>
 
-will just tell you that `TryGetValue` failed, without telling you the key it was looking for. You can easily improve the readability of the output by adding a description:<br>
+will tell you that `TryGetValue` failed without telling you the key it was looking for. You can easily improve the readability of the output by adding a description:<br>
 
 `Assert.IsTrue(dictionary.TryGetValue(key, out string value, "Couldn't find key: " + key));`
 
