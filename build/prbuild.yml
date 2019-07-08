@@ -3,7 +3,7 @@ trigger: none
 pr: none
 variables:
   BuildPlatform: 'x86'
-  CreateAxeWindowsNuget: 'true'
+  CreateAxeWindowsNugetPackage: 'true'
   PublicRelease: 'false'
   SignAppForRelease: 'false'
 
