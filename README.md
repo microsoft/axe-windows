@@ -47,8 +47,7 @@ Visit the [Overview of Axe.Windows](./docs/Overview.md) page.
 
 ## Data/Telemetry
 
-Axe.Windows does not collect any telemetric data. However, the package does support telemetry collection by caller applications such as
-[Accessibility Insights For Windows](https://github.com/microsoft/accessibility-insights-windows).
+Axe.Windows does not collect any telemetric data. However, the package does provide telemetric data for collection  by any application which uses it. 
 Please see the [Telemetry](./docs/telemetry.md) page for more details.
 
 ## Reporting security vulnerabilities
