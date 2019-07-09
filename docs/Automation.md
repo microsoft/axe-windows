@@ -34,8 +34,7 @@ AxeWindows functionality to automation systems.
         }
         catch(AxeWindowsAutomationException e)
         {
-            // Get the message from an exception, if one is thrown.
-            var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
+            Console.WriteLine(e.ToString());
         }
 
 4. Check the results.
@@ -227,7 +226,7 @@ example below):
                 }
                 catch(AxeWindowsAutomationException e)
                 {
-                    var errorMessage = e.InnerException != null ? e.InnerException.Message : e.Message;
+                    var errorMessage = e.toString();
                     Assert.Fail(errorMessage);
                 }
             }
