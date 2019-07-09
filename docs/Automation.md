@@ -40,7 +40,7 @@ AxeWindows functionality to automation systems.
 
 4. Check the results.
 
-        Console.WriteLine("Number of errors found in scan: " + scanResults.errorCount);
+        Console.WriteLine("Number of errors found in scan: " + scanResults.ErrorCount);
 
 
 A [complete code example](#example) can be found below.
@@ -155,8 +155,8 @@ The `OutputFile` property is a struct with the following properties:
 
 **Name** | **Type** | **Description**
 ---|---|---
-A11yTest | `string` | The A11yTest file that was generated (or null if no file was generated).
-Sarif | `string` | The Sarif file that was generated (or null if no file was generated).
+A11yTest | `string` | The path to the A11yTest file that was generated (or null if no file was generated).
+Sarif | `string` | The path to the Sarif file that was generated (or null if no file was generated).
 
 The `Errors` property contains `ScanResult` objects which are the result of a single rule test on a single element and have the following properties:
 
@@ -223,7 +223,7 @@ example below):
                 try
                 {
                     var output = scanner.Scan();
-                    Assert.IsTrue(output.ErrorCount == 0);
+                    Assert.AreEqual(0, output.ErrorCount);
                 }
                 catch(AxeWindowsAutomationException e)
                 {
