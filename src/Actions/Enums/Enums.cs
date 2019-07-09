@@ -52,16 +52,6 @@ namespace Axe.Windows.Actions.Enums
     }
 
     /// <summary>
-    ///  File extension of the result file
-    /// </summary>
-    public enum FileExtensionType
-    {
-        Sarif,
-        A11yTest,
-        All
-    }
-
-    /// <summary>
     /// UIA Tree states
     /// </summary>
     public enum UIATreeState
