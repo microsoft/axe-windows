@@ -84,18 +84,6 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Will generate and save the sarif file at the specifed path from the specified element downwards
-        /// </summary>
-        /// <param name="path"> The path at which the generated file needs to be persisted </param>
-        /// <param name="ecId"> the guid of the root element </param>
-        /// <param name="deleteGeneratedResultsFile"> Whether the generated results should be deleted </param>
-        /// <param name="otherProperties"></param>
-        public static void SaveSarifFile(string path, Guid ecId, Boolean deleteGeneratedResultsFile)
-        {
-            ResultsFileSarifMapper.GenerateAndPersistSarifFile(path, ecId, deleteGeneratedResultsFile);
-        }
-
-        /// <summary>
         /// Add stream to package
         /// </summary>
         /// <param name="package"></param>
