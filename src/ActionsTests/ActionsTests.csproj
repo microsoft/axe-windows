@@ -75,9 +75,6 @@
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Sarif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21a5e83f6f5bb844, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sarif.Sdk.2.0.0-csd.2.beta.2018-10-10\lib\net461\Sarif.dll</HintPath>
-    </Reference>
     <Reference Include="Sarif.2.0.0.0.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
       <HintPath>..\Fakes.Prebuild\FakesAssemblies\Sarif.2.0.0.0.Fakes.dll</HintPath>
     </Reference>
@@ -111,8 +108,6 @@
     <Compile Include="Actions\ScreenShotActionUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Actions\CaptureActionUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Misc\ExtensionMethodsTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
-    <Compile Include="Misc\OpenSarifTests.cs" />
-    <Compile Include="Misc\ResultsFileSarifMapperUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
