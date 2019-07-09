@@ -4,7 +4,7 @@
 To provide automated accessibility testing for Windows applications, we have created the `Axe.Windows.Automation` .NET assembly which exposes a subset of core
 AxeWindows functionality to automation systems.
 
-### How To Run An Automated Scan
+### How to run an automated scan
 
 1. Create a `Config` object using `Config.Builder`.
 
@@ -45,7 +45,7 @@ AxeWindows functionality to automation systems.
 
 A [complete code example](#example) can be found below.
 
-### Class Details
+### Class details
 
 #### Config.Builder
 
@@ -237,11 +237,11 @@ example below):
 
 ### Miscellaneous
 
-#### Error Handling
+#### Error handling
 
 `AxeWindowsAutomationException` is thrown for all unhandled errors in Axe.Windows.Automation. If an exception was thrown from code not owned by Axe.Windows.Automation, that exception will be wrapped in the `Exception.InnerException` property.
 
-#### Fully Synchronous
+#### Fully synchronous
 Because  automated scans are stateful, they are intentionally synchronous within
 a process. If you attempt to initiate multiple scans concurrently, the first one
 to obtain the lock will execute, then another, then another. This is by design
