@@ -33,12 +33,9 @@ provided by the bot. You will only need to do this once across all repos using o
 ### Bugs
 We use [github issues](https://github.com/Microsoft/axe-windows/issues) to track bugs.
 
-See something wrong / that can be improved upon? Vist the [issues](https://github.com/Microsoft/axe-windows/issues?q=is%3Aissue+is%3Aopen%2Cclosed) page to see if an issue for it already exists.
+See something wrong / that can be improved upon? Visit the [issues](https://github.com/Microsoft/axe-windows/issues?q=is%3Aissue+is%3Aopen%2Cclosed) page to see if an issue for it already exists.
 
 If it doesn't, feel free to [file an issue](https://github.com/Microsoft/axe-windows/issues/new).
 
 ### FAQ
 Please visit our [FAQ section](docs/FAQ.md) to get answers to common questions.
-
-### Get in touch
-TBA

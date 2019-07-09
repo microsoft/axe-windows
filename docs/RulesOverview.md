@@ -1,8 +1,8 @@
 ## Rules Overview
 
-Rules are the automated accessibility tests run by Axe-Windows. Each rule is independent of any other and contains all information about itself.
+Rules are the automated accessibility tests run by Axe.Windows. Each rule is independent of any other and contains all information about itself.
 
-For an overview of the Rules projects, please see the "Accessibility Rules" section in [Overview of Axe-Windows](./Overview.md)
+For an overview of the Rules projects, please see the "Accessibility Rules" section in [Overview of Axe.Windows](./Overview.md)
 
 ### Anatomy of a rule
 
@@ -19,7 +19,7 @@ Rules have three basic components
 
 ### Inheritence
 
-All rules must inherit from the `Axe.Windows.Rules.Rule` base class. Rules are discovered through reflection; when your class inherits from `Rule`,  it is added to the set of rules tested by Accessibility Insights. 
+All rules must inherit from the `Axe.Windows.Rules.Rule` base class. Rules are discovered through reflection; when your class inherits from `Rule`,  it is added to the set of rules tested by Axe.Windows. 
 
 ### Conventions
 
@@ -41,7 +41,7 @@ The `Evaluate` method of a rule should return either `EvaluationCode.Pass` or on
 
 _Note:_ `EvaluationCode.NotApplicable` is never returned by the `Evaluate` method of the `Rule` class. It indicates that the rule in question is not applicable to the given situation. For example, a rule which checks for specific patterns on a button is not applicable to an edit control.
 
-_Note:_ Because results from automated tests in Accessibility Insights are represented in the SARIF format, evaluation codes are loosely based on the "Level" property described in the [SARIF specification](http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html##_Toc517436065) under section 3.19.7.
+_Note:_ Because results from automated tests may be represented in the SARIF format, evaluation codes are loosely based on the "Level" property described in the [SARIF specification](http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html##_Toc517436065) under section 3.19.7.
 
 #### Use conditions in the `Evaluate` method
 
