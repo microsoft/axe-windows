@@ -1,6 +1,6 @@
 ## Contributing
 
-### Code of Conduct
+### Code of conduct
 Please review the [Code of Conduct](./CODE_OF_CONDUCT.md) for this project.
 
 ### Contribution model 
@@ -21,9 +21,9 @@ Project specific PR guidelines:
   * Click on the build in the left pane. This should display the information associated with that build.
   * For more details, click on "View more details on Azure Pipelines".  
 
-### Contributing License Agreement 
+### Contributing license agreement 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
+contributor license agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
 When you submit a pull request, a CLA-bot will automatically determine whether you need to provide

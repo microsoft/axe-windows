@@ -1,11 +1,11 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved.
      Licensed under the MIT License. -->
 
-## Unit Testing
+## Unit testing
 
 We use the [MSTest framework](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-1.2.0) to write unit tests.
 
-### Unit Test Setup
+### Unit test setup
 Setting up unit tests for an assembly is trivial. 
 The steps are:
 1. Use Visual Studio to **add a new Unit Test Project** (available as a new project template listed under Visual C#, then Test)

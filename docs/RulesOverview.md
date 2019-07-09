@@ -1,4 +1,7 @@
-## Rules Overview
+<!-- Copyright (c) Microsoft Corporation. All rights reserved.
+     Licensed under the MIT License. -->
+     
+     ## Rules
 
 Rules are the automated accessibility tests run by Axe.Windows. Each rule is independent of any other and contains all information about itself.
 

@@ -34,7 +34,7 @@ You can find more information on how to set up your development environment [her
   cd axe-windows
   ```
 
-### 2. Open the solution in visual studio
+### 2. Open the solution in Visual Studio
 - Use the `src/AxeWindows.sln` file to open the solution.
 
 ### 3. Build and run unit tests
@@ -42,7 +42,7 @@ You can find more information on how to set up your development environment [her
 ## Testing
 We use the unit test framework from Visual Studio. Find more information in our [FAQ section](./docs/FAQ.md).
 
-### More Information
+### More information
 Visit the [Overview of Axe.Windows](./docs/Overview.md) page.
 
 ## Data/Telemetry
