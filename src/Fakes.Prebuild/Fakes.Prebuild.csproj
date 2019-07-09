@@ -53,15 +53,9 @@
     </Fakes>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Core.fakes" />
-  </ItemGroup>
-  <ItemGroup>
     <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.Desktop.fakes">
       <SubType>Designer</SubType>
     </Fakes>
-  </ItemGroup>
-  <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="Axe.Windows.RuleSelection.fakes" />
   </ItemGroup>
   <ItemGroup>
     <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="mscorlib.fakes" />
