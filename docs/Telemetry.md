@@ -68,7 +68,7 @@ Property | Data
 ElementsInScan | The number of UI Automation elements evaluated during the scan
 UpperBoundExceeded | A boolean string indicating whether the upper bound for the number of elements allowed per scan was reached
 
-Wehn "SingleRule_Tested_Results" is sent to `PublishEvent` as the event name, the following items are expected in the properties dictionary:
+When "SingleRule_Tested_Results" is sent to `PublishEvent` as the event name, the following items are expected in the properties dictionary:
 
 Property | data
 --- | ---
