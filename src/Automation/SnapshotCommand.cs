@@ -62,13 +62,8 @@ namespace Axe.Windows.Automation
                 a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
                 if (a11yTestOutputFile == null) throw new InvalidOperationException(nameof(a11yTestOutputFile));
                 
-scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
+                scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
             }
-
-#if NOT_CURRENTLY_SUPPORTED
-                                if (locationHelper.IsSarifExtension())
-                                    // SaveAction.SaveSarifFile(outputFileHelper.GetNewSarifFilePath(), ec2.Id, !locationHelper.IsAllOption());
-#endif
 
             return OutputFile.BuildFromA11yTestFile(a11yTestOutputFile);
         }
