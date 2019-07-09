@@ -83,6 +83,7 @@ namespace Axe.Windows.Actions
             }
         }
 
+#if SARIF_ENABLED
         /// <summary>
         /// Will generate and save the sarif file at the specifed path from the specified element downwards
         /// </summary>
@@ -94,6 +95,7 @@ namespace Axe.Windows.Actions
         {
             ResultsFileSarifMapper.GenerateAndPersistSarifFile(path, ecId, deleteGeneratedResultsFile);
         }
+#endif
 
         /// <summary>
         /// Add stream to package

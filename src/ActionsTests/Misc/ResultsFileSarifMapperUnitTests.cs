@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+#if SARIF_ENABLED
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
@@ -20,7 +21,6 @@ using Microsoft.QualityTools.Testing.Fakes;
 
 namespace Axe.Windows.ActionsTests.Misc
 {
-
     [TestClass]
     public class ResultsFileSarifMapperUnitTests
     {
@@ -44,7 +44,7 @@ namespace Axe.Windows.ActionsTests.Misc
         private const string TestHelpURL = "https://www.bing.com/";
         private const string TestGlimpse = "Testing";
 
-#if FAKES_SUPPORTED 
+#if FAKES_SUPPORTED
         static string ScreenshotTemplateValue = @"file:///C:/ScanOutput/{fileGUID}.png";
         static string ToolOutputTemplateValue = @"file:///C:/ScanOutput/{fileGUID}.a11ytest";
 
@@ -677,3 +677,4 @@ namespace Axe.Windows.ActionsTests.Misc
         }
     }
 }
+#endif
