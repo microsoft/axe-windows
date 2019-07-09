@@ -1,183 +1,204 @@
 ## Axe.Windows - Automation
 
 ### Overview
-To enable various automation scenarios, we have created an assembly
-(`Axe.Windows.Automation.dll`) that exposes a subset of core
-AxeWindows functionality to automation systems. This can be used in
-a variety of ways, including as part of a standalone test system, 
-PowerShell script, or CI/CD solution. One or more scans can be
-performed during a test run and the outputs will be saved to disk. No UI is
-provided in automation mode, and the code is intended to be compatible with
-Windows 7 or newer.
+To provide automated accessibility testing for Windows applications, we have created the `Axe.Windows.Automation` .NET assembly which exposes a subset of core
+AxeWindows functionality to automation systems.
 
-### General Characteristics
+### How to run an automated scan
 
-#### Fully Synchronous
-Since these commands are all stateful, they are intentionally synchronous within
-a process. If you attempt to call into the commands concurrently, the first one
-to obtain the lock will execute, then another, then another. This is by design
-and is not expected to change at any future time. If you have a scenario that
-truly requires the command to execute in parallel, then you will need to create
-a solution where you can make those calls from separate processes.
+1. Create a `Config` object using `Config.Builder`.
 
-#### Specifying parameters
-Parameters are specified as a string-to-string dictionary. A hierarchical
-parameter structure is supported, as follows:
--   Tier 3 parameters can be read from a JSON-serialized disk file, which is
-    specified when the automation session begins. Each of these parameters
-    will be used unless they are overridden by a corresponding Tier 2 or Tier 1
-    parameter.
--   Tier 2 parameters can be specified via a .NET `Dictionary<string,string>`
-    parameter that is passed to the Start command. Each of these parameters will
-    be used for the lifetime of the automation session unless they are
-    overridden by a Tier 1 parameter.
--   Tier 1 parameters can be passed to some commands. Tier 1 parameters are
-    never overridden.
+        // Create config to specifically target a process
+        var myConfigBuilder = Config.Builder.ForProcessId(1234);
 
-#### Return Objects
-Each command will return a .NET object to summarize the result of the operation.
-These objects are detailed under each command:
+        // Optional: configure to create an A11yTest file
+        myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
 
-### Command Details
-#### Start Command
-The Start command initializes the AxeWindows engine for automation.
-It is required for the session to begin, and each session requires a
-corresponding call to the Stop command. A given test process is allowed only one
-active session at a time, and subsequent calls to Start will fail.
+        // Optional: configure to output the file to a specific directory (otherwise, current directory will be used)
+        myConfigBuilder.WithOutputDirectory(".\test-directory");
 
-##### Inputs
+        // Ready to use config
+        var myConfig = myConfigBuilder.build();
 
-###### .NET
+2. Create a `Scanner` object using the `ScannerFactory` object with the `Config`.
 
-The **StartCommand.Execute** method accepts the following parameters:
+        // Create scanner using myConfig
+        var scanner = ScannerFactory.CreateScanner(myConfig);
 
-**Name** | **Type** | **Description**
----|---|---
-primaryConfig | `Dictionary<string, string>` | The set of Tier 2 parameters to apply during this session. See [Defined Constants](#defined-constants) for specific parameters.
-configFile | `string` | The full path to a file that contains JSON-serialized Tier 3 parameters. Can be `string.Empty`. Must point to a valid JSON-serialized file if non-empty.
+3. Call  the `Scan` method on the `Scanner` object.
 
-###### PowerShell
+        var scanResults;
+        try
+        {
+            scanResults = scanner.Scan();
+        }
+        catch(AxeWindowsAutomationException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
 
-The **Start-AxeWindows** cmdlet accepts the following optional
-parameters:
+4. Check the results.
+
+        Console.WriteLine("Number of errors found in scan: " + scanResults.ErrorCount);
+
+
+A [complete code example](#example) can be found below.
+
+### Class details
+
+#### Config.Builder
+
+##### *`static`* `ForProcessId`
+Create the builder for the config for the specified process.
+
+###### Parameters
+
+The `ForProcessId` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-OutputFile | `string`  | The location where output from this session will be written. The file extension can (and should) be omitted. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.
-OutputFileFormat | `string` | The output file format to generate. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.
-TargetProcessId | `string` | The process id, expressed as a string, that will be scanned. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.
-ConfigFile | `string` | The full path to a file that contains JSON-serialized Tier 3 parameters. Must point to a valid JSON-serialized file if specified.
+processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an [`AxeWindowsAutomationException`](#error-handling).
 
-##### Return object
+###### Return object
 
-The **StartCommandObject** has the following properties:
+The `ForProcessId` method returns an instance of `Config.Builder`.
 
-**Name** | **Type** | **Description**
----|---|---
-Completed | `bool` | True if the command ran to completion. If true, then the Succeeded property indicates if the call succeeded.
-SummaryMessage | `string` | A human-readable message to summarize the result. This message can change at any time, so do not rely on parsing it in tools.
-Succeeded | `bool` | True if the Start command completed successfully.
+##### `WithOutputFileFormat`
 
-#### Snapshot Command
-The Snapshot command scans a single process for accessibility issues and saves
-the output file for later analysis. It can only be called while an automation
-session is open (i.e., between the Start and Stop commands):
+Specify the type(s) of output files you wish AxeWindows to create.
 
-##### Inputs
+The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs) currently defines the following values:
 
-###### .NET
+**Name** | **Description**
+---|---
+None | Create no output files.
+A11yTest | Create output files which can be opened using [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/en/windows/overview).
 
-The **SnapshotCommand.Execute** method accepts the following parameters:
+###### Parameters
+
+The `WithOutputFileFormat` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-primaryConfig | `Dictionary<string, string>` | The set of Tier 1 parameters to apply during this call. See [Defined Constants](#defined-constants) for specific parameters.
+format | `OutputFileFormat` | The type(s) of output files you wish AxeWindows to create. No output files will be created if this is left unspecified or 0 errors are found. The default value is `None`.
 
-###### PowerShell
+###### Return object
 
-The **Invoke-Snapshot** cmdlet accepts the following parameters:
+The `WithOutputFileFormat` method returns the  `Config.Builder` configured with the specified format.
 
-**Name** | **Type** | **Description**
----|---|---
-OutputFile | `string` | The location where output from this session will be written. Include the file name, but **not** the file extension.
-TargetProcessId | `string` | The process id, expressed as a string, that will be scanned. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot.
-OutputFileFormat | `string` | The output file format to generate. This parameter can be specified either at Start-AxeWindows or at Invoke-Snapshot. See [Defined Constants](#defined-constants) for details.
+##### `WithOutputDirectory`
 
-##### Return object
+Specify the directory where any output files should be written.
 
-The **SnapshotCommandResult** object has the following properties:
+###### Parameters
+
+The `WithOutputDirectory` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-Completed | `bool` | True if the command ran to completion. If true, then the Succeeded property indicates if the call succeeded.
-SummaryMessage | `string` | A human-readable message to summarize the result. This message can change at any time, so do not rely on parsing it in tools.
-Succeeded | `bool` | True if the Start command completed successfully.
-ScanResultsPassed | `int` | The count of elements that passed all accessibility scans.
-ScanResultsFailed | `int` | The count of elements that failed one or more accessibility scans.
-ScanResultsInconclusive | `int` | The count of elements that registered an inconclusive scan—these are typically cases where a human needs to evaluate the control and determine whether or not a fix is necessary.
-ScanResultsUnsupported  | `int` | The count of elements that Accessibility Insights is unable to scan—these are typically elements like embedded web controls.
-ScanResultsTotal | `int` | The sum of ScanResultsPassed, ScanResultsFailed, ScanResultsInconclusive, and ScanResultsUnsupported.
+directory | `string` | The directory where any output files should be written; is not used if output file format is `None`. Output files will be created in the current directory under folder **AxeWindowsOutputFiles** if left unspecified.
 
-#### Stop Command
-The Stop command terminates an automation session. State and associated
-resources are freed. The test framework can then exit or create another session
-(via the Start command).
+###### Return object
 
-##### Inputs
+The `WithOutputDirectory` method returns the  `Config.Builder` configured with the specified output directory.
 
-###### .NET
+##### Build
 
-The **StopCommand.Execute** method accepts no parameters.
+Build an instance of `Config`.
 
-###### PowerShell
+###### Parameters
 
-The **Stop-AxeWindows** cmdlet accepts no parameters
+The `Build` method accepts no parameters.
 
-##### Return object
-The StopCommandResult object has the following properties:
+###### Return object
+
+The `Build` method returns an instance of `Config` with any modifications made through the `Config.Builder`.
+
+#### ScannerFactory
+
+##### `CreateScanner`
+Create an object that implements `IScanner` using an instance of `Config`.
+
+###### Parameters
+
+The `ScannerFactory.CreateScanner` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-Completed | `bool` | True if the command ran to completion. If true, then the Succeeded property indicates if the call succeeded.
-SummaryMessage | `string` | A human-readable message to summarize the result. This message can change at any time, so do not rely on parsing it in tools.
-Succeeded | `bool` | True if the Start command completed successfully.
+config | `Config` | The configuration used by the returned `IScanner` object.
 
-#### Defined Constants
+###### Return object
 
-The following constants are defined in the assembly:
+The `ScannerFactory.CreateScanner` method returns an `IScanner` object.
 
-**Name** | **Value** | **Description**
+#### IScanner
+
+##### `Scan`
+The Scan runs AxeWindows automated tests using the config provided at the time of creation of the scanner.
+
+###### Parameters
+
+The `Scan` method accepts no parameters.
+
+###### Return object
+
+The `Scan` method returns a `ScanResults` object and has the following properties:
+
+**Name** | **Type** | **Description**
 ---|---|---
-CommandConstStrings.TargetProcessId | “TargetProcessId” | The string representation (in decimal format) of the process ID to be scanned. Must be set in at least one tier (Tier 1/Tier 2/Tier 3).
-CommandConstStrings.OutputPath | “OutputPath” | The file location where files from this automation session are to be written. If the target path directory does not exist, it will be created when the first output file is written to it. If the intent is for CI / CD, it is recommended that OutputPath not be set.
-CommandConstStrings.OutputFile | “OutputFile” | The specific file (without path) where scan results are to be written. If the file already exists, it will be overwritten. The file extension can (and should) be omitted. Must be set in at least one tier (Tier 1/Tier 2/Tier 3).
-CommandConstStrings.OutputFileFormat | “OutputFileFormat” | The specific format that the output file should be generated in. The files generated will use the output path and the output filename provided. The three supported values are:<ul><li> **a11yTest** will generate "\*.a11ytest" files.<li>**Sarif** = will generate "\*.sarif" files.<li>**All** will generate both an a11ytest file and a sarif file.</ul>This parameter has lower precedence than if an extension was passed in as a part of the filename. If no extension is passed in the filename and this parameter is not passed in, then files will be generated in the sarif format. May be set in at least one tier (Tier 1/Tier 2/Tier 3). *Default value = **Sarif***.
-CommandConstStrings.NoViolationPolicy | “NoViolationPolicy” | Specifies how output files should be handled if no violations are found. <ul><li>**Discard** will discard the results file.<li>**Retain** will retain the results file.</ul>*Default value = **Retain***. Valid only as a Tier 3 setting.
-CommandConstStrings.Discard  | “Discard” | Value for NoViolationPolicy.
-CommandConstStrings.Retain | “Retain” | Value for NoViolationPolicy.
-CommandConstStrings.TeamName | “TeamName” | Value for Team name in telemetry.
+ErrorCount | `int` | A count of all errors across all elements scanned.
+Errors | `IEnumerable<ScanResult>` | A collection of errors found during the scan.
+OutputFile | `OutputFile` | Represents the output file(s), if any, associated with a ScanResults object.
+
+The `OutputFile` property is a struct with the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+A11yTest | `string` | The path to the A11yTest file that was generated (or null if no file was generated).
+Sarif | `string` | The path to the Sarif file that was generated (or null if no file was generated).
+
+The `Errors` property contains `ScanResult` objects which are the result of a single rule test on a single element and have the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+Rule | `RuleInfo` | Information about the rule (description, how to fix information, etc.) that was evaluated on the element.
+Element | `ElementInfo` | The element which was tested against the rule.
+
+`RuleInfo` contains the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+ID | `RuleId` | Contains a unique identifier for the rule from the [RuleId enumeration](../src/Core/Enums/RuleId.cs).
+Description | `string` | Contains a short description of the rule.
+HowToFix | `string` | Detailed information on how to resolve a violation reported by the rule.
+Standard | `A11yCriteriaId` | The [A11yCriteriaId enumeration](../src/Rules/A11yCriteriaId.cs) identifies the standards documentation from which the rule was derived.
+PropertyID | `int` | In cases where the rule tests one specific UI Automation property, this contains the UI Automation property ID in question. This property is used to link elements with rule violations to relevant documentation.
+Condition | `string` | A description of the conditions under which a rule will be evaluated.
+
+`ElementInfo` contains the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+Properties | `Dictionary<string, string>` | A string to string dictionary where the key is a UI Automation property name and the value is the corresponding UI Automation property value.
+Patterns | `IEnumerable<string>` | A list of names of supported patterns.
 
 ### Using the assembly
-You can get the files via a NuGet package Configure NuGet to retrieve the
+You can get the files via a NuGet package; configure NuGet to retrieve the
 **Axe.Windows** package from
 <https://api.nuget.org/v3/index.json>,
 then use the classes in the Axe.Windows.Automation namespace (see
-examples below):
+example below):
 
-#### From .NET code
--   Prerequisite: Your project *must* use .NET 4.7.1 (this is required by
-    Accessibility Insights).
+-   Prerequisite: Your project *must* use .NET 4.7.1 (this is required by Axe-Windows).
 -   If you’re using NuGet, add the appropriate feed to your project.
 -   Add **using Axe.Windows.Automation;** to your code.
--   Access the Start command via the **StartCommand.Execute** method.
--   Access the Snapshot command via the **SnapshotCommand.Execute** method.
--   Access the Stop command via the **StopCommand.Execute** method.
+-   Follow the steps in [How To Run An Automated Scan](#how-to-run-an-automated-scan).
 
-Sample `C#` code—this is interactive, but yours doesn’t need to be:
+#### Example
 ```
     using System;
     using System.Collections.Generic;
-    using AxeW.indows.Automation;
+    using Axe.Windows.Automation;
 
     namespace AxeWindowsDemo
     {
@@ -188,78 +209,41 @@ Sample `C#` code—this is interactive, but yours doesn’t need to be:
             /// </summary>
             static void Main(string[] args)
             {
-                var parameters = new Dictionary<string, string>();
-                string secondaryConfigFile = string.Empty;
-                char[] delimiters = {'='};
-                foreach (string arg in args)
+                string testAppPath = Path.GetFullPath(@"..\myApplication.exe");
+                string outputDir = Path.GetFullPath(@".\TestOutput");
+                Process testProcess = Process.Start(testAppPath);
+                var config = Config.Builder.ForProcessId(testProcess.Id)
+                    .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                    .WithOutputDirectory(outputDir)
+                    .Build();
+
+                var scanner = ScannerFactory.CreateScanner(config);
+
+                try
                 {
-                    string[] pieces = arg.Split(delimiters);
-                    if (pieces.Length == 2)
-                    {
-                        string key = pieces[0].Trim();
-                        string value = pieces[1].Trim();
-                        if (!string.IsNullOrWhiteSpace(key) && !string.IsNullOrWhiteSpace(value))
-                        {
-                            // Special case for SecondaryConfigFile
-                            if (key.Equals("SecondaryConfigFile", StringComparison.OrdinalIgnoreCase))
-                            {
-                                secondaryConfigFile = value;
-                            }
-                            else
-                            {
-                                parameters[key] = value;
-                            }
-                            continue;
-                        }
-                    }
-                    Console.WriteLine("Ignoring malformed input: {0}", arg);
-                };
-                Console.WriteLine(StartCommand.Execute(parameters secondaryConfigFile).ToString());
-                int autoFileId = 0;
-                while (true)
-                {
-                    Console.Write("Enter process ID to capture (blank to exit): ");
-                    string input = Console.ReadLine();
-                    if (input == string.Empty)
-                        break;
-                    if (!int.TryParse(input, out int processId))
-                    {
-                        Console.WriteLine("Not a valid int: " + input);
-                        continue;
-                    }
-                    Dictionary<string, string> snapshotParameters = new Dictionary<string, string>
-                    {
-                        { CommandConstStrings.TargetProcessId, input },
-                        { CommandConstStrings.OutputFile, autoFileId++.ToString() },
-                    };
-                    Console.WriteLine(SnapshotCommand.Execute(snapshotParameters).ToString());
+                    var output = scanner.Scan();
+                    Assert.AreEqual(0, output.ErrorCount);
                 }
-                Console.WriteLine(StopCommand.Execute().ToString());
+                catch(AxeWindowsAutomationException e)
+                {
+                    var errorMessage = e.toString();
+                    Assert.Fail(errorMessage);
+                }
             }
         }
     }
 ```
 
-#### From PowerShell
--   Start your PowerShell script from the folder where the AxeWindows
-    DLLs are located.
--   Load the assembly via **Import-Module Axe.Windows.Automation.dll**.
--   Access the Start command via the **Start-AxeWindows** cmdlet.
--   Access the Snapshot command via the **Invoke-Snapshot** cmdlet.
--   Access the Stop command via the **Stop-AxeWindows** cmdlet.
+### Miscellaneous
 
-Sample PowerShell script (the 2 second delay exists to give the app time to initialize before it is scanned):
-```
-    Import-Module .\Axe.Windows.Automation.dll
-    Start-AxeWindows -OutputPath c:\MyFolder
-    Start-Process -FilePath notepad.exe
-    Start-Sleep 2
-    $appProcId=get-process notepad |select -expand id
-    Invoke-Snapshot -OutputFile notepadSnapshot -TargetProcessId $appProcId
-    Stop-Process -Id $appProcId
-    Stop-AxeWindows
-```
+#### Error handling
 
-**Note**: This script will work only if the instance of notepad.exe started is the only instance in the entire system. If there is more than one instance, the PowerShell layer will throw an Exception because it tries to convert something like "123 456" to a number, which will fail.
+`AxeWindowsAutomationException` is thrown for all unhandled errors in Axe.Windows.Automation. If an exception was thrown from code not owned by Axe.Windows.Automation, that exception will be wrapped in the `Exception.InnerException` property.
 
-**Warning**: Downloading this package using nonstandard methods, such as directly from a web browser, may cause PowerShell's Import-Module command to fail. We recommend using NuGet to acquire the package.
+#### Fully synchronous
+Because  automated scans are stateful, they are intentionally synchronous within
+a process. If you attempt to initiate multiple scans concurrently, the first one
+to obtain the lock will execute, then another, then another. This is by design
+and is not expected to change at any future time. If you have a scenario that
+truly requires the command to execute in parallel, then you will need to create
+a solution where you can make those calls from separate processes.
