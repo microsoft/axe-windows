@@ -68,12 +68,12 @@ The `ForProcessId` method returns an instance of `Config.Builder`.
 
 Specify the type(s) of output files you wish AxeWindows to create.
 
-The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs) currently has the following possible values:
+The [`OutputFileFormat` enum](../src/Automation/enums/OutputFileFormat.cs) currently defines the following values:
 
-**Name** | **Value** | **Description**
----|---|---
-None | `0` | Create no output files.
-A11yTest | `1` | Create output files which can be opened using [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/en/windows/overview).
+**Name** | **Description**
+---|---
+None | Create no output files.
+A11yTest | Create output files which can be opened using [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/en/windows/overview).
 
 ###### Parameters
 
@@ -149,7 +149,14 @@ The `Scan` method returns a `ScanResults` object and has the following propertie
 ---|---|---
 ErrorCount | `int` | A count of all errors across all elements scanned.
 Errors | `IEnumerable<ScanResult>` | A collection of errors found during the scan.
-OutputFile | `(string A11yTest, string Sarif)` | A Tuple with paths to any output files written as a result of a scan. Tuple members are A11yTest and Sarif (**not implemented yet**).
+OutputFile | `OutputFile` | Represents the output file(s), if any, associated with a ScanResults object.
+
+The `OutputFile` property is a struct with the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+A11yTest | `string` | The A11yTest file that was generated (or null if no file was generated).
+Sarif | `string` | The Sarif file that was generated (or null if no file was generated).
 
 The `Errors` property contains `ScanResult` objects which are the result of a single rule test on a single element and have the following properties:
 
@@ -162,10 +169,10 @@ Element | `ElementInfo` | The element which was tested against the rule.
 
 **Name** | **Type** | **Description**
 ---|---|---
-ID | `RuleId` | Contains a unique identifier for the rule from the RuleId enumeration.
+ID | `RuleId` | Contains a unique identifier for the rule from the [RuleId enumeration](../src/Core/Enums/RuleId.cs).
 Description | `string` | Contains a short description of the rule.
 HowToFix | `string` | Detailed information on how to resolve a violation reported by the rule.
-Standard | `A11yCriteriaId` | An enum which identifies the standards documentation from which the rule was derived.
+Standard | `A11yCriteriaId` | The [A11yCriteriaId enumeration](../src/Rules/A11yCriteriaId.cs) identifies the standards documentation from which the rule was derived.
 PropertyID | `int` | In cases where the rule tests one specific UI Automation property, this contains the UI Automation property ID in question. This property is used to link elements with rule violations to relevant documentation.
 Condition | `string` | A description of the conditions under which a rule will be evaluated.
 
@@ -173,7 +180,7 @@ Condition | `string` | A description of the conditions under which a rule will b
 
 **Name** | **Type** | **Description**
 ---|---|---
-Properties | `Dictionary<string, string>` | A string to string dictionary where the key is a UIAutomation property name and the value is the corresponding UI Automation property value.
+Properties | `Dictionary<string, string>` | A string to string dictionary where the key is a UI Automation property name and the value is the corresponding UI Automation property value.
 Patterns | `IEnumerable<string>` | A list of names of supported patterns.
 
 ### Using the assembly
@@ -203,8 +210,8 @@ example below):
             /// </summary>
             static void Main(string[] args)
             {
-                string testAppPath = Path.GetFullPath("..\myApplication.exe");
-                string outputDir = Path.GetFullPath(".\TestOutput");
+                string testAppPath = Path.GetFullPath(@"..\myApplication.exe");
+                string outputDir = Path.GetFullPath(@".\TestOutput");
                 Process testProcess = Process.Start(testAppPath);
                 var config = Config.Builder.ForProcessId(testProcess.Id)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest)
