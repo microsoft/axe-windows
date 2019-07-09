@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+#if SARIF_ENABLED
 using Axe.Windows.Actions.Sarif;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Fingerprint;
@@ -434,3 +435,4 @@ namespace Axe.Windows.Actions.Misc
         }
     }
 }
+#endif

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+#if SARIF_ENABLED
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -27,3 +28,4 @@ namespace Axe.Windows.ActionsTests.Misc
         }
     }
 }
+#endif

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+#if SARIF_ENABLED
 using Axe.Windows.Telemetry;
 using Microsoft.CodeAnalysis.Sarif;
 using Newtonsoft.Json;
@@ -48,3 +49,4 @@ namespace Axe.Windows.Actions.Sarif
         }
     }
 }
+#endif
