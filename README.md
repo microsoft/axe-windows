@@ -1,16 +1,18 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved.
      Licensed under the MIT License. -->
-     
+
+## Overview
+
 Axe.Windows is a [NuGet](https://www.nuget.org/) package for running automated accessibility tests on Windows® applications.
 
-## Latest release
+- Use an automation test framework like [UI Automation](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview) or [WinAppDriver](https://github.com/microsoft/WinAppDriver) to manipulate your application
+- Scan your application as many times as you need to
+- Axe.Windows returns results with each scan and can optionally save each scan's results to an a11ytest file you can open with [Accessibility Insights](https://accessibilityinsights.io/docs/en/windows/overview)
 
 To get the latest version of the Axe.Windows NuGet package, visit
 [Axe.Windows on NuGet.org](https://www.nuget.org/packages/Axe.Windows/).
 
-For details about the latest release, please see the [Release Notes Page](./docs/ReleaseNotes.md).
-     
-## Run Axe.Windows automated accessibility tests
+## How to run automated accessibility tests
      
 For information about how to use Axe.Windows to test a Windows® application, please see the [Automation Guide](./docs/automation.md);
      
