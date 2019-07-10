@@ -14,7 +14,7 @@ To get the latest version of the Axe.Windows NuGet package, visit
 
 ## How to run automated accessibility tests
      
-For information about how to use Axe.Windows to test a Windows® application, please see the [Automation Guide](./docs/automation.md);
+For information about how to use Axe.Windows to test a Windows® application, please see the [Automation Guide](./docs/automation.md).
      
 ## Contributing
 All contributions are welcome! Please read through our guidelines on [contributions](./Contributing.md) to this project.
