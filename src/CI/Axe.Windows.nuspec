@@ -19,6 +19,7 @@
         <dependency id="Newtonsoft.Json" version="9.0.1" />
         <dependency id="System.Collections.Immutable" version="1.5.0" />
     </dependencies>
+    <releaseNotes>https://github.com/microsoft/axe-windows/releases</releaseNotes>
   </metadata>
   <files>
     <file src="bin\$configuration$\axe.windows.*.dll" target="lib\net471" />
