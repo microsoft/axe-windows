@@ -8,7 +8,9 @@ Axe.Windows is a [NuGet](https://www.nuget.org/) package for running automated a
 To get the latest version of the Axe.Windows NuGet package, visit
 [Axe.Windows on NuGet.org](https://www.nuget.org/packages/Axe.Windows/).
 
-For details about the latest release, please see the [Release Notes Page](./docs/ReleaseNotes.md).
+### Release notes
+
+For details about the latest release, please visit [Release Notes](./docs/ReleaseNotes.md).
      
 ## Run Axe.Windows automated accessibility tests
      
