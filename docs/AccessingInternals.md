@@ -1,13 +1,13 @@
 <!-- Copyright (c) Microsoft Corporation. All rights reserved.
      Licensed under the MIT License. -->
 
-## Accessing Internals
+## Accessing internals
 
 You can safely ignore this entire file if you make everything publicly available from your assembly. If you wish to avoid having your internal interfaces and classes public for testing, keep reading…
 
 .NET provides a way to expose internal classes and data using the InternalsVisibleTo attribute. This mechanism gets a little bit tricky when StrongName assemblies are involved. Since the same file will be used for both signed and unsigned build loops, we need to be flexible enough to support both sets of requirements in a single file. Here are the steps:
 
-### Add the InternalsVisibleTo attribute
+### Add the `InternalsVisibleTo` attribute
 Add the following block to the end of your AssemblyInfo.cs file, replacing <YourAssemblyName> with the file name of your assembly--note that the ENABLE_SIGNING flag is already set as part of the build and that the keys are ***intentionally different***:
 ```
 #if ENABLE_SIGNING

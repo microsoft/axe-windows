@@ -3,7 +3,7 @@
      
 ## Overview of Axe.Windows
 
-### Tool Overview
+### Windows UI Automation
 
 Windows UI Automation (UIA) is the platform-provided way for accessibility tools to interact with programs. A fully accessible program is a program whose full functionality can be accessed exclusively through the UIA-provided mechanism. Axe.Windows uses the UIA-provided information to scan programs for accessibility issues. The basic units of UIA are:
 
@@ -14,7 +14,7 @@ Windows UI Automation (UIA) is the platform-provided way for accessibility tools
 
 Axe.Windows takes the data provided by UIA and compares it to a set of rules which identify cases where the given data would create issues for users of the assistive technologies which consume UIA data. The results of these rules are then returned to the caller in a selection of formats.
 
-### Code Organization
+### The code
 The code is organized into the following general areas:
 
 #### Runtime components
@@ -28,7 +28,7 @@ Axe.Windows.Desktop | Provide Windows-specific implementations of the data abstr
 Axe.Windows.Telemetry | Provides an interface which any caller can supply to capture telemetry from Axe.Windows
 Axe.Windows.Win32 | Provide a wrapper around Win32-specific code that is needed by other assemblies.
 
-#### Accessibility Rules
+#### Accessibility rules
 These assemblies contain the automated tests used to evaluate the accessibility of an application. Please visit the [Rules Overview](./RulesOverview.md) for a detailed description of the automated accessibility tests.
 
 Assembly | Responsibility
@@ -36,7 +36,7 @@ Assembly | Responsibility
 Axe.Windows.Rules | Provide a library of rules, each of which scans a given element (or elements) for issues that are likely to be problematic. For example, a button without an accessible label will be flagged as an error.
 Axe.Windows.RuleSelection | Coordinate rule execution in a consistent and reproducible way.
 
-#### Application Entry Points
+#### Application entry points
 These assemblies allow user interaction with the Runtime components and the Accessibility Rules.
 
 Assembly | Responsibility
