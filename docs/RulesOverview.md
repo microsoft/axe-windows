@@ -5,7 +5,7 @@
 
 Rules are the automated accessibility tests run by Axe.Windows. Each rule is independent of any other and contains all information about itself.
 
-For an overview of the Rules projects, please see the "Accessibility Rules" section in [Overview of Axe.Windows](./Overview.md)
+For an overview of the Rules projects, please see the "Accessibility rules" section in [Overview of Axe.Windows](./Overview.md)
 
 ### Anatomy of a rule
 
@@ -20,7 +20,7 @@ Rules have three basic components
 - `Condition`: a `Condition` object which determines under what circumstances the rule is run (see below)
 - `Evaluate`: a method which determines if the test passes or is in violation of a standard
 
-### Inheritence
+### Inheritance
 
 All rules must inherit from the `Axe.Windows.Rules.Rule` base class. Rules are discovered through reflection; when your class inherits from `Rule`,  it is added to the set of rules tested by Axe.Windows. 
 
