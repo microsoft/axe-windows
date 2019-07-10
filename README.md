@@ -14,7 +14,7 @@ To get the latest version of the Axe.Windows NuGet package, visit
 
 ## How to run automated accessibility tests
      
-For information about how to use Axe.Windows to test a Windows® application, please see the [Automation Guide](./docs/automation.md).
+For information about how to use Axe.Windows to test a Windows® application, please see the [Automation Guide](./docs/Automation.md).
      
 ## Contributing
 All contributions are welcome! Please read through our guidelines on [contributions](./Contributing.md) to this project.
@@ -50,7 +50,7 @@ Visit the [Overview of Axe.Windows](./docs/Overview.md) page.
 ## Data/Telemetry
 
 Axe.Windows does not collect any telemetry on its own. However, the package does provide telemetric data for use by calling applications. 
-Please see the [Telemetry](./docs/telemetry.md) page for more details.
+Please see the [Telemetry](./docs/Telemetry.md) page for more details.
 
 ## Reporting security vulnerabilities
 If you believe you have found a security vulnerability in this project, please follow [these steps](https://technet.microsoft.com/en-us/security/ff852094.aspx) to report it. For more information on how vulnerabilities are disclosed, see [Coordinated Vulnerability Disclosure](https://technet.microsoft.com/en-us/security/dn467923).
