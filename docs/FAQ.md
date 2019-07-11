@@ -9,7 +9,11 @@ Axe.Windows is a [NuGet](https://www.nuget.org/) package for running automated a
 By contributing you will help ensure that people with disabilities have full access to applications. Make the world a better place!
 
 ### Q. How do I get started?
-Visit the [Readme](../README.md) and the [Overview](Overview.md) page.
+Visit the [Readme](../README.md) and the [Overview](Overview.md) page to get started.
+
+For instructions on how to build the code, please visit [building the code](./BuildingTheCode.md).
+
+For an overview of the solution, please visit the [solution overview](./solution.md).
 
 Once you are ready to make a contribution visit the [Contributions](../Contributing.md) page.
 
@@ -38,7 +42,9 @@ Please visit the [Telemetry](Telemetry.md) page on how to do so.
 ### Q. How do I add a project to the solution?
 Visit [Adding a new project](NewProject.md) for instructions.
 
-### Q. On my pull request, the "license/cla" check does not complete. What should I do?
+For an overview of the solution, please visit the [solution overview](./solution.md).
+
+### q. On my pull request, the "license/cla" check does not complete. What should I do?
 Make sure that you have signed our [CLA agreement](../Contributing.md). If you haven't, please sign the agreement, then close and reopen the PR. This will trigger a new build with the CLA agreement in place.
 
 ### Q. How do I get in contact?

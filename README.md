@@ -3,48 +3,67 @@
 
 ## Overview
 
-Axe.Windows is a [NuGet](https://www.nuget.org/) package for running automated accessibility tests on Windows® applications.
+Axe.Windows is a NuGet package for running automated accessibility tests on Windows® applications.
+
+To get the latest version of the Axe.Windows NuGet package, visit
+[Axe.Windows on NuGet.org](https://www.nuget.org/packages/Axe.Windows/).
+
+### How to run automated accessibility tests
+
+1. Create a `Config` object using `Config.Builder`.
+
+        // Create config to specifically target a process
+        var myConfigBuilder = Config.Builder.ForProcessId(1234);
+
+        // Optional: configure to create an A11yTest file
+        myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+        // Optional: configure to output the file to a specific directory (otherwise, current directory will be used)
+        myConfigBuilder.WithOutputDirectory(".\test-directory");
+
+        // Ready to use config
+        var myConfig = myConfigBuilder.build();
+
+2. Create a `Scanner` object using the `ScannerFactory` object with the `Config`.
+
+        // Create scanner using myConfig
+        var scanner = ScannerFactory.CreateScanner(myConfig);
+
+3. Call  the `Scan` method on the `Scanner` object.
+
+        var scanResults;
+        try
+        {
+            scanResults = scanner.Scan();
+        }
+        catch(AxeWindowsAutomationException e)
+        {
+            Console.WriteLine(e.ToString());
+        }
+
+4. Check the results.
+
+        Console.WriteLine("Number of errors found in scan: " + scanResults.ErrorCount);
+
 
 - Use an automation test framework like [UI Automation](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview) or [WinAppDriver](https://github.com/microsoft/WinAppDriver) to manipulate your application
 - Scan your application as many times as you need to
 - Axe.Windows returns results with each scan and can optionally save each scan's results to an a11ytest file you can open with [Accessibility Insights](https://accessibilityinsights.io/docs/en/windows/overview)
 
-To get the latest version of the Axe.Windows NuGet package, visit
-[Axe.Windows on NuGet.org](https://www.nuget.org/packages/Axe.Windows/).
 
-## How to run automated accessibility tests
-     
-For information about how to use Axe.Windows to test a Windows® application, please see the [Automation Guide](./docs/Automation.md).
-     
+For more details and a complete code example, please visit the [automation reference page](./docs/AutomationReference.md)
+
+
 ## Contributing
+
 All contributions are welcome! Please read through our guidelines on [contributions](./Contributing.md) to this project.
 
-## Building the code
-You can find more information on how to set up your development environment [here](./docs/SetUpDevEnv.md).
+For instructions on how to build the code, please visit [building the code](./docs/BuildingTheCode.md).
 
-### 1. Clone the repository
-- Clone the repository using one of the following commands
-  ``` bash
-  git clone https://github.com/Microsoft/axe-windows.git
-  ```
-  or
-  ``` bash
-  git clone git@github.com:Microsoft/axe-windows.git
-  ```
-- Select the created directory
-  ``` bash
-  cd axe-windows
-  ```
-
-### 2. Open the solution in Visual Studio
-- Use the `src/AxeWindows.sln` file to open the solution.
-
-### 3. Build and run unit tests
-
-## Testing
-We use the unit test framework from Visual Studio. Find more information in our [FAQ section](./docs/FAQ.md).
+For an overview of the solution, please visit the [solution overview](./docs/solution.md).
 
 ### More information
+
 Visit the [Overview of Axe.Windows](./docs/Overview.md) page.
 
 ## Data/Telemetry

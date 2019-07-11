@@ -1,4 +1,7 @@
-## Contributing
+<!-- Copyright (c) Microsoft Corporation. All rights reserved.
+     Licensed under the MIT License. -->
+     
+     ## Contributing
 
 ### Code of conduct
 Please review the [Code of Conduct](./CODE_OF_CONDUCT.md) for this project.
