@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Document | (Edit & ~Patterns.Value);
+            return Document | Edit;
         }
     } // class
 } // namespace

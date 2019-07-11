@@ -106,7 +106,6 @@
     <Compile Include="Library\ControlShouldSupportTogglePattern.cs" />
     <Compile Include="Library\ControlShouldSupportTransformPattern.cs" />
     <Compile Include="Library\EditSupportsIncorrectRangeValuePattern.cs" />
-    <Compile Include="Library\EditSupportsOnlyValuePattern.cs" />
     <Compile Include="Library\HeadingLevelDescendsWhenNested.cs" />
     <Compile Include="Library\HelpTextNotEqualToName.cs" />
     <Compile Include="Library\IsContentElementFalseOptional.cs" />

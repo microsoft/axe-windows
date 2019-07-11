@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using System;
+
 namespace Axe.Windows.Core.Enums
 {
     /// <summary>
@@ -111,7 +113,7 @@ namespace Axe.Windows.Core.Enums
         ControlShouldNotSupportTablePattern,
         ControlShouldNotSupportTogglePattern,
         ControlShouldNotSupportValuePattern,
-        ControlShouldNotSupportWindowPattern,
+ControlShouldNotSupportWindowPattern,
         ControlShouldSupportExpandCollapsePattern,
         ControlShouldSupportGridItemPattern,
         ControlShouldSupportGridPattern,
@@ -129,7 +131,10 @@ namespace Axe.Windows.Core.Enums
 
         // Axe.Windows.Rules
         EditSupportsIncorrectRangeValuePattern,
+
+        [Obsolete("This rule has been depricated", true)]
         EditSupportsOnlyValuePattern,
+
         HeadingLevelDescendsWhenNested,
 
         // Axe.Windows.Rules
