@@ -1,48 +1,4 @@
-## Axe.Windows - Automation
-
-### Overview
-To provide automated accessibility testing for Windows applications, we have created the `Axe.Windows.Automation` .NET assembly which exposes a subset of core
-AxeWindows functionality to automation systems.
-
-### How to run an automated scan
-
-1. Create a `Config` object using `Config.Builder`.
-
-        // Create config to specifically target a process
-        var myConfigBuilder = Config.Builder.ForProcessId(1234);
-
-        // Optional: configure to create an A11yTest file
-        myConfigBuilder.WithOutputFileFormat(OutputFileFormat.A11yTest);
-
-        // Optional: configure to output the file to a specific directory (otherwise, current directory will be used)
-        myConfigBuilder.WithOutputDirectory(".\test-directory");
-
-        // Ready to use config
-        var myConfig = myConfigBuilder.build();
-
-2. Create a `Scanner` object using the `ScannerFactory` object with the `Config`.
-
-        // Create scanner using myConfig
-        var scanner = ScannerFactory.CreateScanner(myConfig);
-
-3. Call  the `Scan` method on the `Scanner` object.
-
-        var scanResults;
-        try
-        {
-            scanResults = scanner.Scan();
-        }
-        catch(AxeWindowsAutomationException e)
-        {
-            Console.WriteLine(e.ToString());
-        }
-
-4. Check the results.
-
-        Console.WriteLine("Number of errors found in scan: " + scanResults.ErrorCount);
-
-
-A [complete code example](#example) can be found below.
+## Axe.Windows - automation reference
 
 ### Class details
 
@@ -195,7 +151,7 @@ example below):
 -   Follow the steps in [How To Run An Automated Scan](#how-to-run-an-automated-scan).
 
 #### Example
-```
+```C#
     using System;
     using System.Collections.Generic;
     using Axe.Windows.Automation;
