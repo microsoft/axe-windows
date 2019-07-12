@@ -100,7 +100,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.Warning, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
@@ -244,7 +243,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
@@ -388,7 +386,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
@@ -532,7 +529,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
@@ -646,7 +642,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
+            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlShouldSupportTextPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
@@ -676,7 +672,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
@@ -820,7 +815,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
@@ -964,7 +958,6 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsOnlyValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
