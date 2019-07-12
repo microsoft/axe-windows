@@ -113,7 +113,7 @@ namespace Axe.Windows.Core.Enums
         ControlShouldNotSupportTablePattern,
         ControlShouldNotSupportTogglePattern,
         ControlShouldNotSupportValuePattern,
-ControlShouldNotSupportWindowPattern,
+        ControlShouldNotSupportWindowPattern,
         ControlShouldSupportExpandCollapsePattern,
         ControlShouldSupportGridItemPattern,
         ControlShouldSupportGridPattern,
