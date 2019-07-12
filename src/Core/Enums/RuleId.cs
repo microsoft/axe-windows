@@ -132,7 +132,7 @@ namespace Axe.Windows.Core.Enums
         // Axe.Windows.Rules
         EditSupportsIncorrectRangeValuePattern,
 
-        [Obsolete("This rule has been depricated", true)]
+        [Obsolete("This rule has been deprecated", true)]
         EditSupportsOnlyValuePattern,
 
         HeadingLevelDescendsWhenNested,
