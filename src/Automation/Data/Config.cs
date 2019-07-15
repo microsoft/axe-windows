@@ -91,7 +91,12 @@ namespace Axe.Windows.Automation
             /// <returns></returns>
             public Config Build()
             {
-                return _config;
+                return new Config
+                {
+                    ProcessId = _config.ProcessId,
+                    OutputFileFormat = _config.OutputFileFormat,
+                    OutputDirectory = _config.OutputDirectory,
+                };
             }
         } // Builder
     } // class
