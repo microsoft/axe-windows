@@ -2,10 +2,10 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 
-namespace Axe.Windows.Abstractions
+namespace SystemAbstractions
 {
-    internal interface ISystemDateTime
+    public interface ISystemIO
     {
-        DateTime Now { get; }
+        ISystemIODirectory Directory { get; }
     } // interface
 } // namespace

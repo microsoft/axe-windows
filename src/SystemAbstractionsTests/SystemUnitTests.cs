@@ -1,11 +1,10 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Abstractions;
-using Axe.Windows.Concretions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using SystemAbstractions;
 
-namespace Axe.Windows.AutomationTests
+namespace SystemAbstractionsTests
 {
     using Path = System.IO.Path;
 

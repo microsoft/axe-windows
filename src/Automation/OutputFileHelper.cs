@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Abstractions;
 using System;
 using System.Globalization;
+using SystemAbstractions;
 using Path = System.IO.Path;
 
 using static System.FormattableString;

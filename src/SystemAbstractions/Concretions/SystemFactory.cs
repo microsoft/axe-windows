@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Abstractions;
 
-namespace Axe.Windows.Concretions
+namespace SystemAbstractions
 {
-    internal class SystemFactory : ISystemFactory
+    public class SystemFactory : ISystemFactory
     {
         private readonly static ISystemFactory SystemFactoryInstance = new SystemFactory();
 

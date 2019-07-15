@@ -87,7 +87,6 @@
     <Compile Include="ScanResultsAssemblerTests.cs" />
     <Compile Include="ScanToolsBuilderUnitTests.cs" />
     <Compile Include="SnapshotCommandUnitTests.cs" />
-    <Compile Include="SystemUnitTests.cs" />
   </ItemGroup>
   <Import Project="..\..\build\delaysign.targets" />
   <ItemGroup>
@@ -106,6 +105,10 @@
     <ProjectReference Include="..\Rules\Rules.csproj">
       <Project>{7FE58829-560E-4142-BF81-291A66D3844B}</Project>
       <Name>Rules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SystemAbstractions\SystemAbstractions.csproj">
+      <Project>{7e616c64-ead7-458c-92ac-b50643e64d38}</Project>
+      <Name>SystemAbstractions</Name>
     </ProjectReference>
     <ProjectReference Include="..\UnitTestSharedLibrary\UnitTestSharedLibrary.csproj">
       <Project>{01dc8363-73bc-47fa-bd23-12ac45618e1d}</Project>
