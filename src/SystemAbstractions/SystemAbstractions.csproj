@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Axe.Windows.SystemAbstractions</AssemblyName>
+    <RootNamespace>Axe.Windows.SystemAbstractions</RootNamespace>
   </PropertyGroup>
 
 </Project>

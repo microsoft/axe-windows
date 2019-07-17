@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SystemAbstractions
+namespace Axe.Windows.SystemAbstractions
 {
     class System : ISystem
     {

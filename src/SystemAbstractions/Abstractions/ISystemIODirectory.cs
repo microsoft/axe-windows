@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 
-namespace SystemAbstractions
+namespace Axe.Windows.SystemAbstractions
 {
     public interface ISystemIODirectory
     {

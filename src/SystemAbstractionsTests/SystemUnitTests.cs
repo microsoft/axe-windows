@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using SystemAbstractions;
+using Axe.Windows.SystemAbstractions;
 
 namespace SystemAbstractionsTests
 {
