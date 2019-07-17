@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 </PropertyGroup>
 
   <ItemGroup>
