@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-</PropertyGroup>
+  </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" Link="AxeWindowsVersionInfo.cs" />
