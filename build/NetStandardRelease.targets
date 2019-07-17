@@ -1,0 +1,26 @@
+﻿<Project>
+
+  <PropertyGroup>
+  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+</PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" Link="AxeWindowsVersionInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
+    <PackageReference Include="Microsoft.VisualStudioEng.MicroBuild.Core" Version="0.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <DropSignedFile Include="$(TargetPath)" />
+  </ItemGroup>
+  
+  <Import Project="NetStandardAll.targets" />
+  <Import Project="settings.targets" />
+
+</Project>

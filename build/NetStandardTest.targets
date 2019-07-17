@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+<PropertyGroup>
+    <NoWarn>1701;1702;CA1707</NoWarn>
+  </PropertyGroup>
+
+<Import Project=".\NetStandardAll.targets" />
+  <Import Project=".\DelaySign.targets" />
+  
+</Project>

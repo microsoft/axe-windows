@@ -17,4 +17,6 @@
     <ProjectReference Include="..\SystemAbstractions\SystemAbstractions.csproj" />
   </ItemGroup>
 
+  <Import Project="..\..\build\NetStandardTest.targets" />
+
 </Project>

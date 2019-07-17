@@ -6,4 +6,5 @@
     <RootNamespace>Axe.Windows.SystemAbstractions</RootNamespace>
   </PropertyGroup>
 
+  <Import Project="..\..\build\NetStandardRelease.targets" />
 </Project>
