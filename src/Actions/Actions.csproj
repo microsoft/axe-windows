@@ -134,10 +134,6 @@
       <Project>{0b9855fd-7b04-415c-a813-da9697693fda}</Project>
       <Name>Desktop</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Win32\Win32.csproj">
-      <Project>{608e7ef9-c670-4152-a056-46448e2f1e18}</Project>
-      <Name>Win32</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Telemetry\Telemetry.csproj">
       <Project>{5c394271-6d27-4a48-8a32-f8080025431c}</Project>
       <Name>Telemetry</Name>
