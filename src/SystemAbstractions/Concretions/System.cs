@@ -1,10 +1,9 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Abstractions;
 using System;
 using System.Collections.Generic;
 
-namespace Axe.Windows.Concretions
+namespace Axe.Windows.SystemAbstractions
 {
     class System : ISystem
     {

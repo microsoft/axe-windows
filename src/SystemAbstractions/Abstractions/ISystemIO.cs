@@ -1,12 +1,11 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Abstractions;
 using System;
 
-namespace Axe.Windows.Concretions
+namespace Axe.Windows.SystemAbstractions
 {
-    internal class SystemDateTime : ISystemDateTime
+    public interface ISystemIO
     {
-        public DateTime Now => DateTime.Now;
-    } // class
+        ISystemIODirectory Directory { get; }
+    } // interface
 } // namespace
