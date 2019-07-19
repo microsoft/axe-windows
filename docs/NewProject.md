@@ -9,7 +9,7 @@
 2. Before creating a pull request, verify that Visual Studio can successfully load and build the entire solution in both Debug and Release.
 3. If your project requires NuGet dependencies which need to be installed along side it, update the <dependencies> section of `./src/ci/axe.windows.nuspec`.
 
-### For all .Net Framework projects
+### For all .NET Framework projects
 
 1. Right-click on the project and select Properties.
 2. In the Application tab, configure "Target Framework" to use the same .NET Framework version used by the `axe.windows.core` project.
@@ -18,7 +18,7 @@
    1. "Warning level" to 4.
    2. "Treat warnings as errors" to "All".
 
-#### For *production (not test)* .Net Framework projects
+#### For *production (not test)* .NET Framework projects
 
 1. Add the following NuGet packages in Visual Studio to enable signing and code analysis:<br>
    ```
