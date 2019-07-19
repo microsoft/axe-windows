@@ -35,7 +35,7 @@ namespace Axe.Windows.Win32
         /// Check whether the current Windows is Windows 7 or not. 
         /// </summary>
         /// <returns></returns>
-        internal bool IsWindows7()
+        internal static bool IsWindows7()
         {
             return Environment.OSVersion.Version.Major == 6 && Environment.OSVersion.Version.Minor == 1;
         }

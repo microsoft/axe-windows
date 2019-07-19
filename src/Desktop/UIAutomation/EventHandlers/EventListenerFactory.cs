@@ -81,8 +81,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
             // CUIAutomation8 was introduced in Windows 8, so don't try it on Windows 7.
             // Reference: https://msdn.microsoft.com/en-us/library/windows/desktop/hh448746(v=vs.85).aspx?f=255&MSPPError=-2147217396
-            var win32Helper = new Win32Helper();
-            if (!win32Helper.IsWindows7())
+            if (!Win32Helper.IsWindows7())
             {
                 this.UIAutomation8 = new CUIAutomation8();
             }
