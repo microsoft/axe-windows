@@ -7,7 +7,7 @@ using Moq;
 
 namespace SystemAbstractionsTests
 {
-[TestClass]
+    [TestClass]
     public class MicrosoftUnitTests
     {
         private readonly IMicrosoft _microsoft = MicrosoftFactory.CreateMicrosoft();
