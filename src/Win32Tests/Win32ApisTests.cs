@@ -27,6 +27,12 @@ namespace Axe.Windows.Win32Tests
             _registryMock.Reset();
         }
 
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            _registryMock.VerifyAll();
+        }
+
         private void SetupRegistryGetValue(params object[] returnValues)
         {
             var setup = _registryMock.SetupSequence(x => x.GetValue(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>()));
