@@ -12,8 +12,7 @@
 ### For all .Net Framework projects
 
 1. Right-click on the project and select Properties.
-2. In the Application tab, configure "Target Framework" to use the same .NET Framework version used by the `axe.windows.core` project.
-   - Currently .NET Framework 4.7.1
+2. In the Application tab, configure "Target Framework" to use the same .NET Framework version used by the `axe.windows.core` project, currently .NET Framework 4.7.1.
 3. In the build tab, set the following for both Debug and Release configurations:
    1. "Warning level" to 4.
    2. "Treat warnings as errors" to "All".
