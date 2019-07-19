@@ -42,20 +42,20 @@
       [assembly: AssemblyFileVersion("1.0.0.0")]
       ```
 
-#### For *test* .Net Framework projects
+#### For *test* .NET Framework projects
 
 1. Close the solution and use your text editor to add the following line to your `.csproj` file to properly configure [Strong Naming](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/strong-named-assemblies) for your assembly:<br>
    `<Import Project="..\..\build\delaysign.targets" />`
 2. Build the entire solution in both Debug and Release. Ensure that the tests are appropriately discovered in the test explorer, and that they all run successfully.
 
-### .Net Standard and .Net Core projects
+### .NET Standard and .NET Core projects
 
-#### For *production (not test)* .Net Standard/Core projects
+#### For *production (not test)* .NET Standard/Core projects
 
 In a text editor, add the following line:<br>
 `<Import Project="..\..\build\NetStandardRelease.targets" />`
 
-#### For *test* .Net Standard/Core projects
+#### For *test* .NET Standard/Core projects
 
 In a text editor, add the following line:<br>
 `<Import Project="..\..\build\NetStandardTest.targets" />`
