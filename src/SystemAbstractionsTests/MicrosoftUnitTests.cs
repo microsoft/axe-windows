@@ -7,7 +7,7 @@ using Moq;
 
 namespace SystemAbstractionsTests
 {
-[TestClass]
+    [TestClass]
     public class MicrosoftUnitTests
     {
         const string WindowsVersionRegKey = @"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion";
