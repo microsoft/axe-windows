@@ -7,7 +7,7 @@ using System.Drawing;
 namespace Axe.Windows.Win32
 {
     /// <summary>
-    /// NativeMethods partial class to hold all Win32 related helper methods.  
+    /// Win32 related helper methods.  
     /// </summary>
     internal class Win32Helper
     {
