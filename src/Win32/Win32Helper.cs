@@ -71,7 +71,6 @@ namespace Axe.Windows.Win32
         private string GetCurrentWindowsVersion()
         {
             var retVal = (string)_registry.GetValue(WindowsVersionRegKey, "CurrentVersion", "");
-            System.Diagnostics.Debug.WriteLine($"retVal: {retVal}");
             return retVal;
         }
 
