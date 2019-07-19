@@ -18,7 +18,7 @@ namespace Axe.Windows.Win32Tests
         public Win32ApisUnitTests()
         {
             _registryMock = new Mock<IMicrosoftWin32Registry>(MockBehavior.Strict);
-                _win32Helper = new Win32Helper(_registryMock.Object);
+            _win32Helper = new Win32Helper(_registryMock.Object);
         }
 
         [TestInitialize]
