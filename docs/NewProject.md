@@ -7,7 +7,7 @@
 
 1. Add your new project to the Axe.Windows Solution (`src\AxeWindows.sln`).
 2. Before creating a pull request, verify that Visual Studio can successfully load and build the entire solution in both Debug and Release.
-3. If your project requires NuGet dependencies which need to be installed along side it, update the <dependencies> section of `./src/ci/axe.windows.nuspec`.
+3. If your project requires NuGet dependencies which need to be installed alongside it, update the <dependencies> section of `./src/ci/axe.windows.nuspec`.
 
 ### For all .NET Framework projects
 
