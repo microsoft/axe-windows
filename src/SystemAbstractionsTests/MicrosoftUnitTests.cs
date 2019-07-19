@@ -10,16 +10,17 @@ namespace SystemAbstractionsTests
 [TestClass]
     public class MicrosoftUnitTests
     {
-        const string WindowsVersionRegKey = @"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion";
-
         private readonly IMicrosoft _microsoft = MicrosoftFactory.CreateMicrosoft();
 
         [TestMethod]
         [Timeout(1000)]
         public void RegistryGetValue_Matches()
         {
-            var expectedValue = Registry.GetValue(WindowsVersionRegKey, "CurrentVersion", "");
-            var actualValue = _microsoft.Win32.Registry.GetValue(WindowsVersionRegKey, "CurrentVersion", "");
+            const string WindowsVersionRegKey = @"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion";
+            const string currentVersion = "CurrentVersion";
+
+            var expectedValue = Registry.GetValue(WindowsVersionRegKey, currentVersion, string.Empty);
+            var actualValue = _microsoft.Win32.Registry.GetValue(WindowsVersionRegKey, currentVersion, string.Empty);
 
             Assert.AreEqual(expectedValue, actualValue);
         }
