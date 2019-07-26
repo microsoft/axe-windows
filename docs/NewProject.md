@@ -25,7 +25,7 @@
    Microsoft.CodeAnalysis.FxCopAnalyzers
    ```
 2. Close the solution and use your text editor to make the following changes to your `.csproj` file to properly configure the version and signing options:
-   1. Add the following line along side the existing `<Compile>` statements:<br>
+   1. Add the following line alongside the existing `<Compile>` statements:<br>
    `<Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />`
    2. Add the following below the last ItemGroup:<br>
    ```
