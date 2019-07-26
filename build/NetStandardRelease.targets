@@ -3,6 +3,8 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
+  
+  <Import Project="..\src\props\version.props" />
 
   <ItemGroup>
     <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" Link="AxeWindowsVersionInfo.cs" />
