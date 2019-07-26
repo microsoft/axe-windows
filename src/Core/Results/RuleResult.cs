@@ -3,15 +3,13 @@
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.HelpLinks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 
 namespace Axe.Windows.Core.Results
 {
     /// <summary>
-    /// Class RuleResult
-    /// it is a class to containt the result of each individual rules in a Scan. 
+    /// Class RuleResult contains the result of each individual rule in a Scan. 
     /// </summary>
     public class RuleResult
     {
@@ -27,7 +25,7 @@ namespace Axe.Windows.Core.Results
         /// </summary>
         public ScanStatus Status { get; set; } = ScanStatus.Pass;
 
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonIgnore]
         public RuleId Rule { get; set; }
 
         /// <summary>
