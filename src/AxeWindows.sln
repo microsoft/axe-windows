@@ -41,8 +41,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuleSelectionTests", "RuleS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestSharedLibrary", "UnitTestSharedLibrary\UnitTestSharedLibrary.csproj", "{01DC8363-73BC-47FA-BD23-12AC45618E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32", "Win32\Win32.csproj", "{608E7EF9-C670-4152-A056-46448E2F1E18}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32Tests", "Win32Tests\Win32Tests.csproj", "{89B6DFE3-5FC4-461C-8D8A-7382AC89AD28}"
 	ProjectSection(ProjectDependencies) = postProject
 		{149576B1-9947-4BE0-9008-DFFD0DA36E00} = {149576B1-9947-4BE0-9008-DFFD0DA36E00}
@@ -63,8 +61,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemAbstractions", "Syste
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemAbstractionsTests", "SystemAbstractionsTests\SystemAbstractionsTests.csproj", "{683CBD73-C7B8-4662-A9DE-96E434E167D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win32", "Win32\Win32.csproj", "{608E7EF9-C670-4152-A056-46448E2F1E18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackwardCompatiblityTests", "BackwardCompatiblityTests\BackwardCompatiblityTests.csproj", "{21F31760-D98D-41E6-BB7A-52619ED460C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
