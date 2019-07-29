@@ -13,6 +13,7 @@ Assembly | Responsibility
 Axe.Windows.Actions | Provide a high-level set of Actions that are the primary interface into the Runtime components.
 Axe.Windows.Core | Provide classes, interfaces, and types used by projects throughout the Axe.Windows solution.
 Axe.Windows.Desktop | Provide Windows-specific implementations of the data abstractions found in Axe.Windows.Core. The low-level interactions with UIA occur in this assembly.
+Axe.Windows.SystemAbstractions | Provides abstract classes for accessing system components, making it possible to unit test code that consumes the abstractions by using mocks
 Axe.Windows.Telemetry | Provides an interface which any caller can supply to capture telemetry from Axe.Windows
 Axe.Windows.Win32 | Provide a wrapper around Win32-specific code that is needed by other assemblies.
 
@@ -48,6 +49,7 @@ Unit tests are built using a combination of Moq and Microsoft Fakes. The folllow
 - DesktopTests
 - RuleSelectionTests
 - RulesTest
+- SystemAbstractionsTests
 - UnitTestSharedLibrary
 - TelemetryTests
 - Win32Tests 
