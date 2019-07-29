@@ -1,22 +1,35 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Microsoft.Win32;
+using Axe.Windows.SystemAbstractions;
 using System;
 using System.Drawing;
 
 namespace Axe.Windows.Win32
 {
     /// <summary>
-    /// NativeMethods partial class to hold all Win32 related helper methods.  
+    /// Win32 related helper methods.  
     /// </summary>
-    internal static partial class NativeMethods
+    internal class Win32Helper
     {
+        private readonly IMicrosoftWin32Registry _registry;
+
         /// <summary>
         /// Windows 10 version number
         /// the value is based on the value in @"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion", "CurrentVersion"
         /// </summary>
         static readonly Version Win10Version = new Version(6, 3);
         const string WindowsVersionRegKey = @"HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion";
+
+        public Win32Helper(IMicrosoftWin32Registry registry)
+        {
+            if (registry == null) throw new ArgumentNullException(nameof(registry));
+
+            _registry = registry;
+        }
+
+        public Win32Helper()
+            : this(MicrosoftFactory.CreateMicrosoft().Win32.Registry)
+        { }
 
         /// <summary>
         /// Check whether the current Windows is Windows 7 or not. 
@@ -34,7 +47,7 @@ namespace Axe.Windows.Win32
         /// <param name="dpiType"></param>
         /// <param name="dpiX"></param>
         /// <param name="dpiY"></param>
-        internal static void GetDpi(Point point, DpiType dpiType, out uint dpiX, out uint dpiY)
+        internal void GetDpi(Point point, DpiType dpiType, out uint dpiX, out uint dpiY)
         {
             var mon = NativeMethods.MonitorFromPoint(point, 2/*MONITOR_DEFAULTTONEAREST*/);
             if (IsWindows7())
@@ -55,21 +68,22 @@ namespace Axe.Windows.Win32
         /// Get the current Windows version info from HKLM
         /// </summary>
         /// <returns></returns>
-        private static string GetCurrentWindowsVersion()
+        private string GetCurrentWindowsVersion()
         {
-            return (string)Registry.GetValue(WindowsVersionRegKey, "CurrentVersion", "");
+            var retVal = (string)_registry.GetValue(WindowsVersionRegKey, "CurrentVersion", "");
+            return retVal;
         }
 
         /// <summary>
         /// Get the current Windows build info from HKLM
         /// </summary>
         /// <returns></returns>
-        private static string GetCurrentWindowsBuild()
+        private string GetCurrentWindowsBuild()
         {
-            return (string)Registry.GetValue(WindowsVersionRegKey, "CurrentBuild", "");
+            return (string)_registry.GetValue(WindowsVersionRegKey, "CurrentBuild", "");
         }
 
-        private static OsComparisonResult CompareWindowsVersionToWin10()
+        private OsComparisonResult CompareWindowsVersionToWin10()
         {
             if (Version.TryParse(GetCurrentWindowsVersion(), out Version currentVersion))
             {
@@ -83,7 +97,7 @@ namespace Axe.Windows.Win32
             return OsComparisonResult.Older;
         }
 
-        private static OsComparisonResult CompareToWindowsBuildNumber(uint minimalBuild)
+        private OsComparisonResult CompareToWindowsBuildNumber(uint minimalBuild)
         {
             if (uint.TryParse(GetCurrentWindowsBuild(), out uint currentBuild))
             {
@@ -102,7 +116,7 @@ namespace Axe.Windows.Win32
         /// </summary>
         /// <param name="minimalBuild">The minimal build needed to pass</param>
         /// <returns>True iff the OS is at least Win10 at the specified build</returns>
-        internal static bool IsAtLeastWin10WithSpecificBuild(uint minimalBuild)
+        internal bool IsAtLeastWin10WithSpecificBuild(uint minimalBuild)
         {
             OsComparisonResult win10ComparisonResult = CompareWindowsVersionToWin10();
 
@@ -114,7 +128,7 @@ namespace Axe.Windows.Win32
         /// Check whether current OS is Win10 RS3 or later
         /// </summary>
         /// <returns>True iff the OS is at least Win10 RS3</returns>
-        internal static bool IsWindowsRS3OrLater()
+        internal bool IsWindowsRS3OrLater()
         {
             return IsAtLeastWin10WithSpecificBuild(16228); // Build 16228 is confirmed in the RS3 range
         }
@@ -123,7 +137,7 @@ namespace Axe.Windows.Win32
         /// Check whether current OS is Win10 RS5 or later
         /// </summary>
         /// <returns>True iff the OS is at least Win10 RS5</returns>
-        internal static bool IsWindowsRS5OrLater()
+        internal bool IsWindowsRS5OrLater()
         {
             return IsAtLeastWin10WithSpecificBuild(17713); // Build 17713 is confirmed in the RS5 range
         }

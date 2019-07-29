@@ -81,7 +81,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
             // CUIAutomation8 was introduced in Windows 8, so don't try it on Windows 7.
             // Reference: https://msdn.microsoft.com/en-us/library/windows/desktop/hh448746(v=vs.85).aspx?f=255&MSPPError=-2147217396
-            if (!NativeMethods.IsWindows7())
+            if (!Win32Helper.IsWindows7())
             {
                 this.UIAutomation8 = new CUIAutomation8();
             }
@@ -325,6 +325,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 EventMessage m = null;
 
+                var win32Helper = new Win32Helper();
+
                 switch (msgData.EventId)
                 {
                     case EventType.UIA_AutomationFocusChangedEventId:
@@ -358,7 +360,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                         break;
                     case EventType.UIA_NotificationEventId:
-                        if (NativeMethods.IsWindowsRS3OrLater())
+                        if (win32Helper.IsWindowsRS3OrLater())
                         {
                             if (this.EventListenerNotification == null)
                             {
@@ -378,7 +380,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                         break;
                     case EventType.UIA_ActiveTextPositionChangedEventId:
-                        if (NativeMethods.IsWindowsRS5OrLater())
+                        if (win32Helper.IsWindowsRS5OrLater())
                         {
                             if (this.EventListenerNotification == null)
                             {

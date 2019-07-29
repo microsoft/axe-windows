@@ -165,13 +165,13 @@
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Win32\Win32.csproj">
-      <Project>{608e7ef9-c670-4152-a056-46448e2f1e18}</Project>
-      <Name>Win32</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Telemetry\Telemetry.csproj">
       <Project>{5c394271-6d27-4a48-8a32-f8080025431c}</Project>
       <Name>Telemetry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Win32\Win32.csproj">
+      <Project>{07d333bb-1ba9-4868-a8bd-0b8f9861e70f}</Project>
+      <Name>Win32</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,267 +1,229 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System.Collections.Generic;
+using Axe.Windows.SystemAbstractions;
 using Axe.Windows.Win32;
-using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Microsoft.Win32.Fakes;
+using Moq;
+using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.Win32Tests
 {
     [TestClass]
     public class Win32ApisUnitTests
     {
+        private readonly Mock<IMicrosoftWin32Registry> _registryMock;
+        private readonly Win32Helper _win32Helper;
+
+        public Win32ApisUnitTests()
+        {
+            _registryMock = new Mock<IMicrosoftWin32Registry>(MockBehavior.Strict);
+            _win32Helper = new Win32Helper(_registryMock.Object);
+        }
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _registryMock.Reset();
+        }
+
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            _registryMock.VerifyAll();
+        }
+
+        private void SetupRegistryGetValue(params object[] returnValues)
+        {
+            var setup = _registryMock.SetupSequence(x => x.GetValue(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>()));
+
+            foreach (var value in returnValues)
+                setup.Returns(value);
+        }
+
+        private void VerifyRegistryCalls(int callCount)
+        {
+            _registryMock.Verify((x => x.GetValue(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>())), Times.Exactly(callCount));
+        }
+
         [TestMethod]
         public void IsWindowsRS3OrLater_OsValueIsMissing_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
+            SetupRegistryGetValue();
 
-                List<string> returnValues = new List<string>();
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            Assert.IsFalse(_win32Helper.IsWindowsRS3OrLater());
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(1, index);
-            }
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_OsValueIsBadFormat_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3 alpha" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3 alpha");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_OsValueIsLessThanWindows10_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.2" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.2");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_OsValueIsGreaterThanWindows10_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.4" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.4");
 
-                Assert.IsTrue(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsTrue(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_BuildValueIsMissing_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_BuildValueIsBadFormat_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "16227-rc1" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "16227-rc1");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_BuildValueIsLessThanTarget_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "16227" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "16227");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_BuildValueIsEqualToTarget_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "16228" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "16228");
 
-                Assert.IsTrue(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsTrue(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS3OrLater_BuildValueIsGreaterThanTarget_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "16229" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "16229");
 
-                Assert.IsTrue(NativeMethods.IsWindowsRS3OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsTrue(_win32Helper.IsWindowsRS3OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_OsValueIsMissingReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string>();
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue();
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_OsValueIsBadFormat_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3 alpha" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3 alpha");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_OsValueIsLessThanWindows10_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.2" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.2");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_OsValueIsGreaterThanWindows10_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.4" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.4");
 
-                Assert.IsTrue(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(1, index);
-            }
+            Assert.IsTrue(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(1);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_BuildValueIsMissing_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_BuildValueIsBadFormat_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "17713-rc1" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "17713-rc1");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_BuildValueIsLessThanTarget_ReturnsFalse()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "17712" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "17712");
 
-                Assert.IsFalse(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsFalse(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_BuildValueIsEqualToTarget_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "17713" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "17713");
 
-                Assert.IsTrue(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsTrue(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(2);
         }
 
         [TestMethod]
         public void IsWindowsRS5OrLater_BuildValueIsGreaterThanTarget_ReturnsTrue()
         {
-            using (ShimsContext.Create())
-            {
-                List<string> returnValues = new List<string> { "6.3", "17714" };
-                int index = 0;
-                ShimRegistry.GetValueStringStringObject = (_, __, def) => (++index > returnValues.Count ? def : returnValues[index - 1]);
+            SetupRegistryGetValue("6.3", "17714");
 
-                Assert.IsTrue(NativeMethods.IsWindowsRS5OrLater());
-                Assert.AreEqual(2, index);
-            }
+            Assert.IsTrue(_win32Helper.IsWindowsRS5OrLater());
+
+            VerifyRegistryCalls(2);
         }
     }
 }

@@ -183,7 +183,8 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static double GetDPI(int left, int top)
         {
-            NativeMethods.GetDpi(new System.Drawing.Point(left, top), DpiType.Effective, out uint dpiX, out uint dpiY);
+            var win32Helper = new Win32Helper();
+            win32Helper.GetDpi(new System.Drawing.Point(left, top), DpiType.Effective, out uint dpiX, out uint dpiY);
 
             return GetDPIRate(dpiX);
         }
