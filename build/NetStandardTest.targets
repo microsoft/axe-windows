@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project>
 
   <PropertyGroup>
     <NoWarn>1701;1702;CA1707</NoWarn>
