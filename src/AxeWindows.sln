@@ -63,7 +63,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemAbstractionsTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Win32", "Win32\Win32.csproj", "{07D333BB-1BA9-4868-A8BD-0B8F9861E70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackwardCompatiblityTests", "BackwardCompatiblityTests\BackwardCompatiblityTests.csproj", "{21F31760-D98D-41E6-BB7A-52619ED460C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldFileVersionCompatibilityTests", "OldFileVersionCompatibilityTests\OldFileVersionCompatibilityTests.csproj", "{21F31760-D98D-41E6-BB7A-52619ED460C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
