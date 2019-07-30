@@ -17,24 +17,58 @@ namespace Axe.Windows.BackwardCompatiblityTests
     public class Version_0_2_0
     {
         [TestMethod]
-        public void ValidateFile()
+        public void ValidateFileVersion_0_1_0()
         {
-            using (SelectAction sa = SelectAction.GetDefaultInstance())
+            const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_1_0.a11ytest";
+            const int expectedProcessId = 1880;
+            const int expectedFailureCount = 12;
+            ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
+        }
+
+        [TestMethod]
+        public void ValidateFileVersion_0_2_0()
+        {
+            const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_2_0.a11ytest";
+            const int expectedProcessId = 17152;
+            const int expectedFailureCount = 12;
+            ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
+        }
+
+        [TestMethod]
+        public void ValidateFileVersion_0_3_1()
+        {
+            const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_3_1.a11ytest";
+            const int expectedProcessId = 22236;
+            const int expectedFailureCount = 12;
+            ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
+        }
+
+        #region UtilityFunctions
+
+        internal static void ValidateOneFile(string filePath, int expectedFailureCount,
+            int expectedProcessId)
+        {
+            // Ideally, we'd use a Using block for SelectAction. Unfortunately, the
+            // current code doesn't support this properly. Use ClearDefaultInstance
+            // instead.
+            try
             {
-                const int savedProcessId = 1880;
-                const int knownFailuresInFile = 12;
+                SelectAction sa = SelectAction.GetDefaultInstance();
+                sa.SelectLoadedData(filePath);
 
-                sa.SelectLoadedData(@".\TestFiles\WildlifeManager_AxeWindows_0_2_0.a11ytest");
+                List<(RuleResult Result, A11yElement Element)> failedResults = ExtractFailedResults(sa);
 
-                List<Tuple<RuleResult, A11yElement>> tuples = ExtractFailedResults(sa);
+                Assert.AreEqual(expectedFailureCount, failedResults.Count);
 
-                Assert.AreEqual(knownFailuresInFile, tuples.Count);
-
-                foreach (var tuple in tuples)
+                foreach (var failedResult in failedResults)
                 {
-                    ValidateOneRuleResult(tuple.Item1);
-                    ValidateOneA11yElement(savedProcessId, tuple.Item2);
+                    ValidateOneRuleResult(failedResult.Result);
+                    ValidateOneA11yElement(expectedProcessId, failedResult.Element);
                 }
+            }
+            finally
+            {
+                SelectAction.ClearDefaultInstance();
             }
         }
 
@@ -67,33 +101,37 @@ namespace Axe.Windows.BackwardCompatiblityTests
             Assert.AreEqual(0, element.PlatformProperties.Count);
         }
 
-
         /// <summary>
         /// Code to extract all A11yElement objects with failed results. Based on
         /// the code to display the failed results in Accessibiltiy Insights for Windows.
         /// </summary>
         /// <param name="sa">The SelectAction that defines the context</param>
-        private static List<Tuple<RuleResult, A11yElement>> ExtractFailedResults(SelectAction sa)
+        private static List<(RuleResult, A11yElement)> ExtractFailedResults(SelectAction sa)
         {
             Guid ecId = sa.GetSelectedElementContextId().Value;
             ElementDataContext dataContext = GetDataAction.GetElementDataContext(ecId);
 
-            List<Tuple<RuleResult, A11yElement>> list = new List<Tuple<RuleResult, A11yElement>>();
+            List<(RuleResult, A11yElement)> list = new List<(RuleResult, A11yElement)>();
             foreach (var element in dataContext.Elements.Values)
             {
-                if (element.ScanResults?.Items != null && element.ScanResults.Items.Count > 0)
+                if (element.ScanResults?.Items == null ||
+                    element.ScanResults.Items.Count == 0)
                 {
-                    foreach (var item in element.ScanResults.Items)
-                    {
-                        var failures = from rr in item.Items
-                                       where rr.Status == ScanStatus.Fail || rr.Status == ScanStatus.ScanNotSupported
-                                       select new Tuple<RuleResult, A11yElement>(rr, element);
-                        list.AddRange(failures);
-                    }
+                    continue;
+                }
+
+                foreach (var item in element.ScanResults.Items)
+                {
+                    var failures =
+                        from ruleResult in item.Items
+                        where ruleResult.Status == ScanStatus.Fail || ruleResult.Status == ScanStatus.ScanNotSupported
+                        select (ruleResult, element);
+                    list.AddRange(failures);
                 }
             }
 
             return list;
         }
+        #endregion
     }
 }
