@@ -103,7 +103,7 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
 
         /// <summary>
         /// Code to extract all A11yElement objects with failed results. Based on
-        /// the code to display the failed results in Accessibiltiy Insights for Windows.
+        /// the code to display the failed results in Accessibility Insights for Windows.
         /// </summary>
         /// <param name="sa">The SelectAction that defines the context</param>
         private static List<(RuleResult, A11yElement)> ExtractFailedResults(SelectAction sa)
