@@ -14,7 +14,7 @@ using System.Linq;
 namespace Axe.Windows.OldFileVersionCompatibilityTests
 {
     [TestClass]
-    public class Version_0_2_0
+    public class LoadOldFileVersions
     {
         [TestMethod]
         public void ValidateFileVersion_0_1_0()
