@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axe.Windows.BackwardCompatiblityTests
+namespace Axe.Windows.OldFileVersionCompatibilityTests
 {
     [TestClass]
     public class Version_0_2_0

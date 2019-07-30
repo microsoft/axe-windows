@@ -1,11 +1,11 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Axe.Windows.BackwardCompatiblityTest")]
+[assembly: AssemblyTitle("Axe.Windows.OldFileVersionCompatibilityTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Axe.Windows.BackwardCompatiblityTest")]
+[assembly: AssemblyProduct("Axe.Windows.OldFileVersionCompatibilityTests")]
 [assembly: AssemblyCopyright("Copyright © 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
