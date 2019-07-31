@@ -108,7 +108,7 @@ jobs:
       verboseOutput: true
       debugMode: false
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task -roslynanalyzers.RoslynAnalyzers@2
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@2
     displayName: 'Run Roslyn analyzers'
     inputs:
         userProvideBuildInfo: auto
