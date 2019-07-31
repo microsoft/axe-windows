@@ -110,8 +110,9 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task -roslynanalyzers.RoslynAnalyzers@2
     displayName: 'Run Roslyn analyzers'
-    userProvideBuildInfo: auto
-    rulesetName: recommended
+    inputs:
+        userProvideBuildInfo: auto
+        rulesetName: recommended
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
     displayName: 'Run PoliCheck'
