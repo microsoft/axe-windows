@@ -135,7 +135,6 @@ jobs:
     inputs:
       CredScan: true
       RoslynAnalyzers: true
-      RoslynAnalyzersBreakOn: CriticalError
       PoliCheck: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
