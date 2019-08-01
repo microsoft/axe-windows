@@ -693,6 +693,10 @@ namespace Axe.Windows.Core.Bases
 
             UpdateParent(null, e);
 
+            // Make ProcessName deterministically empty when loading a file. If we fail
+            // to do this, the ProcessName may incorrectly return a currently running process
+            ClearProcessName(e);
+
             return e;
         }
 
@@ -714,6 +718,24 @@ namespace Axe.Windows.Core.Bases
                 {
                     UpdateParent(e, c);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Explicitly set the ProcessName property to return string.Empty for the given
+        /// element and for all of its descendants.
+        /// </summary>
+        /// <param name="e">The element to update</param>
+        private static void ClearProcessName(A11yElement e)
+        {
+            e._ProcessName = string.Empty;
+
+            if (e.Children == null || e.Children.Count == 0)
+                return;
+
+            foreach (A11yElement child in e.Children)
+            {
+                ClearProcessName(child);
             }
         }
 
