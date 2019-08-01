@@ -77,8 +77,6 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
             Assert.AreEqual(ScanStatus.Fail, result.Status);
             Assert.IsFalse(string.IsNullOrWhiteSpace(result.Description));
             Assert.IsFalse(string.IsNullOrWhiteSpace(result.HelpUrl.Url));
-            Assert.IsNull(result.IssueDisplayText);
-            Assert.IsNull(result.IssueLink);
             Assert.IsNotNull(result.MetaInfo);
             Assert.IsFalse(string.IsNullOrWhiteSpace(result.Source));
             Assert.AreEqual(RuleId.Indecisive, result.Rule);
