@@ -108,20 +108,11 @@ jobs:
       verboseOutput: true
       debugMode: false
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-fxcop.FxCop@2
-    displayName: 'Run FxCop'
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@2
+    displayName: 'Run Roslyn analyzers'
     inputs:
-      inputType: Basic
-      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      targets: "src\\Actions\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Automation\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Core\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Desktop\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Rules\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\RuleSelection\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Telemetry\\bin\\Debug\\Axe.Windows.*.dll;\
-                src\\Win32\\bin\\Debug\\Axe.Windows.*.dll;"
-      ignoreGeneratedCode: true
+        userProvideBuildInfo: auto
+        rulesetName: recommended
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
     displayName: 'Run PoliCheck'
@@ -130,25 +121,24 @@ jobs:
     continueOnError: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
-    displayName: 'Create Security Analysis Report (CredScan, FxCop, and PoliCheck)'
+    displayName: 'Create Security Analysis Report (CredScan, RoslynAnalyzers, and PoliCheck)'
     inputs:
       CredScan: true
-      FxCop: true
+      RoslynAnalyzers: true
       PoliCheck: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
-    displayName: 'Publish Security Analysis Logs (CredScan, FxCop, and PoliCheck)'
+    displayName: 'Publish Security Analysis Logs (CredScan, RoslynAnalyzers, and PoliCheck)'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
-    displayName: 'Post Analysis (CredScan, FxCop, and PoliCheck)'
+    displayName: 'Post Analysis (CredScan, RoslynAnalyzers, and PoliCheck)'
     inputs:
       CredScan: true
-      FxCop: true
-      FxCopBreakOn: CriticalError
+      RoslynAnalyzers: true
       PoliCheck: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
-    displayName: 'TSA upload (CredScan, FxCop, and PoliCheck)'
+    displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
     inputs:
       tsaVersion: TsaV2
       codebase: NewOrUpdate
