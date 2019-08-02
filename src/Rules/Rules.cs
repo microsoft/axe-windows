@@ -12,7 +12,9 @@ namespace Axe.Windows.Rules
     /// <summary>
     /// Use this class to run rules and get information about any rule in the Rules assembly.
     /// </summary>
+    #pragma warning disable CA1724
     public static class Rules
+#pragma warning restore CA1724
     {
         private static readonly RuleProvider Provider = new RuleProvider(new RuleFactory());
 
@@ -80,7 +82,9 @@ namespace Axe.Windows.Rules
             {
                 return RunRuleWorker(rule, element);
             }
+#pragma warning disable CA1031
             catch (Exception ex)
+#pragma warning restore CA1031
             {
                 ex.ReportException();
                 if (System.Diagnostics.Debugger.IsLogging())

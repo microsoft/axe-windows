@@ -60,7 +60,6 @@ namespace Axe.Windows.RuleSelection
         private static ScanResult ConvertRunResultToScanResult(RunResult runResult)
         {
             if (runResult == null) throw new ArgumentNullException(nameof(runResult));
-            if (runResult.RuleInfo == null) throw new ArgumentException(nameof(runResult.RuleInfo));
 
             var scanResult = CreateResult(runResult.RuleInfo, runResult.element);
 
@@ -74,6 +73,9 @@ namespace Axe.Windows.RuleSelection
 
         public static ScanResult CreateResult(RuleInfo info, IA11yElement e)
         {
+            if (info == null) throw new ArgumentNullException(nameof(info));
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var guidelineInfo = ReferenceLinks.GetGuidelineInfo(info.Standard);
             var scanResult = new ScanResult(info.Description, guidelineInfo.ShortDescription, e, info.PropertyID)
             {

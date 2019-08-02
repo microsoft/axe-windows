@@ -23,7 +23,7 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return AreMinMaxValuesCorrect(e) ? EvaluationCode.Pass : EvaluationCode.Error;
         }
@@ -33,7 +33,6 @@ namespace Axe.Windows.Rules.Library
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var rangeValue = e.GetPattern(PatternType.UIA_RangeValuePatternId);
-            if (rangeValue == null) throw new Exception($"Expected {nameof(rangeValue)} not to be null");
 
             return PropertyValueMatches(rangeValue, "Minimum", 0.0)
                 && PropertyValueMatches(rangeValue, "Maximum", 100.0)

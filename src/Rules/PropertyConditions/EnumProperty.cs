@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.General;
 
 namespace Axe.Windows.Rules.PropertyConditions
@@ -14,7 +15,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public EnumProperty(int propertyID)
         {
-            if (!typeof(T).IsEnum) throw new InvalidOperationException($"Expected {nameof(T)} to be an enumeration type");
+            if (!typeof(T).IsEnum) throw new InvalidOperationException(ErrorMessages.ExpectedEnumType);
 
             this.PropertyID = propertyID;
             this.Exists = CreatePropertyExistsCondition<int>(propertyID);

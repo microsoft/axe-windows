@@ -17,8 +17,8 @@ namespace Axe.Windows.Rules
 
         public StringDecoratorCondition(Condition c, String decoration)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (decoration == null) throw new ArgumentException();
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (decoration == null) throw new ArgumentNullException(nameof(decoration));
 
             this.Sub = c;
             this.Decoration = decoration;

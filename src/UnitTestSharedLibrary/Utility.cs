@@ -58,7 +58,7 @@ namespace Axe.Windows.UnitTestSharedLibrary
         /// <returns></returns>
         public static void PopulateChildrenTests(A11yElement ke)
         {
-            ke.ScanResults.Items.ForEach(item => {
+            ke?.ScanResults?.Items?.ForEach(item => {
                 item.Items = new List<RuleResult>();
                 RuleResult r = new RuleResult();
                 r.Status = ke.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail;

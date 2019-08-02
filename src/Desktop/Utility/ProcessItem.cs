@@ -15,6 +15,8 @@ namespace Axe.Windows.Desktop.Utility
 
         public ProcessItem(Process p)
         {
+            if (p == null) throw new ArgumentNullException(nameof(p));
+
             this.HWnd = p.MainWindowHandle;
             this.ProcessID = p.Id;
             this.MainWindowTitle = p.MainWindowTitle;

@@ -13,7 +13,7 @@ namespace Axe.Windows.Rules
 
         public NotCondition(Condition a)
         {
-            if (a == null) throw new ArgumentException();
+            if (a == null) throw new ArgumentNullException(nameof(a));
 
             this.A = a;
         }

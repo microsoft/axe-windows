@@ -16,6 +16,8 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public static IScanner CreateScanner(Config config)
         {
+            if (config == null) throw new ArgumentNullException(nameof(config));
+
             var scanToolsBuilder = Factory.CreateScanToolsBuilder();
             var scanTools = scanToolsBuilder.WithOutputDirectory(config.OutputDirectory).Build();
             return new Scanner(config, scanTools);

@@ -65,6 +65,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         public Boolean IsVisiblySimilarTo(ColorPair otherPair)
         {
+            if (otherPair == null) throw new ArgumentNullException(nameof(otherPair));
+
             return LighterColor.IsSimilarColor(otherPair.LighterColor) &&
                 DarkerColor.IsSimilarColor(otherPair.DarkerColor);
         }

@@ -1,3 +1,4 @@
+using System.Resources;
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System.Reflection;
@@ -34,4 +35,5 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("Axe.Windows.ActionsTests")]
 [assembly: InternalsVisibleTo("Axe.Windows.CoreTests")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
+[assembly: NeutralResourcesLanguage("en-US")]
 #endif

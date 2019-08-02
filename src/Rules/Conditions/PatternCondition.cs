@@ -16,7 +16,7 @@ namespace Axe.Windows.Rules
 
         public PatternCondition(int patternID, ValidateProperty validate = null)
         {
-            if (patternID == 0) throw new ArgumentException(nameof(patternID));
+            if (patternID == 0) throw new ArgumentNullException(nameof(patternID));
 
             this.PatternID = patternID;
             this.Validate = validate;
@@ -24,7 +24,7 @@ namespace Axe.Windows.Rules
 
         public override bool Matches(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException();
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var pattern = e.GetPattern(this.PatternID);
 

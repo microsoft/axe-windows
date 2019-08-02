@@ -41,7 +41,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool HasCorrectDataFormat(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             if (!e.TryGetPropertyValue(PropertyType.UIA_BoundingRectanglePropertyId, out double[] array)) return false;
             if (array == null) return false;
@@ -51,8 +51,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsBoundingRectangleEmpty(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
-            if (e.BoundingRectangle == null) throw new InvalidOperationException(nameof(e.BoundingRectangle));
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (e.BoundingRectangle == null) throw new ArgumentException(ErrorMessages.ElementBoundingRectangleNull, nameof(e));
 
             // Because IA11yElement.BoundingRectangle will return an empty rectangle when the property value is null,
             // we are expecting that this function is not called unless the nullity of the property has already been checked.
@@ -62,7 +62,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool HasValidArea(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return (e.BoundingRectangle.Width * e.BoundingRectangle.Height) >= MinimumArea;
         }
@@ -72,7 +73,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var container = e.FindContainerElement();
-            if (container == null) throw new Exception("Expected to find a valid ancestor element.");
+            if (container == null) throw new InvalidProgramException(ErrorMessages.ExpectedValidAncestor);
 
             return e.BoundingRectangle.CompletelyObscures(container.BoundingRectangle);
         }

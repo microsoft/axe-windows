@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Resources;
 using System;
 
 namespace Axe.Windows.Core.Misc
@@ -36,10 +37,10 @@ namespace Axe.Windows.Core.Misc
         public BoundedCounter(int upperBound)
         {
             if (upperBound <= 0)
-                throw new ArgumentException("This parameter must be positive", nameof(upperBound));
+                throw new ArgumentException(ErrorMessages.ParameterMustBePositive, nameof(upperBound));
 
             if (upperBound == int.MaxValue)
-                throw new ArgumentException("This parameter must be less than int.MaxValue", nameof(upperBound));
+                throw new ArgumentException(ErrorMessages.ParameterMustBeLessThanIntMaxValue, nameof(upperBound));
 
             UpperBound = upperBound;
             Reset();
@@ -70,7 +71,7 @@ namespace Axe.Windows.Core.Misc
         public bool TryAdd(int valueToAdd)
         {
             if (valueToAdd < 0)
-                throw new ArgumentException("This parameter must non-negative", nameof(valueToAdd));
+                throw new ArgumentException(ErrorMessages.ParameterMustNotBeNegative, nameof(valueToAdd));
 
             // Guard against overflow
             if (int.MaxValue - valueToAdd < Attempts)

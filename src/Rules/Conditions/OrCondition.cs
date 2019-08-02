@@ -14,8 +14,8 @@ namespace Axe.Windows.Rules
 
         public OrCondition(Condition a, Condition b)
         {
-            if (a == null) throw new Exception("The A parameter to the OrConditionConstructor was null.");
-            if (b == null) throw new Exception("The B parameter to the OrConditionConstructor was null.");
+            if (a == null) throw new ArgumentNullException(nameof(a));
+            if (b == null) throw new ArgumentNullException(nameof(b));
 
             this.A = a;
             this.B = b;

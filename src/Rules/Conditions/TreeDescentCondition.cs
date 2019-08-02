@@ -17,8 +17,8 @@ namespace Axe.Windows.Rules
 
         public TreeDescentCondition(Condition parentCondition, Condition childCondition)
         {
-            if (parentCondition == null) throw new ArgumentException();
-            if (childCondition == null) throw new ArgumentException();
+            if (parentCondition == null) throw new ArgumentNullException(nameof(parentCondition));
+            if (childCondition == null) throw new ArgumentNullException(nameof(childCondition));
 
             this.ParentCondition = parentCondition;
             this.ChildCondition = childCondition;

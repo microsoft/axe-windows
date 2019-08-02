@@ -26,16 +26,17 @@ namespace Axe.Windows.Desktop.UIAutomation.Support
 
         public TextRange Find(int id, dynamic value, bool backward, bool ignorecase)
         {
-            var range = GetRangeForFind(backward);
-      
-            if (id == TextAttributeType.UIA_TextAttributeId)
+            using (var range = GetRangeForFind(backward))
             {
-                this.FoundRange = range.FindText(value, backward, ignorecase);
-            }
-            else
-            {
-                this.FoundRange = range.FindAttribute(id, value, backward);
-            }
+                if (id == TextAttributeType.UIA_TextAttributeId)
+                {
+                    this.FoundRange = range.FindText(value, backward, ignorecase);
+                }
+                else
+                {
+                    this.FoundRange = range.FindAttribute(id, value, backward);
+                }
+            } // using
 
             return this.FoundRange;
         }

@@ -26,8 +26,8 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
-            if (e.Parent == null) throw new ArgumentNullException(nameof(e.Parent));
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (e.Parent == null) throw new ArgumentException(ErrorMessages.ElementParentNull, nameof(e));
 
             var siblings = SiblingCount(EligibleHyperlink & Name.Is(e.Name)) <= 1;
             return siblings.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;

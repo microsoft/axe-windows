@@ -21,6 +21,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         public static A11yPattern GetPatternInstance(A11yElement e, IUIAutomationElement uia, int id, string name)
         {
+            if (uia == null) throw new ArgumentNullException(nameof(uia));
+
             try
             {
                 dynamic pt = null;

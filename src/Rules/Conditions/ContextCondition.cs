@@ -19,9 +19,9 @@ namespace Axe.Windows.Rules
 
         public ContextCondition(Condition sub, ContextDelegate initialize, ContextDelegate finalize)
         {
-            if (sub == null) throw new ArgumentException(nameof(sub));
-            if (initialize == null) throw new ArgumentException(nameof(initialize));
-            if (finalize == null) throw new ArgumentException(nameof(finalize));
+            if (sub == null) throw new ArgumentNullException(nameof(sub));
+            if (initialize == null) throw new ArgumentNullException(nameof(initialize));
+            if (finalize == null) throw new ArgumentNullException(nameof(finalize));
 
             this.Sub = sub;
             this.Initialize = initialize;

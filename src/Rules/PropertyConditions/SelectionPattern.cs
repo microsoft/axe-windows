@@ -20,7 +20,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsNull(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var selectionPattern = e.GetPattern(PatternType.UIA_SelectionPatternId);
             return selectionPattern == null;

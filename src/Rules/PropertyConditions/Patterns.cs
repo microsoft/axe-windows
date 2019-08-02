@@ -66,7 +66,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsTextSelectionSupported(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var textPattern = e.GetPattern(PatternType.UIA_TextPatternId);
             if (textPattern == null) return false;

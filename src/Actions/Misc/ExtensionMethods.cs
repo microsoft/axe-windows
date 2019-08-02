@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
+using Axe.Windows.Actions.Resources;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
@@ -26,6 +27,8 @@ namespace Axe.Windows.Actions.Misc
         /// <returns></returns>
         public static bool NeedNewDataContext(this ElementDataContext dc, DataContextMode sm, TreeViewMode tm)
         {
+            if (dc == null) throw new ArgumentNullException(nameof(dc));
+
             return dc.Mode != DataContextMode.Load && ( dc.Mode != sm  || dc.TreeMode != tm);
         }
 
@@ -42,14 +45,9 @@ namespace Axe.Windows.Actions.Misc
         /// <returns>element overlapping point with smallest area, or null if no elements overlap the given point</returns>
         internal static ICoreA11yElement GetSmallestElementFromPoint(Dictionary<int, ICoreA11yElement> allElements, System.Drawing.Point position)
         {
-            if (allElements == null)
-            {
-                throw new ArgumentNullException(nameof(allElements));
-            }
-            if (allElements.Count == 0)
-            {
-                throw new ArgumentException("no elements provided");
-            }
+            if (allElements == null) throw new ArgumentNullException(nameof(allElements));
+            if (allElements.Count == 0) throw new ArgumentException(ErrorMessages.ItemsExpected, nameof(allElements));
+
             // Identify elements whose bounding rectangle contain clicked pixel point
             var containingElements = allElements.
                 Where(kv => !kv.Value.IsRootElement() && !kv.Value.IsOffScreen).
@@ -60,7 +58,7 @@ namespace Axe.Windows.Actions.Misc
                 }).
                 Where(kv => kv.Value.Contains(position));
 
-            if (containingElements.Count() == 0)
+            if (!containingElements.Any())
             {
                 return null;
             }

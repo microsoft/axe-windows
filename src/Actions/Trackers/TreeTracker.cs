@@ -123,7 +123,10 @@ namespace Axe.Windows.Actions.Trackers
             var element = GetNearbyElement(getElementMethod);
             if (element == null) throw new TreeNavigationFailedException();
 
+            #pragma warning disable CA2000 // Call IDisposable.Dispose()
             var desktopElement = new DesktopElement(element, true, false);
+            #pragma warning restore CA2000
+
             desktopElement.PopulateMinimumPropertiesForSelection();
             if (desktopElement.IsRootElement() == false)
             {

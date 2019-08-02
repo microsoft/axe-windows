@@ -24,7 +24,7 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return IsContentElementExists.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
         }

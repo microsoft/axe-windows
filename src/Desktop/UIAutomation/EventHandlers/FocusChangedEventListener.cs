@@ -25,6 +25,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public FocusChangedEventListener(CUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
         {
+            if (uia == null) throw new ArgumentNullException(nameof(uia));
+
             this.UIAutomation = uia;
             this.ListenEventMessage = peDelegate;
             this.UIAutomation.AddFocusChangedEventHandler(null,this);
@@ -35,7 +37,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         {
             if (ReadyToListen)
             {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                 var m = EventMessage.GetInstance(EventType.UIA_AutomationFocusChangedEventId, sender);
+#pragma warning restore CA2000
+
                 if (m != null)
                 {
                     ListenEventMessage(m);

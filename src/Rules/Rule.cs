@@ -20,7 +20,10 @@ namespace Axe.Windows.Rules
         protected Rule()
         {
             // keep these two calls in the following order or the RuleInfo.Condition string won't get populated
+#pragma warning disable CA2214
             this.Condition = CreateCondition();
+#pragma warning restore CA2214
+
             InitRuleInfo();
         }
 

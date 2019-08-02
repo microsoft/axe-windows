@@ -24,9 +24,9 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
-            if (e.Name == null) throw new ArgumentException(nameof(e.Name));
-            if (e.LocalizedControlType == null) throw new ArgumentException(nameof(e.LocalizedControlType));
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (e.Name == null) throw new ArgumentException(ErrorMessages.ElementNameNullOrWhiteSpace, nameof(e));
+            if (e.LocalizedControlType == null) throw new ArgumentException(ErrorMessages.ElementLocalizedControlTypeNullOrWhiteSpace, nameof(e));
 
             var r = new Regex($@"\b{e.LocalizedControlType}\b", RegexOptions.IgnoreCase);
 

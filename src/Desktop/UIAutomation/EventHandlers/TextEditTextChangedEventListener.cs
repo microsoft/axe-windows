@@ -37,6 +37,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public void HandleTextEditTextChangedEvent(IUIAutomationElement sender, TextEditChangeType type, string[] array)
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(this.EventId, sender);
 
             if (m != null)
@@ -45,13 +46,16 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 {
                     new KeyValuePair<string, dynamic>("TextEditChangeType", type.ToString()),
                 };
-                for (int i = 0; i < array.Length; i++)
+
+                if (array != null)
                 {
-                    m.Properties.Add(new KeyValuePair<string, dynamic>(Invariant($"[{i}]"), array.GetValue(i)));
-                };
+                    for (int i = 0; i < array.Length; i++)
+                        m.Properties.Add(new KeyValuePair<string, dynamic>(Invariant($"[{i}]"), array.GetValue(i)));
+                }
 
                 this.ListenEventMessage(m);
             }
+#pragma warning restore CA2000
         }
 
         protected override void Dispose(bool disposing)

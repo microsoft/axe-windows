@@ -29,7 +29,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public void HandleAutomationEvent(IUIAutomationElement sender, int eventId)
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(eventId, sender);
+#pragma warning restore CA2000
+
             if (m != null)
             {
                 this.ListenEventMessage(m);

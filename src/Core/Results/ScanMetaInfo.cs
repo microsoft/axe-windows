@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Core.Resources;
 using System;
 
 namespace Axe.Windows.Core.Results
@@ -39,6 +40,8 @@ namespace Axe.Windows.Core.Results
         /// <param name="e"></param>
         public ScanMetaInfo(IA11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             this.UIFramework = e.GetUIFramework(); 
             this.ControlType = Types.ControlType.GetInstance().GetNameById(e.ControlTypeId).Split('(')[0];
             this.PropertyId = 0;
@@ -69,7 +72,7 @@ namespace Axe.Windows.Core.Results
             }
             else
             {
-                throw new ArgumentException("Property is alread set. can't override Property base on PropertyId");
+                throw new ArgumentException(ErrorMessages.PropertyAlreadySet);
             }
         }
 

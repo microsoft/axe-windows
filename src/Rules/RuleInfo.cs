@@ -7,11 +7,16 @@ using static System.FormattableString;
 
 namespace Axe.Windows.Rules
 {
+#pragma warning disable CA1710
+
     /// <summary>
     /// Provides metadata about a rule.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
     public class RuleInfo : Attribute
     {
+#pragma warning restore CA1710
+
         /// <summary>
         /// Contains a unique identifier for the rule from the RuleId enumeration.
         /// </summary>

@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 namespace Axe.Windows.Automation
+    #pragma warning disable CA1815 // Should override Equals
 {
     /// <summary>
     /// Represents the output file(s), if any, associated with a ScanResults object
@@ -39,4 +40,5 @@ namespace Axe.Windows.Automation
             return new OutputFile(a11yTest: a11yTestFile);
         }
     }
+#pragma warning restore CA1815
 }

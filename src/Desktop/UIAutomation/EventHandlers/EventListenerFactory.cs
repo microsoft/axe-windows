@@ -144,6 +144,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         private void UnregisterAllEventListener()
         {
+#pragma warning disable CA2000 // Call IDisposeable.Dispose()
+
             /// Need to find out a way to handle
             UnregisterEventListener(new EventListenerFactoryMessage
             {
@@ -179,6 +181,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 EventId = EventType.UIA_ChangesEventId
             });
+#pragma warning restore CA2000
 
             HandleUIAutomationEventMessage listener = null;
             try
@@ -191,7 +194,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 this.EventListeners.Clear();
                 if (listener != null)
                 {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                     var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                     m.Properties = new List<KeyValuePair<string, dynamic>>() { new KeyValuePair<string, dynamic>("Message", "Succeeded to unregister all event listeners.") };
                     listener(m);
                 }
@@ -200,7 +206,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             catch (Exception e)
             {
                 e.ReportException();
+
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                 var m  = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                 m.Properties = new List<KeyValuePair<string, dynamic>>() { new KeyValuePair<string, dynamic>("Message", $"Failed to unregister all listeners: {e.Message}") };
                 listener(m);
             }
@@ -287,7 +297,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
                 if (listener != null)
                 {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                     var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                     m.Properties = new List<KeyValuePair<string, dynamic>>() {
                         new KeyValuePair<string, dynamic>("Message", "Succeeded to unregister a event listeners"),
                         new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
@@ -300,7 +313,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             catch (Exception e)
             {
                 e.ReportException();
+
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                 var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                 m.Properties = new List<KeyValuePair<string, dynamic>>() {
                         new KeyValuePair<string, dynamic>("Message", "Failed to unregister a event listeners"),
                         new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
@@ -369,7 +386,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                         else
                         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                             m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                             m.Properties = new List<KeyValuePair<string, dynamic>>() {
                                 new KeyValuePair<string, dynamic>("Message", "Event listener registration is rejected."),
                                 new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
@@ -389,7 +409,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                         else
                         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                             m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                             m.Properties = new List<KeyValuePair<string, dynamic>>() {
                                 new KeyValuePair<string, dynamic>("Message", "Event listener registration is rejected."),
                                 new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
@@ -407,7 +430,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         break;
                 }
 
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                 m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                 m.Properties = new List<KeyValuePair<string, dynamic>>() {
                         new KeyValuePair<string, dynamic>("Message", "Succeeded to register an event listener"),
                         new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
@@ -423,7 +449,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             catch (Exception e)
             {
                 e.ReportException();
+
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                 var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+#pragma warning restore CA2000
+
                 m.Properties = new List<KeyValuePair<string, dynamic>>() {
                         new KeyValuePair<string, dynamic>("Message", "Failed to register an event listener"),
                         new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
@@ -440,7 +470,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         private void FinishWorkerThread()
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             AddMessageToQueue(new EventListenerFactoryMessage() { MessageType = EventListenerFactoryMessageType.FinishThread });
+#pragma warning restore CA2000
+
             _autoEventFinish.WaitOne(TimeSpan.FromSeconds(ThreadExitGracePeriod));
             if (this._threadBackground.IsAlive)
             {
@@ -505,6 +538,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <param name="properties">required only for PropertyChanged Event listening</param>
         public void RegisterAutomationEventListener(int eventId, HandleUIAutomationEventMessage peDelegate, int[] properties = null)
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             AddMessageToQueue(new EventListenerFactoryMessage()
             {
                 MessageType = EventListenerFactoryMessageType.RegisterEventListener,
@@ -512,7 +546,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 EventId = eventId,
                 Properties = properties
             });
-        }
+#pragma warning restore CA2000
+}
 
         /// <summary>
         /// Unregister a automation event listener
@@ -521,11 +556,13 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <param name="wait">wait to complete</param>
         public void UnregisterAutomationEventListener(int eventId,bool wait = false)
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var msg = new EventListenerFactoryMessage()
             {
                 MessageType = EventListenerFactoryMessageType.UnregisterEventListener,
                 EventId = eventId
             };
+#pragma warning restore CA2000
 
             AddMessageToQueue(msg);
 
@@ -540,10 +577,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         public void UnregisterAllAutomationEventListners()
         {
+            #pragma warning disable CA2000 // Call IDisposable.Dispose()
             var msg = new EventListenerFactoryMessage()
             {
                 MessageType = EventListenerFactoryMessageType.UnregisterAllEventListeners,
             };
+#pragma warning restore CA2000
 
             AddMessageToQueue(msg);
 

@@ -10,6 +10,7 @@ namespace Axe.Windows.Rules.Misc
     {
         public static IReadOnlyDictionary<int, string> Dictionary;
 
+#pragma warning disable CA1810
         static ControlTypeStrings()
         {
             var d = new Dictionary<int, string>();
@@ -58,5 +59,6 @@ namespace Axe.Windows.Rules.Misc
 			
             ControlTypeStrings.Dictionary = d;
         }
+#pragma warning restore CA1810
     } // class
 } // namespace

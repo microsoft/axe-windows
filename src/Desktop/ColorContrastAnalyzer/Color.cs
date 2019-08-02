@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Desktop.Resources;
 using System;
 using System.Globalization;
 
@@ -46,24 +47,21 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public Color(int red, int green, int blue)
         {
-            const string failMessage = "Color components are values between 0 and 255";
-
             if (red >= 0 && red <= 255) Red = red;
-            else throw new DequeColorException(failMessage);
+            else throw new DequeColorException(ErrorMessages.InvalidColor);
 
             if (green >= 0 && green <= 255) Green = green;
-            else throw new DequeColorException(failMessage);
+            else throw new DequeColorException(ErrorMessages.InvalidColor);
 
             if (blue >= 0 && blue <= 255) Blue = blue;
-            else throw new DequeColorException(failMessage);
+            else throw new DequeColorException(ErrorMessages.InvalidColor);
         }
 
         public Color(System.Drawing.Color color) : this(color.R, color.G, color.B)
         {
             if (color.A < 255)
             {
-                throw new DequeColorException("DequeColors can only be instantiated with fully opaque (Alpha = 255) colors. " +
-                    "The DequeColor Blend method can help you if you know the background color");
+                throw new DequeColorException(ErrorMessages.DequeOpaqueColors);
             }
         }
 
@@ -72,6 +70,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         public double Contrast(Color otherColor)
         {
+            if (otherColor == null) throw new ArgumentNullException(nameof(otherColor));
+
             double luminance1 = Luminance();
             double luminance2 = otherColor.Luminance();
 

@@ -90,7 +90,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             var sortedByValueAndContrast = pairsWithSimilarTextColor.OrderByDescending(x => x.Value)
                 .ThenByDescending(x => x.Key.ColorContrast());
 
-            if (sortedByValueAndContrast.Count() <= 0) return result;
+            if (!sortedByValueAndContrast.Any()) return result;
 
             var resultPairs = new HashSet<ColorPair>();
 

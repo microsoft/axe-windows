@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Resources;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Telemetry;
@@ -39,6 +40,8 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static A11yElementData GetA11yElementData(this A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             return new A11yElementData() { Patterns = e.Patterns, Properties = e.Properties };
         }
 
@@ -49,6 +52,8 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static bool IsControlOrContent(this A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             return e.IsContentElement || e.IsControlElement;
         }
 
@@ -59,12 +64,11 @@ namespace Axe.Windows.Core.Misc
         /// <returns>UIA_ClassNamePropertyId</returns>
         public static string GetClassName(this A11yElement e)
         {
-            if (e.Properties != null && e.Properties.ContainsKey(PropertyType.UIA_ClassNamePropertyId))
-            {
-                return e.Properties[PropertyType.UIA_ClassNamePropertyId].TextValue;
-            }
-            else
-                return null;
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (e.Properties == null) return null;
+            if (!e.Properties.ContainsKey(PropertyType.UIA_ClassNamePropertyId)) return null;
+
+            return e.Properties[PropertyType.UIA_ClassNamePropertyId].TextValue;
         }
 
         /// <summary>
@@ -74,10 +78,12 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static bool IsUIActionablePatternByPatternMethodType(this A11yPattern ptn)
         {
+            if (ptn == null) throw new ArgumentNullException(nameof(ptn));
+
             return (from m in ptn.GetType().GetMethods()
                     let a = m.GetCustomAttribute(typeof(PatternMethodAttribute))
                     where a != null && (bool)a.GetType().GetProperty("IsUIAction").GetValue(a) == true
-                    select a).Count() != 0;
+                    select a).Any();
         }
 
         /// <summary>
@@ -266,7 +272,7 @@ namespace Axe.Windows.Core.Misc
                 return poi;
             }
 
-            throw new ArgumentException("Unable to locate the target element in the file.");
+            throw new ArgumentException(ErrorMessages.UnableToLocateTargetElementInFile);
         }
 
         private static bool TryRecursivelyFindPOI(this A11yElement element, out A11yElement poi)
@@ -337,6 +343,8 @@ namespace Axe.Windows.Core.Misc
 
         public static string GetSafeSenderStringValue(GetStringValue getString)
         {
+            if (getString == null) throw new ArgumentNullException(nameof(getString));
+
             string txt = null;
             try
             {
@@ -360,6 +368,8 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static string ConvertIntArrayToString(this A11yProperty p)
         {
+            if (p == null) throw new ArgumentNullException(nameof(p));
+
             return p.Value != null ? ConvertIntArrayToString(p.Value) : null;
         }
 
@@ -374,6 +384,12 @@ namespace Axe.Windows.Core.Misc
         {
             int numStatusTypes = Enum.GetNames(typeof(ScanStatus)).Length;
             int[] results = new int[numStatusTypes];
+
+            // a foreach loop on a null variable does not throw an exception
+            // Since this check is being added without knowing the author's intent,
+            // the logic of simply returning empty results has been maintained.
+            if (scanStatuses == null) return results;
+
             foreach (var status in scanStatuses)
             {
                 results[(int) status]++;
@@ -388,7 +404,7 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static ScanStatus GetAggregatedScanStatus(this IEnumerable<ScanStatus> tss)
         {
-            if (tss.Count() != 0)
+            if (tss.Any())
             {
                 if(HasTestResults(tss, ScanStatus.ScanNotSupported))
                 {
@@ -433,7 +449,7 @@ namespace Axe.Windows.Core.Misc
 
             return (from p in ps
                     where p.Id == id
-                    select p).Count() != 0;
+                    select p).Any();
         }
 
         /// <summary>
@@ -446,7 +462,7 @@ namespace Axe.Windows.Core.Misc
             return (from c in cs
                     let cid = c.Properties.ById(PropertyType.UIA_ControlTypePropertyId).Value
                     where c.ControlTypeId == id
-                    select c).Count() != 0;
+                    select c).Any();
         }
 
         /// <summary>
@@ -602,6 +618,8 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static bool IsOffScreen(this A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var p = e.Properties.ById(PropertyType.UIA_IsOffscreenPropertyId);
             return p != null && p.Value == true;
         }

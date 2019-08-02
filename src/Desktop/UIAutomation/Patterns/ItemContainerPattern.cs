@@ -4,6 +4,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Core.Bases;
 using UIAutomationClient;
 using Axe.Windows.Core.Attributes;
+using System;
 
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
 {
@@ -17,6 +18,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         public ItemContainerPattern(A11yElement e, IUIAutomationItemContainerPattern p) : base(e, PatternType.UIA_ItemContainerPatternId)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             Pattern = p;
             this.UIAElement = e.PlatformObject;
         }
