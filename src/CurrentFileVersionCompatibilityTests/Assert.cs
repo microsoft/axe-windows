@@ -3,7 +3,7 @@
 
 using System.IO;
 
-namespace OldFileVersionWriteTests
+namespace CurrentFileVersionCompatibilityTests
 {
     /// <summary>
     /// Simple stubs to mimic the Assert framework, so that the same code can be used

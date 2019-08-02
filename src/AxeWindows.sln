@@ -65,7 +65,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Win32", "Win32\Win32.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldFileVersionCompatibilityTests", "OldFileVersionCompatibilityTests\OldFileVersionCompatibilityTests.csproj", "{21F31760-D98D-41E6-BB7A-52619ED460C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldFileVersionWriteTests", "OldFileVersionWriteTests\OldFileVersionWriteTests.csproj", "{DCD83A54-54DA-4131-A852-2A129DB3ACB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentFileVersionCompatibilityTests", "CurrentFileVersionCompatibilityTests\CurrentFileVersionCompatibilityTests.csproj", "{DCD83A54-54DA-4131-A852-2A129DB3ACB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
