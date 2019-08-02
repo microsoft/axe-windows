@@ -15,8 +15,10 @@
     <copyright>© Microsoft and contributors</copyright>
     <tags>axe windows accessibility automation</tags>
     <dependencies>
-        <dependency id="Newtonsoft.Json" version="9.0.1" />
-        <dependency id="System.Collections.Immutable" version="1.5.0" />
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+      <dependency id="Microsoft.Win32.Registry" version="4.5.0" />
+      <dependency id="System.Collections.Immutable" version="1.5.0" />
+      <dependency id="System.Drawing.Common" version="4.5.1" />
     </dependencies>
     <releaseNotes>https://github.com/microsoft/axe-windows/releases</releaseNotes>
   </metadata>
