@@ -22,6 +22,7 @@ namespace Axe.Windows.Telemetry
         public ExcludedException(Exception innerException)
             : base (innerException?.Message, innerException)
         {
+            if (innerException == null) throw new ArgumentNullException(nameof(innerException));
         }
     }
 }
