@@ -124,7 +124,7 @@
     <value>The element's LocalizedControlType property must not be null or white space</value>
   </data>
   <data name="ElementNameNullOrWhiteSpace" xml:space="preserve">
-    <value>The element's Name property should not be null or white space</value>
+    <value>The element's Name property must not be null or white space</value>
   </data>
   <data name="ElementParentNull" xml:space="preserve">
     <value>The element's Parent property should not be null</value>
@@ -142,7 +142,7 @@
     <value>The given int parameter should not be zero</value>
   </data>
   <data name="IntParameterLessThanZero" xml:space="preserve">
-    <value>Int parameter should not be less than zero</value>
+    <value>Int parameter must not be less than zero</value>
   </data>
   <data name="NoControlTypeEntryFound" xml:space="preserve">
     <value>No control type entry was found in dictionary</value>
