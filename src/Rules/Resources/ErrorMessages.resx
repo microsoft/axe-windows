@@ -121,7 +121,7 @@
     <value>The element's BoundingRectangle property should not be null</value>
   </data>
   <data name="ElementLocalizedControlTypeNullOrWhiteSpace" xml:space="preserve">
-    <value>The element's LocalizedControlType property should not be null or white space</value>
+    <value>The element's LocalizedControlType property must not be null or white space</value>
   </data>
   <data name="ElementNameNullOrWhiteSpace" xml:space="preserve">
     <value>The element's Name property should not be null or white space</value>
