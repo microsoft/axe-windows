@@ -19,7 +19,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (value == null)
             {
-                throw new ArgumentNullException(valueName, ErrorMessages.VallueCannotBeNull);
+                throw new ArgumentNullException(valueName);
             }
         }
 
@@ -32,7 +32,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException(valueName, ErrorMessages.ValueCannotBeEmptyOrWhiteSpace);
+                throw new ArgumentException(ErrorMessages.ValueCannotBeEmptyOrWhiteSpace, valueName);
             }
         }
     }

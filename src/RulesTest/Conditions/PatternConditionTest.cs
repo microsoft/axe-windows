@@ -46,7 +46,7 @@ namespace Axe.Windows.RulesTest.Conditions
         public void TestNullElementArgumentException()
         {
             Action action = () => new PatternCondition(0).Matches(null);
-            Assert.ThrowsException<ArgumentException>(action);
+            Assert.ThrowsException<ArgumentNullException>(action);
         }
     } // class
 } // namespace
