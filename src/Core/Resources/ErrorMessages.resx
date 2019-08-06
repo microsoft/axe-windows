@@ -132,7 +132,7 @@
   <data name="UnableToLocateTargetElementInFile" xml:space="preserve">
     <value>Unable to locate the target element in the file.</value>
   </data>
-  <data name="VallueCannotBeNull" xml:space="preserve">
+  <data name="ValueCannotBeNull" xml:space="preserve">
     <value>Value cannot be null</value>
   </data>
   <data name="ValueCannotBeEmptyOrWhiteSpace" xml:space="preserve">
