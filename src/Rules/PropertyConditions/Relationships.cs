@@ -159,7 +159,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         private static bool HasSameTypeAsReferenceElement(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (!Condition.Context.IsValueCreated) throw new InvalidCastException(ErrorMessages.ExpectedValidConditionContext);
+            if (!Condition.Context.IsValueCreated) throw new ApplicationException(ErrorMessages.ExpectedValidConditionContext);
 
             var referenceElement = Condition.Context.Value.ReferenceElements.Peek();
             return ControlTypeMatches(e, referenceElement);
