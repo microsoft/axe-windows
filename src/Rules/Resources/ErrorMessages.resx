@@ -142,7 +142,7 @@
     <value>The given int parameter should not be zero</value>
   </data>
   <data name="IntParameterLessThanZero" xml:space="preserve">
-    <value>Int parameter should not be less than zero</value>
+    <value>Int parameter must not be less than zero</value>
   </data>
   <data name="NoControlTypeEntryFound" xml:space="preserve">
     <value>No control type entry was found in dictionary</value>
