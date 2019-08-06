@@ -74,7 +74,7 @@ namespace Axe.Windows.Desktop.Utility
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static List<DesktopElement> ToListOfDesktopElements( this IUIAutomationElementArray array)
+        public static List<DesktopElement> ToListOfDesktopElements(this IUIAutomationElementArray array)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
 
