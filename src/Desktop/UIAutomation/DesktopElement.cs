@@ -103,7 +103,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         private static dynamic GetPropertyValue(IUIAutomationElement element, int id)
         {
-            if ( element == null) throw new ArgumentNullException(nameof( element));
+            if (element == null) throw new ArgumentNullException(nameof(element));
 
             dynamic value = null;
             try
