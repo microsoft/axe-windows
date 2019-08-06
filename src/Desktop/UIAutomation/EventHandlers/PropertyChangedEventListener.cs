@@ -36,7 +36,6 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             var m = EventMessage.GetInstance(this.EventId, sender);
 #pragma warning restore CA2000
 
-
             if (m != null)
             {
                 m.Properties = new List<KeyValuePair<string, dynamic>>
