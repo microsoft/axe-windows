@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.HelpLinks;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Rules;
+using Axe.Windows.RuleSelection.Resources;
 using Axe.Windows.Telemetry;
+using System;
 using static System.FormattableString;
 
 namespace Axe.Windows.RuleSelection
@@ -60,6 +61,7 @@ namespace Axe.Windows.RuleSelection
         private static ScanResult ConvertRunResultToScanResult(RunResult runResult)
         {
             if (runResult == null) throw new ArgumentNullException(nameof(runResult));
+            if (runResult.RuleInfo == null) throw new ArgumentException(ErrorMessages.RunResultRuleInfoNull, nameof(runResult));
 
             var scanResult = CreateResult(runResult.RuleInfo, runResult.element);
 
