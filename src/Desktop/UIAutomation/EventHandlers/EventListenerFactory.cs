@@ -577,7 +577,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         public void UnregisterAllAutomationEventListners()
         {
-            #pragma warning disable CA2000 // Call IDisposable.Dispose()
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var msg = new EventListenerFactoryMessage()
             {
                 MessageType = EventListenerFactoryMessageType.UnregisterAllEventListeners,
