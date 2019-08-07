@@ -50,7 +50,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 if (array != null)
                 {
                     for (int i = 0; i < array.Length; i++)
+                    {
                         m.Properties.Add(new KeyValuePair<string, dynamic>(Invariant($"[{i}]"), array.GetValue(i)));
+                    }
                 }
 
                 this.ListenEventMessage(m);
