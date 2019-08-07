@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Results;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -58,7 +59,9 @@ namespace Axe.Windows.UnitTestSharedLibrary
         /// <returns></returns>
         public static void PopulateChildrenTests(A11yElement ke)
         {
-            ke?.ScanResults?.Items?.ForEach(item => {
+            if (ke == null) throw new ArgumentNullException(nameof(ke));
+
+            ke.ScanResults.Items.ForEach(item => {
                 item.Items = new List<RuleResult>();
                 RuleResult r = new RuleResult();
                 r.Status = ke.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail;
