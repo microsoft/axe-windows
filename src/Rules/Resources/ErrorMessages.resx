@@ -139,7 +139,7 @@
     <value>Expected Condition.Context to be valid</value>
   </data>
   <data name="IntParameterEqualsZero" xml:space="preserve">
-    <value>The given int parameter should not be zero</value>
+    <value>The given int parameter must not be zero</value>
   </data>
   <data name="IntParameterLessThanZero" xml:space="preserve">
     <value>Int parameter must not be less than zero</value>
