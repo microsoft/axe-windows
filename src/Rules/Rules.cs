@@ -12,7 +12,7 @@ namespace Axe.Windows.Rules
     /// <summary>
     /// Use this class to run rules and get information about any rule in the Rules assembly.
     /// </summary>
-    #pragma warning disable CA1724
+#pragma warning disable CA1724
     public static class Rules
 #pragma warning restore CA1724
     {

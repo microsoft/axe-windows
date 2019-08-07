@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ElementBoundingRectangleNull" xml:space="preserve">
-    <value>The element's BoundingRectangle property should not be null</value>
+    <value>The element's BoundingRectangle property must not be null</value>
   </data>
   <data name="ElementLocalizedControlTypeNullOrWhiteSpace" xml:space="preserve">
     <value>The element's LocalizedControlType property must not be null or white space</value>
@@ -127,7 +127,7 @@
     <value>The element's Name property must not be null or white space</value>
   </data>
   <data name="ElementParentNull" xml:space="preserve">
-    <value>The element's Parent property should not be null</value>
+    <value>The element's Parent property must not be null</value>
   </data>
   <data name="ExpectedEnumType" xml:space="preserve">
     <value>Expected T to be an enumeration type</value>
@@ -139,7 +139,7 @@
     <value>Expected Condition.Context to be valid</value>
   </data>
   <data name="IntParameterEqualsZero" xml:space="preserve">
-    <value>The given int parameter should not be zero</value>
+    <value>The given int parameter must not be zero</value>
   </data>
   <data name="IntParameterLessThanZero" xml:space="preserve">
     <value>Int parameter must not be less than zero</value>
