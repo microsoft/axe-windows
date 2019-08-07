@@ -56,6 +56,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         public static bool IsExcludedProperty(int id, string name)
         {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+
             return id == 0
                    || name.EndsWith("PatternAvailable", System.StringComparison.Ordinal)
                    || name.EndsWith("Pattern2Available", System.StringComparison.Ordinal)
@@ -101,6 +103,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         private static dynamic GetPropertyValue(IUIAutomationElement element, int id)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             dynamic value = null;
             try
             {

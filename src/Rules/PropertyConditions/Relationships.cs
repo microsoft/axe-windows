@@ -35,7 +35,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool MatchOrderInSiblings(IA11yElement e, int index)
         {
-            if (e == null) throw new ArgumentException();
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Parent == null || e.Parent.Children == null) return false;
             if (index < 1 || index > e.Parent.Children.Count()) return false;
 
@@ -55,15 +55,15 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition Parent(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             return Condition.Create(e => MatchParent(c, e));
         }
 
         private static bool MatchParent(Condition c, IA11yElement e)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (e == null) throw new ArgumentException();
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Parent == null) return false;
 
             return c.Matches(e.Parent);
@@ -82,8 +82,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static int SiblingCount(Condition c, IA11yElement e)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Parent == null) return -1;
             if (e.Parent.Children == null) return -1;
 
@@ -111,7 +111,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         /// <returns></returns>
         public static Condition Ancestor(int index, Condition condition)
         {
-            if (index < 0) throw new ArgumentException(nameof(index));
+            if (index < 0) throw new ArgumentException(ErrorMessages.IntParameterLessThanZero, nameof(index));
             if (index == 0) return condition;
 
             return Ancestor(index - 1, Parent(condition));
@@ -134,7 +134,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition AnyAncestor(Condition c, Condition stopCondition)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
             if (stopCondition == null) throw new ArgumentNullException(nameof(stopCondition));
 
             var recurse = new RecursiveCondition();
@@ -149,7 +149,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition AllAncestors(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             var recurse = new RecursiveCondition();
             recurse %= Parent(c & (recurse | NoParentExists));
@@ -158,8 +158,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool HasSameTypeAsReferenceElement(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
-            if (!Condition.Context.IsValueCreated) throw new Exception("Expected Condition.Context to be valid");
+            if (e == null) throw new ArgumentNullException(nameof(e));
+            if (!Condition.Context.IsValueCreated) throw new ApplicationException(ErrorMessages.ExpectedValidConditionContext);
 
             var referenceElement = Condition.Context.Value.ReferenceElements.Peek();
             return ControlTypeMatches(e, referenceElement);
@@ -167,7 +167,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition AnyChild(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             var description= string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AnyChild, c);
 
@@ -176,7 +176,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
             private static Condition AnyChildInternal(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             var anyChild = Condition.Create(e => MatchAnyChild(c, e));
 
@@ -187,8 +187,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool MatchAnyChild(Condition c, IA11yElement e)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Children == null) return false;
 
             foreach (var child in e.Children)
@@ -202,7 +202,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition NoChild(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.NoChild, c);
 
@@ -211,7 +211,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition AllChildren(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AllChildren, c);
 
@@ -233,8 +233,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static int ChildCount(Condition c, IA11yElement e)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Children == null) return 0;
 
             int count = 0;
@@ -249,15 +249,15 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition AnyDescendant(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             return Condition.Create(e => MatchAnyDescendant(c, e));
         }
 
         private static bool MatchAnyDescendant(Condition c, IA11yElement e)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Children == null) return false;
 
             foreach (var child in e.Children)
@@ -274,7 +274,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static Condition AllDescendants(Condition c)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
+            if (c == null) throw new ArgumentNullException(nameof(c));
 
             return ChildrenExist & ~Condition.Create(e => MatchAnyDescendant(~c, e));
         }
@@ -297,8 +297,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static int DescendantCount(Condition c, IA11yElement e)
         {
-            if (c == null) throw new ArgumentException(nameof(c));
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (c == null) throw new ArgumentNullException(nameof(c));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Children == null) return 0;
 
             int count = 0;
@@ -315,8 +315,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool ControlTypeMatches(IA11yElement e1, IA11yElement e2)
         {
-            if (e1 == null) throw new ArgumentException(nameof(e1));
-            if (e2 == null) throw new ArgumentException(nameof(e2));
+            if (e1 == null) throw new ArgumentNullException(nameof(e1));
+            if (e2 == null) throw new ArgumentNullException(nameof(e2));
 
             return e1.ControlTypeId == e2.ControlTypeId;
         }

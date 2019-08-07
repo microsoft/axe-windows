@@ -80,7 +80,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence. 
             var nuel = this.Elements.Where(e => e.Properties == null);
 
-            if (nuel.Count() != 0)
+            if (nuel.Any())
             {
                 nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData());
             }

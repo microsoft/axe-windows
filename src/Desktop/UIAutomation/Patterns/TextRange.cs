@@ -78,6 +78,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void MoveEndpointByRange(TextPatternRangeEndpoint srcEndPoint, TextRange tr, TextPatternRangeEndpoint targetEndPoint)
         {
+            if (tr == null) throw new ArgumentNullException(nameof(tr));
+
             this.UIATextRange.MoveEndpointByRange(srcEndPoint, tr.UIATextRange, targetEndPoint);
         }
 
@@ -102,12 +104,16 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public bool Compare(TextRange tr)
         {
+            if (tr == null) throw new ArgumentNullException(nameof(tr));
+
             return Convert.ToBoolean(this.UIATextRange.Compare(tr.UIATextRange));
         }
 
         [PatternMethod]
         public int CompareEndpoints(TextPatternRangeEndpoint srcEndPoint, TextRange tr, TextPatternRangeEndpoint targetEndPoint)
         {
+            if (tr == null) throw new ArgumentNullException(nameof(tr));
+
             return this.UIATextRange.CompareEndpoints(srcEndPoint, tr.UIATextRange, targetEndPoint);
         }
 

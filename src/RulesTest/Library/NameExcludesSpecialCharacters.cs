@@ -35,7 +35,7 @@ namespace Axe.Windows.RulesTest.Library
         public void TestNullElement()
         {
             Action action = () => { Rule.Evaluate(null); };
-            Assert.ThrowsException<ArgumentException>(action);
+            Assert.ThrowsException<ArgumentNullException>(action);
         }
 
         [TestMethod]

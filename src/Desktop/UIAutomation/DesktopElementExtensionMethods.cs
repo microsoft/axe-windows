@@ -39,6 +39,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="element"></param>
         public static void PopulateAllPropertiesWithLiveData(this A11yElement element)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             element.Clear();
 
             if (element.IsSafeToRefresh())
@@ -57,6 +59,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="element"></param>
         public static void PopulateMinimumPropertiesForSelection(this A11yElement element)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             element.PopulateWithIndicatedProperties(MiniumProperties);
         }
 
@@ -66,6 +70,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="element"></param>
         public static void UpdateGlimpse(this A11yElement element)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             element.Glimpse = $"{element.LocalizedControlType} '{Regex.Replace(element.Name ?? "", @"\t|\n|\r", " ")}'";
         }
 
@@ -122,21 +128,20 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns>if element is not live, don't allow clow</returns>
         public static A11yElement CloneForSelection(this A11yElement e)
         {
-            try
+            if (e == null) return null;
+            if (e.PlatformObject == null) return null;
+
+                try
             {
+                var cache = DesktopElementHelper.BuildCacheRequest(MiniumProperties, null);
 
-                if (e != null && e.PlatformObject != null)
-                {
-                    var cache = DesktopElementHelper.BuildCacheRequest(MiniumProperties, null);
+                var uia = ((IUIAutomationElement)e.PlatformObject).BuildUpdatedCache(cache);
+                Marshal.ReleaseComObject(cache);
 
-                    var uia = ((IUIAutomationElement)e.PlatformObject).BuildUpdatedCache(cache);
-                    Marshal.ReleaseComObject(cache);
+                var ne = new DesktopElement(uia, true, false);
+                ne.PopulateMinimumPropertiesForSelection();
 
-                    var ne = new DesktopElement(uia, true, false);
-                    ne.PopulateMinimumPropertiesForSelection();
-
-                    return ne;
-                }
+                return ne;
             }
             catch (COMException ex)
             {
@@ -152,6 +157,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="element"></param>
         public static void Clear(this A11yElement element)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             if (element.Properties != null)
             {
                 foreach (var pp in element.Properties.Values)
@@ -312,6 +319,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         public static bool IsSafeToRefresh(this A11yElement element)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             bool ret = false;
 
             if(element.PlatformObject != null)

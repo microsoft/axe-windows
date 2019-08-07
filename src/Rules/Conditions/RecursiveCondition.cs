@@ -11,7 +11,7 @@ namespace Axe.Windows.Rules
 
         private void Init(Condition a)
         {
-            if (a == null) throw new ArgumentException(nameof(a));
+            if (a == null) throw new ArgumentNullException(nameof(a));
 
             this.A = a;
         }
@@ -24,8 +24,8 @@ namespace Axe.Windows.Rules
 
         public override bool Matches(IA11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
             if (A == null) return false;
-            if (e == null) throw new ArgumentException();
 
             return this.A.Matches(e);
         }

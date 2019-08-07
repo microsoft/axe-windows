@@ -238,7 +238,7 @@ namespace Axe.Windows.RulesTest.Library
         public void TestBoundingRectangleContainedInParentElementNullFail()
         {
             Action action = () => Rule.Evaluate(null);
-            Assert.ThrowsException<ArgumentException>(action);
+            Assert.ThrowsException<ArgumentNullException>(action);
         }
 
         [TestMethod]
@@ -247,7 +247,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 Action action = () => Rule.Evaluate(e);
-                Assert.ThrowsException<Exception>(action);
+                Assert.ThrowsException<ArgumentNullException>(action);
             } // using
         }
 

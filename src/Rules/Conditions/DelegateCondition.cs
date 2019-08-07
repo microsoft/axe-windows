@@ -12,7 +12,7 @@ namespace Axe.Windows.Rules
 
         public DelegateCondition(MatchesDelegate matches)
         {
-            if (matches == null) throw new ArgumentException();
+            if (matches == null) throw new ArgumentNullException(nameof(matches));
 
             this._Matches = matches;
         }

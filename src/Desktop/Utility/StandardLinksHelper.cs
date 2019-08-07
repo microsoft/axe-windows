@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -35,6 +36,8 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public bool HasStoredLink(ScanMetaInfo mi)
         {
+            if (mi == null) throw new ArgumentNullException(nameof(mi));
+
             return StoredLinks.ContainsKey($"{mi.UIFramework}-{mi.ControlType}-{PropertyType.GetInstance().GetNameById(mi.PropertyId)}");
         }
 
@@ -47,6 +50,8 @@ namespace Axe.Windows.Desktop.Utility
         public string GetSnippetQueryUrl(ScanMetaInfo mi)
 #pragma warning restore CA1055 // Uri return values should not be strings
         {
+            if (mi == null) throw new ArgumentNullException(nameof(mi));
+
             return StoredLinks[$"{mi.UIFramework}-{mi.ControlType}-{PropertyType.GetInstance().GetNameById(mi.PropertyId)}"];
         }
 

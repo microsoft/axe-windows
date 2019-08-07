@@ -32,7 +32,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public void HandleActiveTextPositionChangedEvent(IUIAutomationElement sender, IUIAutomationTextRange range)
         {
+            if (range == null) return;
+
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(this.EventId, sender);
+#pragma warning restore CA2000
 
             if (m != null)
             {

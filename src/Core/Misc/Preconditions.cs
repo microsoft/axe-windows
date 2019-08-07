@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Resources;
 using System;
 
 namespace Axe.Windows.Core.Misc
@@ -18,7 +19,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (value == null)
             {
-                throw new ArgumentNullException(valueName, "Value can not be null");
+                throw new ArgumentNullException(valueName);
             }
         }
 
@@ -31,7 +32,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                throw new ArgumentException("Value can not be trivial", valueName);
+                throw new ArgumentException(ErrorMessages.ValueCannotBeEmptyOrWhiteSpace, valueName);
             }
         }
     }

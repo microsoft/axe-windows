@@ -28,6 +28,8 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static string GetProcessName(this A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             try
             {
                 var prc = Process.GetProcessById(e.ProcessId);
@@ -50,6 +52,8 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static ProcessModule GetProcessModule(this A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             try
             {
                 var prc = Process.GetProcessById(e.ProcessId);
@@ -70,8 +74,10 @@ namespace Axe.Windows.Desktop.Utility
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static List<DesktopElement> ToListOfDesktopElements( this IUIAutomationElementArray array)
+        public static List<DesktopElement> ToListOfDesktopElements(this IUIAutomationElementArray array)
         {
+            if (array == null) throw new ArgumentNullException(nameof(array));
+
             List<DesktopElement> list = new List<DesktopElement>();
 
             for (int i = 0; i < array.Length; i++)
@@ -93,6 +99,8 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static Bitmap CaptureBitmap(this A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var rect = e.BoundingRectangle;
 
             Bitmap bmp = new Bitmap(rect.Width, rect.Height);
@@ -110,6 +118,8 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static BitmapSource ConvertToSource(this Bitmap bitmap)
         {
+            if (bitmap == null) throw new ArgumentNullException(nameof(bitmap));
+
             var hbmp = bitmap.GetHbitmap();
             var result = Imaging.CreateBitmapSourceFromHBitmap(hbmp, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             NativeMethods.DeleteObject(hbmp);
@@ -127,7 +137,7 @@ namespace Axe.Windows.Desktop.Utility
         {
             return (from s in Screen.AllScreens
                     where s.Bounds.Contains(p)
-                    select s).Count() != 0;
+                    select s).Any();
         }
 
         /// <summary>

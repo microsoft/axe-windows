@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Rules.Resources;
 
 namespace Axe.Windows.Rules
 {
@@ -12,14 +13,14 @@ namespace Axe.Windows.Rules
 
         public ControlTypeCondition(int controlType)
         {
-            if (controlType == 0) throw new ArgumentException();
+            if (controlType == 0) throw new ArgumentException(ErrorMessages.IntParameterEqualsZero, nameof(controlType));
 
             this.ControlType = controlType;
         }
 
         public override bool Matches(IA11yElement element)
         {
-            if (element == null) throw new ArgumentException();
+            if (element == null) throw new ArgumentNullException(nameof(element));
 
             return element.ControlTypeId == this.ControlType;
         }

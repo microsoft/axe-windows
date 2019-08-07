@@ -62,6 +62,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public TextRange RangeFromChild(DesktopElement child)
         {
+            if (child == null) throw new ArgumentNullException(nameof(child));
+
             return new TextRange(this.Pattern.RangeFromChild(child.PlatformObject),this);
         }
 

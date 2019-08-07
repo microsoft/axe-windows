@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Types;
+using System;
 using System.Collections.Generic;
 using UIAutomationClient;
 
@@ -71,6 +72,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         public static IUIAutomationCacheRequest GetPropertiesCache(CUIAutomation uia, List<int> pps, List<int> pts)
         {
+            if (uia == null) throw new ArgumentNullException(nameof(uia));
+
             var cr = uia.CreateCacheRequest();
 
             if (pps != null)

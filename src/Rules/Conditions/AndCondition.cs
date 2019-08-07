@@ -14,8 +14,8 @@ namespace Axe.Windows.Rules
 
         public AndCondition(Condition a, Condition b)
         {
-            if (a == null) throw new ArgumentException();
-            if (b == null) throw new ArgumentException();
+            if (a == null) throw new ArgumentNullException(nameof(a));
+            if (b == null) throw new ArgumentNullException(nameof(b));
 
             this.A = a;
             this.B = b;

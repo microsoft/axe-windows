@@ -22,7 +22,7 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentNullException("The element is null");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return LocalizedControlType.NotWhiteSpace.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
         }

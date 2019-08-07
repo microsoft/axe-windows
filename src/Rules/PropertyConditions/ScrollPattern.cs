@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsNull(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var scrollPattern = e.GetPattern(PatternType.UIA_ScrollPatternId);
             return scrollPattern == null;
@@ -36,7 +36,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsHorizontallyScrollable(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var scrollPattern = e.GetPattern(PatternType.UIA_ScrollPatternId);
             if (scrollPattern == null) return false;
@@ -50,7 +50,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsVerticallyScrollable(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var scrollPattern = e.GetPattern(PatternType.UIA_ScrollPatternId);
             if (scrollPattern == null) return false;

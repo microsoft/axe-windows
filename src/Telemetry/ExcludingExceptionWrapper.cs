@@ -24,6 +24,8 @@ namespace Axe.Windows.Telemetry
         /// <exception cref="ExcludedException">If the targeted exception type occurs, otherwise whatever the Action does</exception>
         public static void ExecuteWithExcludedExceptionConversion(Type typeToExclude, Action action)
         {
+            if (action == null) throw new ArgumentNullException(nameof(action));
+
             try
             {
                 action();

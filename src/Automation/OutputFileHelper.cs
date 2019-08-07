@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Automation.Resources;
 using Axe.Windows.SystemAbstractions;
 using System;
 using System.Globalization;
@@ -22,13 +23,13 @@ namespace Axe.Windows.Automation
             if (system == null) throw new ArgumentNullException(nameof(system));
 
             _dateTime = system.DateTime;
-            if (_dateTime == null) throw new InvalidOperationException($"Expected {nameof(_dateTime)} not to be null");
+            if (_dateTime == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(_dateTime)));
 
             var environment = system.Environment;
-            if (environment == null) throw new InvalidOperationException($"Expected {nameof(environment)} not to be null");
+            if (environment == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(environment)));
 
             var directory = system.IO.Directory;
-            if (directory == null) throw new InvalidOperationException($"Expected {nameof(directory)} not to be null");
+            if (directory == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(directory)));
 
             if (!string.IsNullOrWhiteSpace(outputDirectory))
             {

@@ -32,7 +32,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public void HandleNotificationEvent(IUIAutomationElement sender, NotificationKind kind, NotificationProcessing process, string displayString, string activityId)
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(this.EventId, sender);
+#pragma warning restore CA2000
 
             if (m != null)
             {

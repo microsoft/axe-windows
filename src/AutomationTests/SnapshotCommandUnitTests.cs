@@ -53,7 +53,7 @@ namespace Axe.Windows.AutomationTests
         {
             var action = new Action(() => SnapshotCommand.Execute(config: null, scanTools: _scanToolsMock.Object));
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
             Assert.IsTrue(ex.Message.Contains("config"));
         }
 
@@ -74,7 +74,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns<ITargetElementLocator>(null);
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
             Assert.IsTrue(ex.Message.Contains("TargetElementLocator"));
             _scanToolsMock.VerifyAll();
         }
@@ -88,7 +88,7 @@ namespace Axe.Windows.AutomationTests
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
             Assert.IsTrue(ex.Message.Contains("Actions"));
             _scanToolsMock.VerifyAll();
         }
@@ -185,7 +185,7 @@ namespace Axe.Windows.AutomationTests
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
             Assert.IsTrue(ex.Message.Contains("ResultsAssembler"));
 
             _scanToolsMock.VerifyAll();
@@ -241,7 +241,7 @@ namespace Axe.Windows.AutomationTests
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
             Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
 
             _scanToolsMock.VerifyAll();

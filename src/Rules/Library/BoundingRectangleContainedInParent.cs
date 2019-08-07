@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             if (!IsBoundingRectangleContained(e.Parent, e))
             {
@@ -45,8 +45,8 @@ namespace Axe.Windows.Rules.Library
 
         private static bool IsBoundingRectangleContained(IA11yElement container, IA11yElement containee)
         {
-            if (container == null) throw new Exception("Expected a valid container element.");
-            if (containee == null) throw new Exception("Expected a valid containee element.");
+            if (container == null) throw new ArgumentNullException(nameof(container));
+            if (containee == null) throw new ArgumentNullException(nameof(containee));
 
             if (ScrollPattern.NotHorizontallyScrollable.Matches(container))
             {

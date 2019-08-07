@@ -245,7 +245,9 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 if (!DesktopElement.IsFromCurrentProcess(uia))
                 {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                     var e = new DesktopElement(uia, true, false);
+#pragma warning restore CA2000
                     e.PopulateMinimumPropertiesForSelection();
 
                     return e;

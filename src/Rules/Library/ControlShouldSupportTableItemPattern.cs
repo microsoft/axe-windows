@@ -22,7 +22,7 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             var condition = Patterns.TableItem | AnyChild(Patterns.TableItem);
             return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;

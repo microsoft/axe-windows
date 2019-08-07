@@ -53,6 +53,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="e"></param>
         public DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem = false)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             this.TreeWalker = A11yAutomation.GetTreeWalker(mode);
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
@@ -89,26 +91,25 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             try
             {
                 var puia = this.TreeWalker.GetParentElement((IUIAutomationElement)e.PlatformObject);
-                DesktopElement parent = null;
+                if (puia == null) return;
 
-                if (puia != null)
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
+                var parent = new DesktopElement(puia, true, SetMembers);
+                parent.PopulateMinimumPropertiesForSelection();
+
+                // we need to avoid infinite loop of self reference as parent. 
+                // it is a probably a bug in UIA or the target app. 
+                if (e.IsSameUIElement(parent) == false)
                 {
-                    parent = new DesktopElement(puia, true, SetMembers);
-                    parent.PopulateMinimumPropertiesForSelection();
+                    parent.IsAncestorOfSelected = true;
+                    parent.Children.Add(e);
+                    e.Parent = parent;
+                    this.Items.Add(parent);
+                    parent.UniqueId = uniqueId;
 
-                    // we need to avoid infinite loop of self reference as parent. 
-                    // it is a probably a bug in UIA or the target app. 
-                    if (e.IsSameUIElement(parent) == false)
-                    {
-                        parent.IsAncestorOfSelected = true;
-                        parent.Children.Add(e);
-                        e.Parent = parent;
-                        this.Items.Add(parent);
-                        parent.UniqueId = uniqueId;
-
-                        SetParent(parent, uniqueId - 1);
-                    }
+                    SetParent(parent, uniqueId - 1);
                 }
+#pragma warning restore CA2000
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)

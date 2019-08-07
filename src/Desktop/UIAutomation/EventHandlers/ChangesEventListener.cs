@@ -72,7 +72,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public void HandleChangesEvent(IUIAutomationElement sender, ref UiaChangeInfo uiaChanges, int changesCount)
         {
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(this.EventId, sender);
+#pragma warning restore CA2000
 
             if (m != null)
             {

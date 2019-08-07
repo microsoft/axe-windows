@@ -40,6 +40,8 @@ namespace Axe.Windows.Actions.Contexts
         /// <param name="element"></param>
         public ElementContext (A11yElement element)
         {
+            if (element == null) throw new ArgumentNullException(nameof(element));
+
             this.Element = element;
             if (this.Element.PlatformObject == null)
             {

@@ -24,7 +24,7 @@ namespace Axe.Windows.Rules.Library
 
         public override EvaluationCode Evaluate(IA11yElement e)
         {
-            if (e == null) throw new ArgumentNullException("The element is null");
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
             return HasReasonableLocalizedControlType(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
         }
@@ -33,12 +33,12 @@ namespace Axe.Windows.Rules.Library
         {
             var names = GetExpectedLocalizedControlTypeNames(e.ControlTypeId);
 
-            if (names == null) throw new InvalidOperationException("Could not find potential LocalizedControlType string(s) for the given control type");
+            if (names == null) throw new InvalidProgramException(ErrorMessages.NoLocalizedControlTypeStringFound);
 
             return Array.Exists(names, s => String.Compare(e.LocalizedControlType, s, StringComparison.OrdinalIgnoreCase) == 0);
         }
 
-        private string[] GetExpectedLocalizedControlTypeNames(int controlTypeId)
+        private static string[] GetExpectedLocalizedControlTypeNames(int controlTypeId)
         {
             string names = null;
 

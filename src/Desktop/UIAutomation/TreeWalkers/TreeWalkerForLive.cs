@@ -53,6 +53,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="showAncestry"></param>
         public void GetTreeHierarchy(A11yElement e, TreeViewMode mode)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             var begin = DateTime.Now;
             this.WalkerMode = mode;
 

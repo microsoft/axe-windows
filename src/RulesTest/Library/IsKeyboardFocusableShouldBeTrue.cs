@@ -31,10 +31,10 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void TestIsKeyboardFocusableShouldBeTrueArgumentException()
+        public void TestIsKeyboardFocusableShouldBeTrueArgumentNullException()
         {
             Action action = () => Rule.Evaluate(null);
-            Assert.ThrowsException<ArgumentException>(action);
+            Assert.ThrowsException<ArgumentNullException>(action);
         }
 
         [TestMethod]

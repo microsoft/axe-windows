@@ -58,10 +58,10 @@ namespace Axe.Windows.Actions
         /// </summary>
         private void InitPropertyChangeListener(IEnumerable<int> propertyIds)
         {
-            if (propertyIds.Any())
-            {
-                this.EventListener.RegisterAutomationEventListener(EventType.UIA_AutomationPropertyChangedEventId, this.onEventFired, propertyIds.ToArray());
-            }
+            if (propertyIds == null) return;
+            if (!propertyIds.Any()) return;
+
+            this.EventListener.RegisterAutomationEventListener(EventType.UIA_AutomationPropertyChangedEventId, this.onEventFired, propertyIds.ToArray());
         }
 
         /// <summary>
@@ -69,6 +69,8 @@ namespace Axe.Windows.Actions
         /// </summary>
         private void InitIndividualEventListeners(IEnumerable<int> eventIds)
         {
+            if (eventIds == null) return;
+
             foreach (var id in eventIds)
             {
                 this.EventListener.RegisterAutomationEventListener(id, this.onEventFired);

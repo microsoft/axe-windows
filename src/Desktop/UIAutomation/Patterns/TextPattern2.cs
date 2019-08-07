@@ -4,6 +4,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Core.Bases;
 using UIAutomationClient;
 using Axe.Windows.Core.Attributes;
+using System;
 
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
 {
@@ -28,6 +29,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public TextRange RangeFromAnnotation(A11yElement e)
         {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
             return new TextRange(this.Pattern.RangeFromAnnotation(e.PlatformObject), null);
         }
 

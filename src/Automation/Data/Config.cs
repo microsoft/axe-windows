@@ -40,6 +40,7 @@ namespace Axe.Windows.Automation
         private Config()
         { }
 
+        #pragma warning disable CA1034 // Do not nest type
         /// <summary>
         /// Builds an instance of the <see cref="Config"/> class
         /// </summary>
@@ -99,5 +100,6 @@ namespace Axe.Windows.Automation
                 };
             }
         } // Builder
+        #pragma warning restore CA1034
     } // class
 } // namespace

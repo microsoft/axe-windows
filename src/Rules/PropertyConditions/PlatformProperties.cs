@@ -12,7 +12,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsSimpleStyle(IA11yElement e)
         {
-            if (e == null) throw new ArgumentException(nameof(e));
+            if (e == null) throw new ArgumentNullException(nameof(e));
             
             var style = e.GetPlatformPropertyValue<int>(PlatformPropertyType.Platform_WindowsStylePropertyId);
 
