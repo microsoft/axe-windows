@@ -127,7 +127,7 @@
     <value>The element's Name property must not be null or white space</value>
   </data>
   <data name="ElementParentNull" xml:space="preserve">
-    <value>The element's Parent property should not be null</value>
+    <value>The element's Parent property must not be null</value>
   </data>
   <data name="ExpectedEnumType" xml:space="preserve">
     <value>Expected T to be an enumeration type</value>
