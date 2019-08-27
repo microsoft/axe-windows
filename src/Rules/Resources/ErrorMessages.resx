@@ -120,6 +120,9 @@
   <data name="ElementBoundingRectangleNull" xml:space="preserve">
     <value>The element's BoundingRectangle property must not be null</value>
   </data>
+  <data name="ElementHelpTextNullOrWhiteSpace" xml:space="preserve">
+    <value>The element's HelpText property must not be null or white space</value>
+  </data>
   <data name="ElementLocalizedControlTypeNullOrWhiteSpace" xml:space="preserve">
     <value>The element's LocalizedControlType property must not be null or white space</value>
   </data>
@@ -149,5 +152,8 @@
   </data>
   <data name="NoLocalizedControlTypeStringFound" xml:space="preserve">
     <value>Could not find potential LocalizedControlType string(s) for the given control type</value>
+  </data>
+  <data name="StringNullOrWhiteSpace" xml:space="preserve">
+    <value>Expected the given string not to be null and not to be white space</value>
   </data>
 </root>

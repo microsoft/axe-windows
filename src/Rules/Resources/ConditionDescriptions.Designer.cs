@@ -187,6 +187,24 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HelpText.
+        /// </summary>
+        internal static string HelpText {
+            get {
+                return ResourceManager.GetString("HelpText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.IncludesPrivateUnicodeCharacters.
+        /// </summary>
+        internal static string IncludesPrivateUnicodeCharacters {
+            get {
+                return ResourceManager.GetString("IncludesPrivateUnicodeCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [IntProperty not set].
         /// </summary>
         internal static string IntPropertyNotSet {
@@ -214,6 +232,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LocalizedControlType.
+        /// </summary>
+        internal static string LocalizedControlType {
+            get {
+                return ResourceManager.GetString("LocalizedControlType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to main landmark.
         /// </summary>
         internal static string MainLandmark {
@@ -237,6 +264,15 @@ namespace Axe.Windows.Rules.Resources {
         internal static string MatchesRegExWithOptions {
             get {
                 return ResourceManager.GetString("MatchesRegExWithOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         

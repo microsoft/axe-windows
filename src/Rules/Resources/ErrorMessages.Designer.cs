@@ -61,7 +61,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The element&apos;s BoundingRectangle property should not be null.
+        ///   Looks up a localized string similar to The element&apos;s BoundingRectangle property must not be null.
         /// </summary>
         internal static string ElementBoundingRectangleNull {
             get {
@@ -70,7 +70,16 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The element&apos;s LocalizedControlType property should not be null or white space.
+        ///   Looks up a localized string similar to The element&apos;s HelpText property must not be null or white space.
+        /// </summary>
+        internal static string ElementHelpTextNullOrWhiteSpace {
+            get {
+                return ResourceManager.GetString("ElementHelpTextNullOrWhiteSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The element&apos;s LocalizedControlType property must not be null or white space.
         /// </summary>
         internal static string ElementLocalizedControlTypeNullOrWhiteSpace {
             get {
@@ -79,7 +88,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The element&apos;s Name property should not be null or white space.
+        ///   Looks up a localized string similar to The element&apos;s Name property must not be null or white space.
         /// </summary>
         internal static string ElementNameNullOrWhiteSpace {
             get {
@@ -88,7 +97,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The element&apos;s Parent property should not be null.
+        ///   Looks up a localized string similar to The element&apos;s Parent property must not be null.
         /// </summary>
         internal static string ElementParentNull {
             get {
@@ -124,7 +133,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given int parameter should not be zero.
+        ///   Looks up a localized string similar to The given int parameter must not be zero.
         /// </summary>
         internal static string IntParameterEqualsZero {
             get {
@@ -133,7 +142,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Int parameter should not be less than zero.
+        ///   Looks up a localized string similar to Int parameter must not be less than zero.
         /// </summary>
         internal static string IntParameterLessThanZero {
             get {
@@ -156,6 +165,15 @@ namespace Axe.Windows.Rules.Resources {
         internal static string NoLocalizedControlTypeStringFound {
             get {
                 return ResourceManager.GetString("NoLocalizedControlTypeStringFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected the given string not to be null and not to be white space.
+        /// </summary>
+        internal static string StringNullOrWhiteSpace {
+            get {
+                return ResourceManager.GetString("StringNullOrWhiteSpace", resourceCulture);
             }
         }
     }

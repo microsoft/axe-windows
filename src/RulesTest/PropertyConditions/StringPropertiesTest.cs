@@ -178,6 +178,94 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
+        public void NullOrWhiteSpace_Null_True()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = null;
+                Assert.IsTrue(Property.NullOrWhiteSpace.Matches(e));
+                Assert.IsFalse(Property.NotNullOrWhiteSpace.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void NullOrWhiteSpace_Empty_True()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = string.Empty;
+                Assert.IsTrue(Property.NullOrWhiteSpace.Matches(e));
+                Assert.IsFalse(Property.NotNullOrWhiteSpace.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void NullOrWhiteSpace_WhiteSpace_True()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = " \t";
+                Assert.IsTrue(Property.NullOrWhiteSpace.Matches(e));
+                Assert.IsFalse(Property.NotNullOrWhiteSpace.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void NullOrWhiteSpace_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = "Hello";
+                Assert.IsFalse(Property.NullOrWhiteSpace.Matches(e));
+                Assert.IsTrue(Property.NotNullOrWhiteSpace.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IncludesPrivateUnicodeCharacters_LowerBound_True()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = "\uE000";
+                Assert.IsTrue(Property.IncludesPrivateUnicodeCharacters.Matches(e));
+                Assert.IsFalse(Property.ExcludesPrivateUnicodeCharacters.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IncludesPrivateUnicodeCharacters_LowerBound_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = "\uDFFF";
+                Assert.IsFalse(Property.IncludesPrivateUnicodeCharacters.Matches(e));
+                Assert.IsTrue(Property.ExcludesPrivateUnicodeCharacters.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IncludesPrivateUnicodeCharacters_UpperBound_True()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = "\uF8FF";
+                Assert.IsTrue(Property.IncludesPrivateUnicodeCharacters.Matches(e));
+                Assert.IsFalse(Property.ExcludesPrivateUnicodeCharacters.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IncludesPrivateUnicodeCharacters_UpperBound_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Name = "\uF900";
+                Assert.IsFalse(Property.IncludesPrivateUnicodeCharacters.Matches(e));
+                Assert.IsTrue(Property.ExcludesPrivateUnicodeCharacters.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
         public void TestStringPropertyIsTrue()
         {
             using (var e = new MockA11yElement())

@@ -73,6 +73,9 @@
     <Compile Include="Library\ButtonInvokeAndTogglePatterns.cs" />
     <Compile Include="Library\ComboBoxShouldNotSupportScrollPattern.cs" />
     <Compile Include="Library\HyperlinkNameShouldBeUnique.cs" />
+    <Compile Include="Library\HelpTextExcludesPrivateUnicodeCharacters.cs" />
+    <Compile Include="Library\LocalizedControlTypeExcludesPrivateUnicodeCharacters.cs" />
+    <Compile Include="Library\NameExcludesPrivateUnicodeCharacters.cs" />
     <Compile Include="Library\ParentChildShouldNotHaveSameNameAndLocalizedControlType.cs" />
     <Compile Include="Library\SelectionItemPatternSingleSelection.cs" />
     <Compile Include="Library\ListItemSiblingsUnique.cs" />

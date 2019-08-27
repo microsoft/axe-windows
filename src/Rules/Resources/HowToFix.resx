@@ -543,4 +543,7 @@ If possible, use a predefined (non-custom) control type and the default localize
   <data name="HyperlinkNameShouldBeUnique" xml:space="preserve">
     <value>If the sibling hyperlink with the same Name navigates to a different destination, change the Name of either hyperlink.</value>
   </data>
+  <data name="PropertyExcludesPrivateUnicodeCharacters" xml:space="preserve">
+    <value>Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaninful, standard text content.</value>
+  </data>
 </root>

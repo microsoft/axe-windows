@@ -252,5 +252,8 @@ namespace Axe.Windows.Core.Enums
         SelectionItemPatternSingleSelection,
 
         ListItemSiblingsUnique,
+        NameExcludesPrivateUnicodeCharacters,
+        HelpTextExcludesPrivateUnicodeCharacters,
+        LocalizedControlTypeExcludesPrivateUnicodeCharacters,
     }
 }
