@@ -29,6 +29,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition ExpectedToBeFocusable = CreateExpectedToBeFocusableCondition();
         public static Condition ParentWPFDataItem = CreateParentWPFDataItemCondition();
         public static Condition WPFScrollBarPageButtons = CreateWPFScrollBarPageButtons();
+        public static Condition NonFocusableSliderButtons = CreateNonFocusableSliderButtonsCondition();
         public static Condition NameRequired = CreateNameRequiredCondition();
         public static Condition NameOptional = CreateNameOptionalCondition();
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
@@ -154,6 +155,13 @@ namespace Axe.Windows.Rules.PropertyConditions
                 | AutomationID.Is("PageDown")
                 | AutomationID.Is("PageLeft")
                 | AutomationID.Is("PageRight"));
+        }
+
+        private static Condition CreateNonFocusableSliderButtonsCondition()
+        {
+            return Button
+                & Parent(Slider)
+                & IsNotKeyboardFocusable;
         }
 
         private static bool IsParentWPFDataItem(IA11yElement e)
