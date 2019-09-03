@@ -113,7 +113,7 @@ jobs:
     inputs:
         userProvideBuildInfo: auto
         rulesetName: recommended
-        internalAnalyzersVersion: 2.6.3
+        internalAnalyzersVersion: 2.6.3-beta1
         microsoftAnalyzersVersion: 2.9.3
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
