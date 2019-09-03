@@ -1006,6 +1006,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaninful, standard text content..
+        /// </summary>
+        internal static string PropertyExcludesPrivateUnicodeCharacters {
+            get {
+                return ResourceManager.GetString("PropertyExcludesPrivateUnicodeCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do one of the following:
         /// 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR
         /// 2. Modify the parent element so its CanSelectMultiple property is TRUE..

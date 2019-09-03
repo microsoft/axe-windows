@@ -18,8 +18,12 @@ namespace Axe.Windows.Rules.PropertyConditions
         public Condition NotNullOrEmpty;
         public Condition WhiteSpace;
         public Condition NotWhiteSpace;
+        public Condition NullOrWhiteSpace;
+        public Condition NotNullOrWhiteSpace;
         public Condition IncludesSpecialCharacters;
         public Condition ExcludesSpecialCharacters;
+        public Condition IncludesPrivateUnicodeCharacters;
+        public Condition ExcludesPrivateUnicodeCharacters;
         public ValueCondition<int> Length;
         private Func<IA11yElement, string> GetStringPropertyValue;
 
@@ -28,7 +32,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         /// This may also apply to patterns, so please include the pattern name where applicable.
         /// This information may be visible to users.
         /// </summary>
-        private readonly string PropertyDescription = ConditionDescriptions.StringPropertyNotSet;
+        public readonly string PropertyDescription = ConditionDescriptions.StringPropertyNotSet;
 
         // special character RegEx
         private static string SpecialCharacters = "\\s*[\u0387\u16EB\u2022\u2024\u2027\u2219\u22C5\u2E31\u2E33\u30FB\uA78F\uE946]+\\s*";
@@ -59,8 +63,12 @@ namespace Axe.Windows.Rules.PropertyConditions
             this.NotNullOrEmpty = NotNull & NotEmpty;
             this.WhiteSpace = CreateWhitespaceCondition();
             this.NotWhiteSpace = ~WhiteSpace;
+            this.NullOrWhiteSpace = NullOrEmpty | WhiteSpace;
+            this.NotNullOrWhiteSpace = ~NullOrWhiteSpace;
             this.IncludesSpecialCharacters = CreateIncludesSpecialCharactersCondition();
             this.ExcludesSpecialCharacters = ~IncludesSpecialCharacters;
+            this.IncludesPrivateUnicodeCharacters = CreateIncludesPrivateUnicodeCharactersCondition();
+            this.ExcludesPrivateUnicodeCharacters = ~IncludesPrivateUnicodeCharacters;
             this.Length = CreateLengthCondition();
         }
 
@@ -91,6 +99,32 @@ namespace Axe.Windows.Rules.PropertyConditions
             });
 
             return condition;
+        }
+
+        private Condition CreateIncludesPrivateUnicodeCharactersCondition()
+        {
+            return Condition.Create(e => StringIncludesPrivateUnicodeCharacters(GetStringPropertyValue(e)),
+                string.Format(CultureInfo.CurrentCulture, ConditionDescriptions.IncludesPrivateUnicodeCharacters, PropertyDescription));
+        }
+
+        private static bool StringIncludesPrivateUnicodeCharacters(string s)
+        {
+            if (s == null) throw new ArgumentNullException(nameof(s));
+            if (string.IsNullOrWhiteSpace(s)) throw new ArgumentException(ErrorMessages.StringNullOrWhiteSpace, nameof(s));
+
+            foreach (char c in s)
+            {
+                if (IsPrivateUnicodeChar(c))
+                    return true;
+            } // for chars in string
+
+            return false;
+        }
+
+        private static bool IsPrivateUnicodeChar(char c)
+        {
+            return c >= 0xE000
+                && c <= 0xF8FF;
         }
 
         private ValueCondition<int> CreateLengthCondition()

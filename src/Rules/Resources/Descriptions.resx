@@ -423,4 +423,7 @@
   <data name="HyperlinkNameShouldBeUnique" xml:space="preserve">
     <value>Links with different purposes and destinations should have different names.</value>
   </data>
+  <data name="PropertyExcludesPrivateUnicodeCharacters" xml:space="preserve">
+    <value>The {0} property must not contain any characters in the private Unicode range.</value>
+  </data>
 </root>
