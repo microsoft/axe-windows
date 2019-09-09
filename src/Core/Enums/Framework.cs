@@ -4,6 +4,7 @@ namespace Axe.Windows.Core.Enums
 {
     public static class Framework
     {
+        public const string DirectUI = "DirectUI";
         public const string Edge = "MicrosoftEdge";
         public const string InternetExplorer = "InternetExplorer";
         public const string WPF = "WPF";
