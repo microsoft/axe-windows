@@ -1,6 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SemVerNumber Condition="$(SemVerNumber) == ''">0.3.3</SemVerNumber>
+    <SemVerNumber Condition="$(SemVerNumber) == ''">0.3.4</SemVerNumber>
     <SemVerSuffix>-prerelease</SemVerSuffix>
   </PropertyGroup>
 </Project>
