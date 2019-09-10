@@ -5,6 +5,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
+using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
@@ -28,7 +29,13 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Document | Edit;
+            var win32Edit = Edit & StringProperties.Framework.Is(Framework.Win32);
+            var nonfocusableDirectUIEdit = Edit & ~IsKeyboardFocusable & StringProperties.Framework.Is(Framework.DirectUI);
+
+            return Document
+                | (Edit
+                & ~win32Edit
+                & ~nonfocusableDirectUIEdit);
         }
     } // class
 } // namespace
