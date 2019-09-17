@@ -3,6 +3,7 @@
 using Axe.Windows.Automation;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(17000)]
+        [Timeout(30000)]
         public void Scan_Integration()
         {
             var config = Config.Builder.ForProcessId(TestProcess.Id)
@@ -59,6 +60,38 @@ namespace Axe.Windows.AutomationTests
             // Validate the output file exists where it is expected
             Assert.IsTrue(Regex.IsMatch(output.OutputFile.A11yTest, regexForExpectedFile));
             Assert.IsTrue(File.Exists(output.OutputFile.A11yTest));
+
+            EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(output, TestProcess.Id);
+        }
+
+        private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
+        {
+            string targetFolder = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\CurrentFileVersionCompatibilityTests\bin",
+#if DEBUG
+                "debug"
+#else
+                "release"
+#endif
+                );
+            string targetApp = Path.Combine(targetFolder, @"CurrentFileVersionCompatibilityTests.exe");
+            Assert.IsTrue(File.Exists(targetApp), targetApp);
+
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = targetApp,
+                Arguments = string.Format(@"""{0}"" {1} {2}",
+                    scanResults.OutputFile.A11yTest, scanResults.ErrorCount, processId),
+                WorkingDirectory = targetFolder
+            };
+
+            Process testApp = Process.Start(startInfo);
+            testApp.WaitForExit(10000);
+            if (!testApp.HasExited)
+            {
+                testApp.Kill();
+                Assert.Fail("Test app was still running after 10 seconds");
+            }
+            Assert.AreEqual(0, testApp.ExitCode);
         }
 
         private void LaunchTestApp()

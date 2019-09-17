@@ -3,6 +3,7 @@
 
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Results;
 using System;
@@ -53,9 +54,8 @@ namespace CurrentFileVersionCompatibilityTests
         }
 
         // ------------------------------------------------------------------------
-        // This code is identical to what's in LoadOldFileVersions.cs, but it needs
-        // to compile to the version of Axe.Windows that we pull from the NuGet
-        // package. TODO: Find a way to have only one copy?
+        // This code is nearly identical to what's in LoadOldFileVersions.cs. It's
+        // just different enough to have a separate copy.
         // ------------------------------------------------------------------------
 
         internal static void ValidateOneFile(string filePath, int expectedFailureCount,
@@ -94,7 +94,7 @@ namespace CurrentFileVersionCompatibilityTests
             Assert.IsNull(result.IssueLink);
             Assert.IsNotNull(result.MetaInfo);
             Assert.IsFalse(string.IsNullOrWhiteSpace(result.Source));
-            //Assert.AreEqual(RuleId.Indecisive, result.Rule);
+            Assert.AreEqual(RuleId.Indecisive, result.Rule);
 
             foreach (string message in result.Messages)
             {
@@ -104,7 +104,8 @@ namespace CurrentFileVersionCompatibilityTests
 
         private static void ValidateOneA11yElement(int processId, A11yElement element)
         {
-            Assert.AreEqual(string.Empty, element.ProcessName);
+            // element.ProcessName is undefined in Axe.Windows 0.3.1 (fixed in 0.3.2)
+            //Assert.AreEqual(string.Empty, element.ProcessName);
             Assert.AreEqual(processId, element.ProcessId);
             Assert.IsFalse(element.BoundingRectangle.IsEmpty);
             Assert.IsFalse(string.IsNullOrWhiteSpace(element.ClassName));
