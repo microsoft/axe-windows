@@ -66,13 +66,14 @@ namespace Axe.Windows.AutomationTests
 
         private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
         {
-            string targetFolder = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\CurrentFileVersionCompatibilityTests\bin",
+            string targetFolder = Path.GetFullPath(
+                Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\CurrentFileVersionCompatibilityTests\bin",
 #if DEBUG
-                "debug"
+                    "debug"
 #else
-                "release"
+                    "release"
 #endif
-                );
+                ));
             string targetApp = Path.Combine(targetFolder, @"CurrentFileVersionCompatibilityTests.exe");
             Assert.IsTrue(File.Exists(targetApp), targetApp);
 
@@ -85,13 +86,15 @@ namespace Axe.Windows.AutomationTests
             };
 
             Process testApp = Process.Start(startInfo);
-            testApp.WaitForExit(10000);
-            if (!testApp.HasExited)
+            if (testApp.WaitForExit(10000))
+            {
+                Assert.AreEqual(0, testApp.ExitCode);
+            }
+            else
             {
                 testApp.Kill();
                 Assert.Fail("Test app was still running after 10 seconds");
             }
-            Assert.AreEqual(0, testApp.ExitCode);
         }
 
         private void LaunchTestApp()
