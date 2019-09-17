@@ -222,4 +222,18 @@
   <data name="StringPropertyNotSet" xml:space="preserve">
     <value>[StringProperty not set]</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>Name</comment>
+  </data>
+  <data name="LocalizedControlType" xml:space="preserve">
+    <value>LocalizedControlType</value>
+    <comment>LocalizedControlType</comment>
+  </data>
+  <data name="HelpText" xml:space="preserve">
+    <value>HelpText</value>
+  </data>
+  <data name="IncludesPrivateUnicodeCharacters" xml:space="preserve">
+    <value>{0}.IncludesPrivateUnicodeCharacters</value>
+  </data>
 </root>

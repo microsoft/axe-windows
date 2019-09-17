@@ -13,7 +13,6 @@ The UIA interop files will periodically need to be updated to take advantage of 
    * Desktop.csproj
    * Rules.csproj
    * RulesTests.csproj
-   * SharedUx.csproj
   
 6. Delete the folder containing the old interop file (potentially in a separate PR, if you wish)
 

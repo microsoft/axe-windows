@@ -916,6 +916,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The {0} property must not contain any characters in the private Unicode range..
+        /// </summary>
+        internal static string PropertyExcludesPrivateUnicodeCharacters {
+            get {
+                return ResourceManager.GetString("PropertyExcludesPrivateUnicodeCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An element whose parent supports single selection must not have selected siblings..
         /// </summary>
         internal static string SelectionItemPatternSingleSelection {

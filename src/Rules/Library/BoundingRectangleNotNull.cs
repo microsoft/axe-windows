@@ -30,6 +30,9 @@ namespace Axe.Windows.Rules.Library
             var sysmenubar = ControlType.MenuBar & StringProperties.AutomationID.Is("SystemMenuBar") & StringProperties.Name.Is("System");
             var sysmenuitem = ControlType.MenuItem & Relationships.Parent(sysmenubar) & StringProperties.Name.Is("System");
 
+            // This exception is meant to apply to the non-Chromium version of Edge
+            var edgeGroups = ControlType.Group & StringProperties.Framework.Is(Framework.Edge);
+
             // the Bounding rectangle property might be empty due to
             // a non-existent property, or an invalid data format.
             // If the Bounding rectangle property is not empty, it means all the above criteria were met successfully
@@ -41,6 +44,8 @@ namespace Axe.Windows.Rules.Library
             // legitimately be null or all zeros when the thumb control is at the maximum or minimum value.
             return IsNotOffScreen
                 & ~WPFScrollBarPageButtons
+                & ~NonFocusableSliderButtons
+                & ~edgeGroups
                 & ~sysmenubar
                 & ~sysmenuitem;
         }

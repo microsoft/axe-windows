@@ -92,10 +92,14 @@
     <Compile Include="Library\ControlShouldNotSupportScrollPatternTests.cs" />
     <Compile Include="Library\ControlShouldSupportSetInfoTest.cs" />
     <Compile Include="Library\ControlShouldSupportTablePattern.cs" />
+    <Compile Include="Library\ControlShouldSupportTextPatternUnitTests.cs" />
     <Compile Include="Library\HyperlinkNameShouldBeUniqueTest.cs" />
     <Compile Include="Library\IsKeyboardFocusableTopLevelTextPattern.cs" />
     <Compile Include="Library\IsKeyboardFocusableOnEmptyContainer.cs" />
     <Compile Include="Library\LandmarkIsTopLevel.cs" />
+    <Compile Include="Library\LocalizedControlTypeExcludesPrivateUnicodeCharactersUnitTests.cs" />
+    <Compile Include="Library\HelpTextExcludesPrivateUnicodeCharactersUnitTests.cs" />
+    <Compile Include="Library\NameExcludesPrivateUnicodeCharactersUnitTests.cs" />
     <Compile Include="Library\NameExcludesLocalizedControlType.cs" />
     <Compile Include="Library\SelectionItemPatternSingleSelection.cs" />
     <Compile Include="Library\SelectionPatternSelectionRequired.cs" />

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Enums;
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
@@ -85,16 +86,30 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void BoundingRectangleNotNull_WPFScrollbarPageRightButton_NotApplicable()
+        public void BoundingRectangleNotNull_NonFocusableSliderButton_NotApplicable()
         {
             using (var e = new MockA11yElement())
             using (var parent = new MockA11yElement())
             {
-                parent.ControlTypeId = ControlType.ScrollBar;
-                e.IsOffScreen = false;
+                parent.ControlTypeId = ControlType.Slider;
+                e.IsKeyboardFocusable = false;
                 e.ControlTypeId = ControlType.Button;
-                e.Framework = "WPF";
-                e.AutomationId = "PageRight";
+                parent.Children.Add(e);
+                e.Parent = parent;
+
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void BoundingRectangleNotNull_EdgeGroup_NotApplicable()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                parent.ControlTypeId = ControlType.Slider;
+                e.Framework = Framework.Edge;
+                e.ControlTypeId = ControlType.Group;
                 parent.Children.Add(e);
                 e.Parent = parent;
 
