@@ -3,7 +3,6 @@
 using Axe.Windows.Automation;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -17,6 +16,21 @@ namespace Axe.Windows.AutomationTests
     {
         readonly string TestAppPath = Path.GetFullPath("../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string OutputDir = Path.GetFullPath("./TestOutput");
+        readonly string ValidationAppFolder;
+        readonly string ValidationApp;
+
+        public AutomationIntegrationTests()
+        {
+            ValidationAppFolder = Path.GetFullPath(
+                Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\CurrentFileVersionCompatibilityTests\bin",
+#if DEBUG
+                    "debug"
+#else
+                    "release"
+#endif
+                ));
+            ValidationApp = Path.Combine(ValidationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
+        }
 
         Process TestProcess;
 
@@ -66,23 +80,14 @@ namespace Axe.Windows.AutomationTests
 
         private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
         {
-            string targetFolder = Path.GetFullPath(
-                Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\CurrentFileVersionCompatibilityTests\bin",
-#if DEBUG
-                    "debug"
-#else
-                    "release"
-#endif
-                ));
-            string targetApp = Path.Combine(targetFolder, @"CurrentFileVersionCompatibilityTests.exe");
-            Assert.IsTrue(File.Exists(targetApp), targetApp);
+            Assert.IsTrue(File.Exists(ValidationApp), ValidationApp + " was not found");
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = targetApp,
+                FileName = ValidationApp,
                 Arguments = string.Format(@"""{0}"" {1} {2}",
                     scanResults.OutputFile.A11yTest, scanResults.ErrorCount, processId),
-                WorkingDirectory = targetFolder
+                WorkingDirectory = ValidationAppFolder
             };
 
             Process testApp = Process.Start(startInfo);
