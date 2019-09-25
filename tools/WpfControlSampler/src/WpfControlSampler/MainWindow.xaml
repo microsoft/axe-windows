@@ -1,0 +1,49 @@
+﻿<!-- Copyright (c) Microsoft. All rights reserved.
+     Licensed under the MIT license. See LICENSE file in the project root for full license information.-->
+<Window x:Class="WpfControlSampler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfControlSampler"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="800">
+    <Grid>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="41,38,0,0" VerticalAlignment="Top" Width="75" AutomationProperties.Name="Does nothing!"/>
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="41,67,0,0" VerticalAlignment="Top" AutomationProperties.Name="Some binary option"/>
+        <ComboBox HorizontalAlignment="Left" Margin="41,93,0,0" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.317,-0.091" AutomationProperties.Name="Some flexible choice">
+            <ComboBoxItem>First item</ComboBoxItem>
+            <ComboBoxItem>Second item</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="41,125,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.145,0.154"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="41,148,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" AutomationProperties.Name="Some freeform text"/>
+        <ListBox HorizontalAlignment="Left" Height="67" Margin="41,186,0,0" VerticalAlignment="Top" Width="100" AutomationProperties.Name="Some fixed items">
+            <ListBoxItem>First item</ListBoxItem>
+            <ListBoxItem>Second item</ListBoxItem>
+        </ListBox>
+        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Height="86" Margin="41,258,0,0" VerticalAlignment="Top" Width="142">
+            <StackPanel>
+                <RadioButton GroupName ="group" Content="RadioButton1" HorizontalAlignment="Left" Margin="4,9,0,0" VerticalAlignment="Top" IsChecked="True"/>
+                <RadioButton GroupName ="group" Content="RadioButton2" HorizontalAlignment="Left" Margin="4,9,0,0" VerticalAlignment="Top"/>
+            </StackPanel>
+        </GroupBox>
+        <RichTextBox HorizontalAlignment="Left" Height="100" Margin="41,368,0,-45.5" VerticalAlignment="Top" Width="142" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AutomationProperties.Name="A message">
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. You can also type a keyword to search online for the video that best fits your document."/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+        <Slider HorizontalAlignment="Left" Margin="41,490,0,0" VerticalAlignment="Top" Width="142" AutomationProperties.Name="Pick a number from 1 to 10"/>
+        <TabControl HorizontalAlignment="Left" Height="113" Margin="246,38,0,0" VerticalAlignment="Top" Width="251">
+            <TabItem Header="TabItem" AutomationProperties.Name="First Tab">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem" AutomationProperties.Name="Second Tab">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <DatePicker HorizontalAlignment="Left" Margin="248,174,0,0" VerticalAlignment="Top" AutomationProperties.Name="Please pick a date"/>
+        <Calendar HorizontalAlignment="Left" Margin="248,224,0,0" VerticalAlignment="Top" AutomationProperties.Name="Monthly snapshot"/>
+    </Grid>
+</Window>
