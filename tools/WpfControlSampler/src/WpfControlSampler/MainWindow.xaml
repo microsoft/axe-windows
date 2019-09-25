@@ -45,6 +45,5 @@
         </TabControl>
         <DatePicker HorizontalAlignment="Left" Margin="248,174,0,0" VerticalAlignment="Top" AutomationProperties.Name="Please pick a date"/>
         <Calendar HorizontalAlignment="Left" Margin="248,224,0,0" VerticalAlignment="Top" AutomationProperties.Name="Monthly snapshot"/>
-
     </Grid>
 </Window>
