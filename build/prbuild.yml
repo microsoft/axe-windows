@@ -32,7 +32,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 15.0
+      vsVersion: 16.0
       platform: '$(BuildPlatform)'
       configuration: release
 
@@ -51,7 +51,7 @@ jobs:
       testAssemblyVer2: |
         **\*test*.dll
         !**\obj\**
-      vsTestVersion: 15.0
+      vsTestVersion: 16.0
       codeCoverageEnabled: true
       publishRunAttachments: true
       platform: '$(BuildPlatform)'
@@ -78,7 +78,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 15.0
+      vsVersion: 16.0
       platform: '$(BuildPlatform)'
       configuration: debug
 
@@ -98,7 +98,7 @@ jobs:
         **\*test*.dll
         !**\obj\**
       testFiltercriteria: 'TestCategory!=RequiresNetwork'
-      vsTestVersion: 15.0
+      vsTestVersion: 16.0
       codeCoverageEnabled: false
       platform: '$(BuildPlatform)'
       configuration: debug
@@ -119,6 +119,6 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 15.0
+      vsVersion: 16.0
       platform: '$(BuildPlatform)'
       configuration: debug
