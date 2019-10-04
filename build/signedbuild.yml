@@ -14,7 +14,7 @@ variables:
 jobs:
 - job: ComplianceRelease
   pool:
-    vmImage: 'vs2017-win2016'
+    vmImage: 'windows-2019'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -71,7 +71,7 @@ jobs:
 
 - job: ComplianceDebug
   pool:
-    vmImage: 'vs2017-win2016'
+    vmImage: 'windows-2019'
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -177,7 +177,7 @@ jobs:
   - ComplianceRelease
   - ComplianceDebug
   condition: and(succeeded(), succeeded())
-  pool: VSEng-MicroBuildVS2017
+  pool: VSEng-MicroBuildVS2019
   variables:
     PublicRelease: 'true'
     MicroBuild_NuPkgSigningEnabled: 'false'
