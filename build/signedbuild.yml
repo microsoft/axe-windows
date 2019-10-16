@@ -130,7 +130,10 @@ jobs:
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@2
     displayName: 'Run Roslyn analyzers'
     inputs:
-        userProvideBuildInfo: auto
+        userProvideBuildInfo: msBuildInfo
+        msbuildVersion: 16.0
+        msBuildArchitecture: '$(BuildPlatform)'
+        msBuildCommandline: "$(MSBuildPath)" "$(ProjectFile)" /nologo /nr:false /fl /flp:"logfile=$(ProjectFile).log;verbosity=diagnostic" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"
         rulesetName: recommended
         internalAnalyzersVersion: Latest
         microsoftAnalyzersVersion: Latest
