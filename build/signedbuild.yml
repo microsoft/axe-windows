@@ -43,17 +43,6 @@ jobs:
     inputs:
       input: 'src\Axe.Windows\bin\Release'
 
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\release\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: Compliance'
-    inputs:
-      ArtifactName: 'Compliance'
-
   - task: VSTest@2
     displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
     inputs:
@@ -68,6 +57,17 @@ jobs:
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\bin\release\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Compliance'
+    inputs:
+      ArtifactName: 'Compliance'
 
 - job: ComplianceDebug
   pool:
@@ -87,30 +87,6 @@ jobs:
       vsVersion: 16.0
       platform: '$(BuildPlatform)'
       configuration: debug
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\debug\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: Compliance'
-    inputs:
-      ArtifactName: 'Compliance'
-
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
-    inputs:
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\obj\**
-      testFiltercriteria: 'TestCategory!=RequiresNetwork'
-      vsTestVersion: 16.0
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: debug
-      rerunFailedTests: true
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-autoapplicability.AutoApplicability@1
     displayName: 'Run AutoApplicability'
@@ -170,10 +146,34 @@ jobs:
       uploadAPIScan: false
       uploadBinSkim: false
       uploadFortifySCA: false
+      uploadFxCop: false
       uploadModernCop: false
       uploadPREfast: false
-      uploadRoslyn: false
       uploadTSLint: false
+
+  - task: VSTest@2
+    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
+    inputs:
+      testAssemblyVer2: |
+        **\*test*.dll
+        !**\obj\**
+      testFiltercriteria: 'TestCategory!=RequiresNetwork'
+      vsTestVersion: 16.0
+      codeCoverageEnabled: false
+      platform: '$(BuildPlatform)'
+      configuration: debug
+      rerunFailedTests: true
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\bin\debug\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: Compliance'
+    inputs:
+      ArtifactName: 'Compliance'
 
 - job: SignedRelease
   dependsOn: 
@@ -210,21 +210,6 @@ jobs:
       vsVersion: 16.0
       platform: '$(BuildPlatform)'
       configuration: release
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\release\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: NuGet package'
-    inputs:
-      PathtoPublish: 'src\CI\bin\Release\NuGet'
-      ArtifactName: 'NuGet'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
     displayName: 'Run BinSkim'
@@ -272,15 +257,6 @@ jobs:
       SearchPattern: '**\bin\**\*.pdb'
     continueOnError: true
 
-  - task: ms-vscs-artifact.build-tasks.artifactSymbolTask-1.artifactSymbolTask@0
-    displayName: 'Publish Symbols'
-    inputs:
-      symbolServiceURI: 'https://microsoft.artifacts.visualstudio.com/DefaultCollection'
-      requestName: 'CollectionId/$(System.CollectionId)/ProjectId/$(System.TeamProjectId)/BuildId/$(Build.BuildId)'
-      sourcePath: '$(Build.ArtifactStagingDirectory)'
-      detailedLog: true
-      usePat: false
-
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
 
@@ -305,6 +281,30 @@ jobs:
       uploadPREfast: false
       uploadRoslyn: false
       uploadTSLint: false
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\bin\release\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+
+  - task: ms-vscs-artifact.build-tasks.artifactSymbolTask-1.artifactSymbolTask@0
+    displayName: 'Publish Symbols'
+    inputs:
+      symbolServiceURI: 'https://microsoft.artifacts.visualstudio.com/DefaultCollection'
+      requestName: 'CollectionId/$(System.CollectionId)/ProjectId/$(System.TeamProjectId)/BuildId/$(Build.BuildId)'
+      sourcePath: '$(Build.ArtifactStagingDirectory)'
+      detailedLog: true
+      usePat: false
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: NuGet package'
+    inputs:
+      PathtoPublish: 'src\CI\bin\Release\NuGet'
+      ArtifactName: 'NuGet'
 
   - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
     displayName: 'Perform Cleanup Tasks'
