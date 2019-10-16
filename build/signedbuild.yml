@@ -133,7 +133,7 @@ jobs:
         userProvideBuildInfo: msBuildInfo
         msbuildVersion: 16.0
         msBuildArchitecture: '$(BuildPlatform)'
-        msBuildCommandline: '"$(MSBuildPath)" "$(ProjectFile)" /nologo /nr:false /fl /flp:"logfile=$(ProjectFile).log;verbosity=diagnostic" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"'
+        msBuildCommandline: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\msbuild.exe" .\src\Axe.Windows.sln /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"'
         rulesetName: recommended
         internalAnalyzersVersion: Latest
         microsoftAnalyzersVersion: Latest
