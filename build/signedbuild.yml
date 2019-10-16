@@ -133,7 +133,7 @@ jobs:
         userProvideBuildInfo: msBuildInfo
         msbuildVersion: 16.0
         msBuildArchitecture: '$(BuildPlatform)'
-        msBuildCommandline: "$(MSBuildPath)" "$(ProjectFile)" /nologo /nr:false /fl /flp:"logfile=$(ProjectFile).log;verbosity=diagnostic" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"
+        msBuildCommandline: '"$(MSBuildPath)" "$(ProjectFile)" /nologo /nr:false /fl /flp:"logfile=$(ProjectFile).log;verbosity=diagnostic" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"'
         rulesetName: recommended
         internalAnalyzersVersion: Latest
         microsoftAnalyzersVersion: Latest
