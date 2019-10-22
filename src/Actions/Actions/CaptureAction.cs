@@ -48,7 +48,7 @@ namespace Axe.Windows.Actions
         {
             var ec = GetDataManager().GetElementContext(ecId);
 
-            if (ec.DataContext == null || ec.DataContext.NeedNewDataContext(DataContextMode.Live, mode) || force)
+            if (NeedNewDataContext(ec.DataContext, DataContextMode.Live, mode) || force)
             {
                 var dc = new ElementDataContext(ec.Element, MaxElements);
                 PopulateDataContextForLiveMode(dc, mode);
@@ -93,7 +93,7 @@ namespace Axe.Windows.Actions
                 ec.DataContext = null;
             }
 
-            if (ec.DataContext == null || ec.DataContext.NeedNewDataContext(dm, tvm) || force)
+            if (NeedNewDataContext(ec.DataContext, dm, tvm) || force)
             {
                 ec.DataContext = new ElementDataContext(ec.Element, MaxElements);
                 PopulateData(ec.DataContext, dm, tvm);
@@ -159,6 +159,17 @@ namespace Axe.Windows.Actions
                     AddElementAndChildrenIntoList(c, dic, elementCounter);
                 }
             }
+        }
+
+        /// <summary>
+        /// check whether it needs new DataContext
+        /// </summary>
+        /// <param name="sm"></param>
+        /// <param name="tm"></param>
+        /// <returns></returns>
+        public static bool NeedNewDataContext(ElementDataContext dc, DataContextMode sm, TreeViewMode tm)
+        {
+            return dc == null || (dc.Mode != DataContextMode.Load && (dc.Mode != sm || dc.TreeMode != tm));
         }
         #endregion
     }
