@@ -13,11 +13,18 @@ using Axe.Windows.Core.Misc;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
+    public interface ITreeWalkerForTest
+    {
+        List<A11yElement> Elements { get; }
+        A11yElement TopMostElement { get; }
+        void RefreshTreeData(TreeViewMode mode);
+    }
+
     /// <summary>
     /// Wrapper for UIAutomation Tree Walker 2nd edition
     /// Do tree walking by retrieving all children at once. 
     /// </summary>
-    public class TreeWalkerForTest
+    public class TreeWalkerForTest : ITreeWalkerForTest
     {
         private readonly BoundedCounter _elementCounter;
 
@@ -30,6 +37,13 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Last walk time spane
         /// </summary>
         public TimeSpan LastWalkTime { get; private set; }
+
+
+        public TreeViewMode WalkerMode { get; private set; }
+
+        public A11yElement SelectedElement { get; private set; }
+
+        public A11yElement TopMostElement { get; private set; }
 
         /// <summary>
         /// Constructor
@@ -92,11 +106,6 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 RuleRunner.Run(e);
             });
         }
-
-        public TreeViewMode WalkerMode { get; private set; }
-
-        public A11yElement SelectedElement { get; private set; }
-        public A11yElement TopMostElement { get; private set; }
 
         /// <summary>
         /// Populate tree by retrieving all children at once.

@@ -100,7 +100,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Actions\ScreenShotActionUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
-    <Compile Include="Actions\CaptureActionUnitTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
+    <Compile Include="Actions\CaptureActionUnitTests.cs" />
     <Compile Include="Misc\ExtensionMethodsTests.cs" Condition="$(FAKES_SUPPORTED) == 1" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

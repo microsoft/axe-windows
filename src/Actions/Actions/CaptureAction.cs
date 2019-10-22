@@ -22,6 +22,13 @@ namespace Axe.Windows.Actions
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public static class CaptureAction
     {
+        // Test hooks; making this non-static and enabling constructor injection
+        // would be nicer, but this was the minimal set of changes to remove the
+        // need to use Fakes to test this class.
+        internal static Func<DataManager> GetDataManager = () => DataManager.GetDefaultInstance();
+        internal static Func<ITreeWalkerForLive> NewTreeWalkerForLive = () => new TreeWalkerForLive();
+        internal static Func<A11yElement, BoundedCounter, ITreeWalkerForTest> NewTreeWalkerForTest = (A11yElement e, BoundedCounter bc) => new TreeWalkerForTest(e, bc);
+
         // This defines the maximum number of elements that we will support in a file.
         // We added this at the suggestion of the security team as a defense against
         // malicious files. Since we never want to write a file that we can't open,
@@ -39,7 +46,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, bool force = false)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            var ec = GetDataManager().GetElementContext(ecId);
 
             if (ec.DataContext == null || ec.DataContext.NeedNewDataContext(DataContextMode.Live, mode) || force)
             {
@@ -59,7 +66,7 @@ namespace Axe.Windows.Actions
         {
             dc.TreeMode = mode;
             dc.Mode = DataContextMode.Live;
-            var ltw = new TreeWalkerForLive();
+            var ltw = NewTreeWalkerForLive();
             ltw.GetTreeHierarchy(dc.Element, mode);
             dc.RootElment = ltw.RootElement;
             dc.Elements = ltw.Elements.ToDictionary(i => i.UniqueId);
@@ -79,7 +86,7 @@ namespace Axe.Windows.Actions
         /// <returns>boolean</returns>
         public static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, bool force = false)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            var ec = GetDataManager().GetElementContext(ecId);
             // if Data context is set via Live Mode, set it to null.
             if (ec.DataContext != null && ec.DataContext.Mode == DataContextMode.Live)
             {
@@ -111,7 +118,7 @@ namespace Axe.Windows.Actions
             switch (dcMode)
             {
                 case DataContextMode.Test:
-                    var stw = new TreeWalkerForTest(dc.Element, dc.ElementCounter);
+                    var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
                     stw.RefreshTreeData(tm);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;

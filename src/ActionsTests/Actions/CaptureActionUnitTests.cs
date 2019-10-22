@@ -8,190 +8,257 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-#if FAKES_SUPPORTED
-using Axe.Windows.Actions.Contexts.Fakes;
-using Axe.Windows.Actions.Fakes;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers.Fakes;
-using Microsoft.QualityTools.Testing.Fakes;
-#endif
+using Moq;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 
 namespace Axe.Windows.ActionsTests.Actions
 {
     [TestClass]
     public class CaptureActionUnitTests
     {
-#if FAKES_SUPPORTED
-        [TestMethod]
-        [Timeout(1000)]
-        public void SetTestModeDataContext_OldContextIsNull_CreatesElementDataContext_ChainsToPopulateData_CorrectParameters()
+        DataManager mockDataManager;
+        A11yElement mockElement;
+        ElementContext mockElementContext;
+        int irrelevantMaxElements;
+        ElementDataContext mockDataContext;
+        TreeViewMode mockTreeViewMode;
+
+        [TestInitialize]
+        public void ResetMocks()
         {
-            using (ShimsContext.Create())
-            {
-                ElementDataContext dataContext = null;
+            mockDataManager = new DataManager();
+            mockElement = new A11yElement();
+            mockElement.UniqueId = 0;
+            mockElementContext = new ElementContext(mockElement);
+            irrelevantMaxElements = 10;
+            mockDataContext = new ElementDataContext(mockElement, irrelevantMaxElements);
+            mockTreeViewMode = (TreeViewMode)(-1);
 
-                ElementContext elementContext = new ShimElementContext
-                {
-                    DataContextGet = () => dataContext,
-                    DataContextSetElementDataContext = (dcNew) => { dataContext = dcNew; },
-                };
-
-                ShimDataManager.GetDefaultInstance = () => new ShimDataManager
-                {
-                    GetElementContextGuid = (_) => elementContext,
-                };
-
-                ElementDataContext actualContext = null;
-                DataContextMode? actualMode = null;
-                TreeViewMode? actualTreeViewMode = null;
-
-                ShimCaptureAction.PopulateDataElementDataContextDataContextModeTreeViewMode = (dc, dcMode, tm) =>
-                {
-                    actualContext = dc;
-                    actualMode = dcMode;
-                    actualTreeViewMode = tm;
-                };
-
-                Assert.IsTrue(CaptureAction.SetTestModeDataContext(Guid.Empty, DataContextMode.Test, TreeViewMode.Content));
-
-                Assert.IsNotNull(dataContext);
-                Assert.AreEqual(0, dataContext.ElementCounter.Count);
-                Assert.AreEqual(20000, dataContext.ElementCounter.UpperBound);
-                Assert.AreSame(dataContext, actualContext);
-                Assert.AreEqual(DataContextMode.Test, actualMode);
-                Assert.AreEqual(TreeViewMode.Content, actualTreeViewMode);
-            }
+            mockElementContext.DataContext = mockDataContext;
+            mockDataContext.TreeMode = mockTreeViewMode;
+            mockDataContext.Mode = DataContextMode.Live;
+            mockDataManager.AddElementContext(mockElementContext);
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void PopulateData_TestMode_ChainsToTreeWalkerRefreshTreeData_CorrectParameters()
+        public void SetLiveModeDataContext_NoopsIfElementAlreadyHasComparableDataContext()
         {
-            using (ShimsContext.Create())
+            mockDataContext.Mode = DataContextMode.Live;
+
+            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, null))
             {
-                const DataContextMode expectedDcMode = DataContextMode.Test;
-                const TreeViewMode expectedTreeViewMode = TreeViewMode.Content;
+                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, mockTreeViewMode, force: false);
+            }
 
-                A11yElement expectedElement = new A11yElement();
-                List<A11yElement> expectedElements = null;
-                ElementDataContext dataContext = new ElementDataContext(expectedElement, 1);
+            Assert.AreSame(mockDataContext, mockElementContext.DataContext);
+        }
 
-                BoundedCounter actualCounter = null;
-                A11yElement actualElement = null;
-                TreeViewMode? actualTreeMode = null;
-                A11yElement rootElement = null;
+        [DataTestMethod]
+        // force == true should force a TreeWalker evaluation, even with an existing similar DataContext
+        [DataRow(true, false, DataContextMode.Live, TreeViewMode.Raw)]
+        // An element with a null DataContext should force a TreeWalker evaluation
+        [DataRow(false, true, DataContextMode.Live, TreeViewMode.Raw)]
+        // An element with Mode != the newly requested mode should force a TreeWalker evaluation
+        [DataRow(false, false, DataContextMode.Test, TreeViewMode.Raw)]
+        // An element with TreeMode != the newly requested mode should force a TreeWalker evaluation
+        [DataRow(false, false, DataContextMode.Live, TreeViewMode.Control)]
+        [Timeout(1000)]
+        public void SetLiveModeDataContext_UsesTreeWalkerForLiveToCreateNewDataContext(
+            bool force,
+            bool startWithNullDataContext,
+            DataContextMode originalDataContextMode,
+            TreeViewMode originalDataContextTreeViewMode)
+        {
+            // Arrange
+            if (startWithNullDataContext) { mockElementContext.DataContext = null; }
+            mockDataContext.Mode = originalDataContextMode;
+            mockDataContext.TreeMode = originalDataContextTreeViewMode;
+            TreeViewMode treeViewMode = TreeViewMode.Raw;
 
-                ShimTreeWalkerForTest.ConstructorA11yElementBoundedCounter = (ktw, e, c) =>
-                {
-                    actualCounter = c;
-                    actualElement = e;
+            var mockTreeWalkerForLive = new Mock<ITreeWalkerForLive>();
+            var mockTopMostElement = new A11yElement();
+            var mockElementsItem1 = new A11yElement();
+            mockElementsItem1.UniqueId = 101;
+            var mockElementsItem2 = new A11yElement();
+            mockElementsItem2.UniqueId = 102;
+            mockTreeWalkerForLive.Setup(w => w.Elements).Returns(new List<A11yElement> { mockElementsItem1, mockElementsItem2 });
+            mockTreeWalkerForLive.Setup(w => w.RootElement).Returns(mockTopMostElement);
 
-                    new ShimTreeWalkerForTest(ktw)
-                    {
-                        RefreshTreeDataTreeViewMode = (mode) =>
-                        {
-                            actualTreeMode = mode;
-                            expectedElements = new List<A11yElement> { expectedElement };
-                            rootElement = expectedElement;
-                            Assert.IsTrue(dataContext.ElementCounter.TryIncrement());
-                        },
-                        ElementsGet = () => expectedElements,
-                        TopMostElementGet = () => rootElement,
-                    };
-                };
+            using (new CaptureActionTestHookOverrides(() => mockDataManager, () => mockTreeWalkerForLive.Object, null))
+            {
+                // Act
+                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, treeViewMode, force);
 
-                CaptureAction.PopulateData(dataContext, expectedDcMode, expectedTreeViewMode);
-
-                Assert.AreSame(dataContext.ElementCounter, actualCounter);
-                Assert.AreSame(expectedElement, actualElement);
-                Assert.AreEqual(expectedDcMode, dataContext.Mode);
-                Assert.AreEqual(expectedTreeViewMode, dataContext.TreeMode);
-                Assert.AreSame(expectedElement, dataContext.Elements.Values.First());
-                Assert.AreSame(expectedElement, dataContext.RootElment);
+                // Assert
+                Assert.IsNotNull(mockElementContext.DataContext);
+                Assert.AreNotSame(mockDataContext, mockElementContext.DataContext);
+                var result = mockElementContext.DataContext;
+                Assert.AreSame(mockElement, result.Element);
+                Assert.AreEqual(20000, result.ElementCounter.UpperBound);
+                Assert.AreEqual(treeViewMode, result.TreeMode);
+                Assert.AreEqual(DataContextMode.Live, result.Mode);
+                Assert.AreEqual(mockTopMostElement, result.RootElment);
+                mockTreeWalkerForLive.Verify(w => w.GetTreeHierarchy(mockElement, treeViewMode));
+                Assert.AreEqual(2, result.Elements.Count);
+                Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
+                Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);
             }
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        // Matching combinations of mode/treemode should result in reloading being skipped
+        [DataRow(DataContextMode.Test, TreeViewMode.Raw, DataContextMode.Test, TreeViewMode.Raw)]
+        [DataRow(DataContextMode.Test, TreeViewMode.Control, DataContextMode.Test, TreeViewMode.Control)]
+        [DataRow(DataContextMode.Load, TreeViewMode.Raw, DataContextMode.Load, TreeViewMode.Raw)]
+        [DataRow(DataContextMode.Load, TreeViewMode.Control, DataContextMode.Load, TreeViewMode.Control)]
+        // It should assume that a "Load" DataContextMode never be reload, regardless of TreeViewMode, since it wouldn't be able to change anyway
+        [DataRow(DataContextMode.Load, TreeViewMode.Control, DataContextMode.Load, TreeViewMode.Raw)]
         [Timeout(1000)]
-        public void PopulateData_LoadMode_ChainsToAddElementAndChildrenIntoList_CorrectParameters()
+        public void SetTestModeDataContext_NoopsIfElementDoesNotNeedTestContextUpdate(DataContextMode originalMode, TreeViewMode originalTreeMode, DataContextMode newlySetMode, TreeViewMode newlySetTreeMode)
         {
-            using (ShimsContext.Create())
+            mockDataContext.Mode = originalMode;
+            mockDataContext.TreeMode = originalTreeMode;
+
+            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, null))
             {
-                const DataContextMode expectedDcMode = DataContextMode.Load;
-                const TreeViewMode expectedTreeViewMode = TreeViewMode.Control;
-                A11yElement expectedElement = new A11yElement();
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, force: false);
 
-                ElementDataContext dataContext = new ElementDataContext(expectedElement, 1);
-
-                A11yElement actualElement = null;
-                BoundedCounter actualCounter = null;
-                Dictionary<int, A11yElement> actualDictionary = null;
-                ShimCaptureAction.AddElementAndChildrenIntoListA11yElementDictionaryOfInt32A11yElementBoundedCounter = (e, d, c) =>
-                {
-                    actualElement = e;
-                    actualDictionary = d;
-                    actualCounter = c;
-                };
-
-                CaptureAction.PopulateData(dataContext, expectedDcMode, expectedTreeViewMode);
-
-                Assert.AreEqual(expectedDcMode, dataContext.Mode);
-                Assert.AreEqual(expectedTreeViewMode, dataContext.TreeMode);
-                Assert.AreSame(expectedElement, actualElement);
-                Assert.IsNotNull(actualDictionary);
-                Assert.IsFalse(actualDictionary.Any());
-                Assert.AreSame(dataContext.ElementCounter, actualCounter);
-                Assert.AreSame(dataContext.Elements, actualDictionary);
-            }
-        }
-#endif
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void AddElementAndChildrenIntoList_CounterIsFull_ReturnsWithoutAdding()
-        {
-            BoundedCounter counter = new BoundedCounter(1);
-            Assert.IsFalse(counter.TryAdd(2));
-            Assert.AreEqual(2, counter.Attempts);
-
-            // We intentionally pass in nulls here, since it's an error if they're accessed in any way
-            CaptureAction.AddElementAndChildrenIntoList(null, null, counter);
-
-            Assert.AreEqual(3, counter.Attempts);
+                Assert.IsFalse(retVal);
+                Assert.AreSame(mockDataContext, mockElementContext.DataContext);
+            }            
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        // force == true should force a TreeWalker evaluation, even with an existing similar DataContext
+        [DataRow(true, false, DataContextMode.Test, TreeViewMode.Raw)]
+        // An element with a null DataContext should force a TreeWalker evaluation
+        [DataRow(false, true, DataContextMode.Test, TreeViewMode.Raw)]
+        // An element with Mode != the newly requested mode should force a TreeWalker evaluation
+        [DataRow(false, false, DataContextMode.Live, TreeViewMode.Raw)]
+        // An element with TreeMode != the newly requested mode should force a TreeWalker evaluation
+        [DataRow(false, false, DataContextMode.Test, TreeViewMode.Control)]
         [Timeout(1000)]
-        public void AddElementAndChildrenIntoList_GeneralCase_BuildsCorrectDictionary()
+        public void SetTestModeDataContext_ForTestDataContextMode_UsesTreeWalkerForTestToCreateNewDataContext(
+            bool force,
+            bool startWithNullDataContext,
+            DataContextMode originalDataContextMode,
+            TreeViewMode originalDataContextTreeViewMode)
         {
-            const int elementCount = 7;
+            // Arrange
+            if (startWithNullDataContext) { mockElementContext.DataContext = null; }
+            mockDataContext.Mode = originalDataContextMode;
+            mockDataContext.TreeMode = originalDataContextTreeViewMode;
+            TreeViewMode treeViewMode = TreeViewMode.Raw;
 
-            BoundedCounter counter = new BoundedCounter(100);
-            Dictionary<int, A11yElement> elementsOut = new Dictionary<int, A11yElement>();
+            var mockTreeWalkerForTest = new Mock<ITreeWalkerForTest>();
+            var mockTopMostElement = new A11yElement();
+            var mockElementsItem1 = new A11yElement();
+            mockElementsItem1.UniqueId = 101;
+            var mockElementsItem2 = new A11yElement();
+            mockElementsItem2.UniqueId = 102;
+            mockTreeWalkerForTest.Setup(w => w.Elements).Returns(new List<A11yElement> { mockElementsItem1, mockElementsItem2 });
+            mockTreeWalkerForTest.Setup(w => w.TopMostElement).Returns(mockTopMostElement);
 
-            // Build our tree
-            List<A11yElement> elements = new List<A11yElement>();
-            for (int loop = 0; loop < elementCount; loop++)
+            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, (_1, _2) => mockTreeWalkerForTest.Object))
             {
-                A11yElement element = new A11yElement
-                {
-                    UniqueId = loop
-                };
-                elements.Add(element);
+                // Act
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, force);
+
+                // Assert
+                Assert.IsTrue(retVal);
+                Assert.IsNotNull(mockElementContext.DataContext);
+                Assert.AreNotSame(mockDataContext, mockElementContext.DataContext);
+                var result = mockElementContext.DataContext;
+                Assert.AreSame(mockElement, result.Element);
+                Assert.AreEqual(20000, result.ElementCounter.UpperBound);
+                Assert.AreEqual(treeViewMode, result.TreeMode);
+                Assert.AreEqual(DataContextMode.Test, result.Mode);
+                Assert.AreEqual(mockTopMostElement, result.RootElment);
+                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode));
+                Assert.AreEqual(2, result.Elements.Count);
+                Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
+                Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);
             }
+        }
 
-            elements[0].Children = new List<A11yElement> { elements[1], elements[2] };
-            elements[2].Children = new List<A11yElement> { elements[3] };
-            elements[3].Children = new List<A11yElement> { elements[4], elements[5], elements[6] };
-            elements[6].Children = new List<A11yElement>();
+        [DataTestMethod]
+        // force == true should force a TreeWalker evaluation, even with an existing similar DataContext
+        [DataRow(true, false, DataContextMode.Test, TreeViewMode.Raw)]
+        // An element with a null DataContext should force a TreeWalker evaluation
+        [DataRow(false, true, DataContextMode.Test, TreeViewMode.Raw)]
+        // An element with Mode != the newly requested mode should force a TreeWalker evaluation
+        [DataRow(false, false, DataContextMode.Live, TreeViewMode.Raw)]
+        [Timeout(1000)]
+        public void SetTestModeDataContext_ForLoadDataContextMode_WalksTheOriginAncestorsChildrenDirectly(
+            bool force,
+            bool startWithNullDataContext,
+            DataContextMode originalDataContextMode,
+            TreeViewMode originalDataContextTreeViewMode)
+        {
+            // Arrange
+            if (startWithNullDataContext) { mockElementContext.DataContext = null; }
+            mockDataContext.Mode = originalDataContextMode;
+            mockDataContext.TreeMode = originalDataContextTreeViewMode;
+            TreeViewMode treeViewMode = TreeViewMode.Raw;
 
-            CaptureAction.AddElementAndChildrenIntoList(elements[0], elementsOut, counter);
+            var mockOriginAncestor = mockElement;
+            mockOriginAncestor.UniqueId = 1;
+            var mockChild1 = new A11yElement();
+            mockChild1.UniqueId = 2;
+            var mockChild2 = new A11yElement();
+            mockChild2.UniqueId = 3;
+            var mockGrandChild1 = new A11yElement();
+            mockGrandChild1.UniqueId = 4;
+            mockOriginAncestor.Children = new List<A11yElement>() { mockChild1, mockChild2 };
+            mockChild2.Children = new List<A11yElement>() { mockGrandChild1 };
 
-            Assert.AreEqual(elementCount, elementsOut.Count);
-            for (int loop = 0; loop < elementCount; loop++)
+            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, null))
             {
-                Assert.AreEqual(loop, elementsOut[loop].UniqueId);
+                // Act
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, force);
+
+                // Assert
+                Assert.IsTrue(retVal);
+                Assert.IsNotNull(mockElementContext.DataContext);
+                Assert.AreNotSame(mockDataContext, mockElementContext.DataContext);
+                var result = mockElementContext.DataContext;
+                Assert.AreSame(mockElement, result.Element);
+                Assert.AreEqual(20000, result.ElementCounter.UpperBound);
+                Assert.AreEqual(treeViewMode, result.TreeMode);
+                Assert.AreEqual(DataContextMode.Load, result.Mode);
+                Assert.AreEqual(mockOriginAncestor, result.RootElment);
+
+                Assert.AreEqual(4, result.Elements.Count);
+                Assert.AreSame(mockOriginAncestor, result.Elements[mockOriginAncestor.UniqueId]);
+                Assert.AreSame(mockChild1, result.Elements[mockChild1.UniqueId]);
+                Assert.AreSame(mockChild2, result.Elements[mockChild2.UniqueId]);
+                Assert.AreSame(mockGrandChild1, result.Elements[mockGrandChild1.UniqueId]);
+            }
+        }
+
+        private class CaptureActionTestHookOverrides : IDisposable
+        {
+            internal static Func<DataManager> originalGetDataManager;
+            internal static Func<ITreeWalkerForLive> originalNewTreeWalkerForLive;
+            internal static Func<A11yElement, BoundedCounter, ITreeWalkerForTest> originalNewTreeWalkerForTest;
+
+            public CaptureActionTestHookOverrides(Func<DataManager> getDataManager, Func<ITreeWalkerForLive> newTreeWalkerForLive, Func<A11yElement, BoundedCounter, ITreeWalkerForTest> newTreeWalkerForTest)
+            {
+                originalGetDataManager = CaptureAction.GetDataManager;
+                originalNewTreeWalkerForLive = CaptureAction.NewTreeWalkerForLive;
+                originalNewTreeWalkerForTest = CaptureAction.NewTreeWalkerForTest;
+
+                CaptureAction.GetDataManager = getDataManager;
+                CaptureAction.NewTreeWalkerForLive = newTreeWalkerForLive;
+                CaptureAction.NewTreeWalkerForTest = newTreeWalkerForTest;
+            }
+            public void Dispose()
+            {
+                CaptureAction.GetDataManager = originalGetDataManager;
+                CaptureAction.NewTreeWalkerForLive = originalNewTreeWalkerForLive;
+                CaptureAction.NewTreeWalkerForTest = originalNewTreeWalkerForTest;
             }
         }
     }
