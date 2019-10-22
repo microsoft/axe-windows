@@ -33,12 +33,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         public List<A11yElement> Elements { get; }
 
-        /// <summary>
-        /// Last walk time spane
-        /// </summary>
         public TimeSpan LastWalkTime { get; private set; }
-
-
+        
         public TreeViewMode WalkerMode { get; private set; }
 
         public A11yElement SelectedElement { get; private set; }
