@@ -11,11 +11,18 @@ using System.Runtime.InteropServices;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
+    public interface ITreeWalkerForLive
+    {
+        List<A11yElement> Elements { get; }
+        A11yElement RootElement { get; }
+        void GetTreeHierarchy(A11yElement e, TreeViewMode mode);
+    }
+
     /// <summary>
     /// Wrapper for UIAutomation Tree Walker for Live mode. 
     /// it is based on 2nd edition of TreeWalker
     /// </summary>
-    public class TreeWalkerForLive
+    public class TreeWalkerForLive : ITreeWalkerForLive
     {
         /// <summary>
         /// List to keep all elements in tree walking(Ancestors, self and children)
