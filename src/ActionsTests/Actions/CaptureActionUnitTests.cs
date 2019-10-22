@@ -6,11 +6,11 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
-using System;
-using System.Collections.Generic;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
+using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.ActionsTests.Actions
 {
