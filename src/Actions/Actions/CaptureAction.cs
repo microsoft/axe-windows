@@ -167,7 +167,7 @@ namespace Axe.Windows.Actions
         /// <param name="sm"></param>
         /// <param name="tm"></param>
         /// <returns></returns>
-        public static bool NeedNewDataContext(ElementDataContext dc, DataContextMode sm, TreeViewMode tm)
+        private static bool NeedNewDataContext(ElementDataContext dc, DataContextMode sm, TreeViewMode tm)
         {
             return dc == null || (dc.Mode != DataContextMode.Load && (dc.Mode != sm || dc.TreeMode != tm));
         }
