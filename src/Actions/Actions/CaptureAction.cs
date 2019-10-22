@@ -160,12 +160,6 @@ namespace Axe.Windows.Actions
             }
         }
 
-        /// <summary>
-        /// check whether it needs new DataContext
-        /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="tm"></param>
-        /// <returns></returns>
         private static bool NeedNewDataContext(ElementDataContext dc, DataContextMode sm, TreeViewMode tm)
         {
             return dc == null || (dc.Mode != DataContextMode.Load && (dc.Mode != sm || dc.TreeMode != tm));
