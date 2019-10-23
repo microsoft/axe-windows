@@ -37,5 +37,5 @@ namespace RulesMD
             f.Write(markdown);
             f.Close();
         }
-} // class
+    } // class
 } // namespace
