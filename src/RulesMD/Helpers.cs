@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Rules;
+using Axe.Windows.RuleSelection.Resources;
 using System;
 
 namespace RulesMD
@@ -12,18 +13,18 @@ namespace RulesMD
             switch (criteriaId)
             {
                 case A11yCriteriaId.AvailableActions:
-                    return "Section 508 502.3.10";
+                    return DefaultGuidelineShortDescriptions.AvailableActions;
                 case A11yCriteriaId.InfoAndRelationships:
-                    return "WCAG 1.3.1";
+                    return DefaultGuidelineShortDescriptions.InfoAndRelationships;
                 case A11yCriteriaId.Keyboard:
-                    return "WCAG 2.1.1";
+                    return DefaultGuidelineShortDescriptions.Keyboard;
                 case A11yCriteriaId.NameRoleValue:
-                    return "WCAG 4.1.2";
+                    return DefaultGuidelineShortDescriptions.NameRoleValue;
                 case A11yCriteriaId.ObjectInformation:
-                    return "Section 508 502.3.1";
+                    return DefaultGuidelineShortDescriptions.ObjectInformation;
             }
 
-            return "none";
+            return DefaultGuidelineShortDescriptions.None;
         }
     } // class
 } // namespace

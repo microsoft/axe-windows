@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-    <PropertyGroup>
-      <!-- Get the Visual Studio version – defaults to 10: -->
-      <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-      <!-- Keep the next element all on one line: -->
-      <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-          <TransformOnBuild>true</TransformOnBuild>
-              <BeforeTransform>CustomPreTransform</BeforeTransform>
-            </PropertyGroup>
+  <PropertyGroup>
+    <!-- Get the Visual Studio version – defaults to 10: -->
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Keep the next element all on one line: -->
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <TransformOnBuild>true</TransformOnBuild>
+    <BeforeTransform>CustomPreTransform</BeforeTransform>
+  </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -85,6 +85,10 @@
       <Project>{2da36fa6-4ff8-4db4-aa7e-2f1cacae6e35}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RuleSelection\RuleSelection.csproj">
+      <Project>{ab7195e3-a01d-4708-87af-08e9418ae33f}</Project>
+      <Name>RuleSelection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rules\Rules.csproj">
       <Project>{7fe58829-560e-4142-bf81-291a66d3844b}</Project>
       <Name>Rules</Name>
@@ -95,7 +99,7 @@
   <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
   <Target Name="GenerateMarkdown" AfterTargets="Build" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <Exec Command="echo Generate markdown of rules info" />
-    <Exec Command="$(TargetPath) --output $(TargetDir)\axe-windows-rules.md"  />
+    <Exec Command="$(TargetPath) --output $(TargetDir)\axe-windows-rules.md" />
   </Target>
   <Target Name="CustomPreTransform">
     <Exec Command="echo Create intermediate directory before transforming text templates..." />

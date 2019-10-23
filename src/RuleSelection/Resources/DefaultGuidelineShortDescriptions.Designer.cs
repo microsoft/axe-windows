@@ -19,10 +19,10 @@ namespace Axe.Windows.RuleSelection.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class DefaultGuidelineShortDescriptions {
+    public class DefaultGuidelineShortDescriptions {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions", typeof(DefaultGuidelineShortDescriptions).Assembly);
@@ -51,7 +51,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Section 508 502.3.10.
         /// </summary>
-        internal static string AvailableActions {
+        public static string AvailableActions {
             get {
                 return ResourceManager.GetString("AvailableActions", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         /// <summary>
         ///   Looks up a localized string similar to WCAG 1.3.1.
         /// </summary>
-        internal static string InfoAndRelationships {
+        public static string InfoAndRelationships {
             get {
                 return ResourceManager.GetString("InfoAndRelationships", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         /// <summary>
         ///   Looks up a localized string similar to WCAG 2.1.1.
         /// </summary>
-        internal static string Keyboard {
+        public static string Keyboard {
             get {
                 return ResourceManager.GetString("Keyboard", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         /// <summary>
         ///   Looks up a localized string similar to WCAG 4.1.2.
         /// </summary>
-        internal static string NameRoleValue {
+        public static string NameRoleValue {
             get {
                 return ResourceManager.GetString("NameRoleValue", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
-        internal static string None {
+        public static string None {
             get {
                 return ResourceManager.GetString("None", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Section 508 502.3.1.
         /// </summary>
-        internal static string ObjectInformation {
+        public static string ObjectInformation {
             get {
                 return ResourceManager.GetString("ObjectInformation", resourceCulture);
             }
