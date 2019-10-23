@@ -94,7 +94,7 @@
   <Import Project="..\..\build\delaysign.targets" />
   <Import Project="$(VSToolsPath)\TextTemplating\Microsoft.TextTemplating.targets" />
   <Target Name="GenerateMarkdown" AfterTargets="Build" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-  <Exec Command="echo Generate markdown of rules info" />
+    <Exec Command="echo Generate markdown of rules info" />
   <Exec Command="$(TargetPath) --output $(TargetDir)\axe-windows-rules.md"  />
   </Target>
   <Target Name="CustomPreTransform">
