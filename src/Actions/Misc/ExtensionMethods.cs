@@ -20,19 +20,6 @@ namespace Axe.Windows.Actions.Misc
     public static class ExtensionMethods
     {
         /// <summary>
-        /// check whether it needs new DataContext
-        /// </summary>
-        /// <param name="sm"></param>
-        /// <param name="tm"></param>
-        /// <returns></returns>
-        public static bool NeedNewDataContext(this ElementDataContext dc, DataContextMode sm, TreeViewMode tm)
-        {
-            if (dc == null) throw new ArgumentNullException(nameof(dc));
-
-            return dc.Mode != DataContextMode.Load && ( dc.Mode != sm  || dc.TreeMode != tm);
-        }
-
-        /// <summary>
         /// Identifies elements whose bounding rectangles contain the given position
         /// and returns the element with the smallest bounding rectangle (by area)
         /// 
