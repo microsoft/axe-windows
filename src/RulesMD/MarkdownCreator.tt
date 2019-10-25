@@ -1,0 +1,16 @@
+﻿<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Rules=Axe.Windows.Rules.Rules"#>
+
+## Rules in Axe.Windows
+
+Name | Description | Standard referenced
+--- | --- | ---
+<# foreach (var rule in Rules.All.Values)
+{
+#>
+<#= rule.ID.ToString()#> | <#= rule.Description#> | <#= RulesMD.Helpers.GetStandardName(rule.Standard)#> <#= rule.Standard#>
+<#}#>
