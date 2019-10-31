@@ -15,7 +15,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.CodeAnalysis.BinSkim" Version="1.5.1" />
     <PackageReference Include="Microsoft.Win32.Registry" Version="4.6.0" />
-    <PackageReference Include="Roslyn.Diagnostics.Analyzers" Version="2.9.6">
+    <PackageReference Include="Roslyn.Diagnostics.Analyzers" Version="2.9.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
