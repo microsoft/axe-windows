@@ -48,9 +48,6 @@
     <Reference Include="Actions.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
       <HintPath>..\Fakes.Prebuild\FakesAssemblies\Axe.Windows.Actions.Fakes.dll</HintPath>
     </Reference>
-    <Reference Include="Axe.Windows.Desktop.Fakes" Condition="$(FAKES_SUPPORTED) == 1">
-      <HintPath>..\Fakes.Prebuild\FakesAssemblies\Axe.Windows.Desktop.Fakes.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
