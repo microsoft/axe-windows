@@ -58,9 +58,6 @@
     </Fakes>
   </ItemGroup>
   <ItemGroup>
-    <Fakes Condition="$(FAKES_SUPPORTED) == 1" Include="mscorlib.fakes" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Actions\Actions.csproj">
       <Project>{b2fa5150-470a-4864-a191-7bcae39df35a}</Project>
       <Name>Actions</Name>
