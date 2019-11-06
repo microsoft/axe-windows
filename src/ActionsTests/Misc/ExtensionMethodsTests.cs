@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
-using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
@@ -21,19 +20,16 @@ namespace Axe.Windows.Actions.Misc.Tests
         [TestMethod()]
         public void GetSmallestElementFromPointTest()
         {
-            using (ShimsContext.Create())
+            var boundingRects = new List<System.Drawing.Rectangle>();
+            var offscreen = new List<bool>();
+            for (int i = 0; i < 10; i++)
             {
-                var boundingRects = new List<System.Drawing.Rectangle>();
-                var offscreen = new List<bool>();
-                for (int i = 0; i < 10; i++)
-                {
-                    boundingRects.Add(new System.Drawing.Rectangle(i, i, i, i));
-                    offscreen.Add(false);
-                }
-                var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
-                Assert.AreEqual(3, answer.UniqueId);
+                boundingRects.Add(new System.Drawing.Rectangle(i, i, i, i));
+                offscreen.Add(false);
             }
+            var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
+            var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
+            Assert.AreEqual(3, answer.UniqueId);
         }
 
         /// <summary>
@@ -44,20 +40,17 @@ namespace Axe.Windows.Actions.Misc.Tests
         [TestMethod()]
         public void GetSmallestElementFromPointTest_Offscreen()
         {
-            using (ShimsContext.Create())
+            var boundingRects = new List<System.Drawing.Rectangle>();
+            var offscreen = new List<bool>();
+            for (int i = 0; i < 10; i++)
             {
-                var boundingRects = new List<System.Drawing.Rectangle>();
-                var offscreen = new List<bool>();
-                for (int i = 0; i < 10; i++)
-                {
-                    boundingRects.Add(new System.Drawing.Rectangle(i, i, i, i));
-                    offscreen.Add(false);
-                }
-                offscreen[3] = true;
-                var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
-                Assert.AreEqual(4, answer.UniqueId);
+                boundingRects.Add(new System.Drawing.Rectangle(i, i, i, i));
+                offscreen.Add(false);
             }
+            offscreen[3] = true;
+            var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
+            var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(5, 5));
+            Assert.AreEqual(4, answer.UniqueId);
         }
 
         /// <summary>
@@ -67,37 +60,28 @@ namespace Axe.Windows.Actions.Misc.Tests
         [TestMethod()]
         public void GetSmallestElementFromPointTest_NoneOverlaps()
         {
-            using (ShimsContext.Create())
+            var boundingRects = new List<System.Drawing.Rectangle>();
+            var offscreen = new List<bool>();
+            for (int i = 0; i < 10; i++)
             {
-                var boundingRects = new List<System.Drawing.Rectangle>();
-                var offscreen = new List<bool>();
-                for (int i = 0; i < 10; i++)
-                {
-                    boundingRects.Add(new System.Drawing.Rectangle(i, i, i, i));
-                    offscreen.Add(false);
-                }
-                var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
-                var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
-                Assert.AreEqual(null, answer);
+                boundingRects.Add(new System.Drawing.Rectangle(i, i, i, i));
+                offscreen.Add(false);
             }
+            var elements = CreateA11yElementsFromBoundingRectangles(boundingRects, offscreen);
+            var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
+            Assert.AreEqual(null, answer);
         }
         
         [TestMethod()]
         public void GetSmallestElementFromPointTest_NullArgument()
         {
-            using (ShimsContext.Create())
-            {
-                Assert.ThrowsException<ArgumentNullException>(() => ExtensionMethods.GetSmallestElementFromPoint(null, System.Drawing.Point.Empty));
-            }
+            Assert.ThrowsException<ArgumentNullException>(() => ExtensionMethods.GetSmallestElementFromPoint(null, System.Drawing.Point.Empty));
         }
 
         [TestMethod()]
         public void GetSmallestElementFromPointTest_NoElementsProvided()
         {
-            using (ShimsContext.Create())
-            {
-                Assert.ThrowsException<ArgumentException>(() => ExtensionMethods.GetSmallestElementFromPoint(new Dictionary<int, ICoreA11yElement>(), System.Drawing.Point.Empty));
-            }
+            Assert.ThrowsException<ArgumentException>(() => ExtensionMethods.GetSmallestElementFromPoint(new Dictionary<int, ICoreA11yElement>(), System.Drawing.Point.Empty));
         }
 
         /// <summary>
