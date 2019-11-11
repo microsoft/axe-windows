@@ -1,5 +1,5 @@
-| Name                         | Description                        | Standard referenced                     | Type         |
-| :--------------------------- | :--------------------------------- | :-------------------------------------- | :----------- |
-| BoundingRectangleNotAllZeros | The BoundingRectangle property     | Section 508 502.3.1 ObjectInformation   | Error        |
-| BoundingRectangleNotNull     | An onscreen element must not have  | Section 508 502.3.1 ObjectInformation   | Error        |
-| BoundingRectangleNotValidBut | The BoundingRectangle property is  | Section 508 502.3.1 ObjectInformation   | Warning      |
+| Rule ID                             | Description                                                                                                                | Impact             | Tags                                                                             | Enabled by default |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------- | :----------------- | :------------------------------------------------------------------------------- | :----------------- |
+| accesskeys                          | Ensures every accesskey attribute value is unique                                                                          | Serious            | best-practice, cat.keyboard                                                      | true               |
+| area-alt                            | Ensures &lt;area&gt; elements of image maps have alternate text                                                            | Critical           | cat.text-alternatives, wcag2a, wcag111, section508, section508.22.a              | true               |
+| aria-allowed-attr                   | Ensures ARIA attributes are allowed for an element&apos;s role                                                             | Critical           | cat.aria, wcag2a, wcag412                                                        | true               |
