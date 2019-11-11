@@ -4,16 +4,12 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.UIAutomation;
-using Axe.Windows.Win32;
 using Axe.Windows.Telemetry;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Windows.Interop;
-using System.Windows.Media.Imaging;
-using System.Windows;
 using System;
 using UIAutomationClient;
 
@@ -112,21 +108,6 @@ namespace Axe.Windows.Desktop.Utility
         }
 
         /// <summary>
-        /// Gets source for bitmap
-        /// </summary>
-        /// <param name="bitmap"></param>
-        /// <returns></returns>
-        public static BitmapSource ConvertToSource(this Bitmap bitmap)
-        {
-            if (bitmap == null) throw new ArgumentNullException(nameof(bitmap));
-
-            var hbmp = bitmap.GetHbitmap();
-            var result = Imaging.CreateBitmapSourceFromHBitmap(hbmp, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            NativeMethods.DeleteObject(hbmp);
-            return result;
-        }
-
-        /// <summary>
         /// Check whether p is fully visible based on current screen size
         /// </summary>
         /// <param name="p"></param>
@@ -173,51 +154,6 @@ namespace Axe.Windows.Desktop.Utility
                 }
             }
             return curr;
-        }
-
-        /// <summary>
-        /// Get DPI
-        /// </summary>
-        /// <param name="rc"></param>
-        /// <returns></returns>
-        public static double GetDPI(this Rectangle rc)
-        {
-            return GetDPI(rc.Left, rc.Top);
-        }
-
-        /// <summary>
-        /// Get DPI with left/top
-        /// </summary>
-        /// <param name="left"></param>
-        /// <param name="top"></param>
-        /// <returns></returns>
-        public static double GetDPI(int left, int top)
-        {
-            var win32Helper = new Win32Helper();
-            win32Helper.GetDpi(new System.Drawing.Point(left, top), DpiType.Effective, out uint dpiX, out uint dpiY);
-
-            return GetDPIRate(dpiX);
-        }
-
-        /// <summary>
-        /// Gets the DPI that WPF seems to use internally
-        /// when positioning windows; scale by this DPI 
-        /// when setting Window.Left / Window.Top before calling show()
-        /// </summary>
-        /// <returns></returns>
-        public static double GetWPFWindowPositioningDPI()
-        {
-            return new Rectangle().GetDPI();
-        }
-
-        /// <summary>
-        /// turn raw DPI value to DPI rate
-        /// </summary>
-        /// <param name="dpiX"></param>
-        /// <returns></returns>
-        private static double GetDPIRate(uint dpi)
-        {
-            return dpi / 96.0; // 96 is 100% scale. 
         }
 
         /// <summary>

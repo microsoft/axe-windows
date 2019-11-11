@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.SystemAbstractions;
 using System;
-using System.Drawing;
 
 namespace Axe.Windows.Win32
 {
@@ -38,30 +37,6 @@ namespace Axe.Windows.Win32
         internal static bool IsWindows7()
         {
             return Environment.OSVersion.Version.Major == 6 && Environment.OSVersion.Version.Minor == 1;
-        }
-
-        /// <summary>
-        /// Get DPI value from pointer
-        /// </summary>
-        /// <param name="point"></param>
-        /// <param name="dpiType"></param>
-        /// <param name="dpiX"></param>
-        /// <param name="dpiY"></param>
-        internal void GetDpi(Point point, DpiType dpiType, out uint dpiX, out uint dpiY)
-        {
-            var mon = NativeMethods.MonitorFromPoint(point, 2/*MONITOR_DEFAULTTONEAREST*/);
-            if (IsWindows7())
-            {
-                Graphics g = Graphics.FromHwnd(IntPtr.Zero);
-                IntPtr desktop = g.GetHdc();
-
-                dpiX = NativeMethods.GetDeviceCaps(desktop, (int)DeviceCap.LOGPIXELSX);
-                dpiY = NativeMethods.GetDeviceCaps(desktop, (int)DeviceCap.LOGPIXELSY);
-            }
-            else
-            {
-                NativeMethods.GetDpiForMonitor(mon, dpiType, out dpiX, out dpiY);
-            }
         }
 
         /// <summary>

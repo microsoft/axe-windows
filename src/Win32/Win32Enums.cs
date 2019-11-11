@@ -4,32 +4,6 @@
 namespace Axe.Windows.Win32
 {
     /// <summary>
-    /// Device Cap
-    /// https://docs.microsoft.com/en-us/windows/desktop/api/wingdi/nf-wingdi-getdevicecaps
-    /// </summary>
-    public enum DeviceCap
-    {
-        /// <summary>
-        /// Logical pixels inch in X
-        /// </summary>
-        LOGPIXELSX = 88,
-        /// <summary>
-        /// Logical pixels inch in Y
-        /// </summary>
-        LOGPIXELSY = 90
-    }
-
-    /// <summary>
-    /// https://msdn.microsoft.com/en-us/library/windows/desktop/dn280511(v=vs.85).aspx
-    /// </summary>
-    public enum DpiType
-    {
-        Effective = 0,
-        Angular = 1,
-        Raw = 2,
-    }
-
-    /// <summary>
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms646309(v=vs.85).aspx
     /// </summary>
     public enum HotkeyModifier : int
