@@ -4,7 +4,7 @@ Name | Description | Standard referenced | Type
 | BoundingRectangleNotNull | An onscreen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation | Error |
 | BoundingRectangleNotValidButOffScreen | The BoundingRectangle property is not valid, but the element is off-screen. | Section 508 502.3.1 ObjectInformation | Warning |
 BoundingRectangleDataFormatCorrect | The BoundingRectangle property must return a valid rectangle. | Section 508 502.3.1 ObjectInformation | Error
-BoundingRectangleCompletelyObscuresContainer | An element's BoundingRectangle must not obscure its container element. | Section 508 502.3.1 ObjectInformation | Error
+BoundingRectangleCompletely ObscuresContainer | An element's BoundingRectangle must not obscure its container element. | Section 508 502.3.1 ObjectInformation | Error
 BoundingRectangleContainedInParent | An element's BoundingRectangle must be contained within its parent element. | Section 508 502.3.1 ObjectInformation | Warning
 BoundingRectangleOnUWPMenuBar | The BoundingRectangle property of a menubar in UWP may have a null or empty value. | Section 508 502.3.1 ObjectInformation | Warning
 BoundingRectangleOnUWPMenuItem | The BoundingRectangle property of a menu item in UWP may have a null or empty value. | Section 508 502.3.1 ObjectInformation | Warning
@@ -71,7 +71,7 @@ ControlShouldNotSupportTablePattern | An element of the given ControlType must n
 ControlShouldNotSupportTogglePattern | An element of the given ControlType must not support the Toggle pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldNotSupportValuePattern | An element of the given type should not support the Value pattern. | Section 508 502.3.10 AvailableActions | Warning
 ControlShouldNotSupportWindowPattern | An element of the given type should not support the Window pattern. | Section 508 502.3.10 AvailableActions | Warning
-ControlShouldSupportExpandCollapsePattern | An element of the given ControlType must support the ExpandCollapse pattern. | Section 508 502.3.10 AvailableActions | Error
+ControlShouldSupport ExpandCollapsePattern | An element of the given ControlType must support the ExpandCollapse pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportGridItemPattern | An element whose parent supports the Grid pattern must support the GridItem pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportGridPattern | An element of the given ControlType must support the Grid pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportInvokePattern | An element of the given ControlType must support the Invoke pattern. | Section 508 502.3.10 AvailableActions | Error
@@ -94,7 +94,7 @@ LandmarkMainIsTopLevel | An element with LocalizedLandmarkType "main" must not d
 LandmarkNoDuplicateBanner | A page must not have multiple elements with LocalizedLandmarkType "banner." | WCAG 1.3.1 InfoAndRelationships | Error
 LandmarkNoDuplicateContentInfo | A page must not have multiple elements with LocalizedLandmarkType "contentinfo." | WCAG 1.3.1 InfoAndRelationships | Error
 LandmarkOneMain | A page must have exactly one element with the LocalizedLandmarkType "main." | WCAG 1.3.1 InfoAndRelationships | Warning
-LocalizedLandmarkTypeExcludesSpecialCharacters | The LocalizedLandmarkType property must not contain any special characters. | WCAG 1.3.1 InfoAndRelationships | Error
+LocalizedLandmarkType ExcludesSpecialCharacters | The LocalizedLandmarkType property must not contain any special characters. | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeIsReasonableLength | The LocalizedLandmarkType property must not be longer than 64 characters. | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeNotCustom | The LandmarkType and LocalizedLandmarkType must not both be set to "custom." | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeNotEmpty | An element with LandmarkType set must not have an empty LocalizedLandmarkType. | WCAG 1.3.1 InfoAndRelationships | Error
