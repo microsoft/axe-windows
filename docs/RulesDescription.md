@@ -140,11 +140,11 @@ LocalizedControlTypeNotWhiteSpace | The LocalizedControlType property must not c
 LocalizedControlTypeNotEmpty | The LocalizedControlType property must not be an empty string. | Section 508 502.3.1 ObjectInformation | Warning
 LocalizedControlTypeNotNull | The LocalizedControlType property must not be null. | Section 508 502.3.1 ObjectInformation | Warning
 LocalizedControlTypeNotCustom | The ControlType and LocalizedControlType must not both be set to "custom." | Section 508 502.3.1 ObjectInformation | Warning
-ParentChildShouldNotHaveSameNameAndLocalizedControlType | An element must not have the same Name and LocalizedControlType as its parent. | Section 508 502.3.1 ObjectInformation | Error
+ParentChildShouldNotHaveSameName AndLocalizedControlType | An element must not have the same Name and LocalizedControlType as its parent. | Section 508 502.3.1 ObjectInformation | Error
 SelectionPatternSelectionRequired | An element of the given ControlType must have the IsSelectionRequired property set to TRUE. | Section 508 502.3.10 AvailableActions | Error
 SelectionPatternSingleSelection | An element of the given ControlType must not support multiple selection. | Section 508 502.3.10 AvailableActions | Error
 SelectionItemPatternSingleSelection | An element whose parent supports single selection must not have selected siblings. | Section 508 502.3.10 AvailableActions | Error
 ListItemSiblingsUnique | The Name property of sibling list items should be unique. | WCAG 4.1.2 NameRoleValue | Warning
 NameExcludesPrivateUnicodeCharacters | The Name property must not contain any characters in the private Unicode range. | Section 508 502.3.1 ObjectInformation | Error
 HelpTextExcludesPrivateUnicodeCharacters | The HelpText property must not contain any characters in the private Unicode range. | Section 508 502.3.1 ObjectInformation | Error
-LocalizedControlTypeExcludesPrivateUnicodeCharacters | The LocalizedControlType property must not contain any characters in the private Unicode range. | Section 508 502.3.1 ObjectInformation | Error
+LocalizedControlTypeExcludes PrivateUnicodeCharacters | The LocalizedControlType property must not contain any characters in the private Unicode range. | Section 508 502.3.1 ObjectInformation | Error
