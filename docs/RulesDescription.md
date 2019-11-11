@@ -129,8 +129,8 @@ ProgressBarRangeValue | The RangeValue pattern of a progress bar must have speci
 ItemStatusExists | The ItemStatus property for the given element should exist. | Section 508 502.3.1 ObjectInformation | Warning
 NameNotNull | The Name property of a focusable element must not be null. | Section 508 502.3.1 ObjectInformation | Warning
 NameNotWhiteSpace | The Name property must not contain only space characters. | Section 508 502.3.1 ObjectInformation | Warning
-NameNullButElementNotKeyboardFocusable | The Name property for the given element is null, but the element isn't focusable. Please consider whether or not the element should have a name. | Section 508 502.3.1 ObjectInformation | Warning
-NameEmptyButElementNotKeyboardFocusable | The Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name. | Section 508 502.3.1 ObjectInformation | Warning
+NameNullButElementNot KeyboardFocusable | The Name property for the given element is null, but the element isn't focusable. Please consider whether or not the element should have a name. | Section 508 502.3.1 ObjectInformation | Warning
+NameEmptyButElementNot KeyboardFocusable | The Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name. | Section 508 502.3.1 ObjectInformation | Warning
 NameWithValidBoundingRectangle | An interactive element with a valid name property is usually expected to have a valid bounding rectangle that is not null and has area. | Section 508 502.3.1 ObjectInformation | Warning
 NameOnOptionalType | The name property for the given element type is optional. | Section 508 502.3.1 ObjectInformation | Warning
 NameNoSiblingsOfSameType | The name property of the given element may be null or empty if the element has no siblings of the same type. | Section 508 502.3.1 ObjectInformation | Warning
