@@ -1,4 +1,4 @@
-| Rule ID | Description | Impact | Tags |
+Name | Description | Standard referenced | Type
 | --- | --- | --- | --- |
 | accesskeys | Ensures every accesskey attribute value is unique | Serious | best-practice, cat.keyboard |
 | area-alt | Ensures &lt;area&gt; elements of image maps have alternate text | Critical | cat.text-alternatives, wcag2a, wcag111, section508, section508.22.a |
