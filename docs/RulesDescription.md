@@ -79,7 +79,7 @@ ControlShouldSupportScrollItemPattern | An element whose parent supports the Scr
 ControlShouldSupportSelectionItemPattern | An element of the given ControlType must support the SelectionItem pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportSelectionPattern | An element of the given ControlType must support the Selection pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportSetInfo | The element's ControlType requires valid values for SizeOfSet and PositionInSet. | Section 508 502.3.1 ObjectInformation | Error
-ControlShouldSupportSpreadsheetItemPattern | An element whose parent supports the Spreadsheet pattern must support the SpreadsheetItem pattern. | Section 508 502.3.10 AvailableActions | Error
+ControlShouldSupport SpreadsheetItemPattern | An element whose parent supports the Spreadsheet pattern must support the SpreadsheetItem pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTableItemPattern | An element whose parent supports the Table pattern must support the TableItem pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTablePattern | An element of the given ControlType must support the Table pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTogglePattern | An element of the given ControlType must support the Toggle pattern. | Section 508 502.3.10 AvailableActions | Error
@@ -110,9 +110,9 @@ IsControlElementTrueOptional | The recommended value of the IsControlElement pro
 IsControlElementTrueRequired | The given ControlType must have the IsControlElement property set to TRUE. | Section 508 502.3.1 ObjectInformation | Error
 IsKeyboardFocusableShouldBeTrue | The IsKeyboardFocusable property for the given element should be true based on its control type. | WCAG 2.1.1 Keyboard | Warning
 IsKeyboardFocusableFalseButDisabled | The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable. | WCAG 2.1.1 Keyboard | Warning
-IsKeyboardFocusableForListItemShouldBeTrue | The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children. | WCAG 2.1.1 Keyboard | Warning
+IsKeyboardFocusableFor ListItemShouldBeTrue | The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children. | WCAG 2.1.1 Keyboard | Warning
 IsKeyboardFocusableFalseButOffscreen | The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable. | WCAG 2.1.1 Keyboard | Warning
-IsKeyboardFocusableForCustomShouldBeTrue | The IsKeyboardFocusable property for a custome element should be true when the element supports actionable patterns. | WCAG 2.1.1 Keyboard | Warning
+IsKeyboardFocusableFor CustomShouldBeTrue | The IsKeyboardFocusable property for a custome element should be true when the element supports actionable patterns. | WCAG 2.1.1 Keyboard | Warning
 IsKeyboardFocusableDescendantTextPattern | The IsKeyboardFocusable property may be false when the given element supports the text pattern and is the descendant of an element that also supports the text pattern. Please consider if the given element should or should not be focusable. | WCAG 2.1.1 Keyboard | Warning
 IsKeyboardFocusableOnEmptyContainer | The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by AT users. | WCAG 2.1.1 Keyboard | Warning
 IsKeyboardFocusableShouldBeFalse | The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type. | WCAG 2.1.1 Keyboard | Warning
