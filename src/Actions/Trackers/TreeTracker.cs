@@ -150,6 +150,12 @@ namespace Axe.Windows.Actions.Trackers
 
             var retVal = getNextElement?.Invoke(treeWalker, currentElement);
 
+            if (retVal == null)
+            {
+                Marshal.ReleaseComObject(treeWalker);
+                return null;
+            }
+
             // make sure that we skip an element from current process while walking tree.
             // this code should be hit only at App level. but for sure. 
             if(DesktopElement.IsFromCurrentProcess(retVal))
