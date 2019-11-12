@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
-using System.Runtime.InteropServices;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
+using System;
+using System.Runtime.InteropServices;
 using UIAutomationClient;
 
 namespace Axe.Windows.Actions.Trackers
@@ -123,9 +123,9 @@ namespace Axe.Windows.Actions.Trackers
             var element = GetNearbyElement(getElementMethod);
             if (element == null) throw new TreeNavigationFailedException();
 
-            #pragma warning disable CA2000 // Call IDisposable.Dispose()
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
             var desktopElement = new DesktopElement(element, true, false);
-            #pragma warning restore CA2000
+#pragma warning restore CA2000
 
             desktopElement.PopulateMinimumPropertiesForSelection();
             if (desktopElement.IsRootElement() == false)
@@ -148,15 +148,21 @@ namespace Axe.Windows.Actions.Trackers
 
             var treeWalker = A11yAutomation.GetTreeWalker(this.TreeViewMode);
 
-            var retVal = getNextElement?.Invoke(treeWalker, currentElement);
+            var nextElement = getNextElement?.Invoke(treeWalker, currentElement);
+
+            if (nextElement == null)
+            {
+                Marshal.ReleaseComObject(treeWalker);
+                return null;
+            }
 
             // make sure that we skip an element from current process while walking tree.
             // this code should be hit only at App level. but for sure. 
-            if(DesktopElement.IsFromCurrentProcess(retVal))
+            if (DesktopElement.IsFromCurrentProcess(nextElement))
             {
-                var tmp = retVal;
+                var tmp = nextElement;
 
-                retVal = getNextElement?.Invoke(treeWalker, retVal);
+                nextElement = getNextElement?.Invoke(treeWalker, nextElement);
 
                 // since element is not in use, release. 
                 Marshal.ReleaseComObject(tmp);
@@ -164,7 +170,7 @@ namespace Axe.Windows.Actions.Trackers
 
             Marshal.ReleaseComObject(treeWalker);
 
-            return retVal;
+            return nextElement;
         }
 
         private IUIAutomationElement GetCurrentElement()
