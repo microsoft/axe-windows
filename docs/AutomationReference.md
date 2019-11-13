@@ -1,5 +1,7 @@
 ## Axe.Windows - automation reference
 
+Note: The following documentation describes the supported API provided by Axe.Windows. There are other, public interfaces and classes in various assemblies throughout the package; however, please be aware that interfaces and classes not described in this document are not supported and may change at any time.
+
 ### Class details
 
 #### Config.Builder
