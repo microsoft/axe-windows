@@ -71,7 +71,7 @@ namespace Axe.Windows.Actions.Contexts
                 return _dataContext;
             }
 
-            set
+            internal set
             {
                 _dataContext?.Dispose();
                 _dataContext = value;

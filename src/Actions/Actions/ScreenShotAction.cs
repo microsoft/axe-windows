@@ -16,6 +16,10 @@ namespace Axe.Windows.Actions
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public static class ScreenShotAction
     {
+        // unit test hooks
+        internal static Func<DataManager> GetDataManager = () => DataManager.GetDefaultInstance();
+        internal static Func<int, int, Bitmap> CreateBitmap = (width, height) => new Bitmap(width, height);
+
         /// <summary>
         /// Take a screenshot of the given element's parent window, if it has one
         ///     returns null if the bounding rectangle is 0-sized
@@ -25,7 +29,7 @@ namespace Axe.Windows.Actions
         {
             try
             {
-                var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+                var ec = GetDataManager().GetElementContext(ecId);
                 var el = ec.Element;
 
                 var win = el.GetParentWindow();
@@ -35,7 +39,8 @@ namespace Axe.Windows.Actions
                 {
                     return; // no capture. 
                 }
-                Bitmap bmp = new Bitmap(rect.Width, rect.Height);
+
+                Bitmap bmp = CreateBitmap(rect.Width, rect.Height);
                 Graphics g = Graphics.FromImage(bmp);
 
                 g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size);
