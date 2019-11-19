@@ -97,7 +97,7 @@ namespace Axe.Windows.ActionsTests.Actions
             }
         }
 
-            [TestMethod]
+        [TestMethod]
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
