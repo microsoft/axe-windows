@@ -29,8 +29,8 @@ namespace Axe.Windows.ActionsTests.Actions
             element.Properties.Add(typeId, new A11yProperty(typeId, data));
         }
 
-        [TestInitialize]
-        public void TestInitialize()
+        [TestCleanup]
+        public void TestCleanup()
         {
             ScreenShotAction.GetDataManager = () => DataManager.GetDefaultInstance();
             ScreenShotAction.CreateBitmap = (w, h) => new Bitmap(w, h);
