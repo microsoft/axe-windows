@@ -29,42 +29,40 @@ namespace Axe.Windows.ActionsTests.Actions
             element.Properties.Add(typeId, new A11yProperty(typeId, data));
         }
 
+        [TestCleanup]
+        public void TestCleanup()
+        {
+            ScreenShotAction.GetDataManager = () => DataManager.GetDefaultInstance();
+            ScreenShotAction.CreateBitmap = (w, h) => new Bitmap(w, h);
+        }
+
         [TestMethod]
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (ShimsContext.Create())
+            using (var dm = new DataManager())
             {
-                bool bitmapsetcalled = false;
-
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
                 {
-                    Parent = null,
+                    UniqueId = 42,
                 };
 
-                ElementDataContext dc = new ShimElementDataContext()
+                var dc = new ElementDataContext(element, 1);
+
+                var elementContext = new ElementContext(element)
                 {
-                    ScreenshotSetBitmap = (_) => bitmapsetcalled = true,
+                    DataContext = dc,
                 };
 
-                ElementContext elementContext = new ShimElementContext
-                {
-                    ElementGet = () => element,
-                    DataContextGet = () => dc,
-                };
+                dm.AddElementContext(elementContext);
 
-                ShimDataManager.GetDefaultInstance = () => new ShimDataManager
-                {
-                    GetElementContextGuid = (_) => elementContext,
-                };
+                ScreenShotAction.GetDataManager = () => dm;
+                
+                ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
-                ScreenShotAction.CaptureScreenShot(Guid.NewGuid());
-
-                // screenshot is not set(null)
                 Assert.IsNull(dc.Screenshot);
-                // ScreenShotSet was not called.
-                Assert.IsFalse(bitmapsetcalled);
+                Assert.AreEqual(default(int), dc.ScreenshotElementId);
             }
         }
 
@@ -72,41 +70,30 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (ShimsContext.Create())
+            using (var dm = new DataManager())
             {
-                bool bitmapsetcalled = false;
-
-                //  bounding rectangle exists.
                 A11yElement element = new A11yElement
                 {
-                    UniqueId = 1,
+                    UniqueId = 42,
                 };
+
                 SetBoundingRectangle(element, new Rectangle(0, 0, 10, 10));
 
-                ElementDataContext dc = new ShimElementDataContext()
+                var dc = new ElementDataContext(element, 1);
+
+                var elementContext = new ElementContext(element)
                 {
-                    ScreenshotSetBitmap = (_) => bitmapsetcalled = true,
+                    DataContext = dc,
                 };
 
-                ElementContext elementContext = new ShimElementContext
-                {
-                    ElementGet = () => element,
-                    DataContextGet = () => dc,
-                };
+                dm.AddElementContext(elementContext);
 
-                ShimDataManager.GetDefaultInstance = () => new ShimDataManager
-                {
-                    GetElementContextGuid = (_) => elementContext,
-                };
+                ScreenShotAction.GetDataManager = () => dm;
 
-                Graphics g = new ShimGraphics();
+                ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
-                ShimGraphics.FromImageImage = (_) => g;
-
-                ScreenShotAction.CaptureScreenShot(Guid.NewGuid());
-
-                // bitmap is set
-                Assert.IsTrue(bitmapsetcalled);
+                Assert.IsNotNull(dc.Screenshot);
+                Assert.AreEqual(element.UniqueId, dc.ScreenshotElementId);
             }
         }
 
@@ -114,42 +101,31 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (ShimsContext.Create())
+            using (var dm = new DataManager())
             {
-                bool bitmapsetcalled = false;
-
-                //  bounding rectangle exists.
                 A11yElement element = new A11yElement
                 {
-                    UniqueId = 1,
+                    UniqueId = 42,
                 };
+
                 SetBoundingRectangle(element, new Rectangle(0, 0, 10, 10));
 
-                ElementDataContext dc = new ShimElementDataContext()
+                var dc = new ElementDataContext(element, 1);
+
+                var elementContext = new ElementContext(element)
                 {
-                    ScreenshotSetBitmap = (_) => bitmapsetcalled = true,
+                    DataContext = dc,
                 };
 
-                ElementContext elementContext = new ShimElementContext
-                {
-                    ElementGet = () => element,
-                    DataContextGet = () => dc,
-                };
+                dm.AddElementContext(elementContext);
 
-                ShimDataManager.GetDefaultInstance = () => new ShimDataManager
-                {
-                    GetElementContextGuid = (_) => elementContext,
-                };
+                ScreenShotAction.GetDataManager = () => dm;
+                ScreenShotAction.CreateBitmap = (w, h) => throw new TypeInitializationException("Bitmap", null);
 
-                ShimBitmap.ConstructorInt32Int32 = (_, w, h) => throw new TypeInitializationException("Bitmap", null);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
-                ScreenShotAction.CaptureScreenShot(Guid.NewGuid());
-
-                // screenshot is not set(null)
                 Assert.IsNull(dc.Screenshot);
-                // ScreenShotSet was not called.
-                Assert.IsFalse(bitmapsetcalled);
-
+                Assert.AreEqual(default(int), dc.ScreenshotElementId);
             }
         }
     }
