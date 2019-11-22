@@ -34,6 +34,7 @@ namespace Axe.Windows.ActionsTests.Actions
         {
             ScreenShotAction.GetDataManager = () => DataManager.GetDefaultInstance();
             ScreenShotAction.CreateBitmap = (w, h) => new Bitmap(w, h);
+            ScreenShotAction.CopyFromScreen = ScreenShotAction.DefaultCopyFromScreen;
         }
 
         [TestMethod]
@@ -89,6 +90,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 dm.AddElementContext(elementContext);
 
                 ScreenShotAction.GetDataManager = () => dm;
+                ScreenShotAction.CopyFromScreen = (g, x, y, s) => { };
 
                 ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
