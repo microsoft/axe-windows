@@ -19,6 +19,8 @@ namespace Axe.Windows.Actions
         // unit test hooks
         internal static Func<DataManager> GetDataManager = () => DataManager.GetDefaultInstance();
         internal static Func<int, int, Bitmap> CreateBitmap = (width, height) => new Bitmap(width, height);
+        internal static readonly Action<Graphics, int, int, Size> DefaultCopyFromScreen = (g, x, y, s) => g.CopyFromScreen(x, y, 0, 0, s);
+        internal static Action<Graphics, int, int, Size> CopyFromScreen = DefaultCopyFromScreen;
 
         /// <summary>
         /// Take a screenshot of the given element's parent window, if it has one
@@ -43,7 +45,8 @@ namespace Axe.Windows.Actions
                 Bitmap bmp = CreateBitmap(rect.Width, rect.Height);
                 Graphics g = Graphics.FromImage(bmp);
 
-                g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size);
+                CopyFromScreen(g, rect.X, rect.Y, rect.Size);
+
                 ec.DataContext.Screenshot = bmp;
                 ec.DataContext.ScreenshotElementId = el.UniqueId;
             }
