@@ -11,8 +11,6 @@ jobs:
 - job: Release
   pool:
     vmImage: 'windows-2019'
-  variables:
-    FAKES_SUPPORTED: 1
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -64,8 +62,6 @@ jobs:
 - job: Debug
   pool:
     vmImage: 'windows-2019'
-  variables:
-    FAKES_SUPPORTED: 1
   steps:
   - task: NuGetToolInstaller@0
     displayName: 'Use NuGet 5.0.0'
@@ -103,22 +99,3 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: debug
       rerunFailedTests: true
-
-- job: build_without_fakes
-  pool:
-    vmImage: 'windows-2019'
-  steps:
-  - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 5.0.0'
-    inputs:
-      versionSpec: '5.0.0'
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 16.0
-      platform: '$(BuildPlatform)'
-      configuration: debug
