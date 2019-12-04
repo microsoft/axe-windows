@@ -41,8 +41,9 @@ CI | Builds the NuGet package that will be referenced by code that uses the libr
 
 #### Tests
 
-Unit tests are built using a combination of Moq and Microsoft Fakes. The folllowing projects exist for testing purposes:
-- Fakes.Prebuild
+_Note_: Please use the Moq library when mocking interfaces. Do __not__ use Microsoft Fakes because not all editions of Visual Studio support them.
+
+The folllowing projects exist for testing purposes:
 - ActionsTests
 - AutomationTests
 - CoreTests

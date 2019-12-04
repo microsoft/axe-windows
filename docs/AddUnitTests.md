@@ -51,12 +51,4 @@ will tell you that `TryGetValue` failed without telling you the key it was looki
 
 The output will now tell you that `IsTrue` failed, but also why. This is especially handy in cases where your `Assert` statement appears within a loop
 
-### Working with Microsoft Fakes
-
-**Important**: Do not add any unit tests which use Microsoft Fakes into any project.
-
-Some of the unit tests in Accessibility Insights For Windows use Microsoft Fakes to replace system calls which are otherwise difficult to mock using standard mocking frameworks. The problem is that certain editions of Visual Studio, like Enterprise, support Fakes. And some, like Community, do not. Because Accessibility Insights is open source, we cannot predict which editions of Visual Studio contributors will have access to. Therefore, we have disabled the running of tests which contain Fakes by default. Furthermore, we intend to remove all Fakes from all projects in Axe.Windows. Therefore, no tests requiring Fakes should be added to Axe.Windows.
-
-But while the Fakes still exist, if you have an edition of Visual Studio which supports Fakes and you would like to run the unit tests which require them, add an environment variable to your system named `FAKES_SUPPORTED` and set it equal to `1`. Then, restart Visual Studio.
-
 For unit test bar and standards please visit [Unit test Bar and Standards](UnitTestBarAndStandards.md)

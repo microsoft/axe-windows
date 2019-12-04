@@ -2,16 +2,12 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
-using Axe.Windows.Actions.Contexts.Fakes;
-using Axe.Windows.Actions.Fakes;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
-using Microsoft.QualityTools.Testing.Fakes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Fakes;
 
 namespace Axe.Windows.ActionsTests.Actions
 {
