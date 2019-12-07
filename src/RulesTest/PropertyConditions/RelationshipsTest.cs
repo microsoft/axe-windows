@@ -13,7 +13,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
     public class RelationshipsTest
     {
         [TestMethod]
-        public void TestSibblingsWithSameTypeTrue()
+        public void TestSiblingsWithSameTypeTrue()
         {
             using (var e = new MockA11yElement())
             using (var sibbling = new MockA11yElement())
@@ -31,7 +31,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
-        public void TestSibblingsWithSameTypeFalse()
+        public void TestSiblingsWithSameTypeFalse()
         {
             using (var e = new MockA11yElement())
             using (var sibbling = new MockA11yElement())
@@ -49,7 +49,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
-        public void TestNoSibblingsWithSameTypeTrue()
+        public void TestNoSiblingsWithSameTypeTrue()
         {
             using (var e = new MockA11yElement())
             using (var sibbling = new MockA11yElement())
@@ -67,7 +67,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
-        public void TestNoSibblingsWithSameTypeFalse()
+        public void TestNoSiblingsWithSameTypeFalse()
         {
             using (var e = new MockA11yElement())
             using (var sibbling = new MockA11yElement())
