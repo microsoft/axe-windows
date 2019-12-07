@@ -20,6 +20,6 @@ namespace Axe.Windows.Win32
         internal static extern uint VariantClear(ref dynamic pvarg);
 
         [DllImport("user32.dll")]
-        internal static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+        internal static extern int GetWindowLong(IntPtr hWnd, int nIndex);
     }
 }

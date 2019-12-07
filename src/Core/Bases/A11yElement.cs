@@ -409,12 +409,22 @@ namespace Axe.Windows.Core.Bases
         }
 
         /// <summary>
+        /// Gets a specified int property value for the current platform, e.g., Windows.
+        /// </summary>
+        /// <param name="propertyId">the ID of the platform property to retrieve; see <see cref="PlatformPropertyType"/></param>
+        /// <returns>the value of the specified property if it exists; otherwise, default(int)</returns>
+        public int GetPlatformPropertyInt(int propertyId)
+        {
+            return GetPlatformPropertyValue<int>(propertyId);
+        }
+
+        /// <summary>
         /// Gets a specified property value for the current platform, e.g., Windows.
         /// </summary>
         /// <typeparam name="T">the expected type of the property value</typeparam>
         /// <param name="propertyId">the ID of the platform property to retrieve; see <see cref="PlatformPropertyType"/></param>
         /// <returns>the value of the specified property if it exists; otherwise, the default value for the given type</returns>
-        public T GetPlatformPropertyValue<T>(int propertyId)
+        private T GetPlatformPropertyValue<T>(int propertyId)
         {
             var property = this.PlatformProperties?.ById(propertyId);
             if (property == null) return default(T);

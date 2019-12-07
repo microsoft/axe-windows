@@ -14,7 +14,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
             
-            var style = e.GetPlatformPropertyValue<int>(PlatformPropertyType.Platform_WindowsStylePropertyId);
+            var style = e.GetPlatformPropertyInt(PlatformPropertyType.Platform_WindowsStylePropertyId);
 
             const int CBS_SIMPLE = 1;
 

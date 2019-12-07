@@ -263,7 +263,7 @@ public void TestElementsWithNoSibblingsOfSameControlType()
         [TestMethod]
         public void TestTextWithDisallowedPlatformProperties()
         {
-            const uint WS_EX_STATICEDGE = 0x00020000;
+            const int WS_EX_STATICEDGE = 0x00020000;
 
             using (var e = new MockA11yElement())
             {

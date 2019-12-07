@@ -42,6 +42,6 @@ namespace Axe.Windows.Core.Bases
 
         bool TryGetPropertyValue<T>(int propertyId, out T value);
         IA11yPattern GetPattern(int patternId);
-        T GetPlatformPropertyValue<T>(int propertyId);
+        int GetPlatformPropertyInt(int propertyId);
     } // class
 } // namespace

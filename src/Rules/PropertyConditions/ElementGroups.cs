@@ -179,9 +179,9 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool HasStaticEdgeExtendedStyle(IA11yElement e)
         {
-            var platformProperty = e?.GetPlatformPropertyValue<uint>(PlatformPropertyType.Platform_WindowsExtendedStylePropertyId);
+            var platformProperty = e?.GetPlatformPropertyInt(PlatformPropertyType.Platform_WindowsExtendedStylePropertyId);
 
-            const uint WS_EX_STATICEDGE = 0x00020000;
+            const int WS_EX_STATICEDGE = 0x00020000;
 
             return (platformProperty & WS_EX_STATICEDGE) != 0;
         }
