@@ -34,8 +34,7 @@ namespace Axe.Windows.Rules.Library
 
             var rangeValue = e.GetPattern(PatternType.UIA_RangeValuePatternId);
 
-            return PropertyValueMatches(rangeValue, "Minimum", 0.0)
-                && PropertyValueMatches(rangeValue, "Maximum", 100.0)
+            return MaxGreaterThanMin(rangeValue)
                 && PropertyValueMatches(rangeValue, "IsReadOnly", true);
         }
 
@@ -48,6 +47,16 @@ namespace Axe.Windows.Rules.Library
             if (equatable == null) return false;
 
             return equatable.Equals(value);
+        }
+
+        private static bool MaxGreaterThanMin(IA11yPattern pattern)
+        {
+            if (pattern == null) throw new ArgumentNullException(nameof(pattern));
+
+            var max = pattern.GetValue<int>("Maximum");
+            var min = pattern.GetValue<int>("Minimum");
+
+            return max > min;
         }
 
         protected override Condition CreateCondition()

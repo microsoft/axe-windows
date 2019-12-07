@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using System.Text;
+using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
@@ -51,6 +52,16 @@ namespace Axe.Windows.RulesTest.Library
                 e.LocalizedControlType = "Button";
                 Action action = () => { Rule.Evaluate(e); };
                 Assert.ThrowsException<ArgumentException>(action);
+            } // using
+        }
+
+        [TestMethod]
+        public void NameIsReasonableLength_TextElement_NotApplicable()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.ControlTypeId = ControlType.Text;
+                Assert.IsFalse(Rule.Condition.Matches(e));
             } // using
         }
     } // class
