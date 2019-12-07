@@ -6,6 +6,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.Resources;
+using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
@@ -35,7 +36,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Name.NotNullOrEmpty;
+            return Name.NotNullOrEmpty & ~Text;
         }
     } // class
 } // namespace
