@@ -3,6 +3,7 @@
 using Axe.Windows.Automation;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -14,10 +15,25 @@ namespace Axe.Windows.AutomationTests
     [TestClass, TestCategory(TestCategory.Integration)]
     public class AutomationIntegrationTests
     {
-        readonly string TestAppPath = Path.GetFullPath("../../../../tools/WildlifeManager/WildlifeManager.exe");
+        // These values should change only in response to intentional rule modifications
+        const int WildlifeManagerKnownErrorCount = 12;
+        const int Win32ControlSamplerKnownErrorCount = 0;
+        const int WindowsFormsControlSamplerKnownErrorCount = 6;
+        const int WpfControlSamplerKnownErrorCount = 5;
+
+        readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../tools/WildlifeManager/WildlifeManager.exe");
+        readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
+        readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
+        readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../tools/WpfControlSampler/WpfControlSampler.exe");
+
         readonly string OutputDir = Path.GetFullPath("./TestOutput");
         readonly string ValidationAppFolder;
         readonly string ValidationApp;
+
+        // Build agents need more than than local dev machines to have the test app
+        // up and running. Pipelines set BUILD_BUILDID, dev machines don't
+        private TimeSpan testAppDelay = string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")) ?
+            TimeSpan.FromSeconds(2) : TimeSpan.FromSeconds(10);
 
         public AutomationIntegrationTests()
         {
@@ -34,12 +50,6 @@ namespace Axe.Windows.AutomationTests
 
         Process TestProcess;
 
-        [TestInitialize]
-        public void Startup()
-        {
-            LaunchTestApp();
-        }
-
         [TestCleanup]
         public void Cleanup()
         {
@@ -50,8 +60,36 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(30000)]
-        public void Scan_Integration()
+        public void Scan_Integration_WildlifeManager()
         {
+            ScanResults results = Scan_Integration_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
+            EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_Win32ControlSampler()
+        {
+            Scan_Integration_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsControlSampler()
+        {
+            Scan_Integration_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WpfControlSampler()
+        {
+            Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+        }
+
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount)
+        {
+            LaunchTestApp(testAppPath);
             var config = Config.Builder.ForProcessId(TestProcess.Id)
                 .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
@@ -61,21 +99,28 @@ namespace Axe.Windows.AutomationTests
 
             var output = scanner.Scan();
 
-            var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
+            // Validate for consistency
+            Assert.AreEqual(expectedErrorCount, output.ErrorCount);
+            Assert.AreEqual(expectedErrorCount, output.Errors.Count());
 
-            // Validate that we got some errors
-            Assert.IsTrue(output.ErrorCount > 0);
-            Assert.AreEqual(output.ErrorCount, output.Errors.Count());
+            if (expectedErrorCount > 0)
+            {
+                var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
 
-            // Validate that we got some properties and patterns
-            Assert.IsTrue(output.Errors.All(error => error.Element.Properties != null));
-            Assert.IsTrue(output.Errors.All(error => error.Element.Patterns != null));
+                // Validate the output file exists where it is expected
+                Assert.IsTrue(Regex.IsMatch(output.OutputFile.A11yTest, regexForExpectedFile));
+                Assert.IsTrue(File.Exists(output.OutputFile.A11yTest));
 
-            // Validate the output file exists where it is expected
-            Assert.IsTrue(Regex.IsMatch(output.OutputFile.A11yTest, regexForExpectedFile));
-            Assert.IsTrue(File.Exists(output.OutputFile.A11yTest));
+                // Validate that we got some properties and patterns
+                Assert.IsTrue(output.Errors.All(error => error.Element.Properties != null));
+                Assert.IsTrue(output.Errors.All(error => error.Element.Patterns != null));
+            }
+            else
+            {
+                Assert.IsNull(output.OutputFile.A11yTest);
+            }
 
-            EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(output, TestProcess.Id);
+            return output;
         }
 
         private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
@@ -102,14 +147,13 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private void LaunchTestApp()
+        private void LaunchTestApp(string testAppPath)
         {
             TestProcess?.Kill();
-            TestProcess = Process.Start(TestAppPath);
+            TestProcess = Process.Start(testAppPath);
             TestProcess.WaitForInputIdle();
 
-            // this is painfully long, but the build agents will fail the test without it
-            Thread.Sleep(10000);
+            Thread.Sleep(testAppDelay);
         }
 
         private void StopTestApp()
