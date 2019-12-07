@@ -1007,7 +1007,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNullButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameReasonableLength]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);

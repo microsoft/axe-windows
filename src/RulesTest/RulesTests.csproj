@@ -101,6 +101,7 @@
     <Compile Include="Library\HelpTextExcludesPrivateUnicodeCharactersUnitTests.cs" />
     <Compile Include="Library\NameExcludesPrivateUnicodeCharactersUnitTests.cs" />
     <Compile Include="Library\NameExcludesLocalizedControlType.cs" />
+    <Compile Include="Library\ProgressBarRangeValue.cs" />
     <Compile Include="Library\SelectionItemPatternSingleSelection.cs" />
     <Compile Include="Library\SelectionPatternSelectionRequired.cs" />
     <Compile Include="Library\ParentChildShouldNotHaveSameNameAndLocalizedControlType.cs" />
