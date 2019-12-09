@@ -75,10 +75,10 @@ namespace Axe.Windows.Actions.Trackers
 
         public void MoveToNextSibling()
         {
-            MoveTo(this.GetNexSibling);
+            MoveTo(this.GetNextSibling);
         }
 
-        private IUIAutomationElement GetNexSibling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
+        private IUIAutomationElement GetNextSibling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
         {
             if (element == null) return null;
 
