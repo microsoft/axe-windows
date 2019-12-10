@@ -169,7 +169,7 @@ public void TestCustomWithDisallowedParents()
 }
 
 [TestMethod]
-public void TestElementsWithSibblingsOfSameControlType()
+public void TestElementsWithSiblingsOfSameControlType()
 {
     // this only applies to headers and status bars at the moment
     int[] controlTypes = { Header, StatusBar };
@@ -192,7 +192,7 @@ public void TestElementsWithSibblingsOfSameControlType()
 }
 
 [TestMethod]
-public void TestElementsWithNoSibblingsOfSameControlType()
+public void TestElementsWithNoSiblingsOfSameControlType()
 {
     // this only applies to headers and status bars at the moment
     int[] controlTypes = { Header, StatusBar };

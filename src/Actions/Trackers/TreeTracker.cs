@@ -73,24 +73,24 @@ namespace Axe.Windows.Actions.Trackers
             return treeWalker?.GetLastChildElement(element);
         }
 
-        public void MoveToNextSibbling()
+        public void MoveToNextSibling()
         {
-            MoveTo(this.GetNexSibbling);
+            MoveTo(this.GetNextSibling);
         }
 
-        private IUIAutomationElement GetNexSibbling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
+        private IUIAutomationElement GetNextSibling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
         {
             if (element == null) return null;
 
             return treeWalker?.GetNextSiblingElement(element);
         }
 
-        public void MoveToPreviousSibbling()
+        public void MoveToPreviousSibling()
         {
-            MoveTo(this.GetPreviousSibbling);
+            MoveTo(this.GetPreviousSibling);
         }
 
-        private IUIAutomationElement GetPreviousSibbling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
+        private IUIAutomationElement GetPreviousSibling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
         {
             if (element == null) return null;
 
