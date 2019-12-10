@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -97,6 +98,7 @@ namespace Axe.Windows.CoreTests.Bases
         /// Test various getters which use GetPropertySafely
         /// </summary>
         [TestMethod()]
+        [Timeout(2000)]
         public void GetPropertySafelyTest()
         {
             A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yElementTest.hier");
@@ -118,6 +120,63 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.IsTrue(ke.IsContentElement);
             Assert.IsTrue(ke.IsControlElement);
             Assert.IsTrue(ke.IsKeyboardFocusable);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void GetPlatformProperty_DataIsUint_ReadsAsUint_Succeeds()
+        {
+            const uint expectedValue = 12345;
+            const int propertyId = 5;
+
+            A11yElement e = new A11yElement
+            {
+                PlatformProperties = new Dictionary<int, A11yProperty>
+                {
+                    { propertyId, new A11yProperty(propertyId, expectedValue) },
+                }
+            };
+
+            uint actualData = e.GetPlatformPropertyValue<uint>(propertyId);
+            Assert.AreEqual(actualData, expectedValue);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void GetPlatformProperty_DataIsUint_ReadsAsInt_Succeeds()
+        {
+            const uint expectedValue = 12345;
+            const int propertyId = 5;
+
+            A11yElement e = new A11yElement
+            {
+                PlatformProperties = new Dictionary<int, A11yProperty>
+                {
+                    { propertyId, new A11yProperty(propertyId, expectedValue) },
+                }
+            };
+
+            int actualData = e.GetPlatformPropertyValue<int>(propertyId);
+            Assert.AreEqual(actualData, (int)expectedValue);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        [ExpectedException(typeof(InvalidCastException))]
+        public void GetPlatformProperty_DataIsUint_ReadsAsLong_ThrowsInvalidCastException()
+        {
+            const uint expectedValue = 12345;
+            const int propertyId = 5;
+
+            A11yElement e = new A11yElement
+            {
+                PlatformProperties = new Dictionary<int, A11yProperty>
+                {
+                    { propertyId, new A11yProperty(propertyId, expectedValue) },
+                }
+            };
+
+            long actualData = e.GetPlatformPropertyValue<long>(propertyId);
         }
     }
 }

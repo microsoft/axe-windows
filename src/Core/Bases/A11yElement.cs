@@ -418,9 +418,22 @@ namespace Axe.Windows.Core.Bases
         {
             var property = this.PlatformProperties?.ById(propertyId);
             if (property == null) return default(T);
-            if (!(property.Value is T)) throw new Exception(Invariant($"Expected property.Value, which is type {property.Value.GetType().Name}, to be type {typeof(T).Name}"));
+            Type propertyType = property.Value.GetType();
+            Type requestedType = typeof(T);
 
-            return property.Value;
+            ThrowIfTypesAreIncompatible(propertyType, requestedType);
+
+            return (T)(property.Value);
+        }
+
+        private void ThrowIfTypesAreIncompatible(Type propertyType, Type requestedType)
+        {
+            if (propertyType == requestedType) return;
+
+            // Explicitly allow specific type pairings
+            if (propertyType == typeof(uint) && requestedType == typeof(int)) return;
+
+            throw new InvalidCastException(Invariant($"Expected property.Value, which is type {propertyType.Name}, to be type {requestedType.Name}"));
         }
 
         /// <summary>
