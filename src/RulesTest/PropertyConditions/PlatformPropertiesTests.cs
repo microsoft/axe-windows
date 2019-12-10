@@ -15,7 +15,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                var p = new A11yProperty(PlatformPropertyType.Platform_WindowsStylePropertyId, 1);
+                var p = new A11yProperty(PlatformPropertyType.Platform_WindowsStylePropertyId, 1u);
                 e.PlatformProperties.Add(PlatformPropertyType.Platform_WindowsStylePropertyId, p);
 
                 Assert.IsTrue(PlatformProperties.SimpleStyle.Matches(e));
