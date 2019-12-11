@@ -18,10 +18,10 @@ namespace Axe.Windows.Desktop.UIAutomation
     {
         private static readonly List<int> _excludedPropertyIds = new List<int>()
         {
-            PropertyType.UIA_ClickablePointPropertyId // do not remove it since it causes an issue with Edge when this value is there. 
+            // do not remove the following since it causes an issue with Edge when this value is there. 
+            // The clickable point is retrieved later once it can be determined the element does not belong to Edge
+            PropertyType.UIA_ClickablePointPropertyId,
         };
-
-        public static IReadOnlyList<int> ExcludedPropertyIds => _excludedPropertyIds;
 
         /// <summary>
         /// Constructor for DesktopElement

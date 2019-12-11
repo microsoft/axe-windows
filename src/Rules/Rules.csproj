@@ -75,6 +75,7 @@
     <Compile Include="Library\ComboBoxShouldNotSupportScrollPattern.cs" />
     <Compile Include="Library\HyperlinkNameShouldBeUnique.cs" />
     <Compile Include="Library\HelpTextExcludesPrivateUnicodeCharacters.cs" />
+    <Compile Include="Library\ClickablePointOnScreen.cs" />
     <Compile Include="Library\LocalizedControlTypeExcludesPrivateUnicodeCharacters.cs" />
     <Compile Include="Library\NameExcludesPrivateUnicodeCharacters.cs" />
     <Compile Include="Library\ParentChildShouldNotHaveSameNameAndLocalizedControlType.cs" />
@@ -207,7 +208,9 @@
     <Compile Include="Library\Structure\ControlView\Tree.cs" />
     <Compile Include="Library\Structure\ControlView\TreeItem.cs" />
     <Compile Include="Library\SelectionPatternSingleSelection.cs" />
+    <Compile Include="Misc\Helpers.cs" />
     <Compile Include="PropertyConditions\BoolProperties.cs" />
+    <Compile Include="PropertyConditions\ClickablePoint.cs" />
     <Compile Include="PropertyConditions\ContentView.cs" />
     <Compile Include="PropertyConditions\Context.cs" />
     <Compile Include="PropertyConditions\ControlType.cs" />

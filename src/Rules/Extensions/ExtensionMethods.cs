@@ -8,7 +8,7 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
-
+using UIAutomationClient;
 using static System.FormattableString;
 
 namespace Axe.Windows.Rules.Extensions
@@ -141,6 +141,14 @@ namespace Axe.Windows.Rules.Extensions
                 && a.Right >= (b.Right + BoundingRectangle.OverlapMargin)
                 && a.Bottom >= (b.Bottom + BoundingRectangle.OverlapMargin)
                 && a.Area() != (b.Area() + (BoundingRectangle.OverlapMargin * 4));
+        }
+
+        public static bool Contains(this tagRECT rect, Point point)
+        {
+            return point.X >= rect.left
+                && point.X <= rect.right
+                && point.Y >= rect.top
+                && point.Y <= rect.bottom;
         }
     } // class
 } // namespace

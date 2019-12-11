@@ -48,6 +48,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\UIAAssemblies\Win10.17713\Interop.UIAutomationClient.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.0.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -94,6 +95,7 @@
     <Compile Include="Library\ControlShouldSupportTablePattern.cs" />
     <Compile Include="Library\ControlShouldSupportTextPatternUnitTests.cs" />
     <Compile Include="Library\HyperlinkNameShouldBeUniqueTest.cs" />
+    <Compile Include="Library\ClickablePointOnScreen.cs" />
     <Compile Include="Library\IsKeyboardFocusableTopLevelTextPattern.cs" />
     <Compile Include="Library\IsKeyboardFocusableOnEmptyContainer.cs" />
     <Compile Include="Library\LandmarkIsTopLevel.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="PatternIDs.cs" />
     <Compile Include="PropertyConditions\BoolPropertiesTest.cs" />
     <Compile Include="PropertyConditions\IntPropertiesTests.cs" />
+    <Compile Include="PropertyConditions\ClickablePointTests.cs" />
     <Compile Include="PropertyConditions\NameTest.cs" />
     <Compile Include="PropertyConditions\BoundingRectangleTest.cs" />
     <Compile Include="PropertyConditions\RelationshipsTest.cs" />

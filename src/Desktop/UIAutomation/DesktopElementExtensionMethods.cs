@@ -6,6 +6,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using UIAutomationClient;
@@ -288,6 +289,8 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 element.UpdateGlimpse();
 
+                element.InitClickablePointProperty(uia);
+
                 // retrieve patterns from cache
                 var ptlst = from pt in ptl
                           let pi = A11yPatternFactory.GetPatternInstance(element, uia, pt.Item1, pt.Item2)
@@ -509,6 +512,39 @@ namespace Axe.Windows.Desktop.UIAutomation
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Adds the value of the ClickablePoint property to the A11yElement's Properties dictionary
+        /// </summary>
+        /// <remarks>
+        /// Requesting the clickable point property in Edge can cause a crash,
+        /// so the clickable point property is not initially populated by <see cref="DesktopElementExtensionMethods.PopulatePropertiesAndPatternsFromCache(A11yElement)"/>.
+        /// </remarks>
+        private static void InitClickablePointProperty(this A11yElement a11yElement, IUIAutomationElement uiaElement)
+        {
+            if (a11yElement.IsEdgeElement()) return;
+
+            int id = PropertyType.UIA_ClickablePointPropertyId;
+
+            double[] clickablePoint = uiaElement.GetCurrentPropertyValue(id);
+            if (clickablePoint == null) return;
+
+            string name = A11yAutomation.GetUIAutomationObject().GetPropertyProgrammaticName(id);
+
+            var prop = new A11yProperty
+            {
+                Id = id,
+                Name = name,
+                Value = new Point((int)clickablePoint[0], (int)clickablePoint[1])
+            };
+
+            a11yElement.Properties.Add(id, prop);
+        }
+
+        private static bool IsEdgeElement(this IA11yElement e)
+        {
+            return e.Framework == Axe.Windows.Core.Enums.Framework.Edge;
         }
     }
 }

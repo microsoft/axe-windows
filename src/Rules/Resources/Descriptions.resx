@@ -426,4 +426,7 @@
   <data name="PropertyExcludesPrivateUnicodeCharacters" xml:space="preserve">
     <value>The {0} property must not contain any characters in the private Unicode range.</value>
   </data>
+  <data name="ClickablePointOnScreen" xml:space="preserve">
+    <value>An element's IsOffScreen property must be false when its clickable point is on screen.</value>
+  </data>
 </root>

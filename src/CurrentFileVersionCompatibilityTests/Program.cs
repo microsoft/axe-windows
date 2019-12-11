@@ -107,7 +107,11 @@ namespace CurrentFileVersionCompatibilityTests
             // element.ProcessName is undefined in Axe.Windows 0.3.1 (fixed in 0.3.2)
             //Assert.AreEqual(string.Empty, element.ProcessName);
             Assert.AreEqual(processId, element.ProcessId);
-            Assert.IsFalse(element.BoundingRectangle.IsEmpty);
+
+            int thumb = 50027;
+            if (element.ControlTypeId != thumb)
+                Assert.IsFalse(element.BoundingRectangle.IsEmpty);
+
             Assert.IsFalse(string.IsNullOrWhiteSpace(element.ClassName));
             Assert.AreNotEqual(0, element.UniqueId);
             Assert.AreNotEqual(0, element.Properties.Count);
