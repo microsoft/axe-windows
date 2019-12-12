@@ -236,4 +236,7 @@
   <data name="IncludesPrivateUnicodeCharacters" xml:space="preserve">
     <value>{0}.IncludesPrivateUnicodeCharacters</value>
   </data>
+  <data name="ClickablePointOnScreen" xml:space="preserve">
+    <value>ClickablePointOnScreen</value>
+  </data>
 </root>

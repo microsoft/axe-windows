@@ -255,5 +255,7 @@ namespace Axe.Windows.Core.Enums
         NameExcludesPrivateUnicodeCharacters,
         HelpTextExcludesPrivateUnicodeCharacters,
         LocalizedControlTypeExcludesPrivateUnicodeCharacters,
+
+        ClickablePointOnScreen,
     }
 }
