@@ -45,7 +45,7 @@ namespace Axe.Windows.AutomationTests
                 ));
             ValidationApp = Path.Combine(ValidationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
 
-            // Build agents are less predictable that dev machines. Set the flags based
+            // Build agents are less predictable than dev machines. Set the flags based
             // on the BUILD_BUILDID environment variable (only set on build agents)
             if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")))
             {
