@@ -30,10 +30,8 @@ namespace Axe.Windows.AutomationTests
         readonly string ValidationAppFolder;
         readonly string ValidationApp;
 
-        // Build agents need more than than local dev machines to have the test app
-        // up and running. Pipelines set BUILD_BUILDID, dev machines don't
-        private TimeSpan testAppDelay = string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")) ?
-            TimeSpan.FromSeconds(2) : TimeSpan.FromSeconds(10);
+        private readonly TimeSpan testAppDelay;
+        private readonly bool allowInconclusive;
 
         public AutomationIntegrationTests()
         {
@@ -46,6 +44,21 @@ namespace Axe.Windows.AutomationTests
 #endif
                 ));
             ValidationApp = Path.Combine(ValidationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
+
+            // Build agents are less predictable than dev machines. Set the flags based
+            // on the BUILD_BUILDID environment variable (only set on build agents)
+            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")))
+            {
+                // Dev machine: Require tests with minimal timeout
+                testAppDelay = TimeSpan.FromSeconds(2);
+                allowInconclusive = false;
+            }
+            else
+            {
+                // Pipeline machine: Allow inconclusive tests, longer timeout
+                testAppDelay = TimeSpan.FromSeconds(10);
+                allowInconclusive = true;
+            }
         }
 
         Process TestProcess;
@@ -97,7 +110,7 @@ namespace Axe.Windows.AutomationTests
 
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var output = scanner.Scan();
+            var output = ScanWithProvisionForBuildAgents(scanner);
 
             // Validate for consistency
             Assert.AreEqual(expectedErrorCount, output.ErrorCount);
@@ -121,6 +134,22 @@ namespace Axe.Windows.AutomationTests
             }
 
             return output;
+        }
+
+        private ScanResults ScanWithProvisionForBuildAgents(IScanner scanner)
+        {
+            try
+            {
+                return scanner.Scan();
+            }
+            catch (AxeWindowsAutomationException e)
+            {
+                if (allowInconclusive && e.Message.Contains("Automation017"))
+                {
+                    Assert.Inconclusive("Unable to complete Integration tests");
+                }
+                throw;
+            }
         }
 
         private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
