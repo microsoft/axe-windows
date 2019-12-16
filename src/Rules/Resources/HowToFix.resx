@@ -550,4 +550,8 @@ If possible, use a predefined (non-custom) control type and the default localize
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to false.
 If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
   </data>
+  <data name="ClickablePointOffScreen" xml:space="preserve">
+    <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to true.
+If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
+  </data>
 </root>

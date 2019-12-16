@@ -257,5 +257,6 @@ namespace Axe.Windows.Core.Enums
         LocalizedControlTypeExcludesPrivateUnicodeCharacters,
 
         ClickablePointOnScreen,
+        ClickablePointOffScreen,
     }
 }

@@ -16,6 +16,7 @@ namespace Axe.Windows.Rules.PropertyConditions
     static class ClickablePoint
     {
         public static Condition OnScreen = Condition.Create(IsClickablePointOnScreen, ConditionDescriptions.ClickablePointOnScreen);
+        public static Condition OffScreen = Condition.Create(IsClickablePointOffScreen, ConditionDescriptions.ClickablePointOffScreen);
 
         private static bool IsClickablePointOnScreen(IA11yElement e)
         {
@@ -24,6 +25,15 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (!e.TryGetPropertyValue<Point>(PropertyType.UIA_ClickablePointPropertyId, out var clickablePoint)) return false;
 
             return Desktop.CachedBoundingRectangle.Contains(clickablePoint);
+        }
+
+        private static bool IsClickablePointOffScreen(IA11yElement e)
+        {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
+            if (!e.TryGetPropertyValue<Point>(PropertyType.UIA_ClickablePointPropertyId, out var clickablePoint)) return false;
+
+            return !Desktop.CachedBoundingRectangle.Contains(clickablePoint);
         }
     } // class
 } // namespace

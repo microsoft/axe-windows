@@ -133,6 +133,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ClickablePointOffScreen.
+        /// </summary>
+        internal static string ClickablePointOffScreen {
+            get {
+                return ResourceManager.GetString("ClickablePointOffScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ClickablePointOnScreen.
         /// </summary>
         internal static string ClickablePointOnScreen {

@@ -239,4 +239,7 @@
   <data name="ClickablePointOnScreen" xml:space="preserve">
     <value>ClickablePointOnScreen</value>
   </data>
+  <data name="ClickablePointOffScreen" xml:space="preserve">
+    <value>ClickablePointOffScreen</value>
+  </data>
 </root>

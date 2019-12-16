@@ -85,5 +85,59 @@ namespace Axe.Windows.RulesTest.Library
         {
             Assert.ThrowsException<ArgumentNullException>(() => ClickablePoint.OnScreen.Matches(null));
         }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_False()
+        {
+            SetupTryGetProperty(new Point(100, 100));
+            Assert.IsFalse(ClickablePoint.OffScreen.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_OffLeft_True()
+        {
+            SetupTryGetProperty(new Point(-100, 100));
+            Assert.IsTrue(ClickablePoint.OffScreen.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_OffRightt_True()
+        {
+            SetupTryGetProperty(new Point(10000, 100));
+            Assert.IsTrue(ClickablePoint.OffScreen.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_OffTop_True()
+        {
+            SetupTryGetProperty(new Point(100, -100));
+            Assert.IsTrue(ClickablePoint.OffScreen.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_OffBottom_True()
+        {
+            SetupTryGetProperty(new Point(100, 10000));
+            Assert.IsTrue(ClickablePoint.OffScreen.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_NoProperty_False()
+        {
+            SetupTryGetProperty(new Point(100, 100), false);
+            Assert.IsFalse(ClickablePoint.OffScreen.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePoint_OffScreen_NullElement_Throws()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => ClickablePoint.OffScreen.Matches(null));
+        }
     } // class
 } // namespace
