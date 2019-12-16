@@ -37,5 +37,10 @@ namespace Axe.Windows.Automation
         {
             return new AxeWindowsActions();
         }
+
+        public INativeMethods CreateNativeMethods()
+        {
+            return new NativeMethods();
+        }
     } // class
 } // namespace

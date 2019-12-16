@@ -68,6 +68,10 @@
       <Project>{7e616c64-ead7-458c-92ac-b50643e64d38}</Project>
       <Name>SystemAbstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Win32\Win32.csproj">
+      <Project>{07d333bb-1ba9-4868-a8bd-0b8f9861e70f}</Project>
+      <Name>Win32</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" />
@@ -80,12 +84,14 @@
     <Compile Include="Factory.cs" />
     <Compile Include="Interfaces\IFactory.cs" />
     <Compile Include="Interfaces\IAxeWindowsActions.cs" />
+    <Compile Include="Interfaces\INativeMethods.cs" />
     <Compile Include="Interfaces\IScanTools.cs" />
     <Compile Include="Interfaces\IScanToolsBuilder.cs" />
     <Compile Include="Interfaces\ITargetElementLocator.cs" />
     <Compile Include="Interfaces\IOutputFileHelper.cs" />
     <Compile Include="Interfaces\IScanner.cs" />
     <Compile Include="AxeWindowsActions.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="OutputFileHelper.cs" />
     <Compile Include="Interfaces\IScanResultsAssembler.cs" />
     <Compile Include="DisplayStrings.Designer.cs">

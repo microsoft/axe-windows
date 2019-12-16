@@ -12,5 +12,6 @@ namespace Axe.Windows.Automation
         IScanResultsAssembler ResultsAssembler { get; }
         ITargetElementLocator TargetElementLocator { get; }
         IAxeWindowsActions Actions { get; }
+        INativeMethods NativeMethods { get; }
     } // interface
 } // namespace
