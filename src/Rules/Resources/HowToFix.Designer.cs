@@ -225,6 +225,26 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If the element&apos;s ClickablePoint property is correct, set the element&apos;s IsOffScreen property to true.
+        ///If the element&apos;s ClickablePoint property is incorrect, please ensure it returns the correct value..
+        /// </summary>
+        internal static string ClickablePointOffScreen {
+            get {
+                return ResourceManager.GetString("ClickablePointOffScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If the element&apos;s ClickablePoint property is correct, set the element&apos;s IsOffScreen property to false.
+        ///If the element&apos;s ClickablePoint property is incorrect, please ensure it returns the correct value..
+        /// </summary>
+        internal static string ClickablePointOnScreen {
+            get {
+                return ResourceManager.GetString("ClickablePointOnScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes support the scroll pattern by default, which app developers can&apos;t easily fix..
         /// </summary>
         internal static string ComboBoxShouldNotSupportScrollPattern {
@@ -469,16 +489,6 @@ namespace Axe.Windows.Rules.Resources {
         internal static string HyperlinkNameShouldBeUnique {
             get {
                 return ResourceManager.GetString("HyperlinkNameShouldBeUnique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If the element&apos;s ClickablePoint property is correct, set the element&apos;s IsOffScreen property to false.
-        ///If the element&apos;s ClickablePoint property is incorrect, please ensure it returns the correct value..
-        /// </summary>
-        internal static string ClickablePointOnScreen {
-            get {
-                return ResourceManager.GetString("ClickablePointOnScreen", resourceCulture);
             }
         }
         

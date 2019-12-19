@@ -72,6 +72,7 @@
     <Compile Include="Library\ButtonToggleAndExpandeCollapsePatterns.cs" />
     <Compile Include="Library\ButtonInvokeAndExpandeCollapsePatterns.cs" />
     <Compile Include="Library\ButtonInvokeAndTogglePatterns.cs" />
+    <Compile Include="Library\ClickablePointOffScreen.cs" />
     <Compile Include="Library\ComboBoxShouldNotSupportScrollPattern.cs" />
     <Compile Include="Library\HyperlinkNameShouldBeUnique.cs" />
     <Compile Include="Library\HelpTextExcludesPrivateUnicodeCharacters.cs" />
