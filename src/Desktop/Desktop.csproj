@@ -171,7 +171,7 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Telemetry\Telemetry.csproj">
-      <Project>{5c394271-6d27-4a48-8a32-f8080025431c}</Project>
+      <Project>{bb5ff97b-a758-40b1-b3ff-2dc1980ba3cb}</Project>
       <Name>Telemetry</Name>
     </ProjectReference>
     <ProjectReference Include="..\Win32\Win32.csproj">
