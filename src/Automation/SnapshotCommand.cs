@@ -27,6 +27,10 @@ namespace Axe.Windows.Automation
                 if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
                 if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
                 if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
+                if (scanTools.NativeMethods == null) throw new ArgumentException(ErrorMessages.ScanToolsNativeMethodsNull, nameof(scanTools));
+
+                // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
+                scanTools.NativeMethods.SetProcessDPIAware();
 
                 var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
                 if (rootElement == null) throw new InvalidOperationException(nameof(rootElement));

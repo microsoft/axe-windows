@@ -120,6 +120,9 @@
   <data name="ScanToolsActionsNull" xml:space="preserve">
     <value>The Actions property of the given ScanTools object should not be null</value>
   </data>
+  <data name="ScanToolsNativeMethodsNull" xml:space="preserve">
+    <value>The NativeMethods property of the given ScanTools object should not be null</value>
+  </data>
   <data name="ScanToolsOutputFileHelperNull" xml:space="preserve">
     <value>The OutputFileHelper property of the given ScanTools object should not be null</value>
   </data>

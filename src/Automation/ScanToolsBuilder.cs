@@ -28,7 +28,8 @@ namespace Axe.Windows.Automation
                 _outputFileHelper ?? _factory.CreateOutputFileHelper(null),
                     _factory.CreateResultsAssembler(),
                     _factory.CreateTargetElementLocator(),
-                    _factory.CreateAxeWindowsActions());
+                    _factory.CreateAxeWindowsActions(),
+                    _factory.CreateNativeMethods());
         }
     } // class
 } // namespace

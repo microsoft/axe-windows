@@ -21,5 +21,14 @@ namespace Axe.Windows.Win32
 
         [DllImport("user32.dll")]
         internal static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+
+        /// <summary>
+        /// Turns on DPI awareness for the current process
+        /// </summary>
+        /// <returns>
+        /// true if the operation was successful, otherwise false
+        /// </returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool SetProcessDPIAware();
     }
 }
