@@ -39,12 +39,8 @@ namespace Axe.Windows.RulesTest.Library
             Rule.Evaluate(null);
         }
 
-        /// <summary>
-        /// Pass
-        /// The Grid rule has the UIA Grid PropertyId set.
-        /// </summary>
         [TestMethod]
-        public void GridPropertyExists_Pass()
+        public void CheckPropertyIdIsSet()
         {
             Assert.AreEqual(PropertyType.UIA_IsGridPatternAvailablePropertyId, this.Rule.Info.PropertyID);
         }
