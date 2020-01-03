@@ -3,41 +3,33 @@
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Enums;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 using Axe.Windows.Core.Types;
+using System.Diagnostics;
+using UIAutomationClient;
 
 namespace Axe.Windows.RulesTest.Library
 {
     [TestClass]
-    public class ControlShouldSupportTablePattern
+    public class ControlShouldSupportGridPattern
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTablePattern();
+        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportGridPattern();
 
         [TestMethod]
-        public void HasTablePattern_Pass()
+        public void HasGridPattern_Pass()
         {
             var e = new MockA11yElement();
-            e.Patterns.Add(new A11yPattern(e, PatternType.UIA_TablePatternId));
+            e.Patterns.Add(new A11yPattern(e, PatternType.UIA_GridPatternId));
 
             Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
         }
 
         [TestMethod]
-        public void NoTablePattern_Error()
+        public void NoGridPattern_Error()
         {
             var e = new MockA11yElement();
 
             Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
-        }
-
-        [TestMethod]
-        public void NoTablePatternInEdgeFramework_Error()
-        {
-            var e = new MockA11yElement();
-            e.Framework = Framework.Edge;
-
-            Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
         }
 
         [TestMethod]
@@ -50,7 +42,7 @@ namespace Axe.Windows.RulesTest.Library
         [TestMethod]
         public void CheckPropertyIdIsSet()
         {
-            Assert.AreEqual(PropertyType.UIA_IsTablePatternAvailablePropertyId, this.Rule.Info.PropertyID);
+            Assert.AreEqual(PropertyType.UIA_IsGridPatternAvailablePropertyId, this.Rule.Info.PropertyID);
         }
     } // class
 } // namespace
