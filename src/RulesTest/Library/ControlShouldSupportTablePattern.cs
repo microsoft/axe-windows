@@ -49,37 +49,11 @@ namespace Axe.Windows.RulesTest.Library
 
         /// <summary>
         /// Pass
-        /// A Table supports Table pattern
+        /// The Table rule has the UIA Table PropertyId set.
         /// </summary>
         [TestMethod]
-        public void TableWithTablePattern_Pass()
+        public void TablePropertyExists_Pass()
         {
-            var e = new MockA11yElement();
-
-            e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TableControlTypeId;
-
-            e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_TablePatternId));
-
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(e));
-
-            Assert.AreEqual(PropertyType.UIA_IsTablePatternAvailablePropertyId, this.Rule.Info.PropertyID);
-        }
-
-        /// <summary>
-        /// Fail
-        /// A Table does not support Table pattern
-        /// </summary>
-        [TestMethod]
-        public void TableWithoutTablePattern_Error()
-        {
-            var e = new MockA11yElement();
-
-            e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TableControlTypeId;
-
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Error, this.Rule.Evaluate(e));
-
             Assert.AreEqual(PropertyType.UIA_IsTablePatternAvailablePropertyId, this.Rule.Info.PropertyID);
         }
     } // class
