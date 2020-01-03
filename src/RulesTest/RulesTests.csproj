@@ -92,6 +92,7 @@
     <Compile Include="Library\ComboBoxShouldNotSupportScrollPatternTests.cs" />
     <Compile Include="Library\ControlShouldNotSupportInvokePattern.cs" />
     <Compile Include="Library\ControlShouldNotSupportScrollPatternTests.cs" />
+    <Compile Include="Library\ControlShouldSupportGridPattern.cs" />
     <Compile Include="Library\ControlShouldSupportSetInfoTest.cs" />
     <Compile Include="Library\ControlShouldSupportTablePattern.cs" />
     <Compile Include="Library\ControlShouldSupportTextPatternUnitTests.cs" />
