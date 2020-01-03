@@ -47,12 +47,8 @@ namespace Axe.Windows.RulesTest.Library
             Rule.Evaluate(null);
         }
 
-        /// <summary>
-        /// Pass
-        /// The Table rule has the UIA Table PropertyId set.
-        /// </summary>
         [TestMethod]
-        public void TablePropertyExists_Pass()
+        public void CheckPropertyIdIsSet()
         {
             Assert.AreEqual(PropertyType.UIA_IsTablePatternAvailablePropertyId, this.Rule.Info.PropertyID);
         }
