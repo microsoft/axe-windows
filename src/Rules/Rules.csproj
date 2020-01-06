@@ -304,7 +304,7 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Telemetry\Telemetry.csproj">
-      <Project>{5C394271-6D27-4A48-8A32-F8080025431C}</Project>
+      <Project>{bb5ff97b-a758-40b1-b3ff-2dc1980ba3cb}</Project>
       <Name>Telemetry</Name>
     </ProjectReference>
   </ItemGroup>
