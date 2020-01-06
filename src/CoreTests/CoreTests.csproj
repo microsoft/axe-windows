@@ -87,6 +87,7 @@
     <Compile Include="Misc\UtilityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Results\ScanMetaInfoTests.cs" />
+    <Compile Include="Types\HeadingLevelTypeTests.cs" />
     <Compile Include="Types\PropertyTypesTests.cs" />
     <Compile Include="Types\ControlTypesTests.cs" />
     <Compile Include="Types\PatternTypesTests.cs" />
