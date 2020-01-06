@@ -90,6 +90,7 @@
     <Compile Include="Types\PropertyTypesTests.cs" />
     <Compile Include="Types\ControlTypesTests.cs" />
     <Compile Include="Types\PatternTypesTests.cs" />
+    <Compile Include="Types\StyleIdTypeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

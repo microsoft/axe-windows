@@ -98,6 +98,7 @@
     <Compile Include="Types\PatternType.cs" />
     <Compile Include="Types\PlatformPropertyType.cs" />
     <Compile Include="Types\PropertyType.cs" />
+    <Compile Include="Types\StyleIdType.cs" />
     <Compile Include="Types\TypeBase.cs" />
     <None Include="app.config">
       <SubType>Designer</SubType>
