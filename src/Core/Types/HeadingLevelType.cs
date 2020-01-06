@@ -47,7 +47,7 @@ namespace Axe.Windows.Core.Types
         /// <summary>
         /// private constructor since it would be singleton model
         /// </summary>
-        private HeadingLevelType() : base() { }
+        private HeadingLevelType() : base("HeadingLevel") { }
 
         /// <summary>
         /// change name into right format in dictionary and list.
@@ -58,6 +58,7 @@ namespace Axe.Windows.Core.Types
         {
             StringBuilder sb = new StringBuilder(name);
 
+            sb.Replace("None", "_None");
             sb.Append(Invariant($"({id})"));
 
             return sb.ToString();
