@@ -116,9 +116,6 @@ namespace Axe.Windows.Core.Bases
                     case PropertyType.UIA_LandmarkTypePropertyId:
                         txt = this.Value != 0 ? LandmarkType.GetInstance().GetNameById(this.Value) : null; // 0 is default value. 
                         break;
-                    case PropertyType.UIA_StylesPattern_StyleIdPropertyId:
-                        txt = StyleIdType.GetInstance().GetNameById(this.Value);
-                        break;
                     default:
                         if(this.Value is Int32[])
                         {

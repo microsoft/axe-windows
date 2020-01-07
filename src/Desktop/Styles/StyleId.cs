@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Types;
 using System.Text;
 
 using static System.FormattableString;
 
-namespace Axe.Windows.Core.Types
+namespace Axe.Windows.Desktop.Styles
 {
     /// <summary>
-    /// StyleIdType class
+    /// StyleId class
     /// contain StyleId values
     /// </summary>
-    public class StyleIdType : TypeBase
+    public class StyleId : TypeBase
     {
         const string Prefix = "StyleId_";
 
@@ -18,6 +19,7 @@ namespace Axe.Windows.Core.Types
         /// this list is from below source code
         /// https://docs.microsoft.com/en-us/windows/win32/winauto/uiauto-style-identifiers
         /// </summary>
+#pragma warning disable CA1707 // Identifiers should not contain underscores
         public const int StyleId_Custom       = 70000;
         public const int StyleId_Heading1     = 70001;
         public const int StyleId_Heading2     = 70002;
@@ -35,19 +37,20 @@ namespace Axe.Windows.Core.Types
         public const int StyleId_Quote        = 70014;
         public const int StyleId_BulletedList = 70015;
         public const int StyleId_NumberedList = 70016;
+#pragma warning restore CA1707 // Identifiers should not contain underscores
 
-        private static StyleIdType sInstance;
+        private static StyleId sInstance;
 
         /// <summary>
         /// static method to get an instance of this class
         /// singleton
         /// </summary>
         /// <returns></returns>
-        public static StyleIdType GetInstance()
+        public static StyleId GetInstance()
         {
             if (sInstance == null)
             {
-                sInstance = new StyleIdType();
+                sInstance = new StyleId();
             }
 
             return sInstance;
@@ -56,7 +59,7 @@ namespace Axe.Windows.Core.Types
         /// <summary>
         /// private constructor since it would be singleton model
         /// </summary>
-        private StyleIdType() : base(Prefix) { }
+        private StyleId() : base(Prefix) { }
 
         /// <summary>
         /// change name into right format in dictionary and list.
