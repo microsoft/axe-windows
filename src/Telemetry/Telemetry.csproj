@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Axe.Windows.Telemetry</AssemblyName>
     <RootNamespace>Axe.Windows.Telemetry</RootNamespace>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />

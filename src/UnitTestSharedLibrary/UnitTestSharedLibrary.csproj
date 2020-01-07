@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Axe.Windows.UnitTestSharedLibrary</AssemblyName>
     <RootNamespace>Axe.Windows.UnitTestSharedLibrary</RootNamespace>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <Import Project="..\..\build\NetStandardTest.targets" />

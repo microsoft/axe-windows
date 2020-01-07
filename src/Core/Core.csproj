@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Axe.Windows.Core</AssemblyName>
     <RootNamespace>Axe.Windows.Core</RootNamespace>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />
