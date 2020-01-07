@@ -147,7 +147,7 @@ namespace Axe.Windows.Desktop.Types
                 new Tuple<int, string, dynamic, Type>(UIA_AnnotationTypesAttributeId, GetNameById(UIA_AnnotationTypesAttributeId), AnnotationType.GetInstance().GetKeyValuePairList(), typeof(int)),
                 //new Tuple<int, string, dynamic, Type>(UIA_AnnotationObjectsAttributeId, GetNameById(UIA_AnnotationObjectsAttributeId), AnimationStyles.GetInstance().GetKeyValuePairList(), typeof(int)),
                 new Tuple<int, string, dynamic, Type>(UIA_StyleNameAttributeId, GetNameById(UIA_StyleNameAttributeId), null, typeof(string)),
-                new Tuple<int, string, dynamic, Type>(UIA_StyleIdAttributeId, GetNameById(UIA_StyleIdAttributeId), null, typeof(int)),
+                new Tuple<int, string, dynamic, Type>(UIA_StyleIdAttributeId, GetNameById(UIA_StyleIdAttributeId), StyleId.GetInstance().GetKeyValuePairList(), typeof(int)),
                 //new Tuple<int, string, dynamic, Type>(UIA_LinkAttributeId, GetNameById(UIA_LinkAttributeId), AnimationStyles.GetInstance().GetKeyValuePairList(), typeof(int)),
                 new Tuple<int, string, dynamic, Type>(UIA_IsActiveAttributeId, GetNameById(UIA_IsActiveAttributeId), boolList, typeof(bool)),
                 new Tuple<int, string, dynamic, Type>(UIA_SelectionActiveEndAttributeId, GetNameById(UIA_SelectionActiveEndAttributeId), ActiveEnd.GetInstance().GetKeyValuePairList(), typeof(int)),

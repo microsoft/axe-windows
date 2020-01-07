@@ -68,6 +68,7 @@
     <Compile Include="ColorContrastAnalyzer\ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\SnapshotMetaInfoTests.cs" />
+    <Compile Include="Styles\StyleIdTests.cs" />
     <Compile Include="Utility\SupportedEventsTests.cs" />
   </ItemGroup>
   <ItemGroup>

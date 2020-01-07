@@ -87,6 +87,7 @@
     <Compile Include="Styles\CaretPosition.cs" />
     <Compile Include="Styles\FlowDirection.cs" />
     <Compile Include="Styles\ActiveEnd.cs" />
+    <Compile Include="Styles\StyleId.cs" />
     <Compile Include="Styles\TextDecorationLineStyle.cs" />
     <Compile Include="Styles\OutlineStyle.cs" />
     <Compile Include="Styles\HorizontalTextAlignment.cs" />
