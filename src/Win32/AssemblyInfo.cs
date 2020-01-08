@@ -5,8 +5,8 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyProduct("Axe.Windows.Telemetry")]
-[assembly: AssemblyTitle("Axe.Windows.Telemetry")]
+[assembly: AssemblyProduct("Axe.Windows.Win32")]
+[assembly: AssemblyTitle("Axe.Windows.Win32")]
 [assembly: AssemblyCopyright("Copyright © 2020")]
 
 // Limit P/Invoke to assemblies located in the System32 folder
