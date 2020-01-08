@@ -25,6 +25,7 @@
   <ItemGroup>
     <Reference Include="Interop.UIAutomationClient">
       <HintPath>..\UIAAssemblies\Win10.17713\Interop.UIAutomationClient.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
 
