@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SystemAbstractions\SystemAbstractions.csproj" />
-    <ProjectReference Include="..\Telemetry\Telemetry.csproj" />
     <ProjectReference Include="..\Win32\Win32.csproj" />
   </ItemGroup>
 
