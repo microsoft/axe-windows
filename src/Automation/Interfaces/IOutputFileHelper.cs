@@ -7,5 +7,6 @@ namespace Axe.Windows.Automation
     internal interface IOutputFileHelper
     {
         string GetNewA11yTestFilePath();
+        void SetOutputFileNameWithoutExtension(string outputFileNameWithoutExtension);
     } // interface
 } // namespace

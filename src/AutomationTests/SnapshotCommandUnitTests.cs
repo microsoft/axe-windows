@@ -5,7 +5,6 @@ using Axe.Windows.Core.Bases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -22,6 +21,7 @@ namespace Axe.Windows.AutomationTests
         private Mock<IOutputFileHelper> _outputFileHelperMock;
         private Mock<IScanResultsAssembler> _resultsAssemblerMock;
         private Config _minimalConfig;
+        private string _actualOutputFileNameWithoutExtension;
 
         public SnapshotCommandUnitTests()
         {
@@ -32,13 +32,16 @@ namespace Axe.Windows.AutomationTests
         [TestInitialize]
         public void TestInit()
         {
+            _actualOutputFileNameWithoutExtension = null;
             _scanToolsMock = _mockRepo.Create<IScanTools>();
             _targetElementLocatorMock = _mockRepo.Create<ITargetElementLocator>();
             _actionsMock = _mockRepo.Create<IAxeWindowsActions>();
             _nativeMethodsMock = _mockRepo.Create<INativeMethods>();
             _nativeMethodsMock.Setup(x => x.SetProcessDPIAware()).Returns(false);
-            _outputFileHelperMock = _mockRepo.Create<IOutputFileHelper>();
             _resultsAssemblerMock = _mockRepo.Create<IScanResultsAssembler>();
+            _outputFileHelperMock = _mockRepo.Create<IOutputFileHelper>();
+            _outputFileHelperMock.Setup(x => x.SetOutputFileNameWithoutExtension(It.IsAny<string>()))
+                .Callback<string>((s) => { _actualOutputFileNameWithoutExtension = s; });
         }
 
         private void InitResultsCallback(ScanResults results)
@@ -114,11 +117,29 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
+        public void Execute_NullOutputFileHelper_ThrowsException()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
+
+            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
+            _scanToolsMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
         public void Execute_TargetElementLocatorReturnsNull_ThrowsException()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns<A11yElement>(null);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
@@ -129,6 +150,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
         }
 
         [TestMethod]
@@ -138,6 +160,8 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(42)).Returns<A11yElement>(null);
 
             var config = Config.Builder.ForProcessId(42).Build();
@@ -148,6 +172,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
         }
 
         [TestMethod]
@@ -157,6 +182,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
 
             var element = new A11yElement();
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(element);
@@ -168,6 +194,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
         }
 
@@ -179,6 +206,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
 
@@ -191,6 +219,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
         }
@@ -203,6 +232,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns<IScanResultsAssembler>(null);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
 
@@ -219,6 +249,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
         }
 
@@ -229,6 +260,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
@@ -251,10 +283,12 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
         }
 
+#if THIS_HAS_MOVED_BUT_DIFF_IS_CLEARER_IF_WE_KEEP_IT_TEMPORARILY
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NullOutputFileHelper_ThrowsException()
@@ -282,6 +316,7 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
         }
+#endif
 
         [TestMethod]
         [Timeout(1000)]
@@ -316,9 +351,9 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
         }
 
         [TestMethod]
@@ -352,13 +387,56 @@ namespace Axe.Windows.AutomationTests
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
             Assert.AreEqual(75, actualResults.ErrorCount);
             Assert.AreEqual(expectedPath, actualResults.OutputFile.A11yTest);
+            Assert.IsNull(_actualOutputFileNameWithoutExtension);
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_WithErrors_UserSuppliesOutputBaseFileName_CreatesSnapshotAndA11yTestFile()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+
+            var expectedResults = new ScanResults();
+            expectedResults.ErrorCount = 75;
+            InitResultsCallback(expectedResults);
+
+            var expectedPath = "UserSpecifiedTest.file";
+            const string outputFileNameWithoutExtension = "MyBaseFileName";
+
+            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
+            _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
+
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath()).Returns(expectedPath);
+
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .Build();
+
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object, outputFileNameWithoutExtension);
+            Assert.AreEqual(75, actualResults.ErrorCount);
+            Assert.AreEqual(expectedPath, actualResults.OutputFile.A11yTest);
+            Assert.AreEqual(outputFileNameWithoutExtension, _actualOutputFileNameWithoutExtension);
+
+            _scanToolsMock.VerifyAll();
+            _nativeMethodsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
             _outputFileHelperMock.VerifyAll();
+            _actionsMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
         }
     } // class
 } // namespace

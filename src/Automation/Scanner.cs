@@ -22,12 +22,21 @@ namespace Axe.Windows.Automation
         }
 
         /// <summary>
-        /// See <see cref="IScanner.Scan"/>
+        /// See <see cref="IScanner.Scan()"/>
         /// </summary>
         /// <returns></returns>
         public ScanResults Scan()
         {
-            return SnapshotCommand.Execute(_config, _scanTools);
+            return SnapshotCommand.Execute(_config, _scanTools, null);
+        }
+
+        /// <summary>
+        /// See <see cref="IScanner.Scan(string)"/>
+        /// </summary>
+        /// <returns></returns>
+        public ScanResults Scan(string outputFileNameWithoutExtension)
+        {
+            return SnapshotCommand.Execute(_config, _scanTools, outputFileNameWithoutExtension);
         }
     } // class
 } // namespace
