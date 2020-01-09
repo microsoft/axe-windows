@@ -288,36 +288,6 @@ namespace Axe.Windows.AutomationTests
             _resultsAssemblerMock.VerifyAll();
         }
 
-#if THIS_HAS_MOVED_BUT_DIFF_IS_CLEARER_IF_WE_KEEP_IT_TEMPORARILY
-        [TestMethod]
-        [Timeout(1000)]
-        public void Execute_NullOutputFileHelper_ThrowsException()
-        {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
-
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 1;
-            InitResultsCallback(expectedResults);
-
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
-            Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
-
-            _scanToolsMock.VerifyAll();
-            _nativeMethodsMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
-        }
-#endif
-
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NullOutputFilePath_ThrowsException()
