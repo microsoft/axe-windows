@@ -355,9 +355,9 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
         }
     } // class
 } // namespace
