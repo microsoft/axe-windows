@@ -21,7 +21,7 @@ namespace Axe.Windows.AutomationTests
         private Mock<IOutputFileHelper> _outputFileHelperMock;
         private Mock<IScanResultsAssembler> _resultsAssemblerMock;
         private Config _minimalConfig;
-        private string _actualOutputFileNameWithoutExtension;
+        private string _actualScanId;
 
         public SnapshotCommandUnitTests()
         {
@@ -32,7 +32,7 @@ namespace Axe.Windows.AutomationTests
         [TestInitialize]
         public void TestInit()
         {
-            _actualOutputFileNameWithoutExtension = null;
+            _actualScanId = null;
             _scanToolsMock = _mockRepo.Create<IScanTools>();
             _targetElementLocatorMock = _mockRepo.Create<ITargetElementLocator>();
             _actionsMock = _mockRepo.Create<IAxeWindowsActions>();
@@ -40,8 +40,8 @@ namespace Axe.Windows.AutomationTests
             _nativeMethodsMock.Setup(x => x.SetProcessDPIAware()).Returns(false);
             _resultsAssemblerMock = _mockRepo.Create<IScanResultsAssembler>();
             _outputFileHelperMock = _mockRepo.Create<IOutputFileHelper>();
-            _outputFileHelperMock.Setup(x => x.SetOutputFileNameWithoutExtension(It.IsAny<string>()))
-                .Callback<string>((s) => { _actualOutputFileNameWithoutExtension = s; });
+            _outputFileHelperMock.Setup(x => x.SetScanId(It.IsAny<string>()))
+                .Callback<string>((s) => { _actualScanId = s; });
         }
 
         private void InitResultsCallback(ScanResults results)
@@ -357,7 +357,7 @@ namespace Axe.Windows.AutomationTests
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
             Assert.AreEqual(75, actualResults.ErrorCount);
             Assert.AreEqual(expectedPath, actualResults.OutputFile.A11yTest);
-            Assert.IsNull(_actualOutputFileNameWithoutExtension);
+            Assert.IsNull(_actualScanId);
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
@@ -369,7 +369,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_WithErrors_UserSuppliesOutputBaseFileName_CreatesSnapshotAndA11yTestFile()
+        public void Execute_WithErrors_UserSuppliesScanId_CreatesSnapshotAndA11yTestFile()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
@@ -384,7 +384,7 @@ namespace Axe.Windows.AutomationTests
             InitResultsCallback(expectedResults);
 
             var expectedPath = "UserSpecifiedTest.file";
-            const string outputFileNameWithoutExtension = "MyBaseFileName";
+            const string scanId = "MyScanId";
 
             _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
             _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
@@ -396,10 +396,10 @@ namespace Axe.Windows.AutomationTests
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
                 .Build();
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object, outputFileNameWithoutExtension);
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object, scanId);
             Assert.AreEqual(75, actualResults.ErrorCount);
             Assert.AreEqual(expectedPath, actualResults.OutputFile.A11yTest);
-            Assert.AreEqual(outputFileNameWithoutExtension, _actualOutputFileNameWithoutExtension);
+            Assert.AreEqual(scanId, _actualScanId);
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();

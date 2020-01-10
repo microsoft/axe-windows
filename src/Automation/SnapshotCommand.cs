@@ -18,9 +18,9 @@ namespace Axe.Windows.Automation
         /// <param name="config">A set of configuration options</param>
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
-        /// <param name="outputFileNameWithoutExtension">The name (without extension) for the output file (can be null)</param>
+        /// <param name="scanId">The name (without extension) for the output file (can be null)</param>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static ScanResults Execute(Config config, IScanTools scanTools, string outputFileNameWithoutExtension = null)
+        public static ScanResults Execute(Config config, IScanTools scanTools, string scanId = null)
         {
             return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
             {
@@ -31,7 +31,7 @@ namespace Axe.Windows.Automation
                 if (scanTools.NativeMethods == null) throw new ArgumentException(ErrorMessages.ScanToolsNativeMethodsNull, nameof(scanTools));
                 if (scanTools.OutputFileHelper == null) throw new ArgumentException(ErrorMessages.ScanToolsOutputFileHelperNull, nameof(scanTools));
 
-                scanTools.OutputFileHelper.SetOutputFileNameWithoutExtension(outputFileNameWithoutExtension);
+                scanTools.OutputFileHelper.SetScanId(scanId);
 
                 // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
                 scanTools.NativeMethods.SetProcessDPIAware();

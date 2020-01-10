@@ -29,7 +29,7 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Run AxeWindows automated tests
         /// </summary>
-        /// <param name="outputFileNameWithoutExtension">The base file name (no path or extension) of the output file.</param>
+        /// <param name="scanId">The ID of this scan. Must be null or comply with file name requirements.</param>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
         /// output files may be written to the specified directory.
@@ -42,7 +42,7 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        ScanResults Scan(string outputFileNameWithoutExtension);
+        ScanResults Scan(string scanId);
 
     } // interface
 } // namespace

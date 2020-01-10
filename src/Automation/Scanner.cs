@@ -27,16 +27,21 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-            return SnapshotCommand.Execute(_config, _scanTools, null);
+            return ExecuteCommand(null);
         }
 
         /// <summary>
         /// See <see cref="IScanner.Scan(string)"/>
         /// </summary>
         /// <returns></returns>
-        public ScanResults Scan(string outputFileNameWithoutExtension)
+        public ScanResults Scan(string scanId)
         {
-            return SnapshotCommand.Execute(_config, _scanTools, outputFileNameWithoutExtension);
+            return ExecuteCommand(scanId);
+        }
+
+        private ScanResults ExecuteCommand(string scanId)
+        {
+            return SnapshotCommand.Execute(_config, _scanTools, scanId);
         }
     } // class
 } // namespace

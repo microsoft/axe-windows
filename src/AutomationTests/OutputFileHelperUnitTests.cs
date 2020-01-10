@@ -239,7 +239,7 @@ namespace Axe.Windows.AutomationTests
             mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
-            outputFileHelper.SetOutputFileNameWithoutExtension("abc");
+            outputFileHelper.SetScanId("abc");
             var result = outputFileHelper.GetNewA11yTestFilePath();
 
             var expectedFileName = "abc.a11ytest";

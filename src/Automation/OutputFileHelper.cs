@@ -15,7 +15,7 @@ namespace Axe.Windows.Automation
         private readonly string _outputDirectory;
         private readonly ISystemDateTime _dateTime;
 
-        private string _outputFileNameWithoutExtension = null;
+        private string _scanId = null;
 
         public const string DefaultOutputDirectoryName = "AxeWindowsOutputFiles";
         public const string DefaultFileNameBase = "AxeWindows";
@@ -70,19 +70,18 @@ namespace Axe.Windows.Automation
         public string GetNewA11yTestFilePath()
         {
             return Path.Combine(_outputDirectory
-                , GetOutputFileBaseName()
-                + ".a11ytest");
+                , GetEffectiveScanId() + ".a11ytest");
         }
 
-        private string GetOutputFileBaseName()
+        private string GetEffectiveScanId()
         {
-            if (!string.IsNullOrEmpty(_outputFileNameWithoutExtension))
-                return _outputFileNameWithoutExtension;
+            if (!string.IsNullOrEmpty(_scanId))
+                return _scanId;
 
-            return GetNewFileBaseName();
+            return GenerateScanId();
         }
 
-        private string GetNewFileBaseName()
+        private string GenerateScanId()
         {
             var now = _dateTime.Now;
 
@@ -90,9 +89,9 @@ namespace Axe.Windows.Automation
             return $"{DefaultFileNameBase}_{nowString}";
         }
 
-        public void SetOutputFileNameWithoutExtension(string outputFileNameWithoutExtension)
+        public void SetScanId(string scanId)
         {
-            _outputFileNameWithoutExtension = outputFileNameWithoutExtension;
+            _scanId = scanId;
         }
     } // class
 } // namespace
