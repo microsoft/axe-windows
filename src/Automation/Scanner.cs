@@ -44,7 +44,7 @@ namespace Axe.Windows.Automation
 
         private void ValidateScanId(string scanId)
         {
-            if (scanId == null) throw new ArgumentException(nameof(scanId));
+            if (scanId == null) throw new ArgumentNullException(nameof(scanId));
             if (string.IsNullOrWhiteSpace(scanId)) throw new ArgumentException(ErrorMessages.StringNullOrWhiteSpace, nameof(scanId));
         }
 
