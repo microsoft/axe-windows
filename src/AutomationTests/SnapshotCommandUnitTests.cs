@@ -5,11 +5,10 @@ using Axe.Windows.Core.Bases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Axe.Windows.AutomationTests
 {
-    using ScanResults = Axe.Windows.Automation.ScanResults;
+    using ScanResults = ScanResults;
 
     [TestClass]
     public class SnapshotCommandUnitTests
@@ -56,8 +55,7 @@ namespace Axe.Windows.AutomationTests
         public void Execute_NullConfig_ThrowsException()
         {
             var action = new Action(() => SnapshotCommand.Execute(config: null, scanTools: _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            var ex = Assert.ThrowsException<ArgumentNullException>(action);
             Assert.IsTrue(ex.Message.Contains("config"));
         }
 
@@ -66,8 +64,7 @@ namespace Axe.Windows.AutomationTests
         public void Execute_NullScanTools_ThrowsException()
         {
             var action = new Action(() => SnapshotCommand.Execute(config: _minimalConfig, scanTools: null));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentNullException));
+            var ex = Assert.ThrowsException<ArgumentNullException>(action);
             Assert.IsTrue(ex.Message.Contains("scanTools"));
         }
 
@@ -77,8 +74,7 @@ namespace Axe.Windows.AutomationTests
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns<ITargetElementLocator>(null);
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("TargetElementLocator"));
             _scanToolsMock.VerifyAll();
         }
@@ -91,8 +87,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.Actions).Returns<IAxeWindowsActions>(null);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("Actions"));
             _scanToolsMock.VerifyAll();
         }
@@ -106,8 +101,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns<INativeMethods>(null);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("NativeMethods"));
             _scanToolsMock.VerifyAll();
         }
@@ -119,11 +113,11 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns<A11yElement>(null);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(InvalidOperationException));
+            var ex = Assert.ThrowsException<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("rootElement"));
 
             _scanToolsMock.VerifyAll();
@@ -135,15 +129,18 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public void Execute_TargetElementLocatorReceivesConfigProcessId()
         {
+            const int expectedProcessId = 42;
+
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(42)).Returns<A11yElement>(null);
 
-            var config = Config.Builder.ForProcessId(42).Build();
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(expectedProcessId)).Returns<A11yElement>(null);
+
+            var config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
             var action = new Action(() => SnapshotCommand.Execute(config, _scanToolsMock.Object));
-            Assert.ThrowsException<AxeWindowsAutomationException>(action);
+            Assert.ThrowsException<InvalidOperationException>(action);
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
@@ -212,8 +209,7 @@ namespace Axe.Windows.AutomationTests
                 .Returns(() => tempResults);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("ResultsAssembler"));
 
             _scanToolsMock.VerifyAll();
@@ -264,18 +260,13 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
-
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
-
             var expectedResults = new ScanResults();
             expectedResults.ErrorCount = 1;
             InitResultsCallback(expectedResults);
-
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(ArgumentException));
+            var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
-
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
@@ -309,16 +300,15 @@ namespace Axe.Windows.AutomationTests
                 .Build();
 
             var action = new Action(() => SnapshotCommand.Execute(config, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.IsInstanceOfType(ex.InnerException, typeof(InvalidOperationException));
+            var ex = Assert.ThrowsException<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("a11yTestOutputFile"));
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
         }
 
         [TestMethod]
