@@ -38,8 +38,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan(string scanId)
         {
-            // Defer validation of scanId so that we can wrap it inside the
-            // ExecutionWrapper
+            // Defer validation of scanId so that we can wrap it with ExecutionWrapper
             return ExecuteScan(scanId, () => ValidateScanId(scanId));
         }
 

@@ -182,7 +182,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void OutputFileHelper_GetNewA11yTestFilePath_GeneratedOutputFile_CreatesExpectedFileName()
+        public void OutputFileHelper_GetNewA11yTestFilePath_GeneratedScanId_CreatesExpectedFileName()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
@@ -224,7 +224,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void OutputFileHelper_GetNewA11yTestFilePath_SpecificOutputFile_CreatesExpectedFileName()
+        public void OutputFileHelper_GetNewA11yTestFilePath_SpecificScanId_CreatesExpectedFileName()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
@@ -239,10 +239,10 @@ namespace Axe.Windows.AutomationTests
             mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
-            outputFileHelper.SetScanId("abc");
+            outputFileHelper.SetScanId("myScanId");
             var result = outputFileHelper.GetNewA11yTestFilePath();
 
-            var expectedFileName = "abc.a11ytest";
+            var expectedFileName = "myScanId.a11ytest";
             var actualFileName = Path.GetFileName(result);
             Assert.AreEqual(expectedFileName, actualFileName);
             Assert.AreEqual(directory, Path.GetDirectoryName(result));
