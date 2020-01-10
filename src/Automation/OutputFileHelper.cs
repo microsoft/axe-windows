@@ -69,8 +69,8 @@ namespace Axe.Windows.Automation
 
         public string GetNewA11yTestFilePath()
         {
-            return Path.Combine(_outputDirectory
-                , GetEffectiveScanId() + ".a11ytest");
+            return Path.Combine(_outputDirectory,
+                GetEffectiveScanId() + ".a11ytest");
         }
 
         private string GetEffectiveScanId()
