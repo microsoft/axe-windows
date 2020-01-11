@@ -60,9 +60,7 @@ jobs:
     displayName: 'Test Assemblies (.NET Core) **\release\*test*.dll;-:**\obj\**'
     inputs:
       command: test
-      projects: |
-        **\*test*.dll
-        !**\obj\**
+      projects: **\test*.csproj
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
@@ -99,7 +97,7 @@ jobs:
     displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
     inputs:
       testAssemblyVer2: |
-        **\*test*.dll
+        **\*test*.csproj
         !**\obj\**
       testFiltercriteria: 'TestCategory!=RequiresNetwork'
       vsTestVersion: 16.0
@@ -112,7 +110,5 @@ jobs:
     displayName: 'Test Assemblies (.NET Core) **\debug\*test*.dll;-:**\obj\**'
     inputs:
       command: test
-      projects: |
-        **\*test*.dll
-        !**\obj\**
+      projects: **\test*.csproj
 
