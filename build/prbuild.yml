@@ -60,7 +60,8 @@ jobs:
     displayName: 'Test Assemblies (.NET Core) **\release\*test*.dll;-:**\obj\**'
     inputs:
       command: test
-      projects: **\test*.csproj
+      projects: |
+        **\*test*.csproj
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
@@ -110,5 +111,5 @@ jobs:
     displayName: 'Test Assemblies (.NET Core) **\debug\*test*.dll;-:**\obj\**'
     inputs:
       command: test
-      projects: **\test*.csproj
+        **\*test*.csproj
 
