@@ -111,5 +111,6 @@ jobs:
     displayName: 'Test Assemblies (.NET Core) **\debug\*test*.dll;-:**\obj\**'
     inputs:
       command: test
+      projects: |
         **\*test*.csproj
 
