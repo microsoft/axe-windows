@@ -21,25 +21,21 @@ namespace Axe.Windows.Automation
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
         public static ScanResults Execute(Config config, IScanTools scanTools)
         {
-            return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
+            if (config == null) throw new ArgumentNullException(nameof(config));
+            if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
+            if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
+            if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
+            if (scanTools.NativeMethods == null) throw new ArgumentException(ErrorMessages.ScanToolsNativeMethodsNull, nameof(scanTools));
+
+            // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
+            scanTools.NativeMethods.SetProcessDPIAware();
+
+            var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
+            if (rootElement == null) throw new InvalidOperationException(nameof(rootElement));
+
+            return scanTools.Actions.Scan(rootElement, (element, elementId) =>
             {
-                if (config == null) throw new ArgumentNullException(nameof(config));
-                if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
-                if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
-                if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
-                if (scanTools.NativeMethods == null) throw new ArgumentException(ErrorMessages.ScanToolsNativeMethodsNull, nameof(scanTools));
-
-                // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
-                scanTools.NativeMethods.SetProcessDPIAware();
-
-                var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
-                if (rootElement == null) throw new InvalidOperationException(nameof(rootElement));
-
-                return scanTools.Actions.Scan(rootElement,
-                    (element, elementId) =>
-                {
-                    return ProcessResults(element, elementId, config, scanTools);
-                });
+                return ProcessResults(element, elementId, config, scanTools);
             });
         }
 

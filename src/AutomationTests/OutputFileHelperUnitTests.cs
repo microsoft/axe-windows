@@ -182,7 +182,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void OutputFileHelper_GetNewA11yTestFilePath_CreatesExpectedFileName()
+        public void OutputFileHelper_GetNewA11yTestFilePath_GeneratedScanId_CreatesExpectedFileName()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict);
@@ -214,9 +214,40 @@ namespace Axe.Windows.AutomationTests
             var expectedFileName = $"{OutputFileHelper.DefaultFileNameBase}_19-04-01_20-08-08.0012345.a11ytest";
             var actualFileName = Path.GetFileName(result);
             Assert.AreEqual(expectedFileName, actualFileName);
+            Assert.AreEqual(directory, Path.GetDirectoryName(result));
 
             mockSystem.VerifyAll();
             mockDateTime.VerifyAll();
+            mockIO.VerifyAll();
+            mockDirectory.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void OutputFileHelper_GetNewA11yTestFilePath_SpecificScanId_CreatesExpectedFileName()
+        {
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
+            var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
+
+            string directory = @"c:\TestDir2";
+            mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
+
+            var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
+            outputFileHelper.SetScanId("myScanId");
+            var result = outputFileHelper.GetNewA11yTestFilePath();
+
+            var expectedFileName = "myScanId.a11ytest";
+            var actualFileName = Path.GetFileName(result);
+            Assert.AreEqual(expectedFileName, actualFileName);
+            Assert.AreEqual(directory, Path.GetDirectoryName(result));
+
+            mockSystem.VerifyAll();
             mockIO.VerifyAll();
             mockDirectory.VerifyAll();
         }
