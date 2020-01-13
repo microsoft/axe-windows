@@ -59,7 +59,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\release\*test*.dll;-:**\obj\**'
     inputs:
-      arguments: --no-build --blame --verbose=detailed
+      arguments: --no-build --blame --verbose detailed
       command: test
       projects: |
         **\*test*.csproj
@@ -111,7 +111,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\debug\*test*.dll;-:**\obj\**'
     inputs:
-      arguments: --no-build --blame --verbose=detailed
+      arguments: --no-build --blame --verbose detailed
       command: test
       projects: |
         **\*test*.csproj
