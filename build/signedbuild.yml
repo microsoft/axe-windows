@@ -58,7 +58,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
-      arguments: --no-build --blame --verbosity detailed --configuration release
+      arguments: --no-build --blame --verbosity normal --configuration release
       command: test
       projects: |
         **\*test*.csproj
@@ -175,7 +175,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
-      arguments: --no-build --blame --verbosity detailed --configuration debug
+      arguments: --no-build --blame --verbosity normal --configuration debug
       command: test
       projects: |
         **\*test*.csproj
@@ -271,7 +271,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
-      arguments: --no-build --blame --verbosity detailed --configuration release
+      arguments: --no-build --blame --verbosity normal --configuration release
       command: test
       projects: |
         **\*test*.csproj
