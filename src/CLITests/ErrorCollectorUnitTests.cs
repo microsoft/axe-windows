@@ -7,7 +7,7 @@ using System;
 namespace CLITests
 {
     [TestClass]
-    public class ErrorReporterUnitTests
+    public class ErrorCollectorUnitTests
     {
         const string TrivialValue = "   \n   \n\t\n";
         const string ValidValue = "Some\n Valid\n Value";
