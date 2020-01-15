@@ -9,7 +9,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using System;
 using UIAutomationClient;
 
@@ -105,20 +104,6 @@ namespace Axe.Windows.Desktop.Utility
             g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size);
 
             return bmp; 
-        }
-
-        /// <summary>
-        /// Check whether p is fully visible based on current screen size
-        /// </summary>
-        /// <param name="p"></param>
-        /// <param name="c"></param>
-        /// <param name="margin"></param>
-        /// <returns></returns>
-        public static bool IsVisibleLocation(this Rectangle p)
-        {
-            return (from s in Screen.AllScreens
-                    where s.Bounds.Contains(p)
-                    select s).Any();
         }
 
         /// <summary>
