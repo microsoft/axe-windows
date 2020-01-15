@@ -2,13 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Enums;
-using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Settings;
 using Axe.Windows.RuleSelection;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Packaging;
 using System.Text;
@@ -38,25 +36,23 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId">ElementContext Id</param>
         /// <param name="path">The output file</param>
-        /// <param name="bmp">The screenshot</param>
         /// <param name="focusedElementId">The ID of the element with the current focus</param>
         /// <param name="mode">The type of file being saved</param>
-        /// <param name="otherProperties">Properties to add to the snapshot metadata</param>
-        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, Dictionary<SnapshotMetaPropertyName, object> otherProperties = null)
+        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode)
         {
             var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
-                SaveSnapshotFromElement(focusedElementId, mode, otherProperties, ec, package, ec.DataContext.RootElment);
+                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment);
             }
         }
 
         /// <summary>
         /// Private helper function (formerly in SaveSnapshotZip) to make it easier to call with different inputs
         /// </summary>
-        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Dictionary<SnapshotMetaPropertyName, object> otherProperties, Contexts.ElementContext ec, Package package, A11yElement root)
+        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Contexts.ElementContext ec, Package package, A11yElement root)
         {
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
@@ -75,7 +71,7 @@ namespace Axe.Windows.Actions
                 }
             }
 
-            var meta = new SnapshotMetaInfo(mode, RuleRunner.GetRuleVersion(), focusedElementId, ec.DataContext.ScreenshotElementId, otherProperties);
+            var meta = new SnapshotMetaInfo(mode, RuleRunner.GetRuleVersion(), focusedElementId, ec.DataContext.ScreenshotElementId);
             var jsonMeta = JsonConvert.SerializeObject(meta, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonMeta)))
             {

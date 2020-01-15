@@ -67,7 +67,6 @@
     <Compile Include="ColorContrastAnalyzer\ColorTests.cs" />
     <Compile Include="ColorContrastAnalyzer\ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings\SnapshotMetaInfoTests.cs" />
     <Compile Include="Styles\StyleIdTests.cs" />
     <Compile Include="Utility\SupportedEventsTests.cs" />
   </ItemGroup>
@@ -91,9 +90,7 @@
       <Name>Desktop</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="TestImages\cortana_with_offset_down.bmp" />
   </ItemGroup>
