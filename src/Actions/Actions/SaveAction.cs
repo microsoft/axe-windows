@@ -24,7 +24,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public const string elementFileName = "el.snapshot";
         public const string screenshotFileName = "scshot.png";
-        public const string metatdataFileName = "metadata.json";
+        public const string metadataFileName = "metadata.json";
 
         /// <summary>
         /// Buffer size for stream copying
@@ -75,7 +75,7 @@ namespace Axe.Windows.Actions
             var jsonMeta = JsonConvert.SerializeObject(meta, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonMeta)))
             {
-                AddStream(package, mStrm, metatdataFileName);
+                AddStream(package, mStrm, metadataFileName);
             }
         }
 
