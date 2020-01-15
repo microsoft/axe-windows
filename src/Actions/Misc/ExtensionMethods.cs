@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Contexts;
-using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Resources;
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Telemetry;
 using System;

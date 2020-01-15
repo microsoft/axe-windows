@@ -55,6 +55,14 @@ jobs:
       configuration: release
       rerunFailedTests: true
 
+  - task: DotNetCoreCLI@2
+    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+    inputs:
+      arguments: --no-build --blame --verbosity normal --configuration release
+      command: test
+      projects: |
+        **\*test*.csproj
+
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
 
@@ -164,6 +172,14 @@ jobs:
       configuration: debug
       rerunFailedTests: true
 
+  - task: DotNetCoreCLI@2
+    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+    inputs:
+      arguments: --no-build --blame --verbosity normal --configuration debug
+      command: test
+      projects: |
+        **\*test*.csproj
+
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
     inputs:
@@ -251,6 +267,14 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: release
       rerunFailedTests: true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+    inputs:
+      arguments: --no-build --blame --verbosity normal --configuration release
+      command: test
+      projects: |
+        **\*test*.csproj
 
   - task: PublishSymbols@1
     displayName: 'Index Sources'

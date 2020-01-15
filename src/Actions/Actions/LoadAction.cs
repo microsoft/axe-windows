@@ -49,7 +49,7 @@ namespace Axe.Windows.Actions
                     bmp = null;
                 }
 
-                var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.metatdataFileName select p.GetStream()).First();
+                var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.metadataFileName select p.GetStream()).First();
                 SnapshotMetaInfo meta = SnapshotMetaInfo.DeserializeFromStream(metadataPart);
                 metadataPart.Close();   
 

@@ -56,6 +56,14 @@ jobs:
       configuration: release
       rerunFailedTests: true
 
+  - task: DotNetCoreCLI@2
+    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+    inputs:
+      arguments: --no-build --blame --verbosity normal --configuration release
+      command: test
+      projects: |
+        **\*test*.csproj
+
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
 
@@ -99,3 +107,12 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: debug
       rerunFailedTests: true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+    inputs:
+      arguments: --no-build --blame --verbosity normal --configuration debug
+      command: test
+      projects: |
+        **\*test*.csproj
+
