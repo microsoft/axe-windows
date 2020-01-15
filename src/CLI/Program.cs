@@ -1,4 +1,6 @@
-﻿using CommandLine;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using CommandLine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,51 +9,56 @@ namespace AxeWindowsScanner
 {
     class Program
     {
+        static ErrorCollector ErrorCollector = new ErrorCollector();
+
         static int Main(string[] args)
         {
+            int exitCode = (int)ExitCode.ScanDidNotComplete;
             try
             {
-                string[] t = { "--verbosity", "verbose", "--outputdirectory", "abc", "--scanid", "def", "--processid", "27604" };
-                var result = Parser.Default.ParseArguments<Options>(t)
+                Options.ErrorCollector = ErrorCollector;
+                Options.ProcessHelper = new ProcessHelper(new ProcessAbstraction(), ErrorCollector);
+
+                string[] t = { "--verbosity", "verbose", "--outputdirectory", "abc", "--processname", "notepad++" };
+                exitCode = Parser.Default.ParseArguments<Options>(t)
                     .MapResult((opts) => HandleParsableInputs(opts),
                     errs => HandleNonParsableInputs(errs));
-                Console.WriteLine("Return code= {0}", result);
-                return -1;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                ErrorCollector.AddException(e);
+                exitCode = (int)ExitCode.ScanDidNotComplete;
             }
-            return 255;
+            Console.WriteLine("Exit code : {0} ({1})", exitCode, (ExitCode)exitCode);
+            return exitCode;
         }
 
         static int HandleNonParsableInputs(IEnumerable<Error> errs)
         {
-            var result = -2;
-            Console.WriteLine("errors {0}", errs.Count());
-            if (errs.Any(x => x is HelpRequestedError || x is VersionRequestedError))
-                result = -1;
-            foreach (Error error in errs)
-            {
-                Console.WriteLine(error);
-            }
-            Console.WriteLine("Exit code {0}", result);
-            return result;
+            return (int)ExitCode.InvalidCommandLine;
         }
 
-        static int HandleParsableInputs(Options o)
+        static int HandleParsableInputs(Options options)
         {
-            var exitCode = 0;
+            if (!ErrorCollector.ParameterErrors.Any())
+            {
+                try
+                {
+                    ScanRunner.RunScan(options, ErrorCollector);
 
-            Console.WriteLine("Verbosity = {0}", o.Verbosity);
-            Console.WriteLine("VerbosityLevel = {0}", o.VerbosityLevel);
-            Console.WriteLine("VerbosityError = {0}", o.VerbosityError);
-            Console.WriteLine("OutputFile = {0}", o.ScanId);
-            Console.WriteLine("OutputDirectory = {0}", o.OutputDirectory);
-            Console.WriteLine("ProcessId = {0}", o.ProcessId);
-            Console.WriteLine("ProcessName = {0}", o.ProcessName);
+                    if (ErrorCollector.ScanErrors.Any())
+                    {
+                        return (int)ExitCode.ScanFoundErrors;
+                    }
 
-            return exitCode;
+                    return (int)ExitCode.ScanFoundNoErrors;
+                }
+                catch (Exception e)
+                {
+                    ErrorCollector.AddException(e);
+                }
+            }
+            return (int)ExitCode.ScanDidNotComplete;
         }
     }
 }

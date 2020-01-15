@@ -1,4 +1,6 @@
-﻿using CommandLine;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using CommandLine;
 using System;
 using System.IO;
 
@@ -23,6 +25,9 @@ namespace AxeWindowsScanner
 
         public VerbosityLevel VerbosityLevel { get; }
         public bool VerbosityError { get; }
+
+        public static IErrorCollector ErrorCollector { get; set; }
+        public static IProcessHelper ProcessHelper { get; set; }
 
         readonly string _outputDirectory;
         readonly string _scanId;

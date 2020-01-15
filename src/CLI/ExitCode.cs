@@ -3,10 +3,11 @@
 
 namespace AxeWindowsScanner
 {
-    public enum VerbosityLevel
+    public enum ExitCode
     {
-        Quiet,
-        Default,
-        Verbose,
+        ScanFoundNoErrors,
+        ScanFoundErrors,
+        ScanDidNotComplete,
+        InvalidCommandLine = 255,
     }
 }

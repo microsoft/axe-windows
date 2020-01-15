@@ -1,28 +1,60 @@
-﻿using System.Diagnostics;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using CommandLine;
+using System;
+using System.Diagnostics;
 
 namespace AxeWindowsScanner
 {
-    static class ProcessHelper
+    public class ProcessHelper : IProcessHelper
     {
-        internal static int FindProcessByName(string processName)
-        {
-            var processes = Process.GetProcessesByName(processName);
+        public const int InvalidProcessId = -1;
+        public const string InvalidProcessName = null;
 
-            if ((processes.Length == 0) || (processes.Length > 1))
+        private readonly IProcessAbstraction _processAbstraction;
+        private readonly IErrorCollector _errorCollector;
+
+        public ProcessHelper(IProcessAbstraction processAbstraction, IErrorCollector errorCollector)
+        {
+            if (processAbstraction == null) throw new ArgumentNullException(nameof(processAbstraction));
+            if (errorCollector == null) throw new ArgumentNullException(nameof(errorCollector));
+            _processAbstraction = processAbstraction;
+            _errorCollector = errorCollector;
+        }
+
+        public int FindProcessByName(string processName)
+        {
+            var processes = _processAbstraction.GetProcessesByName(processName);
+
+            if (processes == null || processes.Length == 0)
             {
-                // throw some sort of exception here!
+                _errorCollector.AddParameterError("Unable to find process with name " + processName);
+                return InvalidProcessId;
+            }
+
+            if (processes.Length > 1)
+            {
+                _errorCollector.AddParameterError("Found multiple processes with name " + processName);
+                return InvalidProcessId;
             }
 
             return processes[0].Id;
         }
 
-        internal static string FindProcessById(int processId)
+        public string FindProcessById(int processId)
         {
-            var process = Process.GetProcessById(processId);
+            Process process = null;
+
+            try
+            {
+                process = _processAbstraction.GetProcessById(processId);
+            }
+            catch (Exception) { }
 
             if (string.IsNullOrEmpty(process?.ProcessName))
             {
-                // throw some sort of exception here!
+                _errorCollector.AddParameterError("Unable to find process with id " + processId);
+                return InvalidProcessName;
             }
 
             return process.ProcessName;

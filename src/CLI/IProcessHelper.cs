@@ -3,10 +3,9 @@
 
 namespace AxeWindowsScanner
 {
-    public enum VerbosityLevel
+    public interface IProcessHelper
     {
-        Quiet,
-        Default,
-        Verbose,
+        int FindProcessByName(string processName);
+        string FindProcessById(int processId);
     }
 }
