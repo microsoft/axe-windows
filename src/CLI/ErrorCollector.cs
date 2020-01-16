@@ -31,7 +31,7 @@ namespace AxeWindowsScanner
 
         public void AddException(Exception exception)
         {
-            if (exception == null) throw new ArgumentNullException("Parameter must be non-null", nameof(exception));
+            if (exception == null) throw new ArgumentNullException(nameof(exception));
             _exceptions.Add(exception);
         }
     }

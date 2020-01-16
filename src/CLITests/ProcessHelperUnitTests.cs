@@ -31,19 +31,21 @@ namespace CLITests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         [Timeout(1000)]
         public void Ctor_ProcessAbstractionIsNull_ThrowsArgumentNullException()
         {
-            new ProcessHelper(null, _errorCollectorMock.Object);
+            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
+                () => new ProcessHelper(null, _errorCollectorMock.Object));
+            Assert.AreEqual("processAbstraction", e.ParamName);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         [Timeout(1000)]
         public void Ctor_ErrorCollectorIsNull_ThrowsArgumentNullException()
         {
-            new ProcessHelper(_processAbstractionMock.Object, null);
+            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
+                () => new ProcessHelper(_processAbstractionMock.Object, null));
+            Assert.AreEqual("errorCollector", e.ParamName);
         }
 
         [TestMethod]

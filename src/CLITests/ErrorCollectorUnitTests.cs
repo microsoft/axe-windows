@@ -37,11 +37,12 @@ namespace CLITests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         [Timeout(1000)]
         public void AddParameterError_ValueIsTrivial_ThrowsArgumentException()
         {
-            _errorCollector.AddParameterError(TrivialValue);
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(
+                () => _errorCollector.AddParameterError(TrivialValue));
+            Assert.AreEqual("error", e.ParamName);
         }
 
         [TestMethod]
@@ -71,11 +72,12 @@ namespace CLITests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
         [Timeout(1000)]
         public void AddScanError_ValueIsTrivial_ThrowsArgumentException()
         {
-            _errorCollector.AddScanError(TrivialValue);
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(
+                () => _errorCollector.AddScanError(TrivialValue));
+            Assert.AreEqual("error", e.ParamName);
         }
 
         [TestMethod]
@@ -105,11 +107,12 @@ namespace CLITests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         [Timeout(1000)]
         public void AddException_ValueIsNull_ThrowsArgumentNullException()
         {
-            _errorCollector.AddException(null);
+            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
+                () => _errorCollector.AddException(null));
+            Assert.AreEqual("exception", e.ParamName);
         }
 
         [TestMethod]
