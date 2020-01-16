@@ -40,23 +40,25 @@ namespace AxeWindowsScanner
 
         static int HandleParsableInputs(Options options)
         {
-            if (!ErrorCollector.ParameterErrors.Any())
+            if (ErrorCollector.ParameterErrors.Any())
             {
-                try
-                {
-                    ScanRunner.RunScan(options, ErrorCollector);
+                return (int)ExitCode.InvalidCommandLine;
+            }
 
-                    if (ErrorCollector.ScanErrors.Any())
-                    {
-                        return (int)ExitCode.ScanFoundErrors;
-                    }
+            try
+            {
+                ScanRunner.RunScan(options, ErrorCollector);
 
-                    return (int)ExitCode.ScanFoundNoErrors;
-                }
-                catch (Exception e)
+                if (ErrorCollector.ScanErrors.Any())
                 {
-                    ErrorCollector.AddException(e);
+                    return (int)ExitCode.ScanFoundErrors;
                 }
+
+                return (int)ExitCode.ScanFoundNoErrors;
+            }
+            catch (Exception e)
+            {
+                ErrorCollector.AddException(e);
             }
             return (int)ExitCode.ScanDidNotComplete;
         }
