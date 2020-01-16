@@ -71,7 +71,7 @@ namespace CLITests
 
             int processId = helper.FindProcessByName(TestProcessName);
 
-            Assert.AreEqual(ProcessHelper.InvalidProcessId, processId);
+            Assert.AreEqual(IProcessHelper.InvalidProcessId, processId);
             Assert.AreNotEqual(TestProcessName, actualErrorMessage);
             Assert.IsTrue(actualErrorMessage.EndsWith(TestProcessName));
             _processAbstractionMock.VerifyAll();
@@ -93,7 +93,7 @@ namespace CLITests
 
             int processId = helper.FindProcessByName(TestProcessName);
 
-            Assert.AreEqual(ProcessHelper.InvalidProcessId, processId);
+            Assert.AreEqual(IProcessHelper.InvalidProcessId, processId);
             Assert.AreNotEqual(TestProcessName, actualErrorMessage);
             Assert.IsTrue(actualErrorMessage.EndsWith(" " + TestProcessName));
             _processAbstractionMock.VerifyAll();
@@ -115,7 +115,7 @@ namespace CLITests
 
             int processId = helper.FindProcessByName(TestProcessName);
 
-            Assert.AreEqual(ProcessHelper.InvalidProcessId, processId);
+            Assert.AreEqual(IProcessHelper.InvalidProcessId, processId);
             Assert.AreNotEqual(TestProcessName, actualErrorMessage);
             Assert.IsTrue(actualErrorMessage.EndsWith(" " + TestProcessName));
             _processAbstractionMock.VerifyAll();
@@ -153,7 +153,7 @@ namespace CLITests
 
             string processName = helper.FindProcessById(TestProcessId);
 
-            Assert.AreEqual(ProcessHelper.InvalidProcessName, processName);
+            Assert.AreEqual(IProcessHelper.InvalidProcessName, processName);
             Assert.AreNotEqual(TestProcessIdAsString, actualErrorMessage);
             Assert.IsTrue(actualErrorMessage.EndsWith(" " + TestProcessIdAsString));
             _processAbstractionMock.VerifyAll();

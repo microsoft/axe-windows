@@ -8,9 +8,6 @@ namespace AxeWindowsScanner
 {
     public class ProcessHelper : IProcessHelper
     {
-        public const int InvalidProcessId = -1;
-        public const string InvalidProcessName = null;
-
         private readonly IProcessAbstraction _processAbstraction;
         private readonly IErrorCollector _errorCollector;
 
@@ -29,13 +26,13 @@ namespace AxeWindowsScanner
             if (processes == null || processes.Length == 0)
             {
                 _errorCollector.AddParameterError("Unable to find process with name " + processName);
-                return InvalidProcessId;
+                return IProcessHelper.InvalidProcessId;
             }
 
             if (processes.Length > 1)
             {
                 _errorCollector.AddParameterError("Found multiple processes with name " + processName);
-                return InvalidProcessId;
+                return IProcessHelper.InvalidProcessId;
             }
 
             return processes[0].Id;
@@ -54,7 +51,7 @@ namespace AxeWindowsScanner
             if (string.IsNullOrEmpty(process?.ProcessName))
             {
                 _errorCollector.AddParameterError("Unable to find process with id " + processId);
-                return InvalidProcessName;
+                return IProcessHelper.InvalidProcessName;
             }
 
             return process.ProcessName;
