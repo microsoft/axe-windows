@@ -166,7 +166,7 @@ namespace CLITests
         }
 
         [TestMethod]
-        public void ParseArguments_TargetIsSet_VerbosityIsDefault_SucceedsWithQuietVerbosity()
+        public void ParseArguments_TargetIsSet_VerbosityIsDefault_SucceedsWithDefaultVerbosity()
         {
             const string verbosityArg = "default";
 
@@ -184,7 +184,7 @@ namespace CLITests
         }
 
         [TestMethod]
-        public void ParseArguments_TargetIsSet_VerbosityIsVerbose_SucceedsWithQuietVerbosity()
+        public void ParseArguments_TargetIsSet_VerbosityIsVerbose_SucceedsWithVerboseVerbosity()
         {
             const string verbosityArg = "verbose";
 
