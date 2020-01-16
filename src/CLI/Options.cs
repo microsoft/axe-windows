@@ -21,11 +21,11 @@ namespace AxeWindowsScanner
         public string ProcessName => _processName;
 
         [Option(Required = false, HelpText = "Verbosity level (Quiet/Default/Verbose)")]
-        public string Verbosity => _verbosity;
+        public string Verbosity => string.Empty;  // Exists only for CommandLine purposes
 
         public VerbosityLevel VerbosityLevel { get; }
-        public bool VerbosityError { get; }
 
+        // We don't control construction of this class, so we use static Dependency Injection
         public static IErrorCollector ErrorCollector { get; set; }
         public static IProcessHelper ProcessHelper { get; set; }
 
@@ -33,25 +33,23 @@ namespace AxeWindowsScanner
         readonly string _scanId;
         readonly int _processId;
         readonly string _processName;
-        readonly string _verbosity;
 
         public Options(string outputDirectory, string scanId, int processId, string processName, string verbosity)
         {
             _outputDirectory = outputDirectory;
             _scanId = scanId;
-            _verbosity = verbosity;
+            VerbosityLevel = VerbosityLevel.Default;  // Until proven otherwise
 
-            bool verbosityExists = !string.IsNullOrEmpty(verbosity);
-
-            if (verbosityExists
-                && Enum.TryParse<VerbosityLevel>(verbosity, true, out VerbosityLevel level))
+            if (!string.IsNullOrEmpty(verbosity))
             {
-                VerbosityLevel = level;
-            }
-            else
-            {
-                VerbosityLevel = VerbosityLevel.Default;
-                VerbosityError = verbosityExists;
+                if (Enum.TryParse<VerbosityLevel>(verbosity, true, out VerbosityLevel level))
+                {
+                    VerbosityLevel = level;
+                }
+                else
+                {
+                    ErrorCollector.AddParameterError("Invalid verbosity level: " + verbosity);
+                }
             }
 
             if (processId != 0)
