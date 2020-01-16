@@ -5,7 +5,7 @@ namespace AxeWindowsScanner
 {
     static class ScanRunner
     {
-        public static void RunScan(Options options, IErrorCollector errorCollector)
+        public static void RunScan(IOptions options, IErrorCollector errorCollector)
         {
             //IScanner scanner = BuildScanner(options);
             //ScanResults results = scanner.Scan(options.ScanId);
@@ -15,7 +15,7 @@ namespace AxeWindowsScanner
             //}
         }
 
-        private static IScanner BuildScanner(Options options)
+        private static IScanner BuildScanner(IOptions options)
         {
             return null;
         }
