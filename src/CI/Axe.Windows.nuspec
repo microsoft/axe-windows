@@ -22,7 +22,7 @@
     <releaseNotes>https://github.com/microsoft/axe-windows/releases</releaseNotes>
   </metadata>
   <files>
-    <file src="bin\$configuration$\axe.windows.*.dll" target="lib\net471" />
-    <file src="bin\$configuration$\Axe.Windows.Automation.xml" target="lib\net471" />
+    <file src="bin\$configuration$\axe.windows.*.dll" target="lib\netstandard20" />
+    <file src="bin\$configuration$\Axe.Windows.Automation.xml" target="lib\netstandard20" />
   </files> 
 </package>

@@ -21,10 +21,10 @@ namespace Axe.Windows.AutomationTests
         const int WindowsFormsControlSamplerKnownErrorCount = 6;
         const int WpfControlSamplerKnownErrorCount = 5;
 
-        readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../tools/WildlifeManager/WildlifeManager.exe");
-        readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
-        readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
-        readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../tools/WpfControlSampler/WpfControlSampler.exe");
+        readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
+        readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
+        readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
+        readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
 
         readonly string OutputDir = Path.GetFullPath("./TestOutput");
         readonly string ValidationAppFolder;
@@ -36,7 +36,7 @@ namespace Axe.Windows.AutomationTests
         public AutomationIntegrationTests()
         {
             ValidationAppFolder = Path.GetFullPath(
-                Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\CurrentFileVersionCompatibilityTests\bin",
+                Path.Combine(Directory.GetCurrentDirectory(), @"../..\..\..\CurrentFileVersionCompatibilityTests\bin",
 #if DEBUG
                     "debug"
 #else
