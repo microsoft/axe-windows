@@ -6,7 +6,7 @@ using System.IO;
 
 namespace AxeWindowsScanner
 {
-    public class Options
+    public class Options : IOptions
     {
         [Option(Required = false, HelpText = "Output directory")]
         public string OutputDirectory => _outputDirectory;
