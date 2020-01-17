@@ -55,7 +55,10 @@ namespace CLITests
         const string ScanIdStart = "Scan Id =";
         const string ErrorCountGeneralStart = "{0} errors ";
         const string ErrorCountOneErrorStart = "1 error ";
+        const string ErrorDetailPlaceholderStart = "Placeholder ";
         const string OutputFileStart = "Results were written ";
+        const string ExceptionInfoStart = "The following exception was caught: ";
+        const string ParameterErrorStart = "Parameter Error: ";
 
         private Mock<TextWriter> _writerMock;
         private Mock<IOptions> _optionsMock;
@@ -329,6 +332,8 @@ namespace CLITests
         [Timeout(1000)]
         public void ShowOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
@@ -342,6 +347,8 @@ namespace CLITests
         [Timeout(1000)]
         public void ShowOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
@@ -355,6 +362,8 @@ namespace CLITests
         [Timeout(1000)]
         public void ShowOutput_ScanResultsNoErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
             SetOptions();
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
@@ -375,6 +384,8 @@ namespace CLITests
         [Timeout(1000)]
         public void ShowOutput_ScanResultsOneError_VerbosityIsDefault_WritesBannerAndSummary()
         {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
             SetOptions();
             MockWriteLineOneParam();
             MockWriteLineStringOnly();
@@ -397,6 +408,8 @@ namespace CLITests
         [Timeout(1000)]
         public void ShowOutput_ScanResultsMultipleErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
             SetOptions();
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
@@ -409,6 +422,79 @@ namespace CLITests
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
+            };
+            VerifyWriteCalls(expectedCalls);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ShowOutput_ScanResultsMultipleErrors_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
+            SetOptions(verbosityLevel: VerbosityLevel.Verbose);
+            MockWriteLineStringOnly();
+            MockWriteLineOneParam();
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
+
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorDetailPlaceholderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorDetailPlaceholderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
+            };
+            VerifyWriteCalls(expectedCalls);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ShowOutput_ParameterErrorsExist_VerbosityIsQuiet_WritesBannerAndParameterErrors()
+        {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>
+            {
+                "Parameter Error 1",
+                "Parameter Error 2",
+            });
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
+            SetOptions(verbosityLevel: VerbosityLevel.Quiet);
+            MockWriteLineOneParam();
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ParameterErrorStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ParameterErrorStart, WriteSource.WriteLineOneParam),
+            };
+            VerifyWriteCalls(expectedCalls);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ShowOutput_ExceptionHasBeenThrown_VerbosityIsQuiet_WritesBannerAndExceptionInfo()
+        {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception> { new MissingMethodException() });
+            SetOptions(verbosityLevel: VerbosityLevel.Quiet);
+            MockWriteLineOneParam();
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ExceptionInfoStart, WriteSource.WriteLineOneParam),
             };
             VerifyWriteCalls(expectedCalls);
             VerifyAllMocks();

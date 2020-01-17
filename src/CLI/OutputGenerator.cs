@@ -3,6 +3,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace AxeWindowsScanner
@@ -22,16 +23,16 @@ namespace AxeWindowsScanner
 
         public void ShowOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
         {
-            bool scanCompleted = (scanResults != null);
+            bool failedToComplete = errorCollector.ParameterErrors.Any() || errorCollector.Exceptions.Any() || (scanResults == null);
 
-            ShowBanner(options, scanCompleted ? VerbosityLevel.Default : VerbosityLevel.Quiet);
-            if (scanCompleted)
+            ShowBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
+            if (failedToComplete)
             {
-                ShowScanResults(options, scanResults);
+                ShowExecutionErrors(errorCollector);
             }
             else
             {
-                ShowExecutionErrors(options, errorCollector);
+                ShowScanResults(options, scanResults);
             }
         }
 
@@ -79,9 +80,17 @@ namespace AxeWindowsScanner
             }
         }
 
-        private void ShowExecutionErrors(IOptions options, IErrorCollector errorCollector)
+        private void ShowExecutionErrors(IErrorCollector errorCollector)
         {
+            foreach (string parameterError in errorCollector.ParameterErrors)
+            {
+                _writer.WriteLine("Parameter Error: {0}", parameterError);
+            }
 
+            foreach (Exception exception in errorCollector.Exceptions)
+            {
+                _writer.WriteLine("The following exception was caught: {0}", exception);
+            }
         }
 
         private void ShowScanResults(IOptions options, ScanResults scanResults)
