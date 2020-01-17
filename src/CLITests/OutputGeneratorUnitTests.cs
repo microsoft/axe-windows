@@ -133,6 +133,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void Ctor_WriterIsNull_ThrowsArgumnentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
@@ -141,6 +142,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_OptionsIsNull_ThrowsArgumentNullException()
         {
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
@@ -150,6 +152,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_VerbosityIsQuiet_GeneratesNoOutput()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
@@ -161,6 +164,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_VerbosityIsDefault_NoProcessName_NoProcessId_NoScanId_WritesAppHeader()
         {
             SetOptions();
@@ -178,6 +182,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_VerbosityIsDefault_ProcessName_NoProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processName: TestProcessName);
@@ -201,6 +206,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_VerbosityIsDefault_NoProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processId: TestProcessId);
@@ -224,6 +230,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_VerbosityIsDefault_ProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processName: TestProcessName, processId: TestProcessId);
@@ -249,6 +256,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_VerbosityIsDefault_NoProcessName_NoProcessId_ScanId_WritesAppHeaderAndScanId()
         {
             SetOptions(scanId: TestScanId);
@@ -267,6 +275,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ShowBanner_CalledMultipleTimes_ShowsOnlyOnce()
         {
             SetOptions();

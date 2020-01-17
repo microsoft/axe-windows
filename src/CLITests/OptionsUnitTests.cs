@@ -82,6 +82,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_NoTarget_FailsWithGroupError()
         {
             _processHelperMock.Setup(x => x.FindProcessByName(null))
@@ -98,6 +99,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetByProcesssName_SucceedsWithExpectedData()
         {
             _processHelperMock.Setup(x => x.FindProcessByName(TestProcessName))
@@ -114,6 +116,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetByProcesssId_SucceedsWithExpectedData()
         {
             _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
@@ -130,6 +133,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetIsSet_ScanIdIsSet_SucceedsWithCorrectScanId()
         {
             const string expectedScanId = "Scan123";
@@ -148,6 +152,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetIsSet_VerbosityIsQuiet_SucceedsWithQuietVerbosity()
         {
             const string verbosityArg = "quiet";
@@ -166,6 +171,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetIsSet_VerbosityIsDefault_SucceedsWithDefaultVerbosity()
         {
             const string verbosityArg = "default";
@@ -184,6 +190,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetIsSet_VerbosityIsVerbose_SucceedsWithVerboseVerbosity()
         {
             const string verbosityArg = "verbose";
@@ -202,6 +209,7 @@ namespace CLITests
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void ParseArguments_TargetIsSet_VerbosityIsUnrecognized_SucceedsWithErrorParameter()
         {
             const string verbosityArg = "Unrecognized";
