@@ -21,11 +21,9 @@ namespace CLITests
             _errorCollector = new ErrorCollector();
         }
 
-        private void ValidateListSizes(int expectedParameterErrors = 0, int expectedScanErrors = 0,
-            int expectedExceptions = 0)
+        private void ValidateListSizes(int expectedParameterErrors = 0, int expectedExceptions = 0)
         {
             Assert.AreEqual(expectedParameterErrors, _errorCollector.ParameterErrors.Count);
-            Assert.AreEqual(expectedScanErrors, _errorCollector.ScanErrors.Count);
             Assert.AreEqual(expectedExceptions, _errorCollector.Exceptions.Count);
         }
 
@@ -69,41 +67,6 @@ namespace CLITests
                 Assert.AreEqual(ValidValueArray[loop], _errorCollector.ParameterErrors[loop]);
             }
             ValidateListSizes(expectedParameterErrors: ValidValueArray.Length);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void AddScanError_ValueIsTrivial_ThrowsArgumentException()
-        {
-            ArgumentException e = Assert.ThrowsException<ArgumentException>(
-                () => _errorCollector.AddScanError(TrivialValue));
-            Assert.AreEqual("error", e.ParamName);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void AddScanError_ValueIsValid_StoresValueCorrectly()
-        {
-            _errorCollector.AddScanError(ValidValue);
-            Assert.AreEqual(ValidValue, _errorCollector.ScanErrors[0]);
-            ValidateListSizes(expectedScanErrors: 1);
-        }
-
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void AddScanError_MutipleValidValues_StoresValuesCorrectly()
-        {
-            foreach (string value in ValidValueArray)
-            {
-                _errorCollector.AddScanError(value);
-            }
-
-            for (int loop = 0; loop < ValidValueArray.Length; loop++)
-            {
-                Assert.AreEqual(ValidValueArray[loop], _errorCollector.ScanErrors[loop]);
-            }
-            ValidateListSizes(expectedScanErrors: ValidValueArray.Length);
         }
 
         [TestMethod]

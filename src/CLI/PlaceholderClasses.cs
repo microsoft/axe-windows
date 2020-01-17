@@ -14,21 +14,21 @@ namespace AxeWindowsScanner
 
     public class OutputFile
     {
-        public string A11yTest { get; }
-        public string Sarif { get; }
+        public string A11yTest { get; set; }
+        public string Sarif { get; set; }
     }
 
     public class ScanResult
     {
-        public RuleInfo Rule { get; }
-        public ElementInfo Element { get; }
+        public RuleInfo Rule { get; set; }
+        public ElementInfo Element { get; set; }
     }
 
     public class ScanResults
     {
-        public OutputFile OutputFile { get; }
-        public int ErrorCount { get; }
-        public IEnumerable<ScanResult> Errors { get; }
+        public OutputFile OutputFile { get; set; }
+        public int ErrorCount { get; set; }
+        public IEnumerable<ScanResult> Errors { get; set; }
     }
 
     public interface IScanner

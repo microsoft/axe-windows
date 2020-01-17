@@ -20,7 +20,7 @@ namespace AxeWindowsScanner
             _writer = writer;
         }
 
-        public void ShowOutput(int exitCode, IOptions options, IErrorCollector errorCollector)
+        public void ShowOutput(int exitCode, IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
         {
             bool scanCompleted = (exitCode == (int)ExitCode.ScanFoundErrors) ||
                 (exitCode == (int)ExitCode.ScanFoundNoErrors);
@@ -28,13 +28,12 @@ namespace AxeWindowsScanner
             ShowBanner(options, scanCompleted ? VerbosityLevel.Default : VerbosityLevel.Quiet);
             if (scanCompleted)
             {
-                ShowScanResults(options, errorCollector);
+                ShowScanResults(options, scanResults);
             }
             else
             {
                 ShowExecutionErrors(options, errorCollector);
             }
-            Console.WriteLine("Exit code : {0} ({1})", exitCode, (ExitCode)exitCode);
         }
 
         public void ShowBanner(IOptions options)
@@ -86,9 +85,39 @@ namespace AxeWindowsScanner
 
         }
 
-        private void ShowScanResults(IOptions options, IErrorCollector errorCollector)
+        private void ShowScanResults(IOptions options, ScanResults scanResults)
         {
+            if (options.VerbosityLevel == VerbosityLevel.Quiet)
+            {
+                return;
+            }
 
+            if (scanResults.ErrorCount == 1)
+            {
+                _writer.WriteLine("1 error was found");
+            }
+            else
+            {
+                _writer.WriteLine("{0} errors were found", scanResults.ErrorCount);
+            }
+
+            if (options.VerbosityLevel >= VerbosityLevel.Verbose)
+            {
+                ShowVerboseResults(scanResults);
+            }
+
+            if (!string.IsNullOrEmpty(scanResults.OutputFile.A11yTest))
+            {
+                _writer.WriteLine("Results were written to \"{0}\"", scanResults.OutputFile.A11yTest);
+            }
+        }
+
+        private void ShowVerboseResults(ScanResults scanResults)
+        {
+            foreach (ScanResult scanResult in scanResults.Errors)
+            {
+                _writer.WriteLine("Placeholder for error details");
+            }
         }
     }
 }

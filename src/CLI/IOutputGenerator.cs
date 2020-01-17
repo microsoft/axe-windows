@@ -6,6 +6,6 @@ namespace AxeWindowsScanner
     public interface IOutputGenerator
     {
         void ShowBanner(IOptions options);
-        void ShowOutput(int exitCode, IOptions options, IErrorCollector errorCollector);
+        void ShowOutput(int exitCode, IOptions options, IErrorCollector errorCollector, ScanResults scanResults);
     }
 }

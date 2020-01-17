@@ -11,6 +11,8 @@ namespace AxeWindowsScanner
     {
         static IErrorCollector ErrorCollector = new ErrorCollector();
         static IOutputGenerator OutputGenerator = new OutputGenerator(Console.Out);
+        static ScanResults ScanResults = null;
+
         static int Main(string[] args)
         {
             int exitCode = (int)ExitCode.ScanDidNotComplete;
@@ -35,7 +37,7 @@ namespace AxeWindowsScanner
                 exitCode = (int)ExitCode.ScanDidNotComplete;
             }
 
-            OutputGenerator.ShowOutput(exitCode, options, ErrorCollector);
+            OutputGenerator.ShowOutput(exitCode, options, ErrorCollector, ScanResults);
             return exitCode;
         }
 
@@ -54,9 +56,9 @@ namespace AxeWindowsScanner
             try
             {
                 OutputGenerator.ShowBanner(options);
-                ScanRunner.RunScan(options, ErrorCollector);
+                ScanResults = ScanRunner.RunScan(options);
 
-                if (ErrorCollector.ScanErrors.Any())
+                if (ScanResults.ErrorCount > 0)
                 {
                     return (int)ExitCode.ScanFoundErrors;
                 }
