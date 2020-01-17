@@ -10,6 +10,8 @@ namespace AxeWindowsScanner
 {
     class Program
     {
+        const int IgnoredReturnValue = 0;
+
         static TextWriter Writer = Console.Out;
         static IErrorCollector ErrorCollector = new ErrorCollector();
         static IOutputGenerator OutputGenerator = new OutputGenerator(Writer);
@@ -51,7 +53,7 @@ namespace AxeWindowsScanner
                     ErrorCollector.AddParameterError("Command line error: " + error.Tag);
                 }
             }
-            return 0;  // Return value is ignored
+            return IgnoredReturnValue;
         }
 
         static int HandleParsableInputs(IOptions options)
@@ -69,7 +71,7 @@ namespace AxeWindowsScanner
                     ErrorCollector.AddException(e);
                 }
             }
-            return 0;  // Return value is ignored
+            return IgnoredReturnValue;
         }
 
         static Parser CaseInsensitiveParser()
