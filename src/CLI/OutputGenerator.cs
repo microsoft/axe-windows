@@ -20,10 +20,9 @@ namespace AxeWindowsScanner
             _writer = writer;
         }
 
-        public void ShowOutput(int exitCode, IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
+        public void ShowOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
         {
-            bool scanCompleted = (exitCode == (int)ExitCode.ScanFoundErrors) ||
-                (exitCode == (int)ExitCode.ScanFoundNoErrors);
+            bool scanCompleted = (scanResults != null);
 
             ShowBanner(options, scanCompleted ? VerbosityLevel.Default : VerbosityLevel.Quiet);
             if (scanCompleted)

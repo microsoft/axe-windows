@@ -39,7 +39,7 @@ namespace AxeWindowsScanner
                 exitCode = (int)ExitCode.ScanDidNotComplete;
             }
 
-            OutputGenerator.ShowOutput(exitCode, options, ErrorCollector, ScanResults);
+            OutputGenerator.ShowOutput(options, ErrorCollector, ScanResults);
             return exitCode;
         }
 

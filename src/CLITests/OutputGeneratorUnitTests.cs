@@ -327,43 +327,40 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanFoundNoErrors_VerbosityIsQuiet_IsSilent()
+        public void ShowOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
-            generator.ShowOutput((int)ExitCode.ScanFoundNoErrors,
-                _optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanFoundErrors_VerbosityIsQuiet_IsSilent()
+        public void ShowOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput((int)ExitCode.ScanFoundErrors,
-                _optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanFoundNoErrors_VerbosityIsDefault_WritesBannerAndSummary()
+        public void ShowOutput_ScanResultsNoErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
             SetOptions();
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 0);
+            ScanResults scanResults = BuildTestScanResults();
 
-            generator.ShowOutput((int)ExitCode.ScanFoundNoErrors,
-                _optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -376,7 +373,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanFoundOneError_VerbosityIsDefault_WritesBannerAndSummary()
+        public void ShowOutput_ScanResultsOneError_VerbosityIsDefault_WritesBannerAndSummary()
         {
             SetOptions();
             MockWriteLineOneParam();
@@ -384,8 +381,7 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput((int)ExitCode.ScanFoundNoErrors,
-                _optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -399,15 +395,14 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanFoundMoreThanOneError_VerbosityIsDefault_WritesBannerAndSummary()
+        public void ShowOutput_ScanResultsMultipleErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
             SetOptions();
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput((int)ExitCode.ScanFoundNoErrors,
-                _optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
