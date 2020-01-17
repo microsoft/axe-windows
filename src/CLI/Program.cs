@@ -17,7 +17,6 @@ namespace AxeWindowsScanner
 
         static int Main(string[] args)
         {
-            int exitCode = (int)ExitCode.ScanDidNotComplete;
             Options options = null;
             try
             {
@@ -25,7 +24,7 @@ namespace AxeWindowsScanner
                 Options.ProcessHelper = new ProcessHelper(new ProcessAbstraction(), ErrorCollector);
 
                 string[] t = { "--verbosity", "default", "--SCANID", "MyScan", "--outputdirectory", "abc", "--processname", "notepad++" };
-                exitCode = CaseInsensitiveParser().ParseArguments<Options>(t)
+                CaseInsensitiveParser().ParseArguments<Options>(t)
                     .MapResult((opts) =>
                     {
                         options = opts;
@@ -36,42 +35,41 @@ namespace AxeWindowsScanner
             catch (Exception e)
             {
                 ErrorCollector.AddException(e);
-                exitCode = (int)ExitCode.ScanDidNotComplete;
             }
 
             OutputGenerator.ShowOutput(options, ErrorCollector, ScanResults);
-            return exitCode;
+            return ReturnValueChooser.GetReturnValue(ErrorCollector, ScanResults);
         }
 
-        static int HandleNonParsableInputs(IEnumerable<Error> errs)
+        static int HandleNonParsableInputs(IEnumerable<Error> errors)
         {
-            return (int)ExitCode.InvalidCommandLine;
+            foreach (Error error in errors)
+            {
+                if (error.Tag != ErrorType.HelpRequestedError &&
+                    error.Tag != ErrorType.HelpVerbRequestedError)
+                {
+                    ErrorCollector.AddParameterError("Command line error: " + error.Tag);
+                }
+            }
+            return 0;  // Return value is ignored
         }
 
         static int HandleParsableInputs(IOptions options)
         {
-            if (ErrorCollector.ParameterErrors.Any())
+            if (!ErrorCollector.ParameterErrors.Any())
             {
-                return (int)ExitCode.InvalidCommandLine;
-            }
-
-            try
-            {
-                OutputGenerator.ShowBanner(options);
-                ScanResults = ScanRunner.RunScan(options);
-
-                if (ScanResults.ErrorCount > 0)
+                try
                 {
-                    return (int)ExitCode.ScanFoundErrors;
-                }
+                    OutputGenerator.ShowBanner(options);
+                    ScanResults = ScanRunner.RunScan(options);
 
-                return (int)ExitCode.ScanFoundNoErrors;
+                }
+                catch (Exception e)
+                {
+                    ErrorCollector.AddException(e);
+                }
             }
-            catch (Exception e)
-            {
-                ErrorCollector.AddException(e);
-            }
-            return (int)ExitCode.ScanDidNotComplete;
+            return 0;  // Return value is ignored
         }
 
         static Parser CaseInsensitiveParser()
