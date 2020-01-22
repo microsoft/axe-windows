@@ -43,19 +43,6 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
 
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
-    inputs:
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\obj\**
-      vsTestVersion: 16.0
-      codeCoverageEnabled: true
-      publishRunAttachments: true
-      platform: '$(BuildPlatform)'
-      configuration: release
-      rerunFailedTests: true
-
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
@@ -94,19 +81,6 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
-
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
-    inputs:
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\obj\**
-      testFiltercriteria: 'TestCategory!=RequiresNetwork'
-      vsTestVersion: 16.0
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: debug
-      rerunFailedTests: true
 
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
