@@ -36,7 +36,7 @@ namespace Axe.Windows.AutomationTests
         public AutomationIntegrationTests()
         {
             ValidationAppFolder = Path.GetFullPath(
-                Path.Combine(Directory.GetCurrentDirectory(), @"../..\..\..\CurrentFileVersionCompatibilityTests\bin",
+                Path.Combine(Directory.GetCurrentDirectory(), @"../../../../CurrentFileVersionCompatibilityTests/bin",
 #if DEBUG
                     "debug"
 #else
