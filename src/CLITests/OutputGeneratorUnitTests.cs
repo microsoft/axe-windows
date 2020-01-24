@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Automation;
 using AxeWindowsScanner;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -324,7 +325,7 @@ namespace CLITests
             {
                 Errors = errors,
                 ErrorCount = errors.Count,
-                OutputFile = new OutputFile { A11yTest = a11yTestFile },
+                OutputFile = OutputFile.BuildFromA11yTestFile(a11yTestFile),
             };
         }
 

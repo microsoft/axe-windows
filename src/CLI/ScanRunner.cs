@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using System.Collections.Generic;
+using Axe.Windows.Automation;
 
 namespace AxeWindowsScanner
 {
@@ -9,31 +9,19 @@ namespace AxeWindowsScanner
     {
         public static ScanResults RunScan(IOptions options)
         {
-            return BuildSampleResults();
-            //IScanner scanner = BuildScanner(options);
-            //return scanner.Scan(options.ScanId);
+            IScanner scanner = BuildScanner(options);
+            return scanner.Scan(options.ScanId);
         }
 
         private static IScanner BuildScanner(IOptions options)
         {
-            return null;
-        }
+            Config.Builder builder = Config.Builder
+                .ForProcessId(options.ProcessId);
 
-        private static ScanResults BuildSampleResults()
-        {
-            List<ScanResult> errors = new List<ScanResult>
-            {
-                new ScanResult(),
-                new ScanResult(),
-                new ScanResult(),
-            };
+            if (!string.IsNullOrEmpty(options.OutputDirectory))
+                builder = builder.WithOutputDirectory(options.OutputDirectory);
 
-            return new ScanResults
-            {
-                Errors = errors,
-                ErrorCount = errors.Count,
-                OutputFile = new OutputFile { A11yTest = @"c:\foo\bar.a11ytest" },
-            };
+            return ScannerFactory.CreateScanner(builder.Build());
         }
     }
 }

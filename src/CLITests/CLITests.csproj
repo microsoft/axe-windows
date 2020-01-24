@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Automation\Automation.csproj" />
     <ProjectReference Include="..\CLI\CLI.csproj" />
   </ItemGroup>
 
