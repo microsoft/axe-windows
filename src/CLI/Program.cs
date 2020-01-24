@@ -39,7 +39,10 @@ namespace AxeWindowsScanner
                 ErrorCollector.AddException(e);
             }
 
-            OutputGenerator.ShowOutput(options, ErrorCollector, ScanResults);
+            if (options != null)
+            {
+                OutputGenerator.ShowOutput(options, ErrorCollector, ScanResults);
+            }
             return ReturnValueChooser.GetReturnValue(ErrorCollector, ScanResults);
         }
 
