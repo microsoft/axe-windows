@@ -79,7 +79,7 @@ namespace Axe.Windows.AutomationTests
             EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
         }
 
-        [TestMethod]
+        // [TestMethod]
         [Timeout(30000)]
         public void Scan_Integration_Win32ControlSampler()
         {
