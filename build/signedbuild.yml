@@ -43,18 +43,6 @@ jobs:
     inputs:
       input: 'src\Axe.Windows\bin\Release'
 
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
-    inputs:
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\obj\**
-      vsTestVersion: 16.0
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: release
-      rerunFailedTests: true
-
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
@@ -159,19 +147,6 @@ jobs:
       uploadPREfast: false
       uploadTSLint: false
 
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\debug\*test*.dll;-:**\obj\**'
-    inputs:
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\obj\**
-      testFiltercriteria: 'TestCategory!=RequiresNetwork'
-      vsTestVersion: 16.0
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: debug
-      rerunFailedTests: true
-
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
@@ -255,23 +230,10 @@ jobs:
     inputs:
       BinSkim: true
 
-  - task: VSTest@2
-    displayName: 'Test Assemblies **\release\*test*.dll;-:**\obj\**'
-    inputs:
-      testAssemblyVer2: |
-        **\*test*.dll
-        !**\obj\**
-      testFiltercriteria: 'TestCategory!=Integration'
-      vsTestVersion: 16.0
-      codeCoverageEnabled: false
-      platform: '$(BuildPlatform)'
-      configuration: release
-      rerunFailedTests: true
-
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
-      arguments: --no-build --blame --verbosity normal --configuration release
+      arguments: --no-build --blame --verbosity normal --configuration release --filter TestCategory!=Integration
       command: test
       projects: |
         **\*test*.csproj

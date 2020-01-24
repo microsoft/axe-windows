@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Win32;
 using System.Drawing;
-using System.Windows.Forms;
 
 namespace Axe.Windows.Actions
 {
@@ -22,7 +22,7 @@ namespace Axe.Windows.Actions
             Rectangle rootBoundingRectangle = rootElement.BoundingRectangle;
 
             // Synthesize the bitmap
-            bool isHighContrast = SystemInformation.HighContrast;
+            bool isHighContrast = HighContrast.Create().IsOn;
             Color brushColor = isHighContrast ? SystemColors.Window : Color.DarkGray;
             Color penColor = isHighContrast ? SystemColors.WindowFrame : Color.Yellow;
             Bitmap bitmap = new Bitmap(rootBoundingRectangle.Width, rootBoundingRectangle.Height);

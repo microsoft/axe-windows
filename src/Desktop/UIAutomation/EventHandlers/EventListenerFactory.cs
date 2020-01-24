@@ -477,7 +477,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             _autoEventFinish.WaitOne(TimeSpan.FromSeconds(ThreadExitGracePeriod));
             if (this._threadBackground.IsAlive)
             {
-                this._threadBackground.Abort();
+                try
+                {
+                    this._threadBackground.Abort();
+                }
+                catch (PlatformNotSupportedException)
+                { }  // nothing we can do. Just continue
             }
         }
 

@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
+using Axe.Windows.Win32;
 using System;
 using System.Drawing;
 using System.Timers;
@@ -102,7 +103,7 @@ namespace Axe.Windows.Actions.Trackers
             {
                 if (this.timerMouse != null && this.IsStarted)
                 {
-                    var p = System.Windows.Forms.Control.MousePosition;
+                    NativeMethods.GetCursorPos(out Point p);
 
                     if (LastMousePoint.Equals(p) && this.POIPoint.Equals(p) == false)
                     {
