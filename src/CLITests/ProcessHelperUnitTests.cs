@@ -25,11 +25,6 @@ namespace CLITests
             _errorCollectorMock = new Mock<IErrorCollector>(MockBehavior.Strict);
         }
 
-        [TestCleanup]
-        public void AfterEachTest()
-        {
-        }
-
         [TestMethod]
         [Timeout(1000)]
         public void Ctor_ProcessAbstractionIsNull_ThrowsArgumentNullException()
