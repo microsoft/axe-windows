@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 
 namespace Axe.Windows.Win32
@@ -30,5 +31,11 @@ namespace Axe.Windows.Win32
         /// </returns>
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern bool SetProcessDPIAware();
+
+        [DllImport("user32.dll")]
+        internal static extern bool GetCursorPos(out Point lpPoint);
+
+        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo", SetLastError = true)]
+        internal static extern bool SystemParametersInfoHighContrast(uint action, uint param, ref HighContrast vparam, uint init);
     }
 }

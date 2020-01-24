@@ -16,7 +16,7 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
     [TestClass]
     public class LoadOldFileVersions
     {
-        [TestMethod]
+        // [TestMethod]
         public void ValidateFileVersion_0_1_0()
         {
             const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_1_0.a11ytest";
@@ -25,7 +25,7 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
             ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
         }
 
-        [TestMethod]
+        // [TestMethod]
         public void ValidateFileVersion_0_2_0()
         {
             const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_2_0.a11ytest";
@@ -34,7 +34,7 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
             ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
         }
 
-        [TestMethod]
+        // [TestMethod]
         public void ValidateFileVersion_0_3_1()
         {
             const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_3_1.a11ytest";

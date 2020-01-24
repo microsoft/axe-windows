@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RuleSelection\RuleSelection.csproj" />
+    <ProjectReference Include="..\Rules\Rules.csproj" />
   </ItemGroup>
 
   <Import Project="..\..\build\NetStandardTest.targets" />
