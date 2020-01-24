@@ -16,7 +16,8 @@ namespace AxeWindowsScanner
         private static IScanner BuildScanner(IOptions options)
         {
             Config.Builder builder = Config.Builder
-                .ForProcessId(options.ProcessId);
+                .ForProcessId(options.ProcessId)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
             if (!string.IsNullOrEmpty(options.OutputDirectory))
                 builder = builder.WithOutputDirectory(options.OutputDirectory);

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
+using Axe.Windows.Rules;
 using AxeWindowsScanner;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -20,6 +21,7 @@ namespace CLITests
             WriteLineEmpty,
             WriteLineStringOnly,
             WriteLineOneParam,
+            WriteLineTwoParams,
         }
 
         class WriteCall
@@ -56,7 +58,12 @@ namespace CLITests
         const string ScanIdStart = "Scan Id =";
         const string ErrorCountGeneralStart = "{0} errors ";
         const string ErrorCountOneErrorStart = "1 error ";
-        const string ErrorDetailPlaceholderStart = "Placeholder ";
+        const string ErrorVerboseCountStart = "Error ";
+        const string ErrorVerbosePropertiesHeaderStart = "  Element Properties";
+        const string ErrorVerbosePropertyPairStart = "    {0} = {1}";
+        const string ErrorVerbosePatternsHeaderStart = "  Element Patterns";
+        const string ErrorVerbosePatternIndex = "    {0}";
+        const string ErrorVerboseSeparatorStart = "---------------------";
         const string OutputFileStart = "Results were written ";
         const string ExceptionInfoStart = "The following exception was caught: ";
         const string ParameterErrorStart = "Parameter Error: ";
@@ -115,6 +122,12 @@ namespace CLITests
         {
             _writerMock.Setup(x => x.WriteLine(It.IsAny<string>(), It.IsAny<object>()))
                 .Callback<string, object>((s, _) => AddWriteCall(s, WriteSource.WriteLineOneParam));
+        }
+
+        private void MockWriteLineTwoParams()
+        {
+            _writerMock.Setup(x => x.WriteLine(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<object>()))
+                .Callback<string, object, object>((s, _, __) => AddWriteCall(s, WriteSource.WriteLineTwoParams));
         }
 
         private void VerifyWriteCalls(IEnumerable<WriteCall> expectedCalls)
@@ -312,13 +325,55 @@ namespace CLITests
             VerifyAllMocks();
         }
 
-        private ScanResults BuildTestScanResults(int errorCount = 0, string a11yTestFile = null)
+        private IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
+        {
+            if (!propertyCount.HasValue)
+                return null;
+
+            Dictionary<string, string> properties = new Dictionary<string, string>();
+
+            for (int loop = 0; loop < propertyCount.Value; loop++)
+            {
+                properties.Add(string.Format("Property{0}", loop), string.Format("Value{0}", loop));
+            }
+
+            return properties;
+        }
+
+        private IEnumerable<string> BuildTestPatterns(int? patternCount)
+        {
+            if (!patternCount.HasValue)
+                return null;
+
+            List<string> patterns = new List<string>();
+
+            for (int loop = 0; loop < patternCount.Value; loop++)
+            {
+                patterns.Add(string.Format("Pattern{0}", loop));
+            }
+
+            return patterns;
+        }
+
+        private ScanResults BuildTestScanResults(int errorCount = 0, string a11yTestFile = null,
+            int? propertyCount = null, int? patternCount = null)
         {
             List<ScanResult> errors = new List<ScanResult>(errorCount);
 
             for(int loop = 0; loop < errorCount; loop++)
             {
-                errors.Add(new ScanResult());
+                errors.Add(new ScanResult
+                {
+                    Element = new ElementInfo
+                    {
+                        Properties = BuildTestProperties(propertyCount),
+                        Patterns = BuildTestPatterns(patternCount),
+                    },
+                    Rule = new RuleInfo
+                    {
+                        Description = "Test Rule",
+                    },
+                }); ;
             };
 
             return new ScanResults
@@ -430,13 +485,14 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsMultipleErrors_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        public void ShowOutput_ScanResultsMultipleErrors_NoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);
             MockWriteLineStringOnly();
             MockWriteLineOneParam();
+            MockWriteLineTwoParams();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
@@ -446,8 +502,124 @@ namespace CLITests
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
-                new WriteCall(ErrorDetailPlaceholderStart, WriteSource.WriteLineStringOnly),
-                new WriteCall(ErrorDetailPlaceholderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
+            };
+            VerifyWriteCalls(expectedCalls);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ShowOutput_ScanResultsMultipleErrors_TwoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
+            SetOptions(verbosityLevel: VerbosityLevel.Verbose);
+            MockWriteLineStringOnly();
+            MockWriteLineOneParam();
+            MockWriteLineTwoParams();
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+                patternCount: 2);
+
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePatternsHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePatternsHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
+            };
+            VerifyWriteCalls(expectedCalls);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ShowOutput_ScanResultsMultipleErrors_NoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
+            SetOptions(verbosityLevel: VerbosityLevel.Verbose);
+            MockWriteLineStringOnly();
+            MockWriteLineOneParam();
+            MockWriteLineTwoParams();
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+                propertyCount: 2);
+
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertiesHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertiesHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
+            };
+            VerifyWriteCalls(expectedCalls);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ShowOutput_ScanResultsMultipleErrors_TwoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        {
+            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
+            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
+            SetOptions(verbosityLevel: VerbosityLevel.Verbose);
+            MockWriteLineStringOnly();
+            MockWriteLineOneParam();
+            MockWriteLineTwoParams();
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+                patternCount: 2, propertyCount: 2);
+
+            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertiesHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePatternsHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertiesHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(ErrorVerbosePatternsHeaderStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
+                new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             VerifyWriteCalls(expectedCalls);

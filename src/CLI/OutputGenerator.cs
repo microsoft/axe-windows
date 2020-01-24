@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -123,9 +124,27 @@ namespace AxeWindowsScanner
 
         private void ShowVerboseResults(ScanResults scanResults)
         {
+            int errorCount = 0;
             foreach (ScanResult scanResult in scanResults.Errors)
             {
-                _writer.WriteLine("Placeholder for error details");
+                _writer.WriteLine("Error {0}: {1}", ++errorCount, scanResult.Rule.Description);
+                if (scanResult.Element.Properties != null && scanResult.Element.Properties.Any())
+                {
+                    _writer.WriteLine("  Element Properties:");
+                    foreach (KeyValuePair<string, string> pair in scanResult.Element.Properties)
+                    {
+                        _writer.WriteLine("    {0} = {1}", pair.Key, pair.Value);
+                    }
+                }
+                if (scanResult.Element.Patterns != null && scanResult.Element.Patterns.Any())
+                {
+                    _writer.WriteLine("  Element Patterns:");
+                    foreach (string pattern in scanResult.Element.Patterns)
+                    {
+                        _writer.WriteLine("    {0}", pattern);
+                    }
+                }
+                _writer.WriteLine("----------------------------------------------------------------------");
             }
         }
     }
