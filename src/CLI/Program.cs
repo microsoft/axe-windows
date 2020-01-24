@@ -26,8 +26,7 @@ namespace AxeWindowsScanner
                 Options.ErrorCollector = ErrorCollector;
                 Options.ProcessHelper = new ProcessHelper(new ProcessAbstraction(), ErrorCollector);
 
-                string[] t = { "--verbosity", "verbose", "--SCANID", "MyScan", "--outputdirectory", @"c:\users\dtryon\dev", "--processname", "notepad++" };
-                CaseInsensitiveParser().ParseArguments<Options>(t)
+                CaseInsensitiveParser().ParseArguments<Options>(args)
                     .MapResult((opts) =>
                     {
                         options = opts;
