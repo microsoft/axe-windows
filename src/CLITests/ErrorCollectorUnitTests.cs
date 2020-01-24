@@ -52,7 +52,6 @@ namespace CLITests
             ValidateListSizes(expectedParameterErrors: 1);
         }
 
-
         [TestMethod]
         [Timeout(1000)]
         public void AddParameterError_MutipleValidValues_StoresValuesCorrectly()
@@ -87,7 +86,6 @@ namespace CLITests
             Assert.AreEqual(expectedException, _errorCollector.Exceptions[0]);
             ValidateListSizes(expectedExceptions: 1);
         }
-
 
         [TestMethod]
         [Timeout(1000)]
