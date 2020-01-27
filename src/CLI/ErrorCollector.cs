@@ -10,24 +10,15 @@ namespace AxeWindowsCLI
     {
         public IReadOnlyList<string> ParameterErrors => _parameterErrors;
 
-        public IReadOnlyList<string> ScanErrors => _scanErrors;
-
         public IReadOnlyList<Exception> Exceptions => _exceptions;
 
         List<string> _parameterErrors = new List<string>();
-        List<string> _scanErrors = new List<string>();
         List<Exception> _exceptions = new List<Exception>();
 
         public void AddParameterError(string error)
         {
             if (string.IsNullOrWhiteSpace(error)) throw new ArgumentException("Parameter must be non-trivial", nameof(error));
             _parameterErrors.Add(error);
-        }
-
-        public void AddScanError(string error)
-        {
-            if (string.IsNullOrWhiteSpace(error)) throw new ArgumentException("Parameter must be non-trivial", nameof(error));
-            _scanErrors.Add(error);
         }
 
         public void AddException(Exception exception)
