@@ -103,14 +103,7 @@ namespace AxeWindowsCLI
                 return;
             }
 
-            if (scanResults.ErrorCount == 1)
-            {
-                _writer.WriteLine("1 error was found");
-            }
-            else
-            {
-                _writer.WriteLine("{0} errors were found", scanResults.ErrorCount);
-            }
+            WriteErrorCount(scanResults);
 
             if (options.VerbosityLevel >= VerbosityLevel.Verbose)
             {
@@ -120,6 +113,18 @@ namespace AxeWindowsCLI
             if (!string.IsNullOrEmpty(scanResults.OutputFile.A11yTest))
             {
                 _writer.WriteLine("Results were written to \"{0}\"", scanResults.OutputFile.A11yTest);
+            }
+        }
+
+        private void WriteErrorCount(ScanResults scanResults)
+        {
+            if (scanResults.ErrorCount == 1)
+            {
+                _writer.WriteLine("1 error was found");
+            }
+            else
+            {
+                _writer.WriteLine("{0} errors were found", scanResults.ErrorCount);
             }
         }
 
