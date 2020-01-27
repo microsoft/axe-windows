@@ -11,6 +11,8 @@ namespace AxeWindowsCLI
         public IReadOnlyList<string> ParameterErrors { get; }
         public IReadOnlyList<Exception> Exceptions { get; }
 
+        public bool Any { get; }
+
         public void AddParameterError(string error);
         public void AddException(Exception e);
     }

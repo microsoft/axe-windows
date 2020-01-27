@@ -26,7 +26,7 @@ namespace AxeWindowsCLI
 
         public void WriteOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
         {
-            bool failedToComplete = errorCollector.ParameterErrors.Any() || errorCollector.Exceptions.Any() || (scanResults == null);
+            bool failedToComplete = errorCollector.Any || (scanResults == null);
 
             WriteBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
             if (failedToComplete)

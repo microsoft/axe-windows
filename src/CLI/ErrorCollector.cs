@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AxeWindowsCLI
 {
@@ -14,6 +15,8 @@ namespace AxeWindowsCLI
 
         List<string> _parameterErrors = new List<string>();
         List<Exception> _exceptions = new List<Exception>();
+
+        public bool Any => _parameterErrors.Any() || _exceptions.Any();
 
         public void AddParameterError(string error)
         {

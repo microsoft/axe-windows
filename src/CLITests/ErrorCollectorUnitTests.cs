@@ -26,6 +26,8 @@ namespace CLITests
         {
             Assert.AreEqual(expectedParameterErrors, _errorCollector.ParameterErrors.Count);
             Assert.AreEqual(expectedExceptions, _errorCollector.Exceptions.Count);
+            bool expectedAny = expectedParameterErrors != 0 || expectedExceptions != 0;
+            Assert.AreEqual(expectedAny, _errorCollector.Any);
         }
 
         [TestMethod]
