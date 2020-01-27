@@ -134,23 +134,33 @@ namespace AxeWindowsCLI
             foreach (ScanResult scanResult in scanResults.Errors)
             {
                 _writer.WriteLine("Error {0}: {1}", ++errorCount, scanResult.Rule.Description);
-                if (scanResult.Element.Properties != null && scanResult.Element.Properties.Any())
-                {
-                    _writer.WriteLine("  Element Properties:");
-                    foreach (KeyValuePair<string, string> pair in scanResult.Element.Properties)
-                    {
-                        _writer.WriteLine("    {0} = {1}", pair.Key, pair.Value);
-                    }
-                }
-                if (scanResult.Element.Patterns != null && scanResult.Element.Patterns.Any())
-                {
-                    _writer.WriteLine("  Element Patterns:");
-                    foreach (string pattern in scanResult.Element.Patterns)
-                    {
-                        _writer.WriteLine("    {0}", pattern);
-                    }
-                }
+                WriteProperties(scanResult);
+                WritePatterns(scanResult);
                 _writer.WriteLine("----------------------------------------------------------------------");
+            }
+        }
+
+        private void WriteProperties(ScanResult scanResult)
+        {
+            if (scanResult.Element.Properties != null && scanResult.Element.Properties.Any())
+            {
+                _writer.WriteLine("  Element Properties:");
+                foreach (KeyValuePair<string, string> pair in scanResult.Element.Properties)
+                {
+                    _writer.WriteLine("    {0} = {1}", pair.Key, pair.Value);
+                }
+            }
+        }
+
+        private void WritePatterns(ScanResult scanResult)
+        {
+            if (scanResult.Element.Patterns != null && scanResult.Element.Patterns.Any())
+            {
+                _writer.WriteLine("  Element Patterns:");
+                foreach (string pattern in scanResult.Element.Patterns)
+                {
+                    _writer.WriteLine("    {0}", pattern);
+                }
             }
         }
     }
