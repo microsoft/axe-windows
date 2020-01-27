@@ -175,35 +175,35 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_OptionsIsNull_ThrowsArgumentNullException()
+        public void WriteBanner_OptionsIsNull_ThrowsArgumentNullException()
         {
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => generator.ShowBanner(null));
+                () => generator.WriteBanner(null));
             Assert.AreEqual("options", e.ParamName);
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_VerbosityIsQuiet_IsSilent()
+        public void WriteBanner_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_VerbosityIsDefault_NoProcessName_NoProcessId_NoScanId_WritesAppHeader()
+        public void WriteBanner_VerbosityIsDefault_NoProcessName_NoProcessId_NoScanId_WritesAppHeader()
         {
             SetOptions();
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             WriteCall[] expectedCalls = 
             { 
@@ -215,7 +215,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_VerbosityIsDefault_ProcessName_NoProcessId_NoScanId_WritesAppHeaderAndScanTarget()
+        public void WriteBanner_VerbosityIsDefault_ProcessName_NoProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processName: TestProcessName);
             MockWriteStringOnly();
@@ -224,7 +224,7 @@ namespace CLITests
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             WriteCall[] expectedCalls =
             {
@@ -239,7 +239,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_VerbosityIsDefault_NoProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
+        public void WriteBanner_VerbosityIsDefault_NoProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processId: TestProcessId);
             MockWriteStringOnly();
@@ -248,7 +248,7 @@ namespace CLITests
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             WriteCall[] expectedCalls =
             {
@@ -263,7 +263,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_VerbosityIsDefault_ProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
+        public void WriteBanner_VerbosityIsDefault_ProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processName: TestProcessName, processId: TestProcessId);
             MockWriteStringOnly();
@@ -272,7 +272,7 @@ namespace CLITests
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             WriteCall[] expectedCalls =
             {
@@ -289,13 +289,13 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_VerbosityIsDefault_NoProcessName_NoProcessId_ScanId_WritesAppHeaderAndScanId()
+        public void WriteBanner_VerbosityIsDefault_NoProcessName_NoProcessId_ScanId_WritesAppHeaderAndScanId()
         {
             SetOptions(scanId: TestScanId);
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             WriteCall[] expectedCalls =
             {
@@ -308,15 +308,15 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowBanner_CalledMultipleTimes_ShowsOnlyOnce()
+        public void WriteBanner_CalledMultipleTimes_WritesOnlyOnce()
         {
             SetOptions();
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowBanner(_optionsMock.Object);
-            generator.ShowBanner(_optionsMock.Object);
-            generator.ShowBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
+            generator.WriteBanner(_optionsMock.Object);
 
             WriteCall[] expectedCalls =
             {
@@ -387,7 +387,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
+        public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -395,14 +395,14 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
+        public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -410,14 +410,14 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsNoErrors_VerbosityIsDefault_WritesBannerAndSummary()
+        public void WriteOutput_ScanResultsNoErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -426,7 +426,7 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -439,7 +439,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsOneError_VerbosityIsDefault_WritesBannerAndSummary()
+        public void WriteOutput_ScanResultsOneError_VerbosityIsDefault_WritesBannerAndSummary()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -449,7 +449,7 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -463,7 +463,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsMultipleErrors_VerbosityIsDefault_WritesBannerAndSummary()
+        public void WriteOutput_ScanResultsMultipleErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -472,7 +472,7 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -486,7 +486,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsMultipleErrors_NoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        public void WriteOutput_ScanResultsMultipleErrors_NoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -497,7 +497,7 @@ namespace CLITests
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -515,7 +515,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsMultipleErrors_TwoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        public void WriteOutput_ScanResultsMultipleErrors_TwoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -527,7 +527,7 @@ namespace CLITests
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 patternCount: 2);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -551,7 +551,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsMultipleErrors_NoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        public void WriteOutput_ScanResultsMultipleErrors_NoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -563,7 +563,7 @@ namespace CLITests
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 propertyCount: 2);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -587,7 +587,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ScanResultsMultipleErrors_TwoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
+        public void WriteOutput_ScanResultsMultipleErrors_TwoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
@@ -599,7 +599,7 @@ namespace CLITests
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 patternCount: 2, propertyCount: 2);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
 
             WriteCall[] expectedCalls =
             {
@@ -629,7 +629,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ParameterErrorsExist_VerbosityIsQuiet_WritesBannerAndParameterErrors()
+        public void WriteOutput_ParameterErrorsExist_VerbosityIsQuiet_WritesBannerAndParameterErrors()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>
             {
@@ -641,7 +641,7 @@ namespace CLITests
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
 
             WriteCall[] expectedCalls =
             {
@@ -655,7 +655,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ShowOutput_ExceptionHasBeenThrown_VerbosityIsQuiet_WritesBannerAndExceptionInfo()
+        public void WriteOutput_ExceptionHasBeenThrown_VerbosityIsQuiet_WritesBannerAndExceptionInfo()
         {
             _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
             _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception> { new MissingMethodException() });
@@ -663,7 +663,7 @@ namespace CLITests
             MockWriteLineOneParam();
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.ShowOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
+            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
 
             WriteCall[] expectedCalls =
             {

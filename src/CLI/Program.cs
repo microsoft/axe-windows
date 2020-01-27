@@ -42,7 +42,7 @@ namespace AxeWindowsCLI
 
             if (options != null)
             {
-                OutputGenerator.ShowOutput(options, ErrorCollector, ScanResults);
+                OutputGenerator.WriteOutput(options, ErrorCollector, ScanResults);
             }
             return ReturnValueChooser.GetReturnValue(ErrorCollector, ScanResults);
         }
@@ -66,7 +66,7 @@ namespace AxeWindowsCLI
             {
                 try
                 {
-                    OutputGenerator.ShowBanner(options);
+                    OutputGenerator.WriteBanner(options);
                     ScanResults = ScanRunner.RunScan(options);
 
                 }

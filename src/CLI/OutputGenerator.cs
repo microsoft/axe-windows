@@ -24,27 +24,27 @@ namespace AxeWindowsCLI
             _writer = writer;
         }
 
-        public void ShowOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
+        public void WriteOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
         {
             bool failedToComplete = errorCollector.ParameterErrors.Any() || errorCollector.Exceptions.Any() || (scanResults == null);
 
-            ShowBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
+            WriteBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
             if (failedToComplete)
             {
-                ShowExecutionErrors(errorCollector);
+                WriteExecutionErrors(errorCollector);
             }
             else
             {
-                ShowScanResults(options, scanResults);
+                WriteScanResults(options, scanResults);
             }
         }
 
-        public void ShowBanner(IOptions options)
+        public void WriteBanner(IOptions options)
         {
-            ShowBanner(options, VerbosityLevel.Default);
+            WriteBanner(options, VerbosityLevel.Default);
         }
 
-        private void ShowBanner(IOptions options, VerbosityLevel minimumVerbosity)
+        private void WriteBanner(IOptions options, VerbosityLevel minimumVerbosity)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
@@ -83,7 +83,7 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void ShowExecutionErrors(IErrorCollector errorCollector)
+        private void WriteExecutionErrors(IErrorCollector errorCollector)
         {
             foreach (string parameterError in errorCollector.ParameterErrors)
             {
@@ -96,7 +96,7 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void ShowScanResults(IOptions options, ScanResults scanResults)
+        private void WriteScanResults(IOptions options, ScanResults scanResults)
         {
             if (options.VerbosityLevel == VerbosityLevel.Quiet)
             {
@@ -114,7 +114,7 @@ namespace AxeWindowsCLI
 
             if (options.VerbosityLevel >= VerbosityLevel.Verbose)
             {
-                ShowVerboseResults(scanResults);
+                WriteVerboseResults(scanResults);
             }
 
             if (!string.IsNullOrEmpty(scanResults.OutputFile.A11yTest))
@@ -123,7 +123,7 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void ShowVerboseResults(ScanResults scanResults)
+        private void WriteVerboseResults(ScanResults scanResults)
         {
             int errorCount = 0;
             foreach (ScanResult scanResult in scanResults.Errors)

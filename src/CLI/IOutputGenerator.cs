@@ -7,7 +7,7 @@ namespace AxeWindowsCLI
 {
     public interface IOutputGenerator
     {
-        void ShowBanner(IOptions options);
-        void ShowOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults);
+        void WriteBanner(IOptions options);
+        void WriteOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults);
     }
 }
