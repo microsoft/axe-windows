@@ -5,7 +5,7 @@ using CommandLine;
 using System;
 using System.IO;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     public class Options : IOptions
     {

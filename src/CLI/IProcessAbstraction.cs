@@ -3,7 +3,7 @@
 
 using System.Diagnostics;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     public interface IProcessAbstraction
     {

@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     public class ErrorCollector : IErrorCollector
     {

@@ -4,7 +4,7 @@
 using Axe.Windows.Automation;
 using System.Linq;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     public static class ReturnValueChooser
     {

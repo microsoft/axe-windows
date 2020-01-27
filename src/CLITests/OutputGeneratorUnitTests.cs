@@ -3,7 +3,7 @@
 
 using Axe.Windows.Automation;
 using Axe.Windows.Rules;
-using AxeWindowsScanner;
+using AxeWindowsCLI;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

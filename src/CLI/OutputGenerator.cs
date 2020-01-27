@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     public class OutputGenerator : IOutputGenerator
     {
@@ -51,7 +51,7 @@ namespace AxeWindowsScanner
             if(!_bannerHasBeenShown && options.VerbosityLevel >= miniumVerbosity)
             {
                 string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
-                _writer.WriteLine("Axe.Windows Accessibility Scanner (version {0})", version);
+                _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
 
                 bool haveProcessName = options.ProcessName != IProcessHelper.InvalidProcessName;
                 bool haveProcessId = options.ProcessId != IProcessHelper.InvalidProcessId; 

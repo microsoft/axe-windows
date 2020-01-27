@@ -4,7 +4,7 @@
 using System;
 using System.Diagnostics;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     public class ProcessHelper : IProcessHelper
     {

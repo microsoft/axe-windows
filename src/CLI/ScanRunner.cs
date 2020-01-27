@@ -3,7 +3,7 @@
 
 using Axe.Windows.Automation;
 
-namespace AxeWindowsScanner
+namespace AxeWindowsCLI
 {
     static class ScanRunner
     {
