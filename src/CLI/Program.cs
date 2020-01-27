@@ -68,7 +68,6 @@ namespace AxeWindowsCLI
                 {
                     OutputGenerator.WriteBanner(options);
                     ScanResults = ScanRunner.RunScan(options);
-
                 }
                 catch (Exception e)
                 {
