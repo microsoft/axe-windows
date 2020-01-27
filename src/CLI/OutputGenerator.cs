@@ -44,11 +44,11 @@ namespace AxeWindowsCLI
             ShowBanner(options, VerbosityLevel.Default);
         }
 
-        private void ShowBanner(IOptions options, VerbosityLevel miniumVerbosity)
+        private void ShowBanner(IOptions options, VerbosityLevel minimumVerbosity)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            if(!_bannerHasBeenShown && options.VerbosityLevel >= miniumVerbosity)
+            if(!_bannerHasBeenShown && options.VerbosityLevel >= minimumVerbosity)
             {
                 string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
                 _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
