@@ -4,49 +4,72 @@
 using Axe.Windows.Automation;
 using CommandLine;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace AxeWindowsCLI
 {
     class Program
     {
-        const int IgnoredValue = 0;
+        private readonly string[] _args;
+        private readonly TextWriter _writer;
+        private readonly IProcessHelper _processHelper;
+        private readonly IOutputGenerator _outputGenerator;
 
-        static TextWriter Writer = Console.Out;
-        static IProcessHelper processHelper = new ProcessHelper(new ProcessAbstraction());
-        static IOutputGenerator OutputGenerator = new OutputGenerator(Writer);
-        static ScanResults ScanResults = null;
+        private ScanResults _scanResults = null;
+        private IOptions _options = null;
+
+        public Program(string[] args,
+            TextWriter writer,
+            IProcessHelper processHelper,
+            IOutputGenerator outputGenerator)
+        {
+            _args = args;
+            _writer = writer;
+            _processHelper = processHelper;
+            _outputGenerator = outputGenerator;
+        }
 
         static int Main(string[] args)
         {
+            TextWriter writer = Console.Out;
+            IProcessHelper processHelper = new ProcessHelper(new ProcessAbstraction());
+            IOutputGenerator outputGenerator = new OutputGenerator(writer);
+
+            Program program = new Program(args, writer, processHelper, outputGenerator);
+            return program.Run();
+        }
+
+        private int Run()
+        {
             Exception caughtException = null;
-            Options options = null;
             try
             {
-                CaseInsensitiveParser().ParseArguments<Options>(args)
-                    .WithParsed<Options>(Run);
+                CaseInsensitiveParser().ParseArguments<Options>(_args)
+                    .WithParsed<Options>(RunWithParsedInputs);
             }
             catch (Exception e)
             {
                 caughtException = e;
             }
 
-            if (options != null)
+            if (_options != null)
             {
-                OutputGenerator.WriteOutput(options, ScanResults, caughtException);
+                _outputGenerator.WriteOutput(_options, _scanResults, caughtException);
             }
-            return ReturnValueChooser.GetReturnValue(ScanResults, caughtException);
+            return ReturnValueChooser.GetReturnValue(_scanResults, caughtException);
         }
 
-        static void Run(IOptions options)
+        void RunWithParsedInputs(Options options)
         {
-            OutputGenerator.WriteBanner(options);
-            ScanResults = ScanRunner.RunScan(options);
+            // OptionsEvaluator will throw if the inputs are invalid, so save
+            // them before validation, then save the updated values after validation
+            _options = options;
+            _options = OptionsEvaluator.ProcessInputs(options, _processHelper);
+            _outputGenerator.WriteBanner(_options);
+            _scanResults = ScanRunner.RunScan(_options);
         }
 
-        static Parser CaseInsensitiveParser()
+        private Parser CaseInsensitiveParser()
         {
             // CommandLineParser is case-sensitive by default (intentional choice by the code
             // owners for better compatibility with *nix platforms). This removes the case
@@ -54,7 +77,7 @@ namespace AxeWindowsCLI
             return new Parser((settings) =>
             {
                 settings.CaseSensitive = false;
-                settings.HelpWriter = Writer;
+                settings.HelpWriter = _writer;
             });
         }
     }
