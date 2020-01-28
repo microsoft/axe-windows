@@ -3,7 +3,7 @@
 
 namespace AxeWindowsCLI
 {
-    public interface IOptions
+    internal interface IOptions
     {
         string OutputDirectory { get; }
         string ScanId { get; }

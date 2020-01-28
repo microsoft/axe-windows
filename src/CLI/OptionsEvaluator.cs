@@ -6,7 +6,7 @@ using System.IO;
 
 namespace AxeWindowsCLI
 {
-    public static class OptionsEvaluator
+    internal static class OptionsEvaluator
     {
         public static IOptions ProcessInputs(Options rawInputs, IProcessHelper processHelper)
         {

@@ -3,7 +3,7 @@
 
 namespace AxeWindowsCLI
 {
-    public interface IProcessHelper
+    internal interface IProcessHelper
     {
         int ProcessIdFromName(string processName);
         string ProcessNameFromId(int processId);

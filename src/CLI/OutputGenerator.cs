@@ -11,7 +11,7 @@ using System.Reflection;
 
 namespace AxeWindowsCLI
 {
-    public class OutputGenerator : IOutputGenerator
+    internal class OutputGenerator : IOutputGenerator
     {
         private readonly TextWriter _writer;
 

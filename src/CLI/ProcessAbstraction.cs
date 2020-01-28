@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace AxeWindowsCLI
 {
-    public class ProcessAbstraction : IProcessAbstraction
+    internal class ProcessAbstraction : IProcessAbstraction
     {
         public Process GetProcessById(int id)
         {

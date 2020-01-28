@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace AxeWindowsCLI
 {
-    public static class ReturnValueChooser
+    internal static class ReturnValueChooser
     {
         public const int ScanCompletedAndFoundNoErrors = 0;
         public const int ScanCompletedAndFoundErrors = 1;

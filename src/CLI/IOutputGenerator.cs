@@ -6,7 +6,7 @@ using System;
 
 namespace AxeWindowsCLI
 {
-    public interface IOutputGenerator
+    internal interface IOutputGenerator
     {
         void WriteBanner(IOptions options);
         void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException);

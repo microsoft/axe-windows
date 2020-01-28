@@ -5,7 +5,7 @@ using System;
 
 namespace AxeWindowsCLI
 {
-    public class ParameterException : ArgumentException
+    internal class ParameterException : ArgumentException
     {
         public ParameterException(string message, Exception innerException) :
             base(message, innerException)

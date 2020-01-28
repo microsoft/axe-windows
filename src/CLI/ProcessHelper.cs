@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace AxeWindowsCLI
 {
-    public class ProcessHelper : IProcessHelper
+    internal class ProcessHelper : IProcessHelper
     {
         private readonly IProcessAbstraction _processAbstraction;
 

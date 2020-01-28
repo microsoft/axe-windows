@@ -5,7 +5,7 @@ using Axe.Windows.Automation;
 
 namespace AxeWindowsCLI
 {
-    static class ScanRunner
+    internal static class ScanRunner
     {
         public static ScanResults RunScan(IOptions options)
         {
