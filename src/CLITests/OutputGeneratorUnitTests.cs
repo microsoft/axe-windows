@@ -66,7 +66,7 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Ctor_WriterIsNull_ThrowsArgumnentNullException()
+        public void Ctor_WriterIsNull_ThrowsArgumentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
                 () => new OutputGenerator(null));
