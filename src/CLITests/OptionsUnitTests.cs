@@ -4,14 +4,13 @@
 using AxeWindowsCLI;
 using CommandLine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace CLITests
 {
     [TestClass]
-    public class OptionsUnitTests
+    public class OptionUnitTests
     {
         const int ExpectedParseSuccess = 123;
         const int ExpectedParseFailure = 456;
@@ -24,31 +23,6 @@ namespace CLITests
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
-
-        private IErrorCollector _savedErrorCollector;
-        private IProcessHelper _savedProcessHelper;
-        private Mock<IErrorCollector> _errorCollectorMock;
-        private Mock<IProcessHelper> _processHelperMock;
-
-        [TestInitialize]
-        public void BeforeEachTest()
-        {
-            _errorCollectorMock = new Mock<IErrorCollector>(MockBehavior.Strict);
-            _processHelperMock = new Mock<IProcessHelper>(MockBehavior.Strict);
-
-            _savedErrorCollector = Options.ErrorCollector;
-            _savedProcessHelper = Options.ProcessHelper;
-
-            Options.ErrorCollector = _errorCollectorMock.Object;
-            Options.ProcessHelper = _processHelperMock.Object;
-        }
-
-        [TestCleanup]
-        public void AfterEachTest()
-        {
-            Options.ErrorCollector = _savedErrorCollector;
-            Options.ProcessHelper = _savedProcessHelper;
-        }
 
         private int FailIfCalled(Options options)
         {
@@ -70,24 +44,23 @@ namespace CLITests
             return ExpectedParseFailure;
         }
 
-        private int ValidateOptions(Options options, string processName = TestProcessName,
-            int processId = TestProcessId, string outputDirectory = null, string scanId = null,
-            VerbosityLevel verbosityLevel = VerbosityLevel.Default)
+        private int ValidateOptions(Options options, string processName = null,
+            int processId = 0, string outputDirectory = null, string scanId = null,
+            string verbosity = null)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
             Assert.AreEqual(scanId, options.ScanId);
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
-            Assert.AreEqual(verbosityLevel, options.VerbosityLevel);
+            Assert.AreEqual(verbosity, options.Verbosity);
+            Assert.AreEqual(default(VerbosityLevel), options.VerbosityLevel);
             return ExpectedParseSuccess;
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ParseArguments_NoTarget_FailsWithGroupError()
+        public void ProcessInputs_NoTarget_FailsWithGroupError()
         {
-            _processHelperMock.Setup(x => x.FindProcessByName(null))
-                .Returns(0);
             string[] args = { };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
@@ -96,142 +69,66 @@ namespace CLITests
                     e => ExpectErrorType(e, ErrorType.MissingGroupOptionError));
 
             Assert.AreEqual(ExpectedParseFailure, parseResult);
-            _processHelperMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ParseArguments_TargetByProcesssName_SucceedsWithExpectedData()
+        public void ParseArguments_TargetByProcesssName_SucceedsWithCorrectProcessName()
         {
-            _processHelperMock.Setup(x => x.FindProcessByName(TestProcessName))
-                .Returns(TestProcessId);
             string[] args = { ProcessNameKey, TestProcessName };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
-                    (o) => ValidateOptions(o),
+                    (o) => ValidateOptions(o, processName: TestProcessName),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            _processHelperMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ParseArguments_TargetByProcesssId_SucceedsWithExpectedData()
+        public void ParseArguments_TargetByProcesssId_SucceedsWithCorrectProcessId()
         {
-            _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
-                .Returns(TestProcessName);
             string[] args = { ProcessIdKey, TestProcessId.ToString() };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
-                    (o) => ValidateOptions(o),
+                    (o) => ValidateOptions(o, processId: TestProcessId),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            _processHelperMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void ParseArguments_TargetIsSet_ScanIdIsSet_SucceedsWithCorrectScanId()
         {
-            const string expectedScanId = "Scan123";
+            const string expectedScanId = "Some Scan";
 
-            _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
-                .Returns(TestProcessName);
             string[] args = { ProcessIdKey, TestProcessId.ToString(), ScanIdKey, expectedScanId };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
-                    (o) => ValidateOptions(o, scanId: expectedScanId),
+                    (o) => ValidateOptions(o, processId: TestProcessId, scanId: expectedScanId),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            _processHelperMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ParseArguments_TargetIsSet_VerbosityIsQuiet_SucceedsWithQuietVerbosity()
+        public void ParseArguments_TargetIsSet_VerbosityIsSet_SucceedsWithCorrectVerbosity()
         {
-            const string verbosityArg = "quiet";
+            const string verbosityArg = "Some Verbosity";
 
-            _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
-                .Returns(TestProcessName);
             string[] args = { ProcessIdKey, TestProcessId.ToString(), VerbosityKey, verbosityArg };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
-                    (o) => ValidateOptions(o, verbosityLevel: VerbosityLevel.Quiet),
+                    (o) => ValidateOptions(o, processId: TestProcessId, verbosity: verbosityArg),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            _processHelperMock.VerifyAll();
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ParseArguments_TargetIsSet_VerbosityIsDefault_SucceedsWithDefaultVerbosity()
-        {
-            const string verbosityArg = "default";
-
-            _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
-                .Returns(TestProcessName);
-            string[] args = { ProcessIdKey, TestProcessId.ToString(), VerbosityKey, verbosityArg };
-
-            int parseResult = Parser.Default.ParseArguments<Options>(args)
-                .MapResult(
-                    (o) => ValidateOptions(o, verbosityLevel: VerbosityLevel.Default),
-                    FailIfCalled);
-
-            Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            _processHelperMock.VerifyAll();
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ParseArguments_TargetIsSet_VerbosityIsVerbose_SucceedsWithVerboseVerbosity()
-        {
-            const string verbosityArg = "verbose";
-
-            _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
-                .Returns(TestProcessName);
-            string[] args = { ProcessIdKey, TestProcessId.ToString(), VerbosityKey, verbosityArg };
-
-            int parseResult = Parser.Default.ParseArguments<Options>(args)
-                .MapResult(
-                    (o) => ValidateOptions(o, verbosityLevel: VerbosityLevel.Verbose),
-                    FailIfCalled);
-
-            Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            _processHelperMock.VerifyAll();
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ParseArguments_TargetIsSet_VerbosityIsUnrecognized_SucceedsWithErrorParameter()
-        {
-            const string verbosityArg = "Unrecognized";
-            string parameterError = string.Empty;
-
-            _processHelperMock.Setup(x => x.FindProcessById(TestProcessId))
-                .Returns(TestProcessName);
-            _errorCollectorMock.Setup(x => x.AddParameterError(It.IsAny<string>()))
-                .Callback<string>((s) => parameterError = s);
-            string[] args = { ProcessIdKey, TestProcessId.ToString(), VerbosityKey, verbosityArg };
-
-            int parseResult = Parser.Default.ParseArguments<Options>(args)
-                .MapResult(
-                    (o) => ValidateOptions(o, verbosityLevel: VerbosityLevel.Default),
-                    FailIfCalled);
-
-            Assert.AreEqual(ExpectedParseSuccess, parseResult);
-            Assert.IsTrue(parameterError.EndsWith(verbosityArg));
-
-            _processHelperMock.VerifyAll();
-            _errorCollectorMock.VerifyAll();
         }
     }
 }

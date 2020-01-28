@@ -15,37 +15,6 @@ namespace CLITests
     [TestClass]
     public class OutputGeneratorUnitTests
     {
-        enum WriteSource
-        {
-            WriteStringOnly,
-            WriteOneParam,
-            WriteLineEmpty,
-            WriteLineStringOnly,
-            WriteLineOneParam,
-            WriteLineTwoParams,
-        }
-
-        class WriteCall
-        {
-            public string Format { get; }
-            public WriteSource Source { get; }
-
-            public WriteCall(string format, WriteSource source)
-            {
-
-                if (source == WriteSource.WriteLineEmpty)
-                {
-                    Assert.IsNull(format);
-                }
-                else
-                {
-                    Assert.IsNotNull(format);
-                }
-                Format = format;
-                Source = source;
-            }
-        }
-
         const string TestProcessName = "SuperDuperApp";
         const int TestProcessId = 2468;
         const string TestScanId = "ThisIsMyPrettyScan";
@@ -66,96 +35,27 @@ namespace CLITests
         const string ErrorVerbosePatternIndex = "    {0}";
         const string ErrorVerboseSeparatorStart = "---------------------";
         const string OutputFileStart = "Results were written ";
+        const string UnableToComplete = "Unable to complete. ";
         const string ExceptionInfoStart = "The following exception was caught: ";
-        const string ParameterErrorStart = "Parameter Error: ";
 
         private Mock<TextWriter> _writerMock;
         private Mock<IOptions> _optionsMock;
-        private Mock<IErrorCollector> _errorCollectorMock;
-        private List<WriteCall> _actualWriteCalls;
 
         [TestInitialize]
         public void BeforeEachTest()
         {
             _writerMock = new Mock<TextWriter>(MockBehavior.Strict);
             _optionsMock = new Mock<IOptions>(MockBehavior.Strict);
-            _errorCollectorMock = new Mock<IErrorCollector>(MockBehavior.Strict);
-            _actualWriteCalls = new List<WriteCall>();
         }
 
         private void VerifyAllMocks()
         {
             _writerMock.VerifyAll();
             _optionsMock.VerifyAll();
-            _errorCollectorMock.VerifyAll();
-        }
-
-        private void AddWriteCall(string format, WriteSource source)
-        {
-            _actualWriteCalls.Add(new WriteCall(format, source));
-        }
-
-        private void MockWriteStringOnly()
-        {
-            _writerMock.Setup(x => x.Write(It.IsAny<string>()))
-                .Callback<string>((s) => AddWriteCall(s, WriteSource.WriteStringOnly));
-        }
-
-        private void MockWriteOneParam()
-        {
-            _writerMock.Setup(x => x.Write(It.IsAny<string>(), It.IsAny<object>()))
-                .Callback<string, object>((s, _) => AddWriteCall(s, WriteSource.WriteOneParam));
-        }
-
-        private void MockWriteLineEmpty()
-        {
-            _writerMock.Setup(x => x.WriteLine())
-                .Callback(() => AddWriteCall(null, WriteSource.WriteLineEmpty));
-        }
-
-        private void MockWriteLineStringOnly()
-        {
-            _writerMock.Setup(x => x.WriteLine(It.IsAny<string>()))
-                .Callback<string>((s) => AddWriteCall(s, WriteSource.WriteLineStringOnly));
-        }
-
-        private void MockWriteLineOneParam()
-        {
-            _writerMock.Setup(x => x.WriteLine(It.IsAny<string>(), It.IsAny<object>()))
-                .Callback<string, object>((s, _) => AddWriteCall(s, WriteSource.WriteLineOneParam));
-        }
-
-        private void MockWriteLineTwoParams()
-        {
-            _writerMock.Setup(x => x.WriteLine(It.IsAny<string>(), It.IsAny<object>(), It.IsAny<object>()))
-                .Callback<string, object, object>((s, _, __) => AddWriteCall(s, WriteSource.WriteLineTwoParams));
-        }
-
-        private void VerifyWriteCalls(IEnumerable<WriteCall> expectedCalls)
-        {
-            int verified = 0;
-
-            foreach (WriteCall expectedCall in expectedCalls)
-            {
-                WriteCall actualCall = _actualWriteCalls[verified];
-                Assert.AreEqual(expectedCall.Source, actualCall.Source, "Actual Format = " + actualCall.Format);
-                if (expectedCall.Source == WriteSource.WriteLineEmpty)
-                {
-                    Assert.IsNull(expectedCall.Format);
-                    Assert.IsNull(actualCall.Format);
-                }
-                else
-                {
-                    Assert.IsTrue(actualCall.Format.StartsWith(expectedCall.Format), "Actual Format = " + actualCall.Format);
-                }
-                verified++;
-            }
-
-            Assert.AreEqual(verified, _actualWriteCalls.Count);
         }
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
-            string processName = IProcessHelper.InvalidProcessName, int processId = IProcessHelper.InvalidProcessId,
+            string processName = null, int processId = -1,
             string scanId = null)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
@@ -200,16 +100,16 @@ namespace CLITests
         public void WriteBanner_VerbosityIsDefault_NoProcessName_NoProcessId_NoScanId_WritesAppHeader()
         {
             SetOptions();
-            MockWriteLineOneParam();
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
             generator.WriteBanner(_optionsMock.Object);
 
-            WriteCall[] expectedCalls = 
-            { 
-                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
-            };
-            VerifyWriteCalls(expectedCalls);
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -218,14 +118,6 @@ namespace CLITests
         public void WriteBanner_VerbosityIsDefault_ProcessName_NoProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processName: TestProcessName);
-            MockWriteStringOnly();
-            MockWriteOneParam();
-            MockWriteLineEmpty();
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-
-            generator.WriteBanner(_optionsMock.Object);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -233,7 +125,12 @@ namespace CLITests
                 new WriteCall(ScanTargetProcessNameStart, WriteSource.WriteOneParam),
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -242,14 +139,6 @@ namespace CLITests
         public void WriteBanner_VerbosityIsDefault_NoProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processId: TestProcessId);
-            MockWriteStringOnly();
-            MockWriteOneParam();
-            MockWriteLineEmpty();
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-
-            generator.WriteBanner(_optionsMock.Object);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -257,7 +146,12 @@ namespace CLITests
                 new WriteCall(ScanTargetProcessIdStart, WriteSource.WriteOneParam),
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -266,14 +160,6 @@ namespace CLITests
         public void WriteBanner_VerbosityIsDefault_ProcessName_ProcessId_NoScanId_WritesAppHeaderAndScanTarget()
         {
             SetOptions(processName: TestProcessName, processId: TestProcessId);
-            MockWriteStringOnly();
-            MockWriteOneParam();
-            MockWriteLineEmpty();
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-
-            generator.WriteBanner(_optionsMock.Object);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -283,7 +169,12 @@ namespace CLITests
                 new WriteCall(ScanTargetProcessIdStart, WriteSource.WriteOneParam),
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -292,17 +183,17 @@ namespace CLITests
         public void WriteBanner_VerbosityIsDefault_NoProcessName_NoProcessId_ScanId_WritesAppHeaderAndScanId()
         {
             SetOptions(scanId: TestScanId);
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-
-            generator.WriteBanner(_optionsMock.Object);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ScanIdStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -311,18 +202,18 @@ namespace CLITests
         public void WriteBanner_CalledMultipleTimes_WritesOnlyOnce()
         {
             SetOptions();
-            MockWriteLineOneParam();
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
             generator.WriteBanner(_optionsMock.Object);
             generator.WriteBanner(_optionsMock.Object);
             generator.WriteBanner(_optionsMock.Object);
 
-            WriteCall[] expectedCalls =
-            {
-                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
-            };
-            VerifyWriteCalls(expectedCalls);
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -389,12 +280,11 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
 
             VerifyAllMocks();
         }
@@ -403,12 +293,11 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
 
             VerifyAllMocks();
         }
@@ -417,20 +306,19 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions();
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults();
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults();
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -438,22 +326,20 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsOneError_VerbosityIsDefault_WritesBannerAndSummary()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions();
-            MockWriteLineOneParam();
-            MockWriteLineStringOnly();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorCountOneErrorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -461,38 +347,28 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_VerbosityIsDefault_WritesBannerAndSummary()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions();
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
         [TestMethod]
-        [Timeout(1000)]
+        //[Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_NoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);
-            MockWriteLineStringOnly();
-            MockWriteLineOneParam();
-            MockWriteLineTwoParams();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -503,7 +379,13 @@ namespace CLITests
                 new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -511,17 +393,7 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_TwoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);
-            MockWriteLineStringOnly();
-            MockWriteLineOneParam();
-            MockWriteLineTwoParams();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
-                patternCount: 2);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -538,7 +410,14 @@ namespace CLITests
                 new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+                patternCount: 2);
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -546,17 +425,7 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_NoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);
-            MockWriteLineStringOnly();
-            MockWriteLineOneParam();
-            MockWriteLineTwoParams();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
-                propertyCount: 2);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -573,7 +442,14 @@ namespace CLITests
                 new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+                propertyCount: 2);
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
@@ -581,17 +457,7 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_TwoPatterns_TwoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
-            _errorCollectorMock.Setup(x => x.Any).Returns(false);
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);
-            MockWriteLineStringOnly();
-            MockWriteLineOneParam();
-            MockWriteLineTwoParams();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
-                patternCount: 2, propertyCount: 2);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, scanResults);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
@@ -614,56 +480,57 @@ namespace CLITests
                 new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+                patternCount: 2, propertyCount: 2);
+
+            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void WriteOutput_ParameterErrorsExist_VerbosityIsQuiet_WritesBannerAndParameterErrors()
+        public void WriteOutput_ParameterExceptionIsThrown_VerbosityIsQuiet_WritesBannerAndError()
         {
-            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>
-            {
-                "Parameter Error 1",
-                "Parameter Error 2",
-            });
-            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception>());
-            _errorCollectorMock.Setup(x => x.Any).Returns(true);
+            const string errorMessage = "A parameter was bad";
             SetOptions(verbosityLevel: VerbosityLevel.Quiet);
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
-
+            Exception caughtException = new ParameterException(errorMessage);
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
-                new WriteCall(ParameterErrorStart, WriteSource.WriteLineOneParam),
-                new WriteCall(ParameterErrorStart, WriteSource.WriteLineOneParam),
+                new WriteCall(UnableToComplete, WriteSource.WriteStringOnly),
+                new WriteCall(errorMessage, WriteSource.WriteLineStringOnly)
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteOutput(_optionsMock.Object, null, caughtException);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void WriteOutput_ExceptionHasBeenThrown_VerbosityIsQuiet_WritesBannerAndExceptionInfo()
+        public void WriteOutput_NonParameterExceptionIsThrown_VerbosityIsQuiet_WritesBannerAndError()
         {
-            _errorCollectorMock.Setup(x => x.ParameterErrors).Returns(new List<string>());
-            _errorCollectorMock.Setup(x => x.Exceptions).Returns(new List<Exception> { new MissingMethodException() });
-            _errorCollectorMock.Setup(x => x.Any).Returns(true);
+            Exception caughtException = new MissingMethodException();
             SetOptions(verbosityLevel: VerbosityLevel.Quiet);
-            MockWriteLineOneParam();
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
-
-            generator.WriteOutput(_optionsMock.Object, _errorCollectorMock.Object, null);
-
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(UnableToComplete, WriteSource.WriteStringOnly),
                 new WriteCall(ExceptionInfoStart, WriteSource.WriteLineOneParam),
             };
-            VerifyWriteCalls(expectedCalls);
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteOutput(_optionsMock.Object, null, caughtException);
+
+            textWriterVerifier.VerifyAll();
             VerifyAllMocks();
         }
     }

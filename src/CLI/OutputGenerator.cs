@@ -24,14 +24,14 @@ namespace AxeWindowsCLI
             _writer = writer;
         }
 
-        public void WriteOutput(IOptions options, IErrorCollector errorCollector, ScanResults scanResults)
+        public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
         {
-            bool failedToComplete = errorCollector.Any || (scanResults == null);
+            bool failedToComplete = caughtException != null || (scanResults == null);
 
             WriteBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
             if (failedToComplete)
             {
-                WriteExecutionErrors(errorCollector);
+                WriteExecutionErrors(caughtException);
             }
             else
             {
@@ -53,8 +53,8 @@ namespace AxeWindowsCLI
                 string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
                 _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
 
-                bool haveProcessName = options.ProcessName != IProcessHelper.InvalidProcessName;
-                bool haveProcessId = options.ProcessId != IProcessHelper.InvalidProcessId; 
+                bool haveProcessName = options.ProcessName != null;
+                bool haveProcessId = options.ProcessId > 0;
 
                 if (haveProcessName || haveProcessId)
                 {
@@ -83,16 +83,21 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void WriteExecutionErrors(IErrorCollector errorCollector)
+        private void WriteExecutionErrors(Exception caughtException)
         {
-            foreach (string parameterError in errorCollector.ParameterErrors)
-            {
-                _writer.WriteLine("Parameter Error: {0}", parameterError);
-            }
+            _writer.Write("Unable to complete. ");
 
-            foreach (Exception exception in errorCollector.Exceptions)
+            if (caughtException == null)
             {
-                _writer.WriteLine("The following exception was caught: {0}", exception);
+                _writer.WriteLine("No further data is available.");
+            }
+            else if (caughtException is ParameterException)
+            {
+                _writer.WriteLine(caughtException.Message);
+            }
+            else
+            {
+                _writer.WriteLine("The following exception was caught: {0}", caughtException);
             }
         }
 

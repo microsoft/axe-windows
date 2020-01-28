@@ -17,13 +17,11 @@ namespace CLITests
         const string TestProcessIdAsString = "-123";
 
         Mock<IProcessAbstraction> _processAbstractionMock;
-        Mock<IErrorCollector> _errorCollectorMock;
 
         [TestInitialize]
         public void BeforeEachTest()
         {
             _processAbstractionMock = new Mock<IProcessAbstraction>(MockBehavior.Strict);
-            _errorCollectorMock = new Mock<IErrorCollector>(MockBehavior.Strict);
         }
 
         [TestMethod]
@@ -31,105 +29,96 @@ namespace CLITests
         public void Ctor_ProcessAbstractionIsNull_ThrowsArgumentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => new ProcessHelper(null, _errorCollectorMock.Object));
+                () => new ProcessHelper(null));
             Assert.AreEqual("processAbstraction", e.ParamName);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void Ctor_ErrorCollectorIsNull_ThrowsArgumentNullException()
-        {
-            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => new ProcessHelper(_processAbstractionMock.Object, null));
-            Assert.AreEqual("errorCollector", e.ParamName);
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Ctor_InputsAreValid_Succeeds()
         {
-            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object, _errorCollectorMock.Object);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
             Assert.IsInstanceOfType(helper, typeof(ProcessHelper));
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void FindProcessByName_GetProcessesReturnsNull_ReturnsInvalidProcessId()
+        public void ProcessIdFromName_GetProcessesThrowsException_ThrowsParameterException()
         {
-            string actualErrorMessage = null;
+            _processAbstractionMock.Setup(x => x.GetProcessesByName(TestProcessName))
+                .Throws<ArgumentException>();
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
+
+            ParameterException e = Assert.ThrowsException<ParameterException>(
+                () => helper.ProcessIdFromName(TestProcessName));
+
+            Assert.AreEqual("Unable to find process with name SomeProcess", e.Message);
+            _processAbstractionMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessIdFromName_GetProcessesReturnsNull_ThrowsParameterException()
+        {
             Process[] processes = null;
 
             _processAbstractionMock.Setup(x => x.GetProcessesByName(TestProcessName))
                 .Returns(processes);
-            _errorCollectorMock.Setup(x => x.AddParameterError(It.IsAny<string>()))
-                .Callback<string>((s) => actualErrorMessage = s);
-            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object, _errorCollectorMock.Object);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
 
-            int processId = helper.FindProcessByName(TestProcessName);
+            ParameterException e = Assert.ThrowsException<ParameterException>(
+                () => helper.ProcessIdFromName(TestProcessName));
 
-            Assert.AreEqual(IProcessHelper.InvalidProcessId, processId);
-            Assert.AreNotEqual(TestProcessName, actualErrorMessage);
-            Assert.IsTrue(actualErrorMessage.EndsWith(TestProcessName));
+            Assert.AreEqual("Unable to find process with name SomeProcess", e.Message);
             _processAbstractionMock.VerifyAll();
-            _errorCollectorMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void FindProcessByName_GetProcessesReturnsEmptyArray_ReturnsInvalidProcessId()
+        public void ProcessIdFromName_GetProcessesReturnsEmptyArray_ThrowsParameterException()
         {
-            string actualErrorMessage = null;
             Process[] processes = new Process[0];
 
             _processAbstractionMock.Setup(x => x.GetProcessesByName(TestProcessName))
                 .Returns(processes);
-            _errorCollectorMock.Setup(x => x.AddParameterError(It.IsAny<string>()))
-                .Callback<string>((s) => actualErrorMessage = s);
-            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object, _errorCollectorMock.Object);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
 
-            int processId = helper.FindProcessByName(TestProcessName);
+            ParameterException e = Assert.ThrowsException<ParameterException>(
+                () => helper.ProcessIdFromName(TestProcessName));
 
-            Assert.AreEqual(IProcessHelper.InvalidProcessId, processId);
-            Assert.AreNotEqual(TestProcessName, actualErrorMessage);
-            Assert.IsTrue(actualErrorMessage.EndsWith(" " + TestProcessName));
+            Assert.AreEqual("Unable to find process with name SomeProcess", e.Message);
             _processAbstractionMock.VerifyAll();
-            _errorCollectorMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void FindProcessByName_GetProcessesReturnsArrayOfTwoElements_ReturnsInvalidProcessId()
+        public void ProcessIdFromName_GetProcessesReturnsArrayOfTwoElements_ThrowsParameterException()
         {
-            string actualErrorMessage = null;
             Process[] processes = new Process[2];
 
             _processAbstractionMock.Setup(x => x.GetProcessesByName(TestProcessName))
                 .Returns(processes);
-            _errorCollectorMock.Setup(x => x.AddParameterError(It.IsAny<string>()))
-                .Callback<string>((s) => actualErrorMessage = s);
-            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object, _errorCollectorMock.Object);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
 
-            int processId = helper.FindProcessByName(TestProcessName);
+            ParameterException e = Assert.ThrowsException<ParameterException>(
+                () => helper.ProcessIdFromName(TestProcessName));
 
-            Assert.AreEqual(IProcessHelper.InvalidProcessId, processId);
-            Assert.AreNotEqual(TestProcessName, actualErrorMessage);
-            Assert.IsTrue(actualErrorMessage.EndsWith(" " + TestProcessName));
+            Assert.AreEqual("Found multiple processes with name SomeProcess", e.Message);
             _processAbstractionMock.VerifyAll();
-            _errorCollectorMock.VerifyAll();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void FindProcessByName_GetProcessesReturnsArrayOfOneElement_ReturnsExpectedProcessId()
+        public void ProcessIdFromName_GetProcessesReturnsArrayOfOneElement_ReturnsExpectedProcessId()
         {
             Process process = Process.GetCurrentProcess();
             Process[] processes = new Process[] { process };
 
             _processAbstractionMock.Setup(x => x.GetProcessesByName(TestProcessName))
                 .Returns(processes);
-            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object, _errorCollectorMock.Object);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
 
-            int processId = helper.FindProcessByName(TestProcessName);
+            int processId = helper.ProcessIdFromName(TestProcessName);
 
             Assert.AreEqual(process.Id, processId);
             _processAbstractionMock.VerifyAll();
@@ -137,23 +126,35 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void FindProcessById_GetProcessByIdReturnsThrowsArgumentException_ReturnsInvalidProcessName()
+        public void ProcessNameFromId_GetProcessByIdReturnsThrowsException_ThrowsParamterException()
         {
-            string actualErrorMessage = null;
-
+            Exception expectedException = new MissingMethodException();
             _processAbstractionMock.Setup(x => x.GetProcessById(TestProcessId))
-                .Throws<ArgumentException>();
-            _errorCollectorMock.Setup(x => x.AddParameterError(It.IsAny<string>()))
-                .Callback<string>((s) => actualErrorMessage = s);
-            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object, _errorCollectorMock.Object);
+                .Throws(expectedException);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
 
-            string processName = helper.FindProcessById(TestProcessId);
+            ParameterException e = Assert.ThrowsException<ParameterException>(
+                () => helper.ProcessNameFromId(TestProcessId));
 
-            Assert.AreEqual(IProcessHelper.InvalidProcessName, processName);
-            Assert.AreNotEqual(TestProcessIdAsString, actualErrorMessage);
-            Assert.IsTrue(actualErrorMessage.EndsWith(" " + TestProcessIdAsString));
+            Assert.AreEqual("Unable to find process with id -123", e.Message);
+            Assert.AreEqual(expectedException, e.InnerException);
             _processAbstractionMock.VerifyAll();
-            _errorCollectorMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessNameFromId_GetProcessByIdReturnsProcess_ReturnsName()
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+            Exception expectedException = new MissingMethodException();
+            _processAbstractionMock.Setup(x => x.GetProcessById(TestProcessId))
+                .Returns(currentProcess);
+            ProcessHelper helper = new ProcessHelper(_processAbstractionMock.Object);
+
+            var processName = helper.ProcessNameFromId(TestProcessId);
+
+            Assert.AreEqual(currentProcess.ProcessName, processName);
+            _processAbstractionMock.VerifyAll();
         }
     }
 }

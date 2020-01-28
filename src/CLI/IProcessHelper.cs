@@ -5,10 +5,7 @@ namespace AxeWindowsCLI
 {
     public interface IProcessHelper
     {
-        public const int InvalidProcessId = -1;
-        public const string InvalidProcessName = null;
-
-        int FindProcessByName(string processName);
-        string FindProcessById(int processId);
+        int ProcessIdFromName(string processName);
+        string ProcessNameFromId(int processId);
     }
 }

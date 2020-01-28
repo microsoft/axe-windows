@@ -12,69 +12,38 @@ namespace AxeWindowsCLI
 {
     class Program
     {
-        const int IgnoredReturnValue = 0;
+        const int IgnoredValue = 0;
 
         static TextWriter Writer = Console.Out;
-        static IErrorCollector ErrorCollector = new ErrorCollector();
+        static IProcessHelper processHelper = new ProcessHelper(new ProcessAbstraction());
         static IOutputGenerator OutputGenerator = new OutputGenerator(Writer);
         static ScanResults ScanResults = null;
 
         static int Main(string[] args)
         {
+            Exception caughtException = null;
             Options options = null;
             try
             {
-                Options.ErrorCollector = ErrorCollector;
-                Options.ProcessHelper = new ProcessHelper(new ProcessAbstraction(), ErrorCollector);
-
                 CaseInsensitiveParser().ParseArguments<Options>(args)
-                    .MapResult((opts) =>
-                    {
-                        options = opts;
-                        return HandleParsableInputs(opts);
-                    },
-                    errs => HandleNonParsableInputs(errs));
+                    .WithParsed<Options>(Run);
             }
             catch (Exception e)
             {
-                ErrorCollector.AddException(e);
+                caughtException = e;
             }
 
             if (options != null)
             {
-                OutputGenerator.WriteOutput(options, ErrorCollector, ScanResults);
+                OutputGenerator.WriteOutput(options, ScanResults, caughtException);
             }
-            return ReturnValueChooser.GetReturnValue(ErrorCollector, ScanResults);
+            return ReturnValueChooser.GetReturnValue(ScanResults, caughtException);
         }
 
-        static int HandleNonParsableInputs(IEnumerable<Error> errors)
+        static void Run(IOptions options)
         {
-            foreach (Error error in errors)
-            {
-                if (error.Tag != ErrorType.HelpRequestedError &&
-                    error.Tag != ErrorType.HelpVerbRequestedError)
-                {
-                    ErrorCollector.AddParameterError("Command line error: " + error.Tag);
-                }
-            }
-            return IgnoredReturnValue;
-        }
-
-        static int HandleParsableInputs(IOptions options)
-        {
-            if (!ErrorCollector.ParameterErrors.Any())
-            {
-                try
-                {
-                    OutputGenerator.WriteBanner(options);
-                    ScanResults = ScanRunner.RunScan(options);
-                }
-                catch (Exception e)
-                {
-                    ErrorCollector.AddException(e);
-                }
-            }
-            return IgnoredReturnValue;
+            OutputGenerator.WriteBanner(options);
+            ScanResults = ScanRunner.RunScan(options);
         }
 
         static Parser CaseInsensitiveParser()

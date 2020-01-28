@@ -10,60 +10,21 @@ namespace AxeWindowsCLI
     public class Options : IOptions
     {
         [Option(Required = false, HelpText = "Output directory")]
-        public string OutputDirectory => _outputDirectory;
+        public string OutputDirectory { get; set; }
 
         [Option(Required = false, HelpText = "Scan ID")]
-        public string ScanId => _scanId;
+        public string ScanId { get; set; }
 
         [Option(Group = "Target", Required = false, HelpText = "Process Id")]
-        public int ProcessId => _processId;
+        public int ProcessId { get; set; }
 
         [Option(Group = "Target", Required = false, HelpText = "Process Name")]
-        public string ProcessName => _processName;
+        public string ProcessName { get; set; }
 
         [Option(Required = false, HelpText = "Verbosity level (Quiet/Default/Verbose)")]
-        public string Verbosity => string.Empty;  // Exists only for CommandLine purposes
+        public string Verbosity { get; set; }
 
-        public VerbosityLevel VerbosityLevel { get; }
-
-        // We don't control construction of this class, so we use static Dependency Injection
-        public static IErrorCollector ErrorCollector { get; set; }
-        public static IProcessHelper ProcessHelper { get; set; }
-
-        readonly string _outputDirectory;
-        readonly string _scanId;
-        readonly int _processId;
-        readonly string _processName;
-
-        public Options(string outputDirectory, string scanId, int processId, string processName, string verbosity)
-        {
-            _outputDirectory = outputDirectory;
-            _scanId = scanId;
-            VerbosityLevel = VerbosityLevel.Default;  // Until proven otherwise
-
-            if (!string.IsNullOrEmpty(verbosity))
-            {
-                if (Enum.TryParse<VerbosityLevel>(verbosity, true, out VerbosityLevel level))
-                {
-                    VerbosityLevel = level;
-                }
-                else
-                {
-                    ErrorCollector.AddParameterError("Invalid verbosity level: " + verbosity);
-                }
-            }
-
-            if (processId != 0)
-            {
-                _processId = processId; 
-                _processName = ProcessHelper.FindProcessById(processId);
-            }
-            else
-            {
-                string p = Path.GetFileNameWithoutExtension(processName);
-                _processName = p;
-                _processId = ProcessHelper.FindProcessByName(p);
-            }
-        }
+        // CommandLineParser will never set this value!
+        public VerbosityLevel VerbosityLevel { get; set;  }
     }
 }

@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation;
+using System;
 using System.Linq;
 
 namespace AxeWindowsCLI
@@ -13,12 +14,12 @@ namespace AxeWindowsCLI
         public const int ScanFailedToComplete = 2;
         public const int BadInputParameters = 255;
 
-        public static int GetReturnValue(IErrorCollector errorCollector, ScanResults scanResults)
+        public static int GetReturnValue(ScanResults scanResults, Exception caughtException)
         {
-            if (errorCollector.ParameterErrors.Any())
+            if (caughtException as ParameterException != null)
                 return BadInputParameters;
 
-            if (errorCollector.Exceptions.Any() || scanResults == null)
+            if (caughtException != null || scanResults == null)
                 return ScanFailedToComplete;
 
             if (scanResults.Errors.Any())

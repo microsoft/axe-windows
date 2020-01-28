@@ -9,49 +9,56 @@ namespace AxeWindowsCLI
     public class ProcessHelper : IProcessHelper
     {
         private readonly IProcessAbstraction _processAbstraction;
-        private readonly IErrorCollector _errorCollector;
 
-        public ProcessHelper(IProcessAbstraction processAbstraction, IErrorCollector errorCollector)
+        public ProcessHelper(IProcessAbstraction processAbstraction)
         {
             if (processAbstraction == null) throw new ArgumentNullException(nameof(processAbstraction));
-            if (errorCollector == null) throw new ArgumentNullException(nameof(errorCollector));
             _processAbstraction = processAbstraction;
-            _errorCollector = errorCollector;
         }
 
-        public int FindProcessByName(string processName)
+        public int ProcessIdFromName(string processName)
         {
-            var processes = _processAbstraction.GetProcessesByName(processName);
-
-            if (processes == null || processes.Length == 0)
+            Process[] processes = null;
+            Exception caughtException = null;
+            try
             {
-                _errorCollector.AddParameterError("Unable to find process with name " + processName);
-                return IProcessHelper.InvalidProcessId;
+                processes = _processAbstraction.GetProcessesByName(processName);
+            }
+            catch (Exception e)
+            {
+                caughtException = e;
+            }
+
+            if (caughtException != null ||  processes == null || processes.Length == 0)
+            {
+                throw new ParameterException("Unable to find process with name " + processName, caughtException);
             }
 
             if (processes.Length > 1)
             {
-                _errorCollector.AddParameterError("Found multiple processes with name " + processName);
-                return IProcessHelper.InvalidProcessId;
+                throw new ParameterException("Found multiple processes with name " + processName);
             }
 
             return processes[0].Id;
         }
 
-        public string FindProcessById(int processId)
+        public string ProcessNameFromId(int processId)
         {
+            Exception innerException = null;
             Process process = null;
 
             try
             {
                 process = _processAbstraction.GetProcessById(processId);
             }
-            catch (Exception) { }
+            catch (Exception e)
+            {
+                innerException = e;
+            }
 
             if (string.IsNullOrEmpty(process?.ProcessName))
             {
-                _errorCollector.AddParameterError("Unable to find process with id " + processId);
-                return IProcessHelper.InvalidProcessName;
+                throw new ParameterException("Unable to find process with id " + processId, innerException);
             }
 
             return process.ProcessName;
