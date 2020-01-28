@@ -2,8 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using CommandLine;
-using System;
-using System.IO;
 
 namespace AxeWindowsCLI
 {
@@ -25,6 +23,6 @@ namespace AxeWindowsCLI
         public string Verbosity { get; set; }
 
         // CommandLineParser will never set this value!
-        public VerbosityLevel VerbosityLevel { get; set;  }
+        public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;
     }
 }

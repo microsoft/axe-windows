@@ -53,7 +53,7 @@ namespace CLITests
             Assert.AreEqual(scanId, options.ScanId);
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosity, options.Verbosity);
-            Assert.AreEqual(default(VerbosityLevel), options.VerbosityLevel);
+            Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
             return ExpectedParseSuccess;
         }
 
