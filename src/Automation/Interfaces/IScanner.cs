@@ -29,7 +29,7 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Run AxeWindows automated tests
         /// </summary>
-        /// <param name="scanId">The ID of this scan. Must meet the requirements for a file name.</param>
+        /// <param name="scanId">The ID of this scan. Must be null or meet the requirements for a file name.</param>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
         /// output files may be written to the specified directory.

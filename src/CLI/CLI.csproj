@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AssemblyName>AxeWindowsCLI</AssemblyName>
+    <RootNamespace>AxeWindowsCLI</RootNamespace>
+  </PropertyGroup>
+
+  <Import Project="..\..\build\NetStandardRelease.targets" />
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.7.82" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Automation\Automation.csproj" />
+  </ItemGroup>
+
+</Project>

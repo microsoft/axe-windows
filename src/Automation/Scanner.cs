@@ -29,7 +29,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-            return ExecuteScan(null, null);
+            return ExecuteScan(null);
         }
 
         /// <summary>
@@ -38,21 +38,13 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan(string scanId)
         {
-            // Defer validation of scanId so that we can wrap it with ExecutionWrapper
-            return ExecuteScan(scanId, () => ValidateScanId(scanId));
+            return ExecuteScan(scanId);
         }
 
-        private void ValidateScanId(string scanId)
-        {
-            if (scanId == null) throw new ArgumentNullException(nameof(scanId));
-            if (string.IsNullOrWhiteSpace(scanId)) throw new ArgumentException(ErrorMessages.StringNullOrWhiteSpace, nameof(scanId));
-        }
-
-        private ScanResults ExecuteScan(string scanId, Action scanIdValidator)
+        private ScanResults ExecuteScan(string scanId)
         {
             return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
             {
-                scanIdValidator?.Invoke();
                 _scanTools.OutputFileHelper.SetScanId(scanId);
 
                 return SnapshotCommand.Execute(_config, _scanTools);
