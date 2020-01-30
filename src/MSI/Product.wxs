@@ -17,13 +17,13 @@
       <ComponentGroupRef Id="NetStandard20Components" />
     </Feature>
 
-    <Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="ProgramFilesFolder">
-        <Directory Id="AxeWindowsCLIFolder" Name ="AxeWindowsCLI">
-          <Directory Id="INSTALLFOLDER" Name="1.0">
-            <Directory Id="RuntimesFolder" Name="runtimes">
-              <Directory Id="WinFolder" Name="win">
-                <Directory Id="LibFolder" Name="lib">
+    <Directory Id="TARGETDIR" Name="SourceDir" >
+      <Directory Id="ProgramFilesFolder" >
+        <Directory Id="AxeWindowsCLIFolder" Name ="AxeWindowsCLI" >
+          <Directory Id="INSTALLFOLDER" Name="1.0" >
+            <Directory Id="RuntimesFolder" Name="runtimes" >
+              <Directory Id="WinFolder" Name="win" >
+                <Directory Id="LibFolder" Name="lib" >
                   <Directory Id="NetCoreApp20Folder" Name="netcoreapp2.0" />
                   <Directory Id="NetCoreApp21Folder" Name="netcoreapp2.1" />
                   <Directory Id="NetCoreApp30Folder" Name="netcoreapp3.0" />
