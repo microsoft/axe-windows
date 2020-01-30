@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="*" Name="Axe.Windows CLI" Language="1033" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="186aeebb-f5d4-4161-a0ba-0f22d8d8a15a">
-    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x86" />
 
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MajorUpgrade Schedule="afterInstallInitialize" RemoveFeatures="All"
+                  AllowDowngrades="no"
+                  DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
+                  AllowSameVersionUpgrades="no"/>
     <MediaTemplate />
 
-    <Feature Id="ProductFeature" Title="MSI" Level="1">
+    <Feature Id="ProductFeature" Title="Axe.Windows CLI " Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="NetCoreApp20Components" />
       <ComponentGroupRef Id="NetCoreApp21Components" />
@@ -17,7 +20,7 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="AxeWindowsCLIFolder" Name ="AxeWindowsCLI">
-          <Directory Id="INSTALLFOLDER" Name="1.0" >
+          <Directory Id="INSTALLFOLDER" Name="1.0">
             <Directory Id="RuntimesFolder" Name="runtimes">
               <Directory Id="WinFolder" Name="win">
                 <Directory Id="LibFolder" Name="lib">
