@@ -12,13 +12,13 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
                   AllowSameVersionUpgrades="no"/>
 
     <UIRef Id="WixUI_InstallDir"/>
-	
+
     <WixVariable Id="WixUIDialogBmp" Value="Resources\DialogBackground.png" />
     <WixVariable Id="WixUIBannerBmp" Value="Resources\WixDialogBanner.png" />
     <WixVariable Id="WixUILicenseRtf" Value="Resources\eula.rtf" />
-	
+
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
-	
+
     <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="Axe.Windows CLI " Level="1">
