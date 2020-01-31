@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+<!-- Copyright (c) Microsoft. All rights reserved.
+Licensed under the MIT license. See LICENSE file in the project root for full license information.-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <Product Id="*" Name="Axe.Windows CLI" Language="1033" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="186aeebb-f5d4-4161-a0ba-0f22d8d8a15a">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x86" />
 
@@ -7,7 +10,16 @@
                   AllowDowngrades="no"
                   DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
                   AllowSameVersionUpgrades="no"/>
-    <MediaTemplate />
+
+    <UIRef Id="WixUI_InstallDir"/>
+	
+    <WixVariable Id="WixUIDialogBmp" Value="Resources\DialogBackground.png" />
+    <WixVariable Id="WixUIBannerBmp" Value="Resources\WixDialogBanner.png" />
+    <WixVariable Id="WixUILicenseRtf" Value="Resources\eula.rtf" />
+	
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
+	
+    <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="Axe.Windows CLI " Level="1">
       <ComponentGroupRef Id="ProductComponents" />
