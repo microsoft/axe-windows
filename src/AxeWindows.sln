@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Actions", "Actions\Actions.csproj", "{B2FA5150-470A-4864-A191-7BCAE39DF35A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Actions", "Actions\Actions.csproj", "{B2FA5150-470A-4864-A191-7BCAE39DF35A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionsTests", "ActionsTests\ActionsTests.csproj", "{1E26E004-331B-49DF-88C0-D8780B7566AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ActionsTests", "ActionsTests\ActionsTests.csproj", "{1E26E004-331B-49DF-88C0-D8780B7566AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automation", "Automation\Automation.csproj", "{AE5EC69F-158A-41C8-AD2B-EC7B84D820EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Automation", "Automation\Automation.csproj", "{AE5EC69F-158A-41C8-AD2B-EC7B84D820EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationTests", "AutomationTests\AutomationTests.csproj", "{6DEDB6A2-2D5D-45E9-9B71-8ED6AFD8167C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomationTests", "AutomationTests\AutomationTests.csproj", "{6DEDB6A2-2D5D-45E9-9B71-8ED6AFD8167C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DCD83A54-54DA-4131-A852-2A129DB3ACB8} = {DCD83A54-54DA-4131-A852-2A129DB3ACB8}
 	EndProjectSection
@@ -18,9 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTests", "CoreTests\CoreTests.csproj", "{BD29FE9B-6FB1-4141-92A5-34C4CAED8274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{0B9855FD-7B04-415C-A813-DA9697693FDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desktop", "Desktop\Desktop.csproj", "{0B9855FD-7B04-415C-A813-DA9697693FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopTests", "DesktopTests\DesktopTests.csproj", "{AB9E59B6-54CE-4F5D-8055-8AD6745F3B84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopTests", "DesktopTests\DesktopTests.csproj", "{AB9E59B6-54CE-4F5D-8055-8AD6745F3B84}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rules", "Rules\Rules.csproj", "{7FE58829-560E-4142-BF81-291A66D3844B}"
 EndProject
@@ -42,7 +42,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemAbstractionsTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Win32", "Win32\Win32.csproj", "{07D333BB-1BA9-4868-A8BD-0B8F9861E70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OldFileVersionCompatibilityTests", "OldFileVersionCompatibilityTests\OldFileVersionCompatibilityTests.csproj", "{21F31760-D98D-41E6-BB7A-52619ED460C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OldFileVersionCompatibilityTests", "OldFileVersionCompatibilityTests\OldFileVersionCompatibilityTests.csproj", "{21F31760-D98D-41E6-BB7A-52619ED460C5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrentFileVersionCompatibilityTests", "CurrentFileVersionCompatibilityTests\CurrentFileVersionCompatibilityTests.csproj", "{DCD83A54-54DA-4131-A852-2A129DB3ACB8}"
 EndProject
@@ -54,7 +54,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelemetryTests", "Telemetry
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI", "CLI\CLI.csproj", "{EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CLITests", "CLITests\CLITests.csproj", "{150B9D9D-3E76-40D2-A265-1AD829390598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLITests", "CLITests\CLITests.csproj", "{150B9D9D-3E76-40D2-A265-1AD829390598}"
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "CLI_Installer", "CLI_Installer\CLI_Installer.wixproj", "{8A086B12-CD59-4B37-89DB-499820D9435D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4} = {EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -366,6 +371,14 @@ Global
 		{150B9D9D-3E76-40D2-A265-1AD829390598}.Release|x64.Build.0 = Release|Any CPU
 		{150B9D9D-3E76-40D2-A265-1AD829390598}.Release|x86.ActiveCfg = Release|Any CPU
 		{150B9D9D-3E76-40D2-A265-1AD829390598}.Release|x86.Build.0 = Release|Any CPU
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Debug|x64.ActiveCfg = Debug|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Debug|x86.ActiveCfg = Debug|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Release|Any CPU.ActiveCfg = Release|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Release|Any CPU.Build.0 = Release|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Release|x64.ActiveCfg = Release|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Release|x86.ActiveCfg = Release|x86
+		{8A086B12-CD59-4B37-89DB-499820D9435D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
