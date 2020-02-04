@@ -9,7 +9,7 @@ namespace AxeWindowsCLI
     {
         public void Open(string pathToFile)
         {
-            Process.Start(new ProcessStartInfo("cmd", $"/c start " + pathToFile)
+            Process.Start(new ProcessStartInfo("cmd", $"/c \"" + pathToFile + "\"")
             {
                 CreateNoWindow = true
             });
