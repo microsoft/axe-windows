@@ -6,17 +6,14 @@ using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Results;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axe.Windows.OldFileVersionCompatibilityTests
+namespace OldFileVersionCompatibilityTests
 {
-    [TestClass]
-    public class LoadOldFileVersions
+    public class TestRunner
     {
-        // [TestMethod]
         public void ValidateFileVersion_0_1_0()
         {
             const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_1_0.a11ytest";
@@ -25,7 +22,6 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
             ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
         }
 
-        // [TestMethod]
         public void ValidateFileVersion_0_2_0()
         {
             const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_2_0.a11ytest";
@@ -34,7 +30,6 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
             ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
         }
 
-        // [TestMethod]
         public void ValidateFileVersion_0_3_1()
         {
             const string filePath = @".\TestFiles\WildlifeManager_AxeWindows_0_3_1.a11ytest";
@@ -43,7 +38,7 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
             ValidateOneFile(filePath, expectedFailureCount, expectedProcessId);
         }
 
-        #region UtilityFunctions
+#region UtilityFunctions
 
         internal static void ValidateOneFile(string filePath, int expectedFailureCount,
             int expectedProcessId)
@@ -130,6 +125,6 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
 
             return list;
         }
-        #endregion
+#endregion
     }
 }
