@@ -27,6 +27,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
+      arguments: src\AxeWindows.sln
       command: restore
 
   - task: PowerShell@2
@@ -85,6 +86,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
+      arguments: src\AxeWindows.sln
       command: restore
 
   - task: VSBuild@1
@@ -209,6 +211,7 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
+      arguments: src\AxeWindows.sln
       command: restore
 
   - task: VSBuild@1
