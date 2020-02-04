@@ -21,6 +21,7 @@ namespace CLITests
         const string TestA11yTestFile = @"c:\outputDirectory\scanId.a11ytest";
 
         const string AppTitleStart = "Axe.Windows Accessibility Scanner";
+        const string ThirdPartyNoticeStart = "Opening Third Party Notices in default browser";
         const string ScanTargetIntro = "Scan Target:";
         const string ScanTargetProcessNameStart = " Process Name =";
         const string ScanTargetProcessIdStart = " Process ID =";
@@ -56,12 +57,17 @@ namespace CLITests
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
             string processName = null, int processId = -1,
-            string scanId = null)
+            string scanId = null, bool setScanId = true,
+            bool showThirdPartyNotices = false)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
             _optionsMock.Setup(x => x.ProcessId).Returns(processId);
-            _optionsMock.Setup(x => x.ScanId).Returns(scanId);
+            if (setScanId)
+            {
+                _optionsMock.Setup(x => x.ScanId).Returns(scanId);
+            }
+            _optionsMock.Setup(x => x.ShowThirdPartyNotices).Returns(showThirdPartyNotices);
         }
 
         [TestMethod]
@@ -217,6 +223,25 @@ namespace CLITests
             VerifyAllMocks();
         }
 
+        [TestMethod]
+        [Timeout(1000)]
+        public void WriteBanner_ShowThirdPartyNotices_WritesAppHeaderAndThirdPartyNotice()
+        {
+            SetOptions(showThirdPartyNotices: true, setScanId: false);
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ThirdPartyNoticeStart, WriteSource.WriteLineStringOnly),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
+            VerifyAllMocks();
+        }
+
         private IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
         {
             if (!propertyCount.HasValue)
@@ -281,6 +306,7 @@ namespace CLITests
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
+            _optionsMock.Setup(x => x.ShowThirdPartyNotices).Returns(false);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
@@ -294,6 +320,7 @@ namespace CLITests
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
+            _optionsMock.Setup(x => x.ShowThirdPartyNotices).Returns(false);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
@@ -365,7 +392,7 @@ namespace CLITests
         }
 
         [TestMethod]
-        //[Timeout(1000)]
+        [Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_NoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);

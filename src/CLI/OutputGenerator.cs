@@ -26,7 +26,7 @@ namespace AxeWindowsCLI
 
         public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
         {
-            bool failedToComplete = caughtException != null || (scanResults == null);
+            bool failedToComplete = caughtException != null || (!options.ShowThirdPartyNotices && (scanResults == null));
 
             WriteBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
             if (failedToComplete)
@@ -56,27 +56,34 @@ namespace AxeWindowsCLI
                 bool haveProcessName = options.ProcessName != null;
                 bool haveProcessId = options.ProcessId > 0;
 
-                if (haveProcessName || haveProcessId)
+                if (options.ShowThirdPartyNotices)
                 {
-                    _writer.Write("Scan Target:");
-
-                    if (haveProcessName)
-                    {
-                        _writer.Write(" Process Name = {0}", options.ProcessName);
-                    }
-                    if (haveProcessName && haveProcessId)
-                    {
-                        _writer.Write(",");
-                    }
-                    if (haveProcessId)
-                    {
-                        _writer.Write(" Process ID = {0}", options.ProcessId);
-                    }
-                    _writer.WriteLine();
+                    _writer.WriteLine("Opening Third Party Notices in default browser");
                 }
-                if (!string.IsNullOrEmpty(options.ScanId))
+                else
                 {
-                    _writer.WriteLine("Scan Id = {0}", options.ScanId);
+                    if (haveProcessName || haveProcessId)
+                    {
+                        _writer.Write("Scan Target:");
+
+                        if (haveProcessName)
+                        {
+                            _writer.Write(" Process Name = {0}", options.ProcessName);
+                        }
+                        if (haveProcessName && haveProcessId)
+                        {
+                            _writer.Write(",");
+                        }
+                        if (haveProcessId)
+                        {
+                            _writer.Write(" Process ID = {0}", options.ProcessId);
+                        }
+                        _writer.WriteLine();
+                    }
+                    if (!string.IsNullOrEmpty(options.ScanId))
+                    {
+                        _writer.WriteLine("Scan Id = {0}", options.ScanId);
+                    }
                 }
 
                 _bannerHasBeenShown = true;
@@ -104,6 +111,11 @@ namespace AxeWindowsCLI
         private void WriteScanResults(IOptions options, ScanResults scanResults)
         {
             if (options.VerbosityLevel == VerbosityLevel.Quiet)
+            {
+                return;
+            }
+
+            if (options.ShowThirdPartyNotices)
             {
                 return;
             }

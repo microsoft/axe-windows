@@ -5,7 +5,6 @@ using AxeWindowsCLI;
 using CommandLine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CLITests
 {
@@ -13,13 +12,13 @@ namespace CLITests
     public class OptionUnitTests
     {
         const int ExpectedParseSuccess = 123;
-        const int ExpectedParseFailure = 456;
         const int UnexpectedFailure = 789;
 
         const string ProcessIdKey = "--processid";
         const string ProcessNameKey = "--processname";
         const string VerbosityKey = "--verbosity";
         const string ScanIdKey = "--scanid";
+        const string ShowThirdPartyNoticesKey = "--showthirdpartynotices";
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
@@ -36,17 +35,9 @@ namespace CLITests
             return UnexpectedFailure;
         }
 
-        private int ExpectErrorType(IEnumerable<Error> errors, ErrorType expectedError)
-        {
-            List<Error> errorList = errors.ToList<Error>();
-            Assert.AreEqual(1, errorList.Count);
-            Assert.AreEqual(expectedError, errorList[0].Tag);
-            return ExpectedParseFailure;
-        }
-
         private int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
-            string verbosity = null)
+            string verbosity = null, bool showThirdPartyNotices = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -54,21 +45,8 @@ namespace CLITests
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosity, options.Verbosity);
             Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
+            Assert.AreEqual(showThirdPartyNotices, options.ShowThirdPartyNotices);
             return ExpectedParseSuccess;
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ProcessInputs_NoTarget_FailsWithGroupError()
-        {
-            string[] args = { };
-
-            int parseResult = Parser.Default.ParseArguments<Options>(args)
-                .MapResult(
-                    FailIfCalled,
-                    e => ExpectErrorType(e, ErrorType.MissingGroupOptionError));
-
-            Assert.AreEqual(ExpectedParseFailure, parseResult);
         }
 
         [TestMethod]
@@ -101,15 +79,15 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ParseArguments_TargetIsSet_ScanIdIsSet_SucceedsWithCorrectScanId()
+        public void ParseArguments_ScanIdIsSet_SucceedsWithCorrectScanId()
         {
             const string expectedScanId = "Some Scan";
 
-            string[] args = { ProcessIdKey, TestProcessId.ToString(), ScanIdKey, expectedScanId };
+            string[] args = { ScanIdKey, expectedScanId };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
-                    (o) => ValidateOptions(o, processId: TestProcessId, scanId: expectedScanId),
+                    (o) => ValidateOptions(o, scanId: expectedScanId),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
@@ -117,15 +95,29 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ParseArguments_TargetIsSet_VerbosityIsSet_SucceedsWithCorrectVerbosity()
+        public void ParseArguments_VerbosityIsSet_SucceedsWithCorrectVerbosity()
         {
             const string verbosityArg = "Some Verbosity";
 
-            string[] args = { ProcessIdKey, TestProcessId.ToString(), VerbosityKey, verbosityArg };
+            string[] args = { VerbosityKey, verbosityArg };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
-                    (o) => ValidateOptions(o, processId: TestProcessId, verbosity: verbosityArg),
+                    (o) => ValidateOptions(o, verbosity: verbosityArg),
+                    FailIfCalled);
+
+            Assert.AreEqual(ExpectedParseSuccess, parseResult);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ParseArguments_ShowThirdPartyNotices_SucceedsWithThirdPartyNoticesSet()
+        {
+            string[] args = { ShowThirdPartyNoticesKey };
+
+            int parseResult = Parser.Default.ParseArguments<Options>(args)
+                .MapResult(
+                    (o) => ValidateOptions(o, showThirdPartyNotices: true),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);

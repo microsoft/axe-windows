@@ -15,16 +15,33 @@ namespace AxeWindowsCLI
 
             int processId = rawInputs.ProcessId;
             string processName = rawInputs.ProcessName;
+            bool showThirdPartyNotices = rawInputs.ShowThirdPartyNotices;
+            bool processIdIsInteresting = processId > 0;
+            bool processNameIsInteresting = !string.IsNullOrEmpty(processName);
 
-            if (processId != 0)
+            if (showThirdPartyNotices)
             {
-                processName = processHelper.ProcessNameFromId(processId);
+                if (processIdIsInteresting || processNameIsInteresting)
+                {
+                    throw new ParameterException("The ShowThirdPartyNotices option can't be specified with the processId or the processName options");
+                }
             }
             else
             {
-                string p = Path.GetFileNameWithoutExtension(processName);
-                processName = p;
-                processId = processHelper.ProcessIdFromName(p);
+                if (processIdIsInteresting)
+                {
+                    processName = processHelper.ProcessNameFromId(processId);
+                }
+                else if (processNameIsInteresting)
+                {
+                    string p = Path.GetFileNameWithoutExtension(processName);
+                    processName = p;
+                    processId = processHelper.ProcessIdFromName(p);
+                }
+                else
+                {
+                    throw new ParameterException("Please specify either processId or processName on the command line");
+                }
             }
 
             string verbosity = rawInputs.Verbosity;
@@ -50,6 +67,7 @@ namespace AxeWindowsCLI
                 ProcessName = processName,
                 ScanId = rawInputs.ScanId,
                 VerbosityLevel = verbosityLevel,
+                ShowThirdPartyNotices = showThirdPartyNotices,
             };
         }
     }

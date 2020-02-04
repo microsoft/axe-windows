@@ -3,8 +3,11 @@
 
 using Axe.Windows.Automation;
 using CommandLine;
+using CommandLine.Text;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 
 namespace AxeWindowsCLI
 {
@@ -14,6 +17,7 @@ namespace AxeWindowsCLI
         private readonly TextWriter _writer;
         private readonly IProcessHelper _processHelper;
         private readonly IOutputGenerator _outputGenerator;
+        private readonly IBrowserAbstraction _browserAbstraction;
 
         private ScanResults _scanResults = null;
         private IOptions _options = null;
@@ -21,12 +25,14 @@ namespace AxeWindowsCLI
         public Program(string[] args,
             TextWriter writer,
             IProcessHelper processHelper,
-            IOutputGenerator outputGenerator)
+            IOutputGenerator outputGenerator,
+            IBrowserAbstraction browserAbstraction)
         {
             _args = args;
             _writer = writer;
             _processHelper = processHelper;
             _outputGenerator = outputGenerator;
+            _browserAbstraction = browserAbstraction;
         }
 
         static int Main(string[] args)
@@ -34,8 +40,13 @@ namespace AxeWindowsCLI
             TextWriter writer = Console.Out;
             IProcessHelper processHelper = new ProcessHelper(new ProcessAbstraction());
             IOutputGenerator outputGenerator = new OutputGenerator(writer);
+            IBrowserAbstraction browserAbstraction = new BrowserAbstraction();
 
-            Program program = new Program(args, writer, processHelper, outputGenerator);
+            // We require some parameters, but don't have a clean way to tell CommandLineParser
+            // about them. As a result, we don't get the default help text if the args list
+            // is empty. This little trick forces help in this case
+            string[] innerArgs = args.Length > 0 ? args : new string[] { "--help" };
+            Program program = new Program(innerArgs, writer, processHelper, outputGenerator, browserAbstraction);
             return program.Run();
         }
 
@@ -66,7 +77,14 @@ namespace AxeWindowsCLI
             _options = options;
             _options = OptionsEvaluator.ProcessInputs(options, _processHelper);
             _outputGenerator.WriteBanner(_options);
-            _scanResults = ScanRunner.RunScan(_options);
+            if (options.ShowThirdPartyNotices)
+            {
+                LaunchThirdPartyNotices();
+            }
+            else
+            {
+                _scanResults = ScanRunner.RunScan(_options);
+            }
         }
 
         private Parser CaseInsensitiveParser()
@@ -79,6 +97,13 @@ namespace AxeWindowsCLI
                 settings.CaseSensitive = false;
                 settings.HelpWriter = _writer;
             });
+        }
+
+        private void LaunchThirdPartyNotices()
+        {
+            string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string pathToFile = Path.Combine(currentFolder, "thirdpartynotices.html");
+            _browserAbstraction.Open(pathToFile);
         }
     }
 }
