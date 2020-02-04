@@ -7,6 +7,13 @@
     <RootNamespace>AxeWindowsCLI</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(SignAppForRelease)'=='' ">
+    <ApplicationManifest>AppManifests\UIAccess_Disabled.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(SignAppForRelease)'=='true' ">
+    <ApplicationManifest>AppManifests\UIAccess_Enabled.manifest</ApplicationManifest>
+  </PropertyGroup>
+
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
   <ItemGroup>
