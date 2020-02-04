@@ -27,8 +27,9 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
-      arguments: src\AxeWindows.sln
       command: restore
+      projects: |
+        **\*.csproj
 
   - task: PowerShell@2
     displayName: 'License Header Check'
@@ -86,8 +87,9 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
-      arguments: src\AxeWindows.sln
       command: restore
+      projects: |
+        **\*.csproj
 
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
@@ -211,8 +213,9 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'dotnet restore'
     inputs:
-      arguments: src\AxeWindows.sln
       command: restore
+      projects: |
+        **\*.csproj
 
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
