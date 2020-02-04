@@ -30,20 +30,20 @@ namespace Axe.Windows.AutomationTests
         readonly string ValidationAppFolder;
         readonly string ValidationApp;
 
+        const string OldFileVersionCompatibilityAppName = "OldFileVersionCompatibilityTests";
+        readonly string OldFileVersionCompatibilityAppFolder;
+        readonly string OldFileVersionCompatibilityAppPath;
+
         private readonly TimeSpan testAppDelay;
         private readonly bool allowInconclusive;
 
         public AutomationIntegrationTests()
         {
-            ValidationAppFolder = Path.GetFullPath(
-                Path.Combine(Directory.GetCurrentDirectory(), @"../../../../CurrentFileVersionCompatibilityTests/bin",
-#if DEBUG
-                    "debug"
-#else
-                    "release"
-#endif
-                ));
+            ValidationAppFolder = GetProjectOutputFolder("CurrentFileVersionCompatibilityTests");
             ValidationApp = Path.Combine(ValidationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
+
+            OldFileVersionCompatibilityAppFolder = Path.Combine(GetProjectOutputFolder(OldFileVersionCompatibilityAppName), "netcoreapp3.0");
+            OldFileVersionCompatibilityAppPath = Path.Combine(OldFileVersionCompatibilityAppFolder, OldFileVersionCompatibilityAppName + ".exe");
 
             // Build agents are less predictable than dev machines. Set the flags based
             // on the BUILD_BUILDID environment variable (only set on build agents)
@@ -59,6 +59,18 @@ namespace Axe.Windows.AutomationTests
                 testAppDelay = TimeSpan.FromSeconds(10);
                 allowInconclusive = true;
             }
+        }
+
+        private static string GetProjectOutputFolder(string projectName)
+        {
+            return Path.GetFullPath(
+                Path.Combine(Directory.GetCurrentDirectory(), $@"../../../../{projectName}/bin",
+#if DEBUG
+                    "debug"
+#else
+                    "release"
+#endif
+                ));
         }
 
         Process TestProcess;
@@ -187,10 +199,66 @@ namespace Axe.Windows.AutomationTests
 
         private void StopTestApp()
         {
-            TestProcess.Kill();
+            TestProcess?.Kill();
             TestProcess = null;
         }
 
-        private void CleanupTestOutput() => Directory.Delete(OutputDir, true);
+        private void CleanupTestOutput()
+        {
+            if (Directory.Exists(OutputDir))
+                Directory.Delete(OutputDir, true);
+        }
+
+        [TestMethod]
+        public void EnsureA11yTestFileV1_0IsStillReadable()
+        {
+            EnsureOldFileIsReadableByCurrentVersionOfAxeWindows("ValidateFileVersion_0_1_0");
+        }
+
+        [TestMethod]
+        public void EnsureA11yTestFileV2_0IsStillReadable()
+        {
+            EnsureOldFileIsReadableByCurrentVersionOfAxeWindows("ValidateFileVersion_0_2_0");
+        }
+
+        [TestMethod]
+        public void EnsureA11yTestFileV3_1IsStillReadable()
+        {
+            EnsureOldFileIsReadableByCurrentVersionOfAxeWindows("ValidateFileVersion_0_3_1");
+        }
+
+        /// <summary>
+        /// Ensure old a11ytest file versions are readable by the current version of Axe.Windows
+        /// </summary>
+        /// <remarks>
+        /// This test method and the associated console app are needed because the unit test methods
+        /// in OldFileVersionCompatibilityTests cannot be run using a .Net Core unit test app.
+        /// 
+        /// There is a failure to load Microsoft.IntelliTrace.Core.dll in that case.
+        /// The problem appears to be unsolvable in our code at this time.
+        /// </remarks>
+        /// <param name="testRunnerMethodName"></param>
+        private void EnsureOldFileIsReadableByCurrentVersionOfAxeWindows(string testRunnerMethodName)
+        {
+            Assert.IsTrue(File.Exists(OldFileVersionCompatibilityAppPath), OldFileVersionCompatibilityAppPath + " was not found");
+
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = OldFileVersionCompatibilityAppPath,
+                Arguments = testRunnerMethodName,
+                WorkingDirectory = OldFileVersionCompatibilityAppFolder
+            };
+
+            Process app = Process.Start(startInfo);
+            if (app.WaitForExit(10000))
+            {
+                Assert.AreEqual(0, app.ExitCode);
+                return;
+            }
+
+            app.Kill();
+
+            Assert.Fail(OldFileVersionCompatibilityAppName + " was still running after 10 seconds");
+        }
     }
 }
