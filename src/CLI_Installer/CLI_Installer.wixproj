@@ -27,13 +27,11 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <When Condition=" '$(SignAppForRelease)'=='true' AND '$(Configuration)' == 'Release'">
-    <ItemGroup>
-      <SignMsi Include="$(TargetPath)">
-        <Authenticode>Microsoft400</Authenticode>
-      </SignMsi>
-    </ItemGroup>
-  </When>
+  <ItemGroup>
+    <SignMsi Include="$(TargetPath)">
+      <Authenticode>Microsoft400</Authenticode>
+    </SignMsi>
+  </ItemGroup>
   <ItemGroup>
     <WixExtension Include="WixNetFxExtension">
       <HintPath>..\packages\WiX.3.11.0\tools\WixNetFxExtension.dll</HintPath>
