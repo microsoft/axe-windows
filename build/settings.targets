@@ -13,17 +13,16 @@
     <When Condition=" '$(SignAppForRelease)'=='true' AND '$(Configuration)' == 'Release' ">
       <Choose>
         <When Condition=" '$(AxeDigitalSign)' == 'true' ">
-          <PropertyGroup>
-            <SignAssembly>true</SignAssembly>
-            <DelaySign>true</DelaySign>
-          </PropertyGroup>
+      <ItemGroup>
+        <FilesToSign Include="@(DropSignedFile)">
+          <Authenticode>Microsoft400</Authenticode>
+        </FilesToSign>
+      </ItemGroup>
         </When>
         <Otherwise>
-          <PropertyGroup>
-            <DefineConstants>$(DefineConstants);ENABLE_SIGNING;</DefineConstants>
-            <AssemblyOriginatorKeyFile>..\..\keys\FinalPublicKey.snk</AssemblyOriginatorKeyFile>
-            <DelaySign>true</DelaySign>
-          </PropertyGroup>
+        <FilesToSign Include="@(DropSignedFile)">
+          <StrongName>StrongName</StrongName>
+        </FilesToSign>
         </Otherwise>
       </Choose>
     </When>
