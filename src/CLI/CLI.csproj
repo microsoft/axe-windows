@@ -15,7 +15,8 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe;$(TargetDir)\$(TargetName).dll" />
+    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+    <AxeDigitalSign>true</AxeDigitalSign>
   </ItemGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />
