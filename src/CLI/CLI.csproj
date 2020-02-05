@@ -28,8 +28,4 @@
     <ProjectReference Include="..\Automation\Automation.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="set" />
-  </Target>
-
 </Project>
