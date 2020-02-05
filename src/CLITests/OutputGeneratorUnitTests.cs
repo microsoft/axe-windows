@@ -57,15 +57,12 @@ namespace CLITests
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
             string processName = null, int processId = -1,
-            string scanId = null, bool setScanId = true)
+            string scanId = null)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
             _optionsMock.Setup(x => x.ProcessId).Returns(processId);
-            if (setScanId)
-            {
-                _optionsMock.Setup(x => x.ScanId).Returns(scanId);
-            }
+            _optionsMock.Setup(x => x.ScanId).Returns(scanId);
         }
 
         [TestMethod]

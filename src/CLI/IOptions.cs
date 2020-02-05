@@ -10,6 +10,5 @@ namespace AxeWindowsCLI
         int ProcessId { get; }
         string ProcessName { get; }
         VerbosityLevel VerbosityLevel { get; }
-        bool ShowThirdPartyNotices { get; }
     }
 }
