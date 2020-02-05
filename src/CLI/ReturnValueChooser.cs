@@ -12,6 +12,7 @@ namespace AxeWindowsCLI
         public const int ScanCompletedAndFoundNoErrors = 0;
         public const int ScanCompletedAndFoundErrors = 1;
         public const int ScanFailedToComplete = 2;
+        public const int ThirdPartyNoticesDisplayed = 3;  // Used outside this class
         public const int BadInputParameters = 255;
 
         public static int GetReturnValue(ScanResults scanResults, Exception caughtException)

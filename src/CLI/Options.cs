@@ -22,7 +22,7 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "Verbosity level (Quiet/Default/Verbose)")]
         public string Verbosity { get; set; }
 
-        [Option(Required = false, HelpText = "Display Third Party Notices (Opens in browser, does not execute scan)")]
+        [Option(Required = false, HelpText = "Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored.")]
         public bool ShowThirdPartyNotices { get; set; }
 
         // CommandLineParser will never set this value!

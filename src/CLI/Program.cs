@@ -3,9 +3,7 @@
 
 using Axe.Windows.Automation;
 using CommandLine;
-using CommandLine.Text;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
@@ -72,19 +70,18 @@ namespace AxeWindowsCLI
 
         void RunWithParsedInputs(Options options)
         {
+            // Quick exit if we display 3rd party stuff
+            if (options.ShowThirdPartyNotices)
+            {
+                HandleThirdPartyNoticesAndExit();
+            }
+
             // OptionsEvaluator will throw if the inputs are invalid, so save
             // them before validation, then save the updated values after validation
             _options = options;
             _options = OptionsEvaluator.ProcessInputs(options, _processHelper);
             _outputGenerator.WriteBanner(_options);
-            if (options.ShowThirdPartyNotices)
-            {
-                LaunchThirdPartyNotices();
-            }
-            else
-            {
-                _scanResults = ScanRunner.RunScan(_options);
-            }
+            _scanResults = ScanRunner.RunScan(_options);
         }
 
         private Parser CaseInsensitiveParser()
@@ -99,11 +96,14 @@ namespace AxeWindowsCLI
             });
         }
 
-        private void LaunchThirdPartyNotices()
+        private void HandleThirdPartyNoticesAndExit()
         {
             string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string pathToFile = Path.Combine(currentFolder, "thirdpartynotices.html");
+            _outputGenerator.WriteThirdPartyNoticeOutput(pathToFile);
+
             _browserAbstraction.Open(pathToFile);
+            Environment.Exit(ReturnValueChooser.ThirdPartyNoticesDisplayed);
         }
     }
 }

@@ -180,45 +180,5 @@ namespace CLITests
                 processId: TestProcessId, verbosityLevel: VerbosityLevel.Verbose);
             VerifyAllMocks();
         }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ProcessInputs_SpecifiesShowThirdPartyNotices_ProcessIdIsSpecified_ThrowsParameterException()
-        {
-            Options input = new Options
-            {
-                ProcessId = TestProcessId,
-                ShowThirdPartyNotices = true,
-            };
-            ParameterException e = Assert.ThrowsException<ParameterException>(() =>
-                OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
-            Assert.AreEqual("The ShowThirdPartyNotices option can't be specified with the processId or the processName options", e.Message);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ProcessInputs_SpecifiesShowThirdPartyNotices_ProcessNameIsSpecified_ThrowsParameterException()
-        {
-            Options input = new Options
-            {
-                ProcessName = TestProcessName,
-                ShowThirdPartyNotices = true,
-            };
-            ParameterException e = Assert.ThrowsException<ParameterException>(() =>
-                OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
-            Assert.AreEqual("The ShowThirdPartyNotices option can't be specified with the processId or the processName options", e.Message);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ProcessInputs_SpecifiesShowThirdPartyNotices_SetsShowThirdPartyNotices()
-        {
-            Options input = new Options
-            {
-                ShowThirdPartyNotices = true,
-            };
-            IOptions options = OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object);
-            Assert.IsTrue(options.ShowThirdPartyNotices);
-        }
     }
 }

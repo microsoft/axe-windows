@@ -15,33 +15,22 @@ namespace AxeWindowsCLI
 
             int processId = rawInputs.ProcessId;
             string processName = rawInputs.ProcessName;
-            bool showThirdPartyNotices = rawInputs.ShowThirdPartyNotices;
             bool processIdIsInteresting = processId > 0;
             bool processNameIsInteresting = !string.IsNullOrEmpty(processName);
 
-            if (showThirdPartyNotices)
+            if (processIdIsInteresting)
             {
-                if (processIdIsInteresting || processNameIsInteresting)
-                {
-                    throw new ParameterException("The ShowThirdPartyNotices option can't be specified with the processId or the processName options");
-                }
+                processName = processHelper.ProcessNameFromId(processId);
+            }
+            else if (processNameIsInteresting)
+            {
+                string p = Path.GetFileNameWithoutExtension(processName);
+                processName = p;
+                processId = processHelper.ProcessIdFromName(p);
             }
             else
             {
-                if (processIdIsInteresting)
-                {
-                    processName = processHelper.ProcessNameFromId(processId);
-                }
-                else if (processNameIsInteresting)
-                {
-                    string p = Path.GetFileNameWithoutExtension(processName);
-                    processName = p;
-                    processId = processHelper.ProcessIdFromName(p);
-                }
-                else
-                {
-                    throw new ParameterException("Please specify either processId or processName on the command line");
-                }
+                throw new ParameterException("Please specify either processId or processName on the command line");
             }
 
             string verbosity = rawInputs.Verbosity;
@@ -67,7 +56,6 @@ namespace AxeWindowsCLI
                 ProcessName = processName,
                 ScanId = rawInputs.ScanId,
                 VerbosityLevel = verbosityLevel,
-                ShowThirdPartyNotices = showThirdPartyNotices,
             };
         }
     }

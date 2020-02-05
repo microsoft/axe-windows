@@ -26,7 +26,7 @@ namespace AxeWindowsCLI
 
         public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
         {
-            bool failedToComplete = caughtException != null || (!options.ShowThirdPartyNotices && (scanResults == null));
+            bool failedToComplete = caughtException != null || scanResults == null;
 
             WriteBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
             if (failedToComplete)
@@ -44,46 +44,50 @@ namespace AxeWindowsCLI
             WriteBanner(options, VerbosityLevel.Default);
         }
 
+        public void WriteThirdPartyNoticeOutput(string pathToFile)
+        {
+            WriteAppBanner();
+            _writer.WriteLine("Opening Third Party Notices in default browser. If this fails, manually open \"{0}\"", pathToFile);
+        }
+
+        private void WriteAppBanner()
+        {
+            string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
+            _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
+        }
+
         private void WriteBanner(IOptions options, VerbosityLevel minimumVerbosity)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
             if(!_bannerHasBeenShown && options.VerbosityLevel >= minimumVerbosity)
             {
-                string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
-                _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
+                WriteAppBanner();
 
                 bool haveProcessName = options.ProcessName != null;
                 bool haveProcessId = options.ProcessId > 0;
 
-                if (options.ShowThirdPartyNotices)
+                if (haveProcessName || haveProcessId)
                 {
-                    _writer.WriteLine("Opening Third Party Notices in default browser");
-                }
-                else
-                {
-                    if (haveProcessName || haveProcessId)
-                    {
-                        _writer.Write("Scan Target:");
+                    _writer.Write("Scan Target:");
 
-                        if (haveProcessName)
-                        {
-                            _writer.Write(" Process Name = {0}", options.ProcessName);
-                        }
-                        if (haveProcessName && haveProcessId)
-                        {
-                            _writer.Write(",");
-                        }
-                        if (haveProcessId)
-                        {
-                            _writer.Write(" Process ID = {0}", options.ProcessId);
-                        }
-                        _writer.WriteLine();
-                    }
-                    if (!string.IsNullOrEmpty(options.ScanId))
+                    if (haveProcessName)
                     {
-                        _writer.WriteLine("Scan Id = {0}", options.ScanId);
+                        _writer.Write(" Process Name = {0}", options.ProcessName);
                     }
+                    if (haveProcessName && haveProcessId)
+                    {
+                        _writer.Write(",");
+                    }
+                    if (haveProcessId)
+                    {
+                        _writer.Write(" Process ID = {0}", options.ProcessId);
+                    }
+                    _writer.WriteLine();
+                }
+                if (!string.IsNullOrEmpty(options.ScanId))
+                {
+                    _writer.WriteLine("Scan Id = {0}", options.ScanId);
                 }
 
                 _bannerHasBeenShown = true;
@@ -111,11 +115,6 @@ namespace AxeWindowsCLI
         private void WriteScanResults(IOptions options, ScanResults scanResults)
         {
             if (options.VerbosityLevel == VerbosityLevel.Quiet)
-            {
-                return;
-            }
-
-            if (options.ShowThirdPartyNotices)
             {
                 return;
             }

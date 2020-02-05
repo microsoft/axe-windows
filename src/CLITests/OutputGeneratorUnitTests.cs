@@ -57,8 +57,7 @@ namespace CLITests
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
             string processName = null, int processId = -1,
-            string scanId = null, bool setScanId = true,
-            bool showThirdPartyNotices = false)
+            string scanId = null, bool setScanId = true)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
@@ -67,7 +66,6 @@ namespace CLITests
             {
                 _optionsMock.Setup(x => x.ScanId).Returns(scanId);
             }
-            _optionsMock.Setup(x => x.ShowThirdPartyNotices).Returns(showThirdPartyNotices);
         }
 
         [TestMethod]
@@ -227,16 +225,17 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteBanner_ShowThirdPartyNotices_WritesAppHeaderAndThirdPartyNotice()
         {
-            SetOptions(showThirdPartyNotices: true, setScanId: false);
+            const string testFile = @"c:\somePath\someFile.html";
+
             WriteCall[] expectedCalls =
             {
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
-                new WriteCall(ThirdPartyNoticeStart, WriteSource.WriteLineStringOnly),
+                new WriteCall(ThirdPartyNoticeStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            generator.WriteThirdPartyNoticeOutput(testFile);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -306,7 +305,6 @@ namespace CLITests
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            _optionsMock.Setup(x => x.ShowThirdPartyNotices).Returns(false);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
@@ -320,7 +318,6 @@ namespace CLITests
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            _optionsMock.Setup(x => x.ShowThirdPartyNotices).Returns(false);
             IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
