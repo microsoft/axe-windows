@@ -15,14 +15,12 @@ namespace AxeWindowsCLI
 
             int processId = rawInputs.ProcessId;
             string processName = rawInputs.ProcessName;
-            bool processIdIsInteresting = processId > 0;
-            bool processNameIsInteresting = !string.IsNullOrEmpty(processName);
 
-            if (processIdIsInteresting)
+            if (processId != 0)
             {
                 processName = processHelper.ProcessNameFromId(processId);
             }
-            else if (processNameIsInteresting)
+            else if (!string.IsNullOrEmpty(processName))
             {
                 string p = Path.GetFileNameWithoutExtension(processName);
                 processName = p;
