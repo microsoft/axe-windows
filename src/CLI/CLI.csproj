@@ -13,6 +13,10 @@
   <PropertyGroup Condition=" '$(SignAppForRelease)'=='true' ">
     <ApplicationManifest>AppManifests\UIAccess_Enabled.manifest</ApplicationManifest>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe;$(TargetDir)\$(TargetName).dll" />
+  </ItemGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
