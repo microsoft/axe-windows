@@ -13,9 +13,12 @@
   <PropertyGroup Condition=" '$(SignAppForRelease)'=='true' ">
     <ApplicationManifest>AppManifests\UIAccess_Enabled.manifest</ApplicationManifest>
   </PropertyGroup>
-  
+
+  <ItemGroup>
+    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+  </ItemGroup>
+
   <PropertyGroup>
-    <DropSignedFileOverride>"$(TargetDir)\$(TargetName).exe"</DropSignedFileOverride>
     <AxeDigitalSign>true</AxeDigitalSign>
   </PropertyGroup>
 
