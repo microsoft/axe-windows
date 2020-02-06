@@ -60,12 +60,12 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ProcessInputs_DefaultValues_FindsProcessByName()
+        public void ProcessInputs_DefaultValues_ThrowsParameterException()
         {
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
             Options input = new Options();
-            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processName: null, processId: TestProcessId);
+            ParameterException e = Assert.ThrowsException<ParameterException>(() =>
+                OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
+            Assert.AreEqual("Please specify either processId or processName on the command line", e.Message);
             VerifyAllMocks();
         }
 
@@ -89,13 +89,14 @@ namespace CLITests
         {
             const string testOutputDirectory = @"C:\Test\Output\Directory";
 
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
             Options input = new Options
             {
+                ProcessName = TestProcessName,
                 OutputDirectory = testOutputDirectory,
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processName: null, processId: TestProcessId, outputDirectory: testOutputDirectory);
+                processId: TestProcessId, outputDirectory: testOutputDirectory);
             VerifyAllMocks();
         }
 
@@ -104,13 +105,14 @@ namespace CLITests
         public void ProcessInputs_SpecifiesScanId_RetainsOutputDirectory()
         {
             const string testScanId = "SuperScan";
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
             Options input = new Options
             {
+                ProcessName = TestProcessName,
                 ScanId = testScanId,
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processName: null, processId: TestProcessId, scanId: testScanId);
+                processId: TestProcessId, scanId: testScanId);
             VerifyAllMocks();
         }
 
@@ -119,9 +121,10 @@ namespace CLITests
         public void ProcessInputs_SpecifiesInvalidVerbosity_ThrowsParameterException()
         {
             const string verbosity = "Not_A_Valid_Value";
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
             Options input = new Options
             {
+                ProcessName = TestProcessName,
                 Verbosity = verbosity,
             };
             ParameterException e = Assert.ThrowsException<ParameterException>(() =>
@@ -135,28 +138,30 @@ namespace CLITests
         public void ProcessInputs_SpecifiesQuiet_SetsQuietVerbosity()
         {
             const string verbosity = "quiet";
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
             Options input = new Options
             {
+                ProcessName = TestProcessName,
                 Verbosity = verbosity,
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processName: null, processId: TestProcessId, verbosityLevel: VerbosityLevel.Quiet);
+                processId: TestProcessId, verbosityLevel: VerbosityLevel.Quiet);
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void ProcessInputs_SpecifiesDefault_SetsQuietVerbosity()
+        public void ProcessInputs_SpecifiesDefault_SetsDefaultVerbosity()
         {
             const string verbosity = "dEfAuLt";
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
             Options input = new Options
             {
+                ProcessName = TestProcessName,
                 Verbosity = verbosity,
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processName: null, processId: TestProcessId);
+                processId: TestProcessId);
             VerifyAllMocks();
         }
 
@@ -165,13 +170,14 @@ namespace CLITests
         public void ProcessInputs_SpecifiesVerbose_SetsQuietVerbosity()
         {
             const string verbosity = "VERBOSE";
-            _processHelperMock.Setup(x => x.ProcessIdFromName(null)).Returns(TestProcessId);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
             Options input = new Options
             {
+                ProcessName = TestProcessName,
                 Verbosity = verbosity,
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processName: null, processId: TestProcessId, verbosityLevel: VerbosityLevel.Verbose);
+                processId: TestProcessId, verbosityLevel: VerbosityLevel.Verbose);
             VerifyAllMocks();
         }
     }

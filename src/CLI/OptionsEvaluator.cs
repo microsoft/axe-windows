@@ -20,11 +20,15 @@ namespace AxeWindowsCLI
             {
                 processName = processHelper.ProcessNameFromId(processId);
             }
-            else
+            else if (!string.IsNullOrEmpty(processName))
             {
                 string p = Path.GetFileNameWithoutExtension(processName);
                 processName = p;
                 processId = processHelper.ProcessIdFromName(p);
+            }
+            else
+            {
+                throw new ParameterException("Please specify either processId or processName on the command line");
             }
 
             string verbosity = rawInputs.Verbosity;

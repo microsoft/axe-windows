@@ -10,5 +10,6 @@ namespace AxeWindowsCLI
     {
         void WriteBanner(IOptions options);
         void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException);
+        void WriteThirdPartyNoticeOutput(string pathToFile);
     }
 }

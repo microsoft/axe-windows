@@ -22,6 +22,12 @@
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
   <ItemGroup>
+    <Content Include="..\..\thirdpartynotices.html" Link="thirdpartynotices.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
   </ItemGroup>
 

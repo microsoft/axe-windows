@@ -21,6 +21,7 @@ namespace CLITests
         const string TestA11yTestFile = @"c:\outputDirectory\scanId.a11ytest";
 
         const string AppTitleStart = "Axe.Windows Accessibility Scanner";
+        const string ThirdPartyNoticeStart = "Opening Third Party Notices in default browser";
         const string ScanTargetIntro = "Scan Target:";
         const string ScanTargetProcessNameStart = " Process Name =";
         const string ScanTargetProcessIdStart = " Process ID =";
@@ -217,6 +218,26 @@ namespace CLITests
             VerifyAllMocks();
         }
 
+        [TestMethod]
+        [Timeout(1000)]
+        public void WriteBanner_ShowThirdPartyNotices_WritesAppHeaderAndThirdPartyNotice()
+        {
+            const string testFile = @"c:\somePath\someFile.html";
+
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ThirdPartyNoticeStart, WriteSource.WriteLineOneParam),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
+
+            generator.WriteThirdPartyNoticeOutput(testFile);
+
+            textWriterVerifier.VerifyAll();
+            VerifyAllMocks();
+        }
+
         private IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
         {
             if (!propertyCount.HasValue)
@@ -365,7 +386,7 @@ namespace CLITests
         }
 
         [TestMethod]
-        //[Timeout(1000)]
+        [Timeout(1000)]
         public void WriteOutput_ScanResultsMultipleErrors_NoPatterns_NoProperties_VerbosityIsVerbose_WritesBannerAndSummaryAndDetails()
         {
             SetOptions(verbosityLevel: VerbosityLevel.Verbose);
