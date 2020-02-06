@@ -15,7 +15,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+    <DropSignedFileOverride>"$(TargetDir)\$(TargetName).exe"</DropSignedFileOverride>
     <AxeDigitalSign>true</AxeDigitalSign>
   </ItemGroup>
 

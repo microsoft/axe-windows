@@ -18,11 +18,16 @@
   </ItemGroup>
 
   <Choose>
-    <When Condition=" '$(DropSignedFile)'==''">
+    <When Condition=" '$(DropSignedFileOverride)' != '' ">
+      <ItemGroup>
+        <DropSignedFile Include="$(DropSignedFileOverride)" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
       <ItemGroup>
         <DropSignedFile Include="$(TargetPath)" />
       </ItemGroup>
-    </When>
+    </Otherwise>
   </Choose>
 
   <Import Project="NetStandardAll.targets" />
