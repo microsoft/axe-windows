@@ -14,10 +14,10 @@
     <ApplicationManifest>AppManifests\UIAccess_Enabled.manifest</ApplicationManifest>
   </PropertyGroup>
   
-  <ItemGroup>
+  <PropertyGroup>
     <DropSignedFileOverride>"$(TargetDir)\$(TargetName).exe"</DropSignedFileOverride>
     <AxeDigitalSign>true</AxeDigitalSign>
-  </ItemGroup>
+  </PropertyGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
