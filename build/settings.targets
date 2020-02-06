@@ -6,9 +6,6 @@
 
   <Import Project="delaysign.targets" />
 
-  <!--
-  Files can be digitally or StrongName signed, not both (for now, at least).
-  -->
   <Choose>
     <When Condition=" '$(SignAppForRelease)'=='true' AND '$(Configuration)' == 'Release' ">
       <Choose>
