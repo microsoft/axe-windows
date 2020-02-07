@@ -26,9 +26,9 @@ param(
 # This suppresses the progress indicator while creating the zip file
 $ProgressPreference='SilentlyContinue'
 
-function Get-UniqueTempFolder($baseName){
+function Get-UniqueTempFolder($app){
     $guid=New-Guid
-    $uniqueName=$baseName + '_' + $guid
+    $uniqueName=$app + '_' + $guid
     $tempFolder=Join-Path $env:temp $uniqueName
     return $tempFolder
 }
