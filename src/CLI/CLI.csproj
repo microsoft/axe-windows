@@ -35,8 +35,4 @@
     <ProjectReference Include="..\Automation\Automation.csproj" />
   </ItemGroup>
 
-  <Target Condition=" '$(CreateAxeWindowsZippedCLI)' == 'true' " Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\BuildZippedCLI.ps1 -TargetDir $(TargetDir) -Configuration $(ConfigurationName)" />
-  </Target>
-
 </Project>
