@@ -7,6 +7,18 @@
     <RootNamespace>AxeWindowsCLI</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ApplicationManifest>AppManifests\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <AxeDigitalSign>true</AxeDigitalSign>
+  </PropertyGroup>
+
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
   <ItemGroup>

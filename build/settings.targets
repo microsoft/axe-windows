@@ -7,14 +7,24 @@
   <Import Project="delaysign.targets" />
 
   <Choose>
-    <When Condition=" '$(SignAppForRelease)'=='true' AND '$(Configuration)' == 'Release'">
-      <ItemGroup>
-        <FilesToSign Include="@(DropSignedFile)">
-          <!--Authenticode>Microsoft400</Authenticode-->
-          <StrongName>StrongName</StrongName>
-        </FilesToSign>
-      </ItemGroup>
+    <When Condition=" '$(SignAppForRelease)'=='true' AND '$(Configuration)' == 'Release' ">
+      <Choose>
+        <When Condition=" '$(AxeDigitalSign)' == 'true' ">
+          <ItemGroup>
+            <FilesToSign Include="@(DropSignedFile)">
+              <Authenticode>Microsoft400</Authenticode>
+            </FilesToSign>
+          </ItemGroup>
+        </When>
+        <Otherwise>
+          <ItemGroup>
+            <FilesToSign Include="@(DropSignedFile)">
+              <StrongName>StrongName</StrongName>
+            </FilesToSign>
+          </ItemGroup>
+        </Otherwise>
+      </Choose>
     </When>
   </Choose>
-  
+
 </Project>

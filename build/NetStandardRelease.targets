@@ -17,10 +17,14 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <DropSignedFile Include="$(TargetPath)" />
-  </ItemGroup>
-  
+  <Choose>
+    <When Condition=" '$(DropSignedFile)' == '' ">
+      <ItemGroup>
+        <DropSignedFile Include="$(TargetPath)" />
+      </ItemGroup>
+    </When>
+  </Choose>
+
   <Import Project="NetStandardAll.targets" />
   <Import Project="settings.targets" />
 
