@@ -26,8 +26,6 @@ param(
 # This suppresses the progress indicator while creating the zip file
 $ProgressPreference='SilentlyContinue'
 
-Clear-Host
-
 function Get-UniqueTempFolder($baseName){
     $guid=New-Guid
     $uniqueName=$baseName + '_' + $guid
