@@ -16,8 +16,8 @@ The directory where the files were built (and where the ZIP file will be dropped
 #>
 
 param(
-    $Configuration,
-    $TargetDir
+    [Parameter(Mandatory=$true)][String]$Configuration,
+    [Parameter(Mandatory=$true)][String]$TargetDir
 )
 
 # Uncomment the next line for debugging
@@ -83,16 +83,6 @@ function CreateCLIZip($confguration, $targetDir, $zipFileName){
     $zipFile=Join-Path $targetDir $zipFileName
     Create-ZipFile $targetDir 'CLI' $zipFile $extensionsToPrune $foldersToPrune
     Write-Host 'Successfully Created' $zipFile
-}
-
-if ($TargetDir -eq $null) {
-    Write-Host 'TargetDir is a required parameter'
-    exit 1
-}
-
-if ($Configuration -eq $null) {
-    Write-Host 'Configuration is a required parameter'
-    exit 1
 }
 
 CreateCLIZip $Configuration $TargetDir 'AxeWindowsCLI.zip'
