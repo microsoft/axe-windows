@@ -20,6 +20,9 @@ param(
     [Parameter(Mandatory=$true)][String]$TargetDir
 )
 
+Set-StrictMode -Version Latest
+$script:ErrorActionPreference = 'Stop'
+
 # Uncomment the next line for debugging
 #$VerbosePreference='continue'
 
@@ -72,9 +75,9 @@ function Create-Zipfile($src, $app, $zipFile, [string[]]$extensionsToPrune, [str
     Remove-Item $scratch -Force -Recurse
 }
 
-function CreateCLIZip($confguration, $targetDir, $zipFileName){
+function CreateCLIZip($configuration, $targetDir, $zipFileName){
     Write-Host "Creating a CLI zip file from files in $targetDir"
-    if ($confguration -eq 'debug') {
+    if ($configuration -eq 'debug') {
         $extensionsToPrune=@('dev.json')
     } else {
         $extensionsToPrune=@('pdb', 'dev.json')
