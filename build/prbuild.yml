@@ -4,6 +4,7 @@ pr: none
 variables:
   BuildPlatform: 'x86'
   CreateAxeWindowsNugetPackage: 'true'
+  CreateAxeWindowsZippedCLI: 'true'
   PublicRelease: 'false'
   SignAppForRelease: 'false'
 
