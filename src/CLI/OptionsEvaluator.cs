@@ -22,9 +22,8 @@ namespace AxeWindowsCLI
             }
             else if (!string.IsNullOrEmpty(processName))
             {
-                string p = Path.GetFileNameWithoutExtension(processName);
-                processName = p;
-                processId = processHelper.ProcessIdFromName(p);
+                processName = GetReducedProcessName(processName);
+                processId = processHelper.ProcessIdFromName(processName);
             }
             else
             {
@@ -55,6 +54,16 @@ namespace AxeWindowsCLI
                 ScanId = rawInputs.ScanId,
                 VerbosityLevel = verbosityLevel,
             };
+        }
+
+        private static string GetReducedProcessName(string processName)
+        {
+            string reducedProcessName = Path.GetFileName(processName);
+            if (reducedProcessName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+            {
+                reducedProcessName = Path.GetFileNameWithoutExtension(reducedProcessName);
+            }
+            return reducedProcessName;
         }
     }
 }

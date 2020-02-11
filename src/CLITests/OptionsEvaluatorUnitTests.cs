@@ -85,6 +85,54 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
+        public void ProcessInputs_ProcessNameIsSpecifiedWithNoExtension_FindsProcessByName()
+        {
+            const string fullProcessName = @"c:\foo\bar\myprocess";
+            const string reducedProcessName = "myprocess";
+            _processHelperMock.Setup(x => x.ProcessIdFromName(reducedProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = fullProcessName,
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, processName: reducedProcessName);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_ProcessNameIsSpecifiedWithExeExtension_FindsProcessByName()
+        {
+            const string fullProcessName = @"c:\foo\bar\myprocess.exe";
+            const string reducedProcessName = "myprocess";
+            _processHelperMock.Setup(x => x.ProcessIdFromName(reducedProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = fullProcessName,
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, processName: reducedProcessName);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_ProcessNameIsSpecifiedWithAppExtension_FindsProcessByName()
+        {
+            const string fullProcessName = @"c:\foo\bar\myprocess.app";
+            const string reducedProcessName = "myprocess.app";
+            _processHelperMock.Setup(x => x.ProcessIdFromName(reducedProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = fullProcessName,
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, processName: reducedProcessName);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
         public void ProcessInputs_SpecifiesOutputDirectory_RetainsOutputDirectory()
         {
             const string testOutputDirectory = @"C:\Test\Output\Directory";
