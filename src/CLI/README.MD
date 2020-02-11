@@ -43,7 +43,7 @@ Parameter|Description
 |showThirdPartyNotices|If specified, displays the third party notices for components used by AxeWindowsCLI. This inforation is also available in the `thirdpartynotices.html1 file that is installed with AxeWindowsCLI.
 
 ### Scan results
-A summary of scan results will be displayed after the scan is run. In addition, an A11yTest file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `outputDirectory` and `scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io
+A summary of scan results will be displayed after the scan is run. In addition, an A11yTest file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io
 
 A detailed description of scan results will also be displayed if you specify verbose output (see the `verbosity` parameter).
 
