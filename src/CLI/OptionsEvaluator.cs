@@ -22,7 +22,7 @@ namespace AxeWindowsCLI
             }
             else if (!string.IsNullOrEmpty(processName))
             {
-                processName = GetTrimmedProcessName(processName);
+                processName = TrimProcessName(processName);
                 processId = processHelper.ProcessIdFromName(processName);
             }
             else
@@ -56,7 +56,7 @@ namespace AxeWindowsCLI
             };
         }
 
-        private static string GetTrimmedProcessName(string processName)
+        private static string TrimProcessName(string processName)
         {
             string reducedProcessName = Path.GetFileName(processName);
             if (reducedProcessName.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
