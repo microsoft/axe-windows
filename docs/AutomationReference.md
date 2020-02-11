@@ -96,7 +96,11 @@ The Scan runs AxeWindows automated tests using the config provided at the time o
 
 ###### Parameters
 
-The `Scan` method accepts no parameters.
+The `Scan` method accepts 0 or 1 parameters.
+
+**Name** | **Type** | **Description**
+---|---|---
+scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest).
 
 ###### Return object
 

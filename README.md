@@ -53,6 +53,11 @@ To get the latest version of the Axe.Windows NuGet package, visit
 
 For more details and a complete code example, please visit the [automation reference page](./docs/AutomationReference.md)
 
+## Command line interface
+
+Axe.Windows also has a command line interface (CLI) to simplify automated testing in build pipelines. Please check out the
+[command line interface readme](./src/CLI/readme.md)
+for more information.
 
 ## Contributing
 
