@@ -22,7 +22,11 @@ namespace AxeWindowsCLI
             }
             else if (!string.IsNullOrEmpty(processName))
             {
-                string p = Path.GetFileNameWithoutExtension(processName);
+                string p = Path.GetFileName(processName);
+                if (p.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    p = Path.GetFileNameWithoutExtension(p);
+                }
                 processName = p;
                 processId = processHelper.ProcessIdFromName(p);
             }
