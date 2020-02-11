@@ -2,11 +2,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using AxeWindowsCLI;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using System.ComponentModel.Design;
 
 namespace CLITests
 {
