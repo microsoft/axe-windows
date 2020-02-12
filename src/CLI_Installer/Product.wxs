@@ -18,6 +18,18 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
 
+    <Property Id="NETCORERUNTIMEFOUNDX86">
+      <DirectorySearch Id="NetCoreDirectoryFoundx86" Path="[ProgramFilesFolder]dotnet" >
+        <FileSearch Name="dotnet.exe" MinVersion="3.0"/>
+      </DirectorySearch>
+    </Property>
+
+    <Property Id="NETCORERUNTIMEFOUNDX64">
+      <DirectorySearch Id="NetCoreDirectoryFoundx64" Path="[ProgramFiles64Folder]dotnet" >
+        <FileSearch Name="dotnet.exe" MinVersion="3.0"/>
+      </DirectorySearch>
+    </Property>
+
     <MediaTemplate EmbedCab="yes" />
 
     <Feature Id="ProductFeature" Title="Axe.Windows CLI" Level="1">
@@ -27,6 +39,10 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       <ComponentGroupRef Id="NetCoreApp30Components" />
       <ComponentGroupRef Id="NetStandard20Components" />
     </Feature>
+
+    <Condition Message="[ProductName] requires .NET Core Runtime 3.0 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core">
+      <![CDATA[Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86]]>
+    </Condition>
 
     <Directory Id="TARGETDIR" Name="SourceDir" >
       <Directory Id="ProgramFilesFolder" >
@@ -101,4 +117,5 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
     </ComponentGroup>
 
   </Product>
+
 </Wix>
