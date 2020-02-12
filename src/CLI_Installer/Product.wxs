@@ -71,6 +71,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
         <File Source="..\CLI\bin\Release\netcoreapp3.0\System.Security.AccessControl.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.0\System.Security.Principal.Windows.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.0\thirdpartynotices.html" />
+        <File Source="..\CLI\bin\Release\netcoreapp3.0\README.MD" />
       </Component>
     </ComponentGroup>
 
