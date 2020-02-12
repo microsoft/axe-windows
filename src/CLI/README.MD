@@ -50,7 +50,7 @@ A detailed description of scan results will also be displayed if you specify ver
 ## Troubleshooting
 
 ### Error message: A fatal error occurred. The required library hostfxr.dll could not be found.
-AxeWindowsCLI requires the presence of the .NET Core runtime, version 3.0 or greater. You can download the framework from https://dotnet.microsoft.com/download/dotnet-core. This error should go away after installing an appropriate runtime of the .NET Core.
+AxeWindowsCLI requires the presence of version 3.0 (or greater) of the .NET Core runtime. You can download the framework from https://dotnet.microsoft.com/download/dotnet-core. This error should go away after installing an appropriate runtime of the .NET Core.
 
 ### Exception: Unable to locate root element
 This can occur if you are trying to scan a process that is running in an elevated context. To get around it, try running your process non-elevated, or try launching the scan from an elevated process.
