@@ -29,7 +29,7 @@ AxeWindowsCLI.exe
   --version                  Display version information.
 ```
 
-  To scan an application, you need run AxeWindowsCLI with the information to know _which_ process to scan via either the `--processId` or `--processName` parameters
+  To scan an application, you need to specify the application's process via either the `--processId` or `--processName` parameters
 
 ### Command line parameters
 
