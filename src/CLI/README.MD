@@ -1,6 +1,6 @@
 ﻿# Welcome to the Axe.Windows Command Line Interface (AxeWindowsCLI.exe)
 
-This tool allows you to scan your application for certain classes of accessibility issues from your currently existing scripting system.
+This tool allows you to scan your application for accessibility issues from your currently existing scripting system.
 
 ## Running the tool
 You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool gets installed to `c:\users\Program Files (x86)\AxeWindowsCLI\1.0\AxeWindowsCLI.exe`, although you can install it into other locations if you wish.
