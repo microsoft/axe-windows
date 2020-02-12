@@ -59,7 +59,7 @@ namespace Axe.Windows.Core.Types
             StringBuilder sb = new StringBuilder(name);
 
             sb.Replace("None", "_None");
-            sb.Append(Invariant($"({id})"));
+            sb.Append(Invariant($" ({id})"));
 
             return sb.ToString();
         }

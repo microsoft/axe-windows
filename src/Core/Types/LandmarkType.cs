@@ -59,7 +59,7 @@ namespace Axe.Windows.Core.Types
             sb.Replace("UIA_", "");
             sb.Replace("Id", "");
 
-            sb.Append(Invariant($"({id})"));
+            sb.Append(Invariant($" ({id})"));
 
             return sb.ToString();
         }

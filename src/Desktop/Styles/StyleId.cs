@@ -71,7 +71,7 @@ namespace Axe.Windows.Desktop.Styles
             StringBuilder sb = new StringBuilder(name);
 
             sb.Replace(Prefix, "");
-            sb.Append(Invariant($"({id})"));
+            sb.Append(Invariant($" ({id})"));
 
             return sb.ToString();
         }

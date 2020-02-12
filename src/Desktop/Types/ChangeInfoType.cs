@@ -52,7 +52,7 @@ namespace Axe.Windows.Desktop.Types
         {
             StringBuilder sb = new StringBuilder(name);
 
-            sb.Append(Invariant($"({id})"));
+            sb.Append(Invariant($" ({id})"));
 
             return sb.ToString();
         }
