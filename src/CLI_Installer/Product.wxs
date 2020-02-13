@@ -2,7 +2,7 @@
 <!-- Copyright (c) Microsoft. All rights reserved.
 Licensed under the MIT license. See LICENSE file in the project root for full license information.-->
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Axe.Windows Command Line Interface (CLI)" Language="1033" Version="1.0.0.0" Manufacturer="Microsoft" UpgradeCode="186aeebb-f5d4-4161-a0ba-0f22d8d8a15a">
+  <Product Id="*" Name="Axe.Windows Command Line Interface (CLI)" Language="1033" Version="$(var.SemVer)" Manufacturer="Microsoft" UpgradeCode="186aeebb-f5d4-4161-a0ba-0f22d8d8a15a">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x86" />
 
     <MajorUpgrade Schedule="afterInstallInitialize" RemoveFeatures="All"
