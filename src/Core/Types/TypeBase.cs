@@ -93,7 +93,7 @@ namespace Axe.Windows.Core.Types
                 return this.Dic[id];
             }
 
-            return Invariant($"Unknown({id})");
+            return Invariant($"Unknown ({id})");
         }
 
         /// <summary>
