@@ -18,6 +18,8 @@ ButtonShouldHavePatterns | A button must support one of these patterns: Invoke, 
 ButtonInvokeAndTogglePatterns | A button must not support both the Invoke and Toggle patterns. | WCAG 4.1.2 NameRoleValue | Error
 ButtonInvokeAndExpandCollapsePatterns | A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them.  | WCAG 1.3.1 InfoAndRelationships | Warning
 ButtonToggleAndExpandCollapsePatterns | A button must not support both the Toggle and ExpandCollapse patterns. | WCAG 4.1.2 NameRoleValue | Warning
+ClickablePointOnScreen  | An element's IsOffScreen property must be false when its clickable point is on screen. | Section 508 502.3.1 ObjectInformation | Warning
+ClickablePointOffScreen  | An element's IsOffScreen property must be true when its clickable point is off screen. | Section 508 502.3.1 ObjectInformation | Warning
 SiblingUniqueAndFocusable | Focusable sibling elements must not have the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue | Error
 SiblingUniqueAndNotFocusable | The given element has siblings with the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue | Warning
 ChildrenNotAllowedInContentView | A separator must not have any children with IsContentElement set to TRUE. | Section 508 502.3.1 ObjectInformation | Error
