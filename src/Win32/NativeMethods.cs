@@ -35,7 +35,7 @@ namespace Axe.Windows.Win32
         [DllImport("user32.dll")]
         internal static extern bool GetCursorPos(out Point lpPoint);
 
-        [DllImport("user32.dll", EntryPoint = "SystemParametersInfo", SetLastError = true)]
-        internal static extern bool SystemParametersInfoHighContrast(uint action, uint param, ref HighContrast vparam, uint init);
+        [DllImport("user32.dll", EntryPoint = "SystemParametersInfoW", SetLastError = true)]
+        internal static extern bool SystemParametersInfoHighContrast(uint action, uint param, ref HighContrastData vparam, uint init);
     }
 }
