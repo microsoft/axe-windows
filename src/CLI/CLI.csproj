@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <!-- Precopy the source files to CLI_Full when building in the build pipeline and not the Roslyn pass !-->
-  <Target Condition="'$(BUILD_BUILDID)' != '' AND '$(INPUT_SUPPRESSIONFILEFORCOMPILERWARNINGS)' != '' " Name="PreBuild" BeforeTargets="PreBuildEvent">
+  <Target Condition="'$(BUILD_BUILDID)' != '' AND '$(INPUT_SUPPRESSIONFILEFORCOMPILERWARNINGS)' == '' " Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="xcopy $(ProjectDir)*.cs $(ProjectDir)..\CLI_Full &gt; nul&#xD;&#xA;xcopy $(ProjectDir)*.md $(ProjectDir)..\CLI_Full &gt; nul&#xD;&#xA;" />
   </Target>
 
