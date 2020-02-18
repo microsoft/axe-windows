@@ -57,17 +57,17 @@ function Create-Archive([string]$src, [string]$dst){
     Compress-Archive -Force -Path $from -DestinationPath $dst
 }
 
-function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string[]]$patternsToPrune){
+function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string[]]$patternsToRemove){
     Write-Verbose "srcDir = $srcDir"
     Write-Verbose "app = $app"
     Write-Verbose "zipFile = $zipFile"
-    Write-Verbose "patternsToPrune = $patternsToPrune"
+    Write-Verbose "patternsToRemove = $patternsToRemove"
 
     $scratch=(Get-UniqueTempFolder $app)[0]
     Write-Verbose "scratch = $scratch"
 
     Copy-Files $srcDir '*.*' $scratch
-    foreach ($pattern in $patternsToPrune) {
+    foreach ($pattern in $patternsToRemove) {
         Remove-FilesByPattern $scratch $pattern
     }
     Create-Archive $scratch $zipFile
@@ -77,9 +77,9 @@ function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string
 
 function CreateCLIZip([string]$configuration, [string]$srcDir, [string]$targetDir, [string]$zipFileName){
     Write-Host "Creating an AxeWindowsCLI zip file from files in $srcDir"
-	$patternsToPrune=@('*.dev.json', '*.pdb')
+	$patternsToRemove=@('*.dev.json', '*.pdb')
     $zipFile=Join-Path $targetDir $zipFileName
-    Create-ZipFile $srcDir 'AxeWindowsCLI' $zipFile $patternsToPrune
+    Create-ZipFile $srcDir 'AxeWindowsCLI' $zipFile $patternsToRemove
     Write-Host 'Successfully Created' $zipFile
 }
 
