@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -30,10 +30,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-  <!-- Use a custom event to copy source files from the CLI project before building !-->
-  <Target Condition="'$(INPUT_SUPPRESSIONFILEFORCOMPILERWARNINGS)' == '' " Name="CopyFilesFromCLI" AfterTargets="ResolveReferences" BeforeTargets="CoreResGen">
-    <Exec Command="xcopy /y $(ProjectDir)..\CLI\*.cs $(ProjectDir) &gt; nul&#xD;&#xA;xcopy /y $(ProjectDir)..\CLI\*.md $(ProjectDir) &gt; nul&#xD;&#xA;" />
-  </Target>
 
 </Project>
