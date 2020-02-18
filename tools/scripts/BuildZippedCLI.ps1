@@ -6,7 +6,7 @@
 Builds a ZIP file that contains the Axe.Windows CLI. Output is named AxeWindowsCLI.zip
 
 .PARAMETER Configuration
-Debug or Release. Will retain PDB files in the ZIP file if DEBUG. Use $(ConfigurationName) if calling from a csproj file
+Debug or Release. Use $(ConfigurationName) if calling from a csproj file
 
 .PARAMETER SrcDir
 The directory where the full install config was built
