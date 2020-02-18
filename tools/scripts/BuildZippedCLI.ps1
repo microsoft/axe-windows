@@ -8,24 +8,20 @@ Builds a ZIP file that contains the Axe.Windows CLI. Output is named AxeWindowsC
 .PARAMETER Configuration
 Debug or Release. Will retain PDB files in the ZIP file if DEBUG. Use $(ConfigurationName) if calling from a csproj file
 
-.PARAMETER FullTargetDir
-The directory where the full files were built.
+.PARAMETER SrcDir
+The directory where the full install config was build
 
-.PARAMETER SignedTargetDir
-The directory where the signed CLI files were built.
-
-.PARAMETER OutputDir
-The directory where the .zip file will be dropped. Don't put this under FullTargetDir or the zip file will be "nested" in subsequent runs
+.PARAMETER TargetDir
+The directory where the .zip file will be dropped. Don't put this under SrcDir or the zip file will be "nested" in subsequent runs
 
 .Example Usage
-.\BuildZippedCLI.ps1 -Configuration release -FullTargetDir c:\myrepo\src\CLI_Full\bin\release\netcoreapp3.0\win7-x86 -SignedTargetDir c:\myrepo\src\CLI\bin\release\netcoreapp3.0 -OutputDir c:\myrepo\src\CLI_Installer\bin\release
+.\BuildZippedCLI.ps1 -Configuration release -SrcDir c:\myrepo\src\CLI_Full\bin\release\netcoreapp3.0\win7-x86 -TargetDir c:\myrepo\src\CLI_Installer\bin\release
 #>
 
 param(
     [Parameter(Mandatory=$true)][string]$Configuration,
-    [Parameter(Mandatory=$true)][string]$FullTargetDir,
-    [Parameter(Mandatory=$true)][string]$SignedTargetDir,
-    [Parameter(Mandatory=$true)][string]$OutputDir
+    [Parameter(Mandatory=$true)][string]$SrcDir,
+    [Parameter(Mandatory=$true)][string]$TargetDir
 )
 
 Set-StrictMode -Version Latest
@@ -61,9 +57,8 @@ function Create-Archive([string]$src, [string]$dst){
     Compress-Archive -Force -Path $from -DestinationPath $dst
 }
 
-function Create-Zipfile([string]$fullTargetSrc, [string]$signedTargetSrc, [string]$app, [string]$zipFile, [string[]]$patternsToPrune){
-    Write-Verbose "fullTargetSrc = $fullTargetSrc"
-    Write-Verbose "signedTargetSrc = $signedTargetSrc"
+function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string[]]$patternsToPrune){
+    Write-Verbose "srcDir = $srcDir"
     Write-Verbose "app = $app"
     Write-Verbose "zipFile = $zipFile"
     Write-Verbose "patternsToPrune = $patternsToPrune"
@@ -71,8 +66,7 @@ function Create-Zipfile([string]$fullTargetSrc, [string]$signedTargetSrc, [strin
     $scratch=(Get-UniqueTempFolder $app)[0]
     Write-Verbose "scratch = $scratch"
 
-    Copy-Files $fullTargetSrc '*.*' $scratch
-    Copy-Files $signedTargetSrc ($app + '.*') $scratch
+    Copy-Files $srcDir '*.*' $scratch
     foreach ($pattern in $patternsToPrune) {
         Remove-FilesByPattern $scratch $pattern
     }
@@ -81,13 +75,13 @@ function Create-Zipfile([string]$fullTargetSrc, [string]$signedTargetSrc, [strin
     Remove-Item $scratch -Force -Recurse
 }
 
-function CreateCLIZip([string]$configuration, [string]$fullTargetDir, [string]$signedTargetDir, [string]$outputDir, [string]$zipFileName){
-    Write-Host "Creating an AxeWindowsCLI zip file from files in $fullTargetDir and $signedTargetDir"
-	$patternsToPrune=@('AxeWindowsCLIPlaceholder.*', '*.dev.json', '*.pdb')
-    $zipFile=Join-Path $outputDir $zipFileName
-    Create-ZipFile $fullTargetDir $signedTargetDir 'AxeWindowsCLI' $zipFile $patternsToPrune
+function CreateCLIZip([string]$configuration, [string]$srcDir, [string]$targetDir, [string]$zipFileName){
+    Write-Host "Creating an AxeWindowsCLI zip file from files in $srcDir"
+	$patternsToPrune=@('*.dev.json', '*.pdb')
+    $zipFile=Join-Path $targetDir $zipFileName
+    Create-ZipFile $srcDir 'AxeWindowsCLI' $zipFile $patternsToPrune
     Write-Host 'Successfully Created' $zipFile
 }
 
-CreateCLIZip $Configuration $FullTargetDir $SignedTargetDir $OutputDir 'AxeWindowsCLI.zip'
+CreateCLIZip $Configuration $SrcDir $TargetDir 'AxeWindowsCLI.zip'
 exit 0
