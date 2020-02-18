@@ -75,7 +75,7 @@
 	-->
 
   <Target Condition=" '$(CreateAxeWindowsZippedCLI)' == 'true' AND '$(ConfigurationName)' == 'Release' " Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\BuildZippedCLI.ps1 -SrcDir $(SolutionDir)CLI_Full\bin\$(ConfigurationName)\netcoreapp3.0\win7-x86 -TargetDir $(TargetDir) -Configuration $(ConfigurationName)" />
+    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\BuildZippedCLI.ps1 -SrcDir $(SolutionDir)CLI_Full\bin\$(ConfigurationName)\netcoreapp3.0\win7-x86 -SignedSrcDir $(SolutionDir)CLI\bin\$(ConfigurationName)\netcoreapp3.0 -TargetDir $(TargetDir) -Configuration $(ConfigurationName)" />
   </Target>
 
 </Project>
