@@ -31,9 +31,9 @@
     </None>
   </ItemGroup>
 
-  <!-- Precopy the source files from CLI when building outside the build pipeline !-->
-  <Target Condition="'$(BUILD_BUILDID)' == '' " Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="del $(ProjectDir)\*.cs &gt; nul&#xD;&#xA;del $(ProjectDir)\*.md &gt; nul&#xD;&#xA;&#xD;&#xA;xcopy $(ProjectDir)..\CLI\*.cs . &gt; nul&#xD;&#xA;xcopy $(ProjectDir)..\CLI\*.md . &gt; nul&#xD;&#xA;" />
+  <!-- Use a custom event to copy source files from the CLI project before building !-->
+  <Target Condition="'$(INPUT_SUPPRESSIONFILEFORCOMPILERWARNINGS)' == '' " Name="CopyFilesFromCLI" AfterTargets="ResolveReferences" BeforeTargets="CoreResGen">
+    <Exec Command="xcopy /y $(ProjectDir)..\CLI\*.cs $(ProjectDir) &gt; nul&#xD;&#xA;xcopy /y $(ProjectDir)..\CLI\*.md $(ProjectDir) &gt; nul&#xD;&#xA;" />
   </Target>
 
 </Project>
