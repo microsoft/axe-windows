@@ -76,9 +76,9 @@ function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string
 }
 
 function CreateCLIZip([string]$configuration, [string]$srcDir, [string]$targetDir, [string]$zipFileName){
-    Write-Host "Creating an AxeWindowsCLI zip file from files in $srcDir"
-	$patternsToRemove=@('*.dev.json', '*.pdb')
     $zipFile=Join-Path $targetDir $zipFileName
+    $patternsToRemove=@('*.dev.json', '*.pdb')
+    Write-Host "Creating $zipFile from files in $srcDir"
     Create-ZipFile $srcDir 'AxeWindowsCLI' $zipFile $patternsToRemove
     Write-Host 'Successfully Created' $zipFile
 }
