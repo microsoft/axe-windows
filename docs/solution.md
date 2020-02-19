@@ -32,12 +32,19 @@ Assembly | Responsibility
 --- | ---
 Axe.Windows.Automation | Provide a layer that wraps key actions behind a simplified interface. This layer can be used to run Axe.Windows automated accessibility tests programmatically.
 
+#### Command Line Interface (CLI)
+Project | Responsibility
+--- | ---
+CLI | Generates a command line interface (CLI) that allows Axe.Windows to be triggered from the command line. This CLI is a .NET Core 3.0 application and can be triggered from any framework that can launch processes. The .NET Core 3.0 runtime must be installed on the machine to use this version of the CLI.
+CLI_Full | Builds the `CLI` project as a self-contained executable, so that it can be used in environments where the .NET Core 3.0 runtime is not already installed onto the machine.
+
 #### Packaging
 The packaging project exists to gather assemblies into their shipping vehicle:
 
 Project | Responsibility
 --- | ---
 CI | Builds the NuGet package that will be referenced by code that uses the library.
+CLI_Installer | Builds packages to distribute and install the CLI. The outputs are `AxeWindowsCLI.msi` (for use on machines where the .NET Core 3.0 runtime can conveniently be installed) and `AxeWindowsCLI.zip` (for use on machines where the .NET Core 3.0 runtimes can't conveniently be installed).
 
 #### Tests
 
@@ -46,6 +53,7 @@ _Note_: Please use the Moq library when mocking interfaces. Do __not__ use Micro
 The folllowing projects exist for testing purposes:
 - ActionsTests
 - AutomationTests
+- CLITests
 - CoreTests
 - DesktopTests
 - RuleSelectionTests
