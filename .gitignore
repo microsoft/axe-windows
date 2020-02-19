@@ -328,7 +328,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-
-# Files copied only for build of CLI_Full project
-src/CLI_Full/*.cs
-src/CLI_Full/*.md

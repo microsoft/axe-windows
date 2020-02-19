@@ -10,18 +10,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>..\CLI\AppManifests\app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
     <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <AxeDigitalSign>true</AxeDigitalSign>
-  </PropertyGroup>
-
   <Import Project="..\..\build\NetStandardRelease.targets" />
+
+  <ItemGroup>
+    <Compile Include="..\CLI\*.cs" Link="*.cs (From CLI)" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="..\..\thirdpartynotices.html" Link="thirdpartynotices.html">
@@ -30,17 +30,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="..\CLI\README.MD" Link="README.MD">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\CLI\AppManifests\app.manifest" Link="app.manifest (from CLI)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.7.82" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Automation\Automation.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="README.MD">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

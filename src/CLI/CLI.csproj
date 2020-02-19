@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>AppManifests\app.manifest</ApplicationManifest>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,10 +40,5 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
-  <!-- Use a custom event to copy source files to the CLI_Full project before building !-->
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="xcopy /y $(ProjectDir)*.cs $(ProjectDir)..\CLI_Full &gt; nul&#xD;&#xA;xcopy /y $(ProjectDir)*.md $(ProjectDir)..\CLI_Full &gt; nul&#xD;&#xA;xcopy /y $(ProjectDir)*.manifest $(ProjectDir)..\CLI_Full &gt; nul&#xD;&#xA;" />
-  </Target>
 
 </Project>
