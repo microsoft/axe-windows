@@ -33,16 +33,16 @@ namespace Axe.Windows.Automation
                     if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
                         throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
 
-                        // send telemetry of scan results. 
-                        var dc = GetDataAction.GetElementDataContext(ec2.Id);
-                        dc.PublishScanResults();
+                    // send telemetry of scan results. 
+                    var dc = GetDataAction.GetElementDataContext(ec2.Id);
+                    dc.PublishScanResults();
 
-                        if (dc.ElementCounter.UpperBoundExceeded)
-                        {
-                            throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
-                                DisplayStrings.ErrorTooManyElementsToSetDataContext,
-                                dc.ElementCounter.UpperBound));
-                        }
+                    if (dc.ElementCounter.UpperBoundExceeded)
+                    {
+                        throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
+                            DisplayStrings.ErrorTooManyElementsToSetDataContext,
+                            dc.ElementCounter.UpperBound));
+                    }
 
                     return scanCallback(ec2.Element, ec2.Id);
                 } // using
