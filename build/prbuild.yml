@@ -59,23 +59,22 @@ jobs:
       projects: |
         **\*test*.csproj
         
-  - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
-    displayName: ReportGenerator
-    inputs:
-      reports: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
-      targetdir: '$(Build.SourcesDirectory)/CodeCoverage'
-      reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
-      assemblyfilters: '-xunit*'
-
   - task: PublishCodeCoverageResults@1
     displayName: 'Publish code coverage'
     inputs:
-      codeCoverageTool: 'cobertura' # Options: cobertura, jaCoCo
-      summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
-      reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
-      #additionalCodeCoverageFiles: # Optional
-      #failIfCoverageEmpty: false # Optional
-
+      codeCoverageTool: 'cobertura'
+      summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
+      failIfCoverageEmpty: true
+      
+  # Command line
+  # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
+  - task: CmdLine@2
+    displayName: 'Upload coverage to codecov.io'
+    inputs:
+      script: '$(USERPROFILE)\.nuget\packages\codecov\1.10.0\tools\codecov.exe -f "$(Build.SourcesDirectory)/**/coverage.cobertura.xml" -t $(CODECOV_TOKEN)'
+      #workingDirectory: # Optional
+    #failOnStderr: false # Optional
+      
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
     displayName: 'Component Detection'
 
