@@ -54,18 +54,11 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
-      arguments: --no-build --blame --verbosity normal --configuration release /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      arguments: --no-build --blame --verbosity normal --configuration release
       command: test
       projects: |
         **\*test*.csproj
         
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publish code coverage'
-    inputs:
-      codeCoverageTool: 'cobertura'
-      summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
-      failIfCoverageEmpty: true
-      
   # Command line
   # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
@@ -109,23 +102,16 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
-      arguments: --no-build --blame --verbosity normal --configuration debug /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      arguments: --no-build --blame --verbosity normal --configuration debug /p:CollectCoverage=true /p:CoverletOutput=./CodeCoverage/ /p:CoverletOutputFormat=cobertura
       command: test
       projects: |
         **\*test*.csproj
 
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publish code coverage'
-    inputs:
-      codeCoverageTool: 'cobertura'
-      summaryFileLocation: '$(Build.SourcesDirectory)/**/coverage.cobertura.xml'
-      failIfCoverageEmpty: true
-        
   # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
   - task: CmdLine@2
     displayName: 'Upload coverage to codecov.io'
     inputs:
-      script: '$(USERPROFILE)\.nuget\packages\codecov\1.10.0\tools\codecov.exe -t $(CODECOV_TOKEN)'
+      script: $(USERPROFILE)\.nuget\packages\codecov\1.10.0\tools\codecov.exe -t $(CODECOV_TOKEN) -f **/*coverage.cobertura.xml
     #workingDirectory: # Optional
     #failOnStderr: false # Optional
     
