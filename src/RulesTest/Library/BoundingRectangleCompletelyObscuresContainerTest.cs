@@ -2,9 +2,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
-using System.Drawing;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Rules.PropertyConditions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Drawing;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
