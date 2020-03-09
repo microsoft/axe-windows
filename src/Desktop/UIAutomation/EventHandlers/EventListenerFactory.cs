@@ -349,7 +349,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     case EventType.UIA_AutomationFocusChangedEventId:
                         if (this.EventListenerFocusChanged == null)
                         {
-                            this.EventListenerFocusChanged = new FocusChangedEventListener(this.UIAutomation, msgData.Listener);
+                            var uia = (IUIAutomation) UIAutomation8 ?? UIAutomation;
+                            this.EventListenerFocusChanged = new FocusChangedEventListener(uia, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_StructureChangedEventId:
