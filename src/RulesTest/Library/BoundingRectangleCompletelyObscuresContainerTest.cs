@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Types;
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Rules.PropertyConditions;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
-
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -164,6 +165,32 @@ namespace Axe.Windows.RulesTest.Library
 
             Assert.IsTrue(Rule.Condition.Matches(e));
             Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+        }
+
+        [TestMethod]
+        public void BoundingRectangleCompletelyObscuresContainer_IsDialog_NotApplicable()
+        {
+            var e = new MockA11yElement();
+            var parent = new MockA11yElement();
+
+            e.BoundingRectangle = TestRect;
+            parent.BoundingRectangle = TestRect;
+            e.Parent = parent;
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            var a11yProperty = new A11yProperty(PropertyType.UIA_IsDialogPropertyId, true);
+            e.Properties.Add(PropertyType.UIA_IsDialogPropertyId, a11yProperty);
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            e.ControlTypeId = ControlType.Pane;
+
+            Assert.IsFalse(Rule.Condition.Matches(e));
+
+            e.Properties.Remove(PropertyType.UIA_IsDialogPropertyId);
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
         }
     } // class
 } // namespace

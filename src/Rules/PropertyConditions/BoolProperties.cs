@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.Resources;
+using System;
 using static Axe.Windows.Rules.PropertyConditions.General;
 
 namespace Axe.Windows.Rules.PropertyConditions
@@ -19,6 +21,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsControlElementDoesNotExist = ~IsControlElementExists;
         public static Condition IsContentOrControlElement = IsContentElement | IsControlElement;
         public static Condition IsNotContentOrControlElement = ~(IsContentElement | IsControlElement);
+        public static Condition IsDialog = Condition.Create(IsDialogWorker, ConditionDescriptions.IsDialog);
         public static Condition IsEnabled = Condition.Create(e => e.IsEnabled);
         public static Condition IsNotEnabled = ~IsEnabled;
         public static Condition IsKeyboardFocusable = Condition.Create(e => e.IsKeyboardFocusable);
@@ -28,5 +31,13 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsDesktop = Condition.Create(e => e.IsRootElement());
         public static Condition IsNotDesktop = ~IsDesktop;
         public static Condition TransformPattern_CanResize = Condition.Create(e => e.TransformPatternCanResize);
+
+        private static bool IsDialogWorker(IA11yElement e)
+        {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
+            return e.TryGetPropertyValue(PropertyType.UIA_IsDialogPropertyId, out bool isDialog)
+                ? isDialog : false;
+        }
     } // class
 } // namespace

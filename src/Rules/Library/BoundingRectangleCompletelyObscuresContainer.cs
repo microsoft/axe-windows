@@ -34,7 +34,10 @@ namespace Axe.Windows.Rules.Library
         {
             // Windows can be any size, regardless of their parents
 
+            var isDialog = Pane & IsDialog;
+
             return ~Window
+                & ~isDialog
                 & IsNotOffScreen
                 & BoundingRectangle.Valid
                 & ParentExists
