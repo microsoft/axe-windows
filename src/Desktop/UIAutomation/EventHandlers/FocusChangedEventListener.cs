@@ -21,9 +21,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         public bool ReadyToListen { get; set; } = false;
 
-        private CUIAutomation UIAutomation = null;
+        private IUIAutomation UIAutomation = null;
 
-        public FocusChangedEventListener(CUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
+        public FocusChangedEventListener(IUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
         {
             if (uia == null) throw new ArgumentNullException(nameof(uia));
 
