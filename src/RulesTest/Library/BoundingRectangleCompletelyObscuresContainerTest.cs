@@ -192,5 +192,22 @@ namespace Axe.Windows.RulesTest.Library
 
             Assert.IsTrue(Rule.Condition.Matches(e));
         }
+
+        [TestMethod]
+        public void BoundingRectangleCompletelyObscuresContainer_Window_NotApplicable()
+        {
+            var e = new MockA11yElement();
+            var parent = new MockA11yElement();
+
+            e.BoundingRectangle = TestRect;
+            parent.BoundingRectangle = TestRect;
+            e.Parent = parent;
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            e.ControlTypeId = ControlType.Window;
+
+            Assert.IsFalse(Rule.Condition.Matches(e));
+        }
     } // class
 } // namespace
