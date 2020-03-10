@@ -317,7 +317,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
-        public void IsDialog_true()
+        public void IsDialog_True()
         {
             using (var e = new MockA11yElement())
             {
