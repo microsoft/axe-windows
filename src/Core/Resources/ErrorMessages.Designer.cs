@@ -19,7 +19,7 @@ namespace Axe.Windows.Core.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ErrorMessages {
@@ -106,20 +106,20 @@ namespace Axe.Windows.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value cannot be null.
-        /// </summary>
-        internal static string VallueCannotBeNull {
-            get {
-                return ResourceManager.GetString("VallueCannotBeNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Value cannot be empty or white space.
         /// </summary>
         internal static string ValueCannotBeEmptyOrWhiteSpace {
             get {
                 return ResourceManager.GetString("ValueCannotBeEmptyOrWhiteSpace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value cannot be null.
+        /// </summary>
+        internal static string ValueCannotBeNull {
+            get {
+                return ResourceManager.GetString("ValueCannotBeNull", resourceCulture);
             }
         }
     }
