@@ -315,5 +315,36 @@ namespace Axe.Windows.RulesTest.PropertyConditions
                 Assert.IsFalse(IsControlElementDoesNotExist.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void IsDialog_True()
+        {
+            using (var e = new MockA11yElement())
+            {
+                var a11yProperty = new A11yProperty(PropertyType.UIA_IsDialogPropertyId, true);
+                e.Properties.Add(PropertyType.UIA_IsDialogPropertyId, a11yProperty);
+                Assert.IsTrue(IsDialog.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IsDialog_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                var a11yProperty = new A11yProperty(PropertyType.UIA_IsDialogPropertyId, false);
+                e.Properties.Add(PropertyType.UIA_IsDialogPropertyId, a11yProperty);
+                Assert.IsFalse(IsDialog.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IsDialog_NotSet_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(IsDialog.Matches(e));
+            } // using
+        }
     } // class
 } // namespace

@@ -250,6 +250,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IsDialog.
+        /// </summary>
+        internal static string IsDialog {
+            get {
+                return ResourceManager.GetString("IsDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LocalizedControlType.
         /// </summary>
         internal static string LocalizedControlType {

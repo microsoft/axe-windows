@@ -242,4 +242,7 @@
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>ClickablePointOffScreen</value>
   </data>
+  <data name="IsDialog" xml:space="preserve">
+    <value>IsDialog</value>
+  </data>
 </root>

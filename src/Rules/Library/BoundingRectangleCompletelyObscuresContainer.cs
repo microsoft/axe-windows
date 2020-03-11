@@ -32,9 +32,12 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            // Windows can be any size, regardless of their parents
+            // Windows and dialogs can be any size, regardless of their parents
+
+            var isDialog = Pane & IsDialog;
 
             return ~Window
+                & ~isDialog
                 & IsNotOffScreen
                 & BoundingRectangle.Valid
                 & ParentExists
