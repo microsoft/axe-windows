@@ -592,6 +592,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Children of off-screen element&apos;s must also be off-screen..
+        /// </summary>
+        internal static string IsOffScreenChild {
+            get {
+                return ResourceManager.GetString("IsOffScreenChild", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The ItemStatus property for the given element should exist..
         /// </summary>
         internal static string ItemStatusExists {
