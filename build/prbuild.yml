@@ -13,10 +13,10 @@ jobs:
   pool:
     vmImage: 'windows-2019'
   steps:
-  - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 5.0.0'
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet 5.x'
     inputs:
-      versionSpec: '5.0.0'
+      versionSpec: '5.x'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -68,10 +68,10 @@ jobs:
   pool:
     vmImage: 'windows-2019'
   steps:
-  - task: NuGetToolInstaller@0
-    displayName: 'Use NuGet 5.0.0'
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet 5.x'
     inputs:
-      versionSpec: '5.0.0'
+      versionSpec: '5.x'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
