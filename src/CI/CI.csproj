@@ -57,7 +57,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Condition=" '$(CreateAxeWindowsNugetPackage)' == 'true' " Name="Pack" AfterTargets="Build">
-    <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);VersionString=&quot;$(SemVerNumber)$(SemVerSuffix)&quot; Axe.Windows.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix) -NonInteractive" />
+    <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);VersionString=&quot;$(SemVerNumber)$(SemVerSuffix)&quot; Axe.Windows.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix) -NonInteractive -Symbols -SymbolPackageFormat snupkg" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
