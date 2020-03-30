@@ -27,7 +27,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public DesktopElement FindItemByProperty(int propertyId, object value)
         {
-            return new DesktopElement(this.Pattern.FindItemByProperty(this.UIAElement, propertyId, value));
+            // null specifies finding the first matching item
+            return new DesktopElement(this.Pattern.FindItemByProperty(null, propertyId, value));
         }
 
         protected override void Dispose(bool disposing)
