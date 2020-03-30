@@ -38,7 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <DebugSymbols>true</DebugSymbols>
-</PropertyGroup>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Axe.Windows.nuspec">
