@@ -44,7 +44,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
     <Directory Id="TARGETDIR" Name="SourceDir" >
       <Directory Id="ProgramFilesFolder" >
         <Directory Id="AxeWindowsCLIFolder" Name ="AxeWindowsCLI" >
-          <Directory Id="INSTALLFOLDER" Name="1.0" >
+          <Directory Id="INSTALLFOLDER" Name="$(var.SemVer)" >
             <Directory Id="RuntimesFolder" Name="runtimes" >
               <Directory Id="WinFolder" Name="win" >
                 <Directory Id="LibFolder" Name="lib" >
