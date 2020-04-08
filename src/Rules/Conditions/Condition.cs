@@ -74,6 +74,5 @@ namespace Axe.Windows.Rules
 
         public static Condition True = Create(e => true, ConditionDescriptions.True);
         public static Condition False = Create(e => false, ConditionDescriptions.False);
-        public static Condition DebugBreak = Create(e => { System.Diagnostics.Debugger.Break(); return true; });
     } // class
 } // namespace

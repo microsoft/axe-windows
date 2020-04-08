@@ -4,7 +4,6 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.UnitTestSharedLibrary;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -1020,16 +1019,6 @@ namespace Axe.Windows.RulesTest
         {
             var results = Axe.Windows.Rules.Rules.RunAll(e);
             return results.ToDictionary(r => r.RuleInfo.ID, r => r.EvaluationCode);
-        }
-
-        private static void WriteResultsToDebugOutput(Dictionary<RuleId, EvaluationCode> results)
-        {
-            System.Diagnostics.Debug.WriteLine("{");
-
-            foreach (var key in results.Keys.OrderBy(k => k.ToString()))
-                System.Diagnostics.Debug.WriteLine($"Assert.AreEqual(EvaluationCode.{results[key]}, results[RuleId.{key}]);");
-
-            System.Diagnostics.Debug.WriteLine("}");
         }
     } // class
 } // namespace

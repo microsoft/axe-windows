@@ -420,11 +420,7 @@ namespace Axe.Windows.Core.Misc
                 }
                 else if (HasTestResults(tss, ScanStatus.NoResult))
                 {
-                    // it means that there was no rule executed or 
-                    if (System.Diagnostics.Debugger.IsAttached)
-                    {
-                         System.Diagnostics.Debugger.Break();
-                    }
+                    return ScanStatus.NoResult;
                 }
 
                 return ScanStatus.Pass;
