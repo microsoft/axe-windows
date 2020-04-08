@@ -418,10 +418,6 @@ namespace Axe.Windows.Core.Misc
                 {
                     return ScanStatus.Uncertain;
                 }
-                else if (HasTestResults(tss, ScanStatus.NoResult))
-                {
-                    return ScanStatus.NoResult;
-                }
 
                 return ScanStatus.Pass;
             }

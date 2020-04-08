@@ -1020,5 +1020,15 @@ namespace Axe.Windows.RulesTest
             var results = Axe.Windows.Rules.Rules.RunAll(e);
             return results.ToDictionary(r => r.RuleInfo.ID, r => r.EvaluationCode);
         }
+
+        private static void WriteResultsToDebugOutput(Dictionary<RuleId, EvaluationCode> results)
+        {
+            System.Diagnostics.Debug.WriteLine("{");
+
+            foreach (var key in results.Keys.OrderBy(k => k.ToString()))
+                System.Diagnostics.Debug.WriteLine($"Assert.AreEqual(EvaluationCode.{results[key]}, results[RuleId.{key}]);");
+
+            System.Diagnostics.Debug.WriteLine("}");
+        }
     } // class
 } // namespace
