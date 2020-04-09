@@ -418,14 +418,6 @@ namespace Axe.Windows.Core.Misc
                 {
                     return ScanStatus.Uncertain;
                 }
-                else if (HasTestResults(tss, ScanStatus.NoResult))
-                {
-                    // it means that there was no rule executed or 
-                    if (System.Diagnostics.Debugger.IsAttached)
-                    {
-                         System.Diagnostics.Debugger.Break();
-                    }
-                }
 
                 return ScanStatus.Pass;
             }

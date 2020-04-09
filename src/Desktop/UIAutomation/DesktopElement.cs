@@ -151,10 +151,6 @@ namespace Axe.Windows.Desktop.UIAutomation
             catch (Exception e)
             {
                 e.ReportException();
-                if (System.Diagnostics.Debugger.IsAttached)
-                {
-                    System.Diagnostics.Debugger.Break();
-                }
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }
