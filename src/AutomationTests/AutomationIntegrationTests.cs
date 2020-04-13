@@ -16,7 +16,7 @@ namespace Axe.Windows.AutomationTests
     public class AutomationIntegrationTests
     {
         // These values should change only in response to intentional rule modifications
-        const int WildlifeManagerKnownErrorCount = 13;
+        const int WildlifeManagerKnownErrorCount = 12;
         const int Win32ControlSamplerKnownErrorCount = 0;
         const int WindowsFormsControlSamplerKnownErrorCount = 6;
         const int WpfControlSamplerKnownErrorCount = 5;
