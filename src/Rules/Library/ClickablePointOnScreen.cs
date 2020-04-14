@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return ClickablePoint.OnScreen;
+            return IsKeyboardFocusable & ClickablePoint.OnScreen;
         }
     } // class
 } // namespace

@@ -49,9 +49,10 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void ClickablePointOnScreen_IsClickable_Matches()
+        public void ClickablePointOnScreen_FocusableClickable_Matches()
         {
             SetupTryGetProperty(new Point(100, 100));
+            mockElement.Setup(m => m.IsKeyboardFocusable).Returns(true);
             Assert.IsTrue(Rule.Condition.Matches(mockElement.Object));
             mockElement.VerifyAll();
         }
@@ -60,6 +61,15 @@ namespace Axe.Windows.RulesTest.Library
         public void ClickablePointOnScreen_IsNotClickable_NoMatch()
         {
             SetupTryGetProperty(new Point(-100, -100));
+            mockElement.Setup(m => m.IsKeyboardFocusable).Returns(true);
+            Assert.IsFalse(Rule.Condition.Matches(mockElement.Object));
+            mockElement.VerifyAll();
+        }
+
+        [TestMethod]
+        public void ClickablePointOnScreen_IsNotFocusable_NoMatch()
+        {
+            mockElement.Setup(m => m.IsKeyboardFocusable).Returns(false);
             Assert.IsFalse(Rule.Condition.Matches(mockElement.Object));
             mockElement.VerifyAll();
         }
