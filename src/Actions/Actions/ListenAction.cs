@@ -46,11 +46,20 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Start recording events
         /// </summary>
-        public void Start(IEnumerable<int> eventIDs, IEnumerable<int> propertyIDs)
+        public void Start(IEnumerable<int> eventIDs, IEnumerable<int> propertyIDs, EventRegistrationOrder registrationOrder = EventRegistrationOrder.PropertyEventsFirst)
         {
             this.IsRunning = true;
-            InitIndividualEventListeners(eventIDs);
+
+            if (registrationOrder == EventRegistrationOrder.PropertyEventsLast)
+            {
+                InitIndividualEventListeners(eventIDs);
+                InitPropertyChangeListener(propertyIDs);
+                return;
+            }
+
+            // default is to register for property events first
             InitPropertyChangeListener(propertyIDs);
+            InitIndividualEventListeners(eventIDs);
         }
 
         /// <summary>
