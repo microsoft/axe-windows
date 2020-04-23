@@ -59,4 +59,18 @@ namespace Axe.Windows.Actions.Enums
         Paused,
         Resumed
     }
+
+    /// <summary>
+    /// Controls the order in which event handlers are registered.
+
+    /// </summary>
+    /// <remarks>
+    /// In some cases, registering for property change events after other types of events
+    /// causes some property change events not to be received.
+    /// </remarks>
+    public enum EventRegistrationOrder
+    {
+        PropertyEventsFirst,
+        PropertyEventsLast,
+    }
 }
