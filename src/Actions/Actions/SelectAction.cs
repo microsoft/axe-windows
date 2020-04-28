@@ -67,6 +67,7 @@ namespace Axe.Windows.Actions
         // Backing object for POIElementContext - is disposed via POIElementContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]
         ElementContext _POIElementContext = null;
+        private readonly Object _elementContextLock = new object();
 
         /// <summary>
         /// Element Context of Point of Interest(a.k.a. selected)
@@ -181,7 +182,7 @@ namespace Axe.Windows.Actions
         /// <param name="el"></param>
         public void SetCandidateElement(A11yElement el)
         {
-            lock (this)
+            lock (_elementContextLock)
             {
                 if (el != null)
                 {
@@ -236,7 +237,7 @@ namespace Axe.Windows.Actions
         /// <param name="handle"></param>
         public void SetCandidateElementFromHandle(IntPtr handle)
         {
-            lock (this)
+            lock (_elementContextLock)
             {
                 var element = A11yAutomation.ElementFromHandle(handle);
                 this.CandidateEC?.Dispose();
@@ -250,7 +251,7 @@ namespace Axe.Windows.Actions
         /// <returns>true when there is new selection</returns>
         public bool Select()
         {
-            lock(this)
+            lock(_elementContextLock)
             {
                 if(CandidateEC != null && ( POIElementContext == null || POIElementContext.Element.IsSameUIElement(CandidateEC.Element) == false))
                 {
@@ -295,7 +296,7 @@ namespace Axe.Windows.Actions
         /// <param name="ec"></param>
         void SetSelectedContextWithLoadedData(ElementContext ec)
         {
-            lock (this)
+            lock (_elementContextLock)
             {
                 POIElementContext?.Dispose();
                 CandidateEC?.Dispose();
@@ -311,7 +312,7 @@ namespace Axe.Windows.Actions
         {
             if (!this.IsPaused)
             {
-                lock (this)
+                lock (_elementContextLock)
                 {
                     POIElementContext = null;
                     CandidateEC?.Dispose();
@@ -329,7 +330,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public Guid? GetSelectedElementContextId()
         {
-            lock (this)
+            lock (_elementContextLock)
             {
                 return POIElementContext != null ? POIElementContext.Id : (Guid?)null;
             }

@@ -53,6 +53,7 @@ namespace Axe.Windows.Actions.Trackers
         /// Mouse timer
         /// </summary>
         Timer timerMouse = null;
+        private readonly object _elementSetterLock = new object();
 
         /// <summary>
         /// constructor
@@ -99,7 +100,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="e"></param>
         private void ontimerMouseElapsedEvent(object sender, ElapsedEventArgs e)
         {
-            lock (this)
+            lock (_elementSetterLock)
             {
                 if (this.timerMouse != null && this.IsStarted)
                 {

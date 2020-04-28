@@ -108,20 +108,20 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_TargetElementLocatorReturnsNull_ThrowsException()
+        public void Execute_TargetElementLocatorReturnsNull_PassesNullToScan()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns<A11yElement>(null);
+            _actionsMock.Setup(x => x.Scan(null, It.IsNotNull<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
 
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<InvalidOperationException>(action);
-            Assert.IsTrue(ex.Message.Contains("rootElement"));
+            SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
+            _actionsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
         }
 
@@ -136,15 +136,16 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElement(expectedProcessId)).Returns<A11yElement>(null);
+            _actionsMock.Setup(x => x.Scan(null, It.IsNotNull<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
 
             var config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
-            var action = new Action(() => SnapshotCommand.Execute(config, _scanToolsMock.Object));
-            Assert.ThrowsException<InvalidOperationException>(action);
+            SnapshotCommand.Execute(config, _scanToolsMock.Object);
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();
+            _actionsMock.VerifyAll();
         }
 
         [TestMethod]
