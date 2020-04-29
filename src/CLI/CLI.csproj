@@ -19,7 +19,7 @@
     <AxeDigitalSign>true</AxeDigitalSign>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  <PropertyGroup>
     <!-- Suppress the warning (CA1303) for string literals.
     this warning would only be useful if we decided to localize the project. -->
     <NoWarn>CA1303;$(NoWarn)</NoWarn>
