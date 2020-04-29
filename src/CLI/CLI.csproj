@@ -25,10 +25,6 @@
     <NoWarn>CA1303;$(NoWarn)</NoWarn>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <NoWarn>1701;1702,CA1303</NoWarn>
-  </PropertyGroup>
-
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
   <ItemGroup>
