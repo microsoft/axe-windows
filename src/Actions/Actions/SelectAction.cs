@@ -67,7 +67,7 @@ namespace Axe.Windows.Actions
         // Backing object for POIElementContext - is disposed via POIElementContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]
         ElementContext _POIElementContext = null;
-        private readonly Object _elementContextLock = new object();
+        private readonly object _elementContextLock = new object();
 
         /// <summary>
         /// Element Context of Point of Interest(a.k.a. selected)
