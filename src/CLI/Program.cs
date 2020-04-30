@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+// Dummy comment for PR purposes. Will not be merged
+
 using Axe.Windows.Automation;
 using CommandLine;
 using System;
