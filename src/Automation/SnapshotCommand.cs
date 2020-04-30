@@ -31,7 +31,6 @@ namespace Axe.Windows.Automation
             scanTools.NativeMethods.SetProcessDPIAware();
 
             var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
-            if (rootElement == null) throw new InvalidOperationException(nameof(rootElement));
 
             return scanTools.Actions.Scan(rootElement, (element, elementId) =>
             {

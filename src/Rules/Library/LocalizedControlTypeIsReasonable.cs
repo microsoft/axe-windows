@@ -29,7 +29,7 @@ namespace Axe.Windows.Rules.Library
             return HasReasonableLocalizedControlType(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
         }
 
-        private bool HasReasonableLocalizedControlType(IA11yElement e)
+        private static bool HasReasonableLocalizedControlType(IA11yElement e)
         {
             var names = GetExpectedLocalizedControlTypeNames(e.ControlTypeId);
 

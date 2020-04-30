@@ -13,6 +13,8 @@ namespace Axe.Windows.Core.Results
     /// </summary>
     public class ScanResults
     {
+        private readonly object _itemsLock = new object();
+
         /// <summary>
         /// Items with ScanResult
         /// </summary>
@@ -46,7 +48,7 @@ namespace Axe.Windows.Core.Results
         /// <param name="report"></param>
         public void AddScanResult(ScanResult report)
         {
-            lock (this)
+            lock (_itemsLock)
             {
                 this.Items.Add(report);
             }

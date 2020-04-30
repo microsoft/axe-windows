@@ -53,10 +53,15 @@ namespace AxeWindowsCLI
             Exception caughtException = null;
             try
             {
-                CaseInsensitiveParser().ParseArguments<Options>(_args)
+                using (var parser = CaseInsensitiveParser())
+                {
+                parser.ParseArguments<Options>(_args)
                     .WithParsed<Options>(RunWithParsedInputs);
+                }
             }
+#pragma warning disable CA1031
             catch (Exception e)
+#pragma warning restore CA1031
             {
                 caughtException = e;
             }

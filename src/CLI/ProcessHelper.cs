@@ -24,7 +24,9 @@ namespace AxeWindowsCLI
             {
                 processes = _processAbstraction.GetProcessesByName(processName);
             }
+#pragma warning disable CA1031
             catch (Exception e)
+#pragma warning restore CA1031
             {
                 caughtException = e;
             }
@@ -51,7 +53,9 @@ namespace AxeWindowsCLI
             {
                 process = _processAbstraction.GetProcessById(processId);
             }
+#pragma warning disable CA1031
             catch (Exception e)
+#pragma warning restore CA1031
             {
                 innerException = e;
             }

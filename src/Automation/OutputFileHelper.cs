@@ -51,7 +51,7 @@ namespace Axe.Windows.Automation
         /// </summary>
         /// <param name="path"></param>
         /// <exception cref="AxeWindowsAutomationException"/>
-        private void VerifyPathOrThrow(string path)
+        private static void VerifyPathOrThrow(string path)
         {
             try
             {

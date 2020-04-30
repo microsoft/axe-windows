@@ -16,5 +16,8 @@ namespace AxeWindowsCLI
             : this (message, null)
         {
         }
+
+        public ParameterException()
+        { }
     }
 }
