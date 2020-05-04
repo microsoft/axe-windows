@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Styles;
 using System;
@@ -17,6 +18,7 @@ namespace Axe.Windows.Desktop.Types
     public class TextAttributeType : TypeBase
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
+        [NotType]
         public const int UIA_TextAttributeId = 0;
 
         public const int UIA_AnimationStyleAttributeId = 40000;

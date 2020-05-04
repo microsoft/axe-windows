@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Attributes;
+using Axe.Windows.Core.Misc;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using System.Reflection;
 using static System.FormattableString;
 
 namespace Axe.Windows.Core.Types
@@ -12,34 +15,45 @@ namespace Axe.Windows.Core.Types
     /// </summary>
     public abstract class TypeBase
     {
-        const string NamePattern = "UIA_";
+        const string DefaultNamePattern = "UIA_";
         protected Dictionary<int, string> Dic { get; private set; }
+        private readonly string _namePattern = null;
 
-        protected TypeBase() : this(NamePattern) { }
+        protected TypeBase() : this(DefaultNamePattern) { }
 
         protected TypeBase(string np)
         {
+            _namePattern = np;
+
             this.Dic = new Dictionary<int, string>();
 
-            PopulateDictionary(np);
+            PopulateDictionary();
         }
 
         /// <summary>
         /// Populate dictionary based on const members of inherited class
         /// </summary>
-        private void PopulateDictionary(string namepattern)
+        private void PopulateDictionary()
         {
             var fields =  this.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy );
 
             foreach(var f in fields)
             {
-                if (f.Name.StartsWith(namepattern, StringComparison.Ordinal))
-                {
-                    int id = (int)f.GetValue(f);
-                    this.Dic.Add(id, GetNameInProperFormat(f.Name, id));
-                }
+                if (ShouldIncludeFieldInDictionary(f))
+                    AddFieldToDictionary(f);
             }
+        }
 
+        private bool ShouldIncludeFieldInDictionary(FieldInfo field)
+        {
+            return !field.HasAttribute<NotTypeAttribute>()
+                && field.Name.StartsWith(_namePattern, StringComparison.Ordinal);
+        }
+
+        private void AddFieldToDictionary(FieldInfo field)
+        {
+            int id = (int)field.GetValue(field);
+            this.Dic.Add(id, GetNameInProperFormat(field.Name, id));
         }
 
         /// <summary>

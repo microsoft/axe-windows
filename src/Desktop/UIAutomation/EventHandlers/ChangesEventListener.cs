@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Desktop.Types;
+using System.Collections.Generic;
+using System.Linq;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
@@ -11,51 +13,27 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
     /// </summary>
     public class ChangesEventListener : EventListenerBase, IUIAutomationChangesEventHandler
     {
-        private static int[] ChangeTypes = new int[]
+        private static readonly int[] ChangeTypes = InitChangeTypes();
+            
+        private static int[] InitChangeTypes()
         {
-            EventType.UIA_ToolTipOpenedEventId,
-            EventType.UIA_ToolTipClosedEventId,
-            EventType.UIA_StructureChangedEventId,
-            EventType.UIA_MenuOpenedEventId,
-            EventType.UIA_AutomationPropertyChangedEventId,
-            EventType.UIA_AutomationFocusChangedEventId,
-            EventType.UIA_AsyncContentLoadedEventId,
-            EventType.UIA_MenuClosedEventId,
-            EventType.UIA_LayoutInvalidatedEventId,
-            EventType.UIA_Invoke_InvokedEventId,
-            EventType.UIA_SelectionItem_ElementAddedToSelectionEventId,
-            EventType.UIA_SelectionItem_ElementRemovedFromSelectionEventId,
-            EventType.UIA_SelectionItem_ElementSelectedEventId,
-            EventType.UIA_Selection_InvalidatedEventId,
-            EventType.UIA_Text_TextSelectionChangedEventId,
-            EventType.UIA_Text_TextChangedEventId,
-            EventType.UIA_Window_WindowOpenedEventId,
-            EventType.UIA_Window_WindowClosedEventId,
-            EventType.UIA_MenuModeStartEventId,
-            EventType.UIA_MenuModeEndEventId,
-            EventType.UIA_InputReachedTargetEventId,
-            EventType.UIA_InputReachedOtherElementEventId,
-            EventType.UIA_InputDiscardedEventId,
-            EventType.UIA_SystemAlertEventId,
-            EventType.UIA_LiveRegionChangedEventId,
-            EventType.UIA_HostedFragmentRootsInvalidatedEventId,
-            EventType.UIA_Drag_DragStartEventId,
-            EventType.UIA_Drag_DragCancelEventId,
-            EventType.UIA_Drag_DragCompleteEventId,
-            EventType.UIA_DropTarget_DragEnterEventId,
-            EventType.UIA_DropTarget_DragLeaveEventId,
-            EventType.UIA_DropTarget_DroppedEventId,
-            EventType.UIA_TextEdit_TextChangedEventId,
-            EventType.UIA_TextEdit_ConversionTargetChangedEventId,
-            EventType.UIA_ChangesEventId,
-            EventType.UIA_NotificationEventId,
-            EventType.UIA_ActiveTextPositionChangedEventId,
-        };
+            // Ids based on expected values for UiaChangeInfo.uiaId
+            // https://docs.microsoft.com/en-us/windows/win32/api/uiautomationcore/ns-uiautomationcore-uiachangeinfo
+            // Note: property ids are not included as they are already handled by the property changed event handler.
+
+            var changeTypes = new List<int>();
+            changeTypes.AddRange(AnnotationType.GetInstance().Values);
+            changeTypes.AddRange(Styles.StyleId.GetInstance().Values);
+            changeTypes.AddRange(TextAttributeType.GetInstance().Values);
+            changeTypes.Add(ChangeInfoType.UIA_SummaryChangeId);
+
+            return changeTypes.ToArray();
+        }
 
         /// <summary>
         /// Create an event handler and register it.
         /// </summary>
-        public ChangesEventListener(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate) : base(uia8, element, scope, EventType.UIA_NotificationEventId, peDelegate)
+        public ChangesEventListener(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate) : base(uia8, element, scope, EventType.UIA_ChangesEventId, peDelegate)
         {
             Init();
         }

@@ -681,5 +681,14 @@ namespace Axe.Windows.Core.Misc
             return e.TryGetPropertyValue(propertyId, out T value)
                 ? value : default(T);
         }
+
+        public static bool HasAttribute<T>(this FieldInfo field) where T: Attribute
+        {
+            if (field == null) throw new ArgumentNullException(nameof(field));
+
+            var a = field.GetCustomAttribute(typeof(T));
+
+            return a != null;
+        }
     }
 }
