@@ -22,10 +22,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             // Note: property ids are not included as they are already handled by the property changed event handler.
 
             var changeTypes = new List<int>();
+            changeTypes.Add(ChangeInfoType.UIA_SummaryChangeId);
+            changeTypes.AddRange(TextAttributeType.GetInstance().Values);
             changeTypes.AddRange(AnnotationType.GetInstance().Values);
             changeTypes.AddRange(Styles.StyleId.GetInstance().Values);
-            changeTypes.AddRange(TextAttributeType.GetInstance().Values);
-            changeTypes.Add(ChangeInfoType.UIA_SummaryChangeId);
 
             return changeTypes.ToArray();
         }
