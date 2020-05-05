@@ -24,18 +24,21 @@ namespace Axe.Windows.Desktop.UIAutomation.Support
             this.OriginalRange = range;
         }
 
-        public TextRange Find(int id, dynamic value, bool backward, bool ignorecase)
+        public TextRange Find(int id, dynamic value, bool backward)
         {
             using (var range = GetRangeForFind(backward))
             {
-                if (id == TextAttributeType.UIA_TextAttributeId)
-                {
-                    this.FoundRange = range.FindText(value, backward, ignorecase);
-                }
-                else
-                {
-                    this.FoundRange = range.FindAttribute(id, value, backward);
-                }
+                this.FoundRange = range.FindAttribute(id, value, backward);
+            } // using
+
+            return this.FoundRange;
+        }
+
+        public TextRange FindText(string value, bool backward, bool ignorecase)
+        {
+            using (var range = GetRangeForFind(backward))
+            {
+                this.FoundRange = range.FindText(value, backward, ignorecase);
             } // using
 
             return this.FoundRange;
