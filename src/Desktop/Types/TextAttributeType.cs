@@ -1,12 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Desktop.Styles;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text;
 
 namespace Axe.Windows.Desktop.Types
@@ -18,9 +12,6 @@ namespace Axe.Windows.Desktop.Types
     public class TextAttributeType : TypeBase
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
-        [NotType]
-        public const int UIA_TextAttributeId = 0;
-
         public const int UIA_AnimationStyleAttributeId = 40000;
         public const int UIA_BackgroundColorAttributeId = 40001;
         public const int UIA_BulletStyleAttributeId = 40002;
@@ -102,65 +93,6 @@ namespace Axe.Windows.Desktop.Types
             sb.Replace("AttributeId", "");
 
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// Get template of each attribute type
-        /// it is used in TextRangeFindDialog.
-        /// </summary>
-        /// <returns></returns>
-        public List<Tuple<int, string, dynamic, Type>> GetTemplate()
-        {
-            var boolList = new List<KeyValuePair<bool, string>>() { new KeyValuePair<bool, string>(false, "False"), new KeyValuePair<bool, string>(true, "True") };
-            var list = new List<Tuple<int, string, dynamic, Type>>
-            {
-                new Tuple<int, string, dynamic, Type>(UIA_TextAttributeId, GetNameById(UIA_TextAttributeId), null, typeof(string)),
-                new Tuple<int, string, dynamic, Type>(UIA_AnimationStyleAttributeId, GetNameById(UIA_AnimationStyleAttributeId), AnimationStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_BackgroundColorAttributeId, GetNameById(UIA_BackgroundColorAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_BulletStyleAttributeId, GetNameById(UIA_BulletStyleAttributeId), BulletStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_CapStyleAttributeId, GetNameById(UIA_CapStyleAttributeId), CapStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_CultureAttributeId, GetNameById(UIA_CultureAttributeId), CultureInfo.GetCultures(CultureTypes.InstalledWin32Cultures).Select(c => new KeyValuePair<int, string>(c.LCID, c.EnglishName)).ToList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_FontNameAttributeId, GetNameById(UIA_FontNameAttributeId), null, typeof(string)),
-                new Tuple<int, string, dynamic, Type>(UIA_FontSizeAttributeId, GetNameById(UIA_FontSizeAttributeId), null, typeof(double)),
-                new Tuple<int, string, dynamic, Type>(UIA_FontWeightAttributeId, GetNameById(UIA_FontWeightAttributeId), FontWeight.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_ForegroundColorAttributeId, GetNameById(UIA_ForegroundColorAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_HorizontalTextAlignmentAttributeId, GetNameById(UIA_HorizontalTextAlignmentAttributeId), HorizontalTextAlignment.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_IndentationFirstLineAttributeId, GetNameById(UIA_IndentationFirstLineAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_IndentationLeadingAttributeId, GetNameById(UIA_IndentationLeadingAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_IndentationTrailingAttributeId, GetNameById(UIA_IndentationTrailingAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_IsHiddenAttributeId, GetNameById(UIA_IsHiddenAttributeId), boolList, typeof(bool)),
-                new Tuple<int, string, dynamic, Type>(UIA_IsItalicAttributeId, GetNameById(UIA_IsItalicAttributeId), boolList, typeof(bool)),
-                new Tuple<int, string, dynamic, Type>(UIA_IsReadOnlyAttributeId, GetNameById(UIA_IsReadOnlyAttributeId), boolList, typeof(bool)),
-                new Tuple<int, string, dynamic, Type>(UIA_IsSubscriptAttributeId, GetNameById(UIA_IsSubscriptAttributeId), boolList, typeof(bool)),
-                new Tuple<int, string, dynamic, Type>(UIA_IsSuperscriptAttributeId, GetNameById(UIA_IsSuperscriptAttributeId), boolList, typeof(bool)),
-                new Tuple<int, string, dynamic, Type>(UIA_MarginBottomAttributeId, GetNameById(UIA_MarginBottomAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_MarginLeadingAttributeId, GetNameById(UIA_MarginLeadingAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_MarginTopAttributeId, GetNameById(UIA_MarginTopAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_MarginTrailingAttributeId, GetNameById(UIA_MarginTrailingAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_OutlineStylesAttributeId, GetNameById(UIA_OutlineStylesAttributeId), OutlineStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_OverlineColorAttributeId, GetNameById(UIA_OverlineColorAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_OverlineStyleAttributeId, GetNameById(UIA_OverlineStyleAttributeId), TextDecorationLineStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_StrikethroughColorAttributeId, GetNameById(UIA_StrikethroughColorAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_StrikethroughStyleAttributeId, GetNameById(UIA_StrikethroughStyleAttributeId), TextDecorationLineStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_TabsAttributeId, GetNameById(UIA_TabsAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_TextFlowDirectionsAttributeId, GetNameById(UIA_TextFlowDirectionsAttributeId), FlowDirection.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_UnderlineColorAttributeId, GetNameById(UIA_UnderlineColorAttributeId), null, typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_UnderlineStyleAttributeId, GetNameById(UIA_UnderlineStyleAttributeId), TextDecorationLineStyle.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_AnnotationTypesAttributeId, GetNameById(UIA_AnnotationTypesAttributeId), AnnotationType.GetInstance().GetKeyValuePairList(), typeof(int)),
-                //new Tuple<int, string, dynamic, Type>(UIA_AnnotationObjectsAttributeId, GetNameById(UIA_AnnotationObjectsAttributeId), AnimationStyles.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_StyleNameAttributeId, GetNameById(UIA_StyleNameAttributeId), null, typeof(string)),
-                new Tuple<int, string, dynamic, Type>(UIA_StyleIdAttributeId, GetNameById(UIA_StyleIdAttributeId), StyleId.GetInstance().GetKeyValuePairList(), typeof(int)),
-                //new Tuple<int, string, dynamic, Type>(UIA_LinkAttributeId, GetNameById(UIA_LinkAttributeId), AnimationStyles.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_IsActiveAttributeId, GetNameById(UIA_IsActiveAttributeId), boolList, typeof(bool)),
-                new Tuple<int, string, dynamic, Type>(UIA_SelectionActiveEndAttributeId, GetNameById(UIA_SelectionActiveEndAttributeId), ActiveEnd.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_CaretPositionAttributeId, GetNameById(UIA_CaretPositionAttributeId), CaretPosition.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_CaretBidiModeAttributeId, GetNameById(UIA_CaretBidiModeAttributeId), CaretBidiMode.GetInstance().GetKeyValuePairList(), typeof(int)),
-                new Tuple<int, string, dynamic, Type>(UIA_LineSpacingAttributeId, GetNameById(UIA_LineSpacingAttributeId), null, typeof(string)),
-                new Tuple<int, string, dynamic, Type>(UIA_BeforeParagraphSpacingAttributeId, GetNameById(UIA_BeforeParagraphSpacingAttributeId), null, typeof(double)),
-                new Tuple<int, string, dynamic, Type>(UIA_AfterParagraphSpacingAttributeId, GetNameById(UIA_AfterParagraphSpacingAttributeId), null, typeof(double)),
-                new Tuple<int, string, dynamic, Type>(UIA_SayAsInterpretAsAttributeId, GetNameById(UIA_SayAsInterpretAsAttributeId), SayAsInterpretAs.GetInstance().GetKeyValuePairList(), typeof(int)),
-            };
-            return list;
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -20,9 +19,6 @@ namespace CoreTests.Types
             public const int NFL_Seahawks = 2;
             public const int NFL_Colts = 3;
             public const int MLB_Braves = 4;
-
-            [NotType]
-            public const int NFL_Patriots = 5;
         }
 
         [TestMethod]
@@ -31,7 +27,6 @@ namespace CoreTests.Types
             var dummy = new DummyType();
             Assert.AreEqual(3, dummy.Values.Count());
             Assert.IsTrue(dummy.Values.Contains(DummyType.NFL_Falcons));
-            Assert.IsFalse(dummy.Values.Contains(DummyType.NFL_Patriots));
             Assert.IsFalse(dummy.Values.Contains(DummyType.MLB_Braves));
         }
     } // class

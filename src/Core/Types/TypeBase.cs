@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Misc;
 using System;
 using System.Collections.Generic;
@@ -46,8 +45,7 @@ namespace Axe.Windows.Core.Types
 
         private bool ShouldIncludeFieldInDictionary(FieldInfo field)
         {
-            return !field.HasAttribute<NotTypeAttribute>()
-                && field.Name.StartsWith(_namePattern, StringComparison.Ordinal);
+            return field.Name.StartsWith(_namePattern, StringComparison.Ordinal);
         }
 
         private void AddFieldToDictionary(FieldInfo field)
