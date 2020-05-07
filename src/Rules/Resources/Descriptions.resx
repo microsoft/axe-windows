@@ -432,7 +432,4 @@
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>An element's IsOffScreen property must be true when its clickable point is off screen.</value>
   </data>
-  <data name="IsOffScreenChild" xml:space="preserve">
-    <value>Children of off-screen element's must also be off-screen.</value>
-  </data>
 </root>
