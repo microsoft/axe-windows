@@ -32,7 +32,7 @@ namespace Axe.Windows.Actions
         public SnapshotMetaInfo MetaInfo { get; private set; }
 
         /// <summary>
-        /// Consctructor
+        /// Constructor
         /// </summary>
         /// <param name="el">The element that was selected when the file was saved</param>
         /// <param name="bmp">Actual screenshot</param>

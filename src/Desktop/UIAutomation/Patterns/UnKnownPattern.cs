@@ -6,7 +6,7 @@ using Axe.Windows.Core.Bases;
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
 {
     /// <summary>
-    /// Control pattern wrapper for Unkonwn Control Pattern
+    /// Control pattern wrapper for Unknown Control Pattern
     /// </summary>
     public class UnKnownPattern : A11yPattern
     {

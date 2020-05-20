@@ -60,7 +60,7 @@ namespace Axe.Windows.Actions.Trackers
 
         private void onFocusChangedEventForSelectingElement(EventMessage message)
         {
-            // only when focus is chosen for hilight
+            // only when focus is chosen for highlight
             if (message.EventId == EventType.UIA_AutomationFocusChangedEventId)
             {
                 // exclude tooltip since it is transient UI. 
