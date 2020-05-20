@@ -9,10 +9,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         readonly internal Color backgroundColor;
         readonly internal Color foregroundColor;
 
-        public ColorPair(Color potentialBackgroundColor, Color potoentialForegroundColor)
+        public ColorPair(Color potentialBackgroundColor, Color potentialForegroundColor)
         {
             backgroundColor = potentialBackgroundColor;
-            foregroundColor = potoentialForegroundColor;
+            foregroundColor = potentialForegroundColor;
         }
 
         public Color DarkerColor
