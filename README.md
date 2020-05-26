@@ -56,7 +56,7 @@ For more details and a complete code example, please visit the [automation refer
 ## Command line interface
 
 Axe.Windows also has a command line interface (CLI) to simplify automated testing in build pipelines. Please check out the
-[command line interface readme](./src/CLI/readme.md)
+[command line interface readme](./src/CLI/README.MD)
 for more information.
 
 ## Contributing
