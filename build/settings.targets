@@ -19,6 +19,7 @@
         <Otherwise>
           <ItemGroup>
             <FilesToSign Include="@(DropSignedFile)">
+              <Authenticode>3PartySHA2</Authenticode>
               <StrongName>StrongName</StrongName>
             </FilesToSign>
           </ItemGroup>
