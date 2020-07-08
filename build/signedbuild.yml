@@ -190,7 +190,7 @@ jobs:
   pool: VSEng-MicroBuildVS2019
   variables:
     PublicRelease: 'true'
-    MicroBuild_NuPkgSigningEnabled: 'false'
+    MicroBuild_NuPkgSigningEnabled: 'true'
     SignAppForRelease: 'true'
     runCodesignValidationInjection: 'true'
   steps:
