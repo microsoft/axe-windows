@@ -15,7 +15,7 @@ The directory where the full install config was built
 The directory where the .zip file will be dropped. Don't put this under SrcDir or the zip file will be "nested" in subsequent runs
 
 .Example Usage
-.\BuildZippedCLI.ps1 -Configuration release -SrcDir c:\myrepo\src\CLI_Full\bin\release\netcoreapp3.0\win7-x86 -TargetDir c:\myrepo\src\CLI_Installer\bin\release
+.\BuildZippedCLI.ps1 -Configuration release -SrcDir c:\myrepo\src\CLI_Full\bin\release\netcoreapp3.1\win7-x86 -TargetDir c:\myrepo\src\CLI_Installer\bin\release
 #>
 
 param(
