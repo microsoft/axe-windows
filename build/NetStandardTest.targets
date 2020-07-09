@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-        <IsPackable>false</IsPackable>
-<NoWarn>1701;1702;CA1707</NoWarn>
+    <IsPackable>false</IsPackable>
+    <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
   <Import Project=".\NetStandardAll.targets" />
