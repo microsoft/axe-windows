@@ -1,11 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-
   <ItemGroup>
     <None Remove="TestImages\cortana_with_offset_down.bmp" />
     <None Remove="TestImages\cortana_with_offset_up.bmp" />

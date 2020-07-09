@@ -1,6 +1,12 @@
 ﻿<Project>
 
+  <!-- The following condition should be true for almost all test projects -->
+  <PropertyGroup Condition="$(TargetFramework) == '' AND $(TargetFrameworks) == ''">
+    <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+  </PropertyGroup>
+
   <PropertyGroup>
+    <IsPackable>false</IsPackable>
     <NoWarn>1701;1702;CA1707</NoWarn>
   </PropertyGroup>
 
