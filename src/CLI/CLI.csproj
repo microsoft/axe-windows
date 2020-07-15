@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+    <DropMsftSignedFile Include="$(TargetDir)\$(TargetName).exe" />
   </ItemGroup>
 
   <PropertyGroup>

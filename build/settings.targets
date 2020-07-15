@@ -8,23 +8,22 @@
 
   <Choose>
     <When Condition=" '$(SignAppForRelease)'=='true' AND '$(Configuration)' == 'Release' ">
-      <Choose>
-        <When Condition=" '$(AxeDigitalSign)' == 'true' ">
-          <ItemGroup>
-            <FilesToSign Include="@(DropSignedFile)">
-              <Authenticode>Microsoft400</Authenticode>
-            </FilesToSign>
-          </ItemGroup>
-        </When>
-        <Otherwise>
-          <ItemGroup>
-            <FilesToSign Include="@(DropSignedFile)">
-              <Authenticode>3PartySHA2</Authenticode>
-              <StrongName>StrongName</StrongName>
-            </FilesToSign>
-          </ItemGroup>
-        </Otherwise>
-      </Choose>
+      <ItemGroup>
+        <FilesToSign Include="@(DropMsftSignedFile)">
+          <Authenticode>Microsoft400</Authenticode>
+        </FilesToSign>
+      </ItemGroup>
+      <ItemGroup>
+        <FilesToSign Include="@(DropSignedFile)">
+          <Authenticode>3PartySHA2</Authenticode>
+          <StrongName>StrongName</StrongName>
+        </FilesToSign>
+      </ItemGroup>
+      <ItemGroup>
+        <FilesToSign Include="@(Drop3PartySignedFile)">
+          <Authenticode>3PartySHA2</Authenticode>
+        </FilesToSign>
+      </ItemGroup>
     </When>
   </Choose>
 
