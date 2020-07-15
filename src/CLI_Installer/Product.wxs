@@ -59,33 +59,33 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ProductComponent" Guid="548A9965-21AD-4CDF-99AD-A6F2A47D0AE8">
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\AxeWindowsCLI.exe" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\AxeWindowsCLI.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\AxeWindowsCLI.deps.json" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\AxeWindowsCLI.runtimeconfig.json" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Actions.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Automation.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Core.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Desktop.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Rules.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.RuleSelection.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.SystemAbstractions.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Telemetry.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Axe.Windows.Win32.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\CommandLine.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\System.Drawing.Common.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\System.IO.Packaging.dll" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\thirdpartynotices.html" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\README.MD" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\AxeWindowsCLI.exe" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\AxeWindowsCLI.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\AxeWindowsCLI.deps.json" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\AxeWindowsCLI.runtimeconfig.json" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Actions.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Automation.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Core.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Desktop.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Rules.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.RuleSelection.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.SystemAbstractions.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Telemetry.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Axe.Windows.Win32.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\CommandLine.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Microsoft.Win32.SystemEvents.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Newtonsoft.Json.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\System.Drawing.Common.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\System.IO.Packaging.dll" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\thirdpartynotices.html" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\README.MD" />
       </Component>
     </ComponentGroup>
 
     <ComponentGroup Id="NetCoreApp30Components" Directory="NetCoreApp30Folder">
       <Component Id="NetCoreApp30Component" Guid="1D2C21D8-E43C-45F6-8530-B59CA4BAF9A6">
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" Id="core30_systemevents" />
-        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" Id="core30_drawingcommon" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\Microsoft.Win32.SystemEvents.dll" Id="core30_systemevents" />
+        <File Source="..\CLI_Full\bin\Release\netcoreapp3.1\win7-x86\System.Drawing.Common.dll" Id="core30_drawingcommon" />
       </Component>
     </ComponentGroup>
 
