@@ -5,22 +5,22 @@
 .SYNOPSIS
 Builds a ZIP file that contains the Axe.Windows CLI. Output is named AxeWindowsCLI.zip
 
-.PARAMETER Configuration
-Debug or Release. Use $(ConfigurationName) if calling from a csproj file
-
 .PARAMETER SrcDir
 The directory where the full install config was built
+
+.PARAMETER OtherSignedSrcDir
+The directory where signed external dependencies reside
 
 .PARAMETER TargetDir
 The directory where the .zip file will be dropped. Don't put this under SrcDir or the zip file will be "nested" in subsequent runs
 
 .Example Usage
-.\BuildZippedCLI.ps1 -Configuration release -SrcDir c:\myrepo\src\CLI_Full\bin\release\netcoreapp3.1\win7-x86 -TargetDir c:\myrepo\src\CLI_Installer\bin\release
+.\BuildZippedCLI.ps1 -SrcDir c:\myrepo\src\CLI_Full\bin\release\netcoreapp3.1\win7-x86 -OtherSignedSrcDir c:\myrepo\src\CLI\bin\release\netcoreapp3.1 -TargetDir c:\myrepo\src\CLI_Installer\bin\release
 #>
 
 param(
-    [Parameter(Mandatory=$true)][string]$Configuration,
     [Parameter(Mandatory=$true)][string]$SrcDir,
+    [Parameter(Mandatory=$true)][string]$OtherSignedSrcDir,
     [Parameter(Mandatory=$true)][string]$TargetDir
 )
 
@@ -57,7 +57,7 @@ function Create-Archive([string]$src, [string]$dst){
     Compress-Archive -Force -Path $from -DestinationPath $dst
 }
 
-function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string[]]$patternsToRemove){
+function Create-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$app, [string]$zipFile, [string[]]$patternsToRemove, [string[]]$otherSignedAssemblies){
     Write-Verbose "srcDir = $srcDir"
     Write-Verbose "app = $app"
     Write-Verbose "zipFile = $zipFile"
@@ -66,22 +66,47 @@ function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string
     $scratch=(Get-UniqueTempFolder $app)[0]
     Write-Verbose "scratch = $scratch"
 
-    Copy-Files $srcDir '*.*' $scratch
-    foreach ($pattern in $patternsToRemove) {
-        Remove-FilesByPattern $scratch $pattern
-    }
+    Prepare-Zipfile $srcDir $otherSignedSrcDir $scratch $patternsToRemove $otherSignedAssemblies
+
     Create-Archive $scratch $zipFile
 
     Remove-Item $scratch -Force -Recurse
 }
 
-function CreateCLIZip([string]$configuration, [string]$srcDir, [string]$targetDir, [string]$zipFileName){
+function Add-ZipfileContents([string]$srcDir, [string]$scratch, [string]$patternToInclude, [string[]]$patternsToRemove){
+    Write-Verbose "srcDir = $srcDir"
+    Write-Verbose "scratch = $scratch"
+    Write-Verbose "patternToInclude = $patternToInclude"
+    Write-Verbose "patternsToRemove = $patternsToRemove"
+
+    Copy-Files $srcDir $patternToInclude $scratch
+    foreach ($pattern in $patternsToRemove) {
+        Remove-FilesByPattern $scratch $pattern
+    }
+}
+
+function Prepare-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$scratch, [string[]]$patternsToRemove, [string[]]$otherSignedAssemblies){
+    Write-Verbose "srcDir = $srcDir"
+    Write-Verbose "otherSignedSrcDir = $otherSignedSrcDir"
+    Write-Verbose "scratch = $scratch"
+    Write-Verbose "patternsToRemove = $patternsToRemove"
+    Write-Verbose "otherSignedAssemblies = $otherSignedAssemblies"
+    
+    Add-ZipfileContents $srcDir $scratch '*.*' $patternsToRemove + $otherSignedAssemblies
+
+    foreach ($assembly in $otherSignedAssemblies) {
+        Add-ZipfileContents $otherSignedSrcDir $scratch $assembly $patternsToRemove
+    }
+}
+
+function CreateCLIZip([string]$srcDir, [string]$otherSignedSrcDir, [string]$targetDir, [string]$zipFileName){
     $zipFile=Join-Path $targetDir $zipFileName
     $patternsToRemove=@('*.dev.json', '*.pdb')
+    $otherSignedAssemblies=@('Newtonsoft.Json.dll', 'CommandLine.dll')
     Write-Host "Creating $zipFile from files in $srcDir"
-    Create-ZipFile $srcDir 'AxeWindowsCLI' $zipFile $patternsToRemove
+    Create-ZipFile $srcDir $otherSignedSrcDir 'AxeWindowsCLI' $zipFile $patternsToRemove $otherSignedAssemblies
     Write-Host 'Successfully Created' $zipFile
 }
 
-CreateCLIZip $Configuration $SrcDir $TargetDir 'AxeWindowsCLI.zip'
+CreateCLIZip $SrcDir $OtherSignedSrcDir $TargetDir 'AxeWindowsCLI.zip'
 exit 0
