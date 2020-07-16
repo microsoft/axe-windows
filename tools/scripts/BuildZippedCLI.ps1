@@ -57,22 +57,6 @@ function Create-Archive([string]$src, [string]$dst){
     Compress-Archive -Force -Path $from -DestinationPath $dst
 }
 
-function Create-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$app, [string]$zipFile, [string[]]$patternsToRemove, [string[]]$otherSignedAssemblies){
-    Write-Verbose "srcDir = $srcDir"
-    Write-Verbose "app = $app"
-    Write-Verbose "zipFile = $zipFile"
-    Write-Verbose "patternsToRemove = $patternsToRemove"
-
-    $scratch=(Get-UniqueTempFolder $app)[0]
-    Write-Verbose "scratch = $scratch"
-
-    Prepare-Zipfile $srcDir $otherSignedSrcDir $scratch $patternsToRemove $otherSignedAssemblies
-
-    Create-Archive $scratch $zipFile
-
-    Remove-Item $scratch -Force -Recurse
-}
-
 function Add-ZipfileContents([string]$srcDir, [string]$scratch, [string]$patternToInclude, [string[]]$patternsToRemove){
     Write-Verbose "srcDir = $srcDir"
     Write-Verbose "scratch = $scratch"
@@ -97,6 +81,22 @@ function Prepare-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$s
     foreach ($assembly in $otherSignedAssemblies) {
         Add-ZipfileContents $otherSignedSrcDir $scratch $assembly $patternsToRemove
     }
+}
+
+function Create-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$app, [string]$zipFile, [string[]]$patternsToRemove, [string[]]$otherSignedAssemblies){
+    Write-Verbose "srcDir = $srcDir"
+    Write-Verbose "app = $app"
+    Write-Verbose "zipFile = $zipFile"
+    Write-Verbose "patternsToRemove = $patternsToRemove"
+
+    $scratch=(Get-UniqueTempFolder $app)[0]
+    Write-Verbose "scratch = $scratch"
+
+    Prepare-Zipfile $srcDir $otherSignedSrcDir $scratch $patternsToRemove $otherSignedAssemblies
+
+    Create-Archive $scratch $zipFile
+
+    Remove-Item $scratch -Force -Recurse
 }
 
 function CreateCLIZip([string]$srcDir, [string]$otherSignedSrcDir, [string]$targetDir, [string]$zipFileName){
