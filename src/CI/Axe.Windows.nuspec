@@ -12,7 +12,7 @@
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <language>en-US</language>
-    <copyright>© Microsoft and contributors</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <tags>axe windows accessibility automation</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
