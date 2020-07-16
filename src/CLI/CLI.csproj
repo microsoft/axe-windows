@@ -12,7 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <DropSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+    <DropMsftSignedFile Include="$(TargetDir)\$(TargetName).exe" />
+    <Drop3PartySignedFile Include="$(TargetDir)\CommandLine.dll" />
+    <Drop3PartySignedFile Include="$(TargetDir)\Newtonsoft.Json.dll" />
   </ItemGroup>
 
   <PropertyGroup>
