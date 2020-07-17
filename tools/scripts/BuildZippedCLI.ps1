@@ -38,7 +38,13 @@ function Get-UniqueTempFolder([string] $app){
     $uniqueName=$app + '_' + $guid
     $tempFolder=Join-Path $env:temp $uniqueName
 	New-Item -Path $tempFolder -ItemType Directory
+    Set-CodeSignValidationDirectory $tempFolder
     return $tempFolder
+}
+
+function Set-CodeSignValidationDirectory([string] $dir){
+    Write-Verbose "Setting ADO job variable GDN_CODESIGN_TARGETDIRECTORY to $dir"
+    Write-Host "##vso[task.setvariable variable=GDN_CODESIGN_TARGETDIRECTORY]$dir"
 }
 
 function Copy-Files([string]$src, [string]$pattern, [string]$dst) {
@@ -95,8 +101,6 @@ function Create-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$ap
     Prepare-Zipfile $srcDir $otherSignedSrcDir $scratch $patternsToRemove $otherSignedAssemblies
 
     Create-Archive $scratch $zipFile
-
-    Remove-Item $scratch -Force -Recurse
 }
 
 function CreateCLIZip([string]$srcDir, [string]$otherSignedSrcDir, [string]$targetDir, [string]$zipFileName){
