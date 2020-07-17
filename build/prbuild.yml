@@ -48,6 +48,22 @@ jobs:
       Contents: '**\bin\release\**'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+  - task: CopyFiles@2
+    displayName: 'Copy CLI_Full Files for Signing Validation'
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)\src'
+      Contents: |
+      CLI_Full\bin\release\netcoreapp3.1\win7-x86\?(*.exe|*.dll)
+      !CLI_Full\bin\release\netcoreapp3.1\win7-x86\?(CommandLine.dll|Newtonsoft.Json.dll)
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation\CLI_Full'
+
+  - task: CopyFiles@2
+    displayName: 'Copy CLI Files for Signing Validation'
+    inputs:
+      SourceFolder: '$(Build.SourcesDirectory)\src'
+      Contents: 'CLI\bin\release\netcoreapp3.1\**\?(*.exe|*.dll)'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation\CLI'
+      
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
 
