@@ -7,8 +7,8 @@
     <summary>Automated accessibility analysis for Windows applications</summary>
     <description>The package provides the assemblies necessary to automate accessibility testing for Windows applications using the included axe-windows rule set.</description>
     <projectUrl>https://github.com/Microsoft/axe-windows</projectUrl>
-    <authors>AccessibilityInsights</authors>
-    <owners></owners>
+    <authors>Microsoft and collaborators</authors>
+    <owners>Microsoft</owners>
     <license type="expression">MIT</license>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <language>en-US</language>
