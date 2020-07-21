@@ -27,8 +27,8 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var sysmenubar = ControlType.MenuBar & StringProperties.AutomationID.Is("SystemMenuBar") & StringProperties.Name.Is("System");
-            var sysmenuitem = ControlType.MenuItem & Relationships.Parent(sysmenubar) & StringProperties.Name.Is("System");
+            var sysmenubar = ControlType.MenuBar & StringProperties.AutomationID.Is("SystemMenuBar");
+            var sysmenuitem = ControlType.MenuItem & Relationships.Parent(sysmenubar);
 
             // This exception is meant to apply to the non-Chromium version of Edge
             var edgeGroups = ControlType.Group & StringProperties.Framework.Is(Framework.Edge);

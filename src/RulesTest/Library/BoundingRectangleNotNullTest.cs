@@ -116,5 +116,33 @@ namespace Axe.Windows.RulesTest.Library
                 Assert.IsFalse(Rule.Condition.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void BoundingRectangleNotNull_SystemMenu_NotApplicable()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                parent.ControlTypeId = ControlType.MenuBar;
+                parent.AutomationId = "SystemMenuBar";
+                e.ControlTypeId = ControlType.MenuItem;
+                parent.Children.Add(e);
+                e.Parent = parent;
+
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void BoundingRectangleNotNull_SystemMenuBar_NotApplicable()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.ControlTypeId = ControlType.MenuBar;
+                e.AutomationId = "SystemMenuBar";
+
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
     } // class
 } // namespace
