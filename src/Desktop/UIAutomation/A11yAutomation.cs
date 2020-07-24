@@ -10,6 +10,7 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
+using Axe.Windows.Win32;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation
@@ -19,14 +20,21 @@ namespace Axe.Windows.Desktop.UIAutomation
     /// </summary>
     public static class A11yAutomation
     {
-        static CUIAutomation UIAutomation = new CUIAutomation();
+        static readonly IUIAutomation UIAutomation = GetUIAutomationInterface();
+
+        private static IUIAutomation GetUIAutomationInterface()
+        {
+            return Win32Helper.IsWindows7()
+                ? new CUIAutomation() as IUIAutomation
+                : new CUIAutomation8() as IUIAutomation;
+        }
 
         /// <summary>
         /// Get UIAutomation8 Object
         /// it is singleton model. basically when you call it, it returns precreated object as needed. 
         /// </summary>
         /// <returns></returns>
-        public static CUIAutomation GetUIAutomationObject()
+        public static IUIAutomation GetUIAutomationObject()
         {
             return UIAutomation;
         }
@@ -213,18 +221,18 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             IUIAutomationTreeWalker walker = null;
 
-            CUIAutomation h = A11yAutomation.GetUIAutomationObject();
+            var uia = A11yAutomation.GetUIAutomationObject();
 
             switch (mode)
             {
                 case TreeViewMode.Content:
-                    walker = h.ContentViewWalker;
+                    walker = uia.ContentViewWalker;
                     break;
                 case TreeViewMode.Control:
-                    walker = h.ControlViewWalker;
+                    walker = uia.ControlViewWalker;
                     break;
                 case TreeViewMode.Raw:
-                    walker = h.RawViewWalker;
+                    walker = uia.RawViewWalker;
                     break;
             }
 

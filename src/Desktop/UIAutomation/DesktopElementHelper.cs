@@ -70,7 +70,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pps">Property ids</param>
         /// <param name="pts">Pattern ids</param>
         /// <returns></returns>
-        public static IUIAutomationCacheRequest GetPropertiesCache(CUIAutomation uia, List<int> pps, List<int> pts)
+        public static IUIAutomationCacheRequest GetPropertiesCache(IUIAutomation uia, List<int> pps, List<int> pts)
         {
             if (uia == null) throw new ArgumentNullException(nameof(uia));
 
