@@ -151,7 +151,7 @@ You can get the files via a NuGet package; configure NuGet to retrieve the
 then use the classes in the Axe.Windows.Automation namespace (see
 example below):
 
--   Prerequisite: Your project *must* use .NET 4.7.1 (this is required by Axe-Windows).
+-   Prerequisite: Your project *must* be able to use .NET Standard 2.0 libraries.
 -   If you’re using NuGet, add the appropriate feed to your project.
 -   Add **using Axe.Windows.Automation;** to your code.
 -   Follow the steps in [How To Run An Automated Scan](#how-to-run-an-automated-scan).
