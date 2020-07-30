@@ -19,6 +19,5 @@
 #### For *test* .NET Standard projects
 
 1. Use src\CoreTests\CoreTests.csproj as your template. Remove all ItemGroup blocks except the one that includes the test adapters, test framework, Moq, etc.
-2. Update the `AssemblyName` and `RootNamespace` entries to match your new project.
-3. Add the new project to the assembly.
-4. Add your files in Visual Studio
+2. Add the new project to the assembly.
+3. Add your files in Visual Studio
