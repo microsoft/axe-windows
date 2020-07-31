@@ -3,12 +3,14 @@
 
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
-using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Results;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+
 
 namespace CurrentFileVersionCompatibilityTests
 {
@@ -34,6 +36,8 @@ namespace CurrentFileVersionCompatibilityTests
                     Console.WriteLine("ErrorLevel is 0 on success, non-zero on error");
                     return (int)ReturnValue.BadUsage;
                 }
+
+                RequireSystemCollectionsImmutable(args);
 
                 string filePath = args[0];
                 int expectedFailureCount = int.Parse(args[1]);
@@ -149,6 +153,17 @@ namespace CurrentFileVersionCompatibilityTests
             }
 
             return list;
+        }
+
+        static void RequireSystemCollectionsImmutable(string[] args)
+        {
+            // This code exists to force a build break if we revise the version of
+            // System.Collections.Immutable without upgrading the project reference
+            var dependencyCheck = args.ToImmutableArray<string>();
+            if (args.Length != dependencyCheck.Length)
+            {
+                throw new ArgumentException("This should never happen!", nameof(args));
+            }
         }
     }
 }
