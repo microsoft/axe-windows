@@ -111,7 +111,7 @@ jobs:
   - task: CmdLine@2
     displayName: 'Upload coverage to codecov.io'
     inputs:
-      script: $(USERPROFILE)\.nuget\packages\codecov\1.12.1\tools\win7-x86\codecov.exe -t $(CODECOV_TOKEN) -f **/*coverage.cobertura.xml
+      script: $(USERPROFILE)\.nuget\packages\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe -t $(CODECOV_TOKEN) -f **/*coverage.cobertura.xml
     #workingDirectory: # Optional
     #failOnStderr: false # Optional
     
