@@ -26,7 +26,7 @@ namespace Axe.Windows.RulesTest.Library
         public void TestNameNotEmpty()
         {
             var e = new MockA11yElement();
-            e.Name = " ";
+            e.Name = "something";
 
             Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
         }
