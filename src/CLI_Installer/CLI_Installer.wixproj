@@ -33,11 +33,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <SignMsi Include="$(TargetPath)">
-      <Authenticode>Microsoft400</Authenticode>
-    </SignMsi>
-  </ItemGroup>
-  <ItemGroup>
     <WixExtension Include="WixNetFxExtension">
       <HintPath>..\packages\WiX.3.11.0\tools\WixNetFxExtension.dll</HintPath>
       <Name>WixNetFxExtension</Name>
