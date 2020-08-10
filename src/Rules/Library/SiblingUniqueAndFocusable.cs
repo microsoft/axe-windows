@@ -24,6 +24,7 @@ namespace Axe.Windows.Rules.Library
             return IsKeyboardFocusable
                 & IsContentOrControlElement
                 & ~ExcludedType
+                & ~Patterns.GridItem
                 & ParentExists
                 & Name.NotNullOrEmpty
                 & LocalizedControlType.NotNullOrEmpty
