@@ -1,0 +1,27 @@
+﻿Axe.Windows.Telemetry.ExcludedException
+Axe.Windows.Telemetry.ExcludedException.ExcludedException(System.Exception innerException) -> void
+Axe.Windows.Telemetry.ExcludedException.ExcludedType.get -> System.Type
+Axe.Windows.Telemetry.ExcludingExceptionWrapper
+Axe.Windows.Telemetry.IAxeWindowsTelemetry
+Axe.Windows.Telemetry.IAxeWindowsTelemetry.IsEnabled.get -> bool
+Axe.Windows.Telemetry.IAxeWindowsTelemetry.PublishEvent(string eventName, System.Collections.Generic.IReadOnlyDictionary<string, string> properties) -> void
+Axe.Windows.Telemetry.IAxeWindowsTelemetry.ReportException(System.Exception e) -> void
+Axe.Windows.Telemetry.Logger
+Axe.Windows.Telemetry.TelemetryAction
+Axe.Windows.Telemetry.TelemetryAction.Scan_Statistics = 0 -> Axe.Windows.Telemetry.TelemetryAction
+Axe.Windows.Telemetry.TelemetryAction.SingleRule_Tested_Results = 1 -> Axe.Windows.Telemetry.TelemetryAction
+Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.ControlType = 0 -> Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.ElementsInScan = 1 -> Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.Results = 2 -> Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.RuleId = 3 -> Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.TestResults = 4 -> Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.UIFramework = 5 -> Axe.Windows.Telemetry.TelemetryProperty
+Axe.Windows.Telemetry.TelemetryProperty.UpperBoundExceeded = 6 -> Axe.Windows.Telemetry.TelemetryProperty
+static Axe.Windows.Telemetry.ExcludingExceptionWrapper.ExecuteWithExcludedExceptionConversion(System.Type typeToExclude, System.Action action) -> void
+static Axe.Windows.Telemetry.Logger.IsEnabled.get -> bool
+static Axe.Windows.Telemetry.Logger.PublishTelemetryEvent(Axe.Windows.Telemetry.TelemetryAction action) -> void
+static Axe.Windows.Telemetry.Logger.PublishTelemetryEvent(Axe.Windows.Telemetry.TelemetryAction action, Axe.Windows.Telemetry.TelemetryProperty property, string value) -> void
+static Axe.Windows.Telemetry.Logger.PublishTelemetryEvent(Axe.Windows.Telemetry.TelemetryAction action, System.Collections.Generic.IReadOnlyDictionary<Axe.Windows.Telemetry.TelemetryProperty, string> propertyBag) -> void
+static Axe.Windows.Telemetry.Logger.ReportException(this System.Exception e) -> void
+static Axe.Windows.Telemetry.Logger.SetTelemetrySink(Axe.Windows.Telemetry.IAxeWindowsTelemetry telemetry) -> void

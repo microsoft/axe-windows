@@ -1,0 +1,39 @@
+﻿Axe.Windows.Automation.AxeWindowsAutomationException
+Axe.Windows.Automation.AxeWindowsAutomationException.AxeWindowsAutomationException() -> void
+Axe.Windows.Automation.AxeWindowsAutomationException.AxeWindowsAutomationException(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context) -> void
+Axe.Windows.Automation.AxeWindowsAutomationException.AxeWindowsAutomationException(string message) -> void
+Axe.Windows.Automation.AxeWindowsAutomationException.AxeWindowsAutomationException(string message, System.Exception innerException) -> void
+Axe.Windows.Automation.Config
+Axe.Windows.Automation.Config.Builder
+Axe.Windows.Automation.Config.Builder.Build() -> Axe.Windows.Automation.Config
+Axe.Windows.Automation.Config.Builder.WithOutputDirectory(string directory) -> Axe.Windows.Automation.Config.Builder
+Axe.Windows.Automation.Config.Builder.WithOutputFileFormat(Axe.Windows.Automation.OutputFileFormat format) -> Axe.Windows.Automation.Config.Builder
+Axe.Windows.Automation.Config.OutputDirectory.get -> string
+Axe.Windows.Automation.Config.OutputFileFormat.get -> Axe.Windows.Automation.OutputFileFormat
+Axe.Windows.Automation.Config.ProcessId.get -> int
+Axe.Windows.Automation.ElementInfo
+Axe.Windows.Automation.ElementInfo.ElementInfo() -> void
+Axe.Windows.Automation.ElementInfo.Parent.get -> Axe.Windows.Automation.ElementInfo
+Axe.Windows.Automation.ElementInfo.Patterns.get -> System.Collections.Generic.IEnumerable<string>
+Axe.Windows.Automation.ElementInfo.Properties.get -> System.Collections.Generic.IReadOnlyDictionary<string, string>
+Axe.Windows.Automation.IScanner
+Axe.Windows.Automation.IScanner.Scan() -> Axe.Windows.Automation.ScanResults
+Axe.Windows.Automation.IScanner.Scan(string scanId) -> Axe.Windows.Automation.ScanResults
+Axe.Windows.Automation.OutputFile
+Axe.Windows.Automation.OutputFile.A11yTest.get -> string
+Axe.Windows.Automation.OutputFile.Sarif.get -> string
+Axe.Windows.Automation.OutputFileFormat
+Axe.Windows.Automation.OutputFileFormat.A11yTest = 1 -> Axe.Windows.Automation.OutputFileFormat
+Axe.Windows.Automation.OutputFileFormat.None = 0 -> Axe.Windows.Automation.OutputFileFormat
+Axe.Windows.Automation.ScanResult
+Axe.Windows.Automation.ScanResult.Element.get -> Axe.Windows.Automation.ElementInfo
+Axe.Windows.Automation.ScanResult.Rule.get -> Axe.Windows.Rules.RuleInfo
+Axe.Windows.Automation.ScanResult.ScanResult() -> void
+Axe.Windows.Automation.ScanResults
+Axe.Windows.Automation.ScanResults.ErrorCount.get -> int
+Axe.Windows.Automation.ScanResults.Errors.get -> System.Collections.Generic.IEnumerable<Axe.Windows.Automation.ScanResult>
+Axe.Windows.Automation.ScanResults.OutputFile.get -> Axe.Windows.Automation.OutputFile
+Axe.Windows.Automation.ScanResults.ScanResults() -> void
+Axe.Windows.Automation.ScannerFactory
+static Axe.Windows.Automation.Config.Builder.ForProcessId(int processId) -> Axe.Windows.Automation.Config.Builder
+static Axe.Windows.Automation.ScannerFactory.CreateScanner(Axe.Windows.Automation.Config config) -> Axe.Windows.Automation.IScanner

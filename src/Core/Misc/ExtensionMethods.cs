@@ -471,7 +471,6 @@ namespace Axe.Windows.Core.Misc
                     select p).FirstOrDefault();
         }
 
-
         /// <summary>
         /// find matching Property by Id
         /// </summary>

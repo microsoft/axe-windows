@@ -37,7 +37,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
         }
 
-
         public override bool Equals(Object obj)
         {
             //Check for null and compare run-time types.

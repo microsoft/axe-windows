@@ -1,0 +1,20 @@
+﻿Axe.Windows.Extensions.Interfaces.ReferenceLinks.IReferenceLink
+Axe.Windows.Extensions.Interfaces.ReferenceLinks.IReferenceLink.ShortDescription.get -> string
+Axe.Windows.Extensions.Interfaces.ReferenceLinks.IReferenceLink.Uri.get -> System.Uri
+Axe.Windows.Extensions.Interfaces.ReferenceLinks.IReferenceLinks
+Axe.Windows.Extensions.Interfaces.ReferenceLinks.IReferenceLinks.GetReferenceLink(string lookupToken) -> Axe.Windows.Extensions.Interfaces.ReferenceLinks.IReferenceLink
+Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions
+Axe.Windows.RuleSelection.RuleRunner
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.AvailableActions.get -> string
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.Culture.get -> System.Globalization.CultureInfo
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.Culture.set -> void
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.InfoAndRelationships.get -> string
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.Keyboard.get -> string
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.NameRoleValue.get -> string
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.None.get -> string
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.ObjectInformation.get -> string
+static Axe.Windows.RuleSelection.Resources.DefaultGuidelineShortDescriptions.ResourceManager.get -> System.Resources.ResourceManager
+static Axe.Windows.RuleSelection.RuleRunner.ConvertEvaluationCodeToScanStatus(Axe.Windows.Rules.EvaluationCode evaluationCode) -> Axe.Windows.Core.Results.ScanStatus
+static Axe.Windows.RuleSelection.RuleRunner.CreateResult(Axe.Windows.Rules.RuleInfo info, Axe.Windows.Core.Bases.IA11yElement e) -> Axe.Windows.Core.Results.ScanResult
+static Axe.Windows.RuleSelection.RuleRunner.GetRuleVersion() -> string
+static Axe.Windows.RuleSelection.RuleRunner.Run(Axe.Windows.Core.Bases.A11yElement e) -> void

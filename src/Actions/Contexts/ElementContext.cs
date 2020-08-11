@@ -33,7 +33,6 @@ namespace Axe.Windows.Actions.Contexts
         /// </summary>
         public Guid Id { get; internal set; }
 
-
         /// <summary>
         /// Constructor
         /// </summary>

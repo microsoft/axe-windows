@@ -160,7 +160,6 @@ namespace Axe.Windows.Actions
             return elementContext.DataContext.Screenshot;
         }
 
-
         #region constants
         /// <summary>
         /// default instance name constant

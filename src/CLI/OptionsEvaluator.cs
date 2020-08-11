@@ -27,7 +27,9 @@ namespace AxeWindowsCLI
             }
             else
             {
+#pragma warning disable CA1303 // Do not pass literals as localized parameters
                 throw new ParameterException("Please specify either processId or processName on the command line");
+#pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
             string verbosity = rawInputs.Verbosity;

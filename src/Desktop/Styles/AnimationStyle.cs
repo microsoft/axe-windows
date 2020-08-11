@@ -26,7 +26,6 @@ namespace Axe.Windows.Desktop.Styles
         public const int AnimationStyle_Other = 7;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-
         private static AnimationStyle sInstance;
 
         /// <summary>

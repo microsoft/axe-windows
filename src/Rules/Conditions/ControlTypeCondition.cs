@@ -10,7 +10,6 @@ namespace Axe.Windows.Rules
     {
         public int ControlType { get; } = 0;
 
-
         public ControlTypeCondition(int controlType)
         {
             if (controlType == 0) throw new ArgumentException(ErrorMessages.IntParameterEqualsZero, nameof(controlType));

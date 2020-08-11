@@ -1,0 +1,11 @@
+﻿Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.HotkeyModifier.MOD_ALT = 1 -> Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.HotkeyModifier.MOD_CONTROL = 2 -> Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.HotkeyModifier.MOD_NOREPEAT = 16384 -> Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.HotkeyModifier.MOD_NoModifier = -1 -> Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.HotkeyModifier.MOD_SHIFT = 4 -> Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.HotkeyModifier.MOD_WIN = 8 -> Axe.Windows.Win32.HotkeyModifier
+Axe.Windows.Win32.Win32Constants
+const Axe.Windows.Win32.Win32Constants.GWL_EXSTYLE = -20 -> int
+const Axe.Windows.Win32.Win32Constants.GWL_STYLE = -16 -> int
+const Axe.Windows.Win32.Win32Constants.S_OK = 0 -> int

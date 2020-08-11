@@ -27,7 +27,6 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public A11yElement Element { get; set; }
 
-
         /// <summary>
         /// Event Message class
         /// to pass information between listener and handler of event

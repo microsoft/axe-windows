@@ -93,5 +93,4 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return ToColorPair().ToString();
         }
     }
-
 }

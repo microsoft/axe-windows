@@ -24,7 +24,6 @@ namespace Axe.Windows.Core.Types
         public const int UIA_SearchLandmarkTypeId = 80004;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-
         private static LandmarkType sInstance;
 
         /// <summary>

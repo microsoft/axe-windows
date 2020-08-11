@@ -36,7 +36,6 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                     Properties.Add(new A11yPatternProperty() { Name = Invariant($"SupportedViews[{i}]"), Value = Invariant($"{view}: {Pattern.GetViewName(view)}")});
                 }
             }
-
         }
 
         [PatternMethod]

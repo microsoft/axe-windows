@@ -106,6 +106,5 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             return sDefaultCoreProperties;
         }
-
     }
 }
