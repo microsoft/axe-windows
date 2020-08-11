@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TransformPattern : A11yPattern
     {
-        IUIAutomationTransformPattern Pattern = null;
+        IUIAutomationTransformPattern Pattern;
 
         public TransformPattern(A11yElement e, IUIAutomationTransformPattern p) : base(e, PatternType.UIA_TransformPatternId)
         {

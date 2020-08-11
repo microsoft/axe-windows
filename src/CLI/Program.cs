@@ -17,8 +17,8 @@ namespace AxeWindowsCLI
         private readonly IOutputGenerator _outputGenerator;
         private readonly IBrowserAbstraction _browserAbstraction;
 
-        private ScanResults _scanResults = null;
-        private IOptions _options = null;
+        private ScanResults _scanResults;
+        private IOptions _options;
 
         public Program(string[] args,
             TextWriter writer,

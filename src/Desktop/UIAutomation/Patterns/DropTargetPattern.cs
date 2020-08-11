@@ -20,7 +20,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_DropTarget_DroppedEventId)]
     public class DropTargetPattern : A11yPattern
     {
-        IUIAutomationDropTargetPattern Pattern = null;
+        IUIAutomationDropTargetPattern Pattern;
 
         public DropTargetPattern(A11yElement e, IUIAutomationDropTargetPattern p) : base(e, PatternType.UIA_DropTargetPatternId)
         {

@@ -27,7 +27,7 @@ namespace Axe.Windows.Actions
 
         public Guid Id { get; private set; }
 
-        bool IsRunning = false;
+        bool IsRunning;
 
         /// <summary>
         /// Constructor
@@ -155,7 +155,7 @@ namespace Axe.Windows.Actions
         #endregion
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {

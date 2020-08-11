@@ -12,7 +12,7 @@ namespace Axe.Windows.Telemetry
     /// </summary>
     public static class Logger
     {
-        private static IAxeWindowsTelemetry Telemetry = null;
+        private static IAxeWindowsTelemetry Telemetry;
 
         /// <summary>
         /// Whether or not telemetry is enabled. Exposed to allow callers who do lots of

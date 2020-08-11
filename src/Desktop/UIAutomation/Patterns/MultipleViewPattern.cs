@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class MultipleViewPattern : A11yPattern
     {
-        IUIAutomationMultipleViewPattern Pattern = null;
+        IUIAutomationMultipleViewPattern Pattern;
 
         public MultipleViewPattern(A11yElement e, IUIAutomationMultipleViewPattern p) : base(e, PatternType.UIA_MultipleViewPatternId)
         {

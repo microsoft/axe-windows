@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Window_WindowOpenedEventId)]
     public class WindowPattern : A11yPattern
     {
-        IUIAutomationWindowPattern Pattern = null;
+        IUIAutomationWindowPattern Pattern;
 
         public WindowPattern(A11yElement e, IUIAutomationWindowPattern p) : base(e, PatternType.UIA_WindowPatternId)
         {

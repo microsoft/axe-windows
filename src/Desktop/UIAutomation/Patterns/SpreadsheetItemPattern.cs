@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class SpreadsheetItemPattern : A11yPattern
     {
-        IUIAutomationSpreadsheetItemPattern Pattern = null;
+        IUIAutomationSpreadsheetItemPattern Pattern;
 
         public SpreadsheetItemPattern(A11yElement e, IUIAutomationSpreadsheetItemPattern p) : base(e, PatternType.UIA_SpreadsheetItemPatternId)
         {

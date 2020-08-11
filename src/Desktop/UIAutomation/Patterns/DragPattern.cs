@@ -24,7 +24,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Drag_DragCompleteEventId)]
     public class DragPattern : A11yPattern
     {
-        IUIAutomationDragPattern Pattern = null;
+        IUIAutomationDragPattern Pattern;
 
         public DragPattern(A11yElement e, IUIAutomationDragPattern p) : base(e, PatternType.UIA_DragPatternId)
         {
@@ -46,7 +46,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private static dynamic GetDropEffectsString(Array effects)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("[");
+            sb.Append('[');
 
             if (effects.Length > 0)
             {
@@ -56,7 +56,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                     sb.Append(Invariant($", {effects.GetValue(i)}"));
                 }
             }
-            sb.Append("]");
+            sb.Append(']');
 
             return sb.ToString();
         }

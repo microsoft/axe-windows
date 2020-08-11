@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class DockPattern : A11yPattern
     {
-        IUIAutomationDockPattern Pattern = null;
+        IUIAutomationDockPattern Pattern;
 
         public DockPattern(A11yElement e, IUIAutomationDockPattern p) : base(e, PatternType.UIA_DockPatternId)
         {

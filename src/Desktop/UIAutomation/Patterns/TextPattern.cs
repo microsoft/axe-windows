@@ -18,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Text_TextSelectionChangedEventId)]
     public class TextPattern : A11yPattern
     {
-        IUIAutomationTextPattern Pattern = null;
+        IUIAutomationTextPattern Pattern;
 
         public TextPattern(A11yElement e, IUIAutomationTextPattern p) : base(e, PatternType.UIA_TextPatternId)
         {

@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ItemContainerPattern : A11yPattern
     {
-        IUIAutomationItemContainerPattern Pattern = null;
+        IUIAutomationItemContainerPattern Pattern;
         private IUIAutomationElement UIAElement;
 
         public ItemContainerPattern(A11yElement e, IUIAutomationItemContainerPattern p) : base(e, PatternType.UIA_ItemContainerPatternId)

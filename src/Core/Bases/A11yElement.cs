@@ -22,7 +22,7 @@ namespace Axe.Windows.Core.Bases
     /// </summary>
     public class A11yElement : ICoreA11yElement, IDisposable
     {
-        private string _ProcessName = null;
+        private string _ProcessName;
 
         /// <summary>
         /// The label or primary text identifier for the element
@@ -503,6 +503,8 @@ namespace Axe.Windows.Core.Bases
         /// <returns>an <see cref="IA11yElement"/> object representing the matching descendant if one exists; otherwise, false</returns>
         public A11yElement FindDescendant(Func<A11yElement, Boolean> condition)
         {
+            if (condition == null) throw new ArgumentNullException(nameof(condition));
+
             Queue<A11yElement> children = new Queue<A11yElement>(this.Children);
             while (children.Count > 0)
             {
@@ -622,7 +624,7 @@ namespace Axe.Windows.Core.Bases
         /// <summary>
         /// Indicate whether this is the ancestor of the selected element
         /// </summary>
-        public bool IsAncestorOfSelected { get; set; } = false;
+        public bool IsAncestorOfSelected { get; set; }
 
         /// <summary>
         /// ScanResults
@@ -740,7 +742,7 @@ namespace Axe.Windows.Core.Bases
         }
 
         #region IDisposable Support
-        private bool _disposedValue = false; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
         protected bool DisposedValue { get => _disposedValue; set => _disposedValue = value; }
 
         protected virtual void Dispose(bool disposing)

@@ -492,7 +492,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             if (arr.Length != 0)
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("[");
+                sb.Append('[');
 
                 for (int i = 0; i < arr.Length; i++)
                 {
@@ -507,7 +507,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     Marshal.ReleaseComObject(e);
                 }
 
-                sb.Append("]");
+                sb.Append(']');
                 return sb.ToString();
             }
 

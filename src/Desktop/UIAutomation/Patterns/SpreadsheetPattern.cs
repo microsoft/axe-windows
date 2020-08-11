@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class SpreadsheetPattern : A11yPattern
     {
-        IUIAutomationSpreadsheetPattern Pattern = null;
+        IUIAutomationSpreadsheetPattern Pattern;
 
         public SpreadsheetPattern(A11yElement e, IUIAutomationSpreadsheetPattern p) : base(e, PatternType.UIA_SpreadsheetPatternId)
         {

@@ -13,7 +13,7 @@ namespace Axe.Windows.Rules
     class StringDecoratorCondition : Condition
     {
         private Condition Sub;
-        private readonly string Decoration = null;
+        private readonly string Decoration;
 
         public StringDecoratorCondition(Condition c, String decoration)
         {

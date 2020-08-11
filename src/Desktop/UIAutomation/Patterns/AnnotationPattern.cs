@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class AnnotationPattern:A11yPattern
     {
-        IUIAutomationAnnotationPattern Pattern = null;
+        IUIAutomationAnnotationPattern Pattern;
 
         public AnnotationPattern(A11yElement e, IUIAutomationAnnotationPattern p) :base(e, PatternType.UIA_AnnotationPatternId)
         {

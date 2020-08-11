@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TextPattern2 : A11yPattern
     {
-        IUIAutomationTextPattern2 Pattern = null;
+        IUIAutomationTextPattern2 Pattern;
 
         public TextPattern2(A11yElement e, IUIAutomationTextPattern2 p) : base(e, PatternType.UIA_TextPattern2Id)
         {

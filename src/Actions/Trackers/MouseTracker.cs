@@ -52,7 +52,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <summary>
         /// Mouse timer
         /// </summary>
-        Timer timerMouse = null;
+        Timer timerMouse;
         private readonly object _elementSetterLock = new object();
 
         /// <summary>
