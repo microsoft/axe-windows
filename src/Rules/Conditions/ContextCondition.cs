@@ -13,9 +13,9 @@ namespace Axe.Windows.Rules
     class ContextCondition : Condition
     {
         public delegate void ContextDelegate(IA11yElement element);
-        private readonly ContextDelegate Initialize = null;
-        private readonly ContextDelegate Finalize = null;
-        private readonly Condition Sub = null;
+        private readonly ContextDelegate Initialize;
+        private readonly ContextDelegate Finalize;
+        private readonly Condition Sub;
 
         public ContextCondition(Condition sub, ContextDelegate initialize, ContextDelegate finalize)
         {

@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class RangeValuePattern : A11yPattern
     {
-        IUIAutomationRangeValuePattern Pattern = null;
+        IUIAutomationRangeValuePattern Pattern;
 
         public RangeValuePattern(A11yElement e, IUIAutomationRangeValuePattern p) : base(e, PatternType.UIA_RangeValuePatternId)
         {

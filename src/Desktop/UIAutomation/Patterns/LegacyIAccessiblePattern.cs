@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class LegacyIAccessiblePattern : A11yPattern
     {
-        IUIAutomationLegacyIAccessiblePattern Pattern = null;
+        IUIAutomationLegacyIAccessiblePattern Pattern;
 
         public LegacyIAccessiblePattern(A11yElement e, IUIAutomationLegacyIAccessiblePattern p) : base(e, PatternType.UIA_LegacyIAccessiblePatternId)
         {

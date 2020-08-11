@@ -29,12 +29,12 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Selector by Focus
         /// </summary>
-        FocusTracker FocusTracker = null;
+        FocusTracker FocusTracker;
 
         /// <summary>
         /// On/Off Focus Select
         /// </summary>
-        public bool IsFocusSelectOn { get; set; } = false;
+        public bool IsFocusSelectOn { get; set; }
 
         /// <summary>
         /// Mouse Selector Delay in Milliseconds
@@ -55,14 +55,14 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Selector by Mouse Hover
         /// </summary>
-        MouseTracker MouseTracker = null;
+        MouseTracker MouseTracker;
 
         /// <summary>
         /// On/Off Mouse Select
         /// </summary>
-        public bool IsMouseSelectOn { get; set; } = false;
+        public bool IsMouseSelectOn { get; set; }
 
-        public TreeTracker TreeTracker { get; private set; } = null;
+        public TreeTracker TreeTracker { get; private set; }
 
         // Backing object for POIElementContext - is disposed via POIElementContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]
@@ -96,7 +96,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// context which is not selected yet. but sent by tracker
         /// </summary>
-        ElementContext CandidateEC = null;
+        ElementContext CandidateEC;
 
         /// <summary>
         /// Set the scope of Selection
@@ -366,7 +366,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// default instance
         /// </summary>
-        private static SelectAction sDefaultInstance = null;
+        private static SelectAction sDefaultInstance;
 
         /// <summary>
         /// Get the default instance of SelectAction
@@ -407,7 +407,7 @@ namespace Axe.Windows.Actions
         #endregion
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {

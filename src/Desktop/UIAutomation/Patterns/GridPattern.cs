@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class GridPattern : A11yPattern
     {
-        IUIAutomationGridPattern Pattern = null;
+        IUIAutomationGridPattern Pattern;
 
         public GridPattern(A11yElement e, IUIAutomationGridPattern p) : base(e, PatternType.UIA_GridPatternId)
         {

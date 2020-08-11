@@ -12,7 +12,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class StylesPattern : A11yPattern
     {
-        IUIAutomationStylesPattern Pattern = null;
+        IUIAutomationStylesPattern Pattern;
 
         public StylesPattern(A11yElement e, IUIAutomationStylesPattern p) : base(e, PatternType.UIA_StylesPatternId)
         {

@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TogglePattern : A11yPattern
     {
-        IUIAutomationTogglePattern Pattern = null;
+        IUIAutomationTogglePattern Pattern;
 
         public TogglePattern(A11yElement e, IUIAutomationTogglePattern p) : base(e, PatternType.UIA_TogglePatternId)
         {

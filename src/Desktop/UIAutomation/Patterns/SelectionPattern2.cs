@@ -18,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Selection_InvalidatedEventId)]
     public class SelectionPattern2 : A11yPattern
     {
-        IUIAutomationSelectionPattern2 Pattern = null;
+        IUIAutomationSelectionPattern2 Pattern;
 
         public SelectionPattern2(A11yElement e, IUIAutomationSelectionPattern2 p) : base(e, PatternType.UIA_SelectionPattern2Id)
         {

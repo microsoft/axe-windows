@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_InputReachedTargetEventId)]
     public class SynchronizedInputPattern : A11yPattern
     {
-        IUIAutomationSynchronizedInputPattern Pattern = null;
+        IUIAutomationSynchronizedInputPattern Pattern;
 
         public SynchronizedInputPattern(A11yElement e, IUIAutomationSynchronizedInputPattern p) : base(e, PatternType.UIA_SynchronizedInputPatternId)
         {

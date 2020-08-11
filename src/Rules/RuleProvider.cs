@@ -12,10 +12,10 @@ namespace Axe.Windows.Rules
     /// </summary>
     class RuleProvider
     {
-        private readonly IRuleFactory RuleFactory = null;
+        private readonly IRuleFactory RuleFactory;
         private readonly ConcurrentDictionary<RuleId, IRule> AllRules = new ConcurrentDictionary<RuleId, IRule>();
         private readonly Object AllRulesLock = new Object();
-        private bool AreAllRulesInitialized = false;
+        private bool AreAllRulesInitialized;
 
         public RuleProvider(IRuleFactory ruleFactory)
         {

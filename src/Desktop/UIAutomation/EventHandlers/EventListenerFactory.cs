@@ -41,7 +41,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         private Queue<EventListenerFactoryMessage> _msgQueue = new Queue<EventListenerFactoryMessage>();
 
-        private Thread _threadBackground = null;
+        private Thread _threadBackground;
         private AutoResetEvent _autoEventInit; // Event used to allow background thread to take any required initialization action.
         private AutoResetEvent _autoEventMsg; // Event used to notify the background thread that action is required.
         private AutoResetEvent _autoEventFinish; // Event used to notify the end of worker thread
@@ -597,7 +597,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
@@ -693,7 +693,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {

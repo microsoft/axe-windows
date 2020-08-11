@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_TextEdit_ConversionTargetChangedEventId)]
     public class TextEditPattern : A11yPattern
     {
-        IUIAutomationTextEditPattern Pattern = null;
+        IUIAutomationTextEditPattern Pattern;
 
         public TextEditPattern(A11yElement e, IUIAutomationTextEditPattern p) : base(e, PatternType.UIA_TextEditPatternId)
         {

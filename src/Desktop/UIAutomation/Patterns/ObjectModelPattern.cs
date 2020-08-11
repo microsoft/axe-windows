@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ObjectModelPattern : A11yPattern
     {
-        IUIAutomationObjectModelPattern Pattern = null;
+        IUIAutomationObjectModelPattern Pattern;
 
         public ObjectModelPattern(A11yElement e, IUIAutomationObjectModelPattern p) : base(e, PatternType.UIA_ObjectModelPatternId)
         {

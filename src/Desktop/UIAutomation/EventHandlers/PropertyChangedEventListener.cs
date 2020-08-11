@@ -9,7 +9,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     public class PropertyChangedEventListener : EventListenerBase, IUIAutomationPropertyChangedEventHandler
     {
-        readonly int[] propertyArray = null;
+        readonly int[] propertyArray;
 
         /// <summary>
         /// Create an event handler and register it.

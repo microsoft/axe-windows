@@ -59,7 +59,7 @@ namespace Axe.Windows.Desktop.Utility
         /// <summary>
         /// Default link helper
         /// </summary>
-        static StandardLinksHelper sDefaultInstance = null;
+        static StandardLinksHelper sDefaultInstance;
 
         /// <summary>
         /// Get the default instance of StandardLinksHelper

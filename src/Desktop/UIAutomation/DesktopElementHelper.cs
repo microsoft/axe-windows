@@ -33,7 +33,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             PropertyType.UIA_AriaRolePropertyId,
         };
 
-        static IEnumerable<int> sCoreProperties = null;
+        static IEnumerable<int> sCoreProperties;
 
         /// <summary>
         /// Set the selected properties list

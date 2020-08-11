@@ -15,7 +15,7 @@ namespace Axe.Windows.Automation
         private readonly string _outputDirectory;
         private readonly ISystemDateTime _dateTime;
 
-        private string _scanId = null;
+        private string _scanId;
 
         public const string DefaultOutputDirectoryName = "AxeWindowsOutputFiles";
         public const string DefaultFileNameBase = "AxeWindows";
