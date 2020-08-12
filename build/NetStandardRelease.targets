@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>RS0100</NoWarn>
+    <NoWarn>RS0100;RS0016</NoWarn>
   </PropertyGroup>
   
   <Import Project="..\src\props\version.props" />

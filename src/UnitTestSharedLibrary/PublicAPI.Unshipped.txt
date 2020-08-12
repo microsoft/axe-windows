@@ -1,5 +1,0 @@
-﻿Axe.Windows.UnitTestSharedLibrary.TestCategory
-Axe.Windows.UnitTestSharedLibrary.Utility
-const Axe.Windows.UnitTestSharedLibrary.TestCategory.Integration = "Integration" -> string
-static Axe.Windows.UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON(string path) -> Axe.Windows.Core.Bases.A11yElement
-static Axe.Windows.UnitTestSharedLibrary.Utility.PopulateChildrenTests(Axe.Windows.Core.Bases.A11yElement ke) -> void
