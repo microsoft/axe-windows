@@ -8,7 +8,6 @@ using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 
-
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.LocalizedControlTypeNotEmpty)]

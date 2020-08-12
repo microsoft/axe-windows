@@ -174,7 +174,6 @@ namespace Axe.Windows.Actions
             Start();
         }
 
-
         /// <summary>
         /// Set element for Next selection call
         /// it is for internal use. 
@@ -288,7 +287,6 @@ namespace Axe.Windows.Actions
 
             return new Tuple<Guid, SnapshotMetaInfo>(ec.Id, meta);
         }
-
 
         /// <summary>
         /// Set Selected context with loaded snapshot data

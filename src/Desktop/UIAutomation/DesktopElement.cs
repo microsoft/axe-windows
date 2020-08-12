@@ -47,7 +47,6 @@ namespace Axe.Windows.Desktop.UIAutomation
             this.Children = new List<A11yElement>();
         }
 
-
         /// <summary>
         /// check whether property is excluded from retrieved. 
         /// </summary>

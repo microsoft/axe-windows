@@ -34,7 +34,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         public static readonly int MinSpaceBetweenSamples = 12;
 
-
         /**
          * If a given pair of colors occurs this many times more frequently than other color combinations
          * we are sure it is the Text/Background color pair. Otherwise, there are too many potential

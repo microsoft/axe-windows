@@ -50,7 +50,17 @@ namespace Axe.Windows.Telemetry
         /// </summary>
         /// <param name="action">The action being recorded</param>
         /// <param name="propertyBag">Associated property bag--this may be null</param>
-        public static void PublishTelemetryEvent(TelemetryAction action, IReadOnlyDictionary<TelemetryProperty, string> propertyBag = null)
+        public static void PublishTelemetryEvent(TelemetryAction action)
+        {
+            PublishTelemetryEvent(action, null);
+        }
+
+        /// <summary>
+        /// Publishes event to the current telemetry pipeline
+        /// </summary>
+        /// <param name="action">The action being recorded</param>
+        /// <param name="propertyBag">Associated property bag--this may be null</param>
+        public static void PublishTelemetryEvent(TelemetryAction action, IReadOnlyDictionary<TelemetryProperty, string> propertyBag)
         {
             // Check IsEnabled because ToString on enums is expensive
             if (!IsEnabled) return;

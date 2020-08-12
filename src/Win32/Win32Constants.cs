@@ -5,7 +5,7 @@ namespace Axe.Windows.Win32
     /// <summary>
     /// Win32-related constants. Some of these definitions originated from https://pinvoke.net/
     /// </summary>
-    public static class Win32Constants
+    internal static class Win32Constants
     {
         public const int GWL_STYLE = -16;
         public const int GWL_EXSTYLE = -20;

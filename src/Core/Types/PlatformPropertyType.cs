@@ -16,7 +16,6 @@ namespace Axe.Windows.Core.Types
         public const int Platform_ProcessNamePropertyId = 3;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-
         private static PlatformPropertyType sInstance;
 
         /// <summary>

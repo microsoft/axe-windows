@@ -185,6 +185,5 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             return childId;
         }
-
     }
 }

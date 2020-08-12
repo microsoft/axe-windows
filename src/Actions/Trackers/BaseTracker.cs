@@ -58,7 +58,6 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         public abstract void Start();
 
-
         /// <summary>
         /// Get Element based on Scope
         /// if Scope is Element, returns the current element

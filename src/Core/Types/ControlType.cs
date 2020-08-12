@@ -55,7 +55,6 @@ namespace Axe.Windows.Core.Types
         public const int UIA_AppBarControlTypeId = 50040;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-
         private static ControlType sInstance;
 
         /// <summary>
@@ -78,7 +77,6 @@ namespace Axe.Windows.Core.Types
         /// </summary>
         private ControlType() : base() { }
 
-
         /// <summary>
         /// change name into right format in dictionary and list.
         /// </summary>
@@ -94,6 +92,5 @@ namespace Axe.Windows.Core.Types
 
             return sb.ToString();
         }
-
     }
 }

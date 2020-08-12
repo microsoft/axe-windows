@@ -6,7 +6,7 @@ namespace Axe.Windows.Win32
     /// <summary>
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms646309(v=vs.85).aspx
     /// </summary>
-    public enum HotkeyModifier : int
+    internal enum HotkeyModifier : int
     {
         MOD_ALT = 0x0001,
         MOD_CONTROL = 0x0002,

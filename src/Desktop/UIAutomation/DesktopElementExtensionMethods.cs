@@ -121,7 +121,6 @@ namespace Axe.Windows.Desktop.UIAutomation
             }
         }
 
-
         /// <summary>
         /// Clone A11yElement for selection
         /// </summary>
@@ -200,7 +199,6 @@ namespace Axe.Windows.Desktop.UIAutomation
                     element.AddWindowsExtendedStyleIntoPlatformProperties(handle);
                     element.AddWindowsStyleIntoPlatformProperties(handle);
                 }
-
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)

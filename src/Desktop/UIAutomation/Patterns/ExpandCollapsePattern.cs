@@ -58,6 +58,5 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
             base.Dispose(disposing);
         }
-
     }
 }
