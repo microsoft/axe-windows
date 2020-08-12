@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class InvokePattern : A11yPattern
     {
-        IUIAutomationInvokePattern Pattern = null;
+        IUIAutomationInvokePattern Pattern;
 
         public InvokePattern(A11yElement e, IUIAutomationInvokePattern p) : base(e, PatternType.UIA_InvokePatternId)
         {

@@ -19,9 +19,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// indicate whether listener is ready to process the data
         /// </summary>
-        public bool ReadyToListen { get; set; } = false;
+        public bool ReadyToListen { get; set; }
 
-        private IUIAutomation UIAutomation = null;
+        private IUIAutomation UIAutomation;
 
         public FocusChangedEventListener(IUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
         {
@@ -49,7 +49,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        private bool disposedValue = false; // To detect redundant calls
+        private bool disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {

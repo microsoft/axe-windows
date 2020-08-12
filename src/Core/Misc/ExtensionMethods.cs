@@ -95,7 +95,7 @@ namespace Axe.Windows.Core.Misc
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("[");
+            sb.Append('[');
 
             if (array != null && array.Length > 0)
             {
@@ -106,7 +106,7 @@ namespace Axe.Windows.Core.Misc
                 }
             }
 
-            sb.Append("]");
+            sb.Append(']');
 
             return sb.ToString();
         }
@@ -121,7 +121,7 @@ namespace Axe.Windows.Core.Misc
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append("[");
+            sb.Append('[');
 
             if (array != null && array.Count > 0)
             {
@@ -132,7 +132,7 @@ namespace Axe.Windows.Core.Misc
                 }
             }
 
-            sb.Append("]");
+            sb.Append(']');
 
             return sb.ToString();
         }
@@ -143,7 +143,7 @@ namespace Axe.Windows.Core.Misc
             {
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append("[");
+                sb.Append('[');
 
                 if (array.Length > 0)
                 {
@@ -154,7 +154,7 @@ namespace Axe.Windows.Core.Misc
                     }
                 }
 
-                sb.Append("]");
+                sb.Append(']');
 
                 return sb.ToString();
             }
@@ -172,7 +172,7 @@ namespace Axe.Windows.Core.Misc
             {
                 StringBuilder sb = new StringBuilder();
 
-                sb.Append("[");
+                sb.Append('[');
 
                 if (array.Length > 0)
                 {
@@ -183,7 +183,7 @@ namespace Axe.Windows.Core.Misc
                     }
                 }
 
-                sb.Append("]");
+                sb.Append(']');
 
                 return sb.ToString();
             }

@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ScrollPattern : A11yPattern
     {
-        IUIAutomationScrollPattern Pattern = null;
+        IUIAutomationScrollPattern Pattern;
 
         public ScrollPattern(A11yElement e, IUIAutomationScrollPattern p) : base(e, PatternType.UIA_ScrollPatternId)
         {

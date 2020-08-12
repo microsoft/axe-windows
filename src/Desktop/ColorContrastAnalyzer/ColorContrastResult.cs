@@ -14,9 +14,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         private Confidence confidence;
 
-        private int numDifferentBackgroundColors = 0;
+        private int numDifferentBackgroundColors;
 
-        private int numVisiblyDifferentTextColors = 0;
+        private int numVisiblyDifferentTextColors;
 
         public ColorContrastResult()
         {

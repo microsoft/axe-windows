@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TablePattern : A11yPattern
     {
-        IUIAutomationTablePattern Pattern = null;
+        IUIAutomationTablePattern Pattern;
 
         public TablePattern(A11yElement e, IUIAutomationTablePattern p) : base(e, PatternType.UIA_TablePatternId)
         {

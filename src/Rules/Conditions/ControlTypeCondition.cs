@@ -8,7 +8,7 @@ namespace Axe.Windows.Rules
 {
     class ControlTypeCondition : Condition
     {
-        public int ControlType { get; } = 0;
+        public int ControlType { get; }
 
         public ControlTypeCondition(int controlType)
         {

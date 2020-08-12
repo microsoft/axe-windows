@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ValuePattern : A11yPattern
     {
-        IUIAutomationValuePattern Pattern = null;
+        IUIAutomationValuePattern Pattern;
 
         public ValuePattern(A11yElement e, IUIAutomationValuePattern p) : base(e, PatternType.UIA_ValuePatternId)
         {

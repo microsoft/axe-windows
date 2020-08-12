@@ -12,7 +12,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class VirtualizedItemPattern : A11yPattern
     {
-        IUIAutomationVirtualizedItemPattern Pattern = null;
+        IUIAutomationVirtualizedItemPattern Pattern;
 
         public VirtualizedItemPattern(A11yElement e, IUIAutomationVirtualizedItemPattern p) : base(e, PatternType.UIA_VirtualizedItemPatternId)
         {

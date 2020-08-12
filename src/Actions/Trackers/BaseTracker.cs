@@ -13,11 +13,11 @@ namespace Axe.Windows.Actions.Trackers
     /// </summary>
     public abstract class BaseTracker:IDisposable
     {
-        internal Action<A11yElement> SetElement = null;
+        internal Action<A11yElement> SetElement;
 
-        internal int ProcessId = 0;
+        internal int ProcessId;
 
-        internal bool IsStarted = false;
+        internal bool IsStarted;
 
         /// <summary>
         /// keep track the Selected element RuntimeId
@@ -93,7 +93,7 @@ namespace Axe.Windows.Actions.Trackers
         }
 
         #region IDisposable Support
-        bool disposedValue = false; // To detect redundant calls
+        bool disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {

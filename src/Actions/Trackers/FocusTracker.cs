@@ -17,7 +17,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <summary>
         /// Event Handler
         /// </summary>
-        EventListenerFactory EventHandler = null;
+        EventListenerFactory EventHandler;
 
         /// <summary>
         /// Constructor

@@ -17,7 +17,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_AutomationPropertyChangedEventId)]
     public class ExpandCollapsePattern : A11yPattern
     {
-        IUIAutomationExpandCollapsePattern Pattern = null;
+        IUIAutomationExpandCollapsePattern Pattern;
 
         public ExpandCollapsePattern(A11yElement e, IUIAutomationExpandCollapsePattern p) : base(e, PatternType.UIA_ExpandCollapsePatternId)
         {

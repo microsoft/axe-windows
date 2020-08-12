@@ -8,7 +8,7 @@ namespace Axe.Windows.Rules
 {
     class PatternCondition: Condition
     {
-        private readonly int PatternID = 0;
+        private readonly int PatternID;
 
         private ValidateProperty Validate { get; set; }
 

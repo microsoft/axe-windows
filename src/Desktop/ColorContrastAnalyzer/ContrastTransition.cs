@@ -7,8 +7,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     internal class ColorContrastTransition
     {
 
-        internal Boolean IsClosed { get; private set; } = false;
-        internal Boolean IsConnecting { get; private set; } = false;
+        internal Boolean IsClosed { get; private set; }
+        internal Boolean IsConnecting { get; private set; }
 
         internal readonly Color StartingColor;
 
