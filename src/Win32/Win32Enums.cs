@@ -4,19 +4,6 @@
 namespace Axe.Windows.Win32
 {
     /// <summary>
-    /// https://msdn.microsoft.com/en-us/library/windows/desktop/ms646309(v=vs.85).aspx
-    /// </summary>
-    internal enum HotkeyModifier : int
-    {
-        MOD_ALT = 0x0001,
-        MOD_CONTROL = 0x0002,
-        MOD_NOREPEAT = 0x4000,
-        MOD_SHIFT = 0x0004,
-        MOD_WIN = 0x0008,
-        MOD_NoModifier = -1,
-    }
-
-    /// <summary>
     /// Flag used when in OS comparison methods
     /// </summary>
     internal enum OsComparisonResult
