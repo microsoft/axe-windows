@@ -61,7 +61,7 @@ To set the object you created in the section above as the sink for Axe.Windows t
 
 ### Telemetry properties
 
-Wehn "Scan_Statistics" is sent to `PublishEvent` as the event name, the following items are expected in the properties dictionary:
+When "Scan_Statistics" is sent to `PublishEvent` as the event name, the following items are expected in the properties dictionary:
 
 Property | Data
 --- | ---
