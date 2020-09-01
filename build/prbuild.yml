@@ -34,6 +34,9 @@ jobs:
       targetType: "filePath"
       filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
       arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
+  
+  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+    displayName: 'Component Detection'
 
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
@@ -58,9 +61,6 @@ jobs:
       command: test
       projects: |
         **\*test*.csproj
-
-  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-    displayName: 'Component Detection'
 
 - job: Debug
   pool:
