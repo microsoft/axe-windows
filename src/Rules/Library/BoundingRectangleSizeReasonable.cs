@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var ignoreableText = Text & ~IsKeyboardFocusable & Name.NullOrEmpty & ~ChildrenExist;
+            var ignoreableText = (Text | Separator) & ~IsKeyboardFocusable & Name.NullOrEmpty & ~ChildrenExist;
 
             return IsNotOffScreen
                 & BoundingRectangle.NotNull
