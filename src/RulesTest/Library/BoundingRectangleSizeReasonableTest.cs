@@ -63,5 +63,18 @@ namespace Axe.Windows.RulesTest.Library
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }
+
+        [TestMethod]
+        public void BoundingRectangleSizeReasonable_SeparatorNonApplicable()
+        {
+            var e = new MockA11yElement();
+
+            // valid rectangle, no name, IsKeyboardFocusable false, no children
+
+            e.BoundingRectangle = new Rectangle(0, 0, 2, 2);
+            e.ControlTypeId = ControlType.Separator;
+
+            Assert.IsFalse(Rule.Condition.Matches(e));
+        }
     }// class
 } // namespace
