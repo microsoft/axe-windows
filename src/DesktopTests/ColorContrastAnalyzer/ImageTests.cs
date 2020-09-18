@@ -49,6 +49,102 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
                 result.GetMostLikelyColorPair());
         }
 
+        [TestMethod]
+        public void TextOverlay1()
+        {
+            var image = LoadFromResources("text_overlay_1.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(0, 0, 2)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay2()
+        {
+            var image = LoadFromResources("text_overlay_2.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(5, 8, 20)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay3()
+        {
+            var image = LoadFromResources("text_overlay_3.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.Mid, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(66, 61, 56)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay4()
+        {
+            var image = LoadFromResources("text_overlay_4.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(0, 1, 2)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay5()
+        {
+            var image = LoadFromResources("text_overlay_5.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(21, 63, 90)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay6()
+        {
+            var image = LoadFromResources("text_overlay_6.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(0, 2, 3)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay7()
+        {
+            var image = LoadFromResources("text_overlay_7.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(74, 58, 54)),
+                result.GetMostLikelyColorPair());
+        }
+
+        [TestMethod]
+        public void TextOverlay8()
+        {
+            var image = LoadFromResources("text_overlay_8.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(17, 18, 37)),
+                result.GetMostLikelyColorPair());
+        }
+
         // [TestMethod] TODO: we will revisit this test case after issue#231 has been fixed
         [Timeout(2000)]
         public void FutureSimplePurpleAndWhiteButton()
