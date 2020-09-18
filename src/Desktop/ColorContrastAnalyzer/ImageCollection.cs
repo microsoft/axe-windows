@@ -28,9 +28,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         public ColorContrastResult RunColorContrastCalculation()
         {
-
-            ColorContrastResult result = null;
-
+            ResultAggregator aggregator = new ResultAggregator();
             ColorContrastRunner runner = new ColorContrastRunner();
 
             Color previousColor = null;
@@ -44,24 +42,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                 if (IsEndOfRow(pixel))
                 {
-                    var newResult = runner.OnRowEnd();
+                    aggregator.AddResult(runner.OnRowEnd());
 
-                    if (result == null) result = newResult;
-
-                    if (newResult.ConfidenceValue() == ColorContrastResult.Confidence.High)
-                    {
-                        result = newResult;
+                    if (aggregator.HasConverged)
                         break;
-                    }
-                    else if (newResult.ConfidenceValue() == ColorContrastResult.Confidence.Mid &&
-                      result.ConfidenceValue() == ColorContrastResult.Confidence.Low)
-                    {
-                        result = newResult;
-                    }
                 }
             }
 
-            return result;
+            return aggregator.ConvergedResult;
         }
 
         /**
