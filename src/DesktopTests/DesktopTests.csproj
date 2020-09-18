@@ -14,6 +14,15 @@
     <None Remove="TestImages\simple_grey_and_white_title.bmp" />
     <None Remove="TestImages\simple_purple_and_white_button.bmp" />
     <None Remove="TestImages\simple_white_and_black_text.bmp" />
+    <None Remove="TestImages\text_overlay_1.png" />
+    <None Remove="TestImages\text_overlay_2.png" />
+    <None Remove="TestImages\text_overlay_3.png" />
+    <None Remove="TestImages\text_overlay_4.png" />
+    <None Remove="TestImages\text_overlay_5.png" />
+    <None Remove="TestImages\text_overlay_6.png" />
+    <None Remove="TestImages\text_overlay_7.png" />
+    <None Remove="TestImages\text_overlay_8.png" />
+    <None Remove="TestImages\unlucky_antialiasing.png" />
     <None Remove="TestImages\visual_studio_tab.bmp" />
     <None Remove="TestImages\weird_text_arrangement.bmp" />
   </ItemGroup>
@@ -39,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="TestImages\unlucky_antialiasing.png" />
     <EmbeddedResource Include="TestImages\simple_black_and_grey_button.bmp" />
   </ItemGroup>
 
@@ -72,6 +82,14 @@
 
   <ItemGroup>
     <EmbeddedResource Include="TestImages\simple_white_and_black_text.bmp" />
+    <EmbeddedResource Include="TestImages\text_overlay_1.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_2.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_3.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_4.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_5.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_6.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_7.png" />
+    <EmbeddedResource Include="TestImages\text_overlay_8.png" />
   </ItemGroup>
 
   <ItemGroup>

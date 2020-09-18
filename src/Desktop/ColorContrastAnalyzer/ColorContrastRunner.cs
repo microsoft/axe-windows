@@ -20,10 +20,12 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal void OnPixel(Color color, Color previousColor)
         {
+            // countExactColors holds the number of pixels per row of this specific color
             countExactColors.Increment(color);
 
             var newlyClosedTransitions = new List<ColorContrastTransition>();
 
+            // openTransitions holds the open transitions for this row
             foreach (var transition in openTransitions.Values)
             {
                 transition.AddColor(color);

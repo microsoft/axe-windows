@@ -38,6 +38,19 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(Confidence.High, result.ConfidenceValue());
         }
 
+        [TestMethod]
+        public void UnluckyAntialiasing()
+        {
+            var image = LoadFromResources("unlucky_antialiasing.png");
+
+            var result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(0, 0, 0)),
+                result.GetMostLikelyColorPair());
+        }
+
         // [TestMethod] TODO: we will revisit this test case after issue#231 has been fixed
         [Timeout(2000)]
         public void FutureSimplePurpleAndWhiteButton()
