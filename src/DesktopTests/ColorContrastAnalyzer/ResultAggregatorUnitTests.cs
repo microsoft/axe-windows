@@ -4,6 +4,7 @@
 using Axe.Windows.Desktop.ColorContrastAnalyzer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
@@ -50,6 +51,32 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         public void BestEstimatedResult_EmptyAggregator_ReturnsNull()
         {
             Assert.IsNull(new ResultAggregator().BestEstimatedResult);
+        }
+
+        [TestMethod]
+        public void BestEstimatedResult_IncreasingConfidence_ReturnsHighestConfidence()
+        {
+            ColorContrastResult[] increasingConfidenceResults = 
+                { NoConfidenceResult, LowConfidenceResult, MidConfidenceResult, HighConfidenceResult };
+            var aggregator = new ResultAggregator();
+            foreach (var result in increasingConfidenceResults)
+            {
+                aggregator.AddResult(result);
+                Assert.AreEqual(result, aggregator.BestEstimatedResult);
+            }
+        }
+
+        [TestMethod]
+        public void BestEstimatedResult_DecreasingConfidence_ReturnsHighestConfidence()
+        {
+            ColorContrastResult[] increasingConfidenceResults =
+                { HighConfidenceResult, MidConfidenceResult, LowConfidenceResult, NoConfidenceResult };
+            var aggregator = new ResultAggregator();
+            foreach (var result in increasingConfidenceResults)
+            {
+                aggregator.AddResult(result);
+                Assert.AreEqual(HighConfidenceResult, aggregator.BestEstimatedResult);
+            }
         }
 
         [TestMethod]

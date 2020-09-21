@@ -8,10 +8,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     internal class ResultAggregator
     {
-        private SortedList<double, ColorContrastResult> _results;
+        private List<ColorContrastResult> _results;
         private ColorContrastResult.Confidence _bestConfidence;
 
-        public ColorContrastResult BestEstimatedResult => _results.FirstOrDefault().Value;
+        public ColorContrastResult BestEstimatedResult => _results.FirstOrDefault();
 
         public ResultAggregator()
         {
@@ -30,14 +30,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 SetNewConfidence(resultConfidence);
             }
 
-            _results.Add(result.GetMostLikelyColorPair().ColorContrast(), result);
+            _results.Add(result);
             HasConverged = CheckForConvergence();
         }
         
         private void SetNewConfidence(ColorContrastResult.Confidence confidence)
         {
             _bestConfidence = confidence;
-            _results = new SortedList<double, ColorContrastResult>();
+            _results = new List<ColorContrastResult>();
         }
 
         private bool CheckForConvergence()
