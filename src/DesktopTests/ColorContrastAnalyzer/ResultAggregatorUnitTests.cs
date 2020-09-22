@@ -4,7 +4,6 @@
 using Axe.Windows.Desktop.ColorContrastAnalyzer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
@@ -48,13 +47,13 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
-        public void BestEstimatedResult_EmptyAggregator_ReturnsNull()
+        public void MostLikelyResult_EmptyAggregator_ReturnsNull()
         {
-            Assert.IsNull(new ResultAggregator().BestEstimatedResult);
+            Assert.IsNull(new ResultAggregator().MostLikelyResult);
         }
 
         [TestMethod]
-        public void BestEstimatedResult_IncreasingConfidence_ReturnsHighestConfidence()
+        public void MostLikelyResult_IncreasingConfidence_ReturnsHighestConfidence()
         {
             ColorContrastResult[] increasingConfidenceResults = 
                 { NoConfidenceResult, LowConfidenceResult, MidConfidenceResult, HighConfidenceResult };
@@ -62,12 +61,12 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             foreach (var result in increasingConfidenceResults)
             {
                 aggregator.AddResult(result);
-                Assert.AreEqual(result, aggregator.BestEstimatedResult);
+                Assert.AreEqual(result, aggregator.MostLikelyResult);
             }
         }
 
         [TestMethod]
-        public void BestEstimatedResult_DecreasingConfidence_ReturnsHighestConfidence()
+        public void MostLikelyResult_DecreasingConfidence_ReturnsHighestConfidence()
         {
             ColorContrastResult[] increasingConfidenceResults =
                 { HighConfidenceResult, MidConfidenceResult, LowConfidenceResult, NoConfidenceResult };
@@ -75,7 +74,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             foreach (var result in increasingConfidenceResults)
             {
                 aggregator.AddResult(result);
-                Assert.AreEqual(HighConfidenceResult, aggregator.BestEstimatedResult);
+                Assert.AreEqual(HighConfidenceResult, aggregator.MostLikelyResult);
             }
         }
 

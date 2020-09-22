@@ -49,7 +49,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 }
             }
 
-            return aggregator.BestEstimatedResult;
+            return aggregator.MostLikelyResult;
         }
 
         /**

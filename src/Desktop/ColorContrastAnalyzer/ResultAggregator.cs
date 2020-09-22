@@ -11,7 +11,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         private List<ColorContrastResult> _results;
         private ColorContrastResult.Confidence _bestConfidence;
 
-        public ColorContrastResult BestEstimatedResult => _results.FirstOrDefault();
+        public ColorContrastResult MostLikelyResult => _results.FirstOrDefault();
 
         public ResultAggregator()
         {
