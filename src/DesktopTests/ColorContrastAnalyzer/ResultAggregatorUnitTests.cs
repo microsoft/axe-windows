@@ -11,7 +11,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
     public class ResultAggregatorUnitTests
     {
         private static readonly ColorContrastResult NoConfidenceResult = 
-            BuildColorContrastResult(ColorContrastResult.Confidence.None, Color.RED, Color.RED);
+            BuildColorContrastResult(ColorContrastResult.Confidence.None, null);
         private static readonly ColorContrastResult LowConfidenceResult =
             BuildColorContrastResult(ColorContrastResult.Confidence.Low, Color.BLUE, Color.GREEN);
         private static readonly ColorContrastResult MidConfidenceResult =
@@ -22,6 +22,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         private static ColorContrastResult BuildColorContrastResult(ColorContrastResult.Confidence confidence, Color color1, Color color2)
         {
             ColorPair colorPair = new ColorPair(color1, color2);
+            return BuildColorContrastResult(confidence, colorPair);
+        }
+
+        private static ColorContrastResult BuildColorContrastResult(ColorContrastResult.Confidence confidence, ColorPair colorPair)
+        {
             Mock<ColorContrastResult> resultMock = new Mock<ColorContrastResult>(MockBehavior.Strict);
             resultMock.Setup(x => x.ConfidenceValue())
                 .Returns(confidence);
@@ -32,6 +37,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void AssertStaticValues()
         {
             Assert.AreEqual(ColorContrastResult.Confidence.None, NoConfidenceResult.ConfidenceValue());
@@ -41,18 +47,21 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void HasConverged_EmptyAggregator_ReturnsFalse()
         {
             Assert.IsFalse(new ResultAggregator().HasConverged);
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void MostLikelyResult_EmptyAggregator_ReturnsNull()
         {
             Assert.IsNull(new ResultAggregator().MostLikelyResult);
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void MostLikelyResult_IncreasingConfidence_ReturnsHighestConfidence()
         {
             ColorContrastResult[] increasingConfidenceResults = 
@@ -66,6 +75,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void MostLikelyResult_DecreasingConfidence_ReturnsHighestConfidence()
         {
             ColorContrastResult[] increasingConfidenceResults =
@@ -79,6 +89,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void HasConverged_OneNoConfidenceResult_Returns_False()
         {
             var aggregator = new ResultAggregator();
@@ -87,6 +98,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void HasConverged_OnelOWConfidenceResult_Returns_False()
         {
             var aggregator = new ResultAggregator();
@@ -95,6 +107,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void HasConverged_OneMidConfidenceResult_Returns_False()
         {
             var aggregator = new ResultAggregator();
@@ -103,9 +116,31 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
-        public void HasConverged_OneHighConfidenceResult_Returns_True()
+        [Timeout(2000)]
+        public void HasConverged_OneHighConfidenceResult_Returns_False()
         {
             var aggregator = new ResultAggregator();
+            aggregator.AddResult(HighConfidenceResult);
+            Assert.IsFalse(aggregator.HasConverged);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void HasConverged_TwoIdenticalHighConfidenceResults_Returns_False()
+        {
+            var aggregator = new ResultAggregator();
+            aggregator.AddResult(HighConfidenceResult);
+            aggregator.AddResult(HighConfidenceResult);
+            Assert.IsFalse(aggregator.HasConverged);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void HasConverged_ThreeIdenticalHighConfidenceResults_Returns_True()
+        {
+            var aggregator = new ResultAggregator();
+            aggregator.AddResult(HighConfidenceResult);
+            aggregator.AddResult(HighConfidenceResult);
             aggregator.AddResult(HighConfidenceResult);
             Assert.IsTrue(aggregator.HasConverged);
         }

@@ -8,43 +8,78 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     internal class ResultAggregator
     {
-        private List<ColorContrastResult> _results;
-        private ColorContrastResult.Confidence _bestConfidence;
+        private const int ConvergenceThreshold = 3;
 
-        public ColorContrastResult MostLikelyResult => _results.FirstOrDefault();
+        private List<ColorContrastResult> _resultsAtCurrentBestConfidence;
+        private ColorContrastResult.Confidence _currentBestConfidence;
+        private ColorContrastResult _convergedResult;
+        private readonly ColorContrastResultComparer _resultComparer = new ColorContrastResultComparer();
+
+        public ColorContrastResult MostLikelyResult => _convergedResult ?? _resultsAtCurrentBestConfidence.FirstOrDefault();
 
         public ResultAggregator()
         {
-            SetNewConfidence(ColorContrastResult.Confidence.None);
+            SetCurrentBestConfidence(ColorContrastResult.Confidence.None);
         }
 
         public void AddResult(ColorContrastResult result)
         {
             ColorContrastResult.Confidence resultConfidence = result.ConfidenceValue();
 
-            if (resultConfidence < _bestConfidence)
+            if (resultConfidence < _currentBestConfidence)
                 return;
 
-            if (resultConfidence > _bestConfidence)
+            if (resultConfidence > _currentBestConfidence)
             {
-                SetNewConfidence(resultConfidence);
+                SetCurrentBestConfidence(resultConfidence);
             }
 
-            _results.Add(result);
-            HasConverged = CheckForConvergence();
+            AddResultAtCurrentBestConfidence(result);
         }
         
-        private void SetNewConfidence(ColorContrastResult.Confidence confidence)
+        private void SetCurrentBestConfidence(ColorContrastResult.Confidence confidence)
         {
-            _bestConfidence = confidence;
-            _results = new List<ColorContrastResult>();
+            _currentBestConfidence = confidence;
+            _resultsAtCurrentBestConfidence = new List<ColorContrastResult>();
         }
 
-        private bool CheckForConvergence()
+        private void AddResultAtCurrentBestConfidence(ColorContrastResult result)
         {
-            return _bestConfidence == ColorContrastResult.Confidence.High;
+            _resultsAtCurrentBestConfidence.Add(result);
+            UpdateConvergedResult();
         }
 
-        public bool HasConverged { get; private set; }
+        private void UpdateConvergedResult()
+        {
+            if (_currentBestConfidence == ColorContrastResult.Confidence.High)
+            {
+                _resultsAtCurrentBestConfidence.Sort(_resultComparer);
+                if (_resultsAtCurrentBestConfidence.Count >= ConvergenceThreshold)
+                {
+                    ColorContrastResult baseResult = null;
+                    int similarResults = 0;
+
+                    foreach (var result in _resultsAtCurrentBestConfidence)
+                    {
+                        if (baseResult != null &&
+                            baseResult.GetMostLikelyColorPair().IsVisiblySimilarTo(result.GetMostLikelyColorPair()))
+                        {
+                            if (++similarResults >= ConvergenceThreshold)
+                            {
+                                _convergedResult = baseResult;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            baseResult = result;
+                            similarResults = 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        public bool HasConverged => _convergedResult != null;
     }
 }
