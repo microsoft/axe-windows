@@ -40,5 +40,11 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          * combinations in a y for us to be positive about any given pair.
          */
         public static readonly int TransitionCountDominanceFactor = 2;
+
+        /**
+         * Minimum number of high confidence results that need to agree to consider high contrast
+         * as converged. It might be worth adjusting the confidence scales to reflect this.
+         */
+        public static readonly int HighConfidenceConvergenceThreshold = 3;
     }
 }

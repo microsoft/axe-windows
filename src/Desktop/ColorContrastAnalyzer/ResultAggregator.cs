@@ -8,8 +8,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     internal class ResultAggregator
     {
-        private const int ConvergenceThreshold = 3;
-
         private List<CachedColorContrastResult> _cachedResultsAtCurrentBestConfidence;
         private ColorContrastResult.Confidence _currentBestConfidence;
         private ColorContrastResult _convergedResult;
@@ -53,7 +51,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             if (_currentBestConfidence == ColorContrastResult.Confidence.High)
             {
                 _cachedResultsAtCurrentBestConfidence.Sort(_resultComparer);
-                if (_cachedResultsAtCurrentBestConfidence.Count >= ConvergenceThreshold)
+                if (_cachedResultsAtCurrentBestConfidence.Count >= ColorContrastConfig.HighConfidenceConvergenceThreshold)
                 {
                     CachedColorContrastResult baseResult = null;
                     int similarResults = 0;
@@ -63,7 +61,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                         if (baseResult != null &&
                             baseResult.MostLikelyColorPair.IsVisiblySimilarTo(result.MostLikelyColorPair))
                         {
-                            if (++similarResults >= ConvergenceThreshold)
+                            if (++similarResults >= ColorContrastConfig.HighConfidenceConvergenceThreshold)
                             {
                                 _convergedResult = baseResult.Result;
                                 break;
