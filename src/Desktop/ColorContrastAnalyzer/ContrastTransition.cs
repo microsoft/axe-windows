@@ -59,6 +59,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 if (!isIncreasingInContrast)
                 {
                     isMountainShaped = false;
+                    IsClosed = true;
                 }
             }
             else
