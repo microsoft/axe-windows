@@ -10,13 +10,12 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         private const int ConvergenceThreshold = 3;
 
-        private List<ColorContrastResult> _resultsAtCurrentBestConfidence;
+        private List<CachedColorContrastResult> _cachedResultsAtCurrentBestConfidence;
         private ColorContrastResult.Confidence _currentBestConfidence;
         private ColorContrastResult _convergedResult;
-        private readonly ColorContrastResultComparer _resultComparer = new ColorContrastResultComparer();
+        private readonly CachedColorContrastResultComparer _resultComparer = new CachedColorContrastResultComparer();
 
-        public ColorContrastResult MostLikelyResult => _convergedResult ?? _resultsAtCurrentBestConfidence.FirstOrDefault();
-
+        public ColorContrastResult MostLikelyResult => _convergedResult ?? _cachedResultsAtCurrentBestConfidence.FirstOrDefault()?.Result;
         public ResultAggregator()
         {
             SetCurrentBestConfidence(ColorContrastResult.Confidence.None);
@@ -40,12 +39,12 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         private void SetCurrentBestConfidence(ColorContrastResult.Confidence confidence)
         {
             _currentBestConfidence = confidence;
-            _resultsAtCurrentBestConfidence = new List<ColorContrastResult>();
+            _cachedResultsAtCurrentBestConfidence = new List<CachedColorContrastResult>();
         }
 
         private void AddResultAtCurrentBestConfidence(ColorContrastResult result)
         {
-            _resultsAtCurrentBestConfidence.Add(result);
+            _cachedResultsAtCurrentBestConfidence.Add(new CachedColorContrastResult(result));
             UpdateConvergedResult();
         }
 
@@ -53,20 +52,20 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         {
             if (_currentBestConfidence == ColorContrastResult.Confidence.High)
             {
-                _resultsAtCurrentBestConfidence.Sort(_resultComparer);
-                if (_resultsAtCurrentBestConfidence.Count >= ConvergenceThreshold)
+                _cachedResultsAtCurrentBestConfidence.Sort(_resultComparer);
+                if (_cachedResultsAtCurrentBestConfidence.Count >= ConvergenceThreshold)
                 {
-                    ColorContrastResult baseResult = null;
+                    CachedColorContrastResult baseResult = null;
                     int similarResults = 0;
 
-                    foreach (var result in _resultsAtCurrentBestConfidence)
+                    foreach (var result in _cachedResultsAtCurrentBestConfidence)
                     {
                         if (baseResult != null &&
-                            baseResult.GetMostLikelyColorPair().IsVisiblySimilarTo(result.GetMostLikelyColorPair()))
+                            baseResult.MostLikelyColorPair.IsVisiblySimilarTo(result.MostLikelyColorPair))
                         {
                             if (++similarResults >= ConvergenceThreshold)
                             {
-                                _convergedResult = baseResult;
+                                _convergedResult = baseResult.Result;
                                 break;
                             }
                         }
