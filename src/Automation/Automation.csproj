@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <DocumentationFile>$(OutputDir)\Axe.Windows.Automation.xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />
