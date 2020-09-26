@@ -776,16 +776,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide a string for the LocalizedLandmarkType property that does not include any special characters.
+        ///   Looks up a localized string similar to Modify the LocalizedLandmarkType property, removing all characters in the range U+E000 to U+F8FF and replace them with meaningful, standard text content.
         ///Where appropriate, use a standard localized landmark type:
         /// · Use &quot;banner&quot; for an area at the beginning of the page with site-oriented content.
         /// · Use &quot;complementary&quot; for an area with supporting content that remains meaningful when separated from the primary content.
-        /// · Use &quot;contentinfo&quot; for an area at the end of the page containing information about the site or the primary content.
-        /// · Use &quot;form&quot; for a [rest of string was truncated]&quot;;.
+        /// · Use &quot;contentinfo&quot; for an area at the end of the page containing information about t [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string LocalizedLandmarkTypeExcludesSpecialCharacters {
+        internal static string LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters {
             get {
-                return ResourceManager.GetString("LocalizedLandmarkTypeExcludesSpecialCharacters", resourceCulture);
+                return ResourceManager.GetString("LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters", resourceCulture);
             }
         }
         
@@ -887,17 +886,6 @@ namespace Axe.Windows.Rules.Resources {
         internal static string NameExcludesLocalizedControlType {
             get {
                 return ResourceManager.GetString("NameExcludesLocalizedControlType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provide a UI Automation Name property for the element that:
-        /// · Concisely identifies the element, AND
-        /// · Does not include any special characters..
-        /// </summary>
-        internal static string NameExcludesSpecialCharacters {
-            get {
-                return ResourceManager.GetString("NameExcludesSpecialCharacters", resourceCulture);
             }
         }
         
@@ -1026,7 +1014,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaninful, standard text content..
+        ///   Looks up a localized string similar to Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaningful, standard text content..
         /// </summary>
         internal static string PropertyExcludesPrivateUnicodeCharacters {
             get {

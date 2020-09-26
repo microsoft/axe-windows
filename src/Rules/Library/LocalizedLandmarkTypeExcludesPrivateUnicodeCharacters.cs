@@ -8,13 +8,13 @@ using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters)]
-    class LocalizedLandmarkTypeExcludesSpecialCharacters : Rule
+    [RuleInfo(ID = RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters)]
+    class LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters : Rule
     {
-        public LocalizedLandmarkTypeExcludesSpecialCharacters()
+        public LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters()
         {
-            this.Info.Description = Descriptions.LocalizedLandmarkTypeExcludesSpecialCharacters;
-            this.Info.HowToFix = HowToFix.LocalizedLandmarkTypeExcludesSpecialCharacters;
+            this.Info.Description = Descriptions.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters;
+            this.Info.HowToFix = HowToFix.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters;
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
         }
 
@@ -22,7 +22,7 @@ namespace Axe.Windows.Rules.Library
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return LocalizedLandmarkType.ExcludesSpecialCharacters.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return LocalizedLandmarkType.ExcludesPrivateUnicodeCharacters.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
         }
 
         protected override Condition CreateCondition()

@@ -146,7 +146,7 @@ namespace Axe.Windows.Core.Enums
         LandmarkNoDuplicateContentInfo,
         LandmarkOneMain,
 
-        LocalizedLandmarkTypeExcludesSpecialCharacters,
+        LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters,
         LocalizedLandmarkTypeIsReasonableLength,
         LocalizedLandmarkTypeNotCustom,
         LocalizedLandmarkTypeNotEmpty,
@@ -205,7 +205,6 @@ namespace Axe.Windows.Core.Enums
         NameNotEmpty,
         NameExcludesControlType,
         NameExcludesLocalizedControlType,
-        NameExcludesSpecialCharacters,
         NameReasonableLength,
 
         OrientationPropertyExists,
