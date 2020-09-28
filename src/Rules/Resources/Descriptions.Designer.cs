@@ -727,15 +727,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The LocalizedLandmarkType property must not contain any special characters..
-        /// </summary>
-        internal static string LocalizedLandmarkTypeExcludesSpecialCharacters {
-            get {
-                return ResourceManager.GetString("LocalizedLandmarkTypeExcludesSpecialCharacters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The LocalizedLandmarkType property must not be longer than 64 characters..
         /// </summary>
         internal static string LocalizedLandmarkTypeIsReasonableLength {
@@ -804,15 +795,6 @@ namespace Axe.Windows.Rules.Resources {
         internal static string NameExcludesLocalizedControlType {
             get {
                 return ResourceManager.GetString("NameExcludesLocalizedControlType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Name property must not contain any special characters..
-        /// </summary>
-        internal static string NameExcludesSpecialCharacters {
-            get {
-                return ResourceManager.GetString("NameExcludesSpecialCharacters", resourceCulture);
             }
         }
         
