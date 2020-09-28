@@ -19,7 +19,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 e.Name = "Hello";
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -33,7 +33,7 @@ namespace Axe.Windows.RulesTest.Library
                     s.Append(s.ToString() + s.ToString());
 
                 e.Name = s.ToString();
-                Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
