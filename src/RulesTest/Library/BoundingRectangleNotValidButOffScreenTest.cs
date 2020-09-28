@@ -13,7 +13,7 @@ namespace Axe.Windows.RulesTest.Library
         [TestMethod]
         public void TestBoundingRectangleNotValidButOffScreenInformation()
         {
-            Assert.AreEqual(Rule.Evaluate(null), EvaluationCode.Note);
+            Assert.AreEqual(EvaluationCode.Note, Rule.Evaluate(null));
         }
     }
 }

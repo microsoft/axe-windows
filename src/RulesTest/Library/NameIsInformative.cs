@@ -26,7 +26,7 @@ namespace Axe.Windows.RulesTest.Library
                 foreach (var s in stringsToTry)
                     {
                     e.Name = s;
-                    Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                    Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
                 }
             } // using
         }
@@ -49,7 +49,7 @@ namespace Axe.Windows.RulesTest.Library
                 foreach (var s in stringsToTry)
                 {
                     e.Name = s;
-                    Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                    Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
                 }
             } // using
         }

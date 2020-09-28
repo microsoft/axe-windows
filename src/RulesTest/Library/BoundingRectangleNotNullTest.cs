@@ -18,7 +18,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 e.BoundingRectangle = Rectangle.Empty;
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -27,7 +27,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             using (var e = new MockA11yElement())
             {
-                Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
