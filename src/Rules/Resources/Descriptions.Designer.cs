@@ -727,15 +727,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The LocalizedLandmarkType property must not contain any characters in the private Unicode range...
-        /// </summary>
-        internal static string LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters {
-            get {
-                return ResourceManager.GetString("LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The LocalizedLandmarkType property must not be longer than 64 characters..
         /// </summary>
         internal static string LocalizedLandmarkTypeIsReasonableLength {

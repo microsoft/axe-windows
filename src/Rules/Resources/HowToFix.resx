@@ -412,18 +412,6 @@ For example, if an element has a level-5 heading, its descendants can have only 
   <data name="LandmarkOneMain" xml:space="preserve">
     <value>Provide exactly one main landmark per page.</value>
   </data>
-  <data name="LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters" xml:space="preserve">
-    <value>Modify the LocalizedLandmarkType property, removing all characters in the range U+E000 to U+F8FF and replace them with meaningful, standard text content.
-Where appropriate, use a standard localized landmark type:
- · Use "banner" for an area at the beginning of the page with site-oriented content.
- · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.
- · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.
- · Use "form" for an area containing a set of form-related elements.
- · Use "main" for the area with the page's primary content.
- · Use "navigation" for an area containing links for page or site navigation.
- · Use "search" for an area of the page containing search functionality.
-If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-  </data>
   <data name="LocalizedLandmarkTypeIsReasonableLength" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property that contains at most 64 characters.
 Where appropriate, use a standard localized landmark type:
