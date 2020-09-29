@@ -99,7 +99,7 @@ LandmarkMainIsTopLevel | An element with LocalizedLandmarkType "main" must not d
 LandmarkNoDuplicateBanner | A page must not have multiple elements with LocalizedLandmarkType "banner." | WCAG 1.3.1 InfoAndRelationships | Error
 LandmarkNoDuplicateContentInfo | A page must not have multiple elements with LocalizedLandmarkType "contentinfo." | WCAG 1.3.1 InfoAndRelationships | Error
 LandmarkOneMain | A page must have exactly one element with the LocalizedLandmarkType "main." | WCAG 1.3.1 InfoAndRelationships | Warning
-LocalizedLandmarkType ExcludesPrivateUnicodeCharacters | The LocalizedLandmarkType property must not contain any special characters. | WCAG 1.3.1 InfoAndRelationships | Error
+LocalizedLandmarkType ExcludesPrivateUnicodeCharacters | The LocalizedLandmarkType property must not contain any characters in the private Unicode range.. | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeIsReasonableLength | The LocalizedLandmarkType property must not be longer than 64 characters. | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeNotCustom | The LandmarkType and LocalizedLandmarkType must not both be set to "custom." | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeNotEmpty | An element with LandmarkType set must not have an empty LocalizedLandmarkType. | WCAG 1.3.1 InfoAndRelationships | Error
