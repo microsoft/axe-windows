@@ -1,6 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <SemVerNumber Condition="$(SemVerNumber) == ''">1.0.3</SemVerNumber>
+    <SemVerNumber Condition="$(SemVerNumber) == ''">1.0.4</SemVerNumber>
     <SemVerSuffix></SemVerSuffix>
   </PropertyGroup>
 </Project>
