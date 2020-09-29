@@ -99,7 +99,7 @@ LandmarkMainIsTopLevel | An element with LocalizedLandmarkType "main" must not d
 LandmarkNoDuplicateBanner | A page must not have multiple elements with LocalizedLandmarkType "banner." | WCAG 1.3.1 InfoAndRelationships | Error
 LandmarkNoDuplicateContentInfo | A page must not have multiple elements with LocalizedLandmarkType "contentinfo." | WCAG 1.3.1 InfoAndRelationships | Error
 LandmarkOneMain | A page must have exactly one element with the LocalizedLandmarkType "main." | WCAG 1.3.1 InfoAndRelationships | Warning
-LocalizedLandmarkType ExcludesSpecialCharacters | The LocalizedLandmarkType property must not contain any special characters. | WCAG 1.3.1 InfoAndRelationships | Error
+LocalizedLandmarkType ExcludesPrivateUnicodeCharacters | The LocalizedLandmarkType property must not contain any special characters. | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeIsReasonableLength | The LocalizedLandmarkType property must not be longer than 64 characters. | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeNotCustom | The LandmarkType and LocalizedLandmarkType must not both be set to "custom." | WCAG 1.3.1 InfoAndRelationships | Error
 LocalizedLandmarkTypeNotEmpty | An element with LandmarkType set must not have an empty LocalizedLandmarkType. | WCAG 1.3.1 InfoAndRelationships | Error
@@ -127,7 +127,6 @@ LocalizedControlTypeReasonable | The localized control type should be reasonable
 NameNotEmpty | The Name property of a focusable element must not be an empty string. | Section 508 502.3.1 ObjectInformation | Warning
 NameExcludesControlType | The Name property must not include the element's control type. | Section 508 502.3.1 ObjectInformation | Error
 NameExcludesLocalizedControlType | The Name must not include the same text as the LocalizedControlType. | Section 508 502.3.1 ObjectInformation | Error
-NameExcludesSpecialCharacters | The Name property must not contain any special characters. | Section 508 502.3.1 ObjectInformation | Error
 NameReasonableLength | The Name property must not be longer than 512 characters. | Section 508 502.3.1 ObjectInformation | Warning
 OrientationPropertyExists | Controls that can be horizontal or vertical must support the Orientation property. | Section 508 502.3.1 ObjectInformation | Error
 ProgressBarRangeValue | The RangeValue pattern of a progress bar must have specific Minimum, Maximum, and IsReadOnly values. | Section 508 502.3.1 ObjectInformation | Error
