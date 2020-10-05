@@ -9,10 +9,10 @@ using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.ControlShouldSupportSetInfo)]
-    class ControlShouldSupportSetInfo : Rule
+    [RuleInfo(ID = RuleId.ControlShouldSupportSetInfoWPF)]
+    class ControlShouldSupportSetInfoWPF : Rule
     {
-        public ControlShouldSupportSetInfo()
+        public ControlShouldSupportSetInfoWPF()
         {
             this.Info.Description = Descriptions.ControlShouldSupportSetInfo;
             this.Info.HowToFix = HowToFix.ControlShouldSupportSetInfo;
@@ -22,21 +22,18 @@ namespace Axe.Windows.Rules.Library
         public override EvaluationCode Evaluate(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
+
             if (PositionInSet.Exists.Matches(e) & SizeOfSet.Exists.Matches(e))
             {
                 return EvaluationCode.Pass;
             }
-            else if (PropertyConditions.StringProperties.Framework.Is(Core.Enums.Framework.WPF).Matches(e))
-            {
-                return EvaluationCode.Warning;
-            }
 
-            return EvaluationCode.Error;
+            return EvaluationCode.Warning;
         }
 
         protected override Condition CreateCondition()
         {
-            return (PropertyConditions.StringProperties.Framework.Is(Core.Enums.Framework.WPF) | PropertyConditions.StringProperties.Framework.Is(Core.Enums.Framework.XAML)) & (ListItem | TreeItem);
+            return PropertyConditions.StringProperties.Framework.Is(Core.Enums.Framework.WPF) & (ListItem | TreeItem);
         }
     }
 }

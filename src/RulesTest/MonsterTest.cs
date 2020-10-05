@@ -154,7 +154,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -297,7 +298,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -440,7 +442,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -583,7 +586,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -726,7 +730,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -869,7 +874,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -1012,7 +1018,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         private static Dictionary<RuleId, EvaluationCode> GetTestResultsAsDictionary(A11yElement e)
