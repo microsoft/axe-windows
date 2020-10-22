@@ -298,7 +298,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
-        /// <param name="treeViewMode">current TreeViewode</param>
+        /// <param name="treeViewMode">current TreeViewMode</param>
         /// <returns></returns>
         public static A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode)
         {
