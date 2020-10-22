@@ -135,7 +135,7 @@ namespace Axe.Windows.Actions.Trackers
 
                     LastMousePoint = p;
 
-                    this.timerMouse?.Start(); // make sure that it is disabled.
+                    this.timerMouse?.Start(); // make sure that it is enabled.
                 }
             }
         }
