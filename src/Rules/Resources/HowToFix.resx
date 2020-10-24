@@ -412,18 +412,6 @@ For example, if an element has a level-5 heading, its descendants can have only 
   <data name="LandmarkOneMain" xml:space="preserve">
     <value>Provide exactly one main landmark per page.</value>
   </data>
-  <data name="LocalizedLandmarkTypeExcludesSpecialCharacters" xml:space="preserve">
-    <value>Provide a string for the LocalizedLandmarkType property that does not include any special characters.
-Where appropriate, use a standard localized landmark type:
- · Use "banner" for an area at the beginning of the page with site-oriented content.
- · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.
- · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.
- · Use "form" for an area containing a set of form-related elements.
- · Use "main" for the area with the page's primary content.
- · Use "navigation" for an area containing links for page or site navigation.
- · Use "search" for an area of the page containing search functionality.
-If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-  </data>
   <data name="LocalizedLandmarkTypeIsReasonableLength" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property that contains at most 64 characters.
 Where appropriate, use a standard localized landmark type:
@@ -513,11 +501,6 @@ If possible, use a predefined (non-custom) control type and the default localize
  · Concisely identifies the element, AND
  · Does not include the same text as the element's LocalizedControlType property.</value>
   </data>
-  <data name="NameExcludesSpecialCharacters" xml:space="preserve">
-    <value>Provide a UI Automation Name property for the element that:
- · Concisely identifies the element, AND
- · Does not include any special characters.</value>
-  </data>
   <data name="NameIsInformative" xml:space="preserve">
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
@@ -544,7 +527,7 @@ If possible, use a predefined (non-custom) control type and the default localize
     <value>If the sibling hyperlink with the same Name navigates to a different destination, change the Name of either hyperlink.</value>
   </data>
   <data name="PropertyExcludesPrivateUnicodeCharacters" xml:space="preserve">
-    <value>Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaninful, standard text content.</value>
+    <value>Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaningful, standard text content.</value>
   </data>
   <data name="ClickablePointOnScreen" xml:space="preserve">
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to false.

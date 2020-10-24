@@ -130,7 +130,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -139,7 +139,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNotEmpty]);
@@ -154,7 +154,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -273,7 +274,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -282,7 +283,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
@@ -297,7 +298,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -416,7 +418,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -425,7 +427,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
@@ -440,7 +442,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -559,7 +562,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -568,7 +571,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.Note, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
@@ -583,7 +586,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -702,7 +706,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -711,7 +715,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
@@ -726,7 +730,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -845,7 +850,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -854,7 +859,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
@@ -869,7 +874,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         [TestMethod()]
@@ -988,7 +994,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
@@ -997,7 +1003,7 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesSpecialCharacters]);
+            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameIsInformative]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
@@ -1012,7 +1018,8 @@ namespace Axe.Windows.RulesTest
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfo]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
         }
 
         private static Dictionary<RuleId, EvaluationCode> GetTestResultsAsDictionary(A11yElement e)

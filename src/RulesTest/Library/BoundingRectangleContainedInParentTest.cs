@@ -34,7 +34,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -58,7 +58,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandParent;
 
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -83,7 +83,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandParent;
 
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -132,7 +132,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandParent;
 
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -154,7 +154,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -173,7 +173,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -192,7 +192,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -211,7 +211,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -230,7 +230,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
             } // using
         }
 
@@ -270,7 +270,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Patterns.Add(pattern);
             e.Parent = parent;
 
-            Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
         }
 
         [TestMethod]
@@ -292,7 +292,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Patterns.Add(pattern);
             e.Parent = parent;
 
-            Assert.AreEqual(Rule.Evaluate(e), EvaluationCode.Pass);
+            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
         }
 
         [TestMethod]

@@ -354,9 +354,11 @@ namespace Axe.Windows.Actions
 
             set
             {
-                if (this.TreeTracker == null) return;
+                if (this.MouseTracker != null)
+                    this.MouseTracker.TreeViewMode = value;
 
-                this.TreeTracker.TreeViewMode = value;
+                if (this.TreeTracker != null)
+                    this.TreeTracker.TreeViewMode = value;
             }
         }
 

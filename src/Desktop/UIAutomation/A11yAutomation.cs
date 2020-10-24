@@ -1,9 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.InteropServices;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
@@ -11,6 +7,10 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
+using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.InteropServices;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation
@@ -213,7 +213,25 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get IUIAutomationTreeWalker based on inidcated mode.
+        /// Normalize an element to the specified TreeViewMode
+        /// </summary>
+        /// <param name="element">A11yElement</param>
+        /// <param name="treeViewMode">mode to normalize to</param>
+        /// <returns></returns>
+        public static A11yElement GetNormalizedElement(A11yElement element, TreeViewMode treeViewMode)
+        {
+            if (element == null)
+                throw new ArgumentNullException(nameof(element));
+
+            var walker = GetTreeWalker(treeViewMode);
+            var normalizedElement = walker.NormalizeElement((IUIAutomationElement)element.PlatformObject);
+            Marshal.ReleaseComObject(walker);
+
+            return new DesktopElement(normalizedElement, true);
+        }
+
+        /// <summary>
+        /// Get IUIAutomationTreeWalker based on indicated mode.
         /// </summary>
         /// <param name="mode">TreeViewMode to get walker</param>
         /// <returns></returns>
@@ -259,11 +277,50 @@ namespace Axe.Windows.Desktop.UIAutomation
                     e.PopulateMinimumPropertiesForSelection();
 
                     return e;
-
                 }
                 else
                 {
                     Marshal.ReleaseComObject(uia);
+                }
+            }
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception e)
+            {
+                e.ReportException();
+            }
+#pragma warning restore CA1031 // Do not catch general exception types
+
+            return null;
+        }
+
+        /// <summary>
+        /// Get a DesktopElement from x, y position, normalized to treeViewMode
+        /// </summary>
+        /// <param name="xPos"></param>
+        /// <param name="yPos"></param>
+        /// <param name="treeViewMode">current TreeViewMode</param>
+        /// <returns></returns>
+        public static A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode)
+        {
+            try
+            {
+                A11yElement element = ElementFromPoint(xPos, yPos);
+
+                if (element == null)
+                    return null;
+
+                if (treeViewMode == TreeViewMode.Raw)
+                    return element;
+
+                if (treeViewMode == TreeViewMode.Control && element.IsControlElement)
+                    return element;
+
+                if (treeViewMode == TreeViewMode.Content && element.IsContentElement)
+                    return element;
+
+                using (element)
+                {
+                    return GetNormalizedElement(element, treeViewMode);
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types

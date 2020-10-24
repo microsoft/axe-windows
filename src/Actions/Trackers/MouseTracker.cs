@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Win32;
@@ -38,6 +39,11 @@ namespace Axe.Windows.Actions.Trackers
                 }
             }
         }
+
+        /// <summary>
+        /// Our current TreeViewMode
+        /// </summary>
+        public TreeViewMode TreeViewMode { get; set; }
 
         /// <summary>
         /// Mouse position of POI (point of intererst)
@@ -108,7 +114,7 @@ namespace Axe.Windows.Actions.Trackers
 
                     if (LastMousePoint.Equals(p) && this.POIPoint.Equals(p) == false)
                     {
-                        var element = GetElementBasedOnScope(A11yAutomation.ElementFromPoint(p.X, p.Y));
+                        var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode));
 
                         if (element != null && element.IsRootElement() == false && element.IsSameUIElement(this.SelectedElementRuntimeId, this.SelectedBoundingRectangle, this.SelectedControlTypeId, this.SelectedName) == false && !POIPoint.Equals(p))
                         {
@@ -129,7 +135,7 @@ namespace Axe.Windows.Actions.Trackers
 
                     LastMousePoint = p;
 
-                    this.timerMouse?.Start(); // make sure that it is disabled.
+                    this.timerMouse?.Start(); // make sure that it is enabled.
                 }
             }
         }
