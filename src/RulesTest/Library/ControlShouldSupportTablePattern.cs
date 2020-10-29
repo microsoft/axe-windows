@@ -51,7 +51,7 @@ namespace Axe.Windows.RulesTest.Library
             int[] expectedTypes = { ControlType.Calendar, ControlType.Table };
             var unexpectedTypes = ControlType.All.Difference(expectedTypes);
             
-                var e = new MockA11yElement();
+            var e = new MockA11yElement();
 
             foreach (var type in expectedTypes)
             {
