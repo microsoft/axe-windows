@@ -10,10 +10,10 @@ using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.ControlShouldSupportTablePattern)]
-    class ControlShouldSupportTablePattern : Rule
+    [RuleInfo(ID = RuleId.ControlShouldSupportTablePatternInEdge)]
+    class ControlShouldSupportTablePatternInEdge : Rule
     {
-        public ControlShouldSupportTablePattern()
+        public ControlShouldSupportTablePatternInEdge()
         {
             this.Info.Description = Descriptions.ControlShouldSupportTablePattern;
             this.Info.HowToFix = HowToFix.ControlShouldSupportTablePattern;
@@ -25,12 +25,12 @@ namespace Axe.Windows.Rules.Library
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-                return Patterns.Table.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return Patterns.Table.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
         }
 
         protected override Condition CreateCondition()
         {
-            return (Calendar | Table) & ~StringProperties.Framework.Is(Framework.Edge);
+            return (Calendar | Table) & StringProperties.Framework.Is(Framework.Edge);
         }
     } // class
 } // namespace
