@@ -25,7 +25,7 @@ namespace Axe.Windows.Rules.Library
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-                return Patterns.Table.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return Patterns.Table.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
         }
 
         protected override Condition CreateCondition()
