@@ -6,6 +6,7 @@ using Axe.Windows.Rules;
 using Axe.Windows.RulesTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using RulesTests.RuleImplementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -94,6 +95,91 @@ namespace RulesTests
 
             conditionMock.VerifyAll();
             ruleMock.VerifyAll();
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RunRuleByID_ReturnsExpectedEvaluationCodeWhenPassesTestTrue()
+        {
+            var e = new MockA11yElement();
+
+            var conditionMock = new Mock<Condition>(MockBehavior.Strict);
+            conditionMock.Setup(m => m.Matches(e)).Returns(true).Verifiable();
+
+            var infoStub = new RuleInfo
+            {
+                ErrorCode = EvaluationCode.Note,
+            };
+
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e)).Returns(true).Verifiable();
+            ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.AreEqual(EvaluationCode.Pass, result.EvaluationCode);
+            Assert.AreEqual(e, result.element);
+            Assert.AreEqual(ruleMock.Object.Info, result.RuleInfo);
+
+            conditionMock.VerifyAll();
+            ruleMock.VerifyAll();
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RunRuleByID_ReturnsExpectedEvaluationCodeWhenPassesTestFalse()
+        {
+            var e = new MockA11yElement();
+
+            var conditionMock = new Mock<Condition>(MockBehavior.Strict);
+            conditionMock.Setup(m => m.Matches(e)).Returns(true).Verifiable();
+
+            var infoStub = new RuleInfo
+            {
+                ErrorCode = EvaluationCode.Note,
+            };
+
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e)).Returns(false).Verifiable();
+            ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.AreEqual(EvaluationCode.Note, result.EvaluationCode);
+            Assert.AreEqual(e, result.element);
+            Assert.AreEqual(ruleMock.Object.Info, result.RuleInfo);
+
+            conditionMock.VerifyAll();
+            ruleMock.VerifyAll();
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RunRuleByID_ReturnsExecutionErrorWhenPassesTestNotImplemented()
+        {
+            var e = new MockA11yElement();
+
+            var rule = new RuleWithPassesTestNotImplemented();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => rule);
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.AreEqual(EvaluationCode.RuleExecutionError, result.EvaluationCode);
+            Assert.AreEqual(rule.Info, result.RuleInfo);
+
             providerMock.VerifyAll();
         }
 

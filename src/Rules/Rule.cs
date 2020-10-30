@@ -10,6 +10,7 @@ namespace Axe.Windows.Rules
         RuleInfo Info { get;  }
         Condition Condition { get; }
         EvaluationCode Evaluate(IA11yElement element);
+        bool PassesTest(IA11yElement element);
     }
 
     abstract class Rule : IRule
@@ -51,6 +52,14 @@ namespace Axe.Windows.Rules
         }
 
         public abstract EvaluationCode Evaluate(IA11yElement element);
+
+        public bool PassesTest(IA11yElement element)
+        {
+            // This base class function should never be called
+            // once all rules have been converted to use RuleInfo.EvaluationCode, this function will be designated abstract
+            throw new NotImplementedException();
+        }
+
         protected abstract Condition CreateCondition();
     }
 } // namespace
