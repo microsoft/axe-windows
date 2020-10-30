@@ -7,10 +7,16 @@ using Axe.Windows.Core.Enums;
 
 namespace Axe.Windows.Rules
 {
+    interface IRuleProvider
+    {
+        IRule GetRule(RuleId id);
+        IEnumerable<IRule> All { get; }
+    }
+
     /// <summary>
     /// Supplies rules, ensuring that each rule is created only once, and only when requested.
     /// </summary>
-    class RuleProvider
+    class RuleProvider : IRuleProvider
     {
         private readonly IRuleFactory RuleFactory;
         private readonly ConcurrentDictionary<RuleId, IRule> AllRules = new ConcurrentDictionary<RuleId, IRule>();

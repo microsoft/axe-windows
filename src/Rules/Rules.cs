@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
-using System.Collections.Generic;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
-using Axe.Windows.Telemetry;
-using static System.FormattableString;
+using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.Rules
 {
@@ -16,7 +14,8 @@ namespace Axe.Windows.Rules
     public static class Rules
 #pragma warning restore CA1724
     {
-        private static readonly RuleProvider Provider = new RuleProvider(new RuleFactory());
+        private static readonly IRuleProvider Provider = new RuleProvider(new RuleFactory());
+        private static readonly RuleRunner Runner = new RuleRunner(Provider);
 
         // the following is rarely used because its purpose is just to contain metadata about the rules
         private static readonly Lazy<IReadOnlyDictionary<RuleId, RuleInfo>> AllInfo = new Lazy<IReadOnlyDictionary<RuleId, RuleInfo>>(CreateRuleInfo);
@@ -43,19 +42,7 @@ namespace Axe.Windows.Rules
         /// <returns></returns>
         public static RunResult RunRuleByID(RuleId id, IA11yElement element)
         {
-            var rule = Provider.GetRule(id);
-            if (rule == null)
-            {
-                return new RunResult
-                {
-                    EvaluationCode = EvaluationCode.RuleExecutionError,
-                    ErrorMessage = Invariant($"No rule matching the ID '{id}' was found.")
-                };
-            }
-
-            var retVal = Rules.RunRule(rule, element);
-
-            return retVal;
+            return Runner.RunRuleByID(id, element);
         }
 
         /// <summary>
@@ -65,62 +52,7 @@ namespace Axe.Windows.Rules
         /// <returns></returns>
         public static IEnumerable<RunResult> RunAll(IA11yElement element)
         {
-            var results = new List<RunResult>();
-
-            foreach (var rule in Provider.All)
-            {
-                var result = RunRule(rule, element);
-                results.Add(result);
-            } // for all rules
-
-            return results;
-        }
-
-        private static RunResult RunRule(IRule rule, IA11yElement element)
-        {
-            try
-            {
-                return RunRuleWorker(rule, element);
-            }
-#pragma warning disable CA1031
-            catch (Exception ex)
-#pragma warning restore CA1031
-            {
-                ex.ReportException();
-                if (System.Diagnostics.Debugger.IsLogging())
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
-
-                return new RunResult
-                {
-                    RuleInfo = rule.Info,
-                    EvaluationCode = EvaluationCode.RuleExecutionError,
-                    ErrorMessage = ex.ToString()
-                };
-            } // catch
-        }
-
-        private static RunResult RunRuleWorker(IRule rule, IA11yElement element)
-        {
-            var result = new RunResult
-            {
-                RuleInfo = rule.Info,
-                element = element,
-                EvaluationCode = EvaluationCode.NotApplicable
-            };
-
-            if (!ShouldRun(rule.Condition, element))
-                return result;
-
-            result.EvaluationCode = rule.Evaluate(element);
-
-            return result;
-        }
-
-        private static bool ShouldRun(Condition condition, IA11yElement element)
-        {
-            if (condition == null) return true;
-
-            return condition.Matches(element);
+            return Runner.RunAll(element);
         }
     } // class
 } // namespace
