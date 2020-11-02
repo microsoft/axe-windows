@@ -50,7 +50,13 @@ namespace Axe.Windows.Rules
         /// This information is generated programatically when a rule inherits the Rule base class
         /// and is not meant to be changed.
         /// </summary>
-        public string Condition { get; set;  }
+        public string Condition { get; set; }
+
+        /// <summary>
+        /// The <see cref="EvaluationCode"/> to be returned
+        /// in the case the test does not pass
+        /// </summary>
+        public EvaluationCode? ErrorCode { get; set; }
 
         /// <summary>
         /// Provides a string summary of the information contained in the RuleInfo object.
