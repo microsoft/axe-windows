@@ -7,6 +7,9 @@ using System;
 
 namespace RulesTests.RuleImplementations
 {
+    /*
+    This class can be removed once every rule in the assembly has been converted to calling PassesTest instead of Evaluate
+    */
     [RuleInfo(ID = default(RuleId))]
     class RuleWithPassesTestNotImplemented : Rule
     {
