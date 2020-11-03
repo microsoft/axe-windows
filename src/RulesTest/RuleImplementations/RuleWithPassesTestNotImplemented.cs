@@ -18,7 +18,8 @@ namespace RulesTests.RuleImplementations
 
         public override EvaluationCode Evaluate(IA11yElement element)
         {
-            throw new NotImplementedException();
+            // Don't throw an exception here so we can be sure the only exception thrown is in Rule.PassesTest
+            return EvaluationCode.Pass;
         }
 
         protected override Condition CreateCondition()

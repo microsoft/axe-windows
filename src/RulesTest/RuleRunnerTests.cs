@@ -184,6 +184,45 @@ namespace RulesTests
         }
 
         [TestMethod]
+        public void RunRuleByID_ReturnsExecutionErrorWhenEvaluateNotImplemented()
+        {
+            var e = new MockA11yElement();
+
+            var rule = new RuleWithEvaluateNotImplemented();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => rule);
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.AreEqual(EvaluationCode.RuleExecutionError, result.EvaluationCode);
+            Assert.AreEqual(rule.Info, result.RuleInfo);
+
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RuleWithPassesTestNotImplemented_HasExpectedImplementation()
+        {
+            var rule = new RuleWithPassesTestNotImplemented();
+            Assert.IsTrue(rule.Info.ErrorCode.HasValue);
+            Assert.IsTrue(rule.Condition.Matches(null));
+            Assert.AreEqual(EvaluationCode.Pass, rule.Evaluate(null));
+            Assert.ThrowsException<NotImplementedException>(() => rule.PassesTest(null));
+        }
+
+        [TestMethod]
+        public void RuleWithEvaluateNotImplemented_HasExpectedImplementation()
+        {
+            var rule = new RuleWithEvaluateNotImplemented();
+            Assert.IsFalse(rule.Info.ErrorCode.HasValue);
+            Assert.IsTrue(rule.Condition.Matches(null));
+            Assert.IsTrue(rule.PassesTest(null));
+            Assert.ThrowsException<NotImplementedException>(() => rule.Evaluate(null));
+        }
+
+        [TestMethod]
         public void RunRuleByID_ReturnsExecutionErrorWhenEvaluateThrowsException()
         {
             var e = new MockA11yElement();
