@@ -51,9 +51,14 @@ namespace Axe.Windows.Rules
             return null;
         }
 
-        public abstract EvaluationCode Evaluate(IA11yElement element);
+        public virtual EvaluationCode Evaluate(IA11yElement element)
+        {
+            // This base class function should never be called
+            // once all rules have been converted to use RuleInfo.EvaluationCode, this function will be removed
+            throw new NotImplementedException();
+        }
 
-        public bool PassesTest(IA11yElement element)
+        public virtual bool PassesTest(IA11yElement element)
         {
             // This base class function should never be called
             // once all rules have been converted to use RuleInfo.EvaluationCode, this function will be designated abstract

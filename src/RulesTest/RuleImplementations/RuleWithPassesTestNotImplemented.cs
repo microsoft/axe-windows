@@ -7,6 +7,9 @@ using System;
 
 namespace RulesTests.RuleImplementations
 {
+    /*
+    This class can be removed once every rule in the assembly has been converted to calling PassesTest instead of Evaluate
+    */
     [RuleInfo(ID = default(RuleId))]
     class RuleWithPassesTestNotImplemented : Rule
     {
@@ -18,7 +21,8 @@ namespace RulesTests.RuleImplementations
 
         public override EvaluationCode Evaluate(IA11yElement element)
         {
-            throw new NotImplementedException();
+            // Don't throw an exception here so we can be sure the only exception thrown is in Rule.PassesTest
+            return EvaluationCode.Pass;
         }
 
         protected override Condition CreateCondition()
