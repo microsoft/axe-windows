@@ -14,6 +14,7 @@ namespace Axe.Windows.Automation
     {
         private readonly string _outputDirectory;
         private readonly ISystemDateTime _dateTime;
+        private readonly ISystemIODirectory _directory;
 
         private string _scanId;
 
@@ -30,19 +31,17 @@ namespace Axe.Windows.Automation
             var environment = system.Environment;
             if (environment == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(environment)));
 
-            var directory = system.IO.Directory;
-            if (directory == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(directory)));
+            _directory = system.IO?.Directory;
+            if (_directory == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(_directory)));
 
-            if (!string.IsNullOrWhiteSpace(outputDirectory))
+            if (string.IsNullOrWhiteSpace(outputDirectory))
             {
-                VerifyPathOrThrow(outputDirectory);
-                _outputDirectory = outputDirectory;
-            }
-            else
                 _outputDirectory = Path.Combine(environment.CurrentDirectory, DefaultOutputDirectoryName);
+                return;
+            }
 
-            if (!directory.Exists(_outputDirectory))
-                directory.CreateDirectory(_outputDirectory);
+            VerifyPathOrThrow(outputDirectory);
+            _outputDirectory = outputDirectory;
         }
 
         /// <summary>
@@ -65,6 +64,20 @@ namespace Axe.Windows.Automation
             {
                 throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorDirectoryInvalid, path), ex);
             }
+        }
+
+        /// <summary>
+        /// Ensures the output directory for the file path returned by <see cref="GetNewA11yTestFilePath"/>
+        /// exists.
+        /// </summary>
+        /// <remarks>
+        /// If the directory does not exist, the method attempts to create it.
+        /// This method does not catch any exceptions so that file IO errors are reported to the user.
+        /// </remarks>
+        public void EnsureOutputDirectoryExists()
+        {
+            if (!_directory.Exists(_outputDirectory))
+                _directory.CreateDirectory(_outputDirectory);
         }
 
         public string GetNewA11yTestFilePath()

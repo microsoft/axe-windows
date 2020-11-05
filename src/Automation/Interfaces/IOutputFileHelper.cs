@@ -6,6 +6,7 @@ namespace Axe.Windows.Automation
 {
     internal interface IOutputFileHelper
     {
+        void EnsureOutputDirectoryExists();
         string GetNewA11yTestFilePath();
         void SetScanId(string scanId);
     } // interface

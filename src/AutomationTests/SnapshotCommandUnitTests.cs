@@ -293,6 +293,7 @@ namespace Axe.Windows.AutomationTests
 
             _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
 
+            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
             _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath()).Returns<string>(null);
 
             var config = Config.Builder
@@ -333,6 +334,7 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
             _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
 
+            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
             _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath()).Returns(expectedPath);
 
             var config = Config.Builder

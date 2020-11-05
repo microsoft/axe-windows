@@ -111,8 +111,7 @@ namespace Axe.Windows.AutomationTests
             string testParam = @"c:\TestDir";
             mockEnvironment.Setup(x => x.CurrentDirectory).Returns(testParam);
 
-            string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutputDirectoryName);
-            mockDirectory.Setup(x => x.Exists(expectedDirectory)).Returns(true);
+string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutputDirectoryName);
 
             var outputFileHelper = new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
             string result = outputFileHelper.GetNewA11yTestFilePath();
@@ -142,7 +141,6 @@ namespace Axe.Windows.AutomationTests
             mockDateTime.Setup(x => x.Now).Returns(DateTime.Now);
 
             string expectedDirectory = @"c:\TestDir";
-            mockDirectory.Setup(x => x.Exists(expectedDirectory)).Returns(true);
 
             var outputFileHelper = new OutputFileHelper(expectedDirectory, mockSystem.Object);
             string result = outputFileHelper.GetNewA11yTestFilePath();
@@ -157,7 +155,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void OutputFileHelperCtor_CreatesNonexistentDirectory()
+        public void OutputFileHelper_EnsureOutputDirectoryExists_CreatesNonexistentDirectory()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
             var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
@@ -172,8 +170,33 @@ namespace Axe.Windows.AutomationTests
             mockDirectory.Setup(x => x.CreateDirectory(directory)).Returns<System.IO.DirectoryInfo>(null);
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
+            outputFileHelper.EnsureOutputDirectoryExists();
 
             // the folowing verifies that Exists was called
+
+            mockSystem.VerifyAll();
+            mockIO.VerifyAll();
+            mockDirectory.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void OutputFileHelper_EnsureOutputDirectoryExists_DoesNotCatchExceptions()
+        {
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
+            var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
+
+            string directory = @"c:\NonexistentDirectory";
+            mockDirectory.Setup(x => x.Exists(directory)).Returns(false);
+            mockDirectory.Setup(x => x.CreateDirectory(directory)).Throws<Exception>();
+
+            var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
+            Assert.ThrowsException<Exception>(() => outputFileHelper.EnsureOutputDirectoryExists());
 
             mockSystem.VerifyAll();
             mockIO.VerifyAll();
@@ -195,7 +218,6 @@ namespace Axe.Windows.AutomationTests
             mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             string directory = @"c:\TestDir";
-            mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
 
             var dateTime = new DateTime(
                 year: 2019,
@@ -236,7 +258,6 @@ namespace Axe.Windows.AutomationTests
             mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
 
             string directory = @"c:\TestDir2";
-            mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
             outputFileHelper.SetScanId("myScanId");
