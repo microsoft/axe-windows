@@ -68,7 +68,10 @@ namespace Axe.Windows.AutomationTests
         {
             StopTestApp();
 
-            CleanupTestOutput();
+            if(Directory.Exists(OutputDir))
+            {
+                CleanupTestOutput();
+            }
         }
 
         [TestMethod]
@@ -81,25 +84,42 @@ namespace Axe.Windows.AutomationTests
 
         // [TestMethod]
         [Timeout(30000)]
-        public void Scan_Integration_Win32ControlSampler()
+        public void Scan_Integration_Win32ControlSamplerFile()
         {
             Scan_IntegrationWithFile_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+        }
+        // [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_Win32ControlSamplerNoFile()
+        {
             Scan_IntegrationNoFile_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
         }
 
         [TestMethod]
         [Timeout(30000)]
-        public void Scan_Integration_WindowsFormsControlSampler()
+        public void Scan_Integration_WindowsFormsControlSamplerFile()
         {
             Scan_IntegrationWithFile_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsControlSamplerNoFile()
+        {
             Scan_IntegrationNoFile_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
         }
 
         [TestMethod]
         [Timeout(30000)]
-        public void Scan_Integration_WpfControlSampler()
+        public void Scan_Integration_WpfControlSamplerFile()
         {
             Scan_IntegrationWithFile_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WpfControlSamplerNoFile()
+        {
             Scan_IntegrationNoFile_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
