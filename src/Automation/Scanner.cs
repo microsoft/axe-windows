@@ -17,7 +17,6 @@ namespace Axe.Windows.Automation
         {
             if (config == null) throw new ArgumentNullException(nameof(config));
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
-            if (scanTools.OutputFileHelper == null) throw new ArgumentException(ErrorMessages.ScanToolsOutputFileHelperNull, nameof(scanTools));
 
             _config = config;
             _scanTools = scanTools;
@@ -45,7 +44,7 @@ namespace Axe.Windows.Automation
         {
             return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
             {
-                _scanTools.OutputFileHelper.SetScanId(scanId);
+                _scanTools.OutputFileHelper?.SetScanId(scanId);
 
                 return SnapshotCommand.Execute(_config, _scanTools);
             });

@@ -254,7 +254,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullOutputFileHelper_ThrowsException()
+        public void Execute_NullOutputFileHelper_ThrowsNoException()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
@@ -265,9 +265,7 @@ namespace Axe.Windows.AutomationTests
             var expectedResults = new ScanResults();
             expectedResults.ErrorCount = 1;
             InitResultsCallback(expectedResults);
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<ArgumentException>(action);
-            Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
+            SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
             _targetElementLocatorMock.VerifyAll();

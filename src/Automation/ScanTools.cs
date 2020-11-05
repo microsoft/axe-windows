@@ -14,7 +14,6 @@ namespace Axe.Windows.Automation
 
         public ScanTools(IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler, ITargetElementLocator targetElementLocator, IAxeWindowsActions actions, INativeMethods nativeMethods)
         {
-            if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
             if (resultsAssembler == null) throw new ArgumentNullException(nameof(resultsAssembler));
             if (targetElementLocator == null) throw new ArgumentNullException(nameof(targetElementLocator));
             if (actions == null) throw new ArgumentNullException(nameof(actions));

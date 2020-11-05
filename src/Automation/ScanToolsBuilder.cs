@@ -24,8 +24,9 @@ namespace Axe.Windows.Automation
 
         public IScanTools Build()
         {
+            // A null file helper indicates no writing to file and as such is allowed.
             return new ScanTools(
-                _outputFileHelper ?? _factory.CreateOutputFileHelper(null),
+                    _outputFileHelper,
                     _factory.CreateResultsAssembler(),
                     _factory.CreateTargetElementLocator(),
                     _factory.CreateAxeWindowsActions(),

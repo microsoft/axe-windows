@@ -75,7 +75,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WildlifeManager()
         {
-            ScanResults results = Scan_Integration_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
+            ScanResults results = Scan_IntegrationWithFile_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
             EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
         }
 
@@ -83,24 +83,27 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_Win32ControlSampler()
         {
-            Scan_Integration_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+            Scan_IntegrationWithFile_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+            Scan_IntegrationNoFile_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
         }
 
         [TestMethod]
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsControlSampler()
         {
-            Scan_Integration_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+            Scan_IntegrationWithFile_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+            Scan_IntegrationNoFile_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
         }
 
         [TestMethod]
         [Timeout(30000)]
         public void Scan_Integration_WpfControlSampler()
         {
-            Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+            Scan_IntegrationWithFile_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+            Scan_IntegrationNoFile_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount)
+        private ScanResults Scan_IntegrationWithFile_Core(string testAppPath, int expectedErrorCount)
         {
             LaunchTestApp(testAppPath);
             var config = Config.Builder.ForProcessId(TestProcess.Id)
@@ -132,6 +135,23 @@ namespace Axe.Windows.AutomationTests
             {
                 Assert.IsNull(output.OutputFile.A11yTest);
             }
+
+            return output;
+        }
+        private ScanResults Scan_IntegrationNoFile_Core(string testAppPath, int expectedErrorCount)
+        {
+            LaunchTestApp(testAppPath);
+            var config = Config.Builder.ForProcessId(TestProcess.Id).WithOutputFileFormat(OutputFileFormat.None).Build();
+
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var output = ScanWithProvisionForBuildAgents(scanner);
+
+            // Validate for consistency
+            Assert.AreEqual(expectedErrorCount, output.ErrorCount);
+            Assert.AreEqual(expectedErrorCount, output.Errors.Count());
+            Assert.IsNull(output.OutputFile.A11yTest);
+            Assert.IsNull(output.OutputFile.Sarif);
 
             return output;
         }

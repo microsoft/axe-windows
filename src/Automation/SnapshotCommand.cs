@@ -45,7 +45,8 @@ namespace Axe.Windows.Automation
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
-            if (results.ErrorCount > 0)
+            // Only try to create file if we have an OutputFileHelper.
+            if (results.ErrorCount > 0 && scanTools.OutputFileHelper != null)
                 results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId);
 
             return results;
