@@ -181,6 +181,31 @@ string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutpu
 
         [TestMethod]
         [Timeout(1000)]
+        public void OutputFileHelper_EnsureOutputDirectoryExists_DoesNotCreateExistingDirectory()
+        {
+            var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
+            var mockIO = new Mock<ISystemIO>(MockBehavior.Strict);
+            var mockDirectory = new Mock<ISystemIODirectory>(MockBehavior.Strict);
+            mockSystem.Setup(x => x.DateTime).Returns(InertDateTime);
+            mockSystem.Setup(x => x.Environment).Returns(InertEnvironment);
+            mockSystem.Setup(x => x.IO).Returns(mockIO.Object);
+            mockIO.Setup(x => x.Directory).Returns(mockDirectory.Object);
+
+            string directory = @"c:\NonexistentDirectory";
+            mockDirectory.Setup(x => x.Exists(directory)).Returns(true);
+
+            var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
+            outputFileHelper.EnsureOutputDirectoryExists();
+
+            // the folowing verifies that CreateDirectory was not called
+
+            mockSystem.VerifyAll();
+            mockIO.VerifyAll();
+            mockDirectory.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
         public void OutputFileHelper_EnsureOutputDirectoryExists_DoesNotCatchExceptions()
         {
             var mockSystem = new Mock<ISystem>(MockBehavior.Strict);
