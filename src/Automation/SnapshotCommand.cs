@@ -62,6 +62,8 @@ namespace Axe.Windows.Automation
             {
                 scanTools.Actions.CaptureScreenshot(elementId);
 
+                scanTools.OutputFileHelper.EnsureOutputDirectoryExists();
+
                 a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
                 if (a11yTestOutputFile == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(a11yTestOutputFile)));
                 
