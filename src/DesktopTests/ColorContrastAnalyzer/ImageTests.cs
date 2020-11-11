@@ -22,7 +22,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assembly myAssembly = Assembly.GetExecutingAssembly();
             Stream myStream = myAssembly.GetManifestResourceStream("DesktopTests.TestImages." + name);
             Bitmap bmp = new Bitmap(myStream);
-            return new BitmapCollection(bmp);
+            return new BitmapCollection(bmp, new DefaultColorContrastConfig());
         }
 
         [TestMethod, Timeout(2000)]
