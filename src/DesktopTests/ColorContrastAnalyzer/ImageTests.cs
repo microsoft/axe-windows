@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing;
 using static Axe.Windows.Desktop.ColorContrastAnalyzer.ColorContrastResult;
 using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
+using System;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
@@ -23,6 +24,13 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Stream myStream = myAssembly.GetManifestResourceStream("DesktopTests.TestImages." + name);
             Bitmap bmp = new Bitmap(myStream);
             return new BitmapCollection(bmp, new DefaultColorContrastConfig());
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void BitmapCollection_Ctor_ConfigIsNull_Throws()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new BitmapCollection(new Bitmap(1, 1), null));
         }
 
         [TestMethod, Timeout(2000)]
