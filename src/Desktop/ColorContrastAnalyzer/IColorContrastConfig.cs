@@ -6,7 +6,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     public interface IColorContrastConfig
     {
         /// <summary>
-        /// The maximum width we expect Text to be.This number can be much larger than this
+        /// The maximum width we expect Text to be. This number can be much larger than this
         /// and still be helpful.
         /// </summary>
         int MaxTextThickness { get; }
@@ -30,7 +30,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// <summary>
         /// If a given pair of colors occurs this many times more frequently than other color combinations
         /// we are sure it is the Text/Background color pair. Otherwise, there are too many potential
-        /// combinations in a y for us to be positive about any given pair.
+        /// combinations in a "Row" of pixels for us to be positive about any given pair.
         /// </summary>
         int TransitionCountDominanceFactor { get; }
     }
