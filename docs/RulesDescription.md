@@ -88,6 +88,7 @@ ControlShouldSupportSetInfoXAML | The element's ControlType requires valid value
 ControlShouldSupport SpreadsheetItemPattern | An element whose parent supports the Spreadsheet pattern must support the SpreadsheetItem pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTableItemPattern | An element whose parent supports the Table pattern must support the TableItem pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTablePattern | An element of the given ControlType must support the Table pattern. | Section 508 502.3.10 AvailableActions | Error
+ControlShouldSupportTablePatternInEdge | An element of the given ControlType must support the Table pattern. | Section 508 502.3.10 AvailableActions | Warning
 ControlShouldSupportTogglePattern | An element of the given ControlType must support the Toggle pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTransformPattern | An element that can be resized must support the Transform pattern. | Section 508 502.3.10 AvailableActions | Error
 ControlShouldSupportTextPattern | An element of the given ControlType must support the Text pattern. | Section 508 502.3.10 AvailableActions | Error

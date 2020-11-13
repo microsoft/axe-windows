@@ -12,10 +12,12 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         private ColorContrastResult.Confidence _currentBestConfidence;
         private ColorContrastResult _convergedResult;
         private readonly CachedColorContrastResultComparer _resultComparer = new CachedColorContrastResultComparer();
+        private readonly IColorContrastConfig _colorContrastConfig;
 
         public ColorContrastResult MostLikelyResult => _convergedResult ?? _cachedResultsAtCurrentBestConfidence.FirstOrDefault()?.Result;
-        public ResultAggregator()
+        internal ResultAggregator(IColorContrastConfig colorContrastConfig)
         {
+            _colorContrastConfig = colorContrastConfig;
             SetCurrentBestConfidence(ColorContrastResult.Confidence.None);
         }
 
@@ -51,7 +53,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             if (_currentBestConfidence == ColorContrastResult.Confidence.High)
             {
                 _cachedResultsAtCurrentBestConfidence.Sort(_resultComparer);
-                if (_cachedResultsAtCurrentBestConfidence.Count >= ColorContrastConfig.HighConfidenceConvergenceThreshold)
+                if (_cachedResultsAtCurrentBestConfidence.Count >= _colorContrastConfig.HighConfidenceConvergenceThreshold)
                 {
                     CachedColorContrastResult baseResult = null;
                     int similarResults = 0;
@@ -61,7 +63,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                         if (baseResult != null &&
                             baseResult.MostLikelyColorPair.IsVisiblySimilarTo(result.MostLikelyColorPair))
                         {
-                            if (++similarResults >= ColorContrastConfig.HighConfidenceConvergenceThreshold)
+                            if (++similarResults >= _colorContrastConfig.HighConfidenceConvergenceThreshold)
                             {
                                 _convergedResult = baseResult.Result;
                                 break;

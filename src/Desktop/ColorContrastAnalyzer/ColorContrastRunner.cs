@@ -1,7 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
@@ -12,11 +11,18 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     */
     internal class ColorContrastRunner
     {
+        private readonly IColorContrastConfig _colorContrastConfig;
+
         private Dictionary<Color, ColorContrastTransition> openTransitions = new Dictionary<Color, ColorContrastTransition>();
 
         private CountMap<Color> countExactColors = new CountMap<Color>();
 
         private CountMap<ColorPair> countExactPairs = new CountMap<ColorPair>();
+
+        internal ColorContrastRunner(IColorContrastConfig colorContrastConfig)
+        {
+            _colorContrastConfig = colorContrastConfig;
+        }
 
         internal void OnPixel(Color color, Color previousColor)
         {
@@ -51,7 +57,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             if (previousColor != null && !color.Equals(previousColor))
             {
-                openTransitions[previousColor] = new ColorContrastTransition(previousColor);
+                openTransitions[previousColor] = new ColorContrastTransition(previousColor, _colorContrastConfig);
             }
         }
 
@@ -98,9 +104,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             var firstEntryCount = sortedByValueAndContrast.First().Value;
 
-            if (firstEntryCount < ColorContrastConfig.MinNumberColorTransitions) return result;
+            if (firstEntryCount < _colorContrastConfig.MinNumberColorTransitions) return result;
 
-            var firstEntryCountAdjusted = firstEntryCount / ColorContrastConfig.TransitionCountDominanceFactor;
+            var firstEntryCountAdjusted = firstEntryCount / _colorContrastConfig.TransitionCountDominanceFactor;
 
             foreach (var entry in sortedByValueAndContrast)
             {

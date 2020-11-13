@@ -11,9 +11,9 @@ using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 namespace Axe.Windows.RulesTest.Library
 {
     [TestClass]
-    public class ControlShouldSupportTablePattern
+    public class ControlShouldSupportTablePatternInEdge
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTablePattern();
+        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTablePatternInEdge();
 
         [TestMethod]
         public void HasTablePattern_Pass()
@@ -25,11 +25,11 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void NoTablePattern_Error()
+        public void NoTablePattern_Warning()
         {
             var e = new MockA11yElement();
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
         }
 
         [TestMethod]
@@ -52,6 +52,7 @@ namespace Axe.Windows.RulesTest.Library
             var unexpectedTypes = ControlType.All.Difference(expectedTypes);
             
             var e = new MockA11yElement();
+            e.Framework = Framework.Edge;
 
             foreach (var type in expectedTypes)
             {
@@ -66,7 +67,7 @@ namespace Axe.Windows.RulesTest.Library
             }
 
             e.ControlTypeId = expectedTypes[0];
-            e.Framework = Framework.Edge;
+            e.Framework = null;
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }

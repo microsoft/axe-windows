@@ -6,6 +6,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     internal class ColorContrastTransition
     {
+        private readonly IColorContrastConfig _colorContrastConfig;
 
         internal Boolean IsClosed { get; private set; }
         internal Boolean IsConnecting { get; private set; }
@@ -29,8 +30,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         private int size = 1;
 
-        internal ColorContrastTransition(Color color)
+        internal ColorContrastTransition(Color color, IColorContrastConfig colorContrastConfig)
         {
+            _colorContrastConfig = colorContrastConfig;
             StartingColor = color;
             MostContrastingColor = color;
         }
@@ -39,7 +41,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         {
             size++;
 
-            if (size > ColorContrastConfig.MaxTextThickness || (size > 1 && StartingColor.Equals(color)))
+            if (size > _colorContrastConfig.MaxTextThickness || (size > 1 && StartingColor.Equals(color)))
             {
 
                 if (StartingColor.Equals(color))

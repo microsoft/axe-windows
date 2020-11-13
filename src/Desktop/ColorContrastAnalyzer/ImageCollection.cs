@@ -1,5 +1,6 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserv
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,6 +8,15 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public abstract class ImageCollection : IEnumerable<Pixel>
     {
+        private readonly IColorContrastConfig _colorContrastConfig;
+
+        protected ImageCollection(IColorContrastConfig colorContrastConfig)
+        {
+            if (colorContrastConfig == null)
+                throw new ArgumentNullException(nameof(colorContrastConfig));
+
+            _colorContrastConfig = colorContrastConfig;
+        }
 
         public abstract int NumColumns();
 
@@ -70,7 +80,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         {
             int middle = (bottom + top) / 2;
 
-            if ((bottom - top) < ColorContrastConfig.MinSpaceBetweenSamples) yield break;
+            if ((bottom - top) < _colorContrastConfig.MinSpaceBetweenSamples) yield break;
 
             for (var i = 0; i < NumColumns(); i++)
             {
