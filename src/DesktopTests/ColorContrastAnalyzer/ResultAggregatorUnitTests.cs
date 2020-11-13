@@ -10,6 +10,8 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
     [TestClass]
     public class ResultAggregatorUnitTests
     {
+        private ResultAggregator _testSubject;
+
         private static readonly ColorContrastResult NoConfidenceResult = 
             BuildColorContrastResult(ColorContrastResult.Confidence.None, null);
         private static readonly ColorContrastResult LowConfidenceResult =
@@ -36,6 +38,12 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             return resultMock.Object;
         }
 
+        [TestInitialize]
+        public void BeforeEach()
+        {
+            _testSubject = new ResultAggregator(new DefaultColorContrastConfig());
+        }
+
         [TestMethod]
         [Timeout(2000)]
         public void AssertStaticValues()
@@ -50,14 +58,14 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void HasConverged_EmptyAggregator_ReturnsFalse()
         {
-            Assert.IsFalse(new ResultAggregator().HasConverged);
+            Assert.IsFalse(_testSubject.HasConverged);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void MostLikelyResult_EmptyAggregator_ReturnsNull()
         {
-            Assert.IsNull(new ResultAggregator().MostLikelyResult);
+            Assert.IsNull(_testSubject.MostLikelyResult);
         }
 
         [TestMethod]
@@ -66,11 +74,10 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             ColorContrastResult[] increasingConfidenceResults = 
                 { NoConfidenceResult, LowConfidenceResult, MidConfidenceResult, HighConfidenceResult };
-            var aggregator = new ResultAggregator();
             foreach (var result in increasingConfidenceResults)
             {
-                aggregator.AddResult(result);
-                Assert.AreEqual(result, aggregator.MostLikelyResult);
+                _testSubject.AddResult(result);
+                Assert.AreEqual(result, _testSubject.MostLikelyResult);
             }
         }
 
@@ -80,11 +87,10 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             ColorContrastResult[] increasingConfidenceResults =
                 { HighConfidenceResult, MidConfidenceResult, LowConfidenceResult, NoConfidenceResult };
-            var aggregator = new ResultAggregator();
             foreach (var result in increasingConfidenceResults)
             {
-                aggregator.AddResult(result);
-                Assert.AreEqual(HighConfidenceResult, aggregator.MostLikelyResult);
+                _testSubject.AddResult(result);
+                Assert.AreEqual(HighConfidenceResult, _testSubject.MostLikelyResult);
             }
         }
 
@@ -92,57 +98,51 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void HasConverged_OneNoConfidenceResult_Returns_False()
         {
-            var aggregator = new ResultAggregator();
-            aggregator.AddResult(NoConfidenceResult);
-            Assert.IsFalse(aggregator.HasConverged);
+            _testSubject.AddResult(NoConfidenceResult);
+            Assert.IsFalse(_testSubject.HasConverged);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void HasConverged_OnelOWConfidenceResult_Returns_False()
         {
-            var aggregator = new ResultAggregator();
-            aggregator.AddResult(LowConfidenceResult);
-            Assert.IsFalse(aggregator.HasConverged);
+            _testSubject.AddResult(LowConfidenceResult);
+            Assert.IsFalse(_testSubject.HasConverged);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void HasConverged_OneMidConfidenceResult_Returns_False()
         {
-            var aggregator = new ResultAggregator();
-            aggregator.AddResult(MidConfidenceResult);
-            Assert.IsFalse(aggregator.HasConverged);
+            _testSubject.AddResult(MidConfidenceResult);
+            Assert.IsFalse(_testSubject.HasConverged);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void HasConverged_OneHighConfidenceResult_Returns_False()
         {
-            var aggregator = new ResultAggregator();
-            aggregator.AddResult(HighConfidenceResult);
-            Assert.IsFalse(aggregator.HasConverged);
+            _testSubject.AddResult(HighConfidenceResult);
+            Assert.IsFalse(_testSubject.HasConverged);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void HasConverged_TwoIdenticalHighConfidenceResults_Returns_False()
         {
-            var aggregator = new ResultAggregator();
-            aggregator.AddResult(HighConfidenceResult);
-            aggregator.AddResult(HighConfidenceResult);
-            Assert.IsFalse(aggregator.HasConverged);
+            _testSubject.AddResult(HighConfidenceResult);
+            _testSubject.AddResult(HighConfidenceResult);
+            Assert.IsFalse(_testSubject.HasConverged);
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void HasConverged_ThreeIdenticalHighConfidenceResults_Returns_True()
         {
-            var aggregator = new ResultAggregator();
-            aggregator.AddResult(HighConfidenceResult);
-            aggregator.AddResult(HighConfidenceResult);
-            aggregator.AddResult(HighConfidenceResult);
-            Assert.IsTrue(aggregator.HasConverged);
+            _testSubject.AddResult(HighConfidenceResult);
+            _testSubject.AddResult(HighConfidenceResult);
+            _testSubject.AddResult(HighConfidenceResult);
+            Assert.IsTrue(_testSubject.HasConverged);
         }
     }
 }

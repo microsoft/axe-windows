@@ -38,8 +38,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         public ColorContrastResult RunColorContrastCalculation()
         {
-            ResultAggregator aggregator = new ResultAggregator();
-            ColorContrastRunner runner = new ColorContrastRunner();
+            ResultAggregator aggregator = new ResultAggregator(_colorContrastConfig);
+            ColorContrastRunner runner = new ColorContrastRunner(_colorContrastConfig);
 
             Color previousColor = null;
 

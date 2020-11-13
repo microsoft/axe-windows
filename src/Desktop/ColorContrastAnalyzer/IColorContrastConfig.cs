@@ -34,7 +34,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// </summary>
         int TransitionCountDominanceFactor { get; }
 
-
         /// <summary>
         /// Minimum number of high confidence results that need to agree to consider high contrast
         /// as converged. It might be worth adjusting the confidence scales to reflect this.
