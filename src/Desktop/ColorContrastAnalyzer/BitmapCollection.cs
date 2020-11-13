@@ -8,7 +8,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         private readonly System.Drawing.Bitmap bitmap;
 
+        // Temporary legacy constructor, will be removed after the new ctor is wired up in AIWin
         public BitmapCollection(System.Drawing.Bitmap bitmap)
+            : this(bitmap, new DefaultColorContrastConfig())
+        {
+        }
+
+        public BitmapCollection(System.Drawing.Bitmap bitmap, IColorContrastConfig colorContrastConfig)
+            : base(colorContrastConfig)
         {
             this.bitmap = bitmap;
         }
