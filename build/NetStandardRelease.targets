@@ -4,7 +4,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <NoWarn>RS0100;RS0016</NoWarn>
     <!-- used by Microsoft.CodeAnalysis.NetAnalyzers -->
-      <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
   
   <Import Project="..\src\props\version.props" />
