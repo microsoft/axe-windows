@@ -36,12 +36,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
         public static Condition EdgeDocument = Pane & StringProperties.Framework.Is(Core.Enums.Framework.Edge) & NotParent(StringProperties.Framework.Is(Core.Enums.Framework.Edge));
-        public static Condition WPFDataGridCell = CreateWPFDataGridCellCondition();
-
-        private static Condition CreateWPFDataGridCellCondition()
-        {
-            return WPF & StringProperties.ClassName.Is("DataGridCell");
-        }
+        public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
