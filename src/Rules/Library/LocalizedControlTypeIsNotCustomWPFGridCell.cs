@@ -4,22 +4,23 @@ using System;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
+using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
+using System.Globalization;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.LocalizedControlTypeNotCustom)]
-    class LocalizedControlTypeIsNotCustom : Rule
+    [RuleInfo(ID = RuleId.LocalizedControlTypeNotCustomWPFGridCell)]
+    class LocalizedControlTypeIsNotCustomWPFGridCell : Rule
     {
-        public LocalizedControlTypeIsNotCustom()
+        public LocalizedControlTypeIsNotCustomWPFGridCell()
         {
             this.Info.Description = Descriptions.LocalizedControlTypeNotCustom;
-            this.Info.HowToFix = HowToFix.LocalizedControlTypeNotCustom;
+            this.Info.HowToFix = String.Format(CultureInfo.CurrentCulture, HowToFix.LocalizedControlTypeNotCustomWPFGridCell, HowToFix.LocalizedControlTypeNotCustom);
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
         }
@@ -33,13 +34,10 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var dataGridDetailsPresenter = ClassName.Is("DataGridDetailsPresenter") & Parent(DataItem);
-
             return Custom
                 & IsKeyboardFocusable
                 & LocalizedControlType.NotNullOrEmpty
-                & ~dataGridDetailsPresenter
-                & ~ElementGroups.WPFDataGridCell;
+                & WPFDataGridCell;
         }
     } // class
 } // namespace
