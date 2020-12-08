@@ -202,7 +202,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
-        public void WPFDataGridCell_MatcheAsExpected()
+        public void WPFDataGridCell_MatchExpected()
         {
             using (var e = new MockA11yElement())
             {
