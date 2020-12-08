@@ -244,6 +244,7 @@ namespace Axe.Windows.Core.Enums
         LocalizedControlTypeNotEmpty,
         LocalizedControlTypeNotNull,
         LocalizedControlTypeNotCustom,
+        LocalizedControlTypeNotCustomWPFGridCell,
 
         ParentChildShouldNotHaveSameNameAndLocalizedControlType,
 

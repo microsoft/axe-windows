@@ -19,6 +19,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         // the following occurs for xaml expand/collapse controls
         private static Condition FocusableGroup = Group & IsKeyboardFocusable & (StringProperties.Framework.Is(Core.Enums.Framework.WPF) | StringProperties.Framework.Is(Core.Enums.Framework.XAML));
 
+        private static Condition WPF = Framework.Is(Core.Enums.Framework.WPF);
         public static Condition MinMaxCloseButton = CreateMinMaxCloseButtonCondition();
         public static Condition FocusableButton = CreateFocusableButtonCondition();
         private static Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
@@ -35,6 +36,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
         public static Condition EdgeDocument = Pane & StringProperties.Framework.Is(Core.Enums.Framework.Edge) & NotParent(StringProperties.Framework.Is(Core.Enums.Framework.Edge));
+        public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
@@ -150,7 +152,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             return Button
                 & Parent(ScrollBar)
-                & Framework.Is(Axe.Windows.Core.Enums.Framework.WPF)
+                & WPF
                 & (AutomationID.Is("PageUp")
                 | AutomationID.Is("PageDown")
                 | AutomationID.Is("PageLeft")
@@ -201,7 +203,7 @@ namespace Axe.Windows.Rules.PropertyConditions
                 | ProgressBar | RadioButton | ScrollBar | SemanticZoom
                 | Separator | Slider | Spinner | SplitButton
                 | Tab | TabItem | Table
-                | (Text & ~StringProperties.Framework.Is(Core.Enums.Framework.WPF)) 
+                | (Text & ~WPF) 
                 | Thumb | TitleBar | ToolBar
                 | ToolTip | Tree | TreeItem | Window;
         }

@@ -740,6 +740,17 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///    
+        ///If your application targets a version of .NET Framework before 4.7.1, but is running on a system where .NET version 4.7.1 or higher is installed, you may be able to address this issue by taking advantage of accessibility enhancements in .NET 4.7.1. To do this, you will need to enable accessibility switches as described on the following page: https://docs.microsoft.com/en-us/dotnet/framework/whats-new/whats-new-in-accessibility#accessibility-switches.
+        /// </summary>
+        internal static string LocalizedControlTypeNotCustomWPFGridCell {
+            get {
+                return ResourceManager.GetString("LocalizedControlTypeNotCustomWPFGridCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Provide a string for the LocalizedControlType property that concisely describes the control&apos;s type..
         /// </summary>
         internal static string LocalizedControlTypeNotEmpty {

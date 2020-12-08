@@ -7,9 +7,9 @@ using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 namespace Axe.Windows.RulesTest.Library
 {
     [TestClass]
-    public class LocalizedControlTypeIsNotCustom
+    public class LocalizedControlTypeIsNotCustomWPFGridCell
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotCustom();
+        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotCustomWPFGridCell();
 
         private MockA11yElement CreateElementExpectedToMatchCondition()
         {
@@ -17,6 +17,8 @@ namespace Axe.Windows.RulesTest.Library
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_CustomControlTypeId;
             e.LocalizedControlType = "non-empty string";
             e.IsKeyboardFocusable = true;
+            e.Framework = Core.Enums.Framework.WPF;
+            e.ClassName = "DataGridCell";
 
             return e;
         }
@@ -35,8 +37,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = CreateElementExpectedToMatchCondition();
 
             int[] custom = { ControlType.Custom };
-            foreach (var ct in ControlType.All.
-                Except(custom))
+            foreach (var ct in ControlType.All.Except(custom))
             {
                 e.ControlTypeId = ct;
                 Assert.IsFalse(this.Rule.Condition.Matches(e));
@@ -71,24 +72,19 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void ElementIsDataGridDetailsPresenter()
+        public void ElementClassNameDoesNotMatch()
         {
-            var parent = new MockA11yElement();
-            parent.ControlTypeId = ControlType.DataItem;
-
             var e = CreateElementExpectedToMatchCondition();
-            e.ClassName = "DataGridDetailsPresenter";
-            e.Parent = parent;
+            e.ClassName = string.Empty;
 
             Assert.IsFalse(this.Rule.Condition.Matches(e));
         }
 
         [TestMethod]
-        public void ElementIsWPFDataGridCell()
+        public void ElementFrameworkDoesNotMatch()
         {
             var e = CreateElementExpectedToMatchCondition();
-            e.ClassName = "DataGridCell";
-            e.Framework = Core.Enums.Framework.WPF;
+            e.Framework = string.Empty;
 
             Assert.IsFalse(this.Rule.Condition.Matches(e));
         }
@@ -103,7 +99,7 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void LocalizedControlTypeIsNotCustomTest()
+        public void LocalizedControlTypeIsNotCustom()
         {
             var e = new MockA11yElement();
             e.LocalizedControlType = "not custom";

@@ -16,7 +16,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
 
         public ElementGroupsTests()
         {
-            this.AllowSameNameAndControlTypeTypes = new int[]{ AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
+            this.AllowSameNameAndControlTypeTypes = new int[] { AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
             this.DisallowSameNameAndControlTypeTypes = ControlType.All.Difference(AllowSameNameAndControlTypeTypes);
         }
 
@@ -198,6 +198,24 @@ namespace Axe.Windows.RulesTest.PropertyConditions
                 e.Parent = parent;
 
                 Assert.IsFalse(ElementGroups.WPFScrollBarPageButtons.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void WPFDataGridCell_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.WPFDataGridCell.Matches(e));
+
+                e.Framework = "WPF";
+                Assert.IsFalse(ElementGroups.WPFDataGridCell.Matches(e));
+
+                e.ClassName = "DataGridCell";
+                Assert.IsTrue(ElementGroups.WPFDataGridCell.Matches(e));
+
+                e.Framework = string.Empty;
+                Assert.IsFalse(ElementGroups.WPFDataGridCell.Matches(e));
             } // using
         }
     } // class
