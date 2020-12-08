@@ -482,7 +482,7 @@ If possible, use a predefined (non-custom) control type and the default localize
   <data name="LocalizedControlTypeNotCustomWPFGridCell" xml:space="preserve">
     <value>{0}
     
-If your application targets a version of .NET Framework before 4.7.1, but is running on a .NET version of 4.7.1 or higher, you may be able to address this issue by taking advantage of accessibility enhancements in .NET 4.7.1. To do this, you will need to enable accessibility switches as described on the following page: https://docs.microsoft.com/en-us/dotnet/framework/whats-new/whats-new-in-accessibility#accessibility-switches</value>
+If your application targets a version of .NET Framework before 4.7.1, but is running on a system where .NET version 4.7.1 or higher is installed, you may be able to address this issue by taking advantage of accessibility enhancements in .NET 4.7.1. To do this, you will need to enable accessibility switches as described on the following page: https://docs.microsoft.com/en-us/dotnet/framework/whats-new/whats-new-in-accessibility#accessibility-switches</value>
   </data>
   <data name="LocalizedControlTypeNotEmpty" xml:space="preserve">
     <value>Provide a string for the LocalizedControlType property that concisely describes the control's type.</value>
