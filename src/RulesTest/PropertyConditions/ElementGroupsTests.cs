@@ -63,6 +63,42 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         }
 
         [TestMethod]
+        public void AllowSameNameAndControlType_True_EdgeEdit()
+        {
+            var e = new MockA11yElement();
+            e.ControlTypeId = Edit;
+            e.Framework = Core.Enums.Framework.Edge;
+
+            Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
+
+            string[] allowedLocalizedControlTypes = { "password", "email" };
+
+            foreach (var lct in allowedLocalizedControlTypes)
+            {
+                e.LocalizedControlType = lct;
+                Assert.IsTrue(ElementGroups.AllowSameNameAndControlType.Matches(e));
+            } // for each type
+        }
+
+        [TestMethod]
+        public void AllowSameNameAndControlType_False_EditButNotEdge()
+        {
+            var e = new MockA11yElement();
+            e.ControlTypeId = Edit;
+            e.LocalizedControlType = "password";
+            Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
+        }
+
+        [TestMethod]
+        public void AllowSameNameAndControlType_False_EdgeButNotEdit()
+        {
+            var e = new MockA11yElement();
+            e.Framework = Core.Enums.Framework.Edge;
+            e.LocalizedControlType = "password";
+            Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
+        }
+
+        [TestMethod]
         public void WPFScrollBarPageUpButton_True()
         {
             using (var e = new MockA11yElement())

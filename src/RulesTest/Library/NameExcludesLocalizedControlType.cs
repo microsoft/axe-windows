@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 using static Axe.Windows.RulesTest.ControlType;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
@@ -75,19 +76,72 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void NameExcludesLocalizedControlType_NotApplicableType()
+        public void NameExcludesLocalizedControlType_ApplicableTypes()
         {
             var e = new MockA11yElement();
             e.Name = "same";
             e.LocalizedControlType = "same";
 
-            int[] types = { AppBar, Header, MenuBar, SemanticZoom, StatusBar, TitleBar };
+            int[] nonapplicableTypes = { AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
 
-            foreach (var t in types)
+            foreach (var t in nonapplicableTypes)
             {
                 e.ControlTypeId = t;
+                Assert.IsFalse(Rule.Condition.Matches(e), $"Type: {t}");
+            } // for each type
+
+            var applicableTypes = ControlType.All.Except(nonapplicableTypes);
+
+            foreach (var t in applicableTypes)
+            {
+                e.ControlTypeId = t;
+                Assert.IsTrue(Rule.Condition.Matches(e), $"Type: {t}");
+            } // for each type
+        }
+
+        [TestMethod]
+        public void NameExcludesLocalizedControlType_EdgeEdit_ApplicableLCT()
+        {
+            var e = new MockA11yElement();
+            e.Name = "not empty";
+            e.LocalizedControlType = "not empty";
+
+            e.ControlTypeId = ControlType.Edit;
+            e.Framework = Core.Enums.Framework.Edge;
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            string[] nonMatchingTypes = { "password", "email" };
+
+            foreach (var lct in nonMatchingTypes)
+            {
+                e.LocalizedControlType = lct;
                 Assert.IsFalse(Rule.Condition.Matches(e));
             } // for each type
+        }
+
+        [TestMethod]
+        public void NameExcludesLocalizedControlType_EditButNotEdge_Match()
+        {
+            var e = new MockA11yElement();
+            e.Name = "not empty";
+
+            e.ControlTypeId = ControlType.Edit;
+            e.LocalizedControlType = "password";
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
+        }
+
+        [TestMethod]
+        public void NameExcludesLocalizedControlType_EdgeButNotEdit_Match()
+        {
+            var e = new MockA11yElement();
+            e.Name = "not empty";
+
+            e.Framework = Core.Enums.Framework.Edge;
+            e.LocalizedControlType = "password";
+
+            Assert.IsTrue(Rule.Condition.Matches(e));
         }
     } // class
 } // namespace

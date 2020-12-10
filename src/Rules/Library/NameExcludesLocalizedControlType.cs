@@ -38,7 +38,7 @@ namespace Axe.Windows.Rules.Library
         {
             return ~ElementGroups.AllowSameNameAndControlType
                 & Name.NotNullOrEmpty & Name.NotWhiteSpace
-                & StringProperties.LocalizedControlType.NotNullOrEmpty & StringProperties.LocalizedControlType.NotWhiteSpace;
+                & LocalizedControlType.NotNullOrEmpty & LocalizedControlType.NotWhiteSpace;
         }
     } // class
 } // namespace
