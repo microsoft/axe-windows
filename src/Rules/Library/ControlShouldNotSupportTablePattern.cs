@@ -6,6 +6,7 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
+using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -28,7 +29,11 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return List;
+            // This rule is based on documentation at https://docs.microsoft.com/en-us/windows/win32/winauto/uiauto-supportlistcontroltype
+            // But we don't check Win32 lists because we know they will fail and the framework is no longer supported
+
+            return List
+                & ~ClassName.Is("SysListView32");
         }
     } // class
 } // namespace
