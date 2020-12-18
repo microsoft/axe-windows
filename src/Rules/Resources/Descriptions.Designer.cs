@@ -799,7 +799,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Name property must not include its class name..
+        ///   Looks up a localized string similar to The name property of an element should not contain class names like &apos;Microsoft.*.*&apos; or &apos;Windows.*.*&apos; as these are not usually informative..
         /// </summary>
         internal static string NameIsInformative {
             get {

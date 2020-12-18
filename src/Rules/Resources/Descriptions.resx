@@ -397,7 +397,7 @@
     <value>The Name must not include the same text as the LocalizedControlType.</value>
   </data>
   <data name="NameIsInformative" xml:space="preserve">
-    <value>The Name property must not include its class name.</value>
+    <value>The name property of an element should not contain class names like 'Microsoft.*.*' or 'Windows.*.*' as these are not usually informative.</value>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
     <value>The Name property of a focusable element must not be an empty string.</value>
