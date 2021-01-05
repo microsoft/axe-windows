@@ -29,9 +29,9 @@ namespace Axe.Windows.Rules.Extensions
             if (e.ControlTypeId != Axe.Windows.Core.Types.ControlType.UIA_TabItemControlTypeId)
                 return false;
 
-            var framework = e.GetUIFramework();
-            return framework == Framework.WPF
-                || framework == Framework.XAML;
+            var frameworkId = e.GetUIFramework();
+            return frameworkId == FrameworkId.WPF
+                || frameworkId == FrameworkId.XAML;
         }
 
         public static T GetPropertyValueOrDefault<T>(this IA11yElement e, int propertyId)

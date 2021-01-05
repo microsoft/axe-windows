@@ -108,7 +108,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var parent = new MockA11yElement())
             {
                 parent.ControlTypeId = ControlType.Slider;
-                e.Framework = Framework.Edge;
+                e.Framework = FrameworkId.Edge;
                 e.ControlTypeId = ControlType.Group;
                 parent.Children.Add(e);
                 e.Parent = parent;

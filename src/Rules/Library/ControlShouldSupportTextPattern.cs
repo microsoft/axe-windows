@@ -29,8 +29,8 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var win32Edit = Edit & StringProperties.Framework.Is(Framework.Win32);
-            var nonfocusableDirectUIEdit = Edit & ~IsKeyboardFocusable & StringProperties.Framework.Is(Framework.DirectUI);
+            var win32Edit = Edit & StringProperties.Framework.Is(FrameworkId.Win32);
+            var nonfocusableDirectUIEdit = Edit & ~IsKeyboardFocusable & StringProperties.Framework.Is(FrameworkId.DirectUI);
 
             return Document
                 | (Edit

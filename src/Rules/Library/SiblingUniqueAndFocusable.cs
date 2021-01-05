@@ -55,7 +55,7 @@ namespace Axe.Windows.Rules.Library
         protected override Condition CreateCondition()
         {
             var wpfDataItem = DataItem
-                & StringProperties.Framework.Is(Core.Enums.Framework.WPF)
+                & StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF)
                 & NoChild(Custom | Name.NullOrEmpty);
 
             return EligibleChild & NotParent(wpfDataItem);

@@ -66,7 +66,7 @@ namespace Axe.Windows.RulesTest.Library
             }
 
             e.ControlTypeId = expectedTypes[0];
-            e.Framework = Framework.Edge;
+            e.Framework = FrameworkId.Edge;
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }

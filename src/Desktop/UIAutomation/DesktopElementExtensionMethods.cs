@@ -542,7 +542,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
         private static bool IsEdgeElement(this IA11yElement e)
         {
-            return e.Framework == Axe.Windows.Core.Enums.Framework.Edge;
+            return e.Framework == Axe.Windows.Core.Enums.FrameworkId.Edge;
         }
     }
 }

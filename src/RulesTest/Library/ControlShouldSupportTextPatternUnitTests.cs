@@ -54,7 +54,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.ControlTypeId = ControlType.Edit;
-            e.Framework = Framework.Win32;
+            e.Framework = FrameworkId.Win32;
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }
@@ -64,7 +64,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.ControlTypeId = ControlType.Edit;
-            e.Framework = Framework.DirectUI;
+            e.Framework = FrameworkId.DirectUI;
             e.IsKeyboardFocusable = false;
 
             Assert.IsFalse(Rule.Condition.Matches(e));

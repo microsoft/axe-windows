@@ -35,7 +35,7 @@ namespace Axe.Windows.Rules.Library
                 & Patterns.Text 
                 & Patterns.TextSelectionSupported
                 & NoAncestor(Patterns.Text)
-                & ~(StringProperties.Framework.Is(Core.Enums.Framework.XAML) & ControlType.Text); // UWP case, Text control may have Text pattern without keyboard focus.
+                & ~(StringProperties.Framework.Is(Core.Enums.FrameworkId.XAML) & ControlType.Text); // UWP case, Text control may have Text pattern without keyboard focus.
         }
     } // class
 } // namespace

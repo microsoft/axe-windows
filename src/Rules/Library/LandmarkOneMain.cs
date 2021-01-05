@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Pane & StringProperties.Framework.Is(Core.Enums.Framework.Edge) & NotParent(StringProperties.Framework.Is(Core.Enums.Framework.Edge));
+            return Pane & StringProperties.Framework.Is(Core.Enums.FrameworkId.Edge) & NotParent(StringProperties.Framework.Is(Core.Enums.FrameworkId.Edge));
         }
     } // class
 } // namespace

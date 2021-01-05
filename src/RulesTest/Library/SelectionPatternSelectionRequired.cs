@@ -19,7 +19,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TabControlTypeId;
             e.Patterns.Add(new A11yPattern(e, PatternType.UIA_SelectionPatternId));
-            e.Framework = Framework.Win32;
+            e.Framework = FrameworkId.Win32;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
         }
@@ -30,7 +30,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TabControlTypeId;
             e.Patterns.Add(new A11yPattern(e, PatternType.UIA_SelectionPatternId));
-            e.Framework = Framework.Edge;
+            e.Framework = FrameworkId.Edge;
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }

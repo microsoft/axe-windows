@@ -39,7 +39,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Tab & Patterns.Selection & ~StringProperties.Framework.Is(Framework.Edge);
+            return Tab & Patterns.Selection & ~StringProperties.Framework.Is(FrameworkId.Edge);
         }
     } // class
 } // namespace

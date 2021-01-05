@@ -16,7 +16,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 e.AutomationId = "TitleBarLeftButtons";
                 e.ClassName = "ApplicationFrameTitleBarWindow";
-                e.Framework = Framework.Win32;
+                e.Framework = FrameworkId.Win32;
 
                 Assert.IsTrue(UWP.TitleBar.Matches(e));
             } // using
@@ -29,7 +29,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 // e.AutomationID = "TitleBarLeftButtons";
                 e.ClassName = "ApplicationFrameTitleBarWindow";
-                e.Framework = Framework.Win32;
+                e.Framework = FrameworkId.Win32;
 
                 Assert.IsFalse(UWP.TitleBar.Matches(e));
             } // using
@@ -42,7 +42,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 e.AutomationId = "TitleBarLeftButtons";
                 // e.ClassName = "ApplicationFrameTitleBarWindow";
-                e.Framework = Framework.Win32;
+                e.Framework = FrameworkId.Win32;
 
                 Assert.IsFalse(UWP.TitleBar.Matches(e));
             } // using
@@ -70,7 +70,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
 
                 e.AutomationId = "SystemMenuBar";
-                parent.Framework = Framework.Win32;
+                parent.Framework = FrameworkId.Win32;
 
                 Assert.IsTrue(UWP.MenuBar.Matches(e));
             } // using
@@ -85,7 +85,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
 
                 // e.AutomationID = "SystemMenuBar";
-                parent.Framework = Framework.Win32;
+                parent.Framework = FrameworkId.Win32;
 
                 Assert.IsFalse(UWP.MenuBar.Matches(e));
             } // using

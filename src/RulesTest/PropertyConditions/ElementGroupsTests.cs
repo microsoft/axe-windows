@@ -67,7 +67,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         {
             var e = new MockA11yElement();
             e.ControlTypeId = Edit;
-            e.Framework = Core.Enums.Framework.Edge;
+            e.Framework = Core.Enums.FrameworkId.Edge;
 
             Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
 
@@ -93,7 +93,7 @@ namespace Axe.Windows.RulesTest.PropertyConditions
         public void AllowSameNameAndControlType_False_EdgeButNotEdit()
         {
             var e = new MockA11yElement();
-            e.Framework = Core.Enums.Framework.Edge;
+            e.Framework = Core.Enums.FrameworkId.Edge;
             e.LocalizedControlType = "password";
             Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
         }

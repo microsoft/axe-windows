@@ -25,7 +25,7 @@ namespace Axe.Windows.Rules.Library
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var edge = StringProperties.Framework.Is(Core.Enums.Framework.Edge);
+            var edge = StringProperties.Framework.Is(Core.Enums.FrameworkId.Edge);
             var landmark = Landmarks.Banner & (edge | IsNotOffScreen);
             var condition = DescendantCount(landmark) <= 1;
             return  condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;

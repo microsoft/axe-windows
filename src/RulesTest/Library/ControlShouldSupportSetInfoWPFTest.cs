@@ -52,7 +52,7 @@ namespace Axe.Windows.RulesTest.Library
             IEnumerable<int> unexpectedControlTypes = ControlType.All.Difference(expectedControlTypes);
 
             var e = new MockA11yElement();
-            e.Framework = Framework.WPF;
+            e.Framework = FrameworkId.WPF;
 
             foreach (var ct in expectedControlTypes)
             {
@@ -70,8 +70,8 @@ namespace Axe.Windows.RulesTest.Library
         [TestMethod]
         public void TestControlShouldSupportSetInfoWPFExpectedPlatform()
         {
-            string[] expectedFrameworks = { Framework.WPF };
-            string[] unexpectedFrameworks = { Framework.DirectUI, Framework.Edge, Framework.InternetExplorer, Framework.Win32, Framework.WinForm, Framework.XAML };
+            string[] expectedFrameworks = { FrameworkId.WPF };
+            string[] unexpectedFrameworks = { FrameworkId.DirectUI, FrameworkId.Edge, FrameworkId.InternetExplorer, FrameworkId.Win32, FrameworkId.WinForm, FrameworkId.XAML };
 
             var e = new MockA11yElement();
             e.ControlTypeId = ControlType.ListItem;
