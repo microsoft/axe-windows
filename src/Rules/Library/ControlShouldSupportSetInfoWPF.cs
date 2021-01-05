@@ -33,7 +33,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return PropertyConditions.StringProperties.Framework.Is(Core.Enums.Framework.WPF) & (ListItem | TreeItem);
+            return PropertyConditions.StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF) & (ListItem | TreeItem);
         }
     }
 }

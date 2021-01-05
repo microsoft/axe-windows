@@ -160,7 +160,7 @@ public void TestCustomWithDisallowedParents()
     using (var e = new MockA11yElement())
     {
         e.ControlTypeId = Custom;
-        e.Framework = Framework.WPF;
+        e.Framework = FrameworkId.WPF;
         e.Parent = parent;
         parent.ControlTypeId = DataItem;
 
@@ -268,7 +268,7 @@ public void TestElementsWithNoSiblingsOfSameControlType()
             using (var e = new MockA11yElement())
             {
                 e.ControlTypeId = Text;
-                e.Framework = Framework.WinForm;
+                e.Framework = FrameworkId.WinForm;
                 Assert.IsTrue(Misc.NameRequired.Matches(e));
 
                 var prop = new A11yProperty(PlatformPropertyType.Platform_WindowsExtendedStylePropertyId, WS_EX_STATICEDGE);

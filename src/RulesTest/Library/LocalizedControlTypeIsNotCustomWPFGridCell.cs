@@ -17,7 +17,7 @@ namespace Axe.Windows.RulesTest.Library
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_CustomControlTypeId;
             e.LocalizedControlType = "non-empty string";
             e.IsKeyboardFocusable = true;
-            e.Framework = Core.Enums.Framework.WPF;
+            e.Framework = Core.Enums.FrameworkId.WPF;
             e.ClassName = "DataGridCell";
 
             return e;

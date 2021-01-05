@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return (Calendar | Table) & ~StringProperties.Framework.Is(Framework.Edge);
+            return (Calendar | Table) & ~StringProperties.Framework.Is(FrameworkId.Edge);
         }
     } // class
 } // namespace

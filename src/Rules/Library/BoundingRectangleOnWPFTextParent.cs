@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Parent(Text) & StringProperties.Framework.Is(Core.Enums.Framework.WPF);
+            return Parent(Text) & StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF);
         }
     } // class
 } // namespace

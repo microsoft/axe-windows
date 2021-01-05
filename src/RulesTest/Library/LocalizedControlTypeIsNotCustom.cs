@@ -88,7 +88,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = CreateElementExpectedToMatchCondition();
             e.ClassName = "DataGridCell";
-            e.Framework = Core.Enums.Framework.WPF;
+            e.Framework = Core.Enums.FrameworkId.WPF;
 
             Assert.IsFalse(this.Rule.Condition.Matches(e));
         }

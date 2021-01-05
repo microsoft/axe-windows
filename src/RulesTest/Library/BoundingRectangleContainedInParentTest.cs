@@ -78,7 +78,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 grandParent.BoundingRectangle = e.BoundingRectangle;
                 grandParent.ControlTypeId = Tab;
-                grandParent.Framework = Framework.WPF;
+                grandParent.Framework = FrameworkId.WPF;
 
                 e.Parent = parent;
                 parent.Parent = grandParent;

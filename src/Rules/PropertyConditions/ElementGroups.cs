@@ -17,10 +17,10 @@ namespace Axe.Windows.Rules.PropertyConditions
     static class ElementGroups
     {
         // the following occurs for xaml expand/collapse controls
-        private static Condition FocusableGroup = Group & IsKeyboardFocusable & (StringProperties.Framework.Is(Core.Enums.Framework.WPF) | StringProperties.Framework.Is(Core.Enums.Framework.XAML));
+        private static Condition FocusableGroup = Group & IsKeyboardFocusable & (StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF) | StringProperties.Framework.Is(Core.Enums.FrameworkId.XAML));
 
-        private static Condition WPF = Framework.Is(Core.Enums.Framework.WPF);
-        private static Condition Edge = Framework.Is(Core.Enums.Framework.Edge);
+        private static Condition WPF = StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF);
+        private static Condition Edge = StringProperties.Framework.Is(Core.Enums.FrameworkId.Edge);
         public static Condition MinMaxCloseButton = CreateMinMaxCloseButtonCondition();
         public static Condition FocusableButton = CreateFocusableButtonCondition();
         private static Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
@@ -169,7 +169,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsParentWPFDataItem(IA11yElement e)
         {
-            return e.GetUIFramework() == Core.Enums.Framework.WPF
+            return e.GetUIFramework() == Core.Enums.FrameworkId.WPF
                 && e.Parent != null
                 && e.Parent.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_DataItemControlTypeId;
         }
@@ -191,7 +191,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsPlatformWinForms(IA11yElement e)
         {
-            return e?.Framework == Core.Enums.Framework.WinForm;
+            return e?.Framework == Core.Enums.FrameworkId.WinForm;
         }
 
         private static Condition CreateIsControlRequiredCondition()

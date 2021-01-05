@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return AppBar | (TabItem & ~StringProperties.Framework.Is(Framework.Edge));
+            return AppBar | (TabItem & ~StringProperties.Framework.Is(FrameworkId.Edge));
         }
     } // class
 } // namespace

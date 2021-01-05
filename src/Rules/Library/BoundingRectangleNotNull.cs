@@ -31,7 +31,7 @@ namespace Axe.Windows.Rules.Library
             var sysmenuitem = ControlType.MenuItem & Relationships.Parent(sysmenubar);
 
             // This exception is meant to apply to the non-Chromium version of Edge
-            var edgeGroups = ControlType.Group & StringProperties.Framework.Is(Framework.Edge);
+            var edgeGroups = ControlType.Group & StringProperties.Framework.Is(FrameworkId.Edge);
 
             // the Bounding rectangle property might be empty due to
             // a non-existent property, or an invalid data format.

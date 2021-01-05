@@ -107,7 +107,7 @@ namespace Axe.Windows.RulesTest.Library
             e.LocalizedControlType = "not empty";
 
             e.ControlTypeId = ControlType.Edit;
-            e.Framework = Core.Enums.Framework.Edge;
+            e.Framework = Core.Enums.FrameworkId.Edge;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
 
@@ -138,7 +138,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Name = "not empty";
 
-            e.Framework = Core.Enums.Framework.Edge;
+            e.Framework = Core.Enums.FrameworkId.Edge;
             e.LocalizedControlType = "password";
 
             Assert.IsTrue(Rule.Condition.Matches(e));

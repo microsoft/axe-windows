@@ -52,7 +52,7 @@ namespace Axe.Windows.RulesTest.Library
             var unexpectedTypes = ControlType.All.Difference(expectedTypes);
             
             var e = new MockA11yElement();
-            e.Framework = Framework.Edge;
+            e.Framework = FrameworkId.Edge;
 
             foreach (var type in expectedTypes)
             {
