@@ -5,6 +5,7 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
+using static Axe.Windows.Rules.PropertyConditions.Framework;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
@@ -17,10 +18,8 @@ namespace Axe.Windows.Rules.PropertyConditions
     static class ElementGroups
     {
         // the following occurs for xaml expand/collapse controls
-        private static Condition FocusableGroup = Group & IsKeyboardFocusable & (StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF) | StringProperties.Framework.Is(Core.Enums.FrameworkId.XAML));
+        private static Condition FocusableGroup = Group & IsKeyboardFocusable & (WPF | XAML);
 
-        private static Condition WPF = StringProperties.Framework.Is(Core.Enums.FrameworkId.WPF);
-        private static Condition Edge = StringProperties.Framework.Is(Core.Enums.FrameworkId.Edge);
         public static Condition MinMaxCloseButton = CreateMinMaxCloseButtonCondition();
         public static Condition FocusableButton = CreateFocusableButtonCondition();
         private static Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
@@ -169,6 +168,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsParentWPFDataItem(IA11yElement e)
         {
+            // GetUIFramework searches the ancestors for a valid framework value in addition to checking the element itself
             return e.GetUIFramework() == Core.Enums.FrameworkId.WPF
                 && e.Parent != null
                 && e.Parent.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_DataItemControlTypeId;
@@ -176,7 +176,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool HasAllowedPlatformPropertiesForText(IA11yElement e)
         {
-            return !IsPlatformWinForms(e)
+            return !WinForms.Matches(e)
                 || !HasStaticEdgeExtendedStyle(e);
         }
 
@@ -187,11 +187,6 @@ namespace Axe.Windows.Rules.PropertyConditions
             const uint WS_EX_STATICEDGE = 0x00020000;
 
             return (platformProperty & WS_EX_STATICEDGE) != 0;
-        }
-
-        private static bool IsPlatformWinForms(IA11yElement e)
-        {
-            return e?.Framework == Core.Enums.FrameworkId.WinForm;
         }
 
         private static Condition CreateIsControlRequiredCondition()

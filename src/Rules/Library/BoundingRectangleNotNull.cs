@@ -6,6 +6,7 @@ using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
+using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -31,7 +32,7 @@ namespace Axe.Windows.Rules.Library
             var sysmenuitem = ControlType.MenuItem & Relationships.Parent(sysmenubar);
 
             // This exception is meant to apply to the non-Chromium version of Edge
-            var edgeGroups = ControlType.Group & StringProperties.Framework.Is(FrameworkId.Edge);
+            var edgeGroups = ControlType.Group & Edge;
 
             // the Bounding rectangle property might be empty due to
             // a non-existent property, or an invalid data format.
