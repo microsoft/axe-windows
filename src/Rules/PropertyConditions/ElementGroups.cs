@@ -168,7 +168,6 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static bool IsParentWPFDataItem(IA11yElement e)
         {
-
             // GetUIFramework searches the ancestors for a valid framework value in addition to checking the element itself
             return e.GetUIFramework() == Core.Enums.FrameworkId.WPF
                 && e.Parent != null
