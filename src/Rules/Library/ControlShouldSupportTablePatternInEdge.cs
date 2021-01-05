@@ -7,6 +7,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
+using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -30,7 +31,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return (Calendar | Table) & StringProperties.Framework.Is(FrameworkId.Edge);
+            return (Calendar | Table) & Edge;
         }
     } // class
 } // namespace
