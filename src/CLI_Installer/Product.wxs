@@ -34,7 +34,10 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <Feature Id="ProductFeature" Title="Axe.Windows CLI" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="NetCoreApp20Components" />
+      <ComponentGroupRef Id="NetCoreApp21Components" />
       <ComponentGroupRef Id="NetCoreApp30Components" />
+      <ComponentGroupRef Id="NetStandard20Components" />
     </Feature>
 
     <Condition Message="[ProductName] requires .NET Core Runtime 3.1 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core">
@@ -48,7 +51,10 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
             <Directory Id="RuntimesFolder" Name="runtimes" >
               <Directory Id="WinFolder" Name="win" >
                 <Directory Id="LibFolder" Name="lib" >
+                  <Directory Id="NetCoreApp20Folder" Name="netcoreapp2.0" />
+                  <Directory Id="NetCoreApp21Folder" Name="netcoreapp2.1" />
                   <Directory Id="NetCoreApp30Folder" Name="netcoreapp3.0" />
+                  <Directory Id="NetStandard20Folder" Name="netstandard2.0" />
                 </Directory>
               </Directory>
             </Directory>
@@ -82,10 +88,28 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       </Component>
     </ComponentGroup>
 
+    <ComponentGroup Id="NetCoreApp20Components" Directory="NetCoreApp20Folder">
+      <Component Id="NetCoreApp20Component" Guid="5002A1F9-EB89-441C-B757-8E214EFE82CF">
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Security.AccessControl.dll" Id="netcoreapp20_system_security_accesscontrol" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="NetCoreApp21Components" Directory="NetCoreApp21Folder">
+      <Component Id="NetCoreApp21Component" Guid="8DAE90E7-271A-40A6-8B57-B967EC305130">
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll" Id="netcoreapp21_system_security_principal_windows" />
+      </Component>
+    </ComponentGroup>
+
     <ComponentGroup Id="NetCoreApp30Components" Directory="NetCoreApp30Folder">
       <Component Id="NetCoreApp30Component" Guid="1D2C21D8-E43C-45F6-8530-B59CA4BAF9A6">
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" Id="core30_systemevents" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" Id="core30_drawingcommon" />
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll" Id="netcoreapp30_microsoft_win32_systemevents" />
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll" Id="netcoreapp30_system_drawing_common" />
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="NetStandard20Components" Directory="NetStandard20Folder">
+      <Component Id="NetStandard20Component" Guid="940EFA7D-6706-415A-9064-BAFE98B81855">
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\Microsoft.Win32.Registry.dll" Id="netstandard20_microsoft_win32_registry" />
       </Component>
     </ComponentGroup>
 
