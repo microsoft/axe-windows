@@ -25,12 +25,12 @@ namespace Axe.Windows.Rules
         NameRoleValue,
 
         /// <summary>
-        /// See <a href="https://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-ict-refresh/final-rule/single-file-version#502-interoperability-assistive-technology">the Access Board documentation</a>
+        /// See <a href="https://www.access-board.gov/ict/#502-interoperability-assistive-technology">the Access Board documentation</a>
         /// </summary>
         ObjectInformation,
 
         /// <summary>
-        /// See <a href="https://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-ict-refresh/final-rule/single-file-version#502-interoperability-assistive-technology">the Access Board documentation</a>
+        /// See <a href="https://www.access-board.gov/ict/#502-interoperability-assistive-technology">the Access Board documentation</a>
         /// </summary>
         AvailableActions,
     } // class

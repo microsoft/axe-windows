@@ -61,7 +61,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-ict-refresh/final-rule/single-file-version#502-interoperability-assistive-technology.
+        ///   Looks up a localized string similar to https://www.access-board.gov/ict/#502-interoperability-assistive-technology.
         /// </summary>
         internal static string AvailableActions {
             get {
@@ -97,7 +97,7 @@ namespace Axe.Windows.RuleSelection.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.access-board.gov/guidelines-and-standards/communications-and-it/about-the-ict-refresh/final-rule/single-file-version#502-interoperability-assistive-technology.
+        ///   Looks up a localized string similar to https://www.access-board.gov/ict/#502-interoperability-assistive-technology.
         /// </summary>
         internal static string ObjectInformation {
             get {
