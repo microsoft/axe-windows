@@ -18,11 +18,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.BoundingRectangleNotAllZeros;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return BoundingRectangle.Empty.Matches(e) ? EvaluationCode.Error : EvaluationCode.Pass;
+            return !BoundingRectangle.Empty.Matches(e);
         }
 
         protected override Condition CreateCondition()

@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Enums;
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -18,7 +17,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 e.BoundingRectangle = Rectangle.Empty;
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -27,7 +26,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             using (var e = new MockA11yElement())
             {
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 

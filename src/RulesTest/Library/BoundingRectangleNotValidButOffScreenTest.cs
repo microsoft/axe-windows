@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -13,7 +12,7 @@ namespace Axe.Windows.RulesTest.Library
         [TestMethod]
         public void TestBoundingRectangleNotValidButOffScreenInformation()
         {
-            Assert.AreEqual(EvaluationCode.Note, Rule.Evaluate(null));
+            Assert.IsFalse(Rule.PassesTest(null));
         }
     }
 }

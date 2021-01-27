@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -16,7 +15,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.BoundingRectangle = new Rectangle(0, 0, 0, 1);
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -24,7 +23,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.BoundingRectangle = new Rectangle(0, 0, 0, 0);
-            Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]

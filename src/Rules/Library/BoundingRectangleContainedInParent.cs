@@ -26,9 +26,10 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.BoundingRectangleContainedInParent;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -37,10 +38,10 @@ namespace Axe.Windows.Rules.Library
                 // if the element is not contained in the parent element, go further 
                 var container = e.FindContainerElement();
 
-                return IsBoundingRectangleContained(container, e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+                return IsBoundingRectangleContained(container, e);
             }
 
-            return EvaluationCode.Pass;
+            return true;
         }
 
         private static bool IsBoundingRectangleContained(IA11yElement container, IA11yElement containee)

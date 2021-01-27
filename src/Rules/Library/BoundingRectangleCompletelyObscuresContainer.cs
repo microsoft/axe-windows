@@ -21,13 +21,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.BoundingRectangleCompletelyObscuresContainer;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return BoundingRectangle.CompletelyObscuresContainer.Matches(e) ? EvaluationCode.Error : EvaluationCode.Pass;
+            return !BoundingRectangle.CompletelyObscuresContainer.Matches(e);
         }
 
         protected override Condition CreateCondition()
