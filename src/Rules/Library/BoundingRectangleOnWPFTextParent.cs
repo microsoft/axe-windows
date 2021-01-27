@@ -20,11 +20,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.BoundingRectangleOnWPFTextParent;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Open;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return BoundingRectangle.NotEmpty.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Open;
+            return BoundingRectangle.NotEmpty.Matches(e);
         }
 
         protected override Condition CreateCondition()

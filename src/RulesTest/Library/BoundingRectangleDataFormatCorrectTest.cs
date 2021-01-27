@@ -3,7 +3,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -19,7 +18,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 var p = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new double[] {  1, 2, 3, 4 });
                 e.Properties.Add(PropertyType.UIA_BoundingRectanglePropertyId, p);
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -30,7 +29,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 var p = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new double[] { 1, 2, 3 });
                 e.Properties.Add(PropertyType.UIA_BoundingRectanglePropertyId, p);
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
@@ -41,7 +40,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 var p = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new int[] { 1, 2, 3, 4 });
                 e.Properties.Add(PropertyType.UIA_BoundingRectanglePropertyId, p);
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
@@ -50,7 +49,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             using (var e = new MockA11yElement())
             {
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
     } // class

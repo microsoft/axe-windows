@@ -21,11 +21,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.BoundingRectangleSizeReasonable;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return BoundingRectangle.Valid.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return BoundingRectangle.Valid.Matches(e);
         }
 
         protected override Condition CreateCondition()

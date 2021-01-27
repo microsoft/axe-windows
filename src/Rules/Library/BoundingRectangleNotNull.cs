@@ -19,11 +19,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.PropertyID = Axe.Windows.Core.Types.PropertyType.UIA_BoundingRectanglePropertyId;
             this.Info.Description = Descriptions.BoundingRectangleNotNull;
             this.Info.HowToFix = HowToFix.BoundingRectangleNotNull;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return BoundingRectangle.NotNull.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return BoundingRectangle.NotNull.Matches(e);
         }
 
         protected override Condition CreateCondition()

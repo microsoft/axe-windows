@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.PropertyConditions;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 using static Axe.Windows.RulesTest.ControlType;
 
 
@@ -34,7 +33,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -58,7 +57,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandParent;
 
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -83,7 +82,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandParent;
 
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -108,7 +107,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandparent;
 
-                Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
@@ -132,7 +131,7 @@ namespace Axe.Windows.RulesTest.Library
                 e.Parent = parent;
                 parent.Parent = grandParent;
 
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -154,7 +153,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -173,7 +172,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
@@ -192,7 +191,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
@@ -211,7 +210,7 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
@@ -230,14 +229,14 @@ namespace Axe.Windows.RulesTest.Library
 
                 e.Parent = parent;
 
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
         [TestMethod]
         public void TestBoundingRectangleContainedInParentElementNullFail()
         {
-            Action action = () => Rule.Evaluate(null);
+            Action action = () => Rule.PassesTest(null);
             Assert.ThrowsException<ArgumentNullException>(action);
         }
 
@@ -246,7 +245,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             using (var e = new MockA11yElement())
             {
-                Action action = () => Rule.Evaluate(e);
+                Action action = () => Rule.PassesTest(e);
                 Assert.ThrowsException<ArgumentNullException>(action);
             } // using
         }
@@ -270,7 +269,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Patterns.Add(pattern);
             e.Parent = parent;
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -292,7 +291,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Patterns.Add(pattern);
             e.Parent = parent;
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]

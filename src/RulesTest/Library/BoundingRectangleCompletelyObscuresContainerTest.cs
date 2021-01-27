@@ -5,7 +5,6 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -38,7 +37,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -56,7 +55,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -74,7 +73,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -92,7 +91,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -110,7 +109,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -128,7 +127,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -146,7 +145,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -164,7 +163,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Parent = parent;
 
             Assert.IsTrue(Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
