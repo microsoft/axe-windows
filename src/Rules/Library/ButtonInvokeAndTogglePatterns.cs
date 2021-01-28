@@ -16,13 +16,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ButtonInvokeAndTogglePatterns;
             this.Info.HowToFix = HowToFix.ButtonInvokeAndTogglePatterns;
             this.Info.Standard = A11yCriteriaId.NameRoleValue;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            var rule = Relationships.All(Patterns.Invoke, Patterns.Toggle);
+            var rule = ~(Relationships.All(Patterns.Invoke, Patterns.Toggle));
 
-            return rule.Matches(e) ? EvaluationCode.Error : EvaluationCode.Pass;
+            return rule.Matches(e);
         }
 
         protected override Condition CreateCondition()
