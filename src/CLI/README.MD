@@ -2,6 +2,15 @@
 
 This tool allows you to scan your application for accessibility issues from your currently existing scripting system.
 
+## Installing the CLI
+
+You can install the CLI by executing the MSI installer on the [releases](https://github.com/microsoft/axe-windows/releases/) page. If you prefer to install silently, open a command prompt as administrator, change to the directory containing the file, and include the `/quiet` flag:
+
+```
+cd %HOMEPATH%\Downloads
+msiexec.exe /i AxeWindowsCLI-1.0.6.msi /quiet
+```
+
 ## Running the tool
 You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool gets installed to `c:\users\Program Files (x86)\AxeWindowsCLI\1.0\AxeWindowsCLI.exe`, although you can install it into other locations if you wish.
 
