@@ -18,13 +18,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ChildrenNotAllowedInContentView;
             this.Info.HowToFix = HowToFix.ChildrenNotAllowedInContentView;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return NoChild(IsContentElement).Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return NoChild(IsContentElement).Matches(e);
         }
 
         protected override Condition CreateCondition()

@@ -17,13 +17,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ComboBoxShouldNotSupportScrollPattern;
             this.Info.HowToFix = HowToFix.ComboBoxShouldNotSupportScrollPattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return Patterns.Scroll.Matches(e) ? EvaluationCode.Warning: EvaluationCode.Pass;
+            return !Patterns.Scroll.Matches(e);
         }
 
         protected override Condition CreateCondition()

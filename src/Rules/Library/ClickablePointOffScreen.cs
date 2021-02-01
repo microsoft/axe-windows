@@ -19,13 +19,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.ClickablePointOffScreen;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return IsOffScreen.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+            return IsOffScreen.Matches(e);
         }
 
         protected override Condition CreateCondition()

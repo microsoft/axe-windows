@@ -5,7 +5,6 @@ using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Drawing;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -36,7 +35,7 @@ namespace Axe.Windows.RulesTest.Library
         public void ClickablePointOnScreen_OffScreen_Error()
         {
             mockElement.Setup(m => m.IsOffScreen).Returns(true);
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(mockElement.Object));
+            Assert.IsFalse(Rule.PassesTest(mockElement.Object));
             mockElement.VerifyAll();
         }
 
@@ -44,7 +43,7 @@ namespace Axe.Windows.RulesTest.Library
         public void ClickablePointOnScreen_OnScreen_Pass()
         {
             mockElement.Setup(m => m.IsOffScreen).Returns(false);
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(mockElement.Object));
+            Assert.IsTrue(Rule.PassesTest(mockElement.Object));
             mockElement.VerifyAll();
         }
 
