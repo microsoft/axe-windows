@@ -16,13 +16,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ButtonInvokeAndExpandCollapsePatterns;
             this.Info.HowToFix = HowToFix.ButtonInvokeAndExpandCollapsePatterns;
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             var rule = Relationships.All(Patterns.Invoke, Patterns.ExpandCollapse);
 
-            return rule.Matches(e) ? EvaluationCode.Warning : EvaluationCode.Pass;
+            return !rule.Matches(e);
         }
 
         protected override Condition CreateCondition()
