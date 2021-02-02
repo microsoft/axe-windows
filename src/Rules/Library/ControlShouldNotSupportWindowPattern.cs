@@ -17,13 +17,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldNotSupportWindowPattern;
             this.Info.HowToFix = HowToFix.ControlShouldNotSupportWindowPattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return Patterns.Window.Matches(e) ? EvaluationCode.Warning : EvaluationCode.Pass;
+            return !Patterns.Window.Matches(e);
         }
 
         protected override Condition CreateCondition()
