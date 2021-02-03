@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -47,7 +46,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ScrollPatternId));
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -55,7 +54,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
     } // class
 } // namespace
