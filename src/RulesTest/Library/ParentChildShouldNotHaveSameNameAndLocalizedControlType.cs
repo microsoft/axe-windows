@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -44,7 +43,7 @@ namespace Axe.Windows.RulesTest.Library
             p.LocalizedControlType = "controltype";
             e.Parent = p;
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -58,7 +57,7 @@ namespace Axe.Windows.RulesTest.Library
             p.LocalizedControlType = "controltype2";
             e.Parent = p;
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -72,7 +71,7 @@ namespace Axe.Windows.RulesTest.Library
             p.LocalizedControlType = "controltype";
             e.Parent = p;
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
     } // class
 } // namespace

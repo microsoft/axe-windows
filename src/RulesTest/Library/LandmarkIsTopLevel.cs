@@ -3,7 +3,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Axe.Windows.Core.Bases;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 using Axe.Windows.Core.Types;
 
 namespace Axe.Windows.RulesTest.Library
@@ -31,7 +30,7 @@ namespace Axe.Windows.RulesTest.Library
             e.LocalizedLandmarkType = this.LocalizedLandmarkType;
             e.Parent = parent;
 
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -45,7 +44,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.LandmarkType = this.LandmarkType;
             parent.LocalizedLandmarkType = this.LocalizedLandmarkType;
 
-            Assert.AreEqual(EvaluationCode.Error, this.Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -62,7 +61,7 @@ namespace Axe.Windows.RulesTest.Library
             m.Setup(e => e.Parent).Returns(parent);
 
             // the result below should pass because the parent is not inside Edge like the child.
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(m.Object));
+            Assert.IsTrue(Rule.PassesTest(m.Object));
         }
 
         [TestMethod]
@@ -80,7 +79,7 @@ namespace Axe.Windows.RulesTest.Library
             m.Setup(e => e.Parent).Returns(parent.Object);
 
             // the result below should pass because the parent is not inside Edge like the child.
-            Assert.AreEqual(EvaluationCode.Error, this.Rule.Evaluate(m.Object));
+            Assert.IsFalse(Rule.PassesTest(m.Object));
         }
     } // class
 

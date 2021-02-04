@@ -19,14 +19,15 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.LandmarkOneMain;
             this.Info.HowToFix = HowToFix.LandmarkOneMain;
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var condition = DescendantCount(Landmarks.Main) == 1;
-            return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

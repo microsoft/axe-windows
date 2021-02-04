@@ -18,7 +18,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.SizeOfSet = 1;
-            Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -26,14 +26,14 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.PositionInSet = 1;
-            Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
         public void TestControlShouldSupportSetInfoWPFBothNonExistFail()
         {
             var e = new MockA11yElement();
-            Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.PositionInSet = 1;
             e.SizeOfSet = 1;
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]

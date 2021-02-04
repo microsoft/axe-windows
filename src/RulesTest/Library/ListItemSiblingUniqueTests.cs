@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -32,7 +31,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Children.Add(child1);
             parent.Children.Add(child2);
 
-            Assert.AreEqual(EvaluationCode.Warning, Rule.Evaluate(child2));
+            Assert.IsFalse(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -56,7 +55,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Children.Add(child1);
             parent.Children.Add(child2);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -80,7 +79,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Children.Add(child1);
             parent.Children.Add(child2);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -104,7 +103,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Children.Add(child1);
             parent.Children.Add(child2);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -128,7 +127,7 @@ namespace Axe.Windows.RulesTest.Library
             parent.Children.Add(child1);
             parent.Children.Add(child2);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]

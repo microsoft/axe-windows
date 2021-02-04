@@ -17,13 +17,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldSupportSelectionPattern;
             this.Info.HowToFix = HowToFix.ControlShouldSupportSelectionPattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return Patterns.Selection.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return Patterns.Selection.Matches(e);
         }
 
         protected override Condition CreateCondition()

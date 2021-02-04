@@ -17,13 +17,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.LocalizedLandmarkTypeNotNull;
             this.Info.HowToFix = HowToFix.LocalizedLandmarkTypeNotNull;
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return LocalizedLandmarkType.NotNull.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return LocalizedLandmarkType.NotNull.Matches(e);
         }
 
         protected override Condition CreateCondition()

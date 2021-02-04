@@ -18,14 +18,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.EditSupportsIncorrectRangeValuePattern;
             this.Info.HowToFix = HowToFix.EditSupportsIncorrectRangeValuePattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return IsLargeChangeValueNull(e)
-                ? EvaluationCode.Pass : EvaluationCode.Error;
+            return IsLargeChangeValueNull(e);
         }
 
         private static bool IsLargeChangeValueNull(IA11yElement e)

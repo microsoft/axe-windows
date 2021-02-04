@@ -18,11 +18,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameWithValidBoundingRectangle;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return EvaluationCode.Warning;
+            return false;
         }
 
         protected override Condition CreateCondition()

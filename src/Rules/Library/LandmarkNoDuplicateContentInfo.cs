@@ -20,15 +20,16 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.LandmarkNoDuplicateContentInfo;
             this.Info.HowToFix = HowToFix.LandmarkNoDuplicateContentInfo;
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var landmark = Landmarks.ContentInfo & (Edge | IsNotOffScreen);
             var condition = DescendantCount(landmark) <= 1;
-            return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

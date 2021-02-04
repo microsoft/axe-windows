@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -36,7 +35,7 @@ namespace Axe.Windows.RulesTest.Library
                 foreach (var s in stringsToTry)
                     {
                     e.Name = s;
-                    Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                    Assert.IsFalse(Rule.PassesTest(e));
                 }
             } // using
         }
@@ -59,7 +58,7 @@ namespace Axe.Windows.RulesTest.Library
                 foreach (var s in stringsToTry)
                 {
                     e.Name = s;
-                    Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                    Assert.IsTrue(Rule.PassesTest(e));
                 }
             } // using
         }

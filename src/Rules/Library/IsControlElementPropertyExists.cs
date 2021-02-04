@@ -19,13 +19,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.IsControlElementPropertyExists;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return IsControlElementExists.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return IsControlElementExists.Matches(e);
         }
 
         protected override Condition CreateCondition()

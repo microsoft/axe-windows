@@ -18,14 +18,15 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldSupportTableItemPattern;
             this.Info.HowToFix = HowToFix.ControlShouldSupportTableItemPattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var condition = Patterns.TableItem | AnyChild(Patterns.TableItem);
-            return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

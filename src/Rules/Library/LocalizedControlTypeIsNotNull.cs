@@ -19,13 +19,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.LocalizedControlTypeNotNull;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return e.LocalizedControlType != null ? EvaluationCode.Pass : EvaluationCode.Error;
+            return e.LocalizedControlType != null;
         }
 
         protected override Condition CreateCondition()

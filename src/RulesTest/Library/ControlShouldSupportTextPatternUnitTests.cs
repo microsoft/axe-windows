@@ -4,7 +4,6 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 using Axe.Windows.Core.Types;
 
 namespace Axe.Windows.RulesTest.Library
@@ -20,7 +19,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Patterns.Add(new A11yPattern(e, PatternType.UIA_TextPatternId));
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -28,7 +27,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -74,7 +73,7 @@ namespace Axe.Windows.RulesTest.Library
         [ExpectedException(typeof(ArgumentNullException))]
         public void ArgumentNull_Exception()
         {
-            Rule.Evaluate(null);
+            Rule.PassesTest(null);
         }
     } // class
 } // namespace

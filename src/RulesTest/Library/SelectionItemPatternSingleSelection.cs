@@ -5,7 +5,6 @@ using Moq;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 using static Axe.Windows.RulesTest.ControlType;
 
 namespace Axe.Windows.RulesTest.Library
@@ -51,7 +50,7 @@ namespace Axe.Windows.RulesTest.Library
 
             parent.Setup(e => e.Children).Returns(children);
 
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(item3.Object));
+            Assert.IsTrue(Rule.PassesTest(item3.Object));
         }
 
         [TestMethod]
@@ -67,7 +66,7 @@ namespace Axe.Windows.RulesTest.Library
 
             parent.Setup(e => e.Children).Returns(children);
 
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(item3.Object));
+            Assert.IsTrue(Rule.PassesTest(item3.Object));
         }
 
         [TestMethod]
@@ -82,7 +81,7 @@ namespace Axe.Windows.RulesTest.Library
             IA11yElement[] children = { item1.Object, item2.Object, item3.Object };
             parent.Setup(e => e.Children).Returns(children);
 
-            Assert.AreEqual(EvaluationCode.Error, this.Rule.Evaluate(item3.Object));
+            Assert.IsFalse(Rule.PassesTest(item3.Object));
         }
     } // class
 } // namespace

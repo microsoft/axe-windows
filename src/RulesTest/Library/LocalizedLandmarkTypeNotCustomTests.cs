@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Types;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -18,7 +17,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 e.LandmarkType = LandmarkType.UIA_CustomLandmarkTypeId;
                 e.LocalizedLandmarkType = "not custom";
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -29,7 +28,7 @@ namespace Axe.Windows.RulesTest.Library
             {
                 e.LandmarkType = LandmarkType.UIA_CustomLandmarkTypeId;
                 e.LocalizedLandmarkType = "Custom";
-                Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
     } // class

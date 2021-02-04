@@ -21,13 +21,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.IsKeyboardFocusableForListItemShouldBeTrue;
             this.Info.Standard = A11yCriteriaId.Keyboard;
             this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return AnyChild(IsKeyboardFocusable).Matches(e) ? EvaluationCode.Warning : EvaluationCode.Pass;
+            return !AnyChild(IsKeyboardFocusable).Matches(e);
         }
 
         protected override Condition CreateCondition()

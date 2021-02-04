@@ -20,13 +20,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.LocalizedControlTypeReasonable;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return HasReasonableLocalizedControlType(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+            return HasReasonableLocalizedControlType(e);
         }
 
         private static bool HasReasonableLocalizedControlType(IA11yElement e)

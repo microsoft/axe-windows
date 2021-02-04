@@ -23,15 +23,16 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameReasonableLength;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Name == null) throw new ArgumentException(ErrorMessages.ElementNameNullOrWhiteSpace, nameof(e));
 
             var condition = Name.Length <= ReasonableLength;
-            return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

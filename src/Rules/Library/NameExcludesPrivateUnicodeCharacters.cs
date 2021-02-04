@@ -19,14 +19,15 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = string.Format(CultureInfo.CurrentCulture, HowToFix.PropertyExcludesPrivateUnicodeCharacters, Name.PropertyDescription);
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (String.IsNullOrWhiteSpace(e.Name)) throw new ArgumentException(ErrorMessages.ElementNameNullOrWhiteSpace, nameof(e));
 
-            return Name.ExcludesPrivateUnicodeCharacters.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return Name.ExcludesPrivateUnicodeCharacters.Matches(e);
         }
 
         protected override Condition CreateCondition()

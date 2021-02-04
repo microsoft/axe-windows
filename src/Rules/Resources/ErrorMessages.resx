@@ -150,6 +150,9 @@
   <data name="NoControlTypeEntryFound" xml:space="preserve">
     <value>No control type entry was found in dictionary</value>
   </data>
+  <data name="NoElementFound" xml:space="preserve">
+    <value>Based on the Rule.Condition match, there should have been at least one element found in the PassesTest method of {0}</value>
+  </data>
   <data name="NoLocalizedControlTypeStringFound" xml:space="preserve">
     <value>Could not find potential LocalizedControlType string(s) for the given control type</value>
   </data>
