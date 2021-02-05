@@ -19,7 +19,6 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.LocalizedControlTypeNotEmpty;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
-
             this.Info.ErrorCode = EvaluationCode.Error;
         }
 

@@ -25,7 +25,7 @@ namespace Axe.Windows.Rules.Library
 
         public override bool PassesTest(IA11yElement e)
         {
-            return true;
+            return false;
         }
 
         protected override Condition CreateCondition()

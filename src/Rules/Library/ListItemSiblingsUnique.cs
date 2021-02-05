@@ -34,7 +34,7 @@ namespace Axe.Windows.Rules.Library
                 & Name.Is(e.Name)
                 & LocalizedControlType.Is(e.LocalizedControlType));
             var count = siblings.GetValue(e);
-            if (count < 1) throw new Exception(String.Format(CultureInfo.CurrentCulture, ErrorMessages.NoElementFound, this.Info.ID));
+            if (count < 1) throw new Exception(String.Format(CultureInfo.InvariantCulture, ErrorMessages.NoElementFound, this.Info.ID));
 
             return count == 1;
         }
