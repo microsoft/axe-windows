@@ -18,13 +18,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = string.Format(CultureInfo.InvariantCulture, Descriptions.Structure, ControlView.ListItemStructure);
             this.Info.HowToFix = string.Format(CultureInfo.InvariantCulture, HowToFix.Structure, ControlView.ListItemStructure);
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            this.Info.ErrorCode = EvaluationCode.Note;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return ControlView.ListItemStructure.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Note;
+            return ControlView.ListItemStructure.Matches(e);
         }
 
         protected override Condition CreateCondition()
