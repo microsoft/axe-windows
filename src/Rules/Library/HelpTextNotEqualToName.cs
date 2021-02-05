@@ -16,14 +16,16 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.HelpTextNotEqualToName;
             this.Info.HowToFix = HowToFix.HelpTextNotEqualToName;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var condition = Name.IsEqualTo(HelpText);
-            return condition.Matches(e) ? EvaluationCode.Warning : EvaluationCode.Pass;
+            var condition = ~(Name.IsEqualTo(HelpText));
+
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

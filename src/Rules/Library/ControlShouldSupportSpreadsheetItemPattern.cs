@@ -18,14 +18,15 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldSupportSpreadsheetItemPattern;
             this.Info.HowToFix = HowToFix.ControlShouldSupportSpreadsheetItemPattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var condition = Patterns.SpreadsheetItem | AnyChild(Patterns.SpreadsheetItem);
-            return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

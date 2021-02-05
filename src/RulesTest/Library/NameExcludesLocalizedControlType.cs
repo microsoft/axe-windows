@@ -4,7 +4,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 using static Axe.Windows.RulesTest.ControlType;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -20,7 +19,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Name = "This is a button";
             e.LocalizedControlType = "Checkbox";
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -30,7 +29,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Name = "Comfortable";
             e.LocalizedControlType = "Tab";
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -40,7 +39,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Name = "This is a button, yep";
             e.LocalizedControlType = "Button";
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -50,7 +49,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Name = "Custom";
             e.LocalizedControlType = "Custom";
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -61,7 +60,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Name = null;
             e.LocalizedControlType = "Button";
 
-            Rule.Evaluate(e);
+            Rule.PassesTest(e);
         }
 
         [TestMethod]
@@ -72,7 +71,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Name = "name";
             e.LocalizedControlType = null;
 
-            Rule.Evaluate(e);
+            Rule.PassesTest(e);
         }
 
         [TestMethod]

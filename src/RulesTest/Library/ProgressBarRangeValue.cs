@@ -5,7 +5,6 @@ using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -36,7 +35,7 @@ namespace Axe.Windows.RulesTest.Library
             AddPatternValue("Minimum", 0);
             AddPatternValue("Maximum", 1);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(elementMock.Object));
+            Assert.IsTrue(Rule.PassesTest(elementMock.Object));
 
             patternMock.Verify();
             elementMock.Verify();
@@ -49,7 +48,7 @@ namespace Axe.Windows.RulesTest.Library
             AddPatternValue("Minimum", 1);
             AddPatternValue("Maximum", 1);
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(elementMock.Object));
+            Assert.IsFalse(Rule.PassesTest(elementMock.Object));
 
             patternMock.Verify();
             elementMock.Verify();
@@ -62,7 +61,7 @@ namespace Axe.Windows.RulesTest.Library
             AddPatternValue("Minimum", 1);
             AddPatternValue("Maximum", 0);
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(elementMock.Object));
+            Assert.IsFalse(Rule.PassesTest(elementMock.Object));
 
             patternMock.Verify();
             elementMock.Verify();
@@ -75,7 +74,7 @@ namespace Axe.Windows.RulesTest.Library
             AddPatternValue("Minimum", 0);
             AddPatternValue("Maximum", 1);
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(elementMock.Object));
+            Assert.IsFalse(Rule.PassesTest(elementMock.Object));
 
             patternMock.Verify();
             elementMock.Verify();
@@ -85,7 +84,7 @@ namespace Axe.Windows.RulesTest.Library
         [ExpectedException(typeof(ArgumentNullException))]
         public void ProgressBarRangeValue_NullElement_ThrowsException()
         {
-            Rule.Evaluate(null);
+            Rule.PassesTest(null);
         }
 
         [TestMethod]
@@ -94,7 +93,7 @@ namespace Axe.Windows.RulesTest.Library
             elementMock.Reset();
             elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns<IA11yPattern>(null);
 
-            var ex = Assert.ThrowsException<ArgumentNullException>(() => Rule.Evaluate(elementMock.Object));
+            var ex = Assert.ThrowsException<ArgumentNullException>(() => Rule.PassesTest(elementMock.Object));
             Assert.AreEqual("pattern", ex.ParamName);
 
             elementMock.Verify();

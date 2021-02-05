@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 using Axe.Windows.Core.Types;
 
 namespace Axe.Windows.RulesTest.Library
@@ -44,7 +43,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Children.Add(ec);
 
             Assert.IsTrue(this.Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Error, this.Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace Axe.Windows.RulesTest.Library
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ExpandCollapsePatternId));
 
             Assert.IsTrue(this.Rule.Condition.Matches(e));
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
     }
 } 

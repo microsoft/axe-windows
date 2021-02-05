@@ -18,15 +18,16 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.LandmarkMainIsTopLevel;
             this.Info.HowToFix = HowToFix.LandmarkMainIsTopLevel;
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var stopCondition = InsideEdge.Matches(e) ? NotInsideEdge : Condition.False;
 
-            return AnyAncestor(Landmarks.Any, stopCondition).Matches(e) ? EvaluationCode.Error : EvaluationCode.Pass;
+            return !AnyAncestor(Landmarks.Any, stopCondition).Matches(e);
         }
 
         protected override Condition CreateCondition()

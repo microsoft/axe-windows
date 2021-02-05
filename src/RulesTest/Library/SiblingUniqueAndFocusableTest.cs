@@ -4,7 +4,6 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -43,7 +42,7 @@ namespace Axe.Windows.RulesTest.Library
             var child2 = parent.Children[1] as MockA11yElement;
             child2.LocalizedControlType = "MyType2";
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -53,7 +52,7 @@ namespace Axe.Windows.RulesTest.Library
             var child2 = parent.Children[1] as MockA11yElement;
             child2.Name = "Bob";
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -63,7 +62,7 @@ namespace Axe.Windows.RulesTest.Library
             var child2 = parent.Children[1] as MockA11yElement;
             child2.IsKeyboardFocusable = false;
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -73,7 +72,7 @@ namespace Axe.Windows.RulesTest.Library
             var child2 = parent.Children[1] as MockA11yElement;
             child2.Patterns.Add(new A11yPattern(child2, PatternIDs.GridItem));
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(child2));
+            Assert.IsTrue(Rule.PassesTest(child2));
         }
 
         [TestMethod]
@@ -82,7 +81,7 @@ namespace Axe.Windows.RulesTest.Library
             var parent = CreateParentWithMatchingChildren();
             var child2 = parent.Children[1] as MockA11yElement;
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(child2));
+            Assert.IsFalse(Rule.PassesTest(child2));
         }
     } // class
 } // namespace

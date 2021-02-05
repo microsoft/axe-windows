@@ -4,7 +4,6 @@ using System;
 using System.Text;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -19,7 +18,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 e.Name = "Hello";
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -33,14 +32,14 @@ namespace Axe.Windows.RulesTest.Library
                     s.Append(s.ToString() + s.ToString());
 
                 e.Name = s.ToString();
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
         [TestMethod]
         public void TestNullElement()
         {
-            Action action = () => { Rule.Evaluate(null); };
+            Action action = () => { Rule.PassesTest(null); };
             Assert.ThrowsException<ArgumentNullException>(action);
         }
 
@@ -50,7 +49,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 e.LocalizedControlType = "Button";
-                Action action = () => { Rule.Evaluate(e); };
+                Action action = () => { Rule.PassesTest(e); };
                 Assert.ThrowsException<ArgumentException>(action);
             } // using
         }

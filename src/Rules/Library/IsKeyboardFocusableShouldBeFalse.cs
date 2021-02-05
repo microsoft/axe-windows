@@ -18,11 +18,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.IsKeyboardFocusableShouldBeFalse;
             this.Info.Standard = A11yCriteriaId.Keyboard;
             this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return IsNotKeyboardFocusable.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+            return IsNotKeyboardFocusable.Matches(e);
         }
 
         protected override Condition CreateCondition()

@@ -20,9 +20,10 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameIsInformative;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             string[] stringsToExclude =
             {
@@ -33,10 +34,10 @@ namespace Axe.Windows.Rules.Library
             foreach (var s in stringsToExclude)
             {
                 if (Regex.IsMatch(e.Name, s, RegexOptions.IgnoreCase))
-                    return EvaluationCode.Error;
+                    return false;
             }
 
-            return EvaluationCode.Pass;
+            return true;
         }
 
         protected override Condition CreateCondition()

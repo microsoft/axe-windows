@@ -20,9 +20,10 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameExcludesLocalizedControlType;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Name == null) throw new ArgumentException(ErrorMessages.ElementNameNullOrWhiteSpace, nameof(e));
@@ -30,8 +31,7 @@ namespace Axe.Windows.Rules.Library
 
             var r = new Regex($@"\b{e.LocalizedControlType}\b", RegexOptions.IgnoreCase);
 
-            return r.IsMatch(e.Name)
-                ? EvaluationCode.Error : EvaluationCode.Pass;
+            return !r.IsMatch(e.Name);
         }
 
         protected override Condition CreateCondition()

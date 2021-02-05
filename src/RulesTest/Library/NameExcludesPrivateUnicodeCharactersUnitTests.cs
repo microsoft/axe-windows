@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -17,7 +16,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Name = "Hello";
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -26,14 +25,14 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Name = "Hello \uE000";
 
-            Assert.AreEqual(EvaluationCode.Error, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NameExcludesPrivateUnicodeCharacters_NullElement_ThrowsArgumentNullException()
         {
-            Rule.Evaluate(null);
+            Rule.PassesTest(null);
         }
 
         [TestMethod]
@@ -42,7 +41,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
 
-            Rule.Evaluate(e);
+            Rule.PassesTest(e);
         }
 
         [TestMethod]
@@ -52,7 +51,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Name = string.Empty;
 
-            Rule.Evaluate(e);
+            Rule.PassesTest(e);
         }
 
         [TestMethod]
@@ -62,7 +61,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.Name = " ";
 
-            Rule.Evaluate(e);
+            Rule.PassesTest(e);
         }
     } // class
 } // namespace

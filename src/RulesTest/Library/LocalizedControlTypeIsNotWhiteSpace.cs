@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -39,7 +38,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.LocalizedControlType = "   ";
-            Assert.AreEqual(EvaluationCode.Error, this.Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -47,7 +46,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.LocalizedControlType = "hello world!";
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
     } // class
 } // LocalizedControlTypespace

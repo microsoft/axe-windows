@@ -20,13 +20,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.ControlShouldSupportTablePattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
             this.Info.PropertyID = PropertyType.UIA_IsTablePatternAvailablePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return Patterns.Table.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+            return Patterns.Table.Matches(e);
         }
 
         protected override Condition CreateCondition()

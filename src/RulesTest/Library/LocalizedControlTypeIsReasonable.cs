@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Axe.Windows.RulesTest.ControlType;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -18,7 +17,7 @@ namespace Axe.Windows.RulesTest.Library
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_AppBarControlTypeId;
             e.LocalizedControlType = "app bar";
 
-            Assert.AreEqual(EvaluationCode.Pass, this.Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -28,7 +27,7 @@ namespace Axe.Windows.RulesTest.Library
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_AppBarControlTypeId;
             e.LocalizedControlType = "custom";
 
-            Assert.AreEqual(EvaluationCode.Warning, this.Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -45,10 +44,10 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.ControlTypeId = Hyperlink;
             e.LocalizedControlType = "hyperlink"; 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
 
             e.LocalizedControlType = "link";
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -57,7 +56,7 @@ namespace Axe.Windows.RulesTest.Library
             var e = new MockA11yElement();
             e.ControlTypeId = Hyperlink;
             e.LocalizedControlType = "Hyperlink";
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+            Assert.IsTrue(Rule.PassesTest(e));
         }
     } // class
 } // LocalizedControlTypespace

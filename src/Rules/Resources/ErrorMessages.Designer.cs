@@ -160,6 +160,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Based on the Rule.Condition match, there should have been at least one element found in the PassesTest method of {0}.
+        /// </summary>
+        internal static string NoElementFound {
+            get {
+                return ResourceManager.GetString("NoElementFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not find potential LocalizedControlType string(s) for the given control type.
         /// </summary>
         internal static string NoLocalizedControlTypeStringFound {

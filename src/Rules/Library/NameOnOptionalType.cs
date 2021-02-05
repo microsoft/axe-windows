@@ -18,11 +18,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameOnOptionalType;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Open;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return Name.NotNullOrEmpty.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Open;
+            return Name.NotNullOrEmpty.Matches(e);
         }
 
         protected override Condition CreateCondition()

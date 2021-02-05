@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -77,7 +76,7 @@ namespace Axe.Windows.RulesTest.Library
             e.IsKeyboardFocusable = false;
             e.BoundingRectangle = new System.Drawing.Rectangle(0, 0, 100, 100);
 
-            Assert.AreEqual(EvaluationCode.Open, Rule.Evaluate(e));
+            Assert.IsFalse(Rule.PassesTest(e));
         }
 
         [TestMethod]

@@ -22,15 +22,16 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.HyperlinkNameShouldBeUnique;
             this.Info.HowToFix = HowToFix.HyperlinkNameShouldBeUnique;
             this.Info.Standard = A11yCriteriaId.NameRoleValue;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Parent == null) throw new ArgumentException(ErrorMessages.ElementParentNull, nameof(e));
 
             var siblings = SiblingCount(EligibleHyperlink & Name.Is(e.Name)) <= 1;
-            return siblings.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Warning;
+            return siblings.Matches(e);
         }
 
         protected override Condition CreateCondition() => EligibleHyperlink;

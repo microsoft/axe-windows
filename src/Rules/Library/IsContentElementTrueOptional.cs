@@ -20,11 +20,12 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.IsContentElementTrueOptional;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_IsContentElementPropertyId;
+            this.Info.ErrorCode = EvaluationCode.Open;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            return EvaluationCode.Open;
+            return false;
         }
 
         protected override Condition CreateCondition()

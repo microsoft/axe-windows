@@ -18,15 +18,16 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.SelectionItemPatternSingleSelection;
             this.Info.HowToFix = HowToFix.SelectionItemPatternSingleSelection;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
             var controlType = new ControlTypeCondition(e.ControlTypeId);
             var condition = SiblingCount(controlType & SelectionItemPattern.IsSelected) <= 1;
 
-            return condition.Matches(e) ? EvaluationCode.Pass : EvaluationCode.Error;
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -17,7 +16,7 @@ namespace Axe.Windows.RulesTest.Library
             using (var e = new MockA11yElement())
             {
                 e.IsKeyboardFocusable = true;
-                Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsTrue(Rule.PassesTest(e));
             } // using
         }
 
@@ -26,14 +25,14 @@ namespace Axe.Windows.RulesTest.Library
         {
             using (var e = new MockA11yElement())
             {
-                Assert.AreNotEqual(EvaluationCode.Pass, Rule.Evaluate(e));
+                Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
 
         [TestMethod]
         public void TestIsKeyboardFocusableShouldBeTrueArgumentNullException()
         {
-            Action action = () => Rule.Evaluate(null);
+            Action action = () => Rule.PassesTest(null);
             Assert.ThrowsException<ArgumentNullException>(action);
         }
 

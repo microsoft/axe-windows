@@ -18,19 +18,15 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldSupportSetInfo;
             this.Info.HowToFix = HowToFix.ControlShouldSupportSetInfo;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
+            this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            if (PositionInSet.Exists.Matches(e) & SizeOfSet.Exists.Matches(e))
-            {
-                return EvaluationCode.Pass;
-            }
-
-            return EvaluationCode.Error;
-        }
+            return PositionInSet.Exists.Matches(e) & SizeOfSet.Exists.Matches(e);
+}
 
         protected override Condition CreateCondition()
         {

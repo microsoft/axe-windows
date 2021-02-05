@@ -5,6 +5,7 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
+using System;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
@@ -20,13 +21,14 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameNullButElementNotKeyboardFocusable;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            this.Info.ErrorCode = EvaluationCode.Open;
         }
 
-        public override EvaluationCode Evaluate(IA11yElement e)
+        public override bool PassesTest(IA11yElement e)
         {
-            if (e == null) return EvaluationCode.RuleExecutionError;
+            if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return e.Name != null ? EvaluationCode.Pass : EvaluationCode.Open;
+            return e.Name != null;
         }
 
         protected override Condition CreateCondition()
