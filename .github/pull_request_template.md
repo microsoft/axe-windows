@@ -15,5 +15,3 @@
 #### Pull request checklist
 <!-- If a checklist item is not applicable to this change, write "n/a" in the checkbox -->
 - [ ] Addresses an existing issue: #0000
-
-> Note: After the PR has been created, certain checks will be kicked off. All of these checks must pass before a merge. 
