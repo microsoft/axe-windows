@@ -27,7 +27,7 @@ namespace Axe.Windows.Rules.Library
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (e.Parent == null) throw new ArgumentException(ErrorMessages.ElementParentNull, nameof(e));
 
-            return e.Name != e.Parent.Name || e.LocalizedControlType != e.Parent.LocalizedControlType;
+            return (e.Name != e.Parent.Name) || (e.LocalizedControlType != e.Parent.LocalizedControlType);
         }
 
         protected override Condition CreateCondition()
