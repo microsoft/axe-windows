@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
-using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTest.Library
 {
@@ -21,7 +20,7 @@ namespace Axe.Windows.RulesTest.Library
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(ControlType.ScrollBar);
             
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(m.Object));
+            Assert.IsTrue(Rule.PassesTest(m.Object));
         }
 
         [TestMethod]
@@ -34,7 +33,7 @@ namespace Axe.Windows.RulesTest.Library
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 1 },
             }));
 
-            Assert.AreEqual(EvaluationCode.Note, Rule.Evaluate(m.Object));
+            Assert.IsFalse(Rule.PassesTest(m.Object));
         }
 
         [TestMethod]
@@ -47,7 +46,7 @@ namespace Axe.Windows.RulesTest.Library
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 2 },
             }));
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(m.Object));
+            Assert.IsTrue(Rule.PassesTest(m.Object));
         }
 
         [TestMethod]
@@ -60,7 +59,7 @@ namespace Axe.Windows.RulesTest.Library
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 4 },
             }));
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(m.Object));
+            Assert.IsTrue(Rule.PassesTest(m.Object));
         }
 
         [TestMethod]
@@ -74,7 +73,7 @@ namespace Axe.Windows.RulesTest.Library
                 { Core.Types.ControlType.UIA_ThumbControlTypeId, 1 },
             }));
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(m.Object));
+            Assert.IsTrue(Rule.PassesTest(m.Object));
         }
 
         [TestMethod]
@@ -88,7 +87,7 @@ namespace Axe.Windows.RulesTest.Library
                 { Core.Types.ControlType.UIA_ThumbControlTypeId, 2 },
             }));
 
-            Assert.AreEqual(EvaluationCode.Note, Rule.Evaluate(m.Object));
+            Assert.IsFalse(Rule.PassesTest(m.Object));
         }
 
         /// <summary>

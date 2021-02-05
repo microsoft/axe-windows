@@ -17,7 +17,7 @@ namespace Axe.Windows.RulesTest.Library.Structure.ContentView
             var spinner = new MockA11yElement();
             spinner.ControlTypeId = ControlType.Spinner;
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(spinner));
+            Assert.IsTrue(Rule.PassesTest(spinner));
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace Axe.Windows.RulesTest.Library.Structure.ContentView
 
             spinner.Children.Add(listItem);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(spinner));
+            Assert.IsTrue(Rule.PassesTest(spinner));
         }
     } // class
 } // namespace

@@ -26,7 +26,7 @@ namespace Axe.Windows.RulesTest.Library.Structure.ControlView
             spinner.Children.Add(button1);
             spinner.Children.Add(button2);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(spinner));
+            Assert.IsTrue(Rule.PassesTest(spinner));
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace Axe.Windows.RulesTest.Library.Structure.ControlView
             spinner.Children.Add(button2);
             spinner.Children.Add(listItem);
 
-            Assert.AreEqual(EvaluationCode.Pass, Rule.Evaluate(spinner));
+            Assert.IsTrue(Rule.PassesTest(spinner));
         }
     } // class
 } // namespace
