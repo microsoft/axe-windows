@@ -9,6 +9,12 @@ namespace Axe.Windows.Rules
     public enum EvaluationCode
     {
         /// <summary>
+        /// Occurs when RuleInfo.ErrorCode is not set
+        /// This should always be overridden in every rule
+        /// </summary>
+        NotSet,
+
+        /// <summary>
         /// The given element did not meet the conditions for the rule and was not evaluated.
         /// </summary>
         NotApplicable,

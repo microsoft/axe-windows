@@ -87,12 +87,7 @@ namespace Axe.Windows.Rules
             if (!ShouldRun(rule.Condition, element))
                 return result;
 
-            // The PassesTest call is the method we want to convert all rules to use
-            // Using RuleInfo.ErrorCode will allow us to use reflection to document the result of each rule
-            if (rule.Info.ErrorCode.HasValue)
-                result.EvaluationCode = rule.PassesTest(element) ? EvaluationCode.Pass : rule.Info.ErrorCode.Value;
-            else
-                result.EvaluationCode = rule.Evaluate(element);
+                result.EvaluationCode = rule.PassesTest(element) ? EvaluationCode.Pass : rule.Info.ErrorCode;
 
             return result;
         }

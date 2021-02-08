@@ -56,7 +56,7 @@ namespace Axe.Windows.Rules
         /// The <see cref="EvaluationCode"/> to be returned
         /// in the case the test does not pass
         /// </summary>
-        public EvaluationCode? ErrorCode { get; set; }
+        public EvaluationCode ErrorCode { get; set; } = EvaluationCode.NotSet;
 
         /// <summary>
         /// Provides a string summary of the information contained in the RuleInfo object.

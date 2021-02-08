@@ -6,7 +6,6 @@ using Axe.Windows.Rules;
 using Axe.Windows.RulesTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using RulesTests.RuleImplementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -165,65 +164,7 @@ namespace RulesTests
         }
 
         [TestMethod]
-        public void RunRuleByID_ReturnsExecutionErrorWhenPassesTestNotImplemented()
-        {
-            var e = new MockA11yElement();
-
-            var rule = new RuleWithPassesTestNotImplemented();
-
-            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
-            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => rule);
-
-            var runner = new RuleRunner(providerMock.Object);
-            var result = runner.RunRuleByID(default(RuleId), e);
-
-            Assert.AreEqual(EvaluationCode.RuleExecutionError, result.EvaluationCode);
-            Assert.AreEqual(rule.Info, result.RuleInfo);
-
-            providerMock.VerifyAll();
-        }
-
-        [TestMethod]
-        public void RunRuleByID_ReturnsExecutionErrorWhenEvaluateNotImplemented()
-        {
-            var e = new MockA11yElement();
-
-            var rule = new RuleWithEvaluateNotImplemented();
-
-            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
-            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => rule);
-
-            var runner = new RuleRunner(providerMock.Object);
-            var result = runner.RunRuleByID(default(RuleId), e);
-
-            Assert.AreEqual(EvaluationCode.RuleExecutionError, result.EvaluationCode);
-            Assert.AreEqual(rule.Info, result.RuleInfo);
-
-            providerMock.VerifyAll();
-        }
-
-        [TestMethod]
-        public void RuleWithPassesTestNotImplemented_HasExpectedImplementation()
-        {
-            var rule = new RuleWithPassesTestNotImplemented();
-            Assert.IsTrue(rule.Info.ErrorCode.HasValue);
-            Assert.IsTrue(rule.Condition.Matches(null));
-            Assert.AreEqual(EvaluationCode.Pass, rule.Evaluate(null));
-            Assert.ThrowsException<NotImplementedException>(() => rule.PassesTest(null));
-        }
-
-        [TestMethod]
-        public void RuleWithEvaluateNotImplemented_HasExpectedImplementation()
-        {
-            var rule = new RuleWithEvaluateNotImplemented();
-            Assert.IsFalse(rule.Info.ErrorCode.HasValue);
-            Assert.IsTrue(rule.Condition.Matches(null));
-            Assert.IsTrue(rule.PassesTest(null));
-            Assert.ThrowsException<NotImplementedException>(() => rule.Evaluate(null));
-        }
-
-        [TestMethod]
-        public void RunRuleByID_ReturnsExecutionErrorWhenEvaluateThrowsException()
+        public void RunRuleByID_ReturnsExecutionErrorWhenPassesTestThrowsException()
         {
             var e = new MockA11yElement();
 
@@ -234,7 +175,7 @@ namespace RulesTests
 
             var ruleMock = new Mock<IRule>(MockBehavior.Strict);
             ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
-            ruleMock.Setup(m => m.Evaluate(e)).Throws<Exception>().Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e)).Throws<Exception>().Verifiable();
             ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
 
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
@@ -282,7 +223,7 @@ namespace RulesTests
         }
 
         [TestMethod]
-        public void RunRuleByID_CallsEvaluateWhenConditionIsNull()
+        public void RunRuleByID_CallsPassesTestWhenConditionIsNull()
         {
             var e = new MockA11yElement();
 
@@ -341,11 +282,13 @@ namespace RulesTests
 
         private static Mock<IRule> CreateRuleMock(Condition condition, EvaluationCode code, A11yElement e)
         {
-            var infoStub = new RuleInfo();
+            var infoStub = new RuleInfo {
+                ErrorCode = code
+        };
 
-            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+        var ruleMock = new Mock<IRule>(MockBehavior.Strict);
             ruleMock.Setup(m => m.Condition).Returns(() => condition).Verifiable();
-            ruleMock.Setup(m => m.Evaluate(e)).Returns(() => code).Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e)).Returns(() => false).Verifiable();
             ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
 
             return ruleMock;
