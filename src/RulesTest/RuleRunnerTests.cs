@@ -284,7 +284,7 @@ namespace RulesTests
         {
             var infoStub = new RuleInfo {
                 ErrorCode = code
-        };
+            };
 
         var ruleMock = new Mock<IRule>(MockBehavior.Strict);
             ruleMock.Setup(m => m.Condition).Returns(() => condition).Verifiable();
