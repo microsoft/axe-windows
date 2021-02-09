@@ -9,7 +9,6 @@ namespace Axe.Windows.Rules
     {
         RuleInfo Info { get;  }
         Condition Condition { get; }
-        EvaluationCode Evaluate(IA11yElement element);
         bool PassesTest(IA11yElement element);
     }
 
@@ -51,19 +50,7 @@ namespace Axe.Windows.Rules
             return null;
         }
 
-        public virtual EvaluationCode Evaluate(IA11yElement element)
-        {
-            // This base class function should never be called
-            // once all rules have been converted to use RuleInfo.EvaluationCode, this function will be removed
-            throw new NotImplementedException();
-        }
-
-        public virtual bool PassesTest(IA11yElement element)
-        {
-            // This base class function should never be called
-            // once all rules have been converted to use RuleInfo.EvaluationCode, this function will be designated abstract
-            throw new NotImplementedException();
-        }
+        public abstract bool PassesTest(IA11yElement element);
 
         protected abstract Condition CreateCondition();
     }
