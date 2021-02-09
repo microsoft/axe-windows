@@ -286,7 +286,7 @@ namespace RulesTests
                 ErrorCode = code
             };
 
-        var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
             ruleMock.Setup(m => m.Condition).Returns(() => condition).Verifiable();
             ruleMock.Setup(m => m.PassesTest(e)).Returns(() => false).Verifiable();
             ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
