@@ -87,7 +87,7 @@ namespace Axe.Windows.Rules
             if (!ShouldRun(rule.Condition, element))
                 return result;
 
-                result.EvaluationCode = rule.PassesTest(element) ? EvaluationCode.Pass : rule.Info.ErrorCode;
+            result.EvaluationCode = rule.PassesTest(element) ? EvaluationCode.Pass : rule.Info.ErrorCode;
 
             return result;
         }
