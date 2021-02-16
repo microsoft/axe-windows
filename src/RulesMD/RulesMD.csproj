@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="EvaluationCodeDescriptions.md" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
