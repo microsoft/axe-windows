@@ -7,10 +7,12 @@
 
 ## Rules in Axe.Windows
 
-Name | Description | Standard referenced
---- | --- | ---
+Name | Severity | Description | Standard referenced
+--- | --- | --- | ---
 <# foreach (var rule in Rules.All.Values)
 {
 #>
-<#= rule.ID.ToString()#> | <#= rule.Description#> | <#= RulesMD.Helpers.GetStandardName(rule.Standard)#> <#= rule.Standard#>
+<#= rule.ID.ToString()#> | <#= rule.ErrorCode.ToString()#> | <#= rule.Description#> | <#= RulesMD.Helpers.GetStandardName(rule.Standard)#> <#= rule.Standard#>
 <#}#>
+
+<#@ include file="EvaluationCodeDescriptions.md" #>
