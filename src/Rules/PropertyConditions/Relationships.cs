@@ -324,7 +324,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition ExactlyOne(params Condition[] conditions)
         {
             var paramsString = ParameterizeConditionStrings(conditions);
-            var description = String.Format(CultureInfo.InvariantCulture, ConditionDescriptions.ExactlyOne, paramsString);
+            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.ExactlyOne, paramsString);
 
             return Condition.Create(e => MatchExactlyOne(e, conditions), description);
         }
@@ -348,7 +348,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition Any(params Condition[] conditions)
         {
             var paramsString = ParameterizeConditionStrings(conditions);
-            var description = String.Format(CultureInfo.InvariantCulture, ConditionDescriptions.Any, paramsString);
+            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.Any, paramsString);
 
             return Condition.Create(e => MatchAny(e, conditions), description);
         }
@@ -366,7 +366,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition All(params Condition[] conditions)
         {
             var paramsString = ParameterizeConditionStrings(conditions);
-            var description = String.Format(CultureInfo.InvariantCulture, ConditionDescriptions.All, paramsString);
+            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.All, paramsString);
 
             return Condition.Create(e => MatchAll(e, conditions), description);
         }
@@ -386,7 +386,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             string text = "";
             foreach (var c in conditions)
             {
-                if (!String.IsNullOrEmpty(text))
+                if (!string.IsNullOrEmpty(text))
                     text += ", ";
 
                 text += c.ToString();

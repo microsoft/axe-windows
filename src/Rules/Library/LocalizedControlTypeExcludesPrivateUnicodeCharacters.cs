@@ -26,7 +26,7 @@ namespace Axe.Windows.Rules.Library
         public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (String.IsNullOrWhiteSpace(e.LocalizedControlType)) throw new ArgumentException(ErrorMessages.ElementLocalizedControlTypeNullOrWhiteSpace, nameof(e));
+            if (string.IsNullOrWhiteSpace(e.LocalizedControlType)) throw new ArgumentException(ErrorMessages.ElementLocalizedControlTypeNullOrWhiteSpace, nameof(e));
 
             return LocalizedControlType.ExcludesPrivateUnicodeCharacters.Matches(e);
         }

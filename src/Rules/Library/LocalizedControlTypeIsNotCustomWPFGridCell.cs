@@ -19,7 +19,7 @@ namespace Axe.Windows.Rules.Library
         public LocalizedControlTypeIsNotCustomWPFGridCell()
         {
             this.Info.Description = Descriptions.LocalizedControlTypeNotCustom;
-            this.Info.HowToFix = String.Format(CultureInfo.CurrentCulture, HowToFix.LocalizedControlTypeNotCustomWPFGridCell, HowToFix.LocalizedControlTypeNotCustom);
+            this.Info.HowToFix = string.Format(CultureInfo.CurrentCulture, HowToFix.LocalizedControlTypeNotCustomWPFGridCell, HowToFix.LocalizedControlTypeNotCustom);
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
             this.Info.ErrorCode = EvaluationCode.Error;
