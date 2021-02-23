@@ -151,7 +151,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No control type entry was found in dictionary.
+        ///   Looks up a localized string similar to No control type entry was found in dictionary. Key value = {0}.
         /// </summary>
         internal static string NoControlTypeEntryFound {
             get {
