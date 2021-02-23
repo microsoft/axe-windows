@@ -26,7 +26,7 @@ namespace Axe.Windows.Rules.Library
         public override bool PassesTest(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (String.IsNullOrWhiteSpace(e.HelpText)) throw new ArgumentException(ErrorMessages.ElementHelpTextNullOrWhiteSpace, nameof(e));
+            if (string.IsNullOrWhiteSpace(e.HelpText)) throw new ArgumentException(ErrorMessages.ElementHelpTextNullOrWhiteSpace, nameof(e));
 
             return HelpText.ExcludesPrivateUnicodeCharacters.Matches(e);
         }

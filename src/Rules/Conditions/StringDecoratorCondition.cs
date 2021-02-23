@@ -15,7 +15,7 @@ namespace Axe.Windows.Rules
         private Condition Sub;
         private readonly string Decoration;
 
-        public StringDecoratorCondition(Condition c, String decoration)
+        public StringDecoratorCondition(Condition c, string decoration)
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
             if (decoration == null) throw new ArgumentNullException(nameof(decoration));
