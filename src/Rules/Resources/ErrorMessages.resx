@@ -148,7 +148,8 @@
     <value>Int parameter must not be less than zero</value>
   </data>
   <data name="NoControlTypeEntryFound" xml:space="preserve">
-    <value>No control type entry was found in dictionary</value>
+    <value>No control type entry was found in dictionary. Key value = {0}</value>
+    <comment>{0} is the numeric key</comment>
   </data>
   <data name="NoElementFound" xml:space="preserve">
     <value>Based on the Rule.Condition match, there should have been at least one element found in the PassesTest method of {0}</value>
