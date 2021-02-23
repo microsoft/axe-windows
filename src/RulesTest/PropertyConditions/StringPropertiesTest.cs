@@ -385,5 +385,25 @@ namespace Axe.Windows.RulesTest.PropertyConditions
                 Assert.IsTrue(condition.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void MatchesRegEx_NullProperty_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                var condition = Name.MatchesRegEx(@"foo");
+                Assert.IsFalse(condition.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void MatchesRegEx_WithOptions_NullProperty_False()
+        {
+            using (var e = new MockA11yElement())
+            {
+                var condition = Name.MatchesRegEx(@"foo", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+                Assert.IsFalse(condition.Matches(e));
+            } // using
+        }
     } // class
 } // namespace

@@ -161,8 +161,11 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             return Condition.Create(e =>
             {
+                var propertyValue = GetStringPropertyValue(e);
+                if (propertyValue == null) return false;
+
                 Regex r = new Regex(s);
-                return r.IsMatch(GetStringPropertyValue(e));
+                return r.IsMatch(propertyValue);
             },
             string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegEx, PropertyDescription, s));
         }
@@ -171,8 +174,11 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             return Condition.Create(e =>
             {
+                var propertyValue = GetStringPropertyValue(e);
+                if (propertyValue == null) return false;
+
                 Regex r = new Regex(s, options);
-                return r.IsMatch(GetStringPropertyValue(e));
+                return r.IsMatch(propertyValue);
                 },
                 string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegExWithOptions, PropertyDescription, s, options.ToString()));
         }
