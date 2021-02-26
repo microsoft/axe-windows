@@ -79,3 +79,7 @@ git fetch upstream
 git pull upstream master
 git push
 ```
+
+## Default branch
+As of February 2021, the default branch is the `main` branch
+ 
