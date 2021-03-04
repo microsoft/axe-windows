@@ -58,11 +58,6 @@ jobs:
       command: test
       projects: |
         **\*test*.csproj
-        
-  # Command line
-  # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
-  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-    displayName: 'Component Detection'
 
 - job: Debug
   pool:
