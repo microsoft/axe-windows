@@ -52,7 +52,6 @@ namespace Axe.Windows.Rules.PropertyConditions
         private static bool IsBoundingRectangleEmpty(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (e.BoundingRectangle == null) throw new ArgumentException(ErrorMessages.ElementBoundingRectangleNull, nameof(e));
 
             // Because IA11yElement.BoundingRectangle will return an empty rectangle when the property value is null,
             // we are expecting that this function is not called unless the nullity of the property has already been checked.
