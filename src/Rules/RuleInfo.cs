@@ -13,7 +13,7 @@ namespace Axe.Windows.Rules
     /// Provides metadata about a rule.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    public class RuleInfo : Attribute
+    public sealed class RuleInfo : Attribute
     {
 #pragma warning restore CA1710
 

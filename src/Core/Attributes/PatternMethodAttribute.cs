@@ -9,7 +9,7 @@ namespace Axe.Windows.Core.Attributes
     /// indicate the method is actionable via UI
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class PatternMethodAttribute:Attribute
+    public sealed class PatternMethodAttribute:Attribute
     {
         /// <summary>
         /// if it is true, the method is related with UI Action
