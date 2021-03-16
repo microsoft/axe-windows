@@ -35,7 +35,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             }
         }
 
-        public void HandleTextEditTextChangedEvent(IUIAutomationElement sender, TextEditChangeType TextEditChangeType, string[] eventStrings)
+#pragma warning disable CA1725 // Parameter names should match base declaration
+        public void HandleTextEditTextChangedEvent(IUIAutomationElement sender, TextEditChangeType textEditChangeType, string[] eventStrings)
+#pragma warning restore CA1725 // Parameter names should match base declaration
         {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(this.EventId, sender);
@@ -44,7 +46,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 m.Properties = new List<KeyValuePair<string, dynamic>>
                 {
-                    new KeyValuePair<string, dynamic>("TextEditChangeType", TextEditChangeType.ToString()),
+                    new KeyValuePair<string, dynamic>("TextEditChangeType", textEditChangeType.ToString()),
                 };
 
                 if (eventStrings != null)
