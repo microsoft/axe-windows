@@ -103,8 +103,7 @@ namespace AxeWindowsCLI
 
         private void HandleThirdPartyNoticesAndExit()
         {
-            string currentFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string pathToFile = Path.Combine(currentFolder, "thirdpartynotices.html");
+            string pathToFile = Path.Combine(AppContext.BaseDirectory, "thirdpartynotices.html");
             _outputGenerator.WriteThirdPartyNoticeOutput(pathToFile);
 
             _browserAbstraction.Open(pathToFile);
