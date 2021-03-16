@@ -30,7 +30,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// Ctor to create an event handler (with CUIAutomation8) and register it.
         /// </summary>
-        public EventListenerBase(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
+        protected EventListenerBase(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
         {
             this.UIAutomation8 = uia8;
@@ -39,7 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// Ctor to create an event handler (with CUIAutomation) and register it.
         /// </summary>
-        public EventListenerBase(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
+        protected EventListenerBase(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this (element, scope, eventId, peDelegate)
         {
             this.UIAutomation = uia;
@@ -48,7 +48,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// Private ctor to set common fields
         /// </summary>
-        private EventListenerBase(IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
+        protected EventListenerBase(IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
         {
             this.EventId = eventId;
             this.Element = element;

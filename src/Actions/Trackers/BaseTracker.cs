@@ -36,7 +36,7 @@ namespace Axe.Windows.Actions.Trackers
         /// Constructor
         /// </summary>
         /// <param name="action"></param>
-        public BaseTracker(Action<A11yElement> action)
+        protected BaseTracker(Action<A11yElement> action)
         {
             this.SetElement = action;
         }
