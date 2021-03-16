@@ -125,14 +125,11 @@ namespace Axe.Windows.Rules.Extensions
 
         public static int Area(this Rectangle rect)
         {
-            if (rect == null) throw new ArgumentNullException(nameof(rect));
             return rect.Size.Width * rect.Size.Height; 
         }
 
         public static bool CompletelyObscures(this Rectangle a, Rectangle b)
         {
-            if (a == null) return false;
-            if (b == null) return false;
             if (a.IsEmpty) return false;
             if (b.IsEmpty) return false;
 

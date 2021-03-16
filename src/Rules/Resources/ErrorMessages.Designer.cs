@@ -61,15 +61,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The element&apos;s BoundingRectangle property must not be null.
-        /// </summary>
-        internal static string ElementBoundingRectangleNull {
-            get {
-                return ResourceManager.GetString("ElementBoundingRectangleNull", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The element&apos;s HelpText property must not be null or white space.
         /// </summary>
         internal static string ElementHelpTextNullOrWhiteSpace {
