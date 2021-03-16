@@ -52,8 +52,10 @@ namespace AxeWindowsCLI
 
         private void WriteAppBanner()
         {
+#pragma warning disable IL3000 // We don't use a single file installer
             string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
             _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
+#pragma warning restore IL3000 // We don't use a single file installer
         }
 
         private void WriteBanner(IOptions options, VerbosityLevel minimumVerbosity)

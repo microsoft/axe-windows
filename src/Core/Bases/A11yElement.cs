@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
@@ -418,7 +419,7 @@ namespace Axe.Windows.Core.Bases
         {
             var property = this.PlatformProperties?.ById(propertyId);
             if (property == null) return default(T);
-            if (!(property.Value is T)) throw new Exception(Invariant($"Expected property.Value, which is type {property.Value.GetType().Name}, to be type {typeof(T).Name}"));
+            if (!(property.Value is T)) throw new AxeWindowsException(Invariant($"Expected property.Value, which is type {property.Value.GetType().Name}, to be type {typeof(T).Name}"));
 
             return property.Value;
         }

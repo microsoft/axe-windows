@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Linq;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Rules.Resources;
 
 namespace Axe.Windows.Rules.PropertyConditions
@@ -159,7 +160,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         private static bool HasSameTypeAsReferenceElement(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (!Condition.Context.IsValueCreated) throw new ApplicationException(ErrorMessages.ExpectedValidConditionContext);
+            if (!Condition.Context.IsValueCreated) throw new AxeWindowsException(ErrorMessages.ExpectedValidConditionContext);
 
             var referenceElement = Condition.Context.Value.ReferenceElements.Peek();
             return ControlTypeMatches(e, referenceElement);

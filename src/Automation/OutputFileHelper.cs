@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation.Resources;
+using Axe.Windows.Core.Exceptions;
 using Axe.Windows.SystemAbstractions;
 using System;
 using System.Globalization;
@@ -58,7 +59,7 @@ namespace Axe.Windows.Automation
                 Path.GetFullPath(path);
 
                 if (!Path.IsPathRooted(path))
-                    throw new Exception(DisplayStrings.ErrorIsNotFullPath);
+                    throw new AxeWindowsException(DisplayStrings.ErrorIsNotFullPath);
             }
             catch (Exception ex)
             {
