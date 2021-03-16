@@ -60,7 +60,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pts">Pattern ids</param>
         public static IUIAutomationCacheRequest BuildCacheRequest(List<int> pps, List<int> pts)
         {
-            return GetPropertiesCache(A11yAutomation.GetUIAutomationObject(), pps, pts);
+            return GetPropertiesCache(A11yAutomation.UIAutomationObject, pps, pts);
         }
 
         /// <summary>
