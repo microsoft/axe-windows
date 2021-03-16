@@ -95,12 +95,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get the default list of selected properties
+        /// The default list of selected properties
         /// </summary>
-        /// <returns></returns>
-        public static List<int> GetDefaultCoreProperties()
-        {
-            return sDefaultCoreProperties;
-        }
+        public static List<int> DefaultCoreProperties => sDefaultCoreProperties;
     }
 }
