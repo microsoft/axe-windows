@@ -18,6 +18,7 @@ namespace Axe.Windows.Core.Types
 
         private static PlatformPropertyType sInstance;
 
+#pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
         /// static method to get an instance of this class
         /// singleton
@@ -32,6 +33,7 @@ namespace Axe.Windows.Core.Types
 
             return sInstance;
         }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
         /// private constructor since it would be singleton model

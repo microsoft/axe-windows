@@ -368,6 +368,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         private static SelectAction sDefaultInstance;
 
+#pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
         /// Get the default instance of SelectAction
         /// </summary>
@@ -376,22 +377,12 @@ namespace Axe.Windows.Actions
         {
             if(sDefaultInstance == null)
             {
-                sDefaultInstance = GetInstance();
+                sDefaultInstance = new SelectAction();
             }
 
             return sDefaultInstance;
         }
-
-        /// <summary>
-        /// Get an instance of SelectAction
-        /// this is for the case that you need 2nd or more instances of SelectAction. 
-        /// in most of cases, you can use GetDefaultInstance() for getting default SelectAction instance
-        /// </summary>
-        /// <returns></returns>
-        public static SelectAction GetInstance()
-        {
-            return new SelectAction();
-        }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
         /// Clear default Instance. 
