@@ -103,7 +103,7 @@ namespace Axe.Windows.Actions.Contexts
                             this.Elements.Values.AsParallel().ForAll(e => e.Dispose());
                         }
 
-                        this.Elements?.Clear();
+                        this.Elements.Clear();
                     }
                 }
 
