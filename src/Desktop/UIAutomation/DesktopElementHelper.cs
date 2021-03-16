@@ -45,13 +45,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get the selected properties list
+        /// The selected properties list
         /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<int> GetCorePropertiesList()
-        {
-            return sCoreProperties;
-        }
+        public static IEnumerable<int> CorePropertiesList => sCoreProperties;
 
         /// <summary>
         /// Build a cacherequest for properties and patterns
