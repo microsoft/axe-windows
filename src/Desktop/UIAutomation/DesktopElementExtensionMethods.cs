@@ -302,8 +302,8 @@ namespace Axe.Windows.Desktop.UIAutomation
                 // release cache interface. 
                 Marshal.ReleaseComObject(cache);
 
-                ppl?.Clear();
-                ptl?.Clear();
+                ppl.Clear();
+                ptl.Clear();
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)

@@ -20,8 +20,10 @@ namespace AxeWindowsCLI
             if (caughtException as ParameterException != null)
                 return BadInputParameters;
 
+#pragma warning disable CA1508
             if (caughtException != null || scanResults == null)
                 return ScanFailedToComplete;
+#pragma warning restore CA1508
 
             if (scanResults.Errors.Any())
                 return ScanCompletedAndFoundErrors;

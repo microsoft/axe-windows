@@ -9,7 +9,7 @@ namespace Axe.Windows.Actions.Attributes
     /// Describes the amount of user interaction an Action offers
     /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
-    class InteractionLevelAttribute : Attribute
+    sealed class InteractionLevelAttribute : Attribute
     {
         private UxInteractionLevel _interactionLevel;
 
