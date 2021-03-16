@@ -105,10 +105,7 @@ namespace Axe.Windows.RuleSelection
             return ScanStatus.Pass;
         }
 
-        public static string GetRuleVersion()
-        {
-            return RuleVersions.Version;
-        }
+        public static string RuleVersion => RuleVersions.Version;
 
         private static Exception Error(string message)
         {
