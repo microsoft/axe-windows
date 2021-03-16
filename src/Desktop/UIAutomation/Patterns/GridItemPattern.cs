@@ -2,9 +2,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Resources;
-using System;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
@@ -42,7 +42,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                 return e;
             }
 
-            throw new ApplicationException(ErrorMessages.PatternNoLongerValid);
+            throw new AxeWindowsException(ErrorMessages.PatternNoLongerValid);
         }
 
         protected override void Dispose(bool disposing)
