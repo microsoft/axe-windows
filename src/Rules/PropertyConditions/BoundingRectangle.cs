@@ -60,8 +60,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         }
 
         private static bool HasValidArea(IA11yElement e)
-        {
-            
+        {            
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             return (e.BoundingRectangle.Width * e.BoundingRectangle.Height) >= MinimumArea;
