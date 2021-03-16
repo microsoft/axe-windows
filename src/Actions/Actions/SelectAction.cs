@@ -323,14 +323,16 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Get the selected ElementContext.
+        /// The selected ElementContextId (null if nothing is selected).
         /// </summary>
-        /// <returns></returns>
-        public Guid? GetSelectedElementContextId()
+        public Guid? SelectedElementContextId
         {
-            lock (_elementContextLock)
+            get
             {
-                return POIElementContext != null ? POIElementContext.Id : (Guid?)null;
+                lock (_elementContextLock)
+                {
+                    return POIElementContext != null ? POIElementContext.Id : (Guid?)null;
+                }
             }
         }
 

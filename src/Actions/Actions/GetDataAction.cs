@@ -103,7 +103,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static DataContextMode GetDataContextMode()
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(SelectAction.GetDefaultInstance().GetSelectedElementContextId().Value);
+            var ec = DataManager.GetDefaultInstance().GetElementContext(SelectAction.GetDefaultInstance().SelectedElementContextId.Value);
 
             return ec.DataContext != null ? ec.DataContext.Mode : DataContextMode.Live;
         }
