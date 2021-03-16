@@ -32,7 +32,6 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// The IUIAutomation object currently in use.
         /// </summary>
-        /// <returns></returns>
         public static IUIAutomation UIAutomationObject => UIAutomation;
 
         /// <summary>
