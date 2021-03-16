@@ -171,7 +171,6 @@ namespace Axe.Windows.Desktop.UIAutomation
 #pragma warning restore CA1031 // Do not catch general exception types
 
             return null;
-
         }
 
         /// <summary>
