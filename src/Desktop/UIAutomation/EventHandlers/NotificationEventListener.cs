@@ -30,7 +30,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             }
         }
 
-        public void HandleNotificationEvent(IUIAutomationElement sender, NotificationKind kind, NotificationProcessing process, string displayString, string activityId)
+#pragma warning disable CA1725 // Parameter names should match base declaration
+        public void HandleNotificationEvent(IUIAutomationElement sender, NotificationKind notificationKind, NotificationProcessing notificationProcessing, string displayString, string activityId)
+#pragma warning restore CA1725 // Parameter names should match base declaration
         {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
             var m = EventMessage.GetInstance(this.EventId, sender);
@@ -40,8 +42,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 m.Properties = new List<KeyValuePair<string, dynamic>>
                 {
-                    new KeyValuePair<string, dynamic>("NotificationKind", kind.ToString()),
-                    new KeyValuePair<string, dynamic>("NotificationProcessing", process.ToString()),
+                    new KeyValuePair<string, dynamic>("NotificationKind", notificationKind.ToString()),
+                    new KeyValuePair<string, dynamic>("NotificationProcessing", notificationProcessing.ToString()),
                     new KeyValuePair<string, dynamic>("Display", displayString),
                     new KeyValuePair<string, dynamic>("ActivityId", activityId),
                 };
