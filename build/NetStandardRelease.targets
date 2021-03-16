@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <NoWarn>RS0100;RS0016;CA1002;CA1012;CA1014;CA1024;CA1725;CA2201;CS8073;IL3000</NoWarn>
+    <NoWarn>RS0100;RS0016;CA1002;CA1012;CA1024;CA1725;CA2201;CS8073;IL3000</NoWarn>
     <!-- used by Microsoft.CodeAnalysis.NetAnalyzers -->
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
@@ -11,6 +11,10 @@
 
   <ItemGroup>
     <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" Link="AxeWindowsVersionInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(TEMP)\AxeWindowsAttributesInfo.cs" Link="AxeWindowsAttributesInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
