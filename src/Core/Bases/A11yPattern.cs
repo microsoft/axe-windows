@@ -90,11 +90,11 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         public A11yPattern() { }
 
-        public T GetValue<T>(string name)
+        public T GetValue<T>(string propertyName)
         {
             if (this.Properties == null) return default(T);
 
-            var item = this.Properties.Find(p => p.Name == name);
+            var item = this.Properties.Find(p => p.Name == propertyName);
             if (item == null) return default(T);
 
             if (item.Value is T)
