@@ -190,6 +190,7 @@ namespace Axe.Windows.Desktop.Utility
             (ControlType.UIA_WindowControlTypeId, EventType.UIA_Window_WindowOpenedEventId, null)
         };
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Use mapping list to get specific list for a control
         /// </summary>
@@ -202,5 +203,6 @@ namespace Axe.Windows.Desktop.Utility
                     where map.ControlId == controlId && (map.PatternId == null || patterns.Select(p=>p.Id).Contains(map.PatternId.Value))
                     select map.EventId).ToList();
         }
+#pragma warning restore CA1002 // Do not expose generic lists
     }
 }

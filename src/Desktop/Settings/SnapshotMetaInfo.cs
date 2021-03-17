@@ -18,12 +18,14 @@ namespace Axe.Windows.Desktop.Settings
         public A11yFileMode Mode { get; set; }
 
 #pragma warning disable CA2227 // Collection properties should be read only
+#pragma warning disable CA1002 // Do not expose generic lists
         // these properties are serialized/deserialized via json. so can't make it readonly. 
 
         /// <summary>
         /// Selected elements' unique IDs
         /// </summary>
         public List<int> SelectedItems { get; set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 #pragma warning restore CA2227 // Collection properties should be read only
 
         public int ScreenshotElementId { get; set; }

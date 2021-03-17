@@ -13,7 +13,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
     public interface ITreeWalkerForLive
     {
+#pragma warning disable CA1002 // Do not expose generic lists
         List<A11yElement> Elements { get; }
+#pragma warning restore CA1002 // Do not expose generic lists
         A11yElement RootElement { get; }
         void GetTreeHierarchy(A11yElement e, TreeViewMode mode);
     }
@@ -24,10 +26,12 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     /// </summary>
     public class TreeWalkerForLive : ITreeWalkerForLive
     {
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// List to keep all elements in tree walking(Ancestors, self and children)
         /// </summary>
         public List<A11yElement> Elements { get; private set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Top root node in whole hierarchy

@@ -22,6 +22,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             Pattern = p;
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
         public List<DesktopElement> GetColumnHeaderItems()
         {
@@ -33,6 +34,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             return this.Pattern.GetCurrentRowHeaderItems()?.ToListOfDesktopElements();
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         protected override void Dispose(bool disposing)
         {

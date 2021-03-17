@@ -15,7 +15,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
     public interface ITreeWalkerForTest
     {
+#pragma warning disable CA1002 // Do not expose generic lists
         List<A11yElement> Elements { get; }
+#pragma warning restore CA1002 // Do not expose generic lists
         A11yElement TopMostElement { get; }
         void RefreshTreeData(TreeViewMode mode);
     }
@@ -28,10 +30,12 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         private readonly BoundedCounter _elementCounter;
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// List of all Elements including SelectedElement and descendents
         /// </summary>
         public List<A11yElement> Elements { get; }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         public TimeSpan LastWalkTime { get; private set; }
         

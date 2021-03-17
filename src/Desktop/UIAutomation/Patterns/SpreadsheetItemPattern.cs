@@ -30,6 +30,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             this.Properties.Add(new A11yPatternProperty() { Name = "Formula", Value = this.Pattern.CurrentFormula });
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
         public List<DesktopElement> GetAnnotationObjects()
         {
@@ -52,6 +53,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
             return list;
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         protected override void Dispose(bool disposing)
         {

@@ -33,11 +33,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             this.Properties.Add(new A11yPatternProperty() { Name = "IsSelectionRequired", Value = Convert.ToBoolean(this.Pattern.CurrentIsSelectionRequired) });
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
         public List<DesktopElement> GetSelection()
         {
             return this.Pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         protected override void Dispose(bool disposing)
         {

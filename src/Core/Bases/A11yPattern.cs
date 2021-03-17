@@ -30,9 +30,11 @@ namespace Axe.Windows.Core.Bases
         /// CA2227 exemption since Properties should be serialized in results file.
         /// </summary>
 #pragma warning disable CA2227 // Collection properties should be read only
+#pragma warning disable CA1002 // Do not expose generic lists
         public List<A11yPatternProperty> Properties { get; set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 #pragma warning restore CA2227 // Collection properties should be read only
-        
+
         /// <summary>
         /// indicate whether it is actionable or not.
         /// </summary>
@@ -45,11 +47,13 @@ namespace Axe.Windows.Core.Bases
         [JsonIgnore]
         public A11yElement Element { get; private set; }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Pattern method list
         /// </summary>
         [JsonIgnore]
         public List<MethodInfo> Methods { get; private set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Constructor

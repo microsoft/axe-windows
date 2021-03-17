@@ -301,6 +301,7 @@ namespace Axe.Windows.Core.Misc
             return false;
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Returns a list of A11yElements along the path from the origin to this element
         /// </summary>
@@ -322,6 +323,7 @@ namespace Axe.Windows.Core.Misc
             }
             return res;
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Gets the Top level Ancestor from Ancestry.
@@ -517,6 +519,7 @@ namespace Axe.Windows.Core.Misc
                     select e).Count();
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Get all children with the specified control type Id
         /// </summary>
@@ -528,6 +531,7 @@ namespace Axe.Windows.Core.Misc
                     where e.ControlTypeId == id
                     select e).ToList();
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Count the number of element which are not matched in the given list

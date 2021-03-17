@@ -57,11 +57,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             this.UIATextRange.ScrollIntoView(alignToTop ? 1 : 0);
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
         public List<DesktopElement> GetChildren()
         {
             return this.UIATextRange.GetChildren()?.ToListOfDesktopElements();
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         [PatternMethod]
         public DesktopElement GetEnclosingElement()
@@ -154,6 +156,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             return null;
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
         public List<Rectangle> GetBoundingRectangles()
         {
@@ -167,6 +170,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
             return list;
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         [PatternMethod]
         public string GetText(int max)

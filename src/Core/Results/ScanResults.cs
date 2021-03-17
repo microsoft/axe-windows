@@ -15,10 +15,12 @@ namespace Axe.Windows.Core.Results
     {
         private readonly object _itemsLock = new object();
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Items with ScanResult
         /// </summary>
         public List<ScanResult> Items { get; private set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Aggregated status

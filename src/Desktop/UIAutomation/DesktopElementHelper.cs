@@ -53,6 +53,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             return sCoreProperties;
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Build a cacherequest for properties and patterns
         /// </summary>
@@ -106,5 +107,6 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             return sDefaultCoreProperties;
         }
+#pragma warning restore CA1002 // Do not expose generic lists
     }
 }

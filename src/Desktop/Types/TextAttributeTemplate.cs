@@ -14,6 +14,7 @@ namespace Axe.Windows.Desktop.Types
 
     public static class TextAttributeTemplate
     {
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Get template of each attribute type
         /// it is used in TextRangeFindDialog.
@@ -71,6 +72,7 @@ namespace Axe.Windows.Desktop.Types
                 CreateTemplateData<int>(UIA_SayAsInterpretAsAttributeId, SayAsInterpretAs.GetInstance()),
             };
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         private static TemplateData CreateTemplateData<T>(int id, dynamic value = null)
         {

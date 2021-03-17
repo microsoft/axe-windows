@@ -64,6 +64,7 @@ namespace Axe.Windows.Desktop.Utility
 #pragma warning restore CA1031 // Do not catch general exception types
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Change IUIAutomationElementArray To a list of DesktopElement
         /// </summary>
@@ -82,6 +83,7 @@ namespace Axe.Windows.Desktop.Utility
 
             return list;
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Capture the bitmap of the given element

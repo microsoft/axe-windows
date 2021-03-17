@@ -15,10 +15,12 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         public Dictionary<int, A11yProperty> Properties { get; set; }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Patterns
         /// </summary>
         public List<A11yPattern> Patterns { get; set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 #pragma warning restore CA2227 // Collection properties should be read only
     }
 }

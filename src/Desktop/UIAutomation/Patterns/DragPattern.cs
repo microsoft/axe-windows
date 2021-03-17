@@ -61,11 +61,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             return sb.ToString();
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
         public List<DesktopElement> GetGrabbedItems()
         {
             return this.Pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();      
         }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         protected override void Dispose(bool disposing)
         {
