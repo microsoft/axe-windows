@@ -13,6 +13,7 @@ using UIAutomationClient;
 using System.Runtime.InteropServices;
 using Axe.Windows.Win32;
 using System.Text.RegularExpressions;
+using Axe.Windows.Desktop.Utility;
 
 namespace Axe.Windows.Desktop.UIAutomation
 {
@@ -169,12 +170,8 @@ namespace Axe.Windows.Desktop.UIAutomation
                 element.Properties = null;
             }
 
-            if (element.Patterns != null)
-            {
-                element.Patterns.ForEach(ptn => ptn.Dispose());
-                element.Patterns?.Clear();
-                element.Patterns = null;
-            }
+            ListHelper.DisposeAndClear(element.Patterns);
+            element.Patterns = null;
 
             element.PlatformProperties?.Clear();
             element.PlatformProperties = null;

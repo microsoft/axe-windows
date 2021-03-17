@@ -568,12 +568,10 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         public Dictionary<int, A11yProperty> PlatformProperties { get; set; }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// a collection of patterns supported by the element
         /// </summary>
-        public List<A11yPattern> Patterns { get; set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<A11yPattern> Patterns { get; set; }
 
         /// <summary>
         /// Child Elements

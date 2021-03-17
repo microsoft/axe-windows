@@ -26,7 +26,7 @@ namespace Axe.Windows.AutomationTests
 
             ElementInfo expectedParentInfo = new ElementInfo
             {
-                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
+                Patterns = element.Patterns.ToList().ConvertAll<string>(x => x.Name),
                 Properties = null,
             };
 
