@@ -8,7 +8,7 @@ using UIAutomationClient;
 using System.Linq;
 using Axe.Windows.Core.Enums;
 using System.Runtime.InteropServices;
-using Axe.Windows.Desktop.Utility;
+using Axe.Windows.Core.Misc;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {

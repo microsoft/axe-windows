@@ -3,11 +3,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Axe.Windows.Desktop.Utility
+namespace Axe.Windows.Core.Misc
 {
     public static class ListHelper
     {
-        public static void DisposeAndClear<T>(IList<T> items) where T:IDisposable
+        public static void DisposeAndClear<T>(IList<T> items) where T : IDisposable
         {
             if (items != null)
             {
