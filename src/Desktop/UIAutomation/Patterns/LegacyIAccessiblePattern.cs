@@ -29,6 +29,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             try
             {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
                 this.Properties.Add(new A11yPatternProperty() { Name = "ChildId", Value = this.Pattern.CurrentChildId });
                 this.Properties.Add(new A11yPatternProperty() { Name = "DefaultAction", Value = this.Pattern.CurrentDefaultAction });
                 this.Properties.Add(new A11yPatternProperty() { Name = "Description", Value = this.Pattern.CurrentDescription });
@@ -38,6 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                 this.Properties.Add(new A11yPatternProperty() { Name = "Role", Value = this.Pattern.CurrentRole });
                 this.Properties.Add(new A11yPatternProperty() { Name = "State", Value = this.Pattern.CurrentState });
                 this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)

@@ -38,9 +38,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "DropEffect", Value = this.Pattern.CurrentDropEffect });
             this.Properties.Add(new A11yPatternProperty() { Name = "DropEffects", Value = GetDropEffectsString(this.Pattern.CurrentDropEffects) });
             this.Properties.Add(new A11yPatternProperty() { Name = "IsGrabbed", Value = Convert.ToBoolean(this.Pattern.CurrentIsGrabbed) });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         private static dynamic GetDropEffectsString(Array effects)

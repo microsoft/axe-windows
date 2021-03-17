@@ -25,6 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(this.Pattern.CurrentIsReadOnly) });
             try
             {
@@ -36,6 +37,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                 // there is a known case that CurrentValue is not ready. 
                 // to avoid catastrophic failure downstream, handle it here. 
             }
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]

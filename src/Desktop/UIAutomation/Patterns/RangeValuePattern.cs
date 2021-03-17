@@ -25,12 +25,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(this.Pattern.CurrentIsReadOnly) });
             this.Properties.Add(new A11yPatternProperty() { Name = "LargeChange", Value = this.Pattern.CurrentLargeChange });
             this.Properties.Add(new A11yPatternProperty() { Name = "Maximum", Value = this.Pattern.CurrentMaximum });
             this.Properties.Add(new A11yPatternProperty() { Name = "Minimum", Value = this.Pattern.CurrentMinimum });
             this.Properties.Add(new A11yPatternProperty() { Name = "SmallChange", Value = this.Pattern.CurrentSmallChange });
             this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]

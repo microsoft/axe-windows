@@ -30,9 +30,7 @@ namespace Axe.Windows.Core.Bases
         /// CA2227 exemption since Properties should be serialized in results file.
         /// </summary>
 #pragma warning disable CA2227 // Collection properties should be read only
-#pragma warning disable CA1002 // Do not expose generic lists
-        public List<A11yPatternProperty> Properties { get; set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<A11yPatternProperty> Properties { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
 
         /// <summary>
@@ -98,7 +96,7 @@ namespace Axe.Windows.Core.Bases
         {
             if (this.Properties == null) return default(T);
 
-            var item = this.Properties.Find(p => p.Name == propertyName);
+            var item = this.Properties.ToList().Find(p => p.Name == propertyName);
             if (item == null) return default(T);
 
             if (item.Value is T)
@@ -111,7 +109,7 @@ namespace Axe.Windows.Core.Bases
                 return default(T);
 
             // the return value will be an int of some kind, but it may require the cast not to throw and exception
-            return (T) item.Value;
+            return (T)item.Value;
         }
 
         private static bool IsNumber(dynamic d)
@@ -159,8 +157,7 @@ namespace Axe.Windows.Core.Bases
             {
                 if (disposing)
                 {
-                    this.Properties.ForEach(p => p.Dispose());
-                    this.Properties?.Clear();
+                    ListHelper.DisposeAndClear(this.Properties);
                     this.Properties = null;
                     this.Name = null;
                     this.Element = null;

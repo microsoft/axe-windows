@@ -25,12 +25,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "HorizontallyScrollable", Value = Convert.ToBoolean(this.Pattern.CurrentHorizontallyScrollable) });
             this.Properties.Add(new A11yPatternProperty() { Name = "HorizontalScrollPercent", Value = this.Pattern.CurrentHorizontalScrollPercent });
             this.Properties.Add(new A11yPatternProperty() { Name = "HorizontalViewSize", Value = this.Pattern.CurrentHorizontalViewSize });
             this.Properties.Add(new A11yPatternProperty() { Name = "VerticallyScrollable", Value = Convert.ToBoolean(this.Pattern.CurrentVerticallyScrollable) });
             this.Properties.Add(new A11yPatternProperty() { Name = "VerticalScrollPercent", Value = this.Pattern.CurrentVerticalScrollPercent });
             this.Properties.Add(new A11yPatternProperty() { Name = "VerticalViewSize", Value = this.Pattern.CurrentVerticalViewSize });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         //Scroll() means that it has scroll functionality. but doesn't mean that item should be focused since scroll actuall happens by scrollitem

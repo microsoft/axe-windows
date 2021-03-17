@@ -26,6 +26,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "CurrentView", Value = this.Pattern.CurrentCurrentView });
             var array = this.Pattern.GetCurrentSupportedViews();
             if (array.Length > 0)
@@ -36,6 +37,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                     Properties.Add(new A11yPatternProperty() { Name = Invariant($"SupportedViews[{i}]"), Value = Invariant($"{view}: {Pattern.GetViewName(view)}")});
                 }
             }
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]

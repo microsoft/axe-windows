@@ -26,7 +26,9 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "RowOrColumnMajor", Value = this.Pattern.CurrentRowOrColumnMajor });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
 #pragma warning disable CA1002 // Do not expose generic lists

@@ -23,6 +23,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "ExtendedProperties", Value = this.Pattern.CurrentExtendedProperties });
             this.Properties.Add(new A11yPatternProperty() { Name = "FillColor ", Value = this.Pattern.CurrentFillColor });
             this.Properties.Add(new A11yPatternProperty() { Name = "FillPatternColor ", Value = this.Pattern.CurrentFillPatternColor });
@@ -30,6 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             this.Properties.Add(new A11yPatternProperty() { Name = "Shape ", Value = this.Pattern.CurrentShape });
             this.Properties.Add(new A11yPatternProperty() { Name = "StyleId ", Value = this.Pattern.CurrentStyleId });
             this.Properties.Add(new A11yPatternProperty() { Name = "StyleName ", Value = this.Pattern.CurrentStyleName });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         protected override void Dispose(bool disposing)
