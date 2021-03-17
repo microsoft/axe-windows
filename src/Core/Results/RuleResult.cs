@@ -14,13 +14,11 @@ namespace Axe.Windows.Core.Results
     public class RuleResult
     {
 #pragma warning disable CA2227 // Collection properties should be read only
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Messages through Rule checking stages
         /// for JSON serialization, allow set()
         /// </summary>
-        public List<string> Messages { get; set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<string> Messages { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
         /// <summary>
         /// Status of Rule check
