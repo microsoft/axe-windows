@@ -75,11 +75,10 @@ namespace Axe.Windows.Core.Types
             return true;
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Get the full list of known types in List of KeyValuePairs
         /// </summary>
-        public List<KeyValuePair<int, string>> GetKeyValuePairList()
+        public IList<KeyValuePair<int, string>> GetKeyValuePairList()
         {
             var list = new List<KeyValuePair<int, string>>();
 
@@ -93,7 +92,6 @@ namespace Axe.Windows.Core.Types
 
             return list;
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Get Name of Type by Id
