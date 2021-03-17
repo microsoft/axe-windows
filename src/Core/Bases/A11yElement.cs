@@ -638,14 +638,6 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         public string IssueDisplayText { get; set; }
 
-        public ScanResults GetScannerResultInstance()
-        {
-            var srs = new ScanResults();
-            this.ScanResults = srs;
-
-            return srs;
-        }
-
         /// <summary>
         /// Get Property Safely.
         /// </summary>

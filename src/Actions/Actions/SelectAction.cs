@@ -323,14 +323,16 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Get the selected ElementContext.
+        /// The selected ElementContextId (null if nothing is selected).
         /// </summary>
-        /// <returns></returns>
-        public Guid? GetSelectedElementContextId()
+        public Guid? SelectedElementContextId
         {
-            lock (_elementContextLock)
+            get
             {
-                return POIElementContext != null ? POIElementContext.Id : (Guid?)null;
+                lock (_elementContextLock)
+                {
+                    return POIElementContext != null ? POIElementContext.Id : (Guid?)null;
+                }
             }
         }
 
@@ -368,6 +370,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         private static SelectAction sDefaultInstance;
 
+#pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
         /// Get the default instance of SelectAction
         /// </summary>
@@ -376,22 +379,12 @@ namespace Axe.Windows.Actions
         {
             if(sDefaultInstance == null)
             {
-                sDefaultInstance = GetInstance();
+                sDefaultInstance = new SelectAction();
             }
 
             return sDefaultInstance;
         }
-
-        /// <summary>
-        /// Get an instance of SelectAction
-        /// this is for the case that you need 2nd or more instances of SelectAction. 
-        /// in most of cases, you can use GetDefaultInstance() for getting default SelectAction instance
-        /// </summary>
-        /// <returns></returns>
-        public static SelectAction GetInstance()
-        {
-            return new SelectAction();
-        }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
         /// Clear default Instance. 

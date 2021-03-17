@@ -27,7 +27,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static dynamic RunAction(int eId, int ptId, string mname, object[] parameters)
         {
-            var ecId = SelectAction.GetDefaultInstance().GetSelectedElementContextId();
+            var ecId = SelectAction.GetDefaultInstance().SelectedElementContextId;
             A11yPattern ptn = DataManager.GetDefaultInstance().GetA11yPattern(ecId.Value, eId, ptId);
 
             MethodInfo mi = ptn.Methods.Where(m => m.Name == mname).First();

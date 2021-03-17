@@ -34,11 +34,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
+#pragma warning disable CA1024 // Use properties where appropriate
         [PatternMethod]
         public DesktopElement GetTarget()
         {
             return new DesktopElement(this.Pattern.CurrentTarget);
         }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         protected override void Dispose(bool disposing)
         {

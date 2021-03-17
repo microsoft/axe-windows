@@ -61,6 +61,7 @@ namespace Axe.Windows.Desktop.Utility
         /// </summary>
         static StandardLinksHelper sDefaultInstance;
 
+#pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
         /// Get the default instance of StandardLinksHelper
         /// </summary>
@@ -74,6 +75,7 @@ namespace Axe.Windows.Desktop.Utility
 
             return sDefaultInstance;
         }
+#pragma warning restore CA1024 // Use properties where appropriate
         #endregion
     }
 }

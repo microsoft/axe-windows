@@ -71,7 +71,7 @@ namespace Axe.Windows.Actions
                 }
             }
 
-            var meta = new SnapshotMetaInfo(mode, RuleRunner.GetRuleVersion(), focusedElementId, ec.DataContext.ScreenshotElementId);
+            var meta = new SnapshotMetaInfo(mode, RuleRunner.RuleVersion, focusedElementId, ec.DataContext.ScreenshotElementId);
             var jsonMeta = JsonConvert.SerializeObject(meta, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonMeta)))
             {

@@ -30,14 +30,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get UIAutomation8 Object
-        /// it is singleton model. basically when you call it, it returns precreated object as needed. 
+        /// The IUIAutomation object currently in use.
         /// </summary>
-        /// <returns></returns>
-        public static IUIAutomation GetUIAutomationObject()
-        {
-            return UIAutomation;
-        }
+        public static IUIAutomation UIAutomationObject => UIAutomation;
 
         /// <summary>
         /// Get DesktopElement based on Process Id. 
@@ -176,7 +171,6 @@ namespace Axe.Windows.Desktop.UIAutomation
 #pragma warning restore CA1031 // Do not catch general exception types
 
             return null;
-
         }
 
         /// <summary>
@@ -239,7 +233,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             IUIAutomationTreeWalker walker = null;
 
-            var uia = A11yAutomation.GetUIAutomationObject();
+            var uia = A11yAutomation.UIAutomationObject;
 
             switch (mode)
             {
