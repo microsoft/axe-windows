@@ -45,13 +45,11 @@ namespace Axe.Windows.Core.Bases
         [JsonIgnore]
         public A11yElement Element { get; private set; }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Pattern method list
         /// </summary>
         [JsonIgnore]
-        public List<MethodInfo> Methods { get; private set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<MethodInfo> Methods { get; private set; }
 
         /// <summary>
         /// Constructor
