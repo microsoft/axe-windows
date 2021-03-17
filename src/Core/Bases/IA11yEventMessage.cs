@@ -13,9 +13,7 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         string TimeStamp { get; set; }
 
-#pragma warning disable CA1002 // Do not expose generic lists
-        List<KeyValuePair<string, dynamic>> Properties { get; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        IList<KeyValuePair<string, dynamic>> Properties { get; }
 
         A11yElement Element { get; set; }
     }

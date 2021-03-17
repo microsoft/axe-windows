@@ -22,9 +22,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public string TimeStamp { get; set; }
 
 #pragma warning disable CA2227 // Collection properties should be read only
-#pragma warning disable CA1002 // Do not expose generic lists
-        public List<KeyValuePair<string,dynamic>> Properties { get; set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<KeyValuePair<string,dynamic>> Properties { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
 
         public A11yElement Element { get; set; }
