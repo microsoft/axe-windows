@@ -49,13 +49,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 #pragma warning restore CA1031 // Do not catch general exception types
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
-        public List<DesktopElement> GetSelection()
+        public IList<DesktopElement> GetSelection()
         {
             return this.Pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         [PatternMethod]
         public void DoDefaultAction()
