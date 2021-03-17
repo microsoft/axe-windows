@@ -14,13 +14,12 @@ namespace Axe.Windows.Desktop.Types
 
     public static class TextAttributeTemplate
     {
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Get template of each attribute type
         /// it is used in TextRangeFindDialog.
         /// </summary>
         /// <returns></returns>
-        public static List<TemplateData> GetTemplate()
+        public static IList<TemplateData> GetTemplate()
         {
             var boolList = new List<KeyValuePair<bool, string>>() { new KeyValuePair<bool, string>(false, "False"), new KeyValuePair<bool, string>(true, "True") };
 
@@ -72,7 +71,6 @@ namespace Axe.Windows.Desktop.Types
                 CreateTemplateData<int>(UIA_SayAsInterpretAsAttributeId, SayAsInterpretAs.GetInstance()),
             };
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         private static TemplateData CreateTemplateData<T>(int id, dynamic value = null)
         {
