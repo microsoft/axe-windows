@@ -19,7 +19,7 @@ namespace Axe.Windows.Desktop.Settings
 
 #pragma warning disable CA2227 // Collection properties should be read only
 #pragma warning disable CA1002 // Do not expose generic lists
-        // these properties are serialized/deserialized via json. so can't make it readonly. 
+        // these properties are serialized/deserialized via json. so can't make it readonly or an IList
 
         /// <summary>
         /// Selected elements' unique IDs
