@@ -53,13 +53,12 @@ namespace Axe.Windows.Desktop.UIAutomation
             return sCoreProperties;
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Build a cacherequest for properties and patterns
         /// </summary>
         /// <param name="pps">Property ids</param>
         /// <param name="pts">Pattern ids</param>
-        public static IUIAutomationCacheRequest BuildCacheRequest(List<int> pps, List<int> pts)
+        public static IUIAutomationCacheRequest BuildCacheRequest(IEnumerable<int> pps, IEnumerable<int> pts)
         {
             return GetPropertiesCache(A11yAutomation.GetUIAutomationObject(), pps, pts);
         }
@@ -71,7 +70,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pps">Property ids</param>
         /// <param name="pts">Pattern ids</param>
         /// <returns></returns>
-        public static IUIAutomationCacheRequest GetPropertiesCache(IUIAutomation uia, List<int> pps, List<int> pts)
+        public static IUIAutomationCacheRequest GetPropertiesCache(IUIAutomation uia, IEnumerable<int> pps, IEnumerable<int> pts)
         {
             if (uia == null) throw new ArgumentNullException(nameof(uia));
 
@@ -99,6 +98,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             return cr;
         }
 
+#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Get the default list of selected properties
         /// </summary>
