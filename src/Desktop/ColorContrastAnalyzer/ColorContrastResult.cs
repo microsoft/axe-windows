@@ -61,10 +61,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return this;
         }
 
-        public ColorPair GetMostLikelyColorPair()
-        {
-            return mostContrastingPair;
-        }
+        public ColorPair MostLikelyColorPair => mostContrastingPair;
 
         public Confidence ConfidenceValue()
         {

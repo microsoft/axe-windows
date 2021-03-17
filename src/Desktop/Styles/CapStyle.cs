@@ -28,6 +28,7 @@ namespace Axe.Windows.Desktop.Styles
 
         private static CapStyle sInstance;
 
+#pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
         /// static method to get an instance of this class
         /// singleton
@@ -42,6 +43,7 @@ namespace Axe.Windows.Desktop.Styles
 
             return sInstance;
         }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
         /// private constructor since it would be singleton model

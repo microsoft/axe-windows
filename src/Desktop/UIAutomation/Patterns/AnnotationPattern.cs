@@ -32,11 +32,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             this.Properties.Add(new A11yPatternProperty() { Name = "DateTime", Value = this.Pattern.CurrentDateTime });
         }
 
+#pragma warning disable CA1024 // Use properties where appropriate
         [PatternMethod]
         public DesktopElement GetTarget()
         {
             return new DesktopElement(this.Pattern.CurrentTarget);
         }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         protected override void Dispose(bool disposing)
         {

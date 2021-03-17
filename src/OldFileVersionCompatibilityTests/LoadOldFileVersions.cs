@@ -106,7 +106,7 @@ namespace Axe.Windows.OldFileVersionCompatibilityTests
         /// <param name="sa">The SelectAction that defines the context</param>
         private static List<(RuleResult, A11yElement)> ExtractFailedResults(SelectAction sa)
         {
-            Guid ecId = sa.GetSelectedElementContextId().Value;
+            Guid ecId = sa.SelectedElementContextId.Value;
             ElementDataContext dataContext = GetDataAction.GetElementDataContext(ecId);
 
             List<(RuleResult, A11yElement)> list = new List<(RuleResult, A11yElement)>();

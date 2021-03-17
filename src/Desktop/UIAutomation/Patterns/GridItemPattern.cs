@@ -32,6 +32,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             this.Properties.Add(new A11yPatternProperty() { Name = "RowSpan", Value = this.Pattern.CurrentRowSpan });
         }
 
+#pragma warning disable CA1024 // Use properties where appropriate
         [PatternMethod]
         public DesktopElement GetContainingGrid()
         {
@@ -44,6 +45,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
             throw new AxeWindowsException(ErrorMessages.PatternNoLongerValid);
         }
+#pragma warning restore CA1024 // Use properties where appropriate
 
         protected override void Dispose(bool disposing)
         {
