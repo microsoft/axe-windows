@@ -58,12 +58,10 @@ namespace Axe.Windows.Core.Results
         public ScanMetaInfo MetaInfo { get; set; }
 
 #pragma warning disable CA2227 // Collection properties should be read only
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Rule Results
         /// </summary>
-        public List<RuleResult> Items { get; set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<RuleResult> Items { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
 
         /// <summary>
