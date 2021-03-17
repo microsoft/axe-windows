@@ -153,7 +153,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
                 while (child != null)
                 {
+#pragma warning disable CA2000 // Use recommended dispose patterns
                     var childNode = new DesktopElement(child, true, false);
+#pragma warning restore CA2000 // Use recommended dispose patterns
                     childNode.PopulateMinimumPropertiesForSelection();
 
                     if (childNode.IsSameUIElement(poiNode) == false)

@@ -10,6 +10,7 @@ using System.Linq;
 using Axe.Windows.Core.Enums;
 using System.Runtime.InteropServices;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.Utility;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
@@ -78,8 +79,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.TopMostElement = ancestry.First;
 
             // clear children
-            this.SelectedElement.Children?.ForEach(c => c.Dispose());
-            this.SelectedElement.Children?.Clear();
+            ListHelper.DisposeAndClear(this.SelectedElement.Children);
             this.SelectedElement.UniqueId = 0;
 
             PopulateChildrenTreeNode(this.SelectedElement, ancestry.Last, ancestry.NextId);

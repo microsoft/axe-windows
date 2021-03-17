@@ -573,12 +573,12 @@ namespace Axe.Windows.Core.Bases
         /// a collection of patterns supported by the element
         /// </summary>
         public List<A11yPattern> Patterns { get; set; }
+#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Child Elements
         /// </summary>
-        public List<A11yElement> Children { get; set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<A11yElement> Children { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
 
         /*

@@ -30,9 +30,10 @@ namespace Axe.Windows.CoreTests.Misc
                 r.Status = ScanStatus.Pass;
                 item.Items.Add(r);
             });
-            ke.Children.ForEach(c => {
+            foreach (var c in ke.Children)
+            {
                 Utility.PopulateChildrenTests(c);
-            });
+            };
             var statuses = (from child in ke.Children
                            select child.TestStatus);
             int[] statusCounts = statuses.GetStatusCounts();

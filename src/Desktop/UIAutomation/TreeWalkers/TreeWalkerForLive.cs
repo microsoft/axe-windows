@@ -8,6 +8,7 @@ using UIAutomationClient;
 using System.Linq;
 using Axe.Windows.Core.Enums;
 using System.Runtime.InteropServices;
+using Axe.Windows.Desktop.Utility;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
@@ -77,8 +78,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.RootElement = ancestry.First;
 
             // clear children
-            e.Children?.ForEach(c => c.Dispose());
-            e.Children?.Clear();
+            ListHelper.DisposeAndClear(e.Children);
 
             // populate selected element relationship and add it to list. 
             e.Parent = ancestry.Last;

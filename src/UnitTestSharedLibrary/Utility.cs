@@ -39,10 +39,11 @@ namespace Axe.Windows.UnitTestSharedLibrary
                     var next = elements.Dequeue();
                     if (next.Children != null)
                     {
-                        next.Children.ForEach(c => {
+                        foreach (var c in next.Children)
+                        {
                             c.Parent = next;
                             elements.Enqueue(c);
-                        });
+                        };
                     }
                 }
             }
@@ -67,9 +68,10 @@ namespace Axe.Windows.UnitTestSharedLibrary
                 r.Status = ke.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail;
                 item.Items.Add(r);
             });
-            ke.Children.ForEach(c => {
+            foreach (var c in ke.Children)
+            {
                 PopulateChildrenTests(c);
-            });
+            };
         }
     }
 }
