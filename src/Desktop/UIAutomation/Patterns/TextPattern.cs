@@ -49,19 +49,17 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             return new TextRange(this.Pattern.DocumentRange, this);
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
-        public List<TextRange> GetSelection()
+        public IList<TextRange> GetSelection()
         {
             return ToListOfTextRanges(this.Pattern.GetSelection());
         }
 
         [PatternMethod]
-        public List<TextRange> GetVisibleRanges()
+        public IList<TextRange> GetVisibleRanges()
         {
             return ToListOfTextRanges(this.Pattern.GetVisibleRanges());
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         [PatternMethod]
         public TextRange RangeFromChild(DesktopElement child)
