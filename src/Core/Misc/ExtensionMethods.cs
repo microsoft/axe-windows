@@ -301,14 +301,13 @@ namespace Axe.Windows.Core.Misc
             return false;
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
-        /// Returns a list of A11yElements along the path from the origin to this element
+        /// Returns an IList of A11yElements along the path from the origin to this element
         /// </summary>
         /// <param name="element">Element to find the path to</param>
         /// <param name="descending">Indicates whether the path goes from top to bottom</param>
         /// <returns></returns>
-        public static List<A11yElement> GetPathFromOriginAncestor(this A11yElement element, bool descending = true)
+        public static IList<A11yElement> GetPathFromOriginAncestor(this A11yElement element, bool descending = true)
         {
             List<A11yElement> res = new List<A11yElement>() { element };
             var e = element;
@@ -323,7 +322,6 @@ namespace Axe.Windows.Core.Misc
             }
             return res;
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Gets the Top level Ancestor from Ancestry.
@@ -519,19 +517,17 @@ namespace Axe.Windows.Core.Misc
                     select e).Count();
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
         /// Get all children with the specified control type Id
         /// </summary>
         /// <param name="es"></param>
         /// <returns></returns>
-        public static List<A11yElement> ByControlType(this IList<A11yElement> es, int id)
+        public static IList<A11yElement> ByControlType(this IList<A11yElement> es, int id)
         {
             return (from e in es
                     where e.ControlTypeId == id
                     select e).ToList();
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Count the number of element which are not matched in the given list
