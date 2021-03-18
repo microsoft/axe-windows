@@ -31,19 +31,17 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
-        public List<DesktopElement> GetColumnHeaders()
+        public IList<DesktopElement> GetColumnHeaders()
         {
             return this.Pattern.GetCurrentColumnHeaders()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
-        public List<DesktopElement> GetRowHeaders()
+        public IList<DesktopElement> GetRowHeaders()
         {
             return this.Pattern.GetCurrentRowHeaders()?.ToListOfDesktopElements();
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         protected override void Dispose(bool disposing)
         {
