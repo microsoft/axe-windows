@@ -10,7 +10,6 @@ using System.Linq;
 using Axe.Windows.Core.Enums;
 using System.Runtime.InteropServices;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.Utility;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
