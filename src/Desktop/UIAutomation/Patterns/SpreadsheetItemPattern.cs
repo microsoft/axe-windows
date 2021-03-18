@@ -32,15 +32,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         [PatternMethod]
-        public List<DesktopElement> GetAnnotationObjects()
+        public IList<DesktopElement> GetAnnotationObjects()
         {
             return this.Pattern.GetCurrentAnnotationObjects()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
-        public List<string> GetAnnotationTypes()
+        public IList<string> GetAnnotationTypes()
         {
             var array = this.Pattern.GetCurrentAnnotationTypes();
             List<string> list = new List<string>();
@@ -55,7 +54,6 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
             return list;
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         protected override void Dispose(bool disposing)
         {
