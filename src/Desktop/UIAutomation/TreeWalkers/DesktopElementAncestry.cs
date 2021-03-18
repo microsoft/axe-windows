@@ -28,9 +28,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         public A11yElement Last { get; private set; }
 
-#pragma warning disable CA1002 // Do not expose generic lists
-        public List<A11yElement> Items { get; private set; }
-#pragma warning restore CA1002 // Do not expose generic lists
+        public IList<A11yElement> Items { get; private set; }
 
         private readonly IUIAutomationTreeWalker TreeWalker;
 

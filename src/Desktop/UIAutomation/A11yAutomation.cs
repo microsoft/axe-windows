@@ -197,7 +197,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 tree.Items.Remove(app);
 
-                tree.Items.ForEach(el => el.Dispose());
+                ListHelper.DisposeAllItems(tree.Items);
 
                 // make sure that Unique ID is set to 0 since this element will be POI.
                 app.UniqueId = 0;
