@@ -170,7 +170,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 element.Properties = null;
             }
 
-            ListHelper.DisposeAndClear(element.Patterns);
+            ListHelper.DisposeAllItemsAndClearList(element.Patterns);
             element.Patterns = null;
 
             element.PlatformProperties?.Clear();

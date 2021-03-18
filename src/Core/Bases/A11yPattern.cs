@@ -155,7 +155,7 @@ namespace Axe.Windows.Core.Bases
             {
                 if (disposing)
                 {
-                    ListHelper.DisposeAndClear(this.Properties);
+                    ListHelper.DisposeAllItemsAndClearList(this.Properties);
                     this.Properties = null;
                     this.Name = null;
                     this.Element = null;

@@ -78,7 +78,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.RootElement = ancestry.First;
 
             // clear children
-            ListHelper.DisposeAndClear(e.Children);
+            ListHelper.DisposeAllItemsAndClearList(e.Children);
 
             // populate selected element relationship and add it to list. 
             e.Parent = ancestry.Last;

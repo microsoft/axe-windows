@@ -79,7 +79,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.TopMostElement = ancestry.First;
 
             // clear children
-            ListHelper.DisposeAndClear(this.SelectedElement.Children);
+            ListHelper.DisposeAllItemsAndClearList(this.SelectedElement.Children);
             this.SelectedElement.UniqueId = 0;
 
             PopulateChildrenTreeNode(this.SelectedElement, ancestry.Last, ancestry.NextId);

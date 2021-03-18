@@ -7,7 +7,7 @@ namespace Axe.Windows.Core.Misc
 {
     public static class ListHelper
     {
-        public static void DisposeAndClear<T>(IList<T> items) where T : IDisposable
+        public static void DisposeAllItemsAndClearList<T>(IList<T> items) where T : IDisposable
         {
             DisposeAllItems(items);
             items?.Clear();
