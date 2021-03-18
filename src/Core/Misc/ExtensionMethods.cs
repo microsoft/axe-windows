@@ -302,12 +302,12 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Returns a list of A11yElements along the path from the origin to this element
+        /// Returns an IList of A11yElements along the path from the origin to this element
         /// </summary>
         /// <param name="element">Element to find the path to</param>
         /// <param name="descending">Indicates whether the path goes from top to bottom</param>
         /// <returns></returns>
-        public static List<A11yElement> GetPathFromOriginAncestor(this A11yElement element, bool descending = true)
+        public static IList<A11yElement> GetPathFromOriginAncestor(this A11yElement element, bool descending = true)
         {
             List<A11yElement> res = new List<A11yElement>() { element };
             var e = element;
@@ -435,7 +435,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="ps"></param>
         /// <returns></returns>
-        public static bool HasPatternBy(this List<A11yPattern> ps, int id)
+        public static bool HasPatternBy(this IList<A11yPattern> ps, int id)
         {
             if (ps == null || ps.Count == 0) return false;
 
@@ -449,7 +449,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="cs"></param>
         /// <returns></returns>
-        public static bool HasChildBy(this List<A11yElement> cs, int id)
+        public static bool HasChildBy(this IList<A11yElement> cs, int id)
         {
             return (from c in cs
                     let cid = c.Properties.ById(PropertyType.UIA_ControlTypePropertyId).Value
@@ -462,7 +462,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="ps"></param>
         /// <returns></returns>
-        public static A11yPattern ById(this List<A11yPattern> ps, int id)
+        public static A11yPattern ById(this IList<A11yPattern> ps, int id)
         {
             if (ps == null || ps.Count == 0) return null;
 
@@ -498,7 +498,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="ps"></param>
         /// <returns></returns>
-        public static A11yPatternProperty ByName(this List<A11yPatternProperty> ps, string name)
+        public static A11yPatternProperty ByName(this IList<A11yPatternProperty> ps, string name)
         {
             return (from p in ps
                     where p.Name == name
@@ -510,7 +510,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="es"></param>
         /// <returns></returns>
-        public static int CountMatchedByControlType(this List<A11yElement> es, int id)
+        public static int CountMatchedByControlType(this IList<A11yElement> es, int id)
         {
             return (from e in es
                     where e.ControlTypeId == id
@@ -522,7 +522,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="es"></param>
         /// <returns></returns>
-        public static List<A11yElement> ByControlType(this List<A11yElement> es, int id)
+        public static IList<A11yElement> ByControlType(this IList<A11yElement> es, int id)
         {
             return (from e in es
                     where e.ControlTypeId == id
@@ -534,7 +534,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="es"></param>
         /// <returns></returns>
-        public static int CountUnMatchedByControlTypes(this List<A11yElement> es, int[] ids)
+        public static int CountUnMatchedByControlTypes(this IList<A11yElement> es, int[] ids)
         {
             return (from e in es
                     where ids.Contains(e.ControlTypeId) == false

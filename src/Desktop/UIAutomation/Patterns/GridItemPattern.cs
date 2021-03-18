@@ -26,10 +26,12 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "Column", Value = this.Pattern.CurrentColumn });
             this.Properties.Add(new A11yPatternProperty() { Name = "ColumnSpan", Value = this.Pattern.CurrentColumnSpan });
             this.Properties.Add(new A11yPatternProperty() { Name = "Row", Value = this.Pattern.CurrentRow });
             this.Properties.Add(new A11yPatternProperty() { Name = "RowSpan", Value = this.Pattern.CurrentRowSpan });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
 #pragma warning disable CA1024 // Use properties where appropriate

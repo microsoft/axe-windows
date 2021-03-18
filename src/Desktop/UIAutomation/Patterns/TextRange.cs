@@ -58,7 +58,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         [PatternMethod]
-        public List<DesktopElement> GetChildren()
+        public IList<DesktopElement> GetChildren()
         {
             return this.UIATextRange.GetChildren()?.ToListOfDesktopElements();
         }
@@ -155,7 +155,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         [PatternMethod]
-        public List<Rectangle> GetBoundingRectangles()
+        public IList<Rectangle> GetBoundingRectangles()
         {
             List<Rectangle> list = new List<Rectangle>();
 

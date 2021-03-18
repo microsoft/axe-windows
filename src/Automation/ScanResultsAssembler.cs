@@ -80,7 +80,7 @@ namespace Axe.Windows.Automation
             return new ElementInfo
             {
                 Parent = parent,
-                Patterns = element.Patterns?.ConvertAll<string>(x => x.Name),
+                Patterns = element.Patterns?.ToList().ConvertAll<string>(x => x.Name),
                 Properties = element.Properties?.ToDictionary(p => p.Value.Name, p => p.Value.TextValue)
             };
         }

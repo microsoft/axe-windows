@@ -78,7 +78,7 @@ namespace Axe.Windows.Core.Types
         /// <summary>
         /// Get the full list of known types in List of KeyValuePairs
         /// </summary>
-        public List<KeyValuePair<int, string>> GetKeyValuePairList()
+        public IList<KeyValuePair<int, string>> GetKeyValuePairList()
         {
             var list = new List<KeyValuePair<int, string>>();
 

@@ -23,13 +23,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         [PatternMethod]
-        public List<DesktopElement> GetColumnHeaderItems()
+        public IList<DesktopElement> GetColumnHeaderItems()
         {
             return this.Pattern.GetCurrentColumnHeaderItems()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
-        public List<DesktopElement> GetRowHeaderItems()
+        public IList<DesktopElement> GetRowHeaderItems()
         {
             return this.Pattern.GetCurrentRowHeaderItems()?.ToListOfDesktopElements();
         }

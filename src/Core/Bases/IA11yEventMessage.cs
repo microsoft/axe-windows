@@ -13,7 +13,7 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         string TimeStamp { get; set; }
 
-        List<KeyValuePair<string, dynamic>> Properties { get; }
+        IList<KeyValuePair<string, dynamic>> Properties { get; }
 
         A11yElement Element { get; set; }
     }

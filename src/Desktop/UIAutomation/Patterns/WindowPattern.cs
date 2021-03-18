@@ -27,12 +27,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "CanMaximize", Value = Convert.ToBoolean(this.Pattern.CurrentCanMaximize) });
             this.Properties.Add(new A11yPatternProperty() { Name = "CanMinimize", Value = Convert.ToBoolean(this.Pattern.CurrentCanMinimize) });
             this.Properties.Add(new A11yPatternProperty() { Name = "IsModal", Value = Convert.ToBoolean(this.Pattern.CurrentIsModal) });
             this.Properties.Add(new A11yPatternProperty() { Name = "IsTopmost", Value = Convert.ToBoolean(this.Pattern.CurrentIsTopmost) });
             this.Properties.Add(new A11yPatternProperty() { Name = "WindowInteractionState", Value = this.Pattern.CurrentWindowInteractionState });
             this.Properties.Add(new A11yPatternProperty() { Name = "WindowVisualState", Value = this.Pattern.CurrentWindowVisualState });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]

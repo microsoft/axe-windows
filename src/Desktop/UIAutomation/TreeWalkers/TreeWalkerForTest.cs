@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
     public interface ITreeWalkerForTest
     {
-        List<A11yElement> Elements { get; }
+        IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
         void RefreshTreeData(TreeViewMode mode);
     }
@@ -31,7 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <summary>
         /// List of all Elements including SelectedElement and descendents
         /// </summary>
-        public List<A11yElement> Elements { get; }
+        public IList<A11yElement> Elements { get; }
 
         public TimeSpan LastWalkTime { get; private set; }
         
@@ -74,15 +74,17 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.TopMostElement = ancestry.First;
 
             // clear children
-            this.SelectedElement.Children?.ForEach(c => c.Dispose());
-            this.SelectedElement.Children?.Clear();
+            ListHelper.DisposeAllItemsAndClearList(this.SelectedElement.Children);
             this.SelectedElement.UniqueId = 0;
 
             PopulateChildrenTreeNode(this.SelectedElement, ancestry.Last, ancestry.NextId);
 
             // do population of ancesters all togather with children
             var list = new List<A11yElement>(this.Elements);
-            this.Elements.AddRange(ancestry.Items);
+            foreach (var item in ancestry.Items)
+            {
+                this.Elements.Add(item);
+            }
 
             // populate Elements first
             this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData());
@@ -136,8 +138,10 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
                 while (child != null && _elementCounter.TryIncrement())
                 {
+#pragma warning disable CA2000 // childNode will be disposed by the parent node
                     // Create child without populating basic property. it will be set all at once in parallel.
                     var childNode = new DesktopElement(child, true, false);
+#pragma warning restore CA2000 // childNode will be disposed by the parent node
 
                     rootNode.Children.Add(childNode);
                     childNode.Parent = rootNode;

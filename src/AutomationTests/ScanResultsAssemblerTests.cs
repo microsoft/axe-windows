@@ -26,7 +26,7 @@ namespace Axe.Windows.AutomationTests
 
             ElementInfo expectedParentInfo = new ElementInfo
             {
-                Patterns = element.Patterns.ConvertAll<string>(x => x.Name),
+                Patterns = element.Patterns.ToList().ConvertAll<string>(x => x.Name),
                 Properties = null,
             };
 
@@ -131,6 +131,14 @@ namespace Axe.Windows.AutomationTests
             RuleId.BoundingRectangleCompletelyObscuresContainer,
         };
 
+        private void AddScanResults(IList<Core.Results.ScanResult> target, IList<Core.Results.ScanResult> itemsToAdd)
+        {
+            foreach (var item in itemsToAdd)
+            {
+                target.Add(item);
+            }
+        }
+
         private A11yElement GenerateA11yElementWithChild()
         {
             A11yElement element = new A11yElement()
@@ -141,7 +149,7 @@ namespace Axe.Windows.AutomationTests
 
             element.Properties = null;
             element.Patterns = GetFillerPatterns();
-            element.ScanResults.Items.AddRange(GetFillerScanResults());
+            AddScanResults(element.ScanResults.Items, GetFillerScanResults());
             element.Children.Add(GenerateA11yElementWithoutChild());
 
             return element;
@@ -152,7 +160,7 @@ namespace Axe.Windows.AutomationTests
 
             element.Properties = GetFillerProperties();
             element.Patterns = null;
-            element.ScanResults.Items.AddRange(GetFillerScanResults());
+            AddScanResults(element.ScanResults.Items, GetFillerScanResults());
 
             return element;
         }
@@ -161,7 +169,7 @@ namespace Axe.Windows.AutomationTests
         {
             A11yElement element = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
 
-            element.ScanResults.Items.AddRange(GetBadScanResults());
+            AddScanResults(element.ScanResults.Items, GetBadScanResults());
 
             return element;
         }

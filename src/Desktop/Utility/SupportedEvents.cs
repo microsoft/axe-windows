@@ -196,7 +196,7 @@ namespace Axe.Windows.Desktop.Utility
         /// <param name="controlId"></param>
         /// <param name="patterns"></param>
         /// <returns></returns>
-        public static IEnumerable<int> GetEventsForControl(int controlId, List<A11yPattern> patterns)
+        public static IEnumerable<int> GetEventsForControl(int controlId, IEnumerable<A11yPattern> patterns)
         {
             return (from map in EventTypeMappings
                     where map.ControlId == controlId && (map.PatternId == null || patterns.Select(p=>p.Id).Contains(map.PatternId.Value))

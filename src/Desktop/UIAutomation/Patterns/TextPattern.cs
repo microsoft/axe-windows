@@ -38,7 +38,9 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "SupportedTextSelection", Value = this.Pattern.SupportedTextSelection });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
@@ -48,13 +50,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         [PatternMethod]
-        public List<TextRange> GetSelection()
+        public IList<TextRange> GetSelection()
         {
             return ToListOfTextRanges(this.Pattern.GetSelection());
         }
 
         [PatternMethod]
-        public List<TextRange> GetVisibleRanges()
+        public IList<TextRange> GetVisibleRanges()
         {
             return ToListOfTextRanges(this.Pattern.GetVisibleRanges());
         }

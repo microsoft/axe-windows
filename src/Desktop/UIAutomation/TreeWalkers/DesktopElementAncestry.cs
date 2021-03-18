@@ -28,7 +28,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         public A11yElement Last { get; private set; }
 
-        public List<A11yElement> Items { get; private set; }
+        public IList<A11yElement> Items { get; private set; }
 
         private readonly IUIAutomationTreeWalker TreeWalker;
 
@@ -151,7 +151,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
                 while (child != null)
                 {
+#pragma warning disable CA2000 // Use recommended dispose patterns
                     var childNode = new DesktopElement(child, true, false);
+#pragma warning restore CA2000 // Use recommended dispose patterns
                     childNode.PopulateMinimumPropertiesForSelection();
 
                     if (childNode.IsSameUIElement(poiNode) == false)

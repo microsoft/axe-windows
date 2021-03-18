@@ -18,7 +18,7 @@ namespace Axe.Windows.Core.Results
         /// Messages through Rule checking stages
         /// for JSON serialization, allow set()
         /// </summary>
-        public List<string> Messages { get; set; }
+        public IList<string> Messages { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
         /// <summary>
         /// Status of Rule check

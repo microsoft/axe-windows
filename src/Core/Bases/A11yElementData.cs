@@ -18,7 +18,7 @@ namespace Axe.Windows.Core.Bases
         /// <summary>
         /// Patterns
         /// </summary>
-        public List<A11yPattern> Patterns { get; set; }
+        public IList<A11yPattern> Patterns { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
     }
 }

@@ -31,6 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "DropTargetEffect", Value = this.Pattern.CurrentDropTargetEffect });
             var array = this.Pattern.CurrentDropTargetEffects;
             if (array.Length != 0)
@@ -40,6 +41,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                     this.Properties.Add(new A11yPatternProperty() { Name = Invariant($"DropTargetEffects[{i}]"), Value = array.GetValue(i)?.ToString()});
                 }
             }
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         protected override void Dispose(bool disposing)

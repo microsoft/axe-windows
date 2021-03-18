@@ -8,12 +8,13 @@ using UIAutomationClient;
 using System.Linq;
 using Axe.Windows.Core.Enums;
 using System.Runtime.InteropServices;
+using Axe.Windows.Core.Misc;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
     public interface ITreeWalkerForLive
     {
-        List<A11yElement> Elements { get; }
+        IList<A11yElement> Elements { get; }
         A11yElement RootElement { get; }
         void GetTreeHierarchy(A11yElement e, TreeViewMode mode);
     }
@@ -27,7 +28,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <summary>
         /// List to keep all elements in tree walking(Ancestors, self and children)
         /// </summary>
-        public List<A11yElement> Elements { get; private set; }
+        public IList<A11yElement> Elements { get; private set; }
 
         /// <summary>
         /// Top root node in whole hierarchy
@@ -73,8 +74,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.RootElement = ancestry.First;
 
             // clear children
-            e.Children?.ForEach(c => c.Dispose());
-            e.Children?.Clear();
+            ListHelper.DisposeAllItemsAndClearList(e.Children);
 
             // populate selected element relationship and add it to list. 
             e.Parent = ancestry.Last;
@@ -91,7 +91,10 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             });
 
             // Add ancestry into Elements list.
-            this.Elements.AddRange(ancestry.Items);
+            foreach (var item in ancestry.Items)
+            {
+                this.Elements.Add(item);
+            }
 
             this.LastWalkTime = DateTime.Now - begin;
         }
@@ -124,11 +127,13 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
                 while (child != null)
                 {
+#pragma warning disable CA2000 // childNode will be disposed by the parent node
                     // Create child without populating basic property. it will be set all at once in parallel.
                     var childNode = new DesktopElement(child, true, false)
                     {
                         UniqueId = childId++
                     };
+#pragma warning restore CA2000 // childNode will be disposed by the parent node
 
                     rootNode.Children.Add(childNode);
 

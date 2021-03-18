@@ -27,17 +27,19 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "Formula", Value = this.Pattern.CurrentFormula });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
-        public List<DesktopElement> GetAnnotationObjects()
+        public IList<DesktopElement> GetAnnotationObjects()
         {
             return this.Pattern.GetCurrentAnnotationObjects()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
-        public List<string> GetAnnotationTypes()
+        public IList<string> GetAnnotationTypes()
         {
             var array = this.Pattern.GetCurrentAnnotationTypes();
             List<string> list = new List<string>();

@@ -19,7 +19,7 @@ namespace Axe.Windows.Desktop.Types
         /// it is used in TextRangeFindDialog.
         /// </summary>
         /// <returns></returns>
-        public static List<TemplateData> GetTemplate()
+        public static IList<TemplateData> GetTemplate()
         {
             var boolList = new List<KeyValuePair<bool, string>>() { new KeyValuePair<bool, string>(false, "False"), new KeyValuePair<bool, string>(true, "True") };
 

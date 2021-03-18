@@ -65,11 +65,11 @@ namespace Axe.Windows.Desktop.Utility
         }
 
         /// <summary>
-        /// Change IUIAutomationElementArray To a list of DesktopElement
+        /// Change IUIAutomationElementArray To an IList of DesktopElement
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static List<DesktopElement> ToListOfDesktopElements(this IUIAutomationElementArray array)
+        public static IList<DesktopElement> ToListOfDesktopElements(this IUIAutomationElementArray array)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
 

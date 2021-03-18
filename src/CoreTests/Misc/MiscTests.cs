@@ -24,15 +24,17 @@ namespace Axe.Windows.CoreTests.Misc
         public void GetStatusCounts()
         {
             A11yElement ke = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/Taskbar.snapshot");
-            ke.ScanResults.Items.ForEach(item => {
+            foreach (var item in ke.ScanResults.Items)
+            {
                 item.Items = new System.Collections.Generic.List<RuleResult>();
                 RuleResult r = new RuleResult();
                 r.Status = ScanStatus.Pass;
                 item.Items.Add(r);
-            });
-            ke.Children.ForEach(c => {
+            };
+            foreach (var c in ke.Children)
+            {
                 Utility.PopulateChildrenTests(c);
-            });
+            };
             var statuses = (from child in ke.Children
                            select child.TestStatus);
             int[] statusCounts = statuses.GetStatusCounts();

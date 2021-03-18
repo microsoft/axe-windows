@@ -61,7 +61,7 @@ namespace Axe.Windows.Core.Results
         /// <summary>
         /// Rule Results
         /// </summary>
-        public List<RuleResult> Items { get; set; }
+        public IList<RuleResult> Items { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
 
         /// <summary>

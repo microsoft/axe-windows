@@ -29,12 +29,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         private void PopulateProperties()
         {
+#pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
             this.Properties.Add(new A11yPatternProperty() { Name = "CanSelectMultiple", Value = Convert.ToBoolean(this.Pattern.CurrentCanSelectMultiple) });
             this.Properties.Add(new A11yPatternProperty() { Name = "IsSelectionRequired", Value = Convert.ToBoolean(this.Pattern.CurrentIsSelectionRequired) });
+#pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
-        public List<DesktopElement> GetSelection()
+        public IList<DesktopElement> GetSelection()
         {
             return this.Pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
