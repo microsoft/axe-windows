@@ -64,13 +64,12 @@ namespace Axe.Windows.Desktop.Utility
 #pragma warning restore CA1031 // Do not catch general exception types
         }
 
-#pragma warning disable CA1002 // Do not expose generic lists
         /// <summary>
-        /// Change IUIAutomationElementArray To a list of DesktopElement
+        /// Change IUIAutomationElementArray To an IList of DesktopElement
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static List<DesktopElement> ToListOfDesktopElements(this IUIAutomationElementArray array)
+        public static IList<DesktopElement> ToListOfDesktopElements(this IUIAutomationElementArray array)
         {
             if (array == null) throw new ArgumentNullException(nameof(array));
 
@@ -83,7 +82,6 @@ namespace Axe.Windows.Desktop.Utility
 
             return list;
         }
-#pragma warning restore CA1002 // Do not expose generic lists
 
         /// <summary>
         /// Capture the bitmap of the given element
