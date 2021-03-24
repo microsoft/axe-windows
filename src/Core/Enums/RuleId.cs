@@ -260,5 +260,7 @@ namespace Axe.Windows.Core.Enums
 
         ClickablePointOnScreen,
         ClickablePointOffScreen,
+
+        FrameworkDoesNotSupportUIAutomation,
     }
 }

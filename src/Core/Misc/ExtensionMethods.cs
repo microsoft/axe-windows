@@ -647,9 +647,11 @@ namespace Axe.Windows.Core.Misc
         {
             if (e == null) return null;
 
-            return (string.IsNullOrEmpty(e.Framework))
+            string framework = e.Framework;
+
+            return (string.IsNullOrEmpty(framework))
                 ? GetUIFramework(e.Parent)
-                : e.Framework;
+                : framework;
         }
 
         /// <summary>
