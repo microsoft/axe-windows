@@ -5,11 +5,11 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Telemetry;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.Utility

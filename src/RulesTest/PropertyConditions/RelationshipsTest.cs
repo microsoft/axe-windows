@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Rules;
 using Axe.Windows.Rules.PropertyConditions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading.Tasks;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 using static Axe.Windows.RulesTest.ControlType;
 
