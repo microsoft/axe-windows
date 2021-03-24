@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Attributes;
+using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
+using Axe.Windows.Desktop.Types;
+using Axe.Windows.Desktop.Utility;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Axe.Windows.Core.Bases;
-using UIAutomationClient;
-using Axe.Windows.Core.Attributes;
-using Axe.Windows.Desktop.Utility;
-using Axe.Windows.Desktop.Types;
 using System.Runtime.InteropServices;
+using System.Text;
+using UIAutomationClient;
 
 using static System.FormattableString;
 
