@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
-using System.Collections.Generic;
+using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.RuleSelection;
 using Axe.Windows.Telemetry;
-using Axe.Windows.Core.Bases;
-using UIAutomationClient;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using Axe.Windows.Core.Enums;
 using System.Runtime.InteropServices;
-using Axe.Windows.Core.Misc;
+using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
-using System.Collections.Generic;
-using UIAutomationClient;
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Desktop.Utility;
 using Axe.Windows.Telemetry;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
 {

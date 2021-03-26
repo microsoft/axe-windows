@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Axe.Windows.RulesTest.Library
 {

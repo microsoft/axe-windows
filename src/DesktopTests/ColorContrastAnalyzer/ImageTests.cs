@@ -1,15 +1,15 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Desktop.ColorContrastAnalyzer;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.IO;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using static Axe.Windows.Desktop.ColorContrastAnalyzer.ColorContrastResult;
 using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
-using System;
+using System.Reflection;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {

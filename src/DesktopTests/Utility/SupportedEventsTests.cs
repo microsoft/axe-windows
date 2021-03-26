@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Types;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
 namespace Axe.Windows.Desktop.Utility.Tests

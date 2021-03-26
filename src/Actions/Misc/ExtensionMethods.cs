@@ -7,8 +7,8 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Globalization;
+using System.Linq;
 
 namespace Axe.Windows.Actions.Misc
 {
