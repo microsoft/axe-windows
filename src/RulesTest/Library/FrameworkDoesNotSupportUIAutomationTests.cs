@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTest.Library
 {
     [TestClass]
 
-    public class FrameworkDoesNotSupportUIAutomationUnitTests
+    public class FrameworkDoesNotSupportUIAutomationTests
     {
         private readonly static Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation();
         private Mock<IA11yElement> _elementMock;
@@ -51,9 +51,14 @@ namespace Axe.Windows.RulesTest.Library
         [TestMethod]
         public void PassesTest_FrameworkIsWin32_ClassNameIsNotKnownBad_ReturnsFalse()
         {
-            _elementMock.Setup(m => m.ClassName).Returns("Edit").Verifiable(); ;
+            string[] testClasses = { "Edit", "SunAwT" };
 
-            Assert.IsTrue(Rule.PassesTest(_elementMock.Object));
+            foreach (string testClass in testClasses)
+            {
+                _elementMock.Setup(m => m.ClassName).Returns(testClass).Verifiable(); ;
+
+                Assert.IsTrue(Rule.PassesTest(_elementMock.Object));
+            }
 
             _elementMock.VerifyAll();
         }
@@ -61,9 +66,14 @@ namespace Axe.Windows.RulesTest.Library
         [TestMethod]
         public void PassesTest_FrameworkIsWin32_ClassNameIsKnownBad_ReturnsTrue()
         {
-            _elementMock.Setup(m => m.ClassName).Returns("SunAwtFrame").Verifiable(); ;
+            string[] testClasses = { "SunAwt", "SunAwtXyz" };
 
-            Assert.IsFalse(Rule.PassesTest(_elementMock.Object));
+            foreach (string testClass in testClasses)
+            {
+                _elementMock.Setup(m => m.ClassName).Returns(testClass).Verifiable(); ;
+
+                Assert.IsFalse(Rule.PassesTest(_elementMock.Object));
+            }
 
             _elementMock.VerifyAll();
         }
