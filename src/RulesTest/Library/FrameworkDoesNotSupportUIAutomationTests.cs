@@ -49,7 +49,7 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void PassesTest_FrameworkIsWin32_ClassNameIsNotKnownBad_ReturnsFalse()
+        public void PassesTest_FrameworkIsWin32_ClassNameIsNotKnownProblematic_ReturnsFalse()
         {
             string[] testClasses = { "Edit", "SunAwT" };
 
@@ -64,7 +64,7 @@ namespace Axe.Windows.RulesTest.Library
         }
 
         [TestMethod]
-        public void PassesTest_FrameworkIsWin32_ClassNameIsKnownBad_ReturnsTrue()
+        public void PassesTest_FrameworkIsWin32_ClassNameIsKnownProblematic_ReturnsTrue()
         {
             string[] testClasses = { "SunAwt", "SunAwtXyz" };
 
