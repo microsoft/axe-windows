@@ -4,7 +4,7 @@ using Axe.Windows.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Axe.Windows.RulesTest.Library.Structure.ControlView
+namespace Axe.Windows.RulesTests.Library.Structure.ControlView
 {
     [TestClass]
     public class SpinnerTests

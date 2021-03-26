@@ -3,7 +3,7 @@
 using Axe.Windows.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace RulesTests
+namespace Axe.Windows.RulesTests
 {
     [TestClass]
     public class AllRules
@@ -11,7 +11,7 @@ namespace RulesTests
         [TestMethod]
         public void AllRulesHaveErrorCode()
         {
-            foreach (var rule in Rules.All.Values)
+            foreach (var rule in Rules.Rules.All.Values)
                 Assert.AreNotEqual(EvaluationCode.NotSet, rule.ErrorCode);
         }
     } // class

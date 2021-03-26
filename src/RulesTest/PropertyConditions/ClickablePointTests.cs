@@ -8,7 +8,7 @@ using Moq;
 using System;
 using System.Drawing;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     public class ClickablePointTests

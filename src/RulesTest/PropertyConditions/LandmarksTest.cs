@@ -4,7 +4,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Axe.Windows.RulesTest.PropertyConditions
+namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
     public class LandmarksTest

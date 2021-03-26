@@ -5,10 +5,10 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using static Axe.Windows.RulesTest.ControlType;
+using static Axe.Windows.RulesTests.ControlType;
 using Misc = Axe.Windows.Rules.PropertyConditions.ElementGroups;
 
-namespace Axe.Windows.RulesTest.PropertyConditions
+namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
     public class NameTest

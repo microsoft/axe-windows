@@ -3,9 +3,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
-using static Axe.Windows.RulesTest.ControlType;
+using static Axe.Windows.RulesTests.ControlType;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     public class NameIsEmptyButElementIsNotKeyboardFocusableTest

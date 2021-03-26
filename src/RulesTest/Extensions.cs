@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axe.Windows.RulesTest
+namespace Axe.Windows.RulesTests
 {
     static class Extensions
     {

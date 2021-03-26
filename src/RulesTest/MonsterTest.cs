@@ -9,7 +9,7 @@ using System.Linq;
 
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
-namespace Axe.Windows.RulesTest
+namespace Axe.Windows.RulesTests
 {
     [TestClass]
     public class MonsterTest

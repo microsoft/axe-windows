@@ -5,7 +5,7 @@ using Axe.Windows.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Axe.Windows.RulesTest.Conditions
+namespace Axe.Windows.RulesTests.Conditions
 {
     [TestClass]
     public class PatternConditionTest

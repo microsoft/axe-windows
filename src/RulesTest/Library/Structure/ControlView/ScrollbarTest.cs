@@ -6,7 +6,7 @@ using Moq;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     public class ControlViewScrollbarStructureTest

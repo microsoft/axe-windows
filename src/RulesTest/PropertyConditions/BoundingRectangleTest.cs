@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BoundingRectangle = Axe.Windows.Rules.PropertyConditions.BoundingRectangle;
 using System.Drawing;
 
-namespace Axe.Windows.RulesTest.PropertyConditions
+namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
     public class BoundingRectangleTest

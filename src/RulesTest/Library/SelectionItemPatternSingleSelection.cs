@@ -5,9 +5,9 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using static Axe.Windows.RulesTest.ControlType;
+using static Axe.Windows.RulesTests.ControlType;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     public class SelectionItemPatternSingleSelectionTests
