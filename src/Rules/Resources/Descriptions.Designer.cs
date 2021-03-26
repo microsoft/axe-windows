@@ -430,7 +430,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This framework in use does not support UI Automation..
+        ///   Looks up a localized string similar to The framework in use does not support UI Automation..
         /// </summary>
         internal static string FrameworkDoesNotSupportUIAutomation {
             get {
