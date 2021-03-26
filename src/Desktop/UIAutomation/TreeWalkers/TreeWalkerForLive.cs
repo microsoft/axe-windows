@@ -20,7 +20,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     }
 
     /// <summary>
-    /// Wrapper for UIAutomation Tree Walker for Live mode. 
+    /// Wrapper for UIAutomation Tree Walker for Live mode.
     /// it is based on 2nd edition of TreeWalker
     /// </summary>
     public class TreeWalkerForLive : ITreeWalkerForLive
@@ -54,7 +54,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         }
 
         /// <summary>
-        /// Refresh tree node data with all children at once. 
+        /// Refresh tree node data with all children at once.
         /// </summary>
         /// <param name="e"></param>
         /// <param name="mode"></param>
@@ -76,9 +76,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             // clear children
             ListHelper.DisposeAllItemsAndClearList(e.Children);
 
-            // populate selected element relationship and add it to list. 
+            // populate selected element relationship and add it to list.
             e.Parent = ancestry.Last;
-            e.TreeWalkerMode = this.WalkerMode; // set tree walker mode. 
+            e.TreeWalkerMode = this.WalkerMode; // set tree walker mode.
             e.UniqueId = 0; // it is the selected element which should be id 0.
             this.Elements.Add(e);
 

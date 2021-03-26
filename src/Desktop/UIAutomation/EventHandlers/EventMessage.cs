@@ -66,9 +66,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         #region static members
         /// <summary>
         /// Get instance of EventMessage
-        /// when sender is null, it is generally error case. 
-        /// 
-        /// if it returns null, it means that the sender is hosted in the process of running Recorder code. 
+        /// when sender is null, it is generally error case.
+        ///
+        /// if it returns null, it means that the sender is hosted in the process of running Recorder code.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="sender"></param>

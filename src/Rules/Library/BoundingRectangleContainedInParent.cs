@@ -35,7 +35,7 @@ namespace Axe.Windows.Rules.Library
 
             if (!IsBoundingRectangleContained(e.Parent, e))
             {
-                // if the element is not contained in the parent element, go further 
+                // if the element is not contained in the parent element, go further
                 var container = e.FindContainerElement();
 
                 return IsBoundingRectangleContained(container, e);
@@ -74,7 +74,7 @@ namespace Axe.Windows.Rules.Library
         {
             // Windows can be any size, regardless of their parents
             // Certain chrome panes are treated as windows because that's how they behave.
-            var chromePane = Pane 
+            var chromePane = Pane
                 & IntProperties.NativeWindowHandle != 0
                 & StringProperties.ClassName.MatchesRegEx(@"Chrome_WidgetWin_\d+$", RegexOptions.IgnoreCase);
 

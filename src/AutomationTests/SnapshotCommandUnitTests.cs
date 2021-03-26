@@ -236,7 +236,7 @@ namespace Axe.Windows.AutomationTests
 
             // In addition to throwing an ArgumentNullException
             // The following call would cause mock exceptions for IAxeWindowsActions.CaptureScreenshot and IAxeWindowsActions.SaveA11yTestFile.
-            // 
+            //
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)

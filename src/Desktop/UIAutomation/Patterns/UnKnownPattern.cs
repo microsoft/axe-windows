@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (!PatternType.GetInstance().Exists(id))
             {
-                // be silent since Unknown pattern was created since pattern interface couldn't be retrieved by unknown reason. 
+                // be silent since Unknown pattern was created since pattern interface couldn't be retrieved by unknown reason.
             }
         }
     }

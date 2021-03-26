@@ -71,7 +71,7 @@ namespace Axe.Windows.Actions.Misc.Tests
             var answer = ExtensionMethods.GetSmallestElementFromPoint(elements.ToDictionary(e => e.UniqueId, e => e), new System.Drawing.Point(200, 200));
             Assert.AreEqual(null, answer);
         }
-        
+
         [TestMethod()]
         public void GetSmallestElementFromPointTest_NullArgument()
         {
@@ -85,7 +85,7 @@ namespace Axe.Windows.Actions.Misc.Tests
         }
 
         /// <summary>
-        /// Creates and returns list of IA11yElements where 
+        /// Creates and returns list of IA11yElements where
         ///     returnedList[i].BoundingRectangle == boundingRects[i] and
         ///     returnedList[i].UniqueId == i and
         ///     returnedList[i].IsOffScreen() == offScreen[i]
@@ -108,4 +108,4 @@ namespace Axe.Windows.Actions.Misc.Tests
         }
     }
 }
- 
+

@@ -70,7 +70,7 @@ namespace Axe.Windows.Actions.Trackers
             // set up mouse Timer
             this.timerMouse = new System.Timers.Timer(DefaultTimerInterval); // default but it will be set by config immediately.
             this.timerMouse.Elapsed += new ElapsedEventHandler(this.ontimerMouseElapsedEvent);
-            this.timerMouse.AutoReset = false;// disable autoreset to do reset in timer handerl    
+            this.timerMouse.AutoReset = false;// disable autoreset to do reset in timer handerl
         }
 
         /// <summary>

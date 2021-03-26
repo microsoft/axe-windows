@@ -15,7 +15,7 @@ namespace Axe.Windows.UnitTestSharedLibrary
     public static class Utility
     {
         /// <summary>
-        /// Load the UI Automation elements hierarchy tree from JSON file. 
+        /// Load the UI Automation elements hierarchy tree from JSON file.
         /// it returns the root UI Automation element from the tree.
         /// </summary>
         /// <param name="path"></param>
@@ -52,7 +52,7 @@ namespace Axe.Windows.UnitTestSharedLibrary
         }
 
         /// <summary>
-        /// Populates all descendents with test results and sets them to 
+        /// Populates all descendents with test results and sets them to
         ///     pass if the control is a button (any predicate would work)
         ///     and returns number that should pass
         /// </summary>

@@ -18,10 +18,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         int MinNumberColorTransitions { get; }
 
         /// <summary>
-        /// We're going to binary search sample rows. Once two samples are this 
+        /// We're going to binary search sample rows. Once two samples are this
         /// far apart we should not sample between them as finding text is highly unlikely.
         /// A good value for this is the smallest reasonable font size for the DPI of the screen.
-        /// 
+        ///
         /// Note: Making this number too low will have dramatic performance impacts when a HIGH
         /// confidence result is NOT found. EX: at 0, you would end up scanning the entire image.
         /// </summary>

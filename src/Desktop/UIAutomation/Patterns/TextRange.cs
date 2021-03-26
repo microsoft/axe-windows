@@ -132,7 +132,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         /// <summary>
-        /// it is not still clear on how we will handle GetAttributeValue(). 
+        /// it is not still clear on how we will handle GetAttributeValue().
         /// ToDo Item.
         /// </summary>
         /// <param name="attr"></param>

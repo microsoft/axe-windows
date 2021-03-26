@@ -22,7 +22,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
     /// <summary>
     /// Wrapper for UIAutomation Tree Walker 2nd edition
-    /// Do tree walking by retrieving all children at once. 
+    /// Do tree walking by retrieving all children at once.
     /// </summary>
     public class TreeWalkerForTest : ITreeWalkerForTest
     {
@@ -34,7 +34,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         public IList<A11yElement> Elements { get; }
 
         public TimeSpan LastWalkTime { get; private set; }
-        
+
         public TreeViewMode WalkerMode { get; private set; }
 
         public A11yElement SelectedElement { get; private set; }
@@ -54,7 +54,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         }
 
         /// <summary>
-        /// Refresh tree node data with all children at once. 
+        /// Refresh tree node data with all children at once.
         /// <param name="mode">indicate the mode</param>
         /// </summary>
         public void RefreshTreeData(TreeViewMode mode)
@@ -89,7 +89,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             // populate Elements first
             this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData());
 
-            // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence. 
+            // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence.
             var nuel = this.Elements.Where(e => e.Properties == null);
 
             if (nuel.Any())
@@ -116,7 +116,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.Elements.Add(rootNode);
 
             rootNode.Parent = parentNode;
-            rootNode.TreeWalkerMode = this.WalkerMode; // set tree walker mode. 
+            rootNode.TreeWalkerMode = this.WalkerMode; // set tree walker mode.
 
             IUIAutomationTreeWalker walker = A11yAutomation.GetTreeWalker(this.WalkerMode);
             IUIAutomationElement child = (IUIAutomationElement)rootNode.PlatformObject;

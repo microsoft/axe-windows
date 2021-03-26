@@ -10,8 +10,8 @@ namespace Axe.Windows.Actions
 {
     /// <summary>
     /// ControlAction class
-    /// this class will allow you to run control pattern via Action. 
-    /// it is a prep work for moving to UWP or JScript based Ux. 
+    /// this class will allow you to run control pattern via Action.
+    /// it is a prep work for moving to UWP or JScript based Ux.
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public static class ControlPatternAction

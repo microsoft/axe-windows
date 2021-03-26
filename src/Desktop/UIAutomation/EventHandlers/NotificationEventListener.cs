@@ -7,7 +7,7 @@ using UIAutomationClient;
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     /// <summary>
-    /// NotificationEvent listener. 
+    /// NotificationEvent listener.
     /// this event is available from Win10 RS3
     /// </summary>
     public class NotificationEventListener : EventListenerBase, IUIAutomationNotificationEventHandler

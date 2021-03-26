@@ -5,7 +5,7 @@ using System;
 namespace Axe.Windows.Core.Bases
 {
     /// <summary>
-    /// Pattern Property class 
+    /// Pattern Property class
     /// </summary>
     public class A11yPatternProperty:IDisposable
     {

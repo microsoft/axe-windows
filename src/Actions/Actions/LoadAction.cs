@@ -51,7 +51,7 @@ namespace Axe.Windows.Actions
 
                 var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.metadataFileName select p.GetStream()).First();
                 SnapshotMetaInfo meta = SnapshotMetaInfo.DeserializeFromStream(metadataPart);
-                metadataPart.Close();   
+                metadataPart.Close();
 
                 var selectedElement = element.FindDescendant(k => k.UniqueId == meta.ScreenshotElementId);
 

@@ -30,7 +30,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             Pattern = p;
 
-            // though member method is not action specific, this pattern means for UI action. 
+            // though member method is not action specific, this pattern means for UI action.
             this.IsUIActionable = true;
 
             PopulateProperties();
@@ -66,7 +66,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public IList<DesktopElement> GetGrabbedItems()
         {
-            return this.Pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();      
+            return this.Pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();
         }
 
         protected override void Dispose(bool disposing)

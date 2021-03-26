@@ -16,7 +16,7 @@ namespace Axe.Windows.Actions
     /// <summary>
     /// Class for CaptureLiveAction
     /// Capture hierarchy tree for Live Mode data
-    /// it doesn't run test. 
+    /// it doesn't run test.
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public static class CaptureAction
@@ -57,7 +57,7 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Populate Data Context for Live Mode. 
+        /// Populate Data Context for Live Mode.
         /// </summary>
         /// <param name="dc"></param>
         /// <param name="mode"></param>
@@ -139,7 +139,7 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Add element and children into the list. 
+        /// Add element and children into the list.
         /// </summary>
         /// <param name="e"></param>
         /// <param name="dic"></param>

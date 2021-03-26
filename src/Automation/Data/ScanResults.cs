@@ -34,8 +34,8 @@ namespace Axe.Windows.Automation
         /// A collection of errors found during the scan.
         /// </summary>
         /// <remarks>
-        /// Use this to get in-depth information about the rule + element combination for each error. 
+        /// Use this to get in-depth information about the rule + element combination for each error.
         /// </remarks>
         public IEnumerable<ScanResult> Errors { get; internal set; }
-    } // class 
+    } // class
 } // namespace

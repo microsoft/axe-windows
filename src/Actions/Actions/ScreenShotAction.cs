@@ -39,7 +39,7 @@ namespace Axe.Windows.Actions
                 var rect = el.BoundingRectangle;
                 if (rect.IsEmpty)
                 {
-                    return; // no capture. 
+                    return; // no capture.
                 }
 
                 Bitmap bmp = CreateBitmap(rect.Width, rect.Height);

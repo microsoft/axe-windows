@@ -30,7 +30,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
                 PopulateProperties();
 
-                // if textPattern is supported , it means that user would do select text in the control. 
+                // if textPattern is supported , it means that user would do select text in the control.
                 // so it should be marked as UI actionable
                 IsUIActionable = true;
             });

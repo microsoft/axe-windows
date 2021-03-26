@@ -25,7 +25,7 @@ namespace Axe.Windows.Core.Misc
     public static class ExtensionMethods
     {
         /// <summary>
-        /// DesktopElement runtime Id. 
+        /// DesktopElement runtime Id.
         /// </summary>
         const string DesktopElementRuntimeId = "[2A,10010]";
         /// <summary>
@@ -87,7 +87,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// convert int array to string in Hex value. 
+        /// convert int array to string in Hex value.
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// To handle deserialized value from json file. 
+        /// To handle deserialized value from json file.
         /// Need to figure out a way to remove this duplicated code.
         /// </summary>
         /// <param name="array"></param>
@@ -197,7 +197,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Check whether UIElement is same or not. 
+        /// Check whether UIElement is same or not.
         /// </summary>
         /// <param name="element1"></param>
         /// <param name="element2"></param>
@@ -213,7 +213,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Check whether UIElement is same or not 
+        /// Check whether UIElement is same or not
         /// based on runtime Id, name, controltype, and BoundingRectangle
         /// </summary>
         /// <param name="element1"></param>
@@ -235,7 +235,7 @@ namespace Axe.Windows.Core.Misc
                 {
                     if (element1.ControlTypeId == controltype)
                     {
-                        // if control type is same check, bounding rectangle for sure. 
+                        // if control type is same check, bounding rectangle for sure.
                         if (!element1.BoundingRectangle.IsEmpty
                             && rect != null
                             && !rect.Value.IsEmpty)
@@ -246,7 +246,7 @@ namespace Axe.Windows.Core.Misc
                         }
                         else
                         {
-                            // if both has no bounding rectangle, consider them as same element. 
+                            // if both has no bounding rectangle, consider them as same element.
                             return element1.BoundingRectangle.IsEmpty
                                 && (rect == null
                                 || rect.Value.IsEmpty);
@@ -377,7 +377,7 @@ namespace Axe.Windows.Core.Misc
         /// Gets the counts of scan result statuses from given parameter
         /// </summary>
         /// <param name="scanStatuses"></param>
-        /// <returns>counts where result-array[scan-status] is the count of ScanStatus 
+        /// <returns>counts where result-array[scan-status] is the count of ScanStatus
         ///          elements with scan-status
         /// </returns>
         public static int[] GetStatusCounts(this IEnumerable<ScanStatus> scanStatuses)
@@ -603,7 +603,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Check whether the UI element is offscreen or not based on IsOffScreen property. 
+        /// Check whether the UI element is offscreen or not based on IsOffScreen property.
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
@@ -616,20 +616,20 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Check whether this element is Desktop Element or not. 
+        /// Check whether this element is Desktop Element or not.
         /// it is based on Runtime ID
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
         public static bool IsRootElement(this IA11yElement e)
         {
-            // on Desktop, RuntimeId is available with specific ID. 
+            // on Desktop, RuntimeId is available with specific ID.
             // however on WCOS, the desktop equivalent process is PID 0 and runtime ID is 0,0
             return e != null && (e.RuntimeId == DesktopElementRuntimeId || (e.ProcessId == 0 && e.RuntimeId == WCOSElementRuntimeId));
         }
 
         /// <summary>
-        /// Check whether string is matched with DesktopElment runtime Id. 
+        /// Check whether string is matched with DesktopElment runtime Id.
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>

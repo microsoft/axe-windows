@@ -7,7 +7,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Support
 {
     /// <summary>
     /// class TextRangeFinder
-    /// helper class to do "FindXXX()" method call with a given TextRange. 
+    /// helper class to do "FindXXX()" method call with a given TextRange.
     /// it supports next/previou and forward/backward
     /// </summary>
     public class TextRangeFinder

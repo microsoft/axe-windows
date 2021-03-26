@@ -11,7 +11,7 @@ namespace Axe.Windows.Core.Results
 {
     /// <summary>
     /// Class for an individual scan result
-    /// it contains multiple instances of "ScanResult" 
+    /// it contains multiple instances of "ScanResult"
     /// </summary>
     public class ScanResult
     {
@@ -89,7 +89,7 @@ namespace Axe.Windows.Core.Results
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="status"></param>
         /// <param name="desc"></param>

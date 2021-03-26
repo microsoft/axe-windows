@@ -13,6 +13,6 @@ namespace Axe.Windows.Core.Results
         Pass = 1,
         Uncertain = 2,
         Fail = 3,
-        ScanNotSupported = 4, // for the cases like HTML framework which we don't support. 
+        ScanNotSupported = 4, // for the cases like HTML framework which we don't support.
     }
 }

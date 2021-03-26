@@ -9,7 +9,7 @@ namespace Axe.Windows.Core.Results
     /// <summary>
     /// class ScanResults
     /// Container for all ScanResult(s) from Single Scanner
-    /// it contains multiple instances of "ScanResult" 
+    /// it contains multiple instances of "ScanResult"
     /// </summary>
     public class ScanResults
     {

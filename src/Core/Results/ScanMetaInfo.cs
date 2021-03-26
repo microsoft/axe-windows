@@ -35,33 +35,33 @@ namespace Axe.Windows.Core.Results
         }
 
         /// <summary>
-        /// Constructor for the scans which are not using property but to use structure. 
+        /// Constructor for the scans which are not using property but to use structure.
         /// </summary>
         /// <param name="e"></param>
         public ScanMetaInfo(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            this.UIFramework = e.GetUIFramework(); 
+            this.UIFramework = e.GetUIFramework();
             this.ControlType = Types.ControlType.GetInstance().GetNameById(e.ControlTypeId).Split('(')[0];
             this.PropertyId = 0;
         }
 
         /// <summary>
-        /// Get the frameworkID. 
-        /// if FrameworkId exists in the element, it returns the value from it. 
-        /// otherwise, search it in ancestry. 
+        /// Get the frameworkID.
+        /// if FrameworkId exists in the element, it returns the value from it.
+        /// otherwise, search it in ancestry.
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
         /// <summary>
-        /// Constructor for Deserialization. 
+        /// Constructor for Deserialization.
         /// </summary>
         public ScanMetaInfo() {   }
 
         /// <summary>
         /// Override Property Id value
-        /// if Property is already set, it will throw an exception. 
+        /// if Property is already set, it will throw an exception.
         /// </summary>
         /// <param name="id"></param>
         public void SetProperty(int id)

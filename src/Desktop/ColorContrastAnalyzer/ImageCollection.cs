@@ -75,9 +75,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         }
 
         /**
-         * A special iterator, that looks at the middle of an image first, 
+         * A special iterator, that looks at the middle of an image first,
          * followed by recursively looking at the upper half and lower half
-         * of the two pieces of image, until the given samples are some 
+         * of the two pieces of image, until the given samples are some
          * distance apart.
          */
         public IEnumerable<Pixel> GetBinaryRowSearchIterator()

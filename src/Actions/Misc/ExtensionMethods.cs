@@ -20,9 +20,9 @@ namespace Axe.Windows.Actions.Misc
         /// <summary>
         /// Identifies elements whose bounding rectangles contain the given position
         /// and returns the element with the smallest bounding rectangle (by area)
-        /// 
+        ///
         /// Does not translate the given position
-        /// 
+        ///
         /// Throws ArgumentNullException if allElements is null
         /// Throws ArgumentException if allElements is empty
         /// </summary>
@@ -59,24 +59,24 @@ namespace Axe.Windows.Actions.Misc
 
         /// <summary>
         /// Sends the results of the testing to telemetry
-        /// 
+        ///
         /// Sends a statistics event of the following format:
         /// {
         ///     "ElementsInScan":593,
         ///     "UpperBoundExceeded":false,
         /// }
-        /// 
+        ///
         /// Also sends one event per rule and groups by combination of
         /// framework ID / control type. For each group the
         /// statuses are aggregated / counted.
-        /// 
-        /// example: 
+        ///
+        /// example:
         /// {
         ///     "RuleId":"NameNonEmpty",
         ///     "SingleTestResults":[{"ControlType":"Window","UIFramework":"WPF","Pass":"1"},
         ///                          {"ControlType":"MenuBar","UIFramework":"WPF","Pass":"2", "Fail":"4"}]
         /// }
-        /// 
+        ///
         /// </summary>
         /// <param name="dc"></param>
         public static void PublishScanResults(this ElementDataContext dc)

@@ -63,7 +63,7 @@ namespace Axe.Windows.Actions.Trackers
             // only when focus is chosen for highlight
             if (message.EventId == EventType.UIA_AutomationFocusChangedEventId)
             {
-                // exclude tooltip since it is transient UI. 
+                // exclude tooltip since it is transient UI.
                 if (IsStarted && message.Element != null)
                 {
                     var element = GetElementBasedOnScope(message.Element);

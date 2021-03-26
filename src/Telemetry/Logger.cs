@@ -7,7 +7,7 @@ using System.Linq;
 namespace Axe.Windows.Telemetry
 {
     /// <summary>
-    /// Wraps telemetry logging and sends it to 
+    /// Wraps telemetry logging and sends it to
     /// a supplied IAxeWindowsTelemetry implementation
     /// </summary>
     public static class Logger

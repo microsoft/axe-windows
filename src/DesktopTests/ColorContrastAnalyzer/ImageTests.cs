@@ -40,7 +40,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             var result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(new ColorPair(new CCColor(204, 204, 204), new CCColor(0, 0, 0)), 
+            Assert.AreEqual(new ColorPair(new CCColor(204, 204, 204), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
 
             Assert.AreEqual(Confidence.High, result.ConfidenceValue());
@@ -148,7 +148,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         /**
-         * Note in this test case we have Mide confidence. As such, we also are asserting that the color is only 
+         * Note in this test case we have Mide confidence. As such, we also are asserting that the color is only
          * approximately what we expect, this allows our algorithm a little flexibility, without having to modify
          * these tests every time we sneeze on our configuration file.
          */

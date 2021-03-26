@@ -63,7 +63,7 @@ namespace Axe.Windows.RulesTest.Library
 
         /// <summary>
         /// Pass
-        /// This rule doesn't care about having both of Invoke and Toggle. 
+        /// This rule doesn't care about having both of Invoke and Toggle.
         /// </summary>
         [TestMethod]
         public void ButtonWithToggleAndInvoke()
@@ -79,4 +79,4 @@ namespace Axe.Windows.RulesTest.Library
             Assert.IsTrue(Rule.PassesTest(e));
         }
     }
-} 
+}

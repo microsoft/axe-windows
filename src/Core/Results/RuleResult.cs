@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Axe.Windows.Core.Results
 {
     /// <summary>
-    /// Class RuleResult contains the result of each individual rule in a Scan. 
+    /// Class RuleResult contains the result of each individual rule in a Scan.
     /// </summary>
     public class RuleResult
     {

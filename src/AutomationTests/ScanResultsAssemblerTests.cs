@@ -56,7 +56,7 @@ namespace Axe.Windows.AutomationTests
                 Assert.IsTrue(expectedParentInfo.Patterns.SequenceEqual(error.Element.Patterns));
             }
 
-            // the patterns for the child errors and their parents should be as expected 
+            // the patterns for the child errors and their parents should be as expected
             foreach (var error in childErrors)
             {
                 Assert.AreEqual(expectedChildInfo.Patterns, error.Element.Patterns);

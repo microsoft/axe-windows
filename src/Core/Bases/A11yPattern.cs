@@ -39,7 +39,7 @@ namespace Axe.Windows.Core.Bases
         public bool IsUIActionable { get; set; }
 
         /// <summary>
-        /// Element which this pattern is from. 
+        /// Element which this pattern is from.
         /// hide from serialization
         /// </summary>
         [JsonIgnore]

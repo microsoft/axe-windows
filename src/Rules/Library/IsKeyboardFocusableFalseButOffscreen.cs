@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return IsNotKeyboardFocusable & IsEnabled & IsOffScreen 
+            return IsNotKeyboardFocusable & IsEnabled & IsOffScreen
                 & ElementGroups.ExpectedToBeFocusable;
         }
     } // class

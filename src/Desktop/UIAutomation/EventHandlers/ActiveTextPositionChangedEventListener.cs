@@ -7,7 +7,7 @@ using UIAutomationClient;
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     /// <summary>
-    /// ActiveTextPositionChangedEvent listener. 
+    /// ActiveTextPositionChangedEvent listener.
     /// this event is available from Win10 RS5
     /// </summary>
     public class ActiveTextPositionChangedEventListener : EventListenerBase, IUIAutomationActiveTextPositionChangedEventHandler

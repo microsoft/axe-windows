@@ -127,7 +127,7 @@ namespace Axe.Windows.ActionsTests.Actions
 
                 Assert.IsFalse(retVal);
                 Assert.AreSame(mockDataContext, mockElementContext.DataContext);
-            }            
+            }
         }
 
         [DataTestMethod]

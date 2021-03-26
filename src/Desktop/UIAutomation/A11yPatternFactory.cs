@@ -12,8 +12,8 @@ namespace Axe.Windows.Desktop.UIAutomation
     public static class A11yPatternFactory
     {
         /// <summary>
-        /// Get the Instance of specific pattern. 
-        /// if there is no matching pattern, it is wrapped up as Unknown. 
+        /// Get the Instance of specific pattern.
+        /// if there is no matching pattern, it is wrapped up as Unknown.
         /// </summary>
         /// <param name="e"></param>
         /// <param name="id"></param>

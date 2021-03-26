@@ -10,7 +10,7 @@ namespace DesktopTests.Types
     [TestClass]
     public class TextAttributeTemplateTests
     {
-        private static int[] _ignoreIds = new int[] { 
+        private static int[] _ignoreIds = new int[] {
             TextAttributeType.UIA_AnnotationObjectsAttributeId,
             TextAttributeType.UIA_LinkAttributeId,
         };

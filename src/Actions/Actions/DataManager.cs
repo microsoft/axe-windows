@@ -21,8 +21,8 @@ namespace Axe.Windows.Actions
     /// - Property
     /// - Pattern
     /// - etc
-    /// When Actions needs data(object) to do anything(excute/select and etc), they should get data from Actions. 
-    /// the Action caller will pass the ID of data to use than actual object. 
+    /// When Actions needs data(object) to do anything(excute/select and etc), they should get data from Actions.
+    /// the Action caller will pass the ID of data to use than actual object.
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public class DataManager:IDisposable
@@ -58,7 +58,7 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Get ElementContext 
+        /// Get ElementContext
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ namespace Axe.Windows.Actions
         /// <param name="keepMainElment">true, keep it</param>
         internal void RemoveDataContext(Guid ecId)
         {
-            // check whether key exists. if not, just silently ignore. 
+            // check whether key exists. if not, just silently ignore.
             if (this.ElementContexts.ContainsKey(ecId))
             {
                 var ec = this.ElementContexts[ecId];
@@ -112,7 +112,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public A11yElement GetA11yElement(Guid ecId, int eId)
         {
-            if (this.ElementContexts.ContainsKey(ecId)) 
+            if (this.ElementContexts.ContainsKey(ecId))
             {
                 var ec = ElementContexts[ecId];
                 if (eId == 0)
@@ -172,7 +172,7 @@ namespace Axe.Windows.Actions
 
         /// <summary>
         /// Get default Data Manager instance
-        /// if it doesn't exist, create one. 
+        /// if it doesn't exist, create one.
         /// </summary>
         /// <returns></returns>
         public static DataManager GetDefaultInstance()
@@ -187,8 +187,8 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Get DataManager by key. 
-        /// if it doesn't exist, create a new instance with the key. 
+        /// Get DataManager by key.
+        /// if it doesn't exist, create a new instance with the key.
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>

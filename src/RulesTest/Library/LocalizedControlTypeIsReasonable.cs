@@ -43,7 +43,7 @@ namespace Axe.Windows.RulesTest.Library
         {
             var e = new MockA11yElement();
             e.ControlTypeId = Hyperlink;
-            e.LocalizedControlType = "hyperlink"; 
+            e.LocalizedControlType = "hyperlink";
             Assert.IsTrue(Rule.PassesTest(e));
 
             e.LocalizedControlType = "link";
