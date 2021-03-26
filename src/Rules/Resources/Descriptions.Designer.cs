@@ -430,6 +430,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This framework in use does not support UI Automation..
+        /// </summary>
+        internal static string FrameworkDoesNotSupportUIAutomation {
+            get {
+                return ResourceManager.GetString("FrameworkDoesNotSupportUIAutomation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An element&apos;s HeadingLevel must be greater than or equal to that of its ancestors..
         /// </summary>
         internal static string HeadingLevelDescendsWhenNested {

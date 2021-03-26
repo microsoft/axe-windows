@@ -3,7 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.Resources;
-using System.Linq;
+using System.Text.RegularExpressions;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
@@ -11,24 +11,30 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.FrameworkDoesNotSupportUIAutomation)]
     class FrameworkDoesNotSupportUIAutomation : Rule
     {
-        private readonly static string[] KnownBadClasses =
+        private readonly static string[] KnownProblematiClasses =
         {
-            "SunAwtFrame",
+            @"^\s*SunAwt.*$",
         };
 
         public FrameworkDoesNotSupportUIAutomation ()
         {
-            this.Info.Description = Descriptions.EditSupportsIncorrectRangeValuePattern;
-            this.Info.HowToFix = HowToFix.EditSupportsIncorrectRangeValuePattern;
+            this.Info.Description = Descriptions.FrameworkDoesNotSupportUIAutomation;
+            this.Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public override bool PassesTest(IA11yElement element)
+        public override bool PassesTest(IA11yElement e)
         {
-            string className = element.ClassName;
+            string className = e.ClassName;
 
-            return !KnownBadClasses.Contains(className);
+            foreach (var knownProblematicClass in KnownProblematiClasses)
+            {
+                if (Regex.IsMatch(className, knownProblematicClass, RegexOptions.CultureInvariant))
+                    return false;
+            }
+
+            return true;
         }
 
         protected override Condition CreateCondition()

@@ -542,4 +542,7 @@ If the element's ClickablePoint property is incorrect, please ensure it returns 
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to true.
 If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
   </data>
+  <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
+    <value>Switch your application to a framework that supports UI Automation.</value>
+  </data>
 </root>

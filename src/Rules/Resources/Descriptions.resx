@@ -426,4 +426,7 @@
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>An element's IsOffScreen property must be true when its clickable point is off screen.</value>
   </data>
+  <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
+    <value>This framework in use does not support UI Automation.</value>
+  </data>
 </root>
