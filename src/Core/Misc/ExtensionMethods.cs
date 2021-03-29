@@ -647,9 +647,12 @@ namespace Axe.Windows.Core.Misc
         {
             if (e == null) return null;
 
-            return (string.IsNullOrEmpty(e.Framework))
+            // Only query Framework property once to simplify unit test setup 
+            string framework = e.Framework;
+
+            return (string.IsNullOrEmpty(framework))
                 ? GetUIFramework(e.Parent)
-                : e.Framework;
+                : framework;
         }
 
         /// <summary>

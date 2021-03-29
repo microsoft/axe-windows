@@ -465,6 +465,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Switch your application to a framework that supports UI Automation..
+        /// </summary>
+        internal static string FrameworkDoesNotSupportUIAutomation {
+            get {
+                return ResourceManager.GetString("FrameworkDoesNotSupportUIAutomation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Modify the heading levels and/or nesting structure of the element and/or its ancestors.
         ///For example, if an element has a level-5 heading, its descendants can have only level-5 or level-6 headings..
         /// </summary>
