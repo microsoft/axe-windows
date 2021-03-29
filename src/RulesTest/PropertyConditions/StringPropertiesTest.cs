@@ -4,7 +4,7 @@ using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
-namespace Axe.Windows.RulesTest.PropertyConditions
+namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
     public class StringPropertiesTest

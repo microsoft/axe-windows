@@ -5,7 +5,7 @@ using Axe.Windows.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Axe.Windows.RulesTest
+namespace Axe.Windows.RulesTests
 {
     [TestClass]
     public class RulesProviderTests
