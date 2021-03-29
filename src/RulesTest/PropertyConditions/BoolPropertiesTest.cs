@@ -5,7 +5,7 @@ using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 
-namespace Axe.Windows.RulesTest.PropertyConditions
+namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
     public class BoolPropertiesTest

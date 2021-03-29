@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     public class ProgressBarRangeValueTests

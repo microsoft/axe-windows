@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using Condition = Axe.Windows.Rules.Condition;
 
-namespace Axe.Windows.RulesTest.Conditions
+namespace Axe.Windows.RulesTests.Conditions
 {
     [TestClass]
     public class TreeDescentConditionTest

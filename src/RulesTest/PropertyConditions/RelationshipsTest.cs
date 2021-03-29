@@ -5,9 +5,9 @@ using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
-using static Axe.Windows.RulesTest.ControlType;
+using static Axe.Windows.RulesTests.ControlType;
 
-namespace Axe.Windows.RulesTest.PropertyConditions
+namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
     public class RelationshipsTest

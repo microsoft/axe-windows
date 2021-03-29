@@ -3,7 +3,7 @@
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     [TestCategory("Axe.Windows.Rules")]

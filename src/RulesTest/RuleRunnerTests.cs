@@ -3,14 +3,13 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules;
-using Axe.Windows.RulesTest;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace RulesTests
+namespace Axe.Windows.RulesTests
 {
     [TestClass]
     public class RuleRunnerTests

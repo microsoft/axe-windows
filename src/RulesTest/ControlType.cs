@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Axe.Windows.RulesTest
+namespace Axe.Windows.RulesTests
 {
     static class ControlType
     {

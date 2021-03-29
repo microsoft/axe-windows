@@ -3,7 +3,7 @@
 using Axe.Windows.Rules;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Axe.Windows.RulesTest.Conditions
+namespace Axe.Windows.RulesTests.Conditions
 {
     [TestClass]
     public class AndConditionTest

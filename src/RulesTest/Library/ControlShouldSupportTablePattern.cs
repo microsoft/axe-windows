@@ -3,11 +3,11 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
-using Axe.Windows.RulesTest;
+using Axe.Windows.RulesTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Axe.Windows.RulesTest.Library
+namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
     public class ControlShouldSupportTablePattern

@@ -6,7 +6,7 @@ using Axe.Windows.Core.Types;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Axe.Windows.RulesTest
+namespace Axe.Windows.RulesTests
 {
     class MockA11yElement : A11yElement
     {
