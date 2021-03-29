@@ -4,6 +4,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.Resources;
 using System.Text.RegularExpressions;
+using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
@@ -11,7 +12,7 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.FrameworkDoesNotSupportUIAutomation)]
     class FrameworkDoesNotSupportUIAutomation : Rule
     {
-        private readonly static string[] KnownProblematiClasses =
+        private readonly static string[] KnownProblematicClasses =
         {
             @"^\s*SunAwt.*$",
         };
@@ -28,7 +29,7 @@ namespace Axe.Windows.Rules.Library
         {
             string className = e.ClassName;
 
-            foreach (var knownProblematicClass in KnownProblematiClasses)
+            foreach (var knownProblematicClass in KnownProblematicClasses)
             {
                 if (Regex.IsMatch(className, knownProblematicClass, RegexOptions.CultureInvariant))
                     return false;
@@ -39,7 +40,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Win32Framework;
+            return Win32Framework & Window;
         }
     }
 }

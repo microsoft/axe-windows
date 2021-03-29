@@ -5,6 +5,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Reflection;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -29,7 +30,7 @@ namespace Axe.Windows.RulesTests.Library
             foreach (string nonWin32Value in nonWin32Values)
             {
                 _elementMock.Setup(m => m.Framework)
-                    .Returns(FrameworkId.DirectUI)
+                    .Returns(nonWin32Value)
                     .Verifiable();
 
                 Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
@@ -39,17 +40,31 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void Condition_FrameworkIsWin32_ReturnsTrue()
+        public void Condition_FrameworkIsWin32_ControlTypeIsNotWindow_ReturnsFalse()
         {
             _elementMock.Setup(m => m.Framework).Returns(FrameworkId.Win32).Verifiable();
+            _elementMock.Setup(m => m.ControlTypeId).Returns(Core.Types.ControlType.UIA_ButtonControlTypeId);
+
+            Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
+
+            _elementMock.Verify(m => m.Framework, Times.Once());
+            _elementMock.Verify(m => m.ControlTypeId, Times.Once());
+        }
+
+        [TestMethod]
+        public void Condition_FrameworkIsWin32_ControlTypeIsWindow_ReturnsTrue()
+        {
+            _elementMock.Setup(m => m.Framework).Returns(FrameworkId.Win32).Verifiable();
+            _elementMock.Setup(m => m.ControlTypeId).Returns(Core.Types.ControlType.UIA_WindowControlTypeId);
 
             Assert.IsTrue(Rule.Condition.Matches(_elementMock.Object));
 
             _elementMock.Verify(m => m.Framework, Times.Once());
+            _elementMock.Verify(m => m.ControlTypeId, Times.Once());
         }
 
         [TestMethod]
-        public void PassesTest_FrameworkIsWin32_ClassNameIsNotKnownProblematic_ReturnsFalse()
+        public void PassesTest_ClassNameIsNotKnownProblematic_ReturnsFalse()
         {
             string[] testClasses = { "Edit", "SunAwT" };
 
@@ -64,7 +79,7 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void PassesTest_FrameworkIsWin32_ClassNameIsKnownProblematic_ReturnsTrue()
+        public void PassesTest_ClassNameIsKnownProblematic_ReturnsTrue()
         {
             string[] testClasses = { "SunAwt", "SunAwtXyz" };
 

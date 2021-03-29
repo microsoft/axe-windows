@@ -647,6 +647,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (e == null) return null;
 
+            // Only query Framework property once to simplify unit test setup 
             string framework = e.Framework;
 
             return (string.IsNullOrEmpty(framework))
