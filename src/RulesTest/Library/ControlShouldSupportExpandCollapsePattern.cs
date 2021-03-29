@@ -66,4 +66,4 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(Rule.PassesTest(e));
         }
     }
-} 
+}

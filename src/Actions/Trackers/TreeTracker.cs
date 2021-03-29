@@ -136,7 +136,7 @@ namespace Axe.Windows.Actions.Trackers
             }
             else
             {
-                // if it is desktop, release it. 
+                // if it is desktop, release it.
                 desktopElement.Dispose();
                 throw new TreeNavigationFailedException();
             }
@@ -158,14 +158,14 @@ namespace Axe.Windows.Actions.Trackers
             }
 
             // make sure that we skip an element from current process while walking tree.
-            // this code should be hit only at App level. but for sure. 
+            // this code should be hit only at App level. but for sure.
             if (DesktopElement.IsFromCurrentProcess(nextElement))
             {
                 var tmp = nextElement;
 
                 nextElement = getNextElement?.Invoke(treeWalker, nextElement);
 
-                // since element is not in use, release. 
+                // since element is not in use, release.
                 Marshal.ReleaseComObject(tmp);
             }
 

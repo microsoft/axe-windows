@@ -14,21 +14,21 @@ namespace Axe.Windows.CoreTests.Bases
     public class A11yPropertyTests
     {
         /// <summary>
-        /// Tests A11yProperty.ToString() through A11yProperty.TextValue. 
+        /// Tests A11yProperty.ToString() through A11yProperty.TextValue.
         /// Also tests constructor.
         /// </summary>
         [TestMethod()]
         public void ToStringTest()
         {
-            A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yPropertyTest.hier");            
+            A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yPropertyTest.hier");
             string kpVal;
-            
+
             kpVal = ke.Properties[PropertyType.UIA_ControlTypePropertyId].ToString();
             Assert.AreEqual("Text(50020)", kpVal);
-            
+
             kpVal = ke.Properties[PropertyType.UIA_RuntimeIdPropertyId].ToString();
             Assert.AreEqual("[7,1F48,24D4850]", kpVal);
-            
+
             kpVal = ke.Properties[PropertyType.UIA_BoundingRectanglePropertyId].ToString();
             Assert.AreEqual("[l=1285,t=91,r=1368,b=116]", kpVal);
 
@@ -37,9 +37,9 @@ namespace Axe.Windows.CoreTests.Bases
 
             kpVal = ke.Properties[PropertyType.UIA_LabeledByPropertyId].ToString();
             Assert.AreEqual("Test", kpVal);
-                             
+
             kpVal = ke.Properties[PropertyType.UIA_HasKeyboardFocusPropertyId].ToString();
-            Assert.AreEqual("False", kpVal);           
+            Assert.AreEqual("False", kpVal);
         }
     }
 }

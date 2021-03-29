@@ -10,15 +10,15 @@ namespace Axe.Windows.Core.Enums
     /// Rules are grouped by scan via whitespace when relevant
     /// If writing a ScanException, generally the first rule within a scan grouping
     ///     is appropriate to use in the constructor of GetRuleResultInstance(...)
-    /// 
-    /// Please don't remove or rename any existing ruleIDs. 
-    /// since RuleIds are serialized in string format, if any name is changed or removed, it may cause an error while deserializing an existing reesults file.  
+    ///
+    /// Please don't remove or rename any existing ruleIDs.
+    /// since RuleIds are serialized in string format, if any name is changed or removed, it may cause an error while deserializing an existing reesults file.
     /// </summary>
     public enum RuleId
     {
-        // this value will be set if the RuleResult.Rule is loaded from Old results file. 
+        // this value will be set if the RuleResult.Rule is loaded from Old results file.
         // it happens since we removed RuleId propert and replace it with Rule which is serialized in string format.
-        Indecisive = 0, 
+        Indecisive = 0,
 
         ScanMutedByException,
 
@@ -40,11 +40,11 @@ namespace Axe.Windows.Core.Enums
         // Axe.Windows.Rules
         SplitButtonInvokeAndTogglePatterns,
         ButtonShouldHavePatterns, // check whether button has at least one of three patterns(Invoke,Toggle,ExpandCollapse)
-        ButtonInvokeAndTogglePatterns, // Button should not have Invoke and Toggle patterns together. 
+        ButtonInvokeAndTogglePatterns, // Button should not have Invoke and Toggle patterns together.
         ButtonInvokeAndExpandCollapsePatterns, // Button may have Invoke and ExpandCollapse patterns together. (warning)
-        ButtonToggleAndExpandCollapsePatterns, // Button should have have Toggle and ExpandCollapse patterns together. 
-        ButtonExpandCollapsePattern,   // obsolete but don't remove since removal will break backward compatibility.  
-        ButtonPatterns, // obsolete. keep it to avoid backward compat issue. 
+        ButtonToggleAndExpandCollapsePatterns, // Button should have have Toggle and ExpandCollapse patterns together.
+        ButtonExpandCollapsePattern,   // obsolete but don't remove since removal will break backward compatibility.
+        ButtonPatterns, // obsolete. keep it to avoid backward compat issue.
 
         // scans
         ChildUniqueNameOrType,

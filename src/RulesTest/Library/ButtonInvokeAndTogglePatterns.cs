@@ -76,8 +76,8 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         /// <summary>
-        /// Rule applicable and Result should be error. 
-        /// both of Invoke and Toggle should not be supported by a button. 
+        /// Rule applicable and Result should be error.
+        /// both of Invoke and Toggle should not be supported by a button.
         /// </summary>
         [TestMethod]
         public void ButtonWithToggleAndInvoke()
@@ -93,4 +93,4 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsFalse(Rule.PassesTest(e));
         }
     }
-} 
+}

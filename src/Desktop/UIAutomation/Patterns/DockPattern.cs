@@ -9,7 +9,7 @@ using UIAutomationClient;
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
 {
     /// <summary>
-    /// DockPattern 
+    /// DockPattern
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/ee671421(v=vs.85).aspx
     /// </summary>
     public class DockPattern : A11yPattern

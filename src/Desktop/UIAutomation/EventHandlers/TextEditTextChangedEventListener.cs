@@ -10,7 +10,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     /// <summary>
     /// Class TextEditTextChanged Event handler
-    /// It is place holder. it is not hooked up yet since AccEvent doesn't support it yet. 
+    /// It is place holder. it is not hooked up yet since AccEvent doesn't support it yet.
     /// </summary>
     public class TextEditTextChangedEventListener : EventListenerBase, IUIAutomationTextEditTextChangedEventHandler
     {

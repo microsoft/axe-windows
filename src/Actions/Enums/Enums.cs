@@ -48,7 +48,7 @@ namespace Axe.Windows.Actions.Enums
         /// <summary>
         /// The action requires user interaction with ux
         /// </summary>
-        RequiredUxInteraction        
+        RequiredUxInteraction
     }
 
     /// <summary>

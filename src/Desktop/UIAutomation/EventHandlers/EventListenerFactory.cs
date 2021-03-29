@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     /// <summary>
     /// Maintain the AutomationEvent handlers for UI interaction
-    /// since different sets of event handlers can be created for each purpose, each factory keeps its own copy of CUIAutomation object. 
+    /// since different sets of event handlers can be created for each purpose, each factory keeps its own copy of CUIAutomation object.
     /// it will be released at disposal.
     /// </summary>
     public class EventListenerFactory:IDisposable
@@ -117,7 +117,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                     }
 
-                    switch(msgData.MessageType) 
+                    switch(msgData.MessageType)
                     {
                         case EventListenerFactoryMessageType.FinishThread:
                             // The main UI thread is telling this background thread to close down.
@@ -223,7 +223,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <param name="msgData"></param>
         private void UnregisterEventListener(EventListenerFactoryMessage msgData)
         {
-            HandleUIAutomationEventMessage listener = null; 
+            HandleUIAutomationEventMessage listener = null;
             try
             {
                 switch (msgData.EventId)
@@ -326,7 +326,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     };
 
                 listener(m);
-                /// it is very unexpected situation. 
+                /// it is very unexpected situation.
                 /// need to figure out a way to prevent it or handle it more gracefully
             }
 #pragma warning restore CA1031 // Do not catch general exception types
@@ -467,7 +467,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         /// <summary>
-        /// Request Worker thread finish and wait for 2 seconds to finish. otherwise, there will be an exception. 
+        /// Request Worker thread finish and wait for 2 seconds to finish. otherwise, there will be an exception.
         /// </summary>
         private void FinishWorkerThread()
         {
@@ -488,14 +488,14 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         /// <summary>
-        /// Add a new Factory Message 
+        /// Add a new Factory Message
         /// </summary>
         /// <param name="msgData"></param>
         private void AddMessageToQueue(EventListenerFactoryMessage msgData)
         {
             // Request the lock, and block until it is obtained.
             lock(_msgQueue)
-            { 
+            {
                 // When the lock is obtained, add an element.
                 _msgQueue.Enqueue(msgData);
             }
@@ -507,7 +507,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public EventListenerFactory(A11yElement rootElement) : this(rootElement, ListenScope.Subtree) { }
 
         /// <summary>
-        /// Cosntructor. 
+        /// Cosntructor.
         /// </summary>
         /// <param name="peDelegate"></param>
         /// <param name="rootElement">can be null but it is only for global events like focusChanged</param>
@@ -536,7 +536,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         /// <summary>
         /// Register a single event listener
-        /// in case of property listening, since it is monolithic, you need to stop existing property listener first. 
+        /// in case of property listening, since it is monolithic, you need to stop existing property listener first.
         /// the implicit cleanup is not defined.
         /// </summary>
         /// <param name="eventId"></param>
@@ -676,7 +676,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         /// <summary>
         /// Wait until message is processed.
-        /// if not processed in given time, exception will be thrown. 
+        /// if not processed in given time, exception will be thrown.
         /// </summary>
         /// <param name="milliseconds"></param>
         public void WaitForProcessed(int milliseconds)

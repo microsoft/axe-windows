@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         /// <summary>
         /// margin of error for comparing rectangles.
         /// Using a margin allows small boundary cases not to be marked as errors.
-        /// increased margin from 30 to 35 since there is HDPI impact. 
+        /// increased margin from 30 to 35 since there is HDPI impact.
         /// </summary>
         public const int OverlapMargin = 35;
 
@@ -60,7 +60,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         }
 
         private static bool HasValidArea(IA11yElement e)
-        {            
+        {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             return (e.BoundingRectangle.Width * e.BoundingRectangle.Height) >= MinimumArea;

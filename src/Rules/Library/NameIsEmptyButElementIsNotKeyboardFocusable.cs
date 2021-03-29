@@ -37,7 +37,7 @@ namespace Axe.Windows.Rules.Library
             // Regardless if it is focusable, ProgressBar should be reported as an error
             // So it is handled in NameIsNotEmpty
 
-            return IsNotKeyboardFocusable 
+            return IsNotKeyboardFocusable
                 & ~ProgressBar
                 & Name.NotNull
                 & BoundingRectangle.Valid

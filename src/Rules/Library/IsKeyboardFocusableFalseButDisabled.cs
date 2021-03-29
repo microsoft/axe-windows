@@ -3,7 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Rules.PropertyConditions; 
+using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 
@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return IsNotKeyboardFocusable & IsNotEnabled & IsNotOffScreen 
+            return IsNotKeyboardFocusable & IsNotEnabled & IsNotOffScreen
                 & ElementGroups.ExpectedToBeFocusable;
         }
     } // class

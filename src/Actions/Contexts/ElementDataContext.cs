@@ -23,7 +23,7 @@ namespace Axe.Windows.Actions.Contexts
         public TreeViewMode TreeMode { get; internal set; }
 
         /// <summary>
-        /// Data Context Mode for this 
+        /// Data Context Mode for this
         /// </summary>
         public DataContextMode Mode { get; internal set; }
 
@@ -98,8 +98,8 @@ namespace Axe.Windows.Actions.Contexts
                         }
                         else
                         {
-                            // so far when it gets into test, it works ok. 
-                            // it will keep the same perf when switch back to Live from Test. 
+                            // so far when it gets into test, it works ok.
+                            // it will keep the same perf when switch back to Live from Test.
                             this.Elements.Values.AsParallel().ForAll(e => e.Dispose());
                         }
 

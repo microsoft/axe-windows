@@ -553,7 +553,7 @@ namespace Axe.Windows.Core.Bases
         /// <summary>
         /// Unique Id of the element
         /// this value is set based on each platform
-        /// it should be populated by tree walker. 
+        /// it should be populated by tree walker.
         /// </summary>
         public int UniqueId { get; set; }
 
@@ -696,7 +696,7 @@ namespace Axe.Windows.Core.Bases
         }
 
         /// <summary>
-        /// Update Parent since snapshot doesn't contain parent reference. 
+        /// Update Parent since snapshot doesn't contain parent reference.
         /// </summary>
         /// <param name="p"></param>
         /// <param name="e"></param>

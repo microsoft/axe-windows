@@ -25,9 +25,9 @@ namespace Axe.Windows.Core.Bases
 #pragma warning disable CA1051 // Do not declare visible instance fields
         /// <summary>
         /// Property value
-        /// because it is used in referenced variable later, it can't be property. 
-        /// please keep it as field. 
-        /// 
+        /// because it is used in referenced variable later, it can't be property.
+        /// please keep it as field.
+        ///
         /// CA1051 because of backward compat issue with loading existing results file, can't change it to field.
         /// </summary>
         public dynamic Value;
@@ -53,7 +53,7 @@ namespace Axe.Windows.Core.Bases
         }
 
         /// <summary>
-        /// private constructor 
+        /// private constructor
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name">if null, it is get name from PropertyTypes by id</param>
@@ -104,7 +104,7 @@ namespace Axe.Windows.Core.Bases
                     case PropertyType.UIA_LevelPropertyId:
                     case PropertyType.UIA_SizeOfSetPropertyId:
                         /// these properties are 1 based.
-                        /// if value is smaller than 1, it should be ignored. 
+                        /// if value is smaller than 1, it should be ignored.
                         if(this.Value != null && this.Value > 0)
                         {
                             txt = this.Value?.ToString();
@@ -114,7 +114,7 @@ namespace Axe.Windows.Core.Bases
                         txt = HeadingLevelType.GetInstance().GetNameById(this.Value);
                         break;
                     case PropertyType.UIA_LandmarkTypePropertyId:
-                        txt = this.Value != 0 ? LandmarkType.GetInstance().GetNameById(this.Value) : null; // 0 is default value. 
+                        txt = this.Value != 0 ? LandmarkType.GetInstance().GetNameById(this.Value) : null; // 0 is default value.
                         break;
                     default:
                         if(this.Value is Int32[])

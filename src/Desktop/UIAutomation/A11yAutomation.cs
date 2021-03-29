@@ -35,7 +35,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         public static IUIAutomation UIAutomationObject => UIAutomation;
 
         /// <summary>
-        /// Get DesktopElement based on Process Id. 
+        /// Get DesktopElement based on Process Id.
         /// </summary>
         /// <param name="pid"></param>
         /// <returns>return null if fail to get an element by process Id</returns>
@@ -46,7 +46,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             IUIAutomationCondition condition = null;
             try
             {
-                // check whether process exist first. 
+                // check whether process exist first.
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
@@ -99,7 +99,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get DesktopElement from UIAElement interface. 
+        /// Get DesktopElement from UIAElement interface.
         /// </summary>
         /// <param name="uia"></param>
         /// <returns></returns>
@@ -175,7 +175,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
         /// <summary>
         /// Get an App element from uia
-        /// it is trace back to the top most ancestor with same process Id. 
+        /// it is trace back to the top most ancestor with same process Id.
         /// </summary>
         /// <param name="e">A11yElement</param>
         /// <returns></returns>
@@ -189,7 +189,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             // make sure that we have an app first
             if (app != null)
             {
-                // get first item under Desktop. if app is not Desktop, then it is ok to take it as is. 
+                // get first item under Desktop. if app is not Desktop, then it is ok to take it as is.
                 if (app.IsRootElement())
                 {
                     app = app.Children.First();
@@ -328,7 +328,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get Property programmatic Name from UIA service. 
+        /// Get Property programmatic Name from UIA service.
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>

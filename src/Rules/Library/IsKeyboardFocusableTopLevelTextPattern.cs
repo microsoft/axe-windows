@@ -35,7 +35,7 @@ namespace Axe.Windows.Rules.Library
         {
             return IsContentOrControlElement
                 & IsEnabled & IsNotOffScreen & BoundingRectangle.Valid
-                & Patterns.Text 
+                & Patterns.Text
                 & Patterns.TextSelectionSupported
                 & NoAncestor(Patterns.Text)
                 & ~(XAML & Text); // UWP case, Text control may have Text pattern without keyboard focus.

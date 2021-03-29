@@ -19,7 +19,7 @@ namespace Axe.Windows.RulesTests.Library
         {
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(ControlType.ScrollBar);
-            
+
             Assert.IsTrue(Rule.PassesTest(m.Object));
         }
 
@@ -97,7 +97,7 @@ namespace Axe.Windows.RulesTests.Library
         /// <returns>sequence of elements with given control type counts</returns>
         private IEnumerable<IA11yElement> GenerateElementsWithControlTypes(Dictionary<int, int> controlTypeCounts)
         {
-            return controlTypeCounts.SelectMany(controlTypeToCount => 
+            return controlTypeCounts.SelectMany(controlTypeToCount =>
                 GenerateElementsWithControlType(controlTypeToCount.Key, controlTypeToCount.Value));
         }
 

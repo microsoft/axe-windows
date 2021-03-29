@@ -32,7 +32,7 @@ namespace Axe.Windows.Actions
 
         /// <summary>
         /// Release DataContext of an ElementContext.
-        /// you may keep main element if the purpose of ReleaseDataContext is for refreshing data. 
+        /// you may keep main element if the purpose of ReleaseDataContext is for refreshing data.
         /// </summary>
         /// <param name="ecId">ElementContext Id</param>
         public static void ReleaseDataContext(Guid ecId)

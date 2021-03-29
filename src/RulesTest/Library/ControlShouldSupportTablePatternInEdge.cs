@@ -49,7 +49,7 @@ namespace Axe.Windows.RulesTests.Library
         {
             int[] expectedTypes = { ControlType.Calendar, ControlType.Table };
             var unexpectedTypes = ControlType.All.Difference(expectedTypes);
-            
+
             var e = new MockA11yElement();
             e.Framework = FrameworkId.Edge;
 

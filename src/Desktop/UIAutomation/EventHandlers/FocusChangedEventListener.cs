@@ -12,7 +12,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public HandleUIAutomationEventMessage ListenEventMessage { get; private set; }
 
         /// <summary>
-        /// indicate whether event handler is hooked or not. 
+        /// indicate whether event handler is hooked or not.
         /// </summary>
         bool IsHooked { get; set; }
 

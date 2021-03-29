@@ -103,7 +103,7 @@ namespace Axe.Windows.Desktop.Utility
 
             g.CopyFromScreen(rect.X, rect.Y, 0, 0, rect.Size);
 
-            return bmp; 
+            return bmp;
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Axe.Windows.Desktop.Utility
                 prev = curr;
                 curr = curr.Parent;
             }
-            
+
             if (curr.ControlTypeId != ControlType.UIA_WindowControlTypeId && prev != null)
             {
                 curr = prev;

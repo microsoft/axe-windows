@@ -35,8 +35,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Populate member data and testresults are cleaned up.
         /// if there is existing data, clean up first and populate
-        /// please don't call it directly but use UpdateElementAction. 
-        /// it would make Ux and Runtime separation easier since all communication is done via Actions. 
+        /// please don't call it directly but use UpdateElementAction.
+        /// it would make Ux and Runtime separation easier since all communication is done via Actions.
         /// </summary>
         /// <param name="element"></param>
         public static void PopulateAllPropertiesWithLiveData(this A11yElement element)
@@ -117,7 +117,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 // release previous UIAElement
                 Marshal.ReleaseComObject(uia);
-                // release cache interface. 
+                // release cache interface.
                 Marshal.ReleaseComObject(cache);
             }
         }
@@ -153,7 +153,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Clear element members. 
+        /// Clear element members.
         /// </summary>
         /// <param name="element"></param>
         public static void Clear(this A11yElement element)
@@ -230,7 +230,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Refresh the property and patterns with Live data. 
+        /// Refresh the property and patterns with Live data.
         /// it also set the Glimpse
         /// the update is done via caching to improve performance.
         /// </summary>
@@ -296,7 +296,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 // release previous UIAElement
                 Marshal.ReleaseComObject(uia);
-                // release cache interface. 
+                // release cache interface.
                 Marshal.ReleaseComObject(cache);
 
                 ppl.Clear();
@@ -332,7 +332,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 #pragma warning disable CA1031 // Do not catch general exception types
                 catch (Exception e)
                 {
-                    // at this point, UIAElement is invalid. but don't remove. 
+                    // at this point, UIAElement is invalid. but don't remove.
                     // element.PlatformObject = null;
                     e.ReportException();
                 }
@@ -399,7 +399,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// When it cannot get a value, IUIAutomationElement.GetCachedPropertyValue 
+        /// When it cannot get a value, IUIAutomationElement.GetCachedPropertyValue
         /// returns the default value for the expected type.
         /// In some cases, the default value is indistinguishable from a valid return value.
         /// Therefore, we want to know if the value is intentional or unintentional.
@@ -441,7 +441,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 }
                 else if(Marshal.IsComObject(variant))
                 {
-                    /* When checked against the four common return types for  
+                    /* When checked against the four common return types for
                      * IUIAutomation.GetPropertyValueEx: int, bool, string, and double[]
                      * IsComObject always returned false.
                      * And when the type tested was System.__ComObject,

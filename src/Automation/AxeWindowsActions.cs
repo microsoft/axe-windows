@@ -33,7 +33,7 @@ namespace Axe.Windows.Automation
                     if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
                         throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
 
-                    // send telemetry of scan results. 
+                    // send telemetry of scan results.
                     var dc = GetDataAction.GetElementDataContext(ec2.Id);
                     dc.PublishScanResults();
 

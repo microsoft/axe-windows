@@ -81,8 +81,8 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static Condition CreateExpectedNotToBeFocusableCondition()
         {
-            // originally, menu was part of this list. 
-            // however, based on feedback from a Trusted tester and MSDN, menu is now considered a keyboard focusable element. 
+            // originally, menu was part of this list.
+            // however, based on feedback from a Trusted tester and MSDN, menu is now considered a keyboard focusable element.
             return (Button & ~FocusableButton) | Header | ScrollBar | SemanticZoom;
         }
 
@@ -105,7 +105,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             // I am putting them in here for fidelity, not because they are necessarily correct.
             // the ignore list used to include SpinButton, which was removed below because that seems like an error.
             // The Tree type was also ignored. It was moved to the EmptyContainer condition.
-            // exclude custom from this scan since Custom control type behavior is a matter of App implementation. 
+            // exclude custom from this scan since Custom control type behavior is a matter of App implementation.
             // titlebar and image are added here based on the V1 rule since the two are causing extra erros on Office apps.
             var ignoreTypes = AppBar | Custom | DataItem | Group | Image | Header | Pane | Separator | StatusBar | TitleBar | Thumb | Text | ToolBar | ToolTip | Window;
 
@@ -213,7 +213,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             /* the following are generally found one per window/app
         * And therefore don't benefit from name-based distinction.
-        * And for many, it's easy to imagine it being difficult to come up with a meaningful name beyond the control type. 
+        * And for many, it's easy to imagine it being difficult to come up with a meaningful name beyond the control type.
         * What else do you call a StatusBar for example?
         * Custom elements are handled separately because there may be times
         * when a name is "page 1" for example and the type is "page"

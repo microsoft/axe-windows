@@ -6,7 +6,7 @@ using System;
 namespace Axe.Windows.Win32
 {
     /// <summary>
-    /// Win32 related helper methods.  
+    /// Win32 related helper methods.
     /// </summary>
     internal class Win32Helper
     {
@@ -31,7 +31,7 @@ namespace Axe.Windows.Win32
         { }
 
         /// <summary>
-        /// Check whether the current Windows is Windows 7 or not. 
+        /// Check whether the current Windows is Windows 7 or not.
         /// </summary>
         /// <returns></returns>
         internal static bool IsWindows7()

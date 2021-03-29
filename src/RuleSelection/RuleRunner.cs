@@ -100,7 +100,7 @@ namespace Axe.Windows.RuleSelection
                 case EvaluationCode.Warning:
                     return ScanStatus.Uncertain;
                 case EvaluationCode.NotApplicable:
-                    return ScanStatus.Pass; // to avoid error in UI. 
+                    return ScanStatus.Pass; // to avoid error in UI.
             } // switch
 
             return ScanStatus.Pass;

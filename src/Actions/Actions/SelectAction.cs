@@ -176,7 +176,7 @@ namespace Axe.Windows.Actions
 
         /// <summary>
         /// Set element for Next selection call
-        /// it is for internal use. 
+        /// it is for internal use.
         /// </summary>
         /// <param name="el"></param>
         public void SetCandidateElement(A11yElement el)
@@ -208,7 +208,7 @@ namespace Axe.Windows.Actions
 
         /// <summary>
         /// Set element for Next selection call
-        /// ElementContext will be created with the clone of the selected element. 
+        /// ElementContext will be created with the clone of the selected element.
         /// </summary>
         /// <param name="ecId"></param>
         /// <param name="eId"></param>
@@ -231,7 +231,7 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Set candidate element by handle. 
+        /// Set candidate element by handle.
         /// </summary>
         /// <param name="handle"></param>
         public void SetCandidateElementFromHandle(IntPtr handle)
@@ -266,7 +266,7 @@ namespace Axe.Windows.Actions
 
         /// <summary>
         /// Select Loaded Data
-        /// Load data from path and use the loaded data to set the selected element context. 
+        /// Load data from path and use the loaded data to set the selected element context.
         /// </summary>
         /// <param name="path"></param>
         /// <returns>Tuple of ElementContextId and SnapshotMetaInfo</returns>
@@ -337,7 +337,7 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <returns></returns>
         public bool HasPOIElement()
@@ -387,7 +387,7 @@ namespace Axe.Windows.Actions
 #pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
-        /// Clear default Instance. 
+        /// Clear default Instance.
         /// </summary>
         public static void ClearDefaultInstance()
         {

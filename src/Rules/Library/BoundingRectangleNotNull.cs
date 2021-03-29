@@ -40,7 +40,7 @@ namespace Axe.Windows.Rules.Library
             // If the Bounding rectangle property is not empty, it means all the above criteria were met successfully
             // So we only want to test for null when the BoundingRectangle property is empty.
             //
-            // 2 exceptions related with Menubar "System" and Menu item "System". 
+            // 2 exceptions related with Menubar "System" and Menu item "System".
             // These two are excluded since Windows 10 sets the bounding rectangles of these as null by default.
             // WPF Scrollbar page buttons may sometimes
             // legitimately be null or all zeros when the thumb control is at the maximum or minimum value.

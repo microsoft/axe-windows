@@ -84,7 +84,7 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = new MockA11yElement();
             var ec = new MockA11yElement();
-            
+
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TreeControlTypeId;
             e.IsEnabled = true;
             e.IsOffScreen = false;

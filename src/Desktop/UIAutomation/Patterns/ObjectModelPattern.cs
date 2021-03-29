@@ -10,7 +10,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// <summary>
     /// Control pattern wrapper for ObjectModel Control Pattern
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/hh448771(v=vs.85).aspx
-    /// though it has a method to call, it may not be actionable in AT perspective. 
+    /// though it has a method to call, it may not be actionable in AT perspective.
     /// </summary>
     public class ObjectModelPattern : A11yPattern
     {

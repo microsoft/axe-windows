@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         bool SetMembers { get; set; }
 
         /// <summary>
-        /// Id for next element 
+        /// Id for next element
         /// it will be used in Tree Walker.
         /// </summary>
         public int NextId { get; }
@@ -97,8 +97,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 var parent = new DesktopElement(puia, true, SetMembers);
                 parent.PopulateMinimumPropertiesForSelection();
 
-                // we need to avoid infinite loop of self reference as parent. 
-                // it is a probably a bug in UIA or the target app. 
+                // we need to avoid infinite loop of self reference as parent.
+                // it is a probably a bug in UIA or the target app.
                 if (e.IsSameUIElement(parent) == false)
                 {
                     parent.IsAncestorOfSelected = true;

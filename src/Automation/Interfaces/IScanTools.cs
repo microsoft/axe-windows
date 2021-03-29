@@ -4,7 +4,7 @@
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Encapsulates the set of tools used to scan, assemble results, and write output files 
+    /// Encapsulates the set of tools used to scan, assemble results, and write output files
     /// </summary>
     internal interface IScanTools
     {

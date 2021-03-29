@@ -59,8 +59,8 @@ namespace Axe.Windows.Actions
 
         /// <summary>
         /// Get Instance of A11yElement with live data
-        /// for now, it updates data in input A11yElement and return it. 
-        /// ToDo: it will be changed along with ActionDataManager code. 
+        /// for now, it updates data in input A11yElement and return it.
+        /// ToDo: it will be changed along with ActionDataManager code.
         /// </summary>
         /// <param name="ecId">ElementContext Id</param>
         /// <param name="eId">Element Id</param>

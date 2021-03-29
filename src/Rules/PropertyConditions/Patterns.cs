@@ -72,7 +72,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (textPattern == null) return false;
 
             var supportsSelection = textPattern.GetValue<UIAutomationClient.SupportedTextSelection>("SupportedTextSelection");
-                
+
             return supportsSelection != UIAutomationClient.SupportedTextSelection.SupportedTextSelection_None;
         }
     } // class

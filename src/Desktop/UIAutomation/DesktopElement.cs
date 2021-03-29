@@ -18,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation
     {
         private static readonly List<int> _excludedPropertyIds = new List<int>()
         {
-            // do not remove the following since it causes an issue with Edge when this value is there. 
+            // do not remove the following since it causes an issue with Edge when this value is there.
             // The clickable point is retrieved later once it can be determined the element does not belong to Edge
             PropertyType.UIA_ClickablePointPropertyId,
         };
@@ -48,7 +48,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// check whether property is excluded from retrieved. 
+        /// check whether property is excluded from retrieved.
         /// </summary>
         /// <param name="id"></param>
         /// <param name="name"></param>
@@ -72,7 +72,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         static readonly int CurrentPId = System.Diagnostics.Process.GetCurrentProcess().Id;
 
         /// <summary>
-        /// Check whether IUIAutomation is from current process or not. 
+        /// Check whether IUIAutomation is from current process or not.
         /// </summary>
         /// <param name="uia"></param>
         /// <returns></returns>
@@ -140,7 +140,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             {
                 if (this.PlatformObject != null)
                 {
-                    // to make sure for release. 
+                    // to make sure for release.
                     Marshal.ReleaseComObject(this.PlatformObject);
                     this.PlatformObject = null;
                 }

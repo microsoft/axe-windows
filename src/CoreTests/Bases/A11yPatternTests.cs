@@ -19,7 +19,7 @@ namespace Axe.Windows.CoreTests.Bases
         public void ToStringTest()
         {
             A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yPatternTest.hier");
-       
+
             Assert.AreEqual("SelectionPattern: False", ke.Patterns[0].ToString());
             Assert.AreEqual("ScrollPattern: False", ke.Patterns[1].ToString());
             Assert.AreEqual("ExpandCollapsePattern: 0", ke.Patterns[2].ToString());

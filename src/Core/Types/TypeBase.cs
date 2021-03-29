@@ -119,7 +119,7 @@ namespace Axe.Windows.Core.Types
         }
 
         /// <summary>
-        /// Check whether Id exist or not. 
+        /// Check whether Id exist or not.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

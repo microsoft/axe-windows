@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Axe.Windows.Core.Bases
 {
     /// <summary>
-    /// Container for Property and Patterns for passing these over wires. 
+    /// Container for Property and Patterns for passing these over wires.
     /// </summary>
     public class A11yElementData
     {

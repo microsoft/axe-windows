@@ -77,7 +77,7 @@ namespace Axe.Windows.RulesTests.Library
 
         /// <summary>
         /// Rule applicable and Result should be warning
-        /// both of Invoke and ExpandCollapse may be supported by a button. 
+        /// both of Invoke and ExpandCollapse may be supported by a button.
         /// </summary>
         [TestMethod]
         public void ButtonWithInvokeAndExpandCollapse()
@@ -93,4 +93,4 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsFalse(Rule.PassesTest(e));
         }
     }
-} 
+}

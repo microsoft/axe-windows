@@ -8,7 +8,7 @@ using System.Globalization;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Class to take a snapshot (via SnapshotCommand.Execute). 
+    /// Class to take a snapshot (via SnapshotCommand.Execute).
     /// </summary>
     static class SnapshotCommand
     {
@@ -66,7 +66,7 @@ namespace Axe.Windows.Automation
 
                 a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
                 if (a11yTestOutputFile == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(a11yTestOutputFile)));
-                
+
                 scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId);
             }
 

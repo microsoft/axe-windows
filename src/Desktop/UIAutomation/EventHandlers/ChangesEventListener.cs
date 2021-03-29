@@ -8,13 +8,13 @@ using UIAutomationClient;
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     /// <summary>
-    /// Changes event listener. 
-    /// It is place holder. it is not hooked up yet since AccEvent doesn't support it yet. 
+    /// Changes event listener.
+    /// It is place holder. it is not hooked up yet since AccEvent doesn't support it yet.
     /// </summary>
     public class ChangesEventListener : EventListenerBase, IUIAutomationChangesEventHandler
     {
         private static readonly int[] ChangeTypes = InitChangeTypes();
-            
+
         private static int[] InitChangeTypes()
         {
             // Ids based on expected values for UiaChangeInfo.uiaId

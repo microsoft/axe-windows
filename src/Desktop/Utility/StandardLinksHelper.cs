@@ -24,13 +24,13 @@ namespace Axe.Windows.Desktop.Utility
         /// </summary>
         StandardLinksHelper()
         {
-            // get the path of dictionary file. 
+            // get the path of dictionary file.
             var json = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "links.json"));
             StoredLinks = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
         /// <summary>
-        /// Is there a stored link for the given scan 
+        /// Is there a stored link for the given scan
         /// </summary>
         /// <param name="mi"></param>
         /// <returns></returns>

@@ -79,4 +79,4 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(this.Rule.Condition.Matches(e));
         }
     }
-} 
+}

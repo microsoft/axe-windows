@@ -9,7 +9,7 @@ namespace Axe.Windows.Telemetry
     /// types of Exceptions that should be excluded from the telemetry pipeline.
     /// Exclusion is handled by converting the specific Exception type to an
     /// ExcludedException, which telemetry will then ignore. If you have catch
-    /// handlers that distinguish on type, be sure to allow 
+    /// handlers that distinguish on type, be sure to allow
     /// </summary>
     public static class ExcludingExceptionWrapper
     {

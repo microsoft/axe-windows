@@ -55,7 +55,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 dm.AddElementContext(elementContext);
 
                 ScreenShotAction.GetDataManager = () => dm;
-                
+
                 ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
                 Assert.IsNull(dc.Screenshot);

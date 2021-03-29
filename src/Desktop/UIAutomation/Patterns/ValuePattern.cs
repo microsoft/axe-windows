@@ -34,8 +34,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             catch(InvalidOperationException e)
             {
                 e.ReportException();
-                // there is a known case that CurrentValue is not ready. 
-                // to avoid catastrophic failure downstream, handle it here. 
+                // there is a known case that CurrentValue is not ready.
+                // to avoid catastrophic failure downstream, handle it here.
             }
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
