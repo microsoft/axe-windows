@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 
 namespace CLITests
@@ -38,15 +39,20 @@ namespace CLITests
         const string OutputFileStart = "Results were written ";
         const string UnableToComplete = "Unable to complete. ";
         const string ExceptionInfoStart = "The following exception was caught: ";
+        const string DelayCountdownStart = "  {0} second{1} before scan.";
 
+        private Mock<Action> _oneSecondDelayMock;
         private Mock<TextWriter> _writerMock;
         private Mock<IOptions> _optionsMock;
+        private IOutputGenerator _testSubject;
 
         [TestInitialize]
         public void BeforeEachTest()
         {
             _writerMock = new Mock<TextWriter>(MockBehavior.Strict);
             _optionsMock = new Mock<IOptions>(MockBehavior.Strict);
+            _oneSecondDelayMock = new Mock<Action>(MockBehavior.Strict);
+            _testSubject = new OutputGenerator(_writerMock.Object, _oneSecondDelayMock.Object);
         }
 
         private void VerifyAllMocks()
@@ -57,12 +63,14 @@ namespace CLITests
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
             string processName = null, int processId = -1,
-            string scanId = null)
+            string scanId = null, int delayInSeconds = 0)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
             _optionsMock.Setup(x => x.ProcessId).Returns(processId);
             _optionsMock.Setup(x => x.ScanId).Returns(scanId);
+            _optionsMock.Setup(x => x.DelayInSeconds).Returns(delayInSeconds);
+            _optionsMock.Setup(x => x.ErrorOccurred).Returns(false);
         }
 
         [TestMethod]
@@ -70,17 +78,25 @@ namespace CLITests
         public void Ctor_WriterIsNull_ThrowsArgumentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => new OutputGenerator(null));
+                () => new OutputGenerator(null, _oneSecondDelayMock.Object));
             Assert.AreEqual("writer", e.ParamName);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Ctor_OneSecondDelayIsNull_ThrowsArgumentNullException()
+        {
+            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
+                () => new OutputGenerator(_writerMock.Object, null));
+            Assert.AreEqual("oneSecondDelay", e.ParamName);
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void WriteBanner_OptionsIsNull_ThrowsArgumentNullException()
         {
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => generator.WriteBanner(null));
+                () => _testSubject.WriteBanner(null));
             Assert.AreEqual("options", e.ParamName);
         }
 
@@ -89,9 +105,8 @@ namespace CLITests
         public void WriteBanner_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             VerifyAllMocks();
         }
@@ -106,9 +121,8 @@ namespace CLITests
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -127,9 +141,8 @@ namespace CLITests
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -148,9 +161,8 @@ namespace CLITests
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -171,9 +183,8 @@ namespace CLITests
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -190,9 +201,8 @@ namespace CLITests
                 new WriteCall(ScanIdStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -208,11 +218,10 @@ namespace CLITests
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteBanner(_optionsMock.Object);
-            generator.WriteBanner(_optionsMock.Object);
-            generator.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
+            _testSubject.WriteBanner(_optionsMock.Object);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -230,12 +239,37 @@ namespace CLITests
                 new WriteCall(ThirdPartyNoticeStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteThirdPartyNoticeOutput(testFile);
+            _testSubject.WriteThirdPartyNoticeOutput(testFile);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void WriteBanner_DelayIsSet_WritesCountdown()
+        {
+            const int delayInSeconds = 3;
+
+            SetOptions(delayInSeconds: delayInSeconds);
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall("Delaying {0} seconds", WriteSource.WriteLineOneParam),
+                new WriteCall(DelayCountdownStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(DelayCountdownStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(DelayCountdownStart, WriteSource.WriteLineTwoParams),
+                new WriteCall("Triggering scan", WriteSource.WriteLineStringOnly),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+            _oneSecondDelayMock.Setup(m => m.Invoke()).Verifiable();
+
+            _testSubject.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
+            VerifyAllMocks();
+            _oneSecondDelayMock.Verify(m => m.Invoke(), Times.Exactly(delayInSeconds));
         }
 
         private IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
@@ -302,10 +336,9 @@ namespace CLITests
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             VerifyAllMocks();
         }
@@ -315,10 +348,9 @@ namespace CLITests
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             VerifyAllMocks();
         }
@@ -334,10 +366,9 @@ namespace CLITests
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults();
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -355,10 +386,9 @@ namespace CLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -376,10 +406,9 @@ namespace CLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -401,10 +430,9 @@ namespace CLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -432,11 +460,10 @@ namespace CLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 patternCount: 2);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -464,11 +491,10 @@ namespace CLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 propertyCount: 2);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -502,11 +528,10 @@ namespace CLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 patternCount: 2, propertyCount: 2);
 
-            generator.WriteOutput(_optionsMock.Object, scanResults, null);
+            _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -526,9 +551,8 @@ namespace CLITests
                 new WriteCall(errorMessage, WriteSource.WriteLineStringOnly)
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteOutput(_optionsMock.Object, null, caughtException);
+            _testSubject.WriteOutput(_optionsMock.Object, null, caughtException);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
@@ -547,9 +571,8 @@ namespace CLITests
                 new WriteCall(ExceptionInfoStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            IOutputGenerator generator = new OutputGenerator(_writerMock.Object);
 
-            generator.WriteOutput(_optionsMock.Object, null, caughtException);
+            _testSubject.WriteOutput(_optionsMock.Object, null, caughtException);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();

@@ -25,7 +25,13 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored.")]
         public bool ShowThirdPartyNotices { get; set; }
 
+        [Option(Required = false, HelpText = "How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with a default of 0.")]
+        public int DelayInSeconds { get; set; }
+
         // CommandLineParser will never set this value!
         public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;
+
+        // CommandLineParser will never set this value!
+        public bool ErrorOccurred { get; set; }
     }
 }

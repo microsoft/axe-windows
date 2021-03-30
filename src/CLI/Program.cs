@@ -5,7 +5,7 @@ using Axe.Windows.Automation;
 using CommandLine;
 using System;
 using System.IO;
-using System.Reflection;
+using System.Threading;
 
 namespace AxeWindowsCLI
 {
@@ -37,7 +37,7 @@ namespace AxeWindowsCLI
         {
             TextWriter writer = Console.Out;
             IProcessHelper processHelper = new ProcessHelper(new ProcessAbstraction());
-            IOutputGenerator outputGenerator = new OutputGenerator(writer);
+            IOutputGenerator outputGenerator = new OutputGenerator(writer, () => Thread.Sleep(TimeSpan.FromSeconds(1)));
             IBrowserAbstraction browserAbstraction = new BrowserAbstraction();
 
             // We require some parameters, but don't have a clean way to tell CommandLineParser
@@ -64,6 +64,10 @@ namespace AxeWindowsCLI
 #pragma warning restore CA1031
             {
                 caughtException = e;
+                if (_options != null)
+                {
+                    _options.ErrorOccurred = true;
+                }
             }
 
             if (_options != null)
