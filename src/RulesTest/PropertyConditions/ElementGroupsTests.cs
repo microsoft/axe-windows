@@ -254,5 +254,41 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 Assert.IsFalse(ElementGroups.WPFDataGridCell.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void WPFPopup_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.WPFPopup.Matches(e));
+
+                e.Framework = "WPF";
+                Assert.IsFalse(ElementGroups.WPFPopup.Matches(e));
+
+                e.ClassName = "Popup";
+                Assert.IsTrue(ElementGroups.WPFPopup.Matches(e));
+
+                e.Framework = string.Empty;
+                Assert.IsFalse(ElementGroups.WPFPopup.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void WPFContextMenu_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.WPFContextMenu.Matches(e));
+
+                e.Framework = "WPF";
+                Assert.IsFalse(ElementGroups.WPFContextMenu.Matches(e));
+
+                e.ClassName = "ContextMenu";
+                Assert.IsTrue(ElementGroups.WPFContextMenu.Matches(e));
+
+                e.Framework = string.Empty;
+                Assert.IsFalse(ElementGroups.WPFContextMenu.Matches(e));
+            } // using
+        }
     } // class
 } // namespace
