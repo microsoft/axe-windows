@@ -20,9 +20,6 @@ namespace Axe.Windows.Rules.PropertyConditions
         // the following occurs for xaml expand/collapse controls
         private static Condition FocusableGroup = Group & IsKeyboardFocusable & (WPF | XAML);
 
-        public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
-        internal static Condition WPFPopup = WPF & StringProperties.ClassName.Is("Popup");
-        internal static Condition WPFContextMenu = WPF & StringProperties.ClassName.Is("ContextMenu");
         public static Condition MinMaxCloseButton = CreateMinMaxCloseButtonCondition();
         public static Condition FocusableButton = CreateFocusableButtonCondition();
         private static Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
@@ -39,6 +36,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
         public static Condition EdgeDocument = Pane & Edge & NotParent(Edge);
+        public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
@@ -127,7 +125,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             var trueWhenElementHasSiblingsOfSameType = (Header | StatusBar) & SiblingsOfSameType;
             var allowedImage = Image & NotParent(Button | ListItem | MenuItem | TreeItem);
             var allowedText = Text & Condition.Create(HasAllowedPlatformPropertiesForText);
-            var excludedByClassName = WPFPopup | WPFContextMenu;
+            var excludedByClassName = WPF & (StringProperties.ClassName.Is("Popup") | StringProperties.ClassName.Is("ContextMenu"));
 
             return ElementGroups.FocusableButton | Calendar | CheckBox | ComboBox
                 | allowedCustom | DataGrid | DataItem | Document

@@ -86,6 +86,22 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
+        public void TestExcludedClassNames()
+        {
+            string[] excludedClassNames = { "Popup", "ContextMenu" };
+
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = FrameworkId.WPF;
+                foreach (var className in excludedClassNames)
+                {
+                    e.ClassName = className;
+                    Assert.IsFalse(Misc.NameRequired.Matches(e));
+                }
+            } // using
+        }
+
+        [TestMethod]
         public void TestButtonWithAllowedParents()
         {
             using (var parent = new MockA11yElement())
