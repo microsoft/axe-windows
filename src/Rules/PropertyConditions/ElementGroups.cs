@@ -20,6 +20,9 @@ namespace Axe.Windows.Rules.PropertyConditions
         // the following occurs for xaml expand/collapse controls
         private static Condition FocusableGroup = Group & IsKeyboardFocusable & (WPF | XAML);
 
+        public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
+        internal static Condition WPFPopup = WPF & StringProperties.ClassName.Is("Popup");
+        internal static Condition WPFContextMenu = WPF & StringProperties.ClassName.Is("ContextMenu");
         public static Condition MinMaxCloseButton = CreateMinMaxCloseButtonCondition();
         public static Condition FocusableButton = CreateFocusableButtonCondition();
         private static Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
@@ -36,9 +39,6 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
         public static Condition EdgeDocument = Pane & Edge & NotParent(Edge);
-        public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
-        public static Condition WPFPopup = WPF & StringProperties.ClassName.Is("Popup");
-        public static Condition WPFContextMenu = WPF & StringProperties.ClassName.Is("ContextMenu");
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
@@ -127,6 +127,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             var trueWhenElementHasSiblingsOfSameType = (Header | StatusBar) & SiblingsOfSameType;
             var allowedImage = Image & NotParent(Button | ListItem | MenuItem | TreeItem);
             var allowedText = Text & Condition.Create(HasAllowedPlatformPropertiesForText);
+            var excludedByClassName = WPFPopup | WPFContextMenu;
 
             return ElementGroups.FocusableButton | Calendar | CheckBox | ComboBox
                 | allowedCustom | DataGrid | DataItem | Document
@@ -137,7 +138,8 @@ namespace Axe.Windows.Rules.PropertyConditions
                 | SplitButton | TabItem
                 | Table | allowedText | ToolBar
                 | ToolTip | Tree | TreeItem | Window
-                | trueWhenElementHasSiblingsOfSameType;
+                | trueWhenElementHasSiblingsOfSameType
+                & ~excludedByClassName;
         }
 
         private static Condition CreateNameOptionalCondition()
@@ -214,16 +216,16 @@ namespace Axe.Windows.Rules.PropertyConditions
         private static Condition CreateAllowSameNameAndControlTypeCondition()
         {
             /* the following are generally found one per window/app
-        * And therefore don't benefit from name-based distinction.
-        * And for many, it's easy to imagine it being difficult to come up with a meaningful name beyond the control type.
-        * What else do you call a StatusBar for example?
-        * Custom elements are handled separately because there may be times
-        * when a name is "page 1" for example and the type is "page"
-        * which we currently believe is acceptable because screen readers will read the name then the type
-        * and "1 page" would sound awkward.
-        * Names that are particularly long are viewed as acceptable because they are
-        * more likely to be informative and not to cause double speaking by screen readers.
-        * */
+            * And therefore don't benefit from name-based distinction.
+            * And for many, it's easy to imagine it being difficult to come up with a meaningful name beyond the control type.
+            * What else do you call a StatusBar for example?
+            * Custom elements are handled separately because there may be times
+            * when a name is "page 1" for example and the type is "page"
+            * which we currently believe is acceptable because screen readers will read the name then the type
+            * and "1 page" would sound awkward.
+            * Names that are particularly long are viewed as acceptable because they are
+            * more likely to be informative and not to cause double speaking by screen readers.
+            * */
 
             var types = AppBar | Custom | Header | MenuBar | SemanticZoom | StatusBar | TitleBar | Text;
 
