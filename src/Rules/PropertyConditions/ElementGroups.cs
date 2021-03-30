@@ -125,9 +125,9 @@ namespace Axe.Windows.Rules.PropertyConditions
             var trueWhenElementHasSiblingsOfSameType = (Header | StatusBar) & SiblingsOfSameType;
             var allowedImage = Image & NotParent(Button | ListItem | MenuItem | TreeItem);
             var allowedText = Text & Condition.Create(HasAllowedPlatformPropertiesForText);
-            var excludedByClassName = WPF & (StringProperties.ClassName.Is("Popup") | StringProperties.ClassName.Is("ContextMenu"));
+            var isWPFPopupOrContextMenu = WPF & (StringProperties.ClassName.Is("Popup") | StringProperties.ClassName.Is("ContextMenu"));
 
-            return ElementGroups.FocusableButton | Calendar | CheckBox | ComboBox
+            return (ElementGroups.FocusableButton | Calendar | CheckBox | ComboBox
                 | allowedCustom | DataGrid | DataItem | Document
                 | Edit | FocusableGroup | HeaderItem | Hyperlink
                 | allowedImage | List | ListItem | Menu
@@ -136,8 +136,8 @@ namespace Axe.Windows.Rules.PropertyConditions
                 | SplitButton | TabItem
                 | Table | allowedText | ToolBar
                 | ToolTip | Tree | TreeItem | Window
-                | trueWhenElementHasSiblingsOfSameType
-                & ~excludedByClassName;
+                | trueWhenElementHasSiblingsOfSameType)
+                & ~isWPFPopupOrContextMenu;
         }
 
         private static Condition CreateNameOptionalCondition()

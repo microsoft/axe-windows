@@ -281,17 +281,35 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
-        public void TestExcludedClassNames()
+        public void TestExcludedClassNames_ClassNamesDoNotMatch()
+        {
+            string[] nonExcludedClassNames = { "NotPopup", "ContextMenuIsNotMyName" };
+
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = FrameworkId.WPF;
+                e.ControlTypeId = Window;
+                foreach (var className in nonExcludedClassNames)
+                {
+                    e.ClassName = className;
+                    Assert.IsTrue(Misc.NameRequired.Matches(e), className + " should not be excluded");
+                }
+            } // using
+        }
+
+        [TestMethod]
+        public void TestExcludedClassNames_ClassNamesMatch()
         {
             string[] excludedClassNames = { "Popup", "ContextMenu" };
 
             using (var e = new MockA11yElement())
             {
                 e.Framework = FrameworkId.WPF;
+                e.ControlTypeId = Window;
                 foreach (var className in excludedClassNames)
                 {
                     e.ClassName = className;
-                    Assert.IsFalse(Misc.NameRequired.Matches(e));
+                    Assert.IsFalse(Misc.NameRequired.Matches(e), className + " should be excluded");
                 }
             } // using
         }
