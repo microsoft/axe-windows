@@ -14,17 +14,17 @@ namespace AxeWindowsCLI
     internal class OutputGenerator : IOutputGenerator
     {
         private readonly TextWriter _writer;
-        private readonly Action _oneSecondDelay;
+        private readonly IScanDelay _scanDelay;
 
         private bool _bannerHasBeenShown;
 
-        public OutputGenerator(TextWriter writer, Action oneSecondDelay)
+        public OutputGenerator(TextWriter writer, IScanDelay scanDelay)
         {
             if (writer == null) throw new ArgumentNullException(nameof(writer));
-            if (oneSecondDelay == null) throw new ArgumentNullException(nameof(oneSecondDelay));
+            if (scanDelay == null) throw new ArgumentNullException(nameof(scanDelay));
 
             _writer = writer;
-            _oneSecondDelay = oneSecondDelay;
+            _scanDelay = scanDelay;
         }
 
         public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
@@ -65,7 +65,7 @@ namespace AxeWindowsCLI
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            if(!_bannerHasBeenShown && options.VerbosityLevel >= minimumVerbosity)
+            if (!_bannerHasBeenShown && options.VerbosityLevel >= minimumVerbosity)
             {
                 WriteAppBanner();
 
@@ -95,16 +95,7 @@ namespace AxeWindowsCLI
                     _writer.WriteLine("Scan Id = {0}", options.ScanId);
                 }
 
-                if (!options.ErrorOccurred && options.DelayInSeconds > 0)
-                {
-                    _writer.WriteLine("Delaying {0} seconds before scanning.", options.DelayInSeconds);
-                    for (int secondsRemaining = options.DelayInSeconds; secondsRemaining > 0; secondsRemaining--)
-                    {
-                        _writer.WriteLine("  {0} second{1} before scan.", secondsRemaining, secondsRemaining == 1 ? "" : "s");
-                        _oneSecondDelay.Invoke();
-                    }
-                    _writer.WriteLine("Triggering scan");
-                }
+                _scanDelay.DelayWithCountdown(options);
 
                 _bannerHasBeenShown = true;
             }

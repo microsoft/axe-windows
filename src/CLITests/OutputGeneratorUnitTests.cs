@@ -8,7 +8,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 
 namespace CLITests
@@ -39,9 +38,8 @@ namespace CLITests
         const string OutputFileStart = "Results were written ";
         const string UnableToComplete = "Unable to complete. ";
         const string ExceptionInfoStart = "The following exception was caught: ";
-        const string DelayCountdownStart = "  {0} second{1} before scan.";
 
-        private Mock<Action> _oneSecondDelayMock;
+        private Mock<IScanDelay> _scanDelayMock;
         private Mock<TextWriter> _writerMock;
         private Mock<IOptions> _optionsMock;
         private IOutputGenerator _testSubject;
@@ -51,26 +49,28 @@ namespace CLITests
         {
             _writerMock = new Mock<TextWriter>(MockBehavior.Strict);
             _optionsMock = new Mock<IOptions>(MockBehavior.Strict);
-            _oneSecondDelayMock = new Mock<Action>(MockBehavior.Strict);
-            _testSubject = new OutputGenerator(_writerMock.Object, _oneSecondDelayMock.Object);
+            _scanDelayMock = new Mock<IScanDelay>(MockBehavior.Strict);
+
+            _testSubject = new OutputGenerator(_writerMock.Object, _scanDelayMock.Object);
+
+            _scanDelayMock.Setup(m => m.DelayWithCountdown(It.IsAny<IOptions>()));
         }
 
         private void VerifyAllMocks()
         {
             _writerMock.VerifyAll();
             _optionsMock.VerifyAll();
+            _scanDelayMock.VerifyAll();
         }
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
             string processName = null, int processId = -1,
-            string scanId = null, int delayInSeconds = 0)
+            string scanId = null)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
             _optionsMock.Setup(x => x.ProcessId).Returns(processId);
             _optionsMock.Setup(x => x.ScanId).Returns(scanId);
-            _optionsMock.Setup(x => x.DelayInSeconds).Returns(delayInSeconds);
-            _optionsMock.Setup(x => x.ErrorOccurred).Returns(false);
         }
 
         [TestMethod]
@@ -78,17 +78,17 @@ namespace CLITests
         public void Ctor_WriterIsNull_ThrowsArgumentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => new OutputGenerator(null, _oneSecondDelayMock.Object));
+                () => new OutputGenerator(null, _scanDelayMock.Object));
             Assert.AreEqual("writer", e.ParamName);
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Ctor_OneSecondDelayIsNull_ThrowsArgumentNullException()
+        public void Ctor_ScanDelayIsNull_ThrowsArgumentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
                 () => new OutputGenerator(_writerMock.Object, null));
-            Assert.AreEqual("oneSecondDelay", e.ParamName);
+            Assert.AreEqual("scanDelay", e.ParamName);
         }
 
         [TestMethod]
@@ -104,6 +104,8 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteBanner_VerbosityIsQuiet_IsSilent()
         {
+            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
+
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
 
             _testSubject.WriteBanner(_optionsMock.Object);
@@ -231,6 +233,8 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteBanner_ShowThirdPartyNotices_WritesAppHeaderAndThirdPartyNotice()
         {
+            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
+
             const string testFile = @"c:\somePath\someFile.html";
 
             WriteCall[] expectedCalls =
@@ -244,32 +248,6 @@ namespace CLITests
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void WriteBanner_DelayIsSet_WritesCountdown()
-        {
-            const int delayInSeconds = 3;
-
-            SetOptions(delayInSeconds: delayInSeconds);
-            WriteCall[] expectedCalls =
-            {
-                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
-                new WriteCall("Delaying {0} seconds", WriteSource.WriteLineOneParam),
-                new WriteCall(DelayCountdownStart, WriteSource.WriteLineTwoParams),
-                new WriteCall(DelayCountdownStart, WriteSource.WriteLineTwoParams),
-                new WriteCall(DelayCountdownStart, WriteSource.WriteLineTwoParams),
-                new WriteCall("Triggering scan", WriteSource.WriteLineStringOnly),
-            };
-            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            _oneSecondDelayMock.Setup(m => m.Invoke()).Verifiable();
-
-            _testSubject.WriteBanner(_optionsMock.Object);
-
-            textWriterVerifier.VerifyAll();
-            VerifyAllMocks();
-            _oneSecondDelayMock.Verify(m => m.Invoke(), Times.Exactly(delayInSeconds));
         }
 
         private IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
@@ -335,6 +313,8 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
+            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
+
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             ScanResults scanResults = BuildTestScanResults();
 
@@ -347,6 +327,8 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
+            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
+
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
