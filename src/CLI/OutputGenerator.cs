@@ -62,7 +62,7 @@ namespace AxeWindowsCLI
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            if(!_bannerHasBeenShown && options.VerbosityLevel >= minimumVerbosity)
+            if (!_bannerHasBeenShown && options.VerbosityLevel >= minimumVerbosity)
             {
                 WriteAppBanner();
 

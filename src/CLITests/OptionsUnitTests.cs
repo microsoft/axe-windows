@@ -19,15 +19,10 @@ namespace CLITests
         const string VerbosityKey = "--verbosity";
         const string ScanIdKey = "--scanid";
         const string ShowThirdPartyNoticesKey = "--showthirdpartynotices";
+        const string DelayInSecondsKey = "--delayinseconds";
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
-
-        private int FailIfCalled(Options options)
-        {
-            Assert.Fail("This method should never be called");
-            return UnexpectedFailure;
-        }
 
         private int FailIfCalled(IEnumerable<Error> errors)
         {
@@ -37,7 +32,8 @@ namespace CLITests
 
         private int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
-            string verbosity = null, bool showThirdPartyNotices = false)
+            string verbosity = null, bool showThirdPartyNotices = false,
+            int delayInSeconds = 0)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -46,6 +42,7 @@ namespace CLITests
             Assert.AreEqual(verbosity, options.Verbosity);
             Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
             Assert.AreEqual(showThirdPartyNotices, options.ShowThirdPartyNotices);
+            Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
             return ExpectedParseSuccess;
         }
 
@@ -118,6 +115,23 @@ namespace CLITests
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
                     (o) => ValidateOptions(o, showThirdPartyNotices: true),
+                    FailIfCalled);
+
+            Assert.AreEqual(ExpectedParseSuccess, parseResult);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ParseArguments_DelayInSeconds_SucceedsWithDelayInSecondsSet()
+        {
+            const string delayArg = "15";
+            const int delayInt = 15;
+
+            string[] args = { DelayInSecondsKey, delayArg };
+
+            int parseResult = Parser.Default.ParseArguments<Options>(args)
+                .MapResult(
+                    (o) => ValidateOptions(o, delayInSeconds: delayInt),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);

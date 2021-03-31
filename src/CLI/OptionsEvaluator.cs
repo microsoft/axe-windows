@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace AxeWindowsCLI
@@ -12,6 +13,13 @@ namespace AxeWindowsCLI
         {
             if (rawInputs == null) throw new ArgumentNullException(nameof(rawInputs));
             if (processHelper == null) throw new ArgumentNullException(nameof(processHelper));
+
+            int delayInSeconds = rawInputs.DelayInSeconds;
+
+            if (delayInSeconds < 0 || delayInSeconds > 60)
+            {
+                throw new ParameterException(string.Format(CultureInfo.InvariantCulture, "Invalid delay: {0}. Please enter an integer value from 0 to 60.", delayInSeconds));
+            }
 
             int processId = rawInputs.ProcessId;
             string processName = rawInputs.ProcessName;
@@ -28,7 +36,7 @@ namespace AxeWindowsCLI
             else
             {
 #pragma warning disable CA1303 // Do not pass literals as localized parameters
-                throw new ParameterException("Please specify either processId or processName on the command line");
+                throw new ParameterException("Please specify either processId or processName on the command line.");
 #pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
@@ -55,6 +63,7 @@ namespace AxeWindowsCLI
                 ProcessName = processName,
                 ScanId = rawInputs.ScanId,
                 VerbosityLevel = verbosityLevel,
+                DelayInSeconds = delayInSeconds,
             };
         }
 

@@ -29,13 +29,14 @@ namespace CLITests
 
         private void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
-            VerbosityLevel verbosityLevel = VerbosityLevel.Default)
+            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
             Assert.AreEqual(scanId, options.ScanId);
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosityLevel, options.VerbosityLevel);
+            Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
         }
 
         [TestMethod]
@@ -65,7 +66,7 @@ namespace CLITests
             Options input = new Options();
             ParameterException e = Assert.ThrowsException<ParameterException>(() =>
                 OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
-            Assert.AreEqual("Please specify either processId or processName on the command line", e.Message);
+            Assert.AreEqual("Please specify either processId or processName on the command line.", e.Message);
             VerifyAllMocks();
         }
 
@@ -226,6 +227,40 @@ namespace CLITests
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
                 processId: TestProcessId, verbosityLevel: VerbosityLevel.Verbose);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        public void ProcessInputs_SpecifiesNegativeDelay_ThrowsParameterException()
+        {
+            Options input = new Options { DelayInSeconds = -1 };
+            ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
+                input, _processHelperMock.Object));
+            Assert.AreEqual("Invalid delay: -1. Please enter an integer value from 0 to 60.", e.Message);
+        }
+
+        [TestMethod]
+        public void ProcessInputs_SpecifiesOverlyLongDelay_ThrowsParameterException()
+        {
+            Options input = new Options { DelayInSeconds = 61 };
+            ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
+                input, _processHelperMock.Object));
+            Assert.AreEqual("Invalid delay: 61. Please enter an integer value from 0 to 60.", e.Message);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_SpecifiesValidDelay_SetsDelayInSeconds()
+        {
+            const int expectedDelay = 60;
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = TestProcessName,
+                DelayInSeconds = expectedDelay,
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, delayInSeconds: expectedDelay);
             VerifyAllMocks();
         }
     }

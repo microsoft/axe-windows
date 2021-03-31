@@ -32,6 +32,10 @@ AxeWindowsCLI.exe
                              without executing scan). If specified, all other
                              options will be ignored.
 
+  --delayinseconds           How many seconds to delay before triggering the
+                             scan. Valid range is 0 to 60 seconds, with a
+                             default of 0.
+
   --help                     Display this help screen.
 
   --version                  Display version information.
@@ -49,6 +53,7 @@ Parameter|Description
 |scanid|Identifies the specific ID of the scan. This allows you to preassign a name to the given scan (and output file). If omitted, an dynamic name in the format AxeWindows_YY-MM-DD_hh-mm-ss.fffffff will be used.|
 |verbosity|Identifies the level of detail you want in the output. Valid values are `quiet` (minimal output), `default` (typical output), or `verbose` (maximum output).
 |showThirdPartyNotices|If specified, displays the third party notices for components used by AxeWindowsCLI. This information is also available in the `thirdpartynotices.html` file that is installed with AxeWindowsCLI.
+|delayInSeconds|Optionally inserts a delay before triggering the scan. This allows transient controls (menus, drop-down-lists, etc.) to be scanned.
 
 ### Scan results
 A summary of scan results will be displayed after the scan is run. In addition, an A11yTest file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io
