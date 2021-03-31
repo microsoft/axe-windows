@@ -67,20 +67,8 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void DelayWithCountdown_ErrorHasOccurred_NoOutputNoDelay()
-        {
-            _optionsMock.Setup(m => m.ErrorOccurred).Returns(true);
-
-            _testSubject.DelayWithCountdown(_optionsMock.Object);
-
-            VerifyWriterAndOptionsMocks();
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
         public void DelayWithCountdown_DelayIsZero_NoOutputNoDelay()
         {
-            _optionsMock.Setup(m => m.ErrorOccurred).Returns(false);
             _optionsMock.Setup(m => m.DelayInSeconds).Returns(0);
 
             _testSubject.DelayWithCountdown(_optionsMock.Object);
@@ -90,12 +78,28 @@ namespace CLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void DelayWithCountdown_DelayIsNotZero_HasOutputAndDelay()
+        public void DelayWithCountdown_DelayIsNotZero_VerbosityIsNotQuiet_HasDelayWithoutOutput()
+        {
+            const int delayInSeconds = 60;
+
+            _optionsMock.Setup(m => m.DelayInSeconds).Returns(delayInSeconds);
+            _optionsMock.Setup(m => m.VerbosityLevel).Returns(VerbosityLevel.Quiet);
+            _oneSecondDelayMock.Setup(m => m.Invoke());
+
+            _testSubject.DelayWithCountdown(_optionsMock.Object);
+
+            _oneSecondDelayMock.Verify(m => m.Invoke(), Times.Exactly(delayInSeconds));
+            VerifyWriterAndOptionsMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void DelayWithCountdown_DelayIsNotZero_VerbosityIsNotQuiet_HasDelayWithOutput()
         {
             const int delayInSeconds = 3;
 
-            _optionsMock.Setup(m => m.ErrorOccurred).Returns(false);
             _optionsMock.Setup(m => m.DelayInSeconds).Returns(delayInSeconds);
+            _optionsMock.Setup(m => m.VerbosityLevel).Returns(VerbosityLevel.Default);
             _oneSecondDelayMock.Setup(m => m.Invoke());
 
             WriteCall[] expectedCalls =

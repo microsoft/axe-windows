@@ -37,9 +37,9 @@ namespace CLITests
         const string ErrorVerboseSeparatorStart = "---------------------";
         const string OutputFileStart = "Results were written ";
         const string UnableToComplete = "Unable to complete. ";
+        const string NoFurtherData = "No further data is available.";
         const string ExceptionInfoStart = "The following exception was caught: ";
 
-        private Mock<IScanDelay> _scanDelayMock;
         private Mock<TextWriter> _writerMock;
         private Mock<IOptions> _optionsMock;
         private IOutputGenerator _testSubject;
@@ -49,18 +49,14 @@ namespace CLITests
         {
             _writerMock = new Mock<TextWriter>(MockBehavior.Strict);
             _optionsMock = new Mock<IOptions>(MockBehavior.Strict);
-            _scanDelayMock = new Mock<IScanDelay>(MockBehavior.Strict);
 
-            _testSubject = new OutputGenerator(_writerMock.Object, _scanDelayMock.Object);
-
-            _scanDelayMock.Setup(m => m.DelayWithCountdown(It.IsAny<IOptions>()));
+            _testSubject = new OutputGenerator(_writerMock.Object);
         }
 
         private void VerifyAllMocks()
         {
             _writerMock.VerifyAll();
             _optionsMock.VerifyAll();
-            _scanDelayMock.VerifyAll();
         }
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
@@ -78,17 +74,8 @@ namespace CLITests
         public void Ctor_WriterIsNull_ThrowsArgumentNullException()
         {
             ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => new OutputGenerator(null, _scanDelayMock.Object));
+                () => new OutputGenerator(null));
             Assert.AreEqual("writer", e.ParamName);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void Ctor_ScanDelayIsNull_ThrowsArgumentNullException()
-        {
-            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(
-                () => new OutputGenerator(_writerMock.Object, null));
-            Assert.AreEqual("scanDelay", e.ParamName);
         }
 
         [TestMethod]
@@ -104,8 +91,6 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteBanner_VerbosityIsQuiet_IsSilent()
         {
-            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
-
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
 
             _testSubject.WriteBanner(_optionsMock.Object);
@@ -233,8 +218,6 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteBanner_ShowThirdPartyNotices_WritesAppHeaderAndThirdPartyNotice()
         {
-            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
-
             const string testFile = @"c:\somePath\someFile.html";
 
             WriteCall[] expectedCalls =
@@ -313,8 +296,6 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
-            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
-
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             ScanResults scanResults = BuildTestScanResults();
 
@@ -327,8 +308,6 @@ namespace CLITests
         [Timeout(1000)]
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
-            _scanDelayMock.Reset(); // Undo the setup that occurs in BeforeEachTest()
-
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
             ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
@@ -555,6 +534,25 @@ namespace CLITests
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
 
             _testSubject.WriteOutput(_optionsMock.Object, null, caughtException);
+
+            textWriterVerifier.VerifyAll();
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        //[Timeout(1000)]
+        public void WriteOutput_ScanResultsNull_CaughtExceptionNull_VerbosityIsQuiet_WritesBannerAndError()
+        {
+            SetOptions(verbosityLevel: VerbosityLevel.Quiet);
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(UnableToComplete, WriteSource.WriteStringOnly),
+                new WriteCall(NoFurtherData, WriteSource.WriteLineStringOnly),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+
+            _testSubject.WriteOutput(_optionsMock.Object, null, null);
 
             textWriterVerifier.VerifyAll();
             VerifyAllMocks();

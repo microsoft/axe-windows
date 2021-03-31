@@ -16,6 +16,7 @@ namespace AxeWindowsCLI
         private readonly IProcessHelper _processHelper;
         private readonly IOutputGenerator _outputGenerator;
         private readonly IBrowserAbstraction _browserAbstraction;
+        private readonly IScanDelay _scanDelay;
 
         private ScanResults _scanResults;
         private IOptions _options;
@@ -24,13 +25,15 @@ namespace AxeWindowsCLI
             TextWriter writer,
             IProcessHelper processHelper,
             IOutputGenerator outputGenerator,
-            IBrowserAbstraction browserAbstraction)
+            IBrowserAbstraction browserAbstraction,
+            IScanDelay scanDelay)
         {
             _args = args;
             _writer = writer;
             _processHelper = processHelper;
             _outputGenerator = outputGenerator;
             _browserAbstraction = browserAbstraction;
+            _scanDelay = scanDelay;
         }
 
         static int Main(string[] args)
@@ -38,14 +41,14 @@ namespace AxeWindowsCLI
             TextWriter writer = Console.Out;
             IProcessHelper processHelper = new ProcessHelper(new ProcessAbstraction());
             IScanDelay scanDelay = new ScanDelay(writer, () => Thread.Sleep(TimeSpan.FromSeconds(1)));
-            IOutputGenerator outputGenerator = new OutputGenerator(writer, scanDelay);
+            IOutputGenerator outputGenerator = new OutputGenerator(writer);
             IBrowserAbstraction browserAbstraction = new BrowserAbstraction();
 
             // We require some parameters, but don't have a clean way to tell CommandLineParser
             // about them. As a result, we don't get the default help text if the args list
             // is empty. This little trick forces help in this case
             string[] innerArgs = args.Length > 0 ? args : new string[] { "--help" };
-            Program program = new Program(innerArgs, writer, processHelper, outputGenerator, browserAbstraction);
+            Program program = new Program(innerArgs, writer, processHelper, outputGenerator, browserAbstraction, scanDelay);
             return program.Run();
         }
 
@@ -69,10 +72,6 @@ namespace AxeWindowsCLI
 
             if (_options != null)
             {
-                if (caughtException != null)
-                {
-                    _options.ErrorOccurred = true;
-                }
                 _outputGenerator.WriteOutput(_options, _scanResults, caughtException);
             }
             return ReturnValueChooser.GetReturnValue(_scanResults, caughtException);
@@ -91,6 +90,7 @@ namespace AxeWindowsCLI
             _options = options;
             _options = OptionsEvaluator.ProcessInputs(options, _processHelper);
             _outputGenerator.WriteBanner(_options);
+            _scanDelay.DelayWithCountdown(_options);
             _scanResults = ScanRunner.RunScan(_options);
         }
 

@@ -56,12 +56,6 @@ namespace AxeWindowsCLI
                 }
             }
 
-            // Prevent Quiet mode with the delay (scenario doesn't make sense)
-            if (delayInSeconds > 0 && verbosityLevel == VerbosityLevel.Quiet)
-            {
-                throw new ParameterException("Quiet verbosity and delay scanning are mutually exclusive.");
-            }
-
             return new Options
             {
                 OutputDirectory = rawInputs.OutputDirectory,

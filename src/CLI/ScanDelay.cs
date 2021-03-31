@@ -23,15 +23,31 @@ namespace AxeWindowsCLI
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
-            if (!options.ErrorOccurred && options.DelayInSeconds > 0)
+            if (options.DelayInSeconds > 0)
             {
-                _writer.WriteLine("Delaying {0} second{1} before scanning.", options.DelayInSeconds, PluralSuffix(options.DelayInSeconds));
+                ConditionallyWriteMessageWithCount(options, "Delaying {0} second{1} before scanning.", options.DelayInSeconds);
                 for (int secondsRemaining = options.DelayInSeconds; secondsRemaining > 0; secondsRemaining--)
                 {
-                    _writer.WriteLine("  {0} second{1} before scan.", secondsRemaining, PluralSuffix(secondsRemaining));
+                    ConditionallyWriteMessageWithCount(options, "  {0} second{1} before scan.", secondsRemaining);
                     _oneSecondDelay.Invoke();
                 }
-                _writer.WriteLine("Triggering scan");
+                ConditionallyWriteMessage(options, "Triggering scan");
+            }
+        }
+
+        private void ConditionallyWriteMessageWithCount(IOptions options, string format, int count)
+        {
+            if (options.VerbosityLevel > VerbosityLevel.Quiet)
+            {
+                _writer.WriteLine(format, count, PluralSuffix(count));
+            }
+        }
+
+        private void ConditionallyWriteMessage(IOptions options, string message)
+        {
+            if (options.VerbosityLevel > VerbosityLevel.Quiet)
+            {
+                _writer.WriteLine(message);
             }
         }
 

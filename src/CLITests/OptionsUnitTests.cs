@@ -43,7 +43,6 @@ namespace CLITests
             Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
             Assert.AreEqual(showThirdPartyNotices, options.ShowThirdPartyNotices);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
-            Assert.IsFalse(options.ErrorOccurred);
             return ExpectedParseSuccess;
         }
 
@@ -136,24 +135,6 @@ namespace CLITests
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
-        public void ErrorOccurred_ToggleState_StatePersists()
-        {
-            string[] args = { };
-
-            int parseResult = Parser.Default.ParseArguments<Options>(args)
-                .MapResult(
-                    (o) =>
-                    {
-                        Assert.IsFalse(o.ErrorOccurred);
-                        o.ErrorOccurred = true;
-                        Assert.IsTrue(o.ErrorOccurred);
-                        return 0;
-                    },
-                    FailIfCalled);
         }
     }
 }

@@ -11,6 +11,5 @@ namespace AxeWindowsCLI
         string ProcessName { get; }
         VerbosityLevel VerbosityLevel { get; }
         int DelayInSeconds { get; }
-        bool ErrorOccurred { get; set; }
     }
 }

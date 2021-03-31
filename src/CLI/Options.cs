@@ -30,8 +30,5 @@ namespace AxeWindowsCLI
 
         // CommandLineParser will never set this value!
         public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;
-
-        // CommandLineParser will never set this value!
-        public bool ErrorOccurred { get; set; }
     }
 }

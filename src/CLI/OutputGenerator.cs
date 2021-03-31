@@ -14,17 +14,14 @@ namespace AxeWindowsCLI
     internal class OutputGenerator : IOutputGenerator
     {
         private readonly TextWriter _writer;
-        private readonly IScanDelay _scanDelay;
 
         private bool _bannerHasBeenShown;
 
-        public OutputGenerator(TextWriter writer, IScanDelay scanDelay)
+        public OutputGenerator(TextWriter writer)
         {
             if (writer == null) throw new ArgumentNullException(nameof(writer));
-            if (scanDelay == null) throw new ArgumentNullException(nameof(scanDelay));
 
             _writer = writer;
-            _scanDelay = scanDelay;
         }
 
         public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
@@ -94,8 +91,6 @@ namespace AxeWindowsCLI
                 {
                     _writer.WriteLine("Scan Id = {0}", options.ScanId);
                 }
-
-                _scanDelay.DelayWithCountdown(options);
 
                 _bannerHasBeenShown = true;
             }
