@@ -22,20 +22,20 @@ namespace Axe.Windows.RulesTests.PropertyConditions
             RequiredTypes = new List<int>
             {
                 Calendar, CheckBox, ComboBox,
-               DataGrid, DataItem, Document,
-               Edit, HeaderItem, Hyperlink,
-               List, ListItem, Menu,
-               MenuBar, MenuItem, ProgressBar,
-               RadioButton, SemanticZoom, Slider, Spinner,
-               SplitButton, TabItem,
-               Table, ToolBar,
+                DataGrid, DataItem, Document,
+                Edit, HeaderItem, Hyperlink,
+                List, ListItem, Menu,
+                MenuBar, MenuItem, ProgressBar,
+                RadioButton, SemanticZoom, Slider, Spinner,
+                SplitButton, TabItem,
+                Table, ToolBar,
                 ToolTip, Tree, TreeItem, Window
-        };
+            };
 
             OptionalTypes = new List<int> { Group, Pane };
 
             int[] specialTests =
-                {
+            {
                 Button, Custom, Header, Image, StatusBar, Text
             };
 
@@ -73,143 +73,143 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
-public void TestExcludedTypes()
-{
-    using (var e = new MockA11yElement())
-    {
-        foreach (var controlType in ExcludedTypes)
+        public void TestExcludedTypes()
         {
-            e.ControlTypeId = controlType;
-            Assert.IsFalse(Misc.NameRequired.Matches(e));
+            using (var e = new MockA11yElement())
+            {
+                foreach (var controlType in ExcludedTypes)
+                {
+                    e.ControlTypeId = controlType;
+                    Assert.IsFalse(Misc.NameRequired.Matches(e));
+                }
+            } // using
         }
-    } // using
-}
 
-[TestMethod]
-public void TestButtonWithAllowedParents()
-{
-    using (var parent = new MockA11yElement())
-    using (var e = new MockA11yElement())
-    {
-        var parentTypes = ControlType.All.Difference(ComboBox, ScrollBar, Slider, Spinner, SplitButton, TitleBar);
-
-        e.ControlTypeId = Button;
-        e.Parent = parent;
-
-        foreach (var controlType in parentTypes)
+        [TestMethod]
+        public void TestButtonWithAllowedParents()
         {
-            parent.ControlTypeId = controlType;
-            Assert.IsTrue(Misc.NameRequired.Matches(e));
+            using (var parent = new MockA11yElement())
+            using (var e = new MockA11yElement())
+            {
+                var parentTypes = ControlType.All.Difference(ComboBox, ScrollBar, Slider, Spinner, SplitButton, TitleBar);
+
+                e.ControlTypeId = Button;
+                e.Parent = parent;
+
+                foreach (var controlType in parentTypes)
+                {
+                    parent.ControlTypeId = controlType;
+                    Assert.IsTrue(Misc.NameRequired.Matches(e));
+                }
+            } // using
         }
-    } // using
-}
 
-[TestMethod]
-public void TestButtonWithDisallowedParents()
-{
-    using (var parent = new MockA11yElement())
-    using (var e = new MockA11yElement())
-    {
-        int[] parentTypes = { ComboBox, ScrollBar, TitleBar };
-
-        e.ControlTypeId = Button;
-        e.Parent = parent;
-
-        foreach (var controlType in parentTypes)
+        [TestMethod]
+        public void TestButtonWithDisallowedParents()
         {
-            parent.ControlTypeId = controlType;
-            Assert.IsFalse(Misc.NameRequired.Matches(e));
+            using (var parent = new MockA11yElement())
+            using (var e = new MockA11yElement())
+            {
+                int[] parentTypes = { ComboBox, ScrollBar, TitleBar };
+
+                e.ControlTypeId = Button;
+                e.Parent = parent;
+
+                foreach (var controlType in parentTypes)
+                {
+                    parent.ControlTypeId = controlType;
+                    Assert.IsFalse(Misc.NameRequired.Matches(e));
+                }
+            } // using
         }
-    } // using
-}
 
-[TestMethod]
-public void TestMinMaxCloseButtons()
-{
-    using (var e = new MockA11yElement())
-    {
-        string[] automationIDs = { "Minimize", "Maximize", "Close" };
-
-        e.ControlTypeId = Button;
-
-        foreach (var automationID in automationIDs)
+        [TestMethod]
+        public void TestMinMaxCloseButtons()
         {
-            e.AutomationId = automationID;
-            Assert.IsFalse(Misc.NameRequired.Matches(e));
+            using (var e = new MockA11yElement())
+            {
+                string[] automationIDs = { "Minimize", "Maximize", "Close" };
+
+                e.ControlTypeId = Button;
+
+                foreach (var automationID in automationIDs)
+                {
+                    e.AutomationId = automationID;
+                    Assert.IsFalse(Misc.NameRequired.Matches(e));
+                }
+            } // using
         }
-    } // using
-}
 
-[TestMethod]
-public void TestCustomWithAllowedParents()
-{
-    using (var parent = new MockA11yElement())
-    using (var e = new MockA11yElement())
-    {
-        e.ControlTypeId = Custom;
-        e.Parent = parent;
-
-        Assert.IsTrue(Misc.NameRequired.Matches(e));
-    } // using
-}
-
-[TestMethod]
-public void TestCustomWithDisallowedParents()
-{
-    using (var parent = new MockA11yElement())
-    using (var e = new MockA11yElement())
-    {
-        e.ControlTypeId = Custom;
-        e.Framework = FrameworkId.WPF;
-        e.Parent = parent;
-        parent.ControlTypeId = DataItem;
-
-        Assert.IsFalse(Misc.NameRequired.Matches(e));
-    } // using
-}
-
-[TestMethod]
-public void TestElementsWithSiblingsOfSameControlType()
-{
-    // this only applies to headers and status bars at the moment
-    int[] controlTypes = { Header, StatusBar };
-
-    using (var parent = new MockA11yElement())
-    using (var sibbling = new MockA11yElement())
-    using (var e = new MockA11yElement())
-    {
-        e.Parent = parent;
-        parent.Children.Add(e);
-        parent.Children.Add(sibbling);
-
-        foreach (var controlType in controlTypes)
+        [TestMethod]
+        public void TestCustomWithAllowedParents()
         {
-            e.ControlTypeId = controlType;
-            sibbling.ControlTypeId = controlType;
-            Assert.IsTrue(Misc.NameRequired.Matches(e));
+            using (var parent = new MockA11yElement())
+            using (var e = new MockA11yElement())
+            {
+                e.ControlTypeId = Custom;
+                e.Parent = parent;
+
+                Assert.IsTrue(Misc.NameRequired.Matches(e));
+            } // using
         }
-    } // using
-}
 
-[TestMethod]
-public void TestElementsWithNoSiblingsOfSameControlType()
-{
-    // this only applies to headers and status bars at the moment
-    int[] controlTypes = { Header, StatusBar };
-
-    using (var parent = new MockA11yElement())
-    using (var e = new MockA11yElement())
-    {
-        e.Parent = parent;
-        parent.Children.Add(e);
-
-        foreach (var controlType in controlTypes)
+        [TestMethod]
+        public void TestCustomWithDisallowedParents()
         {
-            e.ControlTypeId = controlType;
-            Assert.IsFalse(Misc.NameRequired.Matches(e));
+            using (var parent = new MockA11yElement())
+            using (var e = new MockA11yElement())
+            {
+                e.ControlTypeId = Custom;
+                e.Framework = FrameworkId.WPF;
+                e.Parent = parent;
+                parent.ControlTypeId = DataItem;
+
+                Assert.IsFalse(Misc.NameRequired.Matches(e));
+            } // using
         }
-    } // using
-}
+
+        [TestMethod]
+        public void TestElementsWithSiblingsOfSameControlType()
+        {
+            // this only applies to headers and status bars at the moment
+            int[] controlTypes = { Header, StatusBar };
+
+            using (var parent = new MockA11yElement())
+            using (var sibbling = new MockA11yElement())
+            using (var e = new MockA11yElement())
+            {
+                e.Parent = parent;
+                parent.Children.Add(e);
+                parent.Children.Add(sibbling);
+
+                foreach (var controlType in controlTypes)
+                {
+                    e.ControlTypeId = controlType;
+                    sibbling.ControlTypeId = controlType;
+                    Assert.IsTrue(Misc.NameRequired.Matches(e));
+                }
+            } // using
+        }
+
+        [TestMethod]
+        public void TestElementsWithNoSiblingsOfSameControlType()
+        {
+            // this only applies to headers and status bars at the moment
+            int[] controlTypes = { Header, StatusBar };
+
+            using (var parent = new MockA11yElement())
+            using (var e = new MockA11yElement())
+            {
+                e.Parent = parent;
+                parent.Children.Add(e);
+
+                foreach (var controlType in controlTypes)
+                {
+                    e.ControlTypeId = controlType;
+                    Assert.IsFalse(Misc.NameRequired.Matches(e));
+                }
+            } // using
+        }
 
         [TestMethod]
         public void TestImageWithAllowedParents()
@@ -277,6 +277,40 @@ public void TestElementsWithNoSiblingsOfSameControlType()
 
                 e.Framework = null;
                 Assert.IsTrue(Misc.NameRequired.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void TestExcludedClassNames_ClassNamesDoNotMatch()
+        {
+            string[] nonExcludedClassNames = { null, "NotPopup", "ContextMenuIsNotMyName" };
+
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = FrameworkId.WPF;
+                e.ControlTypeId = Window;
+                foreach (var className in nonExcludedClassNames)
+                {
+                    e.ClassName = className;
+                    Assert.IsTrue(Misc.NameRequired.Matches(e), className + " should not be excluded");
+                }
+            } // using
+        }
+
+        [TestMethod]
+        public void TestExcludedClassNames_ClassNamesMatch()
+        {
+            string[] excludedClassNames = { "Popup", "ContextMenu" };
+
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = FrameworkId.WPF;
+                e.ControlTypeId = Window;
+                foreach (var className in excludedClassNames)
+                {
+                    e.ClassName = className;
+                    Assert.IsFalse(Misc.NameRequired.Matches(e), className + " should be excluded");
+                }
             } // using
         }
     } // class
