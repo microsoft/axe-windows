@@ -36,7 +36,7 @@ namespace AxeWindowsCLI
             else
             {
 #pragma warning disable CA1303 // Do not pass literals as localized parameters
-                throw new ParameterException("Please specify either processId or processName on the command line");
+                throw new ParameterException("Please specify either processId or processName on the command line.");
 #pragma warning restore CA1303 // Do not pass literals as localized parameters
             }
 
@@ -54,6 +54,12 @@ namespace AxeWindowsCLI
                 {
                     throw new ParameterException("Invalid verbosity level: " + verbosity);
                 }
+            }
+
+            // Prevent Quiet mode with the delay (scenario doesn't make sense)
+            if (delayInSeconds > 0 && verbosityLevel == VerbosityLevel.Quiet)
+            {
+                throw new ParameterException("Quiet verbosity and delay scanning are mutually exclusive.");
             }
 
             return new Options

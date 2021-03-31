@@ -67,7 +67,7 @@ namespace CLITests
             Options input = new Options();
             ParameterException e = Assert.ThrowsException<ParameterException>(() =>
                 OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
-            Assert.AreEqual("Please specify either processId or processName on the command line", e.Message);
+            Assert.AreEqual("Please specify either processId or processName on the command line.", e.Message);
             VerifyAllMocks();
         }
 
@@ -262,6 +262,25 @@ namespace CLITests
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
                 processId: TestProcessId, delayInSeconds: expectedDelay);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_SpecifiesValidDelayAndQuietMode_ThrowsParameterException()
+        {
+            const string verbosity = "quiet";
+            const int expectedDelay = 60;
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = TestProcessName,
+                DelayInSeconds = expectedDelay,
+                Verbosity = verbosity,
+            };
+            ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
+                input, _processHelperMock.Object));
+            Assert.AreEqual("Quiet verbosity and delay scanning are mutually exclusive.", e.Message);
             VerifyAllMocks();
         }
     }
