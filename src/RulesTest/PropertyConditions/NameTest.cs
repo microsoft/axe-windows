@@ -283,7 +283,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         [TestMethod]
         public void TestExcludedClassNames_ClassNamesDoNotMatch()
         {
-            string[] nonExcludedClassNames = { "NotPopup", "ContextMenuIsNotMyName" };
+            string[] nonExcludedClassNames = { null, "NotPopup", "ContextMenuIsNotMyName" };
 
             using (var e = new MockA11yElement())
             {
