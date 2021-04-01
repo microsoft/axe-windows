@@ -7,7 +7,7 @@ using Moq;
 using System;
 using System.IO;
 
-namespace CLITests
+namespace AxeWindowsCLITests
 {
     [TestClass]
     public class ScanDelayUnitTests

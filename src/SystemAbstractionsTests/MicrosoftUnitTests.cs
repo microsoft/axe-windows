@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Win32;
 using Moq;
 
-namespace SystemAbstractionsTests
+namespace Axe.Windows.SystemAbstractionsTests
 {
     [TestClass]
     public class MicrosoftUnitTests

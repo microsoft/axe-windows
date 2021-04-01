@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace CoreTests.Types
+namespace Axe.Windows.CoreTests.Types
 {
     [TestClass]
     public class TypeBaseTests

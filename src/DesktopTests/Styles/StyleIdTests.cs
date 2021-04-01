@@ -3,7 +3,7 @@
 using Axe.Windows.Desktop.Styles;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Axe.Windows.DesktopTests.Styles.Tests
+namespace Axe.Windows.DesktopTests.Styles
 {
     /// <summary>
     /// Tests for StyleId class

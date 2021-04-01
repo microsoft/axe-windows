@@ -2,10 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Types;
+using Axe.Windows.Desktop.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 
-namespace Axe.Windows.Desktop.Utility.Tests
+namespace Axe.Windows.DesktopTests.Utility
 {
     [TestClass()]
     public class SupportedEventsTests

@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace Axe.Windows.Core.Results.Tests
+namespace Axe.Windows.CoreTests.Results
 {
     [TestClass()]
     public class ScanMetaInfoTests

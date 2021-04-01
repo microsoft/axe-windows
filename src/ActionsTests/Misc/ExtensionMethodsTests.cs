@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace Axe.Windows.Actions.Misc.Tests
+namespace Axe.Windows.ActionsTests.Misc
 {
     [TestClass()]
     public class ExtensionMethodsTests

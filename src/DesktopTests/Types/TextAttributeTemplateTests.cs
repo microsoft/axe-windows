@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
 
-namespace DesktopTests.Types
+namespace Axe.Windows.DesktopTests.Types
 {
     [TestClass]
     public class TextAttributeTemplateTests

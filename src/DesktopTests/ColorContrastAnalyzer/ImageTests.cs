@@ -21,7 +21,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         public static BitmapCollection LoadFromResources(string name)
         {
             Assembly myAssembly = Assembly.GetExecutingAssembly();
-            Stream myStream = myAssembly.GetManifestResourceStream("DesktopTests.TestImages." + name);
+            Stream myStream = myAssembly.GetManifestResourceStream("Axe.Windows.DesktopTests.TestImages." + name);
             Bitmap bmp = new Bitmap(myStream);
             return new BitmapCollection(bmp, new DefaultColorContrastConfig());
         }
