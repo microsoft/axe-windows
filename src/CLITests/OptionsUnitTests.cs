@@ -6,7 +6,7 @@ using CommandLine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace CLITests
+namespace AxeWindowsCLITests
 {
     [TestClass]
     public class OptionUnitTests

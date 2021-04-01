@@ -6,7 +6,7 @@ using Moq;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CLITests
+namespace AxeWindowsCLITests
 {
     internal enum WriteSource
     {

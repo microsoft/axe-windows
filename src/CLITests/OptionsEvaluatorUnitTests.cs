@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 
-namespace CLITests
+namespace AxeWindowsCLITests
 {
     [TestClass]
     public class OptionEvaluatorUnitTests

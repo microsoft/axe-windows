@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace CLITests
+namespace AxeWindowsCLITests
 {
     [TestClass]
     public class OutputGeneratorUnitTests

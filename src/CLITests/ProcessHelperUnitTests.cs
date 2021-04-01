@@ -7,7 +7,7 @@ using Moq;
 using System;
 using System.Diagnostics;
 
-namespace CLITests
+namespace AxeWindowsCLITests
 {
     [TestClass]
     public class ProcessHelperUnitTests
