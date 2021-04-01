@@ -4,7 +4,7 @@ using Axe.Windows.SystemAbstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace SystemAbstractionsTests
+namespace Axe.Windows.SystemAbstractionsTests
 {
     using Path = System.IO.Path;
 
