@@ -5,7 +5,7 @@ using Axe.Windows.RuleSelection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace RuleSelectionTests
+namespace Axe.Windows.RuleSelectionTests
 {
     [TestClass]
     public class ReferenceLinksTests
