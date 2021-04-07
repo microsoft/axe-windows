@@ -36,7 +36,7 @@ namespace Axe.Windows.Rules.Library
         protected override Condition CreateCondition()
         {
             // Windows and dialogs can be any size, regardless of their parents
-var isDialog = Pane & IsDialog;
+            var isDialog = Pane & IsDialog;
 
             //  Light dismiss buttons cover the whole window so that clicking dismisses the combo box
             var isLightDismissButton = Button & IsNotKeyboardFocusable & XAML & ClassName.Is("ComboBoxLightDismiss");
