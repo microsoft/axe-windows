@@ -208,5 +208,44 @@ namespace Axe.Windows.RulesTests.Library
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }
+
+        [TestMethod]
+        public void BoundingRectangleCompletelyObscuresContainer_LightDismissButton_NotApplicable()
+        {
+            var e = CreateLightDismissButton();
+            Assert.IsFalse(Rule.Condition.Matches(e));
+
+            e.IsKeyboardFocusable = true;
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            e = CreateLightDismissButton();
+            e.ClassName = "AnotherClass";
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            e = CreateLightDismissButton();
+            e.Framework = "AnotherFramework";
+            Assert.IsTrue(Rule.Condition.Matches(e));
+
+            e = CreateLightDismissButton();
+            e.ControlTypeId = 0 ;
+            Assert.IsTrue(Rule.Condition.Matches(e));
+        }
+
+        private static MockA11yElement CreateLightDismissButton()
+        {
+            var e = new MockA11yElement();
+            var parent = new MockA11yElement();
+
+            parent.BoundingRectangle = TestRect;
+
+            e.BoundingRectangle = TestRect;
+            e.Parent = parent;
+            e.ControlTypeId = ControlType.Button;
+            e.Framework = Core.Enums.FrameworkId.XAML;
+            e.ClassName = "ComboBoxLightDismiss";
+            e.IsKeyboardFocusable = false;
+
+            return e;
+        }
     } // class
 } // namespace

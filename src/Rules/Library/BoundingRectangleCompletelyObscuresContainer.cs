@@ -8,7 +8,9 @@ using Axe.Windows.Rules.Resources;
 using System;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
+using static Axe.Windows.Rules.PropertyConditions.Framework;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
+using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -34,8 +36,10 @@ namespace Axe.Windows.Rules.Library
         protected override Condition CreateCondition()
         {
             // Windows and dialogs can be any size, regardless of their parents
-
             var isDialog = Pane & IsDialog;
+
+            //  Light dismiss buttons cover the whole window so that clicking dismisses the combo box
+            var isLightDismissButton = Button & IsNotKeyboardFocusable & XAML & ClassName.Is("ComboBoxLightDismiss");
 
             return ~Window
                 & ~isDialog
@@ -43,7 +47,8 @@ namespace Axe.Windows.Rules.Library
                 & BoundingRectangle.Valid
                 & ParentExists
                 & Parent(IsNotDesktop)
-                & Parent(BoundingRectangle.Valid);
+                & Parent(BoundingRectangle.Valid)
+                & ~isLightDismissButton;
         }
     } // class
 } // namespace
