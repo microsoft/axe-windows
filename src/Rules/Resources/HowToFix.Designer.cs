@@ -277,16 +277,6 @@ namespace Axe.Windows.Rules.Resources {
         ///   Looks up a localized string similar to 1. Make sure the element has the appropriate ControlType property for its function.
         ///2. Modify the element to support only its allowed patterns..
         /// </summary>
-        internal static string ControlShouldNotSupportTablePattern {
-            get {
-                return ResourceManager.GetString("ControlShouldNotSupportTablePattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1. Make sure the element has the appropriate ControlType property for its function.
-        ///2. Modify the element to support only its allowed patterns..
-        /// </summary>
         internal static string ControlShouldNotSupportTogglePattern {
             get {
                 return ResourceManager.GetString("ControlShouldNotSupportTogglePattern", resourceCulture);

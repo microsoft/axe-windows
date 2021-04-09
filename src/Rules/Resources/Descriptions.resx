@@ -243,9 +243,6 @@
   <data name="ControlShouldNotSupportScrollPattern" xml:space="preserve">
     <value>An element of the given ControlType must not support the Scroll pattern.</value>
   </data>
-  <data name="ControlShouldNotSupportTablePattern" xml:space="preserve">
-    <value>An element of the given ControlType must not support the Table pattern.</value>
-  </data>
   <data name="ControlShouldNotSupportTogglePattern" xml:space="preserve">
     <value>An element of the given ControlType must not support the Toggle pattern.</value>
   </data>
