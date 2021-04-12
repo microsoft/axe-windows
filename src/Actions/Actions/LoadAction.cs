@@ -3,7 +3,9 @@
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Desktop.Drawing;
 using Axe.Windows.Desktop.Settings;
+using Axe.Windows.SystemAbstractions;
 using Axe.Windows.Telemetry;
 using Newtonsoft.Json;
 using System;
@@ -20,6 +22,8 @@ namespace Axe.Windows.Actions
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public static class LoadAction
     {
+        internal static IBitmapCreator BitmapCreator = new FrameworkBitmapCreator();
+
         /// <summary>
         /// Extract snapshot file
         /// </summary>
@@ -36,7 +40,7 @@ namespace Axe.Windows.Actions
                 A11yElement element = A11yElement.FromStream(elementPart);
                 elementPart.Close();
 
-                Bitmap bmp;
+                IBitmap bmp;
                 try
                 {
                     var bmpPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.screenshotFileName select p.GetStream()).First();
@@ -55,7 +59,9 @@ namespace Axe.Windows.Actions
 
                 var selectedElement = element.FindDescendant(k => k.UniqueId == meta.ScreenshotElementId);
 
-                return new LoadActionParts(element, bmp, selectedElement.SynthesizeBitmapFromElements(), meta);
+#pragma warning disable CA2000 // Dispose objects before losing scope
+                return new LoadActionParts(element, bmp, BitmapCreator.FromSystemDrawingBitmap(selectedElement.SynthesizeBitmapFromElements()), meta);
+#pragma warning restore CA2000 // Dispose objects before losing scope
             }
         }
 
@@ -64,10 +70,12 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="stream"></param>
         /// <returns></returns>
-        private static Bitmap LoadBmp(Stream stream)
+        private static IBitmap LoadBmp(Stream stream)
         {
             Image img = Image.FromStream(stream);
-            return new Bitmap(img);
+#pragma warning disable CA2000 // Dispose objects before losing scope
+            return BitmapCreator.FromSystemDrawingBitmap(new Bitmap(img));
+#pragma warning restore CA2000 // Dispose objects before losing scope
         }
 
         /// <summary>

@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Settings;
-using System.Drawing;
+using Axe.Windows.SystemAbstractions;
 
 namespace Axe.Windows.Actions
 {
@@ -19,12 +19,12 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Stored screenshot
         /// </summary>
-        public Bitmap Bmp { get; private set; }
+        public IBitmap Bmp { get; private set; }
 
         /// <summary>
         /// Synthesized screenshot
         /// </summary>
-        public Bitmap SynthesizedBmp { get; }
+        public IBitmap SynthesizedBmp { get; }
 
         /// <summary>
         /// Metadata
@@ -38,7 +38,7 @@ namespace Axe.Windows.Actions
         /// <param name="bmp">Actual screenshot</param>
         /// <param name="synthesizedBmp">Synthesized ("yellow box") bitmap</param>
         /// <param name="settings">Metadata about the snapshot</param>
-        public LoadActionParts(A11yElement el, Bitmap bmp, Bitmap synthesizedBmp, SnapshotMetaInfo settings)
+        public LoadActionParts(A11yElement el, IBitmap bmp, IBitmap synthesizedBmp, SnapshotMetaInfo settings)
         {
             this.Element = el;
             this.Bmp = bmp;

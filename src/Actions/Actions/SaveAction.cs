@@ -64,7 +64,7 @@ namespace Axe.Windows.Actions
             {
                 using (MemoryStream mStrm = new MemoryStream())
                 {
-                    ec.DataContext.Screenshot.Save(mStrm, System.Drawing.Imaging.ImageFormat.Png);
+                    ec.DataContext.Screenshot.SavePngToStream(mStrm);
                     mStrm.Seek(0, SeekOrigin.Begin);
 
                     AddStream(package, mStrm, screenshotFileName);

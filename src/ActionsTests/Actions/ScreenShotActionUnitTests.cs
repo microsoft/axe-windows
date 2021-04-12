@@ -4,7 +4,10 @@ using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
+using Axe.Windows.Desktop.Drawing;
+using Axe.Windows.SystemAbstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -29,14 +32,15 @@ namespace Axe.Windows.ActionsTests.Actions
         public void TestCleanup()
         {
             ScreenShotAction.GetDataManager = () => DataManager.GetDefaultInstance();
-            ScreenShotAction.CreateBitmap = (w, h) => new Bitmap(w, h);
-            ScreenShotAction.CopyFromScreen = ScreenShotAction.DefaultCopyFromScreen;
+            ScreenShotAction.BitmapCreator = new FrameworkBitmapCreator();
         }
 
         [TestMethod]
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
+            Mock<IBitmapCreator> bitmapCreatorMock = new Mock<IBitmapCreator>(MockBehavior.Strict);
+
             using (var dm = new DataManager())
             {
                 // no bounding rectangle.
@@ -53,7 +57,6 @@ namespace Axe.Windows.ActionsTests.Actions
                 };
 
                 dm.AddElementContext(elementContext);
-
                 ScreenShotAction.GetDataManager = () => dm;
 
                 ScreenShotAction.CaptureScreenShot(elementContext.Id);
@@ -67,6 +70,9 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
+            Mock<IBitmap> bitmapMock = new Mock<IBitmap>(MockBehavior.Strict);
+            Mock<IBitmapCreator> bitmapCreatorMock = new Mock<IBitmapCreator>(MockBehavior.Strict);
+
             using (var dm = new DataManager())
             {
                 A11yElement element = new A11yElement
@@ -74,7 +80,8 @@ namespace Axe.Windows.ActionsTests.Actions
                     UniqueId = 42,
                 };
 
-                SetBoundingRectangle(element, new Rectangle(0, 0, 10, 10));
+                Rectangle expectedRectangle = new Rectangle(10, 20, 100, 200);
+                SetBoundingRectangle(element, expectedRectangle);
 
                 var dc = new ElementDataContext(element, 1);
 
@@ -86,12 +93,14 @@ namespace Axe.Windows.ActionsTests.Actions
                 dm.AddElementContext(elementContext);
 
                 ScreenShotAction.GetDataManager = () => dm;
-                ScreenShotAction.CopyFromScreen = (g, x, y, s) => { };
+                bitmapCreatorMock.Setup(m => m.FromScreenRectangle(expectedRectangle)).Returns(bitmapMock.Object);
+                ScreenShotAction.BitmapCreator = bitmapCreatorMock.Object;
 
                 ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
                 Assert.IsNotNull(dc.Screenshot);
                 Assert.AreEqual(element.UniqueId, dc.ScreenshotElementId);
+                bitmapCreatorMock.VerifyAll();
             }
         }
 
@@ -99,6 +108,8 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
+            Mock<IBitmapCreator> bitmapCreatorMock = new Mock<IBitmapCreator>(MockBehavior.Strict);
+
             using (var dm = new DataManager())
             {
                 A11yElement element = new A11yElement
@@ -106,7 +117,8 @@ namespace Axe.Windows.ActionsTests.Actions
                     UniqueId = 42,
                 };
 
-                SetBoundingRectangle(element, new Rectangle(0, 0, 10, 10));
+                Rectangle expectedRectangle = new Rectangle(10, 20, 100, 200);
+                SetBoundingRectangle(element, expectedRectangle);
 
                 var dc = new ElementDataContext(element, 1);
 
@@ -118,12 +130,14 @@ namespace Axe.Windows.ActionsTests.Actions
                 dm.AddElementContext(elementContext);
 
                 ScreenShotAction.GetDataManager = () => dm;
-                ScreenShotAction.CreateBitmap = (w, h) => throw new TypeInitializationException("Bitmap", null);
+                bitmapCreatorMock.Setup(m => m.FromScreenRectangle(expectedRectangle)).Throws(new TypeInitializationException("Bitmap", null));
+                ScreenShotAction.BitmapCreator = bitmapCreatorMock.Object;
 
                 ScreenShotAction.CaptureScreenShot(elementContext.Id);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);
+                bitmapCreatorMock.VerifyAll();
             }
         }
     }

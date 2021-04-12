@@ -4,9 +4,9 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.SystemAbstractions;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
 namespace Axe.Windows.Actions.Contexts
@@ -52,7 +52,7 @@ namespace Axe.Windows.Actions.Contexts
         /// <summary>
         /// Current screenshot
         /// </summary>
-        public Bitmap Screenshot { get; internal set; }
+        public IBitmap Screenshot { get; internal set; }
 
         /// <summary>
         /// Id of element which was used to grab the screenshot

@@ -5,9 +5,9 @@ using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.SystemAbstractions;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
 namespace Axe.Windows.Actions
@@ -151,7 +151,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        public Bitmap GetScreenshot(Guid ecId)
+        public IBitmap GetScreenshot(Guid ecId)
         {
             var elementContext = GetElementContext(ecId);
             if (elementContext == null) return null;
