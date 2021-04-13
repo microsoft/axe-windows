@@ -7,7 +7,7 @@ namespace Axe.Windows.SystemAbstractions
 {
     /// <summary>
     /// Interface to encapsulate creation of IBitmap objects. To work correctly,
-    /// implementions of this interface MUST have a parameterless constructor
+    /// implementions of this interface MUST be public and have a parameterless constructor
     /// </summary>
     public interface IBitmapCreator
     {
