@@ -4,6 +4,7 @@
 using AxeWindowsCLI;
 using CommandLine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 
 namespace AxeWindowsCLITests
@@ -20,6 +21,7 @@ namespace AxeWindowsCLITests
         const string ScanIdKey = "--scanid";
         const string ShowThirdPartyNoticesKey = "--showthirdpartynotices";
         const string DelayInSecondsKey = "--delayinseconds";
+        const string ScreenCaptureAssemblyKey = "--screencaptureassembly";
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
@@ -33,7 +35,7 @@ namespace AxeWindowsCLITests
         private int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
             string verbosity = null, bool showThirdPartyNotices = false,
-            int delayInSeconds = 0)
+            int delayInSeconds = 0, string screenCaptureAssembly = null)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -43,6 +45,7 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
             Assert.AreEqual(showThirdPartyNotices, options.ShowThirdPartyNotices);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
+            Assert.AreEqual(screenCaptureAssembly, options.ScreenCaptureAssembly);
             return ExpectedParseSuccess;
         }
 
@@ -135,6 +138,52 @@ namespace AxeWindowsCLITests
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ParseArguments_ScreenCaptureAssembly_SucceedsWithScreenCaptureAssemblySet()
+        {
+            const string screenCaptureAssembly = @"C:\Windows\System\NTDLL.dll";
+
+            string[] args = { ScreenCaptureAssemblyKey, screenCaptureAssembly };
+
+            int parseResult = Parser.Default.ParseArguments<Options>(args)
+                .MapResult(
+                    (o) => ValidateOptions(o, screenCaptureAssembly: screenCaptureAssembly),
+                    FailIfCalled);
+
+            Assert.AreEqual(ExpectedParseSuccess, parseResult);
+        }
+
+        [TestMethod]
+        public void Clone_AllFieldsAreCopied()
+        {
+            Options original = new Options
+            {
+                DelayInSeconds = 123,
+                OutputDirectory = "something",
+                ProcessId = 2468,
+                ProcessName = "SuperCoolApp",
+                ScanId = "My Scan",
+                ScreenCaptureAssembly = "WhizBang assembly",
+                ShowThirdPartyNotices = true,
+                Verbosity = "I don't know",
+                VerbosityLevel = VerbosityLevel.Verbose,
+            };
+
+            Options clone = original.Clone();
+
+            Assert.AreNotSame(original, clone);
+
+            foreach (var property in typeof(Options).GetProperties())
+            {
+                if (!property.PropertyType.IsValueType)
+                {
+                    Assert.IsNotNull(property.GetValue(original), "You added the " + property.Name + " property without initializing it in the clone test");
+                }
+                Assert.AreEqual(property.GetValue(original), property.GetValue(clone), property.Name);
+            }
         }
     }
 }

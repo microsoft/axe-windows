@@ -11,5 +11,6 @@ namespace AxeWindowsCLI
         string ProcessName { get; }
         VerbosityLevel VerbosityLevel { get; }
         int DelayInSeconds { get; }
+        public string ScreenCaptureAssembly { get; }
     }
 }

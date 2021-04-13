@@ -56,15 +56,13 @@ namespace AxeWindowsCLI
                 }
             }
 
-            return new Options
-            {
-                OutputDirectory = rawInputs.OutputDirectory,
-                ProcessId = processId,
-                ProcessName = processName,
-                ScanId = rawInputs.ScanId,
-                VerbosityLevel = verbosityLevel,
-                DelayInSeconds = delayInSeconds,
-            };
+            Options evaluatedOptions = rawInputs.Clone();
+            evaluatedOptions.ProcessId = processId;
+            evaluatedOptions.ProcessName = processName;
+            evaluatedOptions.VerbosityLevel = verbosityLevel;
+            evaluatedOptions.DelayInSeconds = delayInSeconds;
+
+            return evaluatedOptions;
         }
 
         private static string TrimProcessName(string processName)
