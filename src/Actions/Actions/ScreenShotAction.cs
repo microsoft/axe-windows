@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Desktop.Drawing;
@@ -11,15 +12,15 @@ using System;
 namespace Axe.Windows.Actions
 {
     /// <summary>
-    /// Class SelectionAction
-    /// this class is to select unelement via focus or keyboard
+    /// ScreenshotAction: Class to capture a screenshot of a specified element
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public static class ScreenShotAction
     {
-        // unit test hooks
+        // unit test hook
         internal static Func<DataManager> GetDataManager = () => DataManager.GetDefaultInstance();
-        internal static IBitmapCreator BitmapCreator = new FrameworkBitmapCreator();
+
+        private static readonly IBitmapCreator DefaultBitmapCreator = new FrameworkBitmapCreator();
 
         /// <summary>
         /// Take a screenshot of the given element's parent window, if it has one
@@ -28,6 +29,19 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">Element Context Id</param>
         public static void CaptureScreenShot(Guid ecId)
         {
+            CaptureScreenShot(ecId, DefaultBitmapCreator);
+        }
+
+        /// <summary>
+        /// Take a screenshot of the given element's parent window, if it has one
+        ///     returns null if the bounding rectangle is 0-sized
+        /// </summary>
+        /// <param name="ecId">Element Context Id</param>
+        /// <param name="bitmapCreator">Object to use to capture the screenshot</param>
+        public static void CaptureScreenShot(Guid ecId, IBitmapCreator bitmapCreator)
+        {
+            if (bitmapCreator == null) throw new ArgumentNullException(nameof(bitmapCreator));
+
             try
             {
                 var ec = GetDataManager().GetElementContext(ecId);
@@ -41,7 +55,7 @@ namespace Axe.Windows.Actions
                     return; // no capture.
                 }
 
-                ec.DataContext.Screenshot = BitmapCreator.FromScreenRectangle(rect);
+                ec.DataContext.Screenshot = bitmapCreator.FromScreenRectangle(rect);
                 ec.DataContext.ScreenshotElementId = el.UniqueId;
             }
             catch(TypeInitializationException e)

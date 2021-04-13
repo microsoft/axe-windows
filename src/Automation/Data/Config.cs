@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
+
+using Axe.Windows.SystemAbstractions;
 
 namespace Axe.Windows.Automation
 {
@@ -27,6 +28,14 @@ namespace Axe.Windows.Automation
         /// No output files will be written if no errors were found during the automation session.
         /// </remarks>
         public string OutputDirectory { get; private set; }
+
+        /// <summary>
+        /// The assembly containing the IBitmapCreator implementation.
+        /// If this value is null, the default implementation will be used.
+        /// If this value is non-null, but does not expose an appropriate implementation,
+        /// an <see cref="AxeWindowsAutomationException"/> will be thrown.
+        /// </summary>
+        public string ScreenCaptureAssembly { get; private set; }
 
         /// <summary>
         /// Flags specifying the type of output file to create.
@@ -57,8 +66,7 @@ namespace Axe.Windows.Automation
             /// <summary>
             /// Create the builder for the specified process
             /// </summary>
-            /// <param name="processId"></param>
-            /// <returns></returns>
+            /// <param name="processId">The numeric process ID</param>
             public static Builder ForProcessId(int processId)
             {
                 return new Builder(processId);
@@ -67,8 +75,7 @@ namespace Axe.Windows.Automation
             /// <summary>
             /// Specify the directory where any output files should be written
             /// </summary>
-            /// <param name="directory"></param>
-            /// <returns></returns>
+            /// <param name="directory">The output directory</param>
             public Builder WithOutputDirectory(string directory)
             {
                 _config.OutputDirectory = directory;
@@ -78,8 +85,7 @@ namespace Axe.Windows.Automation
             /// <summary>
             /// Specify the type(s) of output files you wish AxeWindows to create
             /// </summary>
-            /// <param name="format"></param>
-            /// <returns></returns>
+            /// <param name="format">The output format</param>
             public Builder WithOutputFileFormat(OutputFileFormat format)
             {
                 _config.OutputFileFormat = format;
@@ -87,9 +93,18 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
+            /// Specify the screen capture assembly override
+            /// </summary>
+            /// <param name="assemblyFullName">The full path and name of the assembly that exposes the <see cref="IBitmapCreator"></see> interface./></param>
+            public Builder WithScreenCaptureAssembly(string assemblyFullName)
+            {
+                _config.ScreenCaptureAssembly = assemblyFullName;
+                return this;
+            }
+
+            /// <summary>
             /// Build an instance of <see cref="Config"/>
             /// </summary>
-            /// <returns></returns>
             public Config Build()
             {
                 return new Config

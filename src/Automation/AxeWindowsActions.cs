@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -7,6 +8,7 @@ using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Desktop.Settings;
+using Axe.Windows.SystemAbstractions;
 using System;
 using System.Globalization;
 
@@ -14,6 +16,13 @@ namespace Axe.Windows.Automation
 {
     class AxeWindowsActions : IAxeWindowsActions
     {
+        private readonly IBitmapCreator _bitmapCreator;
+
+        public AxeWindowsActions(IBitmapCreator bitmapCreator)
+        {
+            _bitmapCreator = bitmapCreator ?? throw new ArgumentNullException(nameof(bitmapCreator));
+        }
+
         public ResultsT Scan<ResultsT>(A11yElement element, ScanActionCallback<ResultsT> scanCallback)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
@@ -51,7 +60,7 @@ namespace Axe.Windows.Automation
 
         public void CaptureScreenshot(Guid elementId)
         {
-            ScreenShotAction.CaptureScreenShot(elementId);
+            ScreenShotAction.CaptureScreenShot(elementId, _bitmapCreator);
         }
 
         public void SaveA11yTestFile(string path, A11yElement element, Guid elementId)

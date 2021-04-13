@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using System;
 
 namespace Axe.Windows.Automation
@@ -8,6 +9,7 @@ namespace Axe.Windows.Automation
     {
         private IFactory _factory;
         private IOutputFileHelper _outputFileHelper;
+        private string _bitmapCreatorAssemblyFullName;
 
         public ScanToolsBuilder(IFactory factory)
         {
@@ -22,13 +24,19 @@ namespace Axe.Windows.Automation
             return this;
         }
 
+        public IScanToolsBuilder WithBitmapCreatorFrom(string assemblyFullName)
+        {
+            _bitmapCreatorAssemblyFullName = assemblyFullName;
+            return this;
+        }
+
         public IScanTools Build()
         {
             return new ScanTools(
                 _outputFileHelper ?? _factory.CreateOutputFileHelper(null),
                     _factory.CreateResultsAssembler(),
                     _factory.CreateTargetElementLocator(),
-                    _factory.CreateAxeWindowsActions(),
+                    _factory.CreateAxeWindowsActions(_bitmapCreatorAssemblyFullName),
                     _factory.CreateNativeMethods());
         }
     } // class

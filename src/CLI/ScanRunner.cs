@@ -17,10 +17,9 @@ namespace AxeWindowsCLI
         {
             Config.Builder builder = Config.Builder
                 .ForProcessId(options.ProcessId)
+                .WithScreenCaptureAssembly(options.ScreenCaptureAssembly)
+                .WithOutputDirectory(options.OutputDirectory)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest);
-
-            if (!string.IsNullOrEmpty(options.OutputDirectory))
-                builder = builder.WithOutputDirectory(options.OutputDirectory);
 
             return ScannerFactory.CreateScanner(builder.Build());
         }

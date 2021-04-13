@@ -1,7 +1,5 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.SystemAbstractions;
-using System;
 
 namespace Axe.Windows.Automation
 {
@@ -13,7 +11,7 @@ namespace Axe.Windows.Automation
         IOutputFileHelper CreateOutputFileHelper(string outputDirectory);
         IScanResultsAssembler CreateResultsAssembler();
         ITargetElementLocator CreateTargetElementLocator();
-        IAxeWindowsActions CreateAxeWindowsActions();
+        IAxeWindowsActions CreateAxeWindowsActions(string bitmapCreatorAssemblyFullName);
         INativeMethods CreateNativeMethods();
     } // interface
 } // namespace

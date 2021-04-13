@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Desktop.Drawing;
 using Axe.Windows.SystemAbstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -32,7 +32,14 @@ namespace Axe.Windows.ActionsTests.Actions
         public void TestCleanup()
         {
             ScreenShotAction.GetDataManager = () => DataManager.GetDefaultInstance();
-            ScreenShotAction.BitmapCreator = new FrameworkBitmapCreator();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void CaptureScreenShot_BitmapCreatorIsNull_ThrowsArgumentNullException()
+        {
+            ArgumentNullException e = Assert.ThrowsException<ArgumentNullException>(() => ScreenShotAction.CaptureScreenShot(Guid.Empty, null));
+            Assert.AreEqual("bitmapCreator", e.ParamName);
         }
 
         [TestMethod]
@@ -59,7 +66,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 dm.AddElementContext(elementContext);
                 ScreenShotAction.GetDataManager = () => dm;
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, bitmapCreatorMock.Object);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);
@@ -94,9 +101,8 @@ namespace Axe.Windows.ActionsTests.Actions
 
                 ScreenShotAction.GetDataManager = () => dm;
                 bitmapCreatorMock.Setup(m => m.FromScreenRectangle(expectedRectangle)).Returns(bitmapMock.Object);
-                ScreenShotAction.BitmapCreator = bitmapCreatorMock.Object;
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, bitmapCreatorMock.Object);
 
                 Assert.IsNotNull(dc.Screenshot);
                 Assert.AreEqual(element.UniqueId, dc.ScreenshotElementId);
@@ -131,9 +137,8 @@ namespace Axe.Windows.ActionsTests.Actions
 
                 ScreenShotAction.GetDataManager = () => dm;
                 bitmapCreatorMock.Setup(m => m.FromScreenRectangle(expectedRectangle)).Throws(new TypeInitializationException("Bitmap", null));
-                ScreenShotAction.BitmapCreator = bitmapCreatorMock.Object;
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, bitmapCreatorMock.Object);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);

@@ -1,7 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Desktop.Drawing;
 using Axe.Windows.SystemAbstractions;
-using System;
 
 namespace Axe.Windows.Automation
 {
@@ -33,9 +34,12 @@ namespace Axe.Windows.Automation
             return new TargetElementLocator();
         }
 
-        public IAxeWindowsActions CreateAxeWindowsActions()
+        public IAxeWindowsActions CreateAxeWindowsActions(string bitmapCreatorAssemblyFullName)
         {
-            return new AxeWindowsActions();
+            IBitmapCreator bitmapCreator = bitmapCreatorAssemblyFullName == null ?
+                new FrameworkBitmapCreator() :
+                BitmapCreatorLocator.GetBitmapCreator(bitmapCreatorAssemblyFullName, out _);
+            return new AxeWindowsActions(bitmapCreator);
         }
 
         public INativeMethods CreateNativeMethods()

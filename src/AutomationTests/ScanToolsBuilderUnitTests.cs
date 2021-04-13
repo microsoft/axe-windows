@@ -13,16 +13,18 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public void Build_CreatesExpectedObject()
         {
+            const string bitmapCreatorAssembly = @".\WidgetAssembly.dll";
+
             var mockRepository = new MockRepository(MockBehavior.Strict);
 
-            var actionsMock = mockRepository.Create<IAxeWindowsActions>();
-            var nativeMethodsMock = mockRepository.Create<INativeMethods>();
-            var outputFileHelperMock = mockRepository.Create<IOutputFileHelper>();
-            var resultsAssemblerMock = mockRepository.Create<IScanResultsAssembler>();
-            var targetElementLocatorMock = mockRepository.Create<ITargetElementLocator>();
+            var actionsMock = mockRepository.Create<IAxeWindowsActions>(MockBehavior.Strict);
+            var nativeMethodsMock = mockRepository.Create<INativeMethods>(MockBehavior.Strict);
+            var outputFileHelperMock = mockRepository.Create<IOutputFileHelper>(MockBehavior.Strict);
+            var resultsAssemblerMock = mockRepository.Create<IScanResultsAssembler>(MockBehavior.Strict);
+            var targetElementLocatorMock = mockRepository.Create<ITargetElementLocator>(MockBehavior.Strict);
 
-            var factoryMock = mockRepository.Create<IFactory>();
-            factoryMock.Setup(x => x.CreateAxeWindowsActions()).Returns(actionsMock.Object);
+            var factoryMock = mockRepository.Create<IFactory>(MockBehavior.Strict);
+            factoryMock.Setup(x => x.CreateAxeWindowsActions(bitmapCreatorAssembly)).Returns(actionsMock.Object);
             factoryMock.Setup(x => x.CreateNativeMethods()).Returns(nativeMethodsMock.Object);
             factoryMock.Setup(x => x.CreateResultsAssembler()).Returns(resultsAssemblerMock.Object);
             factoryMock.Setup(x => x.CreateTargetElementLocator()).Returns(targetElementLocatorMock.Object);
@@ -38,7 +40,10 @@ namespace Axe.Windows.AutomationTests
             var builder = new ScanToolsBuilder(factoryMock.Object);
 
             const string expectedPath = @"c:\_TestPath";
-            var scanTools = builder.WithOutputDirectory(expectedPath).Build();
+            var scanTools = builder
+                .WithOutputDirectory(expectedPath)
+                .WithBitmapCreatorFrom(bitmapCreatorAssembly)
+                .Build();
 
             Assert.IsNotNull(scanTools);
             Assert.IsNotNull(scanTools.Actions);
@@ -50,6 +55,7 @@ namespace Axe.Windows.AutomationTests
             Assert.AreEqual(expectedPath, scanTools.OutputFileHelper.GetNewA11yTestFilePath());
 
             factoryMock.VerifyAll();
+            outputFileHelperMock.VerifyAll();
         }
     } // class
 } // namespace
