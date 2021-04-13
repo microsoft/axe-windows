@@ -2,12 +2,12 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System.Drawing;
-using System.IO;
 
 namespace Axe.Windows.SystemAbstractions
 {
     /// <summary>
-    /// Interface to encapsulate creation of IBitmap objects
+    /// Interface to encapsulate creation of IBitmap objects. To work correctly,
+    /// implementions of this interface MUST have a parameterless constructor
     /// </summary>
     public interface IBitmapCreator
     {
