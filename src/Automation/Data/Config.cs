@@ -49,7 +49,17 @@ namespace Axe.Windows.Automation
         private Config()
         { }
 
-        #pragma warning disable CA1034 // Do not nest type
+        internal Config Clone()
+        {
+            Config output = new Config();
+            foreach (var property in typeof(Config).GetProperties())
+            {
+                property.SetValue(output, property.GetValue(this));
+            }
+            return output;
+        }
+
+#pragma warning disable CA1034 // Do not nest type
         /// <summary>
         /// Builds an instance of the <see cref="Config"/> class
         /// </summary>
@@ -107,12 +117,7 @@ namespace Axe.Windows.Automation
             /// </summary>
             public Config Build()
             {
-                return new Config
-                {
-                    ProcessId = _config.ProcessId,
-                    OutputFileFormat = _config.OutputFileFormat,
-                    OutputDirectory = _config.OutputDirectory,
-                };
+                return _config.Clone();
             }
         } // Builder
         #pragma warning restore CA1034
