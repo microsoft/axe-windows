@@ -1,0 +1,44 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/src"
+  schedule:
+    interval: daily
+    time: "13:00"
+  ignore:
+  - dependency-name: Axe.Windows
+    versions:
+    - "> 0.3.1-prerelease"
+  - dependency-name: Microsoft.CodeAnalysis.BinSkim
+    versions:
+    - "> 1.7.0, < 1.8"
+  - dependency-name: Newtonsoft.Json
+    versions:
+    - ">= 11.a, < 12"
+  - dependency-name: System.CodeDom
+    versions:
+    - ">= 4.5.a, < 4.6"
+  - dependency-name: System.CodeDom
+    versions:
+    - ">= 4.6.a, < 4.7"
+  - dependency-name: System.Composition.Hosting
+    versions:
+    - ">= 1.3.a, < 1.4"
+  - dependency-name: System.Composition.TypedParts
+    versions:
+    - ">= 1.3.a, < 1.4"
+  - dependency-name: System.Linq.Expressions
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Reflection.TypeExtensions
+    versions:
+    - ">= 4.6.a, < 4.7"
+  - dependency-name: System.Resources.ResourceManager
+    versions:
+    - ">= 4.3.a, < 4.4"
+  - dependency-name: System.Runtime.Extensions
+    versions:
+    - "> 4.3.0, < 4.4"
+  - dependency-name: MSTest.TestAdapter
+    versions:
+    - 2.2.2
