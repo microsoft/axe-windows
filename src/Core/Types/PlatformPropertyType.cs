@@ -51,7 +51,7 @@ namespace Axe.Windows.Core.Types
 
             sb.Replace("Platform_", "");
             sb.Replace("PropertyId", "");
-            //sb.AppendFormat("({0})", id);
+            // sb.Append(Invariant($" ({id})"));
 
             return sb.ToString();
         }

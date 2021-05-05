@@ -80,7 +80,7 @@ namespace Axe.Windows.Core.Types
 
             sb.Replace("UIA_", "");
             sb.Replace("Id", "");
-            //sb.AppendFormat("({0})", id); // skip Id for now
+            // sb.Append(Invariant($" ({id})")); // skip id for now
 
             return sb.ToString();
         }
