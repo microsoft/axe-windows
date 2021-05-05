@@ -5,6 +5,7 @@ using AxeWindowsCLI;
 using CommandLine;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace AxeWindowsCLITests
 {
@@ -64,7 +65,7 @@ namespace AxeWindowsCLITests
         [Timeout(1000)]
         public void ParseArguments_TargetByProcesssId_SucceedsWithCorrectProcessId()
         {
-            string[] args = { ProcessIdKey, TestProcessId.ToString() };
+            string[] args = { ProcessIdKey, TestProcessId.ToString(CultureInfo.InvariantCulture) };
 
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
