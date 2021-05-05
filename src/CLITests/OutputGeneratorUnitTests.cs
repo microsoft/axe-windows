@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace AxeWindowsCLITests
@@ -242,7 +243,7 @@ namespace AxeWindowsCLITests
 
             for (int loop = 0; loop < propertyCount.Value; loop++)
             {
-                properties.Add(string.Format("Property{0}", loop), string.Format("Value{0}", loop));
+                properties.Add(string.Format(CultureInfo.InvariantCulture, "Property{0}", loop), string.Format(CultureInfo.InvariantCulture, "Value{0}", loop));
             }
 
             return properties;
@@ -257,7 +258,7 @@ namespace AxeWindowsCLITests
 
             for (int loop = 0; loop < patternCount.Value; loop++)
             {
-                patterns.Add(string.Format("Pattern{0}", loop));
+                patterns.Add(string.Format(CultureInfo.InvariantCulture, "Pattern{0}", loop));
             }
 
             return patterns;

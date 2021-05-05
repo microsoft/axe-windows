@@ -6,6 +6,7 @@ using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using UIAutomationClient;
 
@@ -126,7 +127,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
         private static string GetHeaderOfLabelBy(IUIAutomationElement e)
         {
-            return string.Format("{1} \"{0}\"", GetPropertyValue(e, PropertyType.UIA_NamePropertyId), GetPropertyValue(e, PropertyType.UIA_LocalizedControlTypePropertyId));
+            return string.Format(CultureInfo.InvariantCulture, "{1} \"{0}\"", GetPropertyValue(e, PropertyType.UIA_NamePropertyId), GetPropertyValue(e, PropertyType.UIA_LocalizedControlTypePropertyId));
         }
         #endregion
 
