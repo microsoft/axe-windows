@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
+using System.Globalization;
 
 namespace Axe.Windows.Core.Bases
 {
@@ -19,10 +20,10 @@ namespace Axe.Windows.Core.Bases
             {
                 if (this.Value is string)
                 {
-                    return string.Format("{0} = \"{1}\"", this.Name, this.Value);
+                    return string.Format(CultureInfo.InvariantCulture, "{0} = \"{1}\"", this.Name, this.Value);
                 }
 
-                return string.Format("{0} = {1}", this.Name, this.Value);
+                return string.Format(CultureInfo.InvariantCulture, "{0} = {1}", this.Name, this.Value);
             }
         }
 

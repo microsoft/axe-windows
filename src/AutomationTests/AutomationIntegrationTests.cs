@@ -5,6 +5,7 @@ using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -159,7 +160,7 @@ namespace Axe.Windows.AutomationTests
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = ValidationApp,
-                Arguments = string.Format(@"""{0}"" {1} {2}",
+                Arguments = string.Format(CultureInfo.InvariantCulture, @"""{0}"" {1} {2}",
                     scanResults.OutputFile.A11yTest, scanResults.ErrorCount, processId),
                 WorkingDirectory = ValidationAppFolder
             };

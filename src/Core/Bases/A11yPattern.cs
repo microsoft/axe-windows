@@ -6,6 +6,7 @@ using Axe.Windows.Core.Types;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -143,7 +144,7 @@ namespace Axe.Windows.Core.Bases
 
         public override string ToString()
         {
-            return string.Format("{0}: {1}", this.Name, this.Properties.FirstOrDefault()?.Value);
+            return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", this.Name, this.Properties.FirstOrDefault()?.Value);
         }
 
         #region IDisposable Support

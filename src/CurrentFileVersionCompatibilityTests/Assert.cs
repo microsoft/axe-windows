@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System.Globalization;
 using System.IO;
 
 namespace CurrentFileVersionCompatibilityTests
@@ -16,6 +17,7 @@ namespace CurrentFileVersionCompatibilityTests
             if (expectedValue.Equals(actualValue))
             {
                 throw new InvalidDataException(string.Format(
+                    CultureInfo.InvariantCulture,
                     "Actual Value {0} must not match Value {1}",
                     actualValue, expectedValue));
             }
@@ -26,6 +28,7 @@ namespace CurrentFileVersionCompatibilityTests
             if (!expectedValue.Equals(actualValue))
             {
                 throw new InvalidDataException(string.Format(
+                    CultureInfo.InvariantCulture,
                     "Actual Value {0} must match Value {1}",
                     actualValue, expectedValue));
             }
@@ -44,6 +47,7 @@ namespace CurrentFileVersionCompatibilityTests
             if (actualValue != null)
             {
                 throw new InvalidDataException(string.Format(
+                    CultureInfo.InvariantCulture,
                     "Actual value {0} must be null", actualValue.ToString()));
             }
         }
