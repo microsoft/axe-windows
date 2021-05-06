@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using AxeWindowsCLI.Resources;
 using System;
 using System.Globalization;
 using System.IO;
@@ -18,7 +19,7 @@ namespace AxeWindowsCLI
 
             if (delayInSeconds < 0 || delayInSeconds > 60)
             {
-                throw new ParameterException(string.Format(CultureInfo.InvariantCulture, "Invalid delay: {0}. Please enter an integer value from 0 to 60.", delayInSeconds));
+                throw new ParameterException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds));
             }
 
             int processId = rawInputs.ProcessId;
@@ -35,9 +36,7 @@ namespace AxeWindowsCLI
             }
             else
             {
-#pragma warning disable CA1303 // Do not pass literals as localized parameters
-                throw new ParameterException("Please specify either processId or processName on the command line.");
-#pragma warning restore CA1303 // Do not pass literals as localized parameters
+                throw new ParameterException(DisplayStrings.ErrorNoTarget);
             }
 
             string verbosity = rawInputs.Verbosity;
@@ -52,7 +51,7 @@ namespace AxeWindowsCLI
                 }
                 else
                 {
-                    throw new ParameterException("Invalid verbosity level: " + verbosity);
+                    throw new ParameterException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidVerbosityFormat, verbosity));
                 }
             }
 

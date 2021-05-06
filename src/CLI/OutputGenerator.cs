@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation;
+using AxeWindowsCLI.Resources;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,14 +48,14 @@ namespace AxeWindowsCLI
         public void WriteThirdPartyNoticeOutput(string pathToFile)
         {
             WriteAppBanner();
-            _writer.WriteLine("Opening Third Party Notices in default browser. If this fails, manually open \"{0}\"", pathToFile);
+            _writer.WriteLine(DisplayStrings.ThirdPartyNoticeFormat, pathToFile);
         }
 
         private void WriteAppBanner()
         {
 #pragma warning disable IL3000 // We don't use a single file installer
             string version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
-            _writer.WriteLine("Axe.Windows Accessibility Scanner CLI (version {0})", version);
+            _writer.WriteLine(DisplayStrings.VersionFormat, version);
 #pragma warning restore IL3000 // We don't use a single file installer
         }
 
@@ -71,25 +72,25 @@ namespace AxeWindowsCLI
 
                 if (haveProcessName || haveProcessId)
                 {
-                    _writer.Write("Scan Target:");
+                    _writer.Write(DisplayStrings.ScanTargetIntro);
 
                     if (haveProcessName)
                     {
-                        _writer.Write(" Process Name = {0}", options.ProcessName);
+                        _writer.Write(DisplayStrings.ScanTargetProcessNameFormat, options.ProcessName);
                     }
                     if (haveProcessName && haveProcessId)
                     {
-                        _writer.Write(",");
+                        _writer.Write(DisplayStrings.ScanTargetSeparator);
                     }
                     if (haveProcessId)
                     {
-                        _writer.Write(" Process ID = {0}", options.ProcessId);
+                        _writer.Write(DisplayStrings.ScanTargetProcessIdFormat, options.ProcessId);
                     }
                     _writer.WriteLine();
                 }
                 if (!string.IsNullOrEmpty(options.ScanId))
                 {
-                    _writer.WriteLine("Scan Id = {0}", options.ScanId);
+                    _writer.WriteLine(DisplayStrings.ScanIdFormat, options.ScanId);
                 }
 
                 _bannerHasBeenShown = true;
@@ -98,11 +99,11 @@ namespace AxeWindowsCLI
 
         private void WriteExecutionErrors(Exception caughtException)
         {
-            _writer.Write("Unable to complete. ");
+            _writer.Write(DisplayStrings.ScanNotCompleteIntro);
 
             if (caughtException == null)
             {
-                _writer.WriteLine("No further data is available.");
+                _writer.WriteLine(DisplayStrings.ScanNotCompleteNoException);
             }
             else if (caughtException is ParameterException)
             {
@@ -110,7 +111,7 @@ namespace AxeWindowsCLI
             }
             else
             {
-                _writer.WriteLine("The following exception was caught: {0}", caughtException);
+                _writer.WriteLine(DisplayStrings.ScanNotCompleteExceptionFormat, caughtException);
             }
         }
 
@@ -130,7 +131,7 @@ namespace AxeWindowsCLI
 
             if (!string.IsNullOrEmpty(scanResults.OutputFile.A11yTest))
             {
-                _writer.WriteLine("Results were written to \"{0}\"", scanResults.OutputFile.A11yTest);
+                _writer.WriteLine(DisplayStrings.ScanResultsLocationFormat, scanResults.OutputFile.A11yTest);
             }
         }
 
@@ -138,11 +139,11 @@ namespace AxeWindowsCLI
         {
             if (scanResults.ErrorCount == 1)
             {
-                _writer.WriteLine("1 error was found");
+                _writer.WriteLine(DisplayStrings.ScanResultsSingleError);
             }
             else
             {
-                _writer.WriteLine("{0} errors were found", scanResults.ErrorCount);
+                _writer.WriteLine(DisplayStrings.ScanResultsMultipleErrorsFormat, scanResults.ErrorCount);
             }
         }
 
@@ -151,10 +152,10 @@ namespace AxeWindowsCLI
             int errorCount = 0;
             foreach (ScanResult scanResult in scanResults.Errors)
             {
-                _writer.WriteLine("Error {0}: {1}", ++errorCount, scanResult.Rule.Description);
+                _writer.WriteLine(DisplayStrings.ScanResultDetailHeader, ++errorCount, scanResult.Rule.Description);
                 WriteProperties(scanResult);
                 WritePatterns(scanResult);
-                _writer.WriteLine("----------------------------------------------------------------------");
+                _writer.WriteLine(DisplayStrings.ScanResultDetailFooter);
             }
         }
 
@@ -162,10 +163,10 @@ namespace AxeWindowsCLI
         {
             if (scanResult.Element.Properties != null && scanResult.Element.Properties.Any())
             {
-                _writer.WriteLine("  Element Properties:");
+                _writer.WriteLine(DisplayStrings.ScanResultDetailElementPropertiesHeader);
                 foreach (KeyValuePair<string, string> pair in scanResult.Element.Properties)
                 {
-                    _writer.WriteLine("    {0} = {1}", pair.Key, pair.Value);
+                    _writer.WriteLine(DisplayStrings.ScanResultDetailElementPropertyFormat, pair.Key, pair.Value);
                 }
             }
         }
@@ -174,10 +175,10 @@ namespace AxeWindowsCLI
         {
             if (scanResult.Element.Patterns != null && scanResult.Element.Patterns.Any())
             {
-                _writer.WriteLine("  Element Patterns:");
+                _writer.WriteLine(DisplayStrings.ScanResultDetailElementPatternsHeader);
                 foreach (string pattern in scanResult.Element.Patterns)
                 {
-                    _writer.WriteLine("    {0}", pattern);
+                    _writer.WriteLine(DisplayStrings.ScanResultDetailElementPatternFormat, pattern);
                 }
             }
         }

@@ -2,9 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using AxeWindowsCLI;
+using AxeWindowsCLI.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Globalization;
 
 namespace AxeWindowsCLITests
 {
@@ -66,7 +68,7 @@ namespace AxeWindowsCLITests
             Options input = new Options();
             ParameterException e = Assert.ThrowsException<ParameterException>(() =>
                 OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
-            Assert.AreEqual("Please specify either processId or processName on the command line.", e.Message);
+            Assert.AreEqual(DisplayStrings.ErrorNoTarget, e.Message);
             VerifyAllMocks();
         }
 
@@ -178,7 +180,9 @@ namespace AxeWindowsCLITests
             };
             ParameterException e = Assert.ThrowsException<ParameterException>(() =>
                 OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
-            Assert.AreEqual("Invalid verbosity level: Not_A_Valid_Value", e.Message);
+            Assert.AreEqual(
+                string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidVerbosityFormat, verbosity),
+                e.Message);
             VerifyAllMocks();
         }
 
@@ -233,19 +237,25 @@ namespace AxeWindowsCLITests
         [TestMethod]
         public void ProcessInputs_SpecifiesNegativeDelay_ThrowsParameterException()
         {
-            Options input = new Options { DelayInSeconds = -1 };
+            const int delayInSeconds = -1;
+            Options input = new Options { DelayInSeconds = delayInSeconds };
             ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
                 input, _processHelperMock.Object));
-            Assert.AreEqual("Invalid delay: -1. Please enter an integer value from 0 to 60.", e.Message);
+            Assert.AreEqual(
+                string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds),
+                e.Message);
         }
 
         [TestMethod]
         public void ProcessInputs_SpecifiesOverlyLongDelay_ThrowsParameterException()
         {
-            Options input = new Options { DelayInSeconds = 61 };
+            const int delayInSeconds = 61;
+            Options input = new Options { DelayInSeconds = delayInSeconds };
             ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
                 input, _processHelperMock.Object));
-            Assert.AreEqual("Invalid delay: 61. Please enter an integer value from 0 to 60.", e.Message);
+            Assert.AreEqual(
+                string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds),
+                e.Message);
         }
 
         [TestMethod]

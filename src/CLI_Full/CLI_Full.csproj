@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\CLI\Resources\*.cs" Link="*.cs (From CLI Resources)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="..\..\thirdpartynotices.html" Link="thirdpartynotices.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
