@@ -254,5 +254,31 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 Assert.IsFalse(ElementGroups.WPFDataGridCell.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void IsButtonText_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.IsButtonText.Matches(e));
+
+                e.ControlTypeId = Window;
+                Assert.IsFalse(ElementGroups.IsButtonText.Matches(e));
+
+                e.ControlTypeId = Text;
+                Assert.IsFalse(ElementGroups.IsButtonText.Matches(e));
+
+                e.Parent = parent;
+                parent.ControlTypeId = Window;
+                Assert.IsFalse(ElementGroups.IsButtonText.Matches(e));
+
+                parent.ControlTypeId = Button;
+                Assert.IsTrue(ElementGroups.IsButtonText.Matches(e));
+
+                e.ControlTypeId = Window;
+                Assert.IsFalse(ElementGroups.IsButtonText.Matches(e));
+            } // using
+        }
     } // class
 } // namespace

@@ -6,6 +6,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.Resources;
 using System;
 using System.Globalization;
+using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
@@ -32,7 +33,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Name.NotNullOrWhiteSpace;
+            return Name.NotNullOrWhiteSpace - IsButtonText;
         }
     } // class
 } // namespace
