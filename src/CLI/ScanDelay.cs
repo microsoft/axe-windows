@@ -31,7 +31,7 @@ namespace AxeWindowsCLI
                     DisplayStrings.ScanDelayHeaderMoreThanOneSecond, options.DelayInSeconds);
                 for (int secondsRemaining = options.DelayInSeconds; secondsRemaining > 0; secondsRemaining--)
                 {
-                    ConditionallyWriteMessageWithCount(options, DisplayStrings.ScanDelayCountdownWithOneSecondLeft,
+                    ConditionallyWriteMessageWithCount(options, DisplayStrings.ScanDelayCountdownOneSecondLeft,
                         DisplayStrings.ScanDelayCountdownMoreThanOneSecondLeft, secondsRemaining);
                     _oneSecondDelay.Invoke();
                 }

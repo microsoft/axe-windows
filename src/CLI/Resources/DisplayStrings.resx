@@ -144,7 +144,7 @@
     <value>  {0} seconds before scan.</value>
     <comment>{0} is the remaining countdown. Leading spaces are intentional</comment>
   </data>
-  <data name="ScanDelayCountdownWithOneSecondLeft" xml:space="preserve">
+  <data name="ScanDelayCountdownOneSecondLeft" xml:space="preserve">
     <value>  1 second before scan.</value>
     <comment>Leading spaces are intentional</comment>
   </data>

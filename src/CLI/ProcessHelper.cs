@@ -36,14 +36,14 @@ namespace AxeWindowsCLI
             if (caughtException != null ||  processes == null || processes.Length == 0)
             {
                 throw new ParameterException(
-                    string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorNoMatchingProcessNameFormat, processName),
+                    string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorNoMatchingProcessNameFormat, processName),
                     caughtException);
             }
 
             if (processes.Length > 1)
             {
                 throw new ParameterException(
-                    string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorMultipleMatchingProcessNameFormat, processName));
+                    string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorMultipleMatchingProcessNameFormat, processName));
             }
 
             return processes[0].Id;
@@ -68,7 +68,7 @@ namespace AxeWindowsCLI
             if (string.IsNullOrEmpty(process?.ProcessName))
             {
                 throw new ParameterException(
-                    string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorNoMatchingProcessIdFormat, processId),
+                    string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorNoMatchingProcessIdFormat, processId),
                     innerException);
             }
 

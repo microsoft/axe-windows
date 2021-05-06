@@ -181,7 +181,7 @@ namespace AxeWindowsCLITests
             ParameterException e = Assert.ThrowsException<ParameterException>(() =>
                 OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object));
             Assert.AreEqual(
-                string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidVerbosityFormat, verbosity),
+                string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorInvalidVerbosityFormat, verbosity),
                 e.Message);
             VerifyAllMocks();
         }
@@ -242,7 +242,7 @@ namespace AxeWindowsCLITests
             ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
                 input, _processHelperMock.Object));
             Assert.AreEqual(
-                string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds),
+                string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds),
                 e.Message);
         }
 
@@ -254,7 +254,7 @@ namespace AxeWindowsCLITests
             ParameterException e = Assert.ThrowsException<ParameterException>(() => OptionsEvaluator.ProcessInputs(
                 input, _processHelperMock.Object));
             Assert.AreEqual(
-                string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds),
+                string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds),
                 e.Message);
         }
 

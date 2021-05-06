@@ -2,9 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using AxeWindowsCLI;
+using AxeWindowsCLI.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace AxeWindowsCLITests
@@ -100,11 +102,11 @@ namespace AxeWindowsCLITests
 
             WriteCall[] expectedCalls =
             {
-                new WriteCall("Delaying 3 seconds ", WriteSource.WriteLineStringOnly),
-                new WriteCall("  3 seconds ", WriteSource.WriteLineStringOnly),
-                new WriteCall("  2 seconds ", WriteSource.WriteLineStringOnly),
-                new WriteCall("  1 second ", WriteSource.WriteLineStringOnly),
-                new WriteCall("Triggering scan", WriteSource.WriteLineStringOnly),
+                PackFormattedCall(DisplayStrings.ScanDelayHeaderMoreThanOneSecond, 3),
+                PackFormattedCall(DisplayStrings.ScanDelayCountdownMoreThanOneSecondLeft, 3),
+                PackFormattedCall(DisplayStrings.ScanDelayCountdownMoreThanOneSecondLeft, 2),
+                PackFormattedCall(DisplayStrings.ScanDelayCountdownOneSecondLeft, 1),
+                new WriteCall(DisplayStrings.ScanDelayTriggeringScan, WriteSource.WriteLineStringOnly),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
 
@@ -113,6 +115,12 @@ namespace AxeWindowsCLITests
             textWriterVerifier.VerifyAll();
             _oneSecondDelayMock.Verify(m => m.Invoke(), Times.Exactly(delayInSeconds));
             VerifyWriterAndOptionsMocks();
+        }
+
+        private static WriteCall PackFormattedCall(string formatString, int count)
+        {
+            string expectedString = string.Format(CultureInfo.CurrentCulture, formatString, count);
+            return new WriteCall(expectedString, WriteSource.WriteLineStringOnly);
         }
     }
 }

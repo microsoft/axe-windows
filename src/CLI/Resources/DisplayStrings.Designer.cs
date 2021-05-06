@@ -126,9 +126,9 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to   1 second before scan..
         /// </summary>
-        internal static string ScanDelayCountdownWithOneSecondLeft {
+        internal static string ScanDelayCountdownOneSecondLeft {
             get {
-                return ResourceManager.GetString("ScanDelayCountdownWithOneSecondLeft", resourceCulture);
+                return ResourceManager.GetString("ScanDelayCountdownOneSecondLeft", resourceCulture);
             }
         }
         

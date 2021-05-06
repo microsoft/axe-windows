@@ -19,7 +19,7 @@ namespace AxeWindowsCLI
 
             if (delayInSeconds < 0 || delayInSeconds > 60)
             {
-                throw new ParameterException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds));
+                throw new ParameterException(string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorInvalidDelayFormat, delayInSeconds));
             }
 
             int processId = rawInputs.ProcessId;
@@ -51,7 +51,7 @@ namespace AxeWindowsCLI
                 }
                 else
                 {
-                    throw new ParameterException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorInvalidVerbosityFormat, verbosity));
+                    throw new ParameterException(string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorInvalidVerbosityFormat, verbosity));
                 }
             }
 
