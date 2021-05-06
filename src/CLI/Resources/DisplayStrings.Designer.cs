@@ -79,11 +79,83 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Found multiple processes with name {0}.
+        /// </summary>
+        internal static string ErrorMultipleMatchingProcessNameFormat {
+            get {
+                return ResourceManager.GetString("ErrorMultipleMatchingProcessNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to find process with id {0}.
+        /// </summary>
+        internal static string ErrorNoMatchingProcessIdFormat {
+            get {
+                return ResourceManager.GetString("ErrorNoMatchingProcessIdFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to find process with name {0}.
+        /// </summary>
+        internal static string ErrorNoMatchingProcessNameFormat {
+            get {
+                return ResourceManager.GetString("ErrorNoMatchingProcessNameFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please specify either processId or processName on the command line..
         /// </summary>
         internal static string ErrorNoTarget {
             get {
                 return ResourceManager.GetString("ErrorNoTarget", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   {0} seconds before scan..
+        /// </summary>
+        internal static string ScanDelayCountdownMoreThanOneSecondLeft {
+            get {
+                return ResourceManager.GetString("ScanDelayCountdownMoreThanOneSecondLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to   1 second before scan..
+        /// </summary>
+        internal static string ScanDelayCountdownWithOneSecondLeft {
+            get {
+                return ResourceManager.GetString("ScanDelayCountdownWithOneSecondLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delaying {0} seconds before scanning..
+        /// </summary>
+        internal static string ScanDelayHeaderMoreThanOneSecond {
+            get {
+                return ResourceManager.GetString("ScanDelayHeaderMoreThanOneSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delaying second before scanning..
+        /// </summary>
+        internal static string ScanDelayHeaderOneSecond {
+            get {
+                return ResourceManager.GetString("ScanDelayHeaderOneSecond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Triggering scan.
+        /// </summary>
+        internal static string ScanDelayTriggeringScan {
+            get {
+                return ResourceManager.GetString("ScanDelayTriggeringScan", resourceCulture);
             }
         }
         

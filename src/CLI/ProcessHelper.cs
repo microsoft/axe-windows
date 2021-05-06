@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using AxeWindowsCLI.Resources;
 using System;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace AxeWindowsCLI
 {
@@ -33,12 +35,15 @@ namespace AxeWindowsCLI
 
             if (caughtException != null ||  processes == null || processes.Length == 0)
             {
-                throw new ParameterException("Unable to find process with name " + processName, caughtException);
+                throw new ParameterException(
+                    string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorNoMatchingProcessNameFormat, processName),
+                    caughtException);
             }
 
             if (processes.Length > 1)
             {
-                throw new ParameterException("Found multiple processes with name " + processName);
+                throw new ParameterException(
+                    string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorMultipleMatchingProcessNameFormat, processName));
             }
 
             return processes[0].Id;
@@ -62,7 +67,9 @@ namespace AxeWindowsCLI
 
             if (string.IsNullOrEmpty(process?.ProcessName))
             {
-                throw new ParameterException("Unable to find process with id " + processId, innerException);
+                throw new ParameterException(
+                    string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorNoMatchingProcessIdFormat, processId),
+                    innerException);
             }
 
             return process.ProcessName;

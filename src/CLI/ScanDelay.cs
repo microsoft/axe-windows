@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using AxeWindowsCLI.Resources;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace AxeWindowsCLI
@@ -25,35 +27,35 @@ namespace AxeWindowsCLI
 
             if (options.DelayInSeconds > 0)
             {
-                ConditionallyWriteMessageWithCount(options, "Delaying {0} second{1} before scanning.", options.DelayInSeconds);
+                ConditionallyWriteMessageWithCount(options, DisplayStrings.ScanDelayHeaderOneSecond,
+                    DisplayStrings.ScanDelayHeaderMoreThanOneSecond, options.DelayInSeconds);
                 for (int secondsRemaining = options.DelayInSeconds; secondsRemaining > 0; secondsRemaining--)
                 {
-                    ConditionallyWriteMessageWithCount(options, "  {0} second{1} before scan.", secondsRemaining);
+                    ConditionallyWriteMessageWithCount(options, DisplayStrings.ScanDelayCountdownWithOneSecondLeft,
+                        DisplayStrings.ScanDelayCountdownMoreThanOneSecondLeft, secondsRemaining);
                     _oneSecondDelay.Invoke();
                 }
-                ConditionallyWriteMessage(options, "Triggering scan");
+                ConditionallyWriteMessage(options, () => DisplayStrings.ScanDelayTriggeringScan);
             }
         }
 
-        private void ConditionallyWriteMessageWithCount(IOptions options, string format, int count)
+        private void ConditionallyWriteMessageWithCount(IOptions options, string stringIfCountIsOne, string stringIfCountIsNotOne, int count)
+        {
+            string format = SelectString(stringIfCountIsOne, stringIfCountIsNotOne, count);
+            ConditionallyWriteMessage(options, () => string.Format(CultureInfo.InvariantCulture, format, count));
+        }
+
+        private void ConditionallyWriteMessage(IOptions options, Func<string> getMessage)
         {
             if (options.VerbosityLevel > VerbosityLevel.Quiet)
             {
-                _writer.WriteLine(format, count, PluralSuffix(count));
+                _writer.WriteLine(getMessage());
             }
         }
 
-        private void ConditionallyWriteMessage(IOptions options, string message)
+        private static string SelectString(string stringIfCountIsOne, string stringIfCountIsNotOne, int count)
         {
-            if (options.VerbosityLevel > VerbosityLevel.Quiet)
-            {
-                _writer.WriteLine(message);
-            }
-        }
-
-        private static string PluralSuffix(int count)
-        {
-            return count > 1 ? "s" : "";
+            return (count == 1) ? stringIfCountIsOne : stringIfCountIsNotOne;
         }
     }
 }

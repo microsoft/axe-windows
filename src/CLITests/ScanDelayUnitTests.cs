@@ -12,10 +12,6 @@ namespace AxeWindowsCLITests
     [TestClass]
     public class ScanDelayUnitTests
     {
-        const string DelayHeaderStart = "Delaying {0} second{1}";
-        const string CountdownStart = "  {0} second{1}";
-        const string TriggeringStart = "Triggering scan";
-
         private Mock<TextWriter> _writerMock;
         private Mock<Action> _oneSecondDelayMock;
         private Mock<IOptions> _optionsMock;
@@ -104,11 +100,11 @@ namespace AxeWindowsCLITests
 
             WriteCall[] expectedCalls =
             {
-                new WriteCall(DelayHeaderStart, WriteSource.WriteLineTwoParams),
-                new WriteCall(CountdownStart, WriteSource.WriteLineTwoParams),
-                new WriteCall(CountdownStart, WriteSource.WriteLineTwoParams),
-                new WriteCall(CountdownStart, WriteSource.WriteLineTwoParams),
-                new WriteCall(TriggeringStart, WriteSource.WriteLineStringOnly),
+                new WriteCall("Delaying 3 seconds ", WriteSource.WriteLineStringOnly),
+                new WriteCall("  3 seconds ", WriteSource.WriteLineStringOnly),
+                new WriteCall("  2 seconds ", WriteSource.WriteLineStringOnly),
+                new WriteCall("  1 second ", WriteSource.WriteLineStringOnly),
+                new WriteCall("Triggering scan", WriteSource.WriteLineStringOnly),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
 

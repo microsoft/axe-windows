@@ -125,8 +125,38 @@
     <value>Invalid verbosity level: {0}</value>
     <comment>{0} is the user-specified verbosity</comment>
   </data>
+  <data name="ErrorMultipleMatchingProcessNameFormat" xml:space="preserve">
+    <value>Found multiple processes with name {0}</value>
+    <comment>{0} is the process name</comment>
+  </data>
+  <data name="ErrorNoMatchingProcessIdFormat" xml:space="preserve">
+    <value>Unable to find process with id {0}</value>
+    <comment>{0} is the process id</comment>
+  </data>
+  <data name="ErrorNoMatchingProcessNameFormat" xml:space="preserve">
+    <value>Unable to find process with name {0}</value>
+    <comment>{0} is the process name</comment>
+  </data>
   <data name="ErrorNoTarget" xml:space="preserve">
     <value>Please specify either processId or processName on the command line.</value>
+  </data>
+  <data name="ScanDelayCountdownMoreThanOneSecondLeft" xml:space="preserve">
+    <value>  {0} seconds before scan.</value>
+    <comment>{0} is the remaining countdown. Leading spaces are intentional</comment>
+  </data>
+  <data name="ScanDelayCountdownWithOneSecondLeft" xml:space="preserve">
+    <value>  1 second before scan.</value>
+    <comment>Leading spaces are intentional</comment>
+  </data>
+  <data name="ScanDelayHeaderMoreThanOneSecond" xml:space="preserve">
+    <value>Delaying {0} seconds before scanning.</value>
+    <comment>{0} is the delay time in seconds</comment>
+  </data>
+  <data name="ScanDelayHeaderOneSecond" xml:space="preserve">
+    <value>Delaying second before scanning.</value>
+  </data>
+  <data name="ScanDelayTriggeringScan" xml:space="preserve">
+    <value>Triggering scan</value>
   </data>
   <data name="ScanIdFormat" xml:space="preserve">
     <value>Scan Id = {0}</value>
