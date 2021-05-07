@@ -61,6 +61,7 @@ namespace Axe.Windows.Desktop.Styles
 
             sb.Replace(Prefix, "");
             sb.Append(Invariant($" ({id})"));
+
             return sb.ToString();
         }
     }
