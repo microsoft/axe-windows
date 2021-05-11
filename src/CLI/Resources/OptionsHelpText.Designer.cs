@@ -22,7 +22,7 @@ namespace AxeWindowsCLI.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class OptionsHelpText {
+    public class OptionsHelpText {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace AxeWindowsCLI.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AxeWindowsCLI.Resources.OptionsHelpText", typeof(OptionsHelpText).Assembly);
@@ -51,7 +51,7 @@ namespace AxeWindowsCLI.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with a default of 0..
         /// </summary>
-        internal static string DelayInSeconds {
+        public static string DelayInSeconds {
             get {
                 return ResourceManager.GetString("DelayInSeconds", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Output directory.
         /// </summary>
-        internal static string OutputDirectory {
+        public static string OutputDirectory {
             get {
                 return ResourceManager.GetString("OutputDirectory", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Process Id.
         /// </summary>
-        internal static string ProcessId {
+        public static string ProcessId {
             get {
                 return ResourceManager.GetString("ProcessId", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Process Name.
         /// </summary>
-        internal static string ProcessName {
+        public static string ProcessName {
             get {
                 return ResourceManager.GetString("ProcessName", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Scan ID.
         /// </summary>
-        internal static string ScanId {
+        public static string ScanId {
             get {
                 return ResourceManager.GetString("ScanId", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored..
         /// </summary>
-        internal static string ShowThirdPartyNotices {
+        public static string ShowThirdPartyNotices {
             get {
                 return ResourceManager.GetString("ShowThirdPartyNotices", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace AxeWindowsCLI.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Verbosity level (Quiet/Default/Verbose).
         /// </summary>
-        internal static string Verbosity {
+        public static string Verbosity {
             get {
                 return ResourceManager.GetString("Verbosity", resourceCulture);
             }
