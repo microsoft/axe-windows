@@ -55,12 +55,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DisplayStrings.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\OptionsHelpText.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>OptionsHelpText.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\DisplayStrings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DisplayStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\OptionsHelpText.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OptionsHelpText.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
