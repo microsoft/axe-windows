@@ -345,7 +345,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (getString == null) throw new ArgumentNullException(nameof(getString));
 
-            string txt = null;
+            string txt;
             try
             {
                 txt = getString();

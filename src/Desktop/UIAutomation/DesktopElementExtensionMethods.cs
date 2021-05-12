@@ -378,7 +378,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         private static dynamic GetPropertyValueFromCache(IUIAutomationElement element, int id)
         {
-            dynamic value = null;
+            dynamic value;
             try
             {
                 dynamic temp = ShouldGetPropertyValueNoDefault(id)

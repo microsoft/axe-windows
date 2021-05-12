@@ -101,7 +101,7 @@ namespace Axe.Windows.Actions
         private static void CopyStream(Stream source, Stream target)
         {
             byte[] buf = new byte[buffSize];
-            int bytesRead = 0;
+            int bytesRead;
 
             while ((bytesRead = source.Read(buf, 0, buffSize)) > 0)
             {
