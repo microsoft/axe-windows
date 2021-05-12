@@ -29,7 +29,7 @@ namespace CurrentFileVersionCompatibilityTests
                 {
                     Console.WriteLine("Bad Usage! Command line is:");
                     Console.WriteLine();
-                    Console.WriteLine("OldFileVersionWriteTests <file> <expectedFailureCount> <expectedProcessId>");
+                    Console.WriteLine("CurrentFileVersionWriteTests <file> <expectedFailureCount> <expectedProcessId>");
                     Console.WriteLine();
                     Console.WriteLine("ErrorLevel is 0 on success, non-zero on error");
                     return (int)ReturnValue.BadUsage;
