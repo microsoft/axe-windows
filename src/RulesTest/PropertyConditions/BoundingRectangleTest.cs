@@ -247,8 +247,8 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                var proeprty = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new double[] { 1, 2, 3, 4 });
-                e.Properties.Add(PropertyType.UIA_BoundingRectanglePropertyId, proeprty);
+                var property = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new double[] { 1, 2, 3, 4 });
+                e.Properties.Add(PropertyType.UIA_BoundingRectanglePropertyId, property);
                 Assert.IsFalse(BoundingRectangle.NotCorrectDataFormat.Matches(e));
             } // using
         }
