@@ -60,7 +60,7 @@ namespace Axe.Windows.Desktop.Settings
 
             if (selected.HasValue)
             {
-                this.SelectedItems = new List<int>() { selected.Value };
+                this.SelectedItems = new List<int> { selected.Value };
             }
             this.ScreenshotElementId = screlementId;
         }

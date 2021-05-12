@@ -29,7 +29,8 @@ namespace Axe.Windows.RulesTests.Library
         {
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(Core.Types.ControlType.UIA_ScrollBarControlTypeId);
-            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>() {
+            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>
+            {
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 1 },
             }));
 
@@ -42,7 +43,8 @@ namespace Axe.Windows.RulesTests.Library
         {
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(Core.Types.ControlType.UIA_ScrollBarControlTypeId);
-            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>() {
+            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>
+            {
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 2 },
             }));
 
@@ -55,7 +57,8 @@ namespace Axe.Windows.RulesTests.Library
         {
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(Core.Types.ControlType.UIA_ScrollBarControlTypeId);
-            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>() {
+            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>
+            {
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 4 },
             }));
 
@@ -68,7 +71,8 @@ namespace Axe.Windows.RulesTests.Library
         {
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(Core.Types.ControlType.UIA_ScrollBarControlTypeId);
-            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>() {
+            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>
+            {
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 4 },
                 { Core.Types.ControlType.UIA_ThumbControlTypeId, 1 },
             }));
@@ -82,7 +86,8 @@ namespace Axe.Windows.RulesTests.Library
         {
             var m = new Mock<IA11yElement>();
             m.Setup(e => e.ControlTypeId).Returns(Core.Types.ControlType.UIA_ScrollBarControlTypeId);
-            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>() {
+            m.Setup(e => e.Children).Returns(() => GenerateElementsWithControlTypes(new Dictionary<int, int>
+            {
                 { Core.Types.ControlType.UIA_ButtonControlTypeId, 4 },
                 { Core.Types.ControlType.UIA_ThumbControlTypeId, 2 },
             }));

@@ -198,7 +198,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                    m.Properties = new List<KeyValuePair<string, dynamic>>() { new KeyValuePair<string, dynamic>("Message", "Succeeded to unregister all event listeners.") };
+                    m.Properties = new List<KeyValuePair<string, dynamic>> { new KeyValuePair<string, dynamic>("Message", "Succeeded to unregister all event listeners.") };
                     listener(m);
                 }
             }
@@ -211,7 +211,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 var m  = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                m.Properties = new List<KeyValuePair<string, dynamic>>() { new KeyValuePair<string, dynamic>("Message", $"Failed to unregister all listeners: {e.Message}") };
+                m.Properties = new List<KeyValuePair<string, dynamic>> { new KeyValuePair<string, dynamic>("Message", $"Failed to unregister all listeners: {e.Message}") };
                 listener(m);
             }
 #pragma warning restore CA1031 // Do not catch general exception types
@@ -301,7 +301,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                    m.Properties = new List<KeyValuePair<string, dynamic>>() {
+                    m.Properties = new List<KeyValuePair<string, dynamic>>()
+                    {
                         new KeyValuePair<string, dynamic>("Message", "Succeeded to unregister a event listeners"),
                         new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
                         new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
@@ -318,12 +319,13 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                m.Properties = new List<KeyValuePair<string, dynamic>>() {
-                        new KeyValuePair<string, dynamic>("Message", "Failed to unregister a event listeners"),
-                        new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
-                        new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
-                        new KeyValuePair<string, dynamic>("Error", e.Message)
-                    };
+                m.Properties = new List<KeyValuePair<string, dynamic>>()
+                {
+                    new KeyValuePair<string, dynamic>("Message", "Failed to unregister a event listeners"),
+                    new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
+                    new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
+                    new KeyValuePair<string, dynamic>("Error", e.Message)
+                };
 
                 listener(m);
                 /// it is very unexpected situation.
@@ -391,7 +393,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                             m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                            m.Properties = new List<KeyValuePair<string, dynamic>>() {
+                            m.Properties = new List<KeyValuePair<string, dynamic>>()
+                            {
                                 new KeyValuePair<string, dynamic>("Message", "Event listener registration is rejected."),
                                 new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
                                 new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
@@ -414,7 +417,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                             m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                            m.Properties = new List<KeyValuePair<string, dynamic>>() {
+                            m.Properties = new List<KeyValuePair<string, dynamic>>()
+                            {
                                 new KeyValuePair<string, dynamic>("Message", "Event listener registration is rejected."),
                                 new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
                                 new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
@@ -435,11 +439,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                m.Properties = new List<KeyValuePair<string, dynamic>>() {
-                        new KeyValuePair<string, dynamic>("Message", "Succeeded to register an event listener"),
-                        new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
-                        new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
-                    };
+                m.Properties = new List<KeyValuePair<string, dynamic>>()
+                {
+                    new KeyValuePair<string, dynamic>("Message", "Succeeded to register an event listener"),
+                    new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
+                    new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
+                };
                 msgData.Listener(m);
                 if(msgData.EventId == EventType.UIA_AutomationFocusChangedEventId)
                 {
@@ -455,11 +460,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
-                m.Properties = new List<KeyValuePair<string, dynamic>>() {
-                        new KeyValuePair<string, dynamic>("Message", "Failed to register an event listener"),
-                        new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
-                        new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
-                        new KeyValuePair<string, dynamic>("Error", e.Message)
+                m.Properties = new List<KeyValuePair<string, dynamic>>()
+                {
+                    new KeyValuePair<string, dynamic>("Message", "Failed to register an event listener"),
+                    new KeyValuePair<string, dynamic>("Event Id", msgData.EventId),
+                    new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
+                    new KeyValuePair<string, dynamic>("Error", e.Message)
                 };
                 msgData.Listener(m);
             }

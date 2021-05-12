@@ -21,7 +21,7 @@ namespace Axe.Windows.Desktop.Types
         /// <returns></returns>
         public static IList<TemplateData> GetTemplate()
         {
-            var boolList = new List<KeyValuePair<bool, string>>() { new KeyValuePair<bool, string>(false, "False"), new KeyValuePair<bool, string>(true, "True") };
+            var boolList = new List<KeyValuePair<bool, string>> { new KeyValuePair<bool, string>(false, "False"), new KeyValuePair<bool, string>(true, "True") };
 
             return new List<TemplateData>
             {
