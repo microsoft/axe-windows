@@ -4,8 +4,7 @@ using System;
 
 namespace Axe.Windows.Automation
 {
-    // We cannot change the following without breaking backward compatibility because the API has been released to the public
-    #pragma warning disable CA1714 // enum should have plural name
+#pragma warning disable CA1714 // We cannot change the enum name without breaking backward compatibility because the API has been released to the public
     /// <summary>
     /// Bit flags to specify which output file formats a <see cref="IScanner"/> should write
     /// </summary>
@@ -22,5 +21,5 @@ namespace Axe.Windows.Automation
         /// </summary>
         A11yTest = 1,
     } // enum
-        #pragma warning restore CA1714
+#pragma warning restore CA1714
 } // namespace

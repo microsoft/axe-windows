@@ -13,7 +13,7 @@ namespace Axe.Windows.CoreTests.Types
         private class DummyType : TypeBase
         {
             public DummyType() : base("NFL_")
-            {}
+            { }
 
             public const int NFL_Falcons = 1;
             public const int NFL_Seahawks = 2;

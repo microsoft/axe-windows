@@ -11,8 +11,7 @@ using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(
-        ID = RuleId.NameReasonableLength)]
+    [RuleInfo(ID = RuleId.NameReasonableLength)]
     class NameIsReasonableLength : Rule
     {
         private const int ReasonableLength = 512;

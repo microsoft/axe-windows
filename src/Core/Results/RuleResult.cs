@@ -81,10 +81,7 @@ namespace Axe.Windows.Core.Results
         /// Constructor for Deserialization
         /// Do not use for other purpose.
         /// </summary>
-        public RuleResult()
-        {
-
-        }
+        public RuleResult() { }
 
         /// <summary>
         /// Add Test status

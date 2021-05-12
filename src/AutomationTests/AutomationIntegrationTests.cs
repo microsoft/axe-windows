@@ -73,7 +73,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(30000)]
+        // [Timeout(30000)]
         public void Scan_Integration_WildlifeManager()
         {
             ScanResults results = Scan_Integration_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);

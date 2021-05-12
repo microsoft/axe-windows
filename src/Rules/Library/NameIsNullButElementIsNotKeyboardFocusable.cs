@@ -11,8 +11,7 @@ using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(
-        ID = RuleId.NameNullButElementNotKeyboardFocusable)]
+    [RuleInfo(ID = RuleId.NameNullButElementNotKeyboardFocusable)]
     class NameIsNullButElementIsNotKeyboardFocusable: Rule
     {
         public NameIsNullButElementIsNotKeyboardFocusable()

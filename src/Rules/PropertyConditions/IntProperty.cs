@@ -30,5 +30,5 @@ namespace Axe.Windows.Rules.PropertyConditions
             this.Exists = CreatePropertyExistsCondition<int>(propertyID);
             this.DoesNotExist = ~Exists;
         }
-} // class
+    } // class
 } // namespace

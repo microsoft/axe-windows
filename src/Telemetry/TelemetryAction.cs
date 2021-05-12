@@ -9,10 +9,8 @@ namespace Axe.Windows.Telemetry
     public enum TelemetryAction
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
-
         Scan_Statistics,
         SingleRule_Tested_Results,
-
 #pragma warning restore CA1707 // Identifiers should not contain underscores
     }
 }

@@ -3,7 +3,6 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-
     public class BitmapCollection : ImageCollection
     {
         private readonly System.Drawing.Bitmap bitmap;

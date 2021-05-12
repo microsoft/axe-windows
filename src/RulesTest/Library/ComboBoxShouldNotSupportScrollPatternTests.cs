@@ -23,8 +23,8 @@ namespace Axe.Windows.RulesTests.Library
 
             foreach (var controlType in ExpectedControlTypes)
             {
-            e.ControlTypeId = controlType;
-            Assert.IsTrue(Rule.Condition.Matches(e));
+                e.ControlTypeId = controlType;
+                Assert.IsTrue(Rule.Condition.Matches(e));
             } // for each control type
         }
 

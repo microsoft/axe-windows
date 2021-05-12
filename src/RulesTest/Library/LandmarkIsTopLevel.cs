@@ -88,7 +88,7 @@ namespace Axe.Windows.RulesTests.Library
     {
         public LandmarkMainIsTopLevel()
             : base(new Axe.Windows.Rules.Library.LandmarkMainIsTopLevel(), LandmarkType.UIA_MainLandmarkTypeId, null)
-        {}
+        { }
     } // class
 
     [TestClass]

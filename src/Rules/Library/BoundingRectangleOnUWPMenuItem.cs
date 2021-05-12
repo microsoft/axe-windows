@@ -33,7 +33,7 @@ namespace Axe.Windows.Rules.Library
             var grandparent = Ancestor(2, UWP.TitleBar);
             var parent = Parent(UWP.MenuBar & BoundingRectangle.Null);
             var self = MenuItem & Name.Is("System");
-                return self & parent & grandparent;
+            return self & parent & grandparent;
         }
     } // class
 } // namespace
