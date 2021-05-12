@@ -5,7 +5,6 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
-using System;
 using System.Diagnostics;
 using System.Drawing;
 using UIAutomationClient;
