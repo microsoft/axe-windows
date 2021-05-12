@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -156,24 +157,61 @@ namespace Axe.Windows.AutomationTests
         private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
         {
             Assert.IsTrue(File.Exists(ValidationApp), ValidationApp + " was not found");
+            StringBuilder sbOutput = new StringBuilder();
+            StringBuilder sbErrors = new StringBuilder();
+            Process testApp = StartValidationApp(scanResults, processId, sbOutput, sbErrors);
 
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = ValidationApp,
-                Arguments = string.Format(CultureInfo.InvariantCulture, @"""{0}"" {1} {2}",
-                    scanResults.OutputFile.A11yTest, scanResults.ErrorCount, processId),
-                WorkingDirectory = ValidationAppFolder
-            };
-
-            Process testApp = Process.Start(startInfo);
             if (testApp.WaitForExit(10000))
             {
+                DisplayTestAppOutput(sbOutput, sbErrors);
                 Assert.AreEqual(0, testApp.ExitCode);
             }
             else
             {
                 testApp.Kill();
+                DisplayTestAppOutput(sbOutput, sbErrors);
                 Assert.Fail("Test app was still running after 10 seconds");
+            }
+        }
+
+        private Process StartValidationApp(ScanResults scanResults, int processId,
+            StringBuilder sbOutput, StringBuilder sbErrors)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = ValidationApp;
+            p.StartInfo.Arguments = string.Format(CultureInfo.InvariantCulture, @"""{0}"" {1} {2}",
+                scanResults.OutputFile.A11yTest, scanResults.ErrorCount, processId);
+            p.StartInfo.WorkingDirectory = ValidationAppFolder;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.RedirectStandardOutput = true;
+
+            p.ErrorDataReceived += new DataReceivedEventHandler((sender, e) =>
+            {
+                sbErrors.AppendLine(e.Data);
+            });
+            p.OutputDataReceived += new DataReceivedEventHandler((sender, e) =>
+            {
+                sbOutput.AppendLine(e.Data);
+            });
+
+
+            p.Start();
+            p.BeginOutputReadLine();
+
+            return p;
+        }
+
+        private void DisplayTestAppOutput(StringBuilder sbOutput, StringBuilder sbErrors)
+        {
+            if (sbErrors.Length > 0)
+            {
+                Console.WriteLine("ERRORS from validation app:");
+                Console.WriteLine(sbErrors.ToString());
+            }
+            if (sbOutput.Length > 0)
+            {
+                Console.WriteLine("OUTPUT from validation app:");
+                Console.WriteLine(sbOutput.ToString());
             }
         }
 
