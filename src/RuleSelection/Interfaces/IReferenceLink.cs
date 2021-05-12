@@ -8,5 +8,5 @@ namespace Axe.Windows.Extensions.Interfaces.ReferenceLinks
     {
         string ShortDescription { get; }
         Uri Uri { get; }
-    } // class
+    } // interface
 } // namespace

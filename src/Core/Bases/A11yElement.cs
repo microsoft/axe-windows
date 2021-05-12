@@ -380,8 +380,8 @@ namespace Axe.Windows.Core.Bases
 
             return GetValueAsArray<int>(jArray);
         }
-#pragma warning disable CA1801 // Parameter id of method ConvertValueIfNecessary is never used.Remove the parameter or use it in the method body.
 
+#pragma warning disable CA1801 // Parameter id of method ConvertValueIfNecessary is never used.Remove the parameter or use it in the method body.
         private static dynamic ConvertValueIfNecessary(int id, dynamic value)
         {
             return value;

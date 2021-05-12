@@ -6,5 +6,5 @@ namespace Axe.Windows.SystemAbstractions
     public interface IMicrosoft
     {
         IMicrosoftWin32 Win32 { get; }
-    } // Interface
+    } // interface
 } // namespace
