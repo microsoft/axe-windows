@@ -14,6 +14,5 @@ namespace Axe.Windows.Rules
     class ConditionContext
     {
         public Stack<IA11yElement> ReferenceElements { get; private set; } = new Stack<IA11yElement>();
-
     } // class
 } // namespace

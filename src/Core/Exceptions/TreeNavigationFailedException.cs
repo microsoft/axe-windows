@@ -13,7 +13,7 @@ namespace Axe.Windows.Core.Exceptions
     [Serializable]
     public class TreeNavigationFailedException : Exception
     {
-        public TreeNavigationFailedException() : base(){ }
+        public TreeNavigationFailedException() : base() { }
 
         public TreeNavigationFailedException(string message) : base(message) { }
 

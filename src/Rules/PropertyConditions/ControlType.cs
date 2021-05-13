@@ -48,5 +48,5 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition Tree = new ControlTypeCondition(Axe.Windows.Core.Types.ControlType.UIA_TreeControlTypeId);
         public static Condition TreeItem = new ControlTypeCondition(Axe.Windows.Core.Types.ControlType.UIA_TreeItemControlTypeId);
         public static Condition Window = new ControlTypeCondition(Axe.Windows.Core.Types.ControlType.UIA_WindowControlTypeId);
-} // class
+    } // class
 } // namespace

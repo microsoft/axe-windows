@@ -12,7 +12,7 @@ namespace Axe.Windows.Core.Bases
     /// <summary>
     /// Wrapper class for UIAutomationElement Property
     /// </summary>
-    public class A11yProperty:IDisposable
+    public class A11yProperty : IDisposable
     {
         /// <summary>
         /// Property Id

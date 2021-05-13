@@ -16,9 +16,9 @@ namespace Axe.Windows.Automation
             {
                 var element = A11yAutomation.ElementFromProcessId(processId);
 
-                #pragma warning disable CA2000 // Call IDisposable.Dispose()
+#pragma warning disable CA2000 // Call IDisposable.Dispose()
                 return new ElementContext(element).Element;
-                #pragma warning restore CA2000
+#pragma warning restore CA2000
             }
             catch (Exception ex)
             {

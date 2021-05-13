@@ -6,7 +6,7 @@ using System;
 
 namespace Axe.Windows.Rules
 {
-    class PatternCondition: Condition
+    class PatternCondition : Condition
     {
         private readonly int PatternID;
 

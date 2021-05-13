@@ -5,7 +5,6 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Linq;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 

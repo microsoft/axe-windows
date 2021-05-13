@@ -5,14 +5,12 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(
-        ID = RuleId.NameReasonableLength)]
+    [RuleInfo(ID = RuleId.NameReasonableLength)]
     class NameIsReasonableLength : Rule
     {
         private const int ReasonableLength = 512;

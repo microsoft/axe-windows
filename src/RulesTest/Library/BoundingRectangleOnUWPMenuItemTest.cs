@@ -8,8 +8,8 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class BoundingRectangleOnUWPMenuItemTest
     {
-            private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleOnUWPMenuItem();
-[TestMethod]
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleOnUWPMenuItem();
+        [TestMethod]
         public void TestBoundingRectangleOnUWPMenuItemPass()
         {
             using (var e = new MockA11yElement())

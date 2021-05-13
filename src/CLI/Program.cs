@@ -59,8 +59,8 @@ namespace AxeWindowsCLI
             {
                 using (var parser = CaseInsensitiveParser())
                 {
-                parser.ParseArguments<Options>(_args)
-                    .WithParsed<Options>(RunWithParsedInputs);
+                    parser.ParseArguments<Options>(_args)
+                        .WithParsed<Options>(RunWithParsedInputs);
                 }
             }
 #pragma warning disable CA1031

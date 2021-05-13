@@ -14,7 +14,7 @@ namespace Axe.Windows.Actions.Trackers
     /// <summary>
     /// Class MouseSelector
     /// </summary>
-    public class MouseTracker:BaseTracker
+    public class MouseTracker : BaseTracker
     {
         /// <summary>
         /// timer interval;

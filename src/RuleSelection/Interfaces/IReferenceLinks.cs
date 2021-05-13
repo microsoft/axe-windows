@@ -10,5 +10,5 @@ namespace Axe.Windows.Extensions.Interfaces.ReferenceLinks
     public interface IReferenceLinks
     {
         IReferenceLink GetReferenceLink(string lookupToken);
-    } // class
+    } // interface
 } // namespace

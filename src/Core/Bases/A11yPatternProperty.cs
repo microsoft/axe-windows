@@ -8,7 +8,7 @@ namespace Axe.Windows.Core.Bases
     /// <summary>
     /// Pattern Property class
     /// </summary>
-    public class A11yPatternProperty:IDisposable
+    public class A11yPatternProperty : IDisposable
     {
         public string Name { get; set; }
 

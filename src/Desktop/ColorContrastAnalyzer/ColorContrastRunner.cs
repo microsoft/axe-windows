@@ -66,11 +66,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             countExactColors.Clear();
         }
 
-        private Color backgroundColorByCount()
-        {
-            return countExactColors.EntryWithGreatestValue();
-        }
-
         // Returns true when entries have lead to a confident conclusion about Text and Background color.
 
         internal ColorContrastResult OnRowEnd()

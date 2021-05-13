@@ -11,7 +11,7 @@ namespace Axe.Windows.Actions.Contexts
     /// Class ElementContext
     /// Contain ElementContext information
     /// </summary>
-    public class ElementContext:IDisposable
+    public class ElementContext : IDisposable
     {
         /// <summary>
         /// Process name of the selected element

@@ -12,7 +12,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
     /// <summary>
     /// Event Message Class for passing event information to UI or other handler
     /// </summary>
-    public class EventMessage:IA11yEventMessage, IDisposable
+    public class EventMessage : IA11yEventMessage, IDisposable
     {
         public int EventId { get; set; }
 

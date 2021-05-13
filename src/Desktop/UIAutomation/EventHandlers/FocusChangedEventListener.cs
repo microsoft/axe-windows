@@ -7,7 +7,7 @@ using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
-    public class FocusChangedEventListener:IDisposable, IUIAutomationFocusChangedEventHandler
+    public class FocusChangedEventListener : IDisposable, IUIAutomationFocusChangedEventHandler
     {
         public HandleUIAutomationEventMessage ListenEventMessage { get; private set; }
 

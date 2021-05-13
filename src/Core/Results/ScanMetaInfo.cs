@@ -57,7 +57,7 @@ namespace Axe.Windows.Core.Results
         /// <summary>
         /// Constructor for Deserialization.
         /// </summary>
-        public ScanMetaInfo() {   }
+        public ScanMetaInfo() { }
 
         /// <summary>
         /// Override Property Id value

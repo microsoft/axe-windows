@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -23,8 +22,8 @@ namespace Axe.Windows.RulesTests.Library
 
             foreach (var controlType in ExpectedControlTypes)
             {
-            e.ControlTypeId = controlType;
-            Assert.IsTrue(Rule.Condition.Matches(e));
+                e.ControlTypeId = controlType;
+                Assert.IsTrue(Rule.Condition.Matches(e));
             } // for each control type
         }
 

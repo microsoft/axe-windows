@@ -7,7 +7,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
     /// <summary>
     /// Generic UIAutomation event handler wrapper
     /// </summary>
-    public class EventListener: EventListenerBase, IUIAutomationEventHandler
+    public class EventListener : EventListenerBase, IUIAutomationEventHandler
     {
         /// <summary>
         /// Create an event handler and register it.

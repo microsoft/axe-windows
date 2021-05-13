@@ -13,7 +13,7 @@ namespace Axe.Windows.Core.Types
     ///
     /// Basically, between Pattern name and PropertyName, you need to put "Pattern_" to make name more aligned.
     /// </summary>
-    public class PropertyType:TypeBase
+    public class PropertyType : TypeBase
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
         public const int UIA_RuntimeIdPropertyId = 30000;

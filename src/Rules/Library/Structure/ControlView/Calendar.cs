@@ -6,12 +6,11 @@ using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
 using System.Globalization;
-using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.ControlViewCalendarStructure)]
-    class ControlViewCalendarStructure: Rule
+    class ControlViewCalendarStructure : Rule
     {
         public ControlViewCalendarStructure()
         {
