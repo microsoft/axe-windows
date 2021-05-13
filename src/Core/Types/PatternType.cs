@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Axe.Windows.Core.Types
 {
-    public class PatternType:TypeBase
+    public class PatternType : TypeBase
     {
         // allow having underscore to keep the same name of original names in Win32
 #pragma warning disable CA1707 // Identifiers should not contain underscores

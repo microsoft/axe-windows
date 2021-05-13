@@ -11,7 +11,7 @@ using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.NameOnCustomWithParentWPFDataItem)]
-    class NameOnCustomWithParentWPFDataItem: Rule
+    class NameOnCustomWithParentWPFDataItem : Rule
     {
         public NameOnCustomWithParentWPFDataItem()
         {

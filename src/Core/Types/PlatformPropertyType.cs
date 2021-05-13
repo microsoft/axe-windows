@@ -8,7 +8,7 @@ namespace Axe.Windows.Core.Types
     /// Class for Platform Property  Type IDs
     /// this is platform specific Ids
     /// </summary>
-    public class PlatformPropertyType:TypeBase
+    public class PlatformPropertyType : TypeBase
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
         public const int Platform_WindowsStylePropertyId = 1;

@@ -25,7 +25,7 @@ namespace Axe.Windows.Actions
     /// the Action caller will pass the ID of data to use than actual object.
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
-    public class DataManager:IDisposable
+    public class DataManager : IDisposable
     {
         /// <summary>
         /// ElementContext dictionary

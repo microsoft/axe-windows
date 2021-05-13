@@ -11,7 +11,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
     /// <param name="txt"></param>
     public delegate void HandleUIAutomationEventMessage(EventMessage em);
 
-    public abstract class EventListenerBase:IDisposable
+    public abstract class EventListenerBase : IDisposable
     {
         public int EventId { get; private set; }
         public IUIAutomationElement Element { get; private set; }

@@ -12,7 +12,7 @@ using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.NameExcludesLocalizedControlType)]
-    class NameExcludesLocalizedControlType: Rule
+    class NameExcludesLocalizedControlType : Rule
     {
         public NameExcludesLocalizedControlType()
         {

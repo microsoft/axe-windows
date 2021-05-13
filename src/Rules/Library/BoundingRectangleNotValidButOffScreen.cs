@@ -10,7 +10,7 @@ using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.BoundingRectangleNotValidButOffScreen)]
-    class BoundingRectangleNotValidButOffScreen: Rule
+    class BoundingRectangleNotValidButOffScreen : Rule
     {
         public BoundingRectangleNotValidButOffScreen()
         {

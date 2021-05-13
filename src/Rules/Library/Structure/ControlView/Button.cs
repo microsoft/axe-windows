@@ -11,7 +11,7 @@ using static Axe.Windows.Rules.PropertyConditions.ControlType;
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.ControlViewButtonStructure)]
-    class ControlViewButtonStructure: Rule
+    class ControlViewButtonStructure : Rule
     {
         public ControlViewButtonStructure()
         {

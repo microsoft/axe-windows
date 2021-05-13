@@ -10,7 +10,7 @@ using System.Globalization;
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.ContentViewCalendarStructure)]
-    class ContentViewCalendarStructure: Rule
+    class ContentViewCalendarStructure : Rule
     {
         public ContentViewCalendarStructure()
         {

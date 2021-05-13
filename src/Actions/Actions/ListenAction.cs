@@ -16,7 +16,7 @@ namespace Axe.Windows.Actions
     /// to listen and record events from elements
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
-    public class ListenAction:IDisposable
+    public class ListenAction : IDisposable
     {
         ElementContext ElementContext { get; set; }
         EventListenerFactory EventListener { get; set; }

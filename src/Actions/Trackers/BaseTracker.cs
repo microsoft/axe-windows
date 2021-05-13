@@ -11,7 +11,7 @@ namespace Axe.Windows.Actions.Trackers
     /// <summary>
     /// base class for Tracker
     /// </summary>
-    public abstract class BaseTracker:IDisposable
+    public abstract class BaseTracker : IDisposable
     {
         internal Action<A11yElement> SetElement;
 

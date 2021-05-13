@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
     /// since different sets of event handlers can be created for each purpose, each factory keeps its own copy of CUIAutomation object.
     /// it will be released at disposal.
     /// </summary>
-    public class EventListenerFactory:IDisposable
+    public class EventListenerFactory : IDisposable
     {
         public FocusChangedEventListener EventListenerFocusChanged { get; private set; }
         public StructureChangedEventListener EventListenerStructureChanged { get; private set; }
@@ -666,7 +666,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
     /// EventListener Message data
     /// it contains message type and other information for further action
     /// </summary>
-    public class EventListenerFactoryMessage:IDisposable
+    public class EventListenerFactoryMessage : IDisposable
     {
         internal EventListenerFactoryMessageType MessageType;
         internal int EventId;

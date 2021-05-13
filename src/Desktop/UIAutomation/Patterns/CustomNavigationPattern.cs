@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// CustomNavigation Pattern
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/dn858171(v=vs.85).aspx
     /// </summary>
-    class CustomNavigationPattern :A11yPattern
+    class CustomNavigationPattern : A11yPattern
     {
         IUIAutomationCustomNavigationPattern Pattern;
 

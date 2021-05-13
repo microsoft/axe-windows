@@ -9,7 +9,7 @@ namespace Axe.Windows.Core.Types
     /// <summary>
     /// Class for Control Types
     /// </summary>
-    public class ControlType:TypeBase
+    public class ControlType : TypeBase
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
         public const int UIA_ButtonControlTypeId = 50000;
