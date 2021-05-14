@@ -7,25 +7,26 @@ namespace AxeWindowsCLI
 {
     public class Options : IOptions
     {
-        [Option(Required = false, HelpText = "Process Id")]
+        // The HelpText value specified is the name of the resource string in the OptionsHelpText class
+        [Option(Required = false, HelpText = "ProcessId", ResourceType = typeof(Resources.OptionsHelpText))]
         public int ProcessId { get; set; }
 
-        [Option(Required = false, HelpText = "Process Name")]
+        [Option(Required = false, HelpText = "ProcessName", ResourceType = typeof(Resources.OptionsHelpText))]
         public string ProcessName { get; set; }
 
-        [Option(Required = false, HelpText = "Output directory")]
+        [Option(Required = false, HelpText = "OutputDirectory", ResourceType = typeof(Resources.OptionsHelpText))]
         public string OutputDirectory { get; set; }
 
-        [Option(Required = false, HelpText = "Scan ID")]
+        [Option(Required = false, HelpText = "ScanId", ResourceType = typeof(Resources.OptionsHelpText))]
         public string ScanId { get; set; }
 
-        [Option(Required = false, HelpText = "Verbosity level (Quiet/Default/Verbose)")]
+        [Option(Required = false, HelpText = "Verbosity", ResourceType = typeof(Resources.OptionsHelpText))]
         public string Verbosity { get; set; }
 
-        [Option(Required = false, HelpText = "Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored.")]
+        [Option(Required = false, HelpText = "ShowThirdPartyNotices", ResourceType = typeof(Resources.OptionsHelpText))]
         public bool ShowThirdPartyNotices { get; set; }
 
-        [Option(Required = false, HelpText = "How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with a default of 0.")]
+        [Option(Required = false, HelpText = "DelayInSeconds", ResourceType = typeof(Resources.OptionsHelpText))]
         public int DelayInSeconds { get; set; }
 
         // CommandLineParser will never set this value!
