@@ -32,14 +32,9 @@ The data type of this property's value, one of `"string"`, `"int"`, or `"bool"`.
 ##### interpretation
 If specified, an object mapping values of a property to more friendly descriptions. This is useful, for instance, when the value of a property is an enumeration.
 
-##### Example
-An example of a `properties` object:
+If the value returned at runtime by the custom UI Automation property matches one of the attributes of this object, the corresponding configuration value is output. For instance, given the following configuration, a value of `1` of the `ViewType` property would return `ViewSlide`, whereas a value of `40` would be returned literally as it is unspecified in the configuration:
+
 ``` json
-  "properties": [
-    {
-      "guid": "{F065BAA7-2794-48B6-A927-193DA1540B84}",
-      "programmaticName": "ViewType",
-      "uiaType": "int",
       "interpretation": {
         "1": "ViewSlide",
         "2": "ViewSlideMaster",
@@ -72,8 +67,6 @@ An example of a `properties` object:
         "29": "ViewNone",
         "30": "ViewUnknown"
       }
-    }
-  ]
 ```
 
 #### Example of a complete custom UI Automation configuration file
