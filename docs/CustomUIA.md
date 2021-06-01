@@ -2,10 +2,10 @@
      Licensed under the MIT Licence. -->
 
 ## Custom UI Automation properties
-Axe Windows supports the inspection of [custom UI Automation properties](https://docs.microsoft.com/en-gb/windows/win32/winauto/uiauto-custompropertieseventscontrolpatterns). The custom properties for which Axe Windows should register are described in a configuration file that is loaded once per session and applies to all inspected UI Automation elements.
+Axe Windows supports the inspection of [custom UI Automation properties](https://docs.microsoft.com/en-gb/windows/win32/winauto/uiauto-custompropertieseventscontrolpatterns). The custom properties for which Axe Windows should register are described in a user-supplied text file that is applied to all inspected UI Automation elements.
 
 ### Configuration file format
-Custom UI Automation configuration data is specified in a [JSON](https://en.wikipedia.org/wiki/JSON#Syntax) formatted text file in the configuration directory. The configuration file consists of one object with the following possible attributes:
+Custom UI Automation configuration data is specified in a [JSON](https://en.wikipedia.org/wiki/JSON#Syntax) formatted text file. The file consists of one object with the following possible attributes:
 
 #### metadata
 This attribute, if specified, can contain values to describe the file as determined by the user. It may be useful, for instance, to store version or authorship information. Example:
