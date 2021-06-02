@@ -25,7 +25,7 @@ Attribute | Description
 guid|The globally unique identifier of this property.
 programmaticName|A textual description of this property.
 uiaType|The data type of this property's value, one of `string`, `int`, `bool`, `point`, `element`, or `enum`.
-Values|If this property is an enumeration (`"uiaType": "enum"`), this attribute contains a mapping of integer members of the enumeration to human-readable descriptions. If the value of the property matches one of the attributes of this object, `"value from object (raw value)"` is presented as the value for this custom property. If not present, `"Unknown (raw value)"` is presented instead.
+values|If this property is an enumeration (`"uiaType": "enum"`), this attribute contains a mapping of integer members of the enumeration to human-readable descriptions. If the value of the property matches one of the attributes of this object, `"value from object (<raw value>)"` is presented as the value for this custom property. If not present, `"Unknown (<raw value>)"` is presented instead.
 
 #### Example of a complete custom UI Automation configuration file
 This example file contains definitions for various [Excel](https://docs.microsoft.com/en-gb/office/uia/excel/excelcustomproperties) and [PowerPoint](https://docs.microsoft.com/en-gb/office/uia/powerpoint/powerpointcustomproperties) properties.
