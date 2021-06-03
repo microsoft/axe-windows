@@ -12,7 +12,7 @@ This attribute contains an array of objects, one per defined custom UI Automatio
 
 Attribute | Description
 --- | ---
-guid|The globally unique identifier of this property.
+guid|The [RFC4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1) globally unique identifier of this property.
 programmaticName|A textual description of this property.
 uiaType|The data type of this property's value, one of `string`, `int`, `bool`, `double`, `point`, `element`, or `enum`.
 values|If this property is an enumeration (`"uiaType": "enum"`), this attribute contains a mapping of integer members of the enumeration, specified as string keys in the file, to human-readable descriptions. If the value of the property matches one of the attributes of this object, `"value from object (<raw value>)"` is presented as the value for this custom property. If not present, `"Unknown (<raw value>)"` is presented instead.
