@@ -34,47 +34,47 @@ This example file contains definitions for various [Excel](https://docs.microsof
 {
   "properties": [
     {
-      "guid": "{4BB56516-F354-44CF-A5AA-96B52E968CFD}",
+      "guid": "4BB56516-F354-44CF-A5AA-96B52E968CFD",
       "programmaticName": "AreGridlinesVisible",
       "uiaType": "bool"
     },
     {
-      "guid": "{E244641A-2785-41E9-A4A7-5BE5FE531507}",
+      "guid": "E244641A-2785-41E9-A4A7-5BE5FE531507",
       "programmaticName": "CellFormula",
       "uiaType": "string"
     },
     {
-      "guid": "{626CF4A0-A5AE-448B-A157-5EA4D1D057D7}",
+      "guid": "626CF4A0-A5AE-448B-A157-5EA4D1D057D7",
       "programmaticName": "CellNumberFormat",
       "uiaType": "string"
     },
     {
-      "guid": "{312F7536-259A-47C7-B192-AA16352522C4}",
+      "guid": "312F7536-259A-47C7-B192-AA16352522C4",
       "programmaticName": "CommentReplyCount",
       "uiaType": "int"
     },
     {
-      "guid": "{7AAEE221-E14D-4DA4-83FE-842AAF06A9B7}",
+      "guid": "7AAEE221-E14D-4DA4-83FE-842AAF06A9B7",
       "programmaticName": "DataValidationPrompt",
       "uiaType": "string"
     },
     {
-      "guid": "{DFEF6BBD-7A50-41BD-971F-B5D741569A2B}",
+      "guid": "DFEF6BBD-7A50-41BD-971F-B5D741569A2B",
       "programmaticName": "HasConditionalFormatting",
       "uiaType": "bool"
     },
     {
-      "guid": "{29F2E049-5DE9-4444-8338-6784C5D18ADF}",
+      "guid": "29F2E049-5DE9-4444-8338-6784C5D18ADF",
       "programmaticName": "HasDataValidation",
       "uiaType": "bool"
     },
     {
-      "guid": "{1B93A5CD-0956-46ED-9BBF-016C1B9FD75F}",
+      "guid": "1B93A5CD-0956-46ED-9BBF-016C1B9FD75F",
       "programmaticName": "HasDataValidationDropdown",
       "uiaType": "bool"
     },
     {
-      "guid": "{F065BAA7-2794-48B6-A927-193DA1540B84}",
+      "guid": "F065BAA7-2794-48B6-A927-193DA1540B84",
       "programmaticName": "ViewType",
       "uiaType": "enum",
       "values": {
