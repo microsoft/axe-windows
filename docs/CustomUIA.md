@@ -5,7 +5,7 @@
 Axe Windows supports the inspection of [custom UI Automation properties](https://docs.microsoft.com/en-gb/windows/win32/winauto/uiauto-custompropertieseventscontrolpatterns). The custom properties for which Axe Windows should register are described in a user-supplied text file that is applied to all inspected UI Automation elements.
 
 ### Configuration file format
-Custom UI Automation configuration data is specified in a [JSON](https://en.wikipedia.org/wiki/JSON#Syntax) formatted text file. The file consists of one object with the following possible attributes:
+Custom UI Automation configuration data is specified in a [JSON](https://en.wikipedia.org/wiki/JSON#Syntax) formatted text file, with the additional allowance for both C- and C++-style comments. The file consists of one object with the following possible attributes:
 
 #### properties
 This attribute contains an array of objects, one per defined custom UI Automation property. Each property object contains the following fields, which should match the implementation of the property by the UI Automation provider:
@@ -20,9 +20,10 @@ values|If this property is an enumeration (`"uiaType": "enum"`), this attribute 
 #### Example of a complete custom UI Automation configuration file
 This example file contains definitions for various [Excel](https://docs.microsoft.com/en-gb/office/uia/excel/excelcustomproperties) and [PowerPoint](https://docs.microsoft.com/en-gb/office/uia/powerpoint/powerpointcustomproperties) properties.
 
-``` json
+``` jsonc
 {
   "properties": [
+    /* Excel properties */
     {
       "guid": "4BB56516-F354-44CF-A5AA-96B52E968CFD",
       "programmaticName": "AreGridlinesVisible",
@@ -63,7 +64,7 @@ This example file contains definitions for various [Excel](https://docs.microsof
       "programmaticName": "HasDataValidationDropdown",
       "uiaType": "bool"
     },
-    {
+    { // PowerPoint property
       "guid": "F065BAA7-2794-48B6-A927-193DA1540B84",
       "programmaticName": "ViewType",
       "uiaType": "enum",
