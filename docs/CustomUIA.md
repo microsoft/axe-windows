@@ -7,16 +7,6 @@ Axe Windows supports the inspection of [custom UI Automation properties](https:/
 ### Configuration file format
 Custom UI Automation configuration data is specified in a [JSON](https://en.wikipedia.org/wiki/JSON#Syntax) formatted text file. The file consists of one object with the following possible attributes:
 
-#### metadata
-This attribute, if specified, can contain values to describe the file as determined by the user. It may be useful, for instance, to store version or authorship information. Example:
-
-```
-  "metadata": {
-    "version": "1.0",
-    "modified": "1970-01-01"
-  }
-```
-
 #### properties
 This attribute contains an array of objects, one per defined custom UI Automation property. Each property object contains the following fields, which should match the implementation of the property by the UI Automation provider:
 
