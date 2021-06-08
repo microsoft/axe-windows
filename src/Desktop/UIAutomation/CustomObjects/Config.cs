@@ -12,7 +12,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         [JsonProperty("properties")]
         public CustomProperty[] Properties { get; set; }
 
-        public static Config FromText(string text)
+        public static Config ReadFromText(string text)
         {
             Config conf = JsonConvert.DeserializeObject<Config>(text);
             conf.Validate();
@@ -20,12 +20,12 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             return conf;
         }
 
-        public static Config FromFile(string path) { return Config.FromText(File.ReadAllText(path)); }
+        public static Config ReadFromFile(string path) { return Config.ReadFromText(File.ReadAllText(path)); }
 
         private void Validate()
         {
-            if (this.Properties == null || this.Properties.Length < 1) throw new ArgumentException("Empty or missing definition of custom properties.");
-            foreach (CustomProperty p in this.Properties) 
+            if (Properties == null || Properties.Length < 1) throw new ArgumentException("Empty or missing definition of custom properties.");
+            foreach (CustomProperty p in Properties) 
                 p.Validate();
         }
     }

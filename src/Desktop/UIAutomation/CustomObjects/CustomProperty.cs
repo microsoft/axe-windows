@@ -28,10 +28,10 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 
         internal void Validate()
         {
-            if (this.Guid == null) throw new ArgumentException("Missing GUID in custom property definition.");
-            if (this.ProgrammaticName == null) throw new ArgumentException("Missing programmatic name in custom property definition.");
-            if (this.UserType == null) throw new ArgumentException("Missing type in custom property definition.");
-            switch (this.UserType)
+            if (Guid == null) throw new ArgumentException("Missing GUID in custom property definition.");
+            if (ProgrammaticName == null) throw new ArgumentException("Missing programmatic name in custom property definition.");
+            if (UserType == null) throw new ArgumentException("Missing type in custom property definition.");
+            switch (UserType)
             {
                 case "string":
                     // Valid type, further processing in a subsequent PR.
