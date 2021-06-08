@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Types;
 using Axe.Windows.Desktop.UIAutomation.EventHandlers;
@@ -67,17 +66,7 @@ namespace Axe.Windows.Actions.Trackers
                 if (IsStarted && message.Element != null)
                 {
                     var element = GetElementBasedOnScope(message.Element);
-
-                    if( element != null && element.IsRootElement() == false
-                        && element.ControlTypeId != ControlType.UIA_ToolTipControlTypeId
-                        && element.IsSameUIElement(this.SelectedElementRuntimeId, this.SelectedBoundingRectangle, this.SelectedControlTypeId, this.SelectedName) == false)
-                    {
-                        this.SelectedElementRuntimeId = element.RuntimeId;
-                        this.SelectedBoundingRectangle = element.BoundingRectangle;
-                        this.SelectedControlTypeId = element.ControlTypeId;
-                        this.SelectedName = element.Name;
-                        this.SetElement?.Invoke(element);
-                    }
+                    SelectElementIfItIsEligible(element, e => e.ControlTypeId != ControlType.UIA_ToolTipControlTypeId);
                 }
                 else
                 {

@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
-using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Win32;
 using System;
@@ -112,24 +111,13 @@ namespace Axe.Windows.Actions.Trackers
                 {
                     NativeMethods.GetCursorPos(out Point p);
 
-                    if (LastMousePoint.Equals(p) && this.POIPoint.Equals(p) == false)
+                    if (LastMousePoint.Equals(p) && !this.POIPoint.Equals(p))
                     {
                         var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode));
-
-                        if (element != null && element.IsRootElement() == false && element.IsSameUIElement(this.SelectedElementRuntimeId, this.SelectedBoundingRectangle, this.SelectedControlTypeId, this.SelectedName) == false && !POIPoint.Equals(p))
-                        {
-                            this.SelectedElementRuntimeId = element.RuntimeId;
-                            this.SelectedBoundingRectangle = element.BoundingRectangle;
-                            this.SelectedControlTypeId = element.ControlTypeId;
-                            this.SelectedName = element.Name;
-                            this.SetElement?.Invoke(element);
-                        }
-                        else
+                        if (!SelectElementIfItIsEligible(element, null))
                         {
                             element?.Dispose();
-                            element = null;
                         }
-
                         POIPoint = p;
                     }
 
