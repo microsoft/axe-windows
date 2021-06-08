@@ -4,6 +4,7 @@
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
@@ -24,7 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 
         private void Validate()
         {
-            if (Properties == null || Properties.Length < 1) throw new ArgumentException("Empty or missing definition of custom properties.");
+            if (Properties == null || !Properties.Any()) throw new ArgumentException("Empty or missing definition of custom properties.");
             foreach (CustomProperty p in Properties) 
                 p.Validate();
         }
