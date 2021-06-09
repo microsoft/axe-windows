@@ -88,12 +88,10 @@ namespace Axe.Windows.Actions.Trackers
         /// Select the specified element if it meets all eligibilty requirements
         /// </summary>
         /// <param name="element">The potential element to select</param>
-        /// <param name="trackerSpecificCheck">A tracker-specific check that returns true if the element is eligible</param>
         /// <returns>true if the element was selected</returns>
-        protected bool SelectElementIfItIsEligible(A11yElement element, Func<A11yElement, bool> trackerSpecificCheck)
+        protected bool SelectElementIfItIsEligible(A11yElement element)
         {
             if (element != null && !element.IsRootElement()
-                && (trackerSpecificCheck == null || trackerSpecificCheck(element))
                 && !element.IsSameUIElement(SelectedElementRuntimeId, SelectedBoundingRectangle, SelectedControlTypeId, SelectedName))
             {
                 SelectedElementRuntimeId = element.RuntimeId;

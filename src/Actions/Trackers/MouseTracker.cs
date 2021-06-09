@@ -114,7 +114,7 @@ namespace Axe.Windows.Actions.Trackers
                     if (LastMousePoint.Equals(p) && !this.POIPoint.Equals(p))
                     {
                         var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode));
-                        if (!SelectElementIfItIsEligible(element, null))
+                        if (!SelectElementIfItIsEligible(element))
                         {
                             element?.Dispose();
                         }

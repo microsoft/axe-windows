@@ -66,7 +66,10 @@ namespace Axe.Windows.Actions.Trackers
                 if (IsStarted && message.Element != null)
                 {
                     var element = GetElementBasedOnScope(message.Element);
-                    SelectElementIfItIsEligible(element, e => e.ControlTypeId != ControlType.UIA_ToolTipControlTypeId);
+                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId)
+                    {
+                        SelectElementIfItIsEligible(element);
+                    }
                 }
                 else
                 {
