@@ -3,6 +3,7 @@
 
 using Newtonsoft.Json;
 using System;
+using System.IO;
 
 namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
@@ -28,9 +29,9 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 
         internal void Validate()
         {
-            if (Guid == Guid.Empty) throw new ArgumentException("Missing GUID in custom property definition.");
-            if (ProgrammaticName == null) throw new ArgumentException("Missing programmatic name in custom property definition.");
-            if (DataType == null) throw new ArgumentException("Missing type in custom property definition.");
+            if (Guid == Guid.Empty) throw new InvalidDataException("Missing GUID in custom property definition.");
+            if (ProgrammaticName == null) throw new InvalidDataException("Missing programmatic name in custom property definition.");
+            if (DataType == null) throw new InvalidDataException("Missing type in custom property definition.");
             ValidateType();
         }
 
@@ -57,7 +58,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                     // Valid type, further processing in a subsequent PR.
                     break;
                 default:
-                    throw new ArgumentException($"Unknown type {this.DataType}.");
+                    throw new InvalidDataException($"Unknown type {DataType}.");
             }
         }
     }

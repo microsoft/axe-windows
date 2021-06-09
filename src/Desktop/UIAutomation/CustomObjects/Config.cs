@@ -25,7 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 
         private void Validate()
         {
-            if (Properties == null || !Properties.Any()) throw new ArgumentException("Empty or missing definition of custom properties.");
+            if (Properties == null || !Properties.Any()) throw new InvalidDataException("Empty or missing definition of custom properties.");
             foreach (CustomProperty p in Properties) 
                 p.Validate();
         }
