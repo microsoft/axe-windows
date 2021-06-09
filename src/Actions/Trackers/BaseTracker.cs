@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
 using System;
 using System.Drawing;
@@ -22,10 +23,10 @@ namespace Axe.Windows.Actions.Trackers
         /// <summary>
         /// keep track the Selected element RuntimeId
         /// </summary>
-        internal string SelectedElementRuntimeId;
-        internal Rectangle? SelectedBoundingRectangle;
-        internal int SelectedControlTypeId;
-        internal string SelectedName;
+        private string SelectedElementRuntimeId;
+        private Rectangle? SelectedBoundingRectangle;
+        private int SelectedControlTypeId;
+        private string SelectedName;
 
         /// <summary>
         /// Set the scope of selection
@@ -81,6 +82,26 @@ namespace Axe.Windows.Actions.Trackers
             }
 
             return e;
+        }
+
+        /// <summary>
+        /// Select the specified element if it meets all eligibilty requirements
+        /// </summary>
+        /// <param name="element">The potential element to select</param>
+        /// <returns>true if the element was selected</returns>
+        protected bool SelectElementIfItIsEligible(A11yElement element)
+        {
+            if (element != null && !element.IsRootElement()
+                && !element.IsSameUIElement(SelectedElementRuntimeId, SelectedBoundingRectangle, SelectedControlTypeId, SelectedName))
+            {
+                SelectedElementRuntimeId = element.RuntimeId;
+                SelectedBoundingRectangle = element.BoundingRectangle;
+                SelectedControlTypeId = element.ControlTypeId;
+                SelectedName = element.Name;
+                SetElement?.Invoke(element);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
