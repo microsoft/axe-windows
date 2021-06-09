@@ -10,9 +10,9 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
     {
         /// <summary>The RFC4122 globally unique identifier of this property.</summary>
         [JsonProperty("guid")]
-        #pragma warning disable CA1720 // Identifier contains type name: name from JSON
+#pragma warning disable CA1720 // Identifier contains type name: name from JSON
         public Guid Guid { get; set; }
-        #pragma warning restore CA1720 // Identifier contains type name: name from JSON
+#pragma warning restore CA1720 // Identifier contains type name: name from JSON
         /// <summary>A textual description of this property.</summary>
         [JsonProperty("programmaticName")]
         public string ProgrammaticName { get; set; }
@@ -20,7 +20,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         /// <summary>The data type of this property's value as specified by the user, one of string, int, bool, double, point, or element.</summary>
         // TODO Bill: add enum (with values member)
         [JsonProperty("uiaType")]
-        public string UserType { get; set; }
+        public string DataType { get; set; }
 
         /// <summary>The dynamic ID assigned to this property by the system.</summary>
         [JsonIgnore]
@@ -30,8 +30,13 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         {
             if (Guid == Guid.Empty) throw new ArgumentException("Missing GUID in custom property definition.");
             if (ProgrammaticName == null) throw new ArgumentException("Missing programmatic name in custom property definition.");
-            if (UserType == null) throw new ArgumentException("Missing type in custom property definition.");
-            switch (UserType)
+            if (DataType == null) throw new ArgumentException("Missing type in custom property definition.");
+            ValidateType();
+        }
+
+        internal void ValidateType()
+        {
+            switch (DataType)
             {
                 case "string":
                     // Valid type, further processing in a subsequent PR.
@@ -52,7 +57,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                     // Valid type, further processing in a subsequent PR.
                     break;
                 default:
-                    throw new ArgumentException($"Unknown type {this.UserType}.");
+                    throw new ArgumentException($"Unknown type {this.DataType}.");
             }
         }
     }

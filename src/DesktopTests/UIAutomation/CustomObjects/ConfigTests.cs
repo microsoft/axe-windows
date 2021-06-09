@@ -19,7 +19,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
             CustomProperty prop = conf.Properties[0];
             Assert.AreEqual(new Guid("4BB56516-F354-44CF-A5AA-96B52E968CFD"), prop.Guid);
             Assert.AreEqual("AreGridlinesVisible", prop.ProgrammaticName);
-            Assert.AreEqual("bool", prop.UserType);
+            Assert.AreEqual("bool", prop.DataType);
         }
 
         [TestMethod, Timeout(1000)]
