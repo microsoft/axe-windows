@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -23,6 +24,10 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         [JsonProperty("uiaType")]
         public string DataType { get; set; }
 
+        /// <summary>A type converter for this property, providing string rendering.</summary>
+        [JsonIgnore]
+        public ITypeConverter TypeConverter { get; private set; }
+
         /// <summary>The dynamic ID assigned to this property by the system.</summary>
         [JsonIgnore]
         public int DynamicId { get; set; }
@@ -32,31 +37,25 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             if (Guid == Guid.Empty) throw new InvalidDataException("Missing GUID in custom property definition.");
             if (ProgrammaticName == null) throw new InvalidDataException("Missing programmatic name in custom property definition.");
             if (DataType == null) throw new InvalidDataException("Missing type in custom property definition.");
-            ValidateType();
+            TypeConverter = CreateTypeConverter();
         }
 
-        internal void ValidateType()
+        internal ITypeConverter CreateTypeConverter()
         {
             switch (DataType)
             {
                 case "string":
-                    // Valid type, further processing in a subsequent PR.
-                    break;
+                    return new StringTypeConverter();
                 case "int":
-                    // Valid type, further processing in a subsequent PR.
-                    break;
+                    return new IntTypeConverter();
                 case "bool":
-                    // Valid type, further processing in a subsequent PR.
-                    break;
+                    return new BoolTypeConverter();
                 case "double":
-                    // Valid type, further processing in a subsequent PR.
-                    break;
+                    return new DoubleTypeConverter();
                 case "point":
-                    // Valid type, further processing in a subsequent PR.
-                    break;
+                    return new PointTypeConverter();
                 case "element":
-                    // Valid type, further processing in a subsequent PR.
-                    break;
+                    return new ElementTypeConverter();
                 default:
                     throw new InvalidDataException($"Unknown type {DataType}.");
             }
