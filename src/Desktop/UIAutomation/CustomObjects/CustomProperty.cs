@@ -24,7 +24,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         [JsonProperty("uiaType")]
         public string DataType { get; set; }
 
-        /// <summary>A type converter for this property, representing its underlying UIA type and providing string rendering.</summary>
+        /// <summary>A type converter for this property, providing string rendering.</summary>
         [JsonIgnore]
         public ITypeConverter TypeConverter { get; private set; }
 

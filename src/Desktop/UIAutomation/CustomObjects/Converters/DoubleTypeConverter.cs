@@ -12,7 +12,6 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
             return ((double)value).ToString(CultureInfo.InvariantCulture);
-
         }
     }
 }
