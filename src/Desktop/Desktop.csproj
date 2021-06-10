@@ -9,6 +9,7 @@
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
   <ItemGroup>
+    <PackageReference Include="Interop.UIAutomationCore" Version="10.19041.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -37,6 +38,13 @@
   <ItemGroup>
     <Reference Include="Interop.UIAutomationClient">
       <HintPath>..\UIAAssemblies\Win10.17713\Interop.UIAutomationClient.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.UIAutomationCore">
+      <HintPath>Interop.UIAutomationCore.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
