@@ -9,21 +9,21 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
     public class Registrar : IDisposable
     {
-        CUIAutomationRegistrarClass _uiaRegistrar = new CUIAutomationRegistrarClass();
+        CUIAutomationRegistrar _uiaRegistrar = new CUIAutomationRegistrar();
         private bool disposedValue;
 
-        public int Test()
+        public int RegisterCustomProperty(Guid id, string name, UIAutomationType type)
         {
             UIAutomationPropertyInfo info = new UIAutomationPropertyInfo
             {
-                guid = Guid.Empty,
-                pProgrammaticName = "Some property",
-                type = UIAutomationType.UIAutomationType_Bool,
+                guid = id,
+                pProgrammaticName = name,
+                type = type,
             };
 
-            _uiaRegistrar.RegisterProperty(ref info, out int dynamicProperty);
+            _uiaRegistrar.RegisterProperty(ref info, out int dynamicId);
 
-            return dynamicProperty;
+            return dynamicId;
         }
 
         protected virtual void Dispose(bool disposing)
