@@ -30,7 +30,7 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void IsUnexpectedControlType_Condition_True()
+        public void IsUnexpectedControlType_Condition_False()
         {
             var e = new MockA11yElement();
 
