@@ -17,7 +17,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldNotSupportTogglePattern;
             this.Info.HowToFix = HowToFix.ControlShouldNotSupportTogglePattern;
             this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            this.Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)
