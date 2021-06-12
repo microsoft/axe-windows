@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters;
+using Axe.Windows.Core.CustomObjects.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects.Converters
+namespace Axe.Windows.CoreTests.CustomObjects.Converters
 {
     [TestClass()]
     public class StringConverterTests

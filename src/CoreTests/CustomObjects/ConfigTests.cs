@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+using Axe.Windows.Core.CustomObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 
-namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
+namespace Axe.Windows.CoreTests.CustomObjects
 {
     [TestClass()]
     public class ConfigTests

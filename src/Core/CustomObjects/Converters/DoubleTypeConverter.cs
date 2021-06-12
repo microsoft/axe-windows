@@ -4,7 +4,7 @@
 using System;
 using System.Globalization;
 
-namespace Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters
+namespace Axe.Windows.Core.CustomObjects.Converters
 {
     class DoubleTypeConverter : ITypeConverter
     {

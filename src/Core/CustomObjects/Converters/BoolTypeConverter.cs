@@ -2,16 +2,16 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Globalization;
 
-namespace Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters
+namespace Axe.Windows.Core.CustomObjects.Converters
 {
-    class PointTypeConverter : ITypeConverter
+    class BoolTypeConverter : ITypeConverter
     {
         public string Render(dynamic value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
-            double[] arr = (double[])value;
-            return $"[x={arr[0]},y={arr[1]}]";
+            return ((bool)value).ToString(CultureInfo.InvariantCulture);
         }
     }
 }

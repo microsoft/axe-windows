@@ -6,12 +6,14 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
+namespace Axe.Windows.Core.CustomObjects
 {
-    class Config
+    public class Config
     {
+#pragma warning disable CA1819 // Properties should not return arrays: represents a JSON collection
         [JsonProperty("properties")]
         public CustomProperty[] Properties { get; set; }
+#pragma warning restore CA1819 // Properties should not return arrays: represents a JSON collection
 
         public static Config ReadFromText(string text)
         {

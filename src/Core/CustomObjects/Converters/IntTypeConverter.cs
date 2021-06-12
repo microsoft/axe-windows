@@ -2,15 +2,16 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
+using System.Globalization;
 
-namespace Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters
+namespace Axe.Windows.Core.CustomObjects.Converters
 {
-    class StringTypeConverter : ITypeConverter
+    class IntTypeConverter : ITypeConverter
     {
         public string Render(dynamic value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
-            return ((string)value);
+            return ((int)value).ToString(CultureInfo.InvariantCulture);
         }
     }
 }
