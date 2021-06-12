@@ -10,8 +10,8 @@ namespace Axe.Windows.Core.CustomObjects
 {
     public class Config
     {
-        [JsonProperty("properties")]
 #pragma warning disable CA1819 // Properties should not return arrays: represents a JSON collection
+        [JsonProperty("properties")]
         public CustomProperty[] Properties { get; set; }
 #pragma warning restore CA1819 // Properties should not return arrays: represents a JSON collection
 
