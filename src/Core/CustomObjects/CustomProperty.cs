@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Desktop.UIAutomation.CustomObjects.Converters;
+using Axe.Windows.Core.CustomObjects.Converters;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 
-namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
+namespace Axe.Windows.Core.CustomObjects
 {
     public class CustomProperty
     {
