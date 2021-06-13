@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Core.CustomObjects.Converters;
+using Axe.Windows.Core.Enums;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -36,27 +36,41 @@ namespace Axe.Windows.Core.CustomObjects
             }
         }
 
-        private string _DataType;
-        /// <summary>The data type of this property's value as specified by the user, one of string, int, bool, double, point, or element.</summary>
+        ///  <summary>An internal representation of this property's type. For performance reasons, calling code should always use this property in place of the config representation.s</summary>
+        public CustomUIAPropertyType Type { get; private set; }
+
+        private string _ConfigType;
+        /// <summary>The data type of this property's value as specified in user configuration, one of string, int, bool, double, point, or element.</summary>
         [JsonProperty("uiaType")]
-        public string DataType
+        public string ConfigType
         {
-            get { return _DataType; }
+            get { return _ConfigType; }
             set
             {
                 switch (value)
                 {
                     case "string":
+                        Type = CustomUIAPropertyType.String;
+                        break;
                     case "int":
+                        Type = CustomUIAPropertyType.Int;
+                        break;
                     case "bool":
+                        Type = CustomUIAPropertyType.Bool;
+                        break;
                     case "double":
+                        Type = CustomUIAPropertyType.Double;
+                        break;
                     case "point":
+                        Type = CustomUIAPropertyType.Point;
+                        break;
                     case "element":
-                        _DataType = value;
+                        Type = CustomUIAPropertyType.Element;
                         break;
                     default:
                         throw new InvalidDataException("Type in custom property definition is missing or invalid.");
                 }
+                _ConfigType = value;
             }
         }
     }
