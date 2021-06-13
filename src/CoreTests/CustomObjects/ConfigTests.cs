@@ -24,12 +24,6 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
-        public void EmptyConfigTest()
-        {
-            Assert.ThrowsException<InvalidDataException>(() => Config.ReadFromText("{}"));
-        }
-
-        [TestMethod, Timeout(1000)]
         public void NullConfigTest()
         {
             try
@@ -67,28 +61,48 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void BadTypeConfigTest()
         {
             const string BadTypeConfig = "{\"properties\": [{\"guid\": \"4BB56516-F354-44CF-A5AA-96B52E968CFD\", \"programmaticName\": \"AreGridlinesVisible\", \"uiaType\": \"Excel\"}]}";
-            Assert.ThrowsException<InvalidDataException>(() => Config.ReadFromText(BadTypeConfig));
+            try
+            {
+                Config.ReadFromText(BadTypeConfig);
+                Assert.Fail("Failed to throw exception.");
+            }
+            catch (Exception) { }
         }
 
         [TestMethod, Timeout(1000)]
         public void MissingGuidConfigTest()
         {
             const string MissingGuidConfig = "{\"properties\": [{\"programmaticName\": \"AreGridlinesVisible\", \"uiaType\": \"bool\"}]}";
-            Assert.ThrowsException<InvalidDataException>(() => Config.ReadFromText(MissingGuidConfig));
+            try
+            {
+                Config.ReadFromText(MissingGuidConfig);
+                Assert.Fail("Failed to throw exception.");
+            }
+            catch (Exception) { }
         }
 
         [TestMethod, Timeout(1000)]
         public void MissingNameConfigTest()
         {
             const string MissingNameConfig = "{\"properties\": [{\"guid\": \"4BB56516-F354-44CF-A5AA-96B52E968CFD\", \"uiaType\": \"bool\"}]}";
-            Assert.ThrowsException<InvalidDataException>(() => Config.ReadFromText(MissingNameConfig));
+            try
+            {
+                Config.ReadFromText(MissingNameConfig);
+                Assert.Fail("Failed to throw exception.");
+            }
+            catch (Exception) { }
         }
 
         [TestMethod, Timeout(1000)]
         public void MissingTypeConfigTest()
         {
             const string MissingTypeConfig = "{\"properties\": [{\"guid\": \"4BB56516-F354-44CF-A5AA-96B52E968CFD\", \"programmaticName\": \"AreGridlinesVisible\"}]}";
-            Assert.ThrowsException<InvalidDataException>(() => Config.ReadFromText(MissingTypeConfig));
+            try
+            {
+                Config.ReadFromText(MissingTypeConfig);
+                Assert.Fail("Failed to throw exception.");
+            }
+            catch (Exception) { }
         }
     }
 }

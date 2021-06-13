@@ -10,54 +10,53 @@ namespace Axe.Windows.Core.CustomObjects
 {
     public class CustomProperty
     {
+#pragma warning disable CA1720 // Identifier contains type name: name from JSON
+        private Guid _Guid;
         /// <summary>The RFC4122 globally unique identifier of this property.</summary>
         [JsonProperty("guid")]
-#pragma warning disable CA1720 // Identifier contains type name: name from JSON
-        public Guid Guid { get; set; }
+        public Guid Guid {
+            get { return _Guid; }
+            set
+            {
+                if (value == Guid.Empty) throw new InvalidDataException("Missing GUID in custom property definition.");
+                _Guid = value;
+            }
+        }
 #pragma warning restore CA1720 // Identifier contains type name: name from JSON
+
+        private string _ProgrammaticName;
         /// <summary>A textual description of this property.</summary>
         [JsonProperty("programmaticName")]
-        public string ProgrammaticName { get; set; }
-
-        /// <summary>The data type of this property's value as specified by the user, one of string, int, bool, double, point, or element.</summary>
-        // TODO Bill: add enum (with values member)
-        [JsonProperty("uiaType")]
-        public string DataType { get; set; }
-
-        /// <summary>A type converter for this property, providing string rendering.</summary>
-        [JsonIgnore]
-        public ITypeConverter TypeConverter { get; private set; }
-
-        /// <summary>The dynamic ID assigned to this property by the system.</summary>
-        [JsonIgnore]
-        public int DynamicId { get; set; }
-
-        internal void Validate()
-        {
-            if (Guid == Guid.Empty) throw new InvalidDataException("Missing GUID in custom property definition.");
-            if (ProgrammaticName == null) throw new InvalidDataException("Missing programmatic name in custom property definition.");
-            if (DataType == null) throw new InvalidDataException("Missing type in custom property definition.");
-            TypeConverter = CreateTypeConverter();
+        public string ProgrammaticName {
+            get { return _ProgrammaticName; }
+            set
+            {
+                if (value == null) throw new InvalidDataException("Missing programmatic name in custom property definition.");
+                _ProgrammaticName = value;
+            }
         }
 
-        internal ITypeConverter CreateTypeConverter()
+        private string _DataType;
+        /// <summary>The data type of this property's value as specified by the user, one of string, int, bool, double, point, or element.</summary>
+        [JsonProperty("uiaType")]
+        public string DataType
         {
-            switch (DataType)
+            get { return _DataType; }
+            set
             {
-                case "string":
-                    return new StringTypeConverter();
-                case "int":
-                    return new IntTypeConverter();
-                case "bool":
-                    return new BoolTypeConverter();
-                case "double":
-                    return new DoubleTypeConverter();
-                case "point":
-                    return new PointTypeConverter();
-                case "element":
-                    return new ElementTypeConverter();
-                default:
-                    throw new InvalidDataException($"Unknown type {DataType}.");
+                switch (value)
+                {
+                    case "string":
+                    case "int":
+                    case "bool":
+                    case "double":
+                    case "point":
+                    case "element":
+                        _DataType = value;
+                        break;
+                    default:
+                        throw new InvalidDataException("Type in custom property definition is missing or invalid.");
+                }
             }
         }
     }
