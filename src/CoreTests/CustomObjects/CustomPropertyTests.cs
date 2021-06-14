@@ -5,7 +5,6 @@ using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.IO;
 
 namespace Axe.Windows.CoreTests.CustomObjects
 {
@@ -26,7 +25,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void BadTypePropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            Assert.ThrowsException<InvalidDataException>(() => prop.ConfigType = "Excel");
+            Assert.ThrowsException<ArgumentException>(() => prop.ConfigType = "Excel");
         }
 
         [TestMethod, Timeout(1000)]
