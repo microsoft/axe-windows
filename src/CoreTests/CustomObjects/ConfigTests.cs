@@ -70,41 +70,5 @@ namespace Axe.Windows.CoreTests.CustomObjects
             }
             catch (Exception) { }
         }
-
-        [TestMethod, Timeout(1000)]
-        public void MissingGuidConfigTest()
-        {
-            const string MissingGuidConfig = "{\"properties\": [{\"programmaticName\": \"AreGridlinesVisible\", \"uiaType\": \"bool\"}]}";
-            try
-            {
-                Config.ReadFromText(MissingGuidConfig);
-                Assert.Fail("Failed to throw exception.");
-            }
-            catch (Exception) { }
-        }
-
-        [TestMethod, Timeout(1000)]
-        public void MissingNameConfigTest()
-        {
-            const string MissingNameConfig = "{\"properties\": [{\"guid\": \"4BB56516-F354-44CF-A5AA-96B52E968CFD\", \"uiaType\": \"bool\"}]}";
-            try
-            {
-                Config.ReadFromText(MissingNameConfig);
-                Assert.Fail("Failed to throw exception.");
-            }
-            catch (Exception) { }
-        }
-
-        [TestMethod, Timeout(1000)]
-        public void MissingTypeConfigTest()
-        {
-            const string MissingTypeConfig = "{\"properties\": [{\"guid\": \"4BB56516-F354-44CF-A5AA-96B52E968CFD\", \"programmaticName\": \"AreGridlinesVisible\"}]}";
-            try
-            {
-                Config.ReadFromText(MissingTypeConfig);
-                Assert.Fail("Failed to throw exception.");
-            }
-            catch (Exception) { }
-        }
     }
 }
