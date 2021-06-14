@@ -110,7 +110,6 @@ namespace Axe.Windows.Core.Enums
         ComboBoxShouldNotSupportScrollPattern,
         ControlShouldNotSupportInvokePattern,
         ControlShouldNotSupportScrollPattern,
-        ControlShouldNotSupportTogglePattern,
         ControlShouldNotSupportValuePattern,
         ControlShouldNotSupportWindowPattern,
         ControlShouldSupportExpandCollapsePattern,
