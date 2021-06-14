@@ -52,7 +52,7 @@ namespace Axe.Windows.Core.CustomObjects
                         Type = CustomUIAPropertyType.Element;
                         break;
                     default:
-                        throw new InvalidDataException("Type in custom property definition is missing or invalid.");
+                        throw new ArgumentException($"'${value}' is not a supported type", nameof(value));
                 }
                 _configType = value;
             }
