@@ -13,7 +13,24 @@ namespace Axe.Windows.CoreTests.CustomObjects
     public class CustomPropertyTests
     {
         [TestMethod, Timeout(1000)]
-        public void StringConfigTest()
+        public void DefaultsPropertyTest()
+        {
+            CustomProperty prop = new CustomProperty();
+            Assert.AreEqual(Guid.Empty, prop.Guid);
+            Assert.AreEqual(null, prop.ProgrammaticName);
+            Assert.AreEqual(null, prop.ConfigType);
+            Assert.AreEqual(CustomUIAPropertyType.Unset, prop.Type);
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void BadTypePropertyTest()
+        {
+            CustomProperty prop = new CustomProperty();
+            Assert.ThrowsException<InvalidDataException>(() => prop.ConfigType = "Excel");
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void StringPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "string";
@@ -21,7 +38,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
-        public void IntConfigTest()
+        public void IntPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "int";
@@ -29,7 +46,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
-        public void BoolConfigTest()
+        public void BoolPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "bool";
@@ -37,7 +54,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
-        public void DoubleConfigTest()
+        public void DoublePropertyTest()
         {
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "double";
@@ -45,7 +62,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
-        public void PointConfigTest()
+        public void PointPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "point";
@@ -53,7 +70,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
-        public void ElementConfigTest()
+        public void ElementPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "element";

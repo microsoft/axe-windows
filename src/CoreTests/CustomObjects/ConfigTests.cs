@@ -58,17 +58,5 @@ namespace Axe.Windows.CoreTests.CustomObjects
             }
             catch (Exception) { }
         }
-
-        [TestMethod, Timeout(1000)]
-        public void BadTypeConfigTest()
-        {
-            const string BadTypeConfig = "{\"properties\": [{\"guid\": \"4BB56516-F354-44CF-A5AA-96B52E968CFD\", \"programmaticName\": \"AreGridlinesVisible\", \"uiaType\": \"Excel\"}]}";
-            try
-            {
-                Config.ReadFromText(BadTypeConfig);
-                Assert.Fail("Failed to throw exception.");
-            }
-            catch (Exception) { }
-        }
     }
 }
