@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Core.CustomObjects.Converters;
+using Axe.Windows.Core.Enums;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -10,54 +10,51 @@ namespace Axe.Windows.Core.CustomObjects
 {
     public class CustomProperty
     {
+#pragma warning disable CA1720 // Identifier contains type name: name from JSON
         /// <summary>The RFC4122 globally unique identifier of this property.</summary>
         [JsonProperty("guid")]
-#pragma warning disable CA1720 // Identifier contains type name: name from JSON
         public Guid Guid { get; set; }
 #pragma warning restore CA1720 // Identifier contains type name: name from JSON
+
         /// <summary>A textual description of this property.</summary>
         [JsonProperty("programmaticName")]
         public string ProgrammaticName { get; set; }
 
-        /// <summary>The data type of this property's value as specified by the user, one of string, int, bool, double, point, or element.</summary>
-        // TODO Bill: add enum (with values member)
+        ///  <summary>An internal representation of this property's type. For performance reasons, calling code should always use this property in place of the config representation.s</summary>
+        public CustomUIAPropertyType Type { get; private set; }
+
+        private string _configType;
+        /// <summary>The data type of this property's value as specified in user configuration, one of string, int, bool, double, point, or element.</summary>
         [JsonProperty("uiaType")]
-        public string DataType { get; set; }
-
-        /// <summary>A type converter for this property, providing string rendering.</summary>
-        [JsonIgnore]
-        public ITypeConverter TypeConverter { get; private set; }
-
-        /// <summary>The dynamic ID assigned to this property by the system.</summary>
-        [JsonIgnore]
-        public int DynamicId { get; set; }
-
-        internal void Validate()
+        public string ConfigType
         {
-            if (Guid == Guid.Empty) throw new InvalidDataException("Missing GUID in custom property definition.");
-            if (ProgrammaticName == null) throw new InvalidDataException("Missing programmatic name in custom property definition.");
-            if (DataType == null) throw new InvalidDataException("Missing type in custom property definition.");
-            TypeConverter = CreateTypeConverter();
-        }
-
-        internal ITypeConverter CreateTypeConverter()
-        {
-            switch (DataType)
+            get { return _configType; }
+            set
             {
-                case "string":
-                    return new StringTypeConverter();
-                case "int":
-                    return new IntTypeConverter();
-                case "bool":
-                    return new BoolTypeConverter();
-                case "double":
-                    return new DoubleTypeConverter();
-                case "point":
-                    return new PointTypeConverter();
-                case "element":
-                    return new ElementTypeConverter();
-                default:
-                    throw new InvalidDataException($"Unknown type {DataType}.");
+                switch (value)
+                {
+                    case "string":
+                        Type = CustomUIAPropertyType.String;
+                        break;
+                    case "int":
+                        Type = CustomUIAPropertyType.Int;
+                        break;
+                    case "bool":
+                        Type = CustomUIAPropertyType.Bool;
+                        break;
+                    case "double":
+                        Type = CustomUIAPropertyType.Double;
+                        break;
+                    case "point":
+                        Type = CustomUIAPropertyType.Point;
+                        break;
+                    case "element":
+                        Type = CustomUIAPropertyType.Element;
+                        break;
+                    default:
+                        throw new ArgumentException($"'${value}' is not a supported type", nameof(value));
+                }
+                _configType = value;
             }
         }
     }
