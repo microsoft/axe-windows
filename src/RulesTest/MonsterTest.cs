@@ -55,7 +55,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
@@ -198,7 +197,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
@@ -341,7 +339,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
@@ -484,7 +481,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
@@ -627,7 +623,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
@@ -770,7 +765,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
@@ -913,7 +907,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportTogglePattern]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlShouldNotSupportValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
