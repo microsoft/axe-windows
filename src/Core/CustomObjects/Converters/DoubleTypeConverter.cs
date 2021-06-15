@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Axe.Windows.Core.CustomObjects.Converters
 {
-    class DoubleTypeConverter : ITypeConverter
+    public class DoubleTypeConverter : ITypeConverter
     {
         public string Render(dynamic value)
         {

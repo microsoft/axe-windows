@@ -6,7 +6,7 @@ using System;
 
 namespace Axe.Windows.Core.CustomObjects.Converters
 {
-    class ElementTypeConverter : ITypeConverter
+    public class ElementTypeConverter : ITypeConverter
     {
         public string Render(dynamic value)
         {

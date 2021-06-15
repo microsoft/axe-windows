@@ -5,7 +5,7 @@ using System;
 
 namespace Axe.Windows.Core.CustomObjects.Converters
 {
-    class PointTypeConverter : ITypeConverter
+    public class PointTypeConverter : ITypeConverter
     {
         public string Render(dynamic value)
         {

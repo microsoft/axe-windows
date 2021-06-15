@@ -124,8 +124,10 @@ namespace Axe.Windows.Core.Bases
                         txt = this.Value != 0 ? LandmarkType.GetInstance().GetNameById(this.Value) : null; // 0 is default value.
                         break;
                     default:
-                        if (TypeConverterMap.ContainsKey(Id))
-                            txt = TypeConverterMap[Id].Render(Value);
+                        if (TypeConverterMap.TryGetValue(Id, out ITypeConverter converter))
+                        {
+                            txt = converter.Render(Value);
+                        }
                         else if (this.Value is Int32[])
                         {
                             txt = ((Int32[])this.Value).ConvertInt32ArrayToString();
@@ -145,7 +147,7 @@ namespace Axe.Windows.Core.Bases
         }
 
         /// <summary>
-        /// Get proper bounding rectangle text based on teh date
+        /// Get proper bounding rectangle text based on the data
         /// </summary>
         /// <returns></returns>
         private string GetBoundingRectangleText()
@@ -166,7 +168,10 @@ namespace Axe.Windows.Core.Bases
             return text;
         }
 
-        public static void HandleCustomPropertyRegistration(int dynamicId, ITypeConverter converter) { TypeConverterMap.Add(dynamicId, converter); }
+        public static void RegisterCustomProperty(int dynamicId, ITypeConverter converter) 
+        {
+            TypeConverterMap[dynamicId] = converter; 
+        }
 
         #region IDisposable Support
         private bool disposedValue; // To detect redundant calls

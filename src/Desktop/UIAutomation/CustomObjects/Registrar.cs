@@ -14,12 +14,12 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
     public class Registrar : IDisposable
     {
-        private CUIAutomationRegistrar _uiaRegistrar;
+        private IUIAutomationRegistrar _uiaRegistrar;
         private Action<int, ITypeConverter> _callback;
         private bool disposedValue;
 
         public Registrar()
-            : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.HandleCustomPropertyRegistration)) { }
+            : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.RegisterCustomProperty)) { }
 
         public void RegisterCustomProperty(CustomProperty prop)
         {
