@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Win32;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Axe.Windows.Core.Bases
@@ -18,6 +21,7 @@ namespace Axe.Windows.Core.Bases
         /// Property Id
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Property Name
         /// </summary>
@@ -42,6 +46,8 @@ namespace Axe.Windows.Core.Bases
                 return this.ToString();
             }
         }
+
+        static Dictionary<int, ITypeConverter> TypeConverterMap = new Dictionary<int, ITypeConverter>();
 
         /// <summary>
         /// Constructor with normal case
@@ -118,11 +124,13 @@ namespace Axe.Windows.Core.Bases
                         txt = this.Value != 0 ? LandmarkType.GetInstance().GetNameById(this.Value) : null; // 0 is default value.
                         break;
                     default:
-                        if(this.Value is Int32[])
+                        if (TypeConverterMap.ContainsKey(Id))
+                            txt = TypeConverterMap[Id].Render(Value);
+                        else if (this.Value is Int32[])
                         {
                             txt = ((Int32[])this.Value).ConvertInt32ArrayToString();
                         }
-                        else if(this.Value is Double[])
+                        else if (this.Value is Double[])
                         {
                             txt = ((Double[])this.Value).ConvertDoubleArrayToString();
                         }
@@ -157,6 +165,8 @@ namespace Axe.Windows.Core.Bases
 
             return text;
         }
+
+        public static void HandleCustomPropertyRegistration(int dynamicId, ITypeConverter converter) { TypeConverterMap.Add(dynamicId, converter); }
 
         #region IDisposable Support
         private bool disposedValue; // To detect redundant calls
