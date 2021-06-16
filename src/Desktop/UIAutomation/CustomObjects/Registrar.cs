@@ -55,7 +55,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             }
         }
 
-        private static ITypeConverter CreateTypeConverter(CustomUIAPropertyType type)
+        internal static ITypeConverter CreateTypeConverter(CustomUIAPropertyType type)
         {
             switch (type)
             {
