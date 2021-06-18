@@ -1,22 +1,19 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Core;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Enums;
 using Interop.UIAutomationCore;
 using System;
-using System.Runtime.InteropServices;
 
 namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
-    public class Registrar : IDisposable
+    public class Registrar
     {
         private IUIAutomationRegistrar _uiaRegistrar;
         private Action<int, ITypeConverter> _converterRegistrationAction;
-        private bool disposedValue;
 
         public Registrar()
             : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.RegisterCustomProperty)) { }
@@ -67,36 +64,6 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                 case CustomUIAPropertyType.Element: return new ElementTypeConverter();
                 default: throw new ArgumentException("Unset or unknown type", nameof(type));
             }
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    // TODO: dispose managed state (managed objects)
-                }
-
-                // Free unmanaged resources (unmanaged objects) and set large fields to null
-                Marshal.ReleaseComObject(_uiaRegistrar);
-                _uiaRegistrar = null;
-
-                disposedValue = true;
-            }
-        }
-
-        ~Registrar()
-        {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: false);
-        }
-
-        public void Dispose()
-        {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
     }
 }
