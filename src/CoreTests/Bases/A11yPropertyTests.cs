@@ -46,7 +46,8 @@ namespace Axe.Windows.CoreTests.Bases
         }
 
         [TestMethod()]
-        public void SimpleCustomPropertyTest() {
+        public void SimpleCustomPropertyTest() 
+        {
             const int testId = 42;
             dynamic testValue = 1;
             const string expectedRendering = "1";
