@@ -18,27 +18,27 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
         [TestMethod, Timeout(1000)]
         public void RegisterCustomProperty_CorrectDataFlow()
         {
-            Guid testGuid = new Guid("312F7536-259A-47C7-B192-AA16352522C4");
-            string testName = "CommentReplyCount";
-            CustomProperty testConfig = new CustomProperty { Guid = testGuid, ProgrammaticName = testName, ConfigType = "int" };
-            UIAutomationPropertyInfo testInfo = new UIAutomationPropertyInfo { guid = testGuid, pProgrammaticName = testName, type = UIAutomationType.UIAutomationType_Int };
-            int testId = 43;
-            Mock<IUIAutomationRegistrar> UIARegistrarMock = new Mock<IUIAutomationRegistrar>(MockBehavior.Strict);
-            UIARegistrarMock.Setup(x => x.RegisterProperty(ref testInfo, out testId));
+            Guid propertyGuid = new Guid("312F7536-259A-47C7-B192-AA16352522C4");
+            string propertyName = "CommentReplyCount";
+            CustomProperty propertyToRegister = new CustomProperty { Guid = propertyGuid, ProgrammaticName = propertyName, ConfigType = "int" };
+            UIAutomationPropertyInfo expectedPropertyInfo = new UIAutomationPropertyInfo { guid = propertyGuid, pProgrammaticName = propertyName, type = UIAutomationType.UIAutomationType_Int };
+            int propertyId = 43;
+            Mock<IUIAutomationRegistrar> uiaRegistrarMock = new Mock<IUIAutomationRegistrar>(MockBehavior.Strict);
+            uiaRegistrarMock.Setup(x => x.RegisterProperty(ref expectedPropertyInfo, out propertyId));
             int counter = 0;
             Action<int, ITypeConverter> testCallback = new Action<int, ITypeConverter>((id, converter) =>
             {
-                Assert.AreEqual(testId, id);
+                Assert.AreEqual(propertyId, id);
                 Assert.IsInstanceOfType(converter, typeof(IntTypeConverter));
                 counter++;
             });
 
-            Registrar r = new Registrar(UIARegistrarMock.Object, testCallback);
+            Registrar r = new Registrar(uiaRegistrarMock.Object, testCallback);
 
-            r.RegisterCustomProperty(testConfig);
+            r.RegisterCustomProperty(propertyToRegister);
 
             Assert.AreEqual(1, counter); // Callback should only be called once
-            UIARegistrarMock.VerifyAll();
+            uiaRegistrarMock.VerifyAll();
         }
 
         [TestMethod, Timeout(1000)]

@@ -15,11 +15,17 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
     public class Registrar : IDisposable
     {
         private IUIAutomationRegistrar _uiaRegistrar;
-        private Action<int, ITypeConverter> _callback;
+        private Action<int, ITypeConverter> _converterRegistrationAction;
         private bool disposedValue;
 
         public Registrar()
             : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.RegisterCustomProperty)) { }
+
+        internal Registrar(IUIAutomationRegistrar uiaRegistrar, Action<int, ITypeConverter> converterRegistrationAction)
+        {
+            _uiaRegistrar = uiaRegistrar;
+            _converterRegistrationAction = converterRegistrationAction;
+        }
 
         public void RegisterCustomProperty(CustomProperty prop)
         {
@@ -32,13 +38,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             };
 
             _uiaRegistrar.RegisterProperty(ref info, out int dynamicId);
-            _callback(dynamicId, CreateTypeConverter(prop.Type));
-        }
-
-        internal Registrar(IUIAutomationRegistrar uiaRegistrar, Action<int, ITypeConverter> callback)
-        {
-            _uiaRegistrar = uiaRegistrar;
-            _callback = callback;
+            _converterRegistrationAction(dynamicId, CreateTypeConverter(prop.Type));
         }
 
         private static UIAutomationType GetUnderlyingUIAType(CustomUIAPropertyType type)
