@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Types;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Axe.Windows.CoreTests.Bases
 {
@@ -40,6 +43,29 @@ namespace Axe.Windows.CoreTests.Bases
 
             kpVal = ke.Properties[PropertyType.UIA_HasKeyboardFocusPropertyId].ToString();
             Assert.AreEqual("False", kpVal);
+        }
+
+        [TestMethod()]
+        public void SimpleCustomPropertyTest() 
+        {
+            const int testId = 42;
+            dynamic testValue = 1;
+            const string expectedRendering = "1";
+            A11yProperty.RegisterCustomProperty(testId, new IntTypeConverter());
+            A11yProperty kp = new A11yProperty(testId, testValue);
+            Assert.AreEqual(expectedRendering, kp.ToString());
+        }
+
+        [TestMethod()]
+        public void RegisterTwiceCustomPropertyTest()
+        {
+            const int testId = 42;
+            dynamic testValue = 1;
+            const string expectedRendering = "1";
+            A11yProperty.RegisterCustomProperty(testId, new PointTypeConverter()); // First registration, should be dropped.
+            A11yProperty.RegisterCustomProperty(testId, new IntTypeConverter()); // Second registration, last one wins.
+            A11yProperty kp = new A11yProperty(testId, testValue);
+            Assert.AreEqual(expectedRendering, kp.ToString());
         }
     }
 }

@@ -5,7 +5,7 @@ using System;
 
 namespace Axe.Windows.Core.CustomObjects.Converters
 {
-    class StringTypeConverter : ITypeConverter
+    public class StringTypeConverter : ITypeConverter
     {
         public string Render(dynamic value)
         {
