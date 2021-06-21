@@ -95,7 +95,8 @@ namespace Axe.Windows.Automation
             /// </summary>
             public Builder WithCustomUIAConfig(string path)
             {
-                _config.CustomUIAConfigPath= path;
+
+                _config.CustomUIAConfigPath = path;
                 return this;
             }
 
