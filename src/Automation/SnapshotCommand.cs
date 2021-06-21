@@ -33,7 +33,7 @@ namespace Axe.Windows.Automation
             scanTools.NativeMethods.SetProcessDPIAware();
 
             if (config.CustomUIAConfigPath != null)
-                scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(path);
+                scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
 
             var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
 

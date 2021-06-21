@@ -2,11 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions;
+using Axe.Windows.Actions.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Misc;
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Desktop.Settings;
 using System;
@@ -61,10 +61,9 @@ namespace Axe.Windows.Automation
             SaveAction.SaveSnapshotZip(path, elementId, element.UniqueId, A11yFileMode.Test);
         }
 
-
-        void RegisterCustomUIAPropertiesFromConfig(string path)
+        public void RegisterCustomUIAPropertiesFromConfig(string path)
         {
-            Config conf = CustomUIAAction.ReadConfigFromFile(config.CustomUIAConfigPath);
+            Core.CustomObjects.Config conf = CustomUIAAction.ReadConfigFromFile(path);
             CustomUIAAction.RegisterCustomProperties(conf.Properties);
         }
     } // class
