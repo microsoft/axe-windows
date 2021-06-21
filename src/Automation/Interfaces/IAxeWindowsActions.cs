@@ -38,5 +38,11 @@ namespace Axe.Windows.Automation
         /// <param name="element"></param>
         /// <param name="elementId"></param>
         void SaveA11yTestFile(string path, A11yElement element, Guid elementId);
+
+        /// <summary>
+        /// Registers the custom UI Automation properties defined in the configuration file at path
+        /// </summary>
+        /// <param name="path"></param>
+        void RegisterCustomUIAPropertiesFromConfig(string path);
     } // interface
 } // namespace

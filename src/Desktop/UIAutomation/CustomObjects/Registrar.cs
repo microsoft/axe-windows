@@ -15,9 +15,9 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
     {
         private IUIAutomationRegistrar _uiaRegistrar;
         private Action<int, ITypeConverter> _converterRegistrationAction;
-        public Dictionary<int, CustomProperty> IdsToCustomProperties { get; private set; }
+        private Dictionary<int, CustomProperty> IdsToCustomProperties { get;}
 
-        public Registrar()
+        internal Registrar()
             : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.RegisterCustomProperty)) { }
 
         internal Registrar(IUIAutomationRegistrar uiaRegistrar, Action<int, ITypeConverter> converterRegistrationAction)
@@ -53,6 +53,10 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             _converterRegistrationAction(dynamicId, CreateTypeConverter(prop.Type));
             IdsToCustomProperties[dynamicId] = prop;
         }
+
+#pragma warning disable CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
+        public Dictionary<int, CustomProperty> GetCustomPropertyRegistrations() { return new Dictionary<int, CustomProperty>(IdsToCustomProperties);  }
+#pragma warning restore CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
 
         private static UIAutomationType GetUnderlyingUIAType(CustomUIAPropertyType type)
         {

@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
 using System.Collections.Generic;
 using UIAutomationClient;
@@ -40,6 +42,12 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     cr.AddProperty(pp);
                 }
+            }
+
+            IEnumerable<int> cps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations().Keys;
+            foreach (var cp in cps)
+            {
+                cr.AddProperty(cp);
             }
 
             if (pts != null)

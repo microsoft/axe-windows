@@ -38,7 +38,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
             r.RegisterCustomProperty(propertyToRegister);
 
             Assert.AreEqual(1, counter); // Callback should only be called once
-            Assert.AreEqual(propertyToRegister, r.IdsToCustomProperties[propertyId]);
+            Assert.AreEqual(propertyToRegister, r.GetCustomPropertyRegistrations()[propertyId]);
             uiaRegistrarMock.VerifyAll();
         }
 
