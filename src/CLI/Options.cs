@@ -29,7 +29,7 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "DelayInSeconds", ResourceType = typeof(Resources.OptionsHelpText))]
         public int DelayInSeconds { get; set; }
 
-        [Option("CustomUIA", Required = false, HelpText = "CustomUia", ResourceType = typeof(Resources.OptionsHelpText))]
+        [Option(Required = false, HelpText = "CustomUia", ResourceType = typeof(Resources.OptionsHelpText))]
         public string CustomUia { get; set; }
 
         // CommandLineParser will never set this value!
