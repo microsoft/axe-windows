@@ -62,11 +62,11 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         {
             switch (type)
             {
-                case CustomUIAPropertyType.String: return UIAutomationType.UIAutomationType_OutString;
+                case CustomUIAPropertyType.String: return UIAutomationType.UIAutomationType_String;
                 case CustomUIAPropertyType.Int: return UIAutomationType.UIAutomationType_Int;
                 case CustomUIAPropertyType.Bool: return UIAutomationType.UIAutomationType_Bool;
                 case CustomUIAPropertyType.Double: return UIAutomationType.UIAutomationType_Double;
-                case CustomUIAPropertyType.Point: return UIAutomationType.UIAutomationType_OutPoint;
+                case CustomUIAPropertyType.Point: return UIAutomationType.UIAutomationType_Point;
                 case CustomUIAPropertyType.Element: return UIAutomationType.UIAutomationType_Element;
                 default: throw new ArgumentException("Unset or unknown type", nameof(type));
             }
