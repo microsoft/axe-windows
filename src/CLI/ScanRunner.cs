@@ -17,7 +17,8 @@ namespace AxeWindowsCLI
         {
             Config.Builder builder = Config.Builder
                 .ForProcessId(options.ProcessId)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithCustomUIAConfig(options.CustomUia);
 
             if (!string.IsNullOrEmpty(options.OutputDirectory))
                 builder = builder.WithOutputDirectory(options.OutputDirectory);

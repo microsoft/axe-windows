@@ -61,6 +61,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The path to a configuration file specifying custom UI Automation attributes.
+        /// </summary>
+        public static string CustomUia {
+            get {
+                return ResourceManager.GetString("CustomUia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with a default of 0..
         /// </summary>
         public static string DelayInSeconds {
