@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions;
+using Axe.Windows.Actions.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Misc;
@@ -57,6 +59,12 @@ namespace Axe.Windows.Automation
         public void SaveA11yTestFile(string path, A11yElement element, Guid elementId)
         {
             SaveAction.SaveSnapshotZip(path, elementId, element.UniqueId, A11yFileMode.Test);
+        }
+
+        public void RegisterCustomUIAPropertiesFromConfig(string path)
+        {
+            Core.CustomObjects.Config conf = CustomUIAAction.ReadConfigFromFile(path);
+            CustomUIAAction.RegisterCustomProperties(conf.Properties);
         }
     } // class
 } // namespace

@@ -7,6 +7,7 @@ using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Enums;
 using Interop.UIAutomationCore;
 using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
@@ -14,14 +15,28 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
     {
         private IUIAutomationRegistrar _uiaRegistrar;
         private Action<int, ITypeConverter> _converterRegistrationAction;
+        private Dictionary<int, CustomProperty> _idToCustomPropertyMap { get;}
 
-        public Registrar()
+        internal Registrar()
             : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.RegisterCustomProperty)) { }
 
         internal Registrar(IUIAutomationRegistrar uiaRegistrar, Action<int, ITypeConverter> converterRegistrationAction)
         {
             _uiaRegistrar = uiaRegistrar;
             _converterRegistrationAction = converterRegistrationAction;
+            _idToCustomPropertyMap = new Dictionary<int, CustomProperty>();
+        }
+
+        static Registrar sDefaultInstance;
+
+#pragma warning disable CA1024 // Use properties where appropriate: backing field
+        public static Registrar GetDefaultInstance()
+#pragma warning restore CA1024 // Use properties where appropriate: backing field
+        {
+            // This code is currently not thread safe.
+            if (sDefaultInstance == null)
+                sDefaultInstance = new Registrar();
+            return sDefaultInstance;
         }
 
         public void RegisterCustomProperty(CustomProperty prop)
@@ -36,7 +51,12 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 
             _uiaRegistrar.RegisterProperty(ref info, out int dynamicId);
             _converterRegistrationAction(dynamicId, CreateTypeConverter(prop.Type));
+            _idToCustomPropertyMap[dynamicId] = prop;
         }
+
+#pragma warning disable CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
+        public Dictionary<int, CustomProperty> GetCustomPropertyRegistrations() { return new Dictionary<int, CustomProperty>(_idToCustomPropertyMap);  }
+#pragma warning restore CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
 
         private static UIAutomationType GetUnderlyingUIAType(CustomUIAPropertyType type)
         {

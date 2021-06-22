@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Actions.Actions;
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using System;
@@ -29,6 +31,9 @@ namespace Axe.Windows.Automation
 
             // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
             scanTools.NativeMethods.SetProcessDPIAware();
+
+            if (config.CustomUIAConfigPath != null)
+                scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
 
             var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
 

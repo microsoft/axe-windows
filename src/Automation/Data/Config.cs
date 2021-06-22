@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using System;
 
 namespace Axe.Windows.Automation
@@ -36,6 +37,9 @@ namespace Axe.Windows.Automation
         /// No output files will be written if no errors were found during the automation session.
         /// </remarks>
         public OutputFileFormat OutputFileFormat { get; private set; }
+
+        ///  <summary>The path to a file containing configuration instructing Axe Windows how to interpret custom UI Automation data.</summary>
+        public string CustomUIAConfigPath{ get; private set; }
 
         private Config()
         { }
@@ -87,6 +91,16 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
+            /// Specify the path to a custom configuration file instructing Axe Windows how to interpret custom UIA data.
+            /// </summary>
+            public Builder WithCustomUIAConfig(string path)
+            {
+
+                _config.CustomUIAConfigPath = path;
+                return this;
+            }
+
+            /// <summary>
             /// Build an instance of <see cref="Config"/>
             /// </summary>
             /// <returns></returns>
@@ -97,6 +111,7 @@ namespace Axe.Windows.Automation
                     ProcessId = _config.ProcessId,
                     OutputFileFormat = _config.OutputFileFormat,
                     OutputDirectory = _config.OutputDirectory,
+                    CustomUIAConfigPath = _config.CustomUIAConfigPath,
                 };
             }
         } // Builder

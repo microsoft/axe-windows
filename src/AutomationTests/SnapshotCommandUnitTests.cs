@@ -353,5 +353,32 @@ namespace Axe.Windows.AutomationTests
             _resultsAssemblerMock.VerifyAll();
             _outputFileHelperMock.VerifyAll();
         }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_CustomUIAPropertyConfig_RegisterCustomUIAPropertiesCalled()
+        {
+            string configPath = "test.json";
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            var expectedResults = new ScanResults();
+            InitResultsCallback(expectedResults);
+            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
+
+            _actionsMock.Setup(x => x.RegisterCustomUIAPropertiesFromConfig(configPath));
+
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithCustomUIAConfig(configPath)
+                .Build();
+
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+
+            _actionsMock.VerifyAll();
+        }
     } // class
 } // namespace
