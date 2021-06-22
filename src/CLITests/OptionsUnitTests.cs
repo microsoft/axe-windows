@@ -21,6 +21,7 @@ namespace AxeWindowsCLITests
         const string ScanIdKey = "--scanid";
         const string ShowThirdPartyNoticesKey = "--showthirdpartynotices";
         const string DelayInSecondsKey = "--delayinseconds";
+        const string CustomUiaKey= "--customuia";
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
@@ -34,7 +35,7 @@ namespace AxeWindowsCLITests
         private int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
             string verbosity = null, bool showThirdPartyNotices = false,
-            int delayInSeconds = 0)
+            int delayInSeconds = 0, string customUia = null)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -44,6 +45,7 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
             Assert.AreEqual(showThirdPartyNotices, options.ShowThirdPartyNotices);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
+            Assert.AreEqual(customUia, options.CustomUia);
             return ExpectedParseSuccess;
         }
 
@@ -133,6 +135,22 @@ namespace AxeWindowsCLITests
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
                     (o) => ValidateOptions(o, delayInSeconds: delayInt),
+                    FailIfCalled);
+
+            Assert.AreEqual(ExpectedParseSuccess, parseResult);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ParseArguments_CustomUiaIsSet_SucceedsWithCustomUia()
+        {
+            const string expectedCustomUia = "test.json";
+
+            string[] args = { CustomUiaKey, expectedCustomUia };
+
+            int parseResult = Parser.Default.ParseArguments<Options>(args)
+                .MapResult(
+                    (o) => ValidateOptions(o, customUia: expectedCustomUia),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);

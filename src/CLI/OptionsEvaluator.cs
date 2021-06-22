@@ -63,6 +63,7 @@ namespace AxeWindowsCLI
                 ScanId = rawInputs.ScanId,
                 VerbosityLevel = verbosityLevel,
                 DelayInSeconds = delayInSeconds,
+                CustomUia = rawInputs.CustomUia,
             };
         }
 

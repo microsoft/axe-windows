@@ -29,6 +29,9 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "DelayInSeconds", ResourceType = typeof(Resources.OptionsHelpText))]
         public int DelayInSeconds { get; set; }
 
+        [Option(Required = false, HelpText = "CustomUia", ResourceType = typeof(Resources.OptionsHelpText))]
+        public string CustomUia { get; set; }
+
         // CommandLineParser will never set this value!
         public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;
     }
