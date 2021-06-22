@@ -21,7 +21,7 @@ namespace AxeWindowsCLITests
         const string ScanIdKey = "--scanid";
         const string ShowThirdPartyNoticesKey = "--showthirdpartynotices";
         const string DelayInSecondsKey = "--delayinseconds";
-        const string CustomUiaKey= "--custom-uia";
+        const string CustomUiaKey= "--customuia";
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
