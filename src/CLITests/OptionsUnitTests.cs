@@ -35,7 +35,7 @@ namespace AxeWindowsCLITests
         private int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
             string verbosity = null, bool showThirdPartyNotices = false,
-            int delayInSeconds = 0, string customUia=null)
+            int delayInSeconds = 0, string customUia = null)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
