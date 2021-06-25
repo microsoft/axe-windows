@@ -55,4 +55,8 @@
     <ProjectReference Include="..\Automation\Automation.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="del $(OutDir)Interop.UIAutomationCore.dll" />
+  </Target>
+
 </Project>
