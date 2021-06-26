@@ -19,6 +19,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreTests", "CoreTests\CoreTests.csproj", "{BD29FE9B-6FB1-4141-92A5-34C4CAED8274}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desktop", "Desktop\Desktop.csproj", "{0B9855FD-7B04-415C-A813-DA9697693FDA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D8127637-0DF7-44EA-96AB-C460B90B342A} = {D8127637-0DF7-44EA-96AB-C460B90B342A}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopTests", "DesktopTests\DesktopTests.csproj", "{AB9E59B6-54CE-4F5D-8055-8AD6745F3B84}"
 EndProject
@@ -63,6 +66,8 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "CLI_Installer", "CLI_Instal
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI_Full", "CLI_Full\CLI_Full.csproj", "{EA268022-DB48-4958-BF9E-A29BF90F51D2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interop", "Interop\Interop.csproj", "{D8127637-0DF7-44EA-96AB-C460B90B342A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -394,6 +399,18 @@ Global
 		{EA268022-DB48-4958-BF9E-A29BF90F51D2}.Release|x64.Build.0 = Release|Any CPU
 		{EA268022-DB48-4958-BF9E-A29BF90F51D2}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA268022-DB48-4958-BF9E-A29BF90F51D2}.Release|x86.Build.0 = Release|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Debug|x64.Build.0 = Debug|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Debug|x86.Build.0 = Debug|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Release|x64.ActiveCfg = Release|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Release|x64.Build.0 = Release|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Release|x86.ActiveCfg = Release|Any CPU
+		{D8127637-0DF7-44EA-96AB-C460B90B342A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

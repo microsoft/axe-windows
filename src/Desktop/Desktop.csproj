@@ -9,7 +9,6 @@
   <Import Project="..\..\build\NetStandardRelease.targets" />
 
   <ItemGroup>
-    <PackageReference Include="Interop.UIAutomationCore.Signed" Version="10.19041.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -44,7 +43,7 @@
 
   <ItemGroup>
     <Reference Include="Interop.UIAutomationCore">
-      <HintPath>Interop.UIAutomationCore.dll</HintPath>
+      <HintPath>..\Interop\bin\$(Configuration)\netcoreapp3.1\Interop.UIAutomationCore.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
