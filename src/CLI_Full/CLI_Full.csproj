@@ -55,4 +55,8 @@
     <ProjectReference Include="..\Automation\Automation.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\AxeWindowsCLI.dll $(TargetDir)" />
+  </Target>
+
 </Project>
