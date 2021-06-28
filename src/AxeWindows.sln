@@ -66,6 +66,9 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "CLI_Installer", "CLI_Instal
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI_Full", "CLI_Full\CLI_Full.csproj", "{EA268022-DB48-4958-BF9E-A29BF90F51D2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4} = {EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interop", "Interop\Interop.csproj", "{D8127637-0DF7-44EA-96AB-C460B90B342A}"
 EndProject
