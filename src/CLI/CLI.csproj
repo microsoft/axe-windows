@@ -15,6 +15,7 @@
     <DropMsftSignedFile Include="$(TargetDir)\$(TargetName).exe" />
     <Drop3PartySignedFile Include="$(TargetDir)\CommandLine.dll" />
     <Drop3PartySignedFile Include="$(TargetDir)\Newtonsoft.Json.dll" />
+    <Drop3PartySignedFile Include="$(TargetDir)\Interop.UIAutomationCore.dll" />
   </ItemGroup>
 
   <PropertyGroup>
