@@ -11,12 +11,13 @@ msiexec.exe /i AxeWindowsCLI-X.Y.Z.msi /quiet
 ```
 
 ## Running the tool
-You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool gets installed to `c:\users\Program Files (x86)\AxeWindowsCLI\1.0\AxeWindowsCLI.exe`, although you can install it into other locations if you wish.
+You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool gets installed to `c:\Program Files (x86)\AxeWindowsCLI\<version>\AxeWindowsCLI.exe`, although you can install it into other locations if you wish.
 
-If you run the tool without parameters, you'll be presented with the help screen:
+If you run the tool without parameters, you'll be presented with the help screen. An example follows:
 
 ```
-AxeWindowsCLI.exe
+AxeWindowsCLI 1.0.9
+Copyright c 2020
 
   --processid                Process Id
 
@@ -28,13 +29,13 @@ AxeWindowsCLI.exe
 
   --verbosity                Verbosity level (Quiet/Default/Verbose)
 
-  --showthirdpartynotices    Display Third Party Notices (opens file in browser
-                             without executing scan). If specified, all other
-                             options will be ignored.
+  --showthirdpartynotices    Display Third Party Notices (opens file in browser without executing scan). If specified,
+                             all other options will be ignored.
 
-  --delayinseconds           How many seconds to delay before triggering the
-                             scan. Valid range is 0 to 60 seconds, with a
-                             default of 0.
+  --delayinseconds           How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with
+                             a default of 0.
+
+  --customuia                The path to a configuration file specifying custom UI Automation attributes
 
   --help                     Display this help screen.
 
@@ -54,6 +55,7 @@ Parameter|Description
 |verbosity|Identifies the level of detail you want in the output. Valid values are `quiet` (minimal output), `default` (typical output), or `verbose` (maximum output).
 |showThirdPartyNotices|If specified, displays the third party notices for components used by AxeWindowsCLI. This information is also available in the `thirdpartynotices.html` file that is installed with AxeWindowsCLI.
 |delayInSeconds|Optionally inserts a delay before triggering the scan. This allows transient controls (menus, drop-down-lists, etc.) to be scanned.
+|customuia|The path to a [custom UIA configuration file](../../docs/CustomUIA.md).
 
 ### Scan results
 A summary of scan results will be displayed after the scan is run. In addition, an A11yTest file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io
