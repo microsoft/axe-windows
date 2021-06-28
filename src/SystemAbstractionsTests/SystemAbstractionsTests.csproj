@@ -13,8 +13,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
     <PackageReference Include="Moq" Version="4.16.1" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.4" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.4" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.5" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,14 +27,12 @@
     <!-- This target could be placed in any project which references the CodeCov package -->
     
     <ItemGroup>
-      <ReferenceToCodeCovPackage Include="@(PackageReference)"
-                                 Condition="'%(Identity)' == 'Codecov'" />
+      <ReferenceToCodeCovPackage Include="@(PackageReference)" Condition="'%(Identity)' == 'Codecov'" />
     </ItemGroup>
 
-    <Error Condition="'@(ReferenceToCodeCovPackage->Count())' != '1'"  />
+    <Error Condition="'@(ReferenceToCodeCovPackage-&gt;Count())' != '1'" />
 
-    <Message Importance="high"
-             Text="##vso[task.setvariable variable=CODECOV_VERSION]%(ReferenceToCodeCovPackage.Version)" />
+    <Message Importance="high" Text="##vso[task.setvariable variable=CODECOV_VERSION]%(ReferenceToCodeCovPackage.Version)" />
   </Target>
 
 </Project>
