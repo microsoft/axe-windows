@@ -60,6 +60,22 @@ directory | `string` | The directory where any output files should be written; i
 
 The `WithOutputDirectory` method returns the  `Config.Builder` configured with the specified output directory.
 
+##### `WithCustomUIAConfig`
+
+Specify the path to a [custom UIA configuration file](./CustomUIA.md).
+
+###### Parameters
+
+The `WithCustomUIAConfig` method accepts the following parameters:
+
+**Name** | **Type** | **Description**
+---|---|---
+path | `string` | The path to the configuration file.
+
+###### Return object
+
+The `WithCustomUIAConfig` method returns the  `Config.Builder` configured with the specified custom UIA configuration file.
+
 ##### Build
 
 Build an instance of `Config`.
