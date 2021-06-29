@@ -44,17 +44,17 @@ function Get-UniqueTempFolder([string] $app){
 }
 
 function Copy-Files([string]$src, [string]$pattern, [string]$dst) {
-    Write-Verbose "              entering Copy-Files"
-    Write-Verbose "                src = $src"
-    Write-Verbose "                pattern = $pattern"
-    Write-Verbose "                dst = $dst"
+    Write-Verbose "                entering Copy-Files"
+    Write-Verbose "                  src = $src"
+    Write-Verbose "                  pattern = $pattern"
+    Write-Verbose "                  dst = $dst"
 
     [string]$srcWithPattern = Join-Path $src $pattern
-    Write-Verbose "                Copying $srcWithPattern to $dst"
+    Write-Verbose "                  Copying $srcWithPattern to $dst"
 
     Copy-Item $srcWithPattern $dst -Force
 
-    Write-Verbose "              exiting Copy-Files"
+    Write-Verbose "                exiting Copy-Files"
 }
 
 function Remove-FilesByPattern([string]$path, [string]$pattern){
@@ -75,7 +75,7 @@ function Create-Archive([string]$src, [string]$dst){
     $from=$src + '\*'
     Compress-Archive -Force -Path $from -DestinationPath $dst
 
-    Write-Verbose "    exiting Create-Archive"
+    Write-Verbose "        exiting Create-Archive"
 }
 
 function Add-ZipfileContents([string]$srcDir, [string]$scratch, [string]$patternToInclude, [string[]]$patternsToRemove){
