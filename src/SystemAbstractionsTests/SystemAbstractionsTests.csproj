@@ -30,9 +30,10 @@
       <ReferenceToCodeCovPackage Include="@(PackageReference)" Condition="'%(Identity)' == 'Codecov'" />
     </ItemGroup>
 
-    <Error Condition="'@(ReferenceToCodeCovPackage-&gt;Count())' != '1'" />
+    <Error Condition="'@(ReferenceToCodeCovPackage->Count())' != '1'"  />
 
-    <Message Importance="high" Text="##vso[task.setvariable variable=CODECOV_VERSION]%(ReferenceToCodeCovPackage.Version)" />
+    <Message Importance="high"
+             Text="##vso[task.setvariable variable=CODECOV_VERSION]%(ReferenceToCodeCovPackage.Version)" />
   </Target>
 
 </Project>
