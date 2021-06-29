@@ -20,6 +20,7 @@
         <dependency id="Microsoft.Win32.Registry" version="5.0.0" />
         <dependency id="System.Drawing.Common" version="5.0.2" />
         <dependency id="System.IO.Packaging" version="5.0.0" />
+        <dependency id="Interop.UIAutomationCore.Signed" version="10.19041.0" />
       </group>
     </dependencies>
     <releaseNotes>https://github.com/microsoft/axe-windows/releases</releaseNotes>

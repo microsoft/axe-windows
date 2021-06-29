@@ -83,13 +83,6 @@
     <EmbeddedResource Include="TestImages\weird_text_arrangement.bmp" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Interop.UIAutomationCore">
-      <HintPath>..\Interop\bin\$(Configuration)\netcoreapp3.1\Interop.UIAutomationCore.dll</HintPath>
-      <EmbedInteropTypes>true</EmbedInteropTypes>
-    </Reference>
-  </ItemGroup>
-
   <Import Project="..\..\build\NetStandardTest.targets" />
 
 </Project>

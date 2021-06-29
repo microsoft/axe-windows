@@ -332,7 +332,7 @@ jobs:
       SourceFolder: '$(Build.SourcesDirectory)\src'
       Contents: |
        CLI_Full\bin\release\netcoreapp3.1\win7-x86\?(*.exe|*.dll)
-       !CLI_Full\bin\release\netcoreapp3.1\win7-x86\?(CommandLine.dll|Newtonsoft.Json.dll)
+       !CLI_Full\bin\release\netcoreapp3.1\win7-x86\?(CommandLine.dll|Newtonsoft.Json.dll|Interop.UIAutomationCore.dll)
       TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
 
   - task: CopyFiles@2
