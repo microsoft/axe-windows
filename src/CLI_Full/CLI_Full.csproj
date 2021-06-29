@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\AxeWindowsCLI.dll $(TargetDir)" />
+    <Exec Command="copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\CommandLine.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\Interop.UIAutomationCore.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\Newtonsoft.Json.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\AxeWindowsCLI.dll $(TargetDir)" />
   </Target>
 
 </Project>
