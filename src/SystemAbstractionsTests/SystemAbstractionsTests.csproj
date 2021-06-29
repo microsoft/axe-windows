@@ -27,7 +27,8 @@
     <!-- This target could be placed in any project which references the CodeCov package -->
     
     <ItemGroup>
-      <ReferenceToCodeCovPackage Include="@(PackageReference)" Condition="'%(Identity)' == 'Codecov'" />
+      <ReferenceToCodeCovPackage Include="@(PackageReference)"
+                                 Condition="'%(Identity)' == 'Codecov'" />
     </ItemGroup>
 
     <Error Condition="'@(ReferenceToCodeCovPackage->Count())' != '1'"  />
