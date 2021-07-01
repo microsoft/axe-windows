@@ -67,6 +67,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CLI_Full", "CLI_Full\CLI_Fu
 		{EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4} = {EE543183-CD9C-4AED-A5F8-12CBCBDBB3C4}
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interop", "Interop\Interop.csproj", "{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E616C64-EAD7-458C-92AC-B50643E64D38} = {7E616C64-EAD7-458C-92AC-B50643E64D38}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -397,6 +402,18 @@ Global
 		{EA268022-DB48-4958-BF9E-A29BF90F51D2}.Release|x64.Build.0 = Release|Any CPU
 		{EA268022-DB48-4958-BF9E-A29BF90F51D2}.Release|x86.ActiveCfg = Release|Any CPU
 		{EA268022-DB48-4958-BF9E-A29BF90F51D2}.Release|x86.Build.0 = Release|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Debug|x64.Build.0 = Debug|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Debug|x86.Build.0 = Debug|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Release|x64.ActiveCfg = Release|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Release|x64.Build.0 = Release|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Release|x86.ActiveCfg = Release|Any CPU
+		{C2CB4DA5-8DC6-4534-9AC3-92F89A3C7C6C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
