@@ -112,7 +112,7 @@ function Create-Zipfile([string]$srcDir, [string]$app, [string]$zipFile, [string
     Write-Verbose "      patternsToRemove = $patternsToRemove"
 
     $scratch=(Get-UniqueTempFolder $app)[0]
-    Write-Verbose "scratch = $scratch"
+    Write-Verbose "      scratch = $scratch"
 
     Prepare-Zipfile $srcDir $scratch $patternsToRemove
 
