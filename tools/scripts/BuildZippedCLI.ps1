@@ -24,7 +24,7 @@ Set-StrictMode -Version Latest
 $script:ErrorActionPreference = 'Stop'
 
 # Uncomment the next line for debugging
-$VerbosePreference='continue'
+#$VerbosePreference='continue'
 
 # This suppresses the progress indicator while creating the zip file
 $ProgressPreference='SilentlyContinue'
