@@ -102,7 +102,7 @@ function Create-Zipfile([string]$srcDir, [string]$otherSignedSrcDir, [string]$ap
 function CreateCLIZip([string]$srcDir, [string]$otherSignedSrcDir, [string]$targetDir, [string]$zipFileName){
     $zipFile=Join-Path $targetDir $zipFileName
     $patternsToRemove=@('*.dev.json', '*.pdb')
-    $otherSignedAssemblies=@('Newtonsoft.Json.dll', 'CommandLine.dll', 'Interop.UIAutomationCore.dll')
+    $otherSignedAssemblies=@('Newtonsoft.Json.dll', 'CommandLine.dll')
     Write-Host "Creating $zipFile from files in $srcDir"
     Create-ZipFile $srcDir $otherSignedSrcDir 'AxeWindowsCLI' $zipFile $patternsToRemove $otherSignedAssemblies
     Write-Host 'Successfully Created' $zipFile
