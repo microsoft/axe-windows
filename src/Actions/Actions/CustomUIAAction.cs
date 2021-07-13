@@ -6,7 +6,7 @@ using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
 using System.Collections.Generic;
 
-namespace Axe.Windows.Actions.Actions
+namespace Axe.Windows.Actions
 {
     public static class CustomUIAAction
     {
