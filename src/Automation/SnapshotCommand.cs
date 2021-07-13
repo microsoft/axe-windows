@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using Axe.Windows.Actions.Actions;
+using Axe.Windows.Actions;
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using System;
