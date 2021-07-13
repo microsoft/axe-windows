@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\Interop\Interop.csproj" />
     <ProjectReference Include="..\RuleSelection\RuleSelection.csproj" />
   </ItemGroup>
 
@@ -44,7 +43,7 @@
 
   <ItemGroup>
     <Reference Include="Interop.UIAutomationCore">
-      <HintPath>..\Interop\bin\$(Configuration)\netstandard2.0\Interop.UIAutomationClient.dll</HintPath>
+      <HintPath>..\InteropDummy\bin\$(Configuration)\netcoreapp3.1\Interop.UIAutomationCore.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>

@@ -36,6 +36,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Interop.UIAutomationCore">
+      <HintPath>..\InteropDummy\bin\$(Configuration)\netcoreapp3.1\Interop.UIAutomationCore.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Desktop\Desktop.csproj" />
   </ItemGroup>
 
