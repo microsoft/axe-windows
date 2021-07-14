@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="del $(TargetDir)IniteropDummy*.*&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\AxeWindowsCLI.dll $(TargetDir)" />
+    <Exec Command="del $(TargetDir)InteropDummy*.*&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\AxeWindowsCLI.dll $(TargetDir)" />
   </Target>
 
 </Project>
