@@ -14,10 +14,11 @@ Attribute | Description
 --- | ---
 guid|The [RFC4122](https://datatracker.ietf.org/doc/html/rfc4122#section-4.1) globally unique identifier of this property.
 programmaticName|A textual description of this property.
-uiaType|The data type of this property's value, one of `string`, `int`, `bool`, `double`, `point`, or `element`.
+uiaType|The data type of this property's value, one of `string`, `int`, `bool`, `double`, `point`, `element`, or `enum`.
+values|If this property is an enumeration (`"uiaType": "enum"`), this attribute contains a mapping of integer members of the enumeration, specified as string keys in the file, to human-readable descriptions. If the value of the property matches one of the attributes of this object, `"value from object (<raw value>)"` is presented as the value for this custom property. If not present, `"Unknown (<raw value>)"` is presented instead.
 
 #### Example of a complete custom UI Automation configuration file
-This example file contains definitions for various [Excel](https://docs.microsoft.com/en-gb/office/uia/excel/excelcustomproperties) properties.
+This example file contains definitions for various [Excel](https://docs.microsoft.com/en-gb/office/uia/excel/excelcustomproperties) and [PowerPoint](https://docs.microsoft.com/en-gb/office/uia/powerpoint/powerpointcustomproperties) properties.
 
 ``` jsonc
 {
@@ -62,6 +63,43 @@ This example file contains definitions for various [Excel](https://docs.microsof
       "guid": "1B93A5CD-0956-46ED-9BBF-016C1B9FD75F",
       "programmaticName": "HasDataValidationDropdown",
       "uiaType": "bool"
+    },
+    { // PowerPoint property
+      "guid": "F065BAA7-2794-48B6-A927-193DA1540B84",
+      "programmaticName": "ViewType",
+      "uiaType": "enum",
+      "values": {
+        "1": "ViewSlide",
+        "2": "ViewSlideMaster",
+        "3": "ViewNotesPage",
+        "4": "ViewHandoutMaster",
+        "5": "ViewNotesMaster",
+        "6": "ViewOutline",
+        "7": "ViewSlideSorter",
+        "8": "ViewTitleMaster",
+        "9": "ViewNormal",
+        "10": "ViewPrintPreview",
+        "11": "ViewThumbnails",
+        "12": "ViewMasterThumbnails",
+        "13": "ViewNotesText",
+        "14": "ViewOutlineMaster",
+        "15": "ViewSlideShow",
+        "16": "ViewSlideShowFullScreen",
+        "17": "ViewSlideShowBrowse",
+        "18": "ViewPresenterSlide",
+        "19": "ViewPresenterNotes",
+        "20": "ViewPresenterNextStep",
+        "21": "ViewPresenterTitle",
+        "22": "ViewGridSections",
+        "23": "ViewGridThumbnails",
+        "24": "ViewGridSectionTitle",
+        "25": "ViewGridThumbnailZoom",
+        "26": "ViewGridBack",
+        "27": "ViewProtected",
+        "28": "ViewVisualBasic",
+        "29": "ViewNone",
+        "30": "ViewUnknown"
+      }
     }
   ]
 }
