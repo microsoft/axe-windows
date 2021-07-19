@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Desktop.Settings;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace Axe.Windows.Actions
@@ -32,18 +35,24 @@ namespace Axe.Windows.Actions
         public SnapshotMetaInfo MetaInfo { get; private set; }
 
         /// <summary>
+        /// Custom UIA registrations
+        /// </summary>
+        IReadOnlyDictionary<int, CustomProperty> CustomProperties { get; }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="el">The element that was selected when the file was saved</param>
         /// <param name="bmp">Actual screenshot</param>
         /// <param name="synthesizedBmp">Synthesized ("yellow box") bitmap</param>
         /// <param name="settings">Metadata about the snapshot</param>
-        public LoadActionParts(A11yElement el, Bitmap bmp, Bitmap synthesizedBmp, SnapshotMetaInfo settings)
+        public LoadActionParts(A11yElement el, Bitmap bmp, Bitmap synthesizedBmp, SnapshotMetaInfo settings, IReadOnlyDictionary<int, CustomProperty> customProperties)
         {
             this.Element = el;
             this.Bmp = bmp;
             this.SynthesizedBmp = synthesizedBmp;
             this.MetaInfo = settings;
+            this.CustomProperties = customProperties;
         }
     }
 }

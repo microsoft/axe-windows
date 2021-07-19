@@ -1,12 +1,16 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Desktop.Settings;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Telemetry;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.IO.Packaging;
@@ -53,9 +57,22 @@ namespace Axe.Windows.Actions
                 SnapshotMetaInfo meta = SnapshotMetaInfo.DeserializeFromStream(metadataPart);
                 metadataPart.Close();
 
+                IReadOnlyDictionary<int, CustomProperty> CustomProperties;
+                try
+                {
+                    var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.customPropsFileName select p.GetStream()).First();
+                    CustomProperties = LoadCustomProperties(customPropertiesPart);
+                    customPropertiesPart.Close();
+                }
+                catch (InvalidOperationException e)  // Gets thrown if custom properties map doesn't exist in file
+                {
+                    e.ReportException();
+                    CustomProperties = null;
+                }
+
                 var selectedElement = element.FindDescendant(k => k.UniqueId == meta.ScreenshotElementId);
 
-                return new LoadActionParts(element, bmp, selectedElement.SynthesizeBitmapFromElements(), meta);
+                return new LoadActionParts(element, bmp, selectedElement.SynthesizeBitmapFromElements(), meta, CustomProperties);
             }
         }
 
@@ -81,6 +98,20 @@ namespace Axe.Windows.Actions
             {
                 string jsonMeta = reader.ReadToEnd();
                 return JsonConvert.DeserializeObject<SnapshotMetaInfo>(jsonMeta);
+            }
+        }
+
+        /// <summary>
+        /// Load JSON stored custom property registrations from stream
+        /// </summary>
+        private static IReadOnlyDictionary<int, CustomProperty> LoadCustomProperties(Stream stream)
+        {
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                string jsonProps = reader.ReadToEnd();
+                Dictionary<int, CustomProperty> res = JsonConvert.DeserializeObject<Dictionary<int, CustomProperty>>(jsonProps);
+                Registrar.GetDefaultInstance().MergeCustomPropertyRegistrations(res);
+                return res;
             }
         }
     }
