@@ -19,6 +19,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
             Assert.AreEqual(null, prop.ProgrammaticName);
             Assert.AreEqual(null, prop.ConfigType);
             Assert.AreEqual(CustomUIAPropertyType.Unset, prop.Type);
+            Assert.AreEqual(null, prop.Values);
         }
 
         [TestMethod, Timeout(1000)]
@@ -74,6 +75,14 @@ namespace Axe.Windows.CoreTests.CustomObjects
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "element";
             Assert.AreEqual(CustomUIAPropertyType.Element, prop.Type);
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void EnumPropertyTest()
+        {
+            CustomProperty prop = new CustomProperty();
+            prop.ConfigType = "enum";
+            Assert.AreEqual(CustomUIAPropertyType.Enum, prop.Type);
         }
     }
 }

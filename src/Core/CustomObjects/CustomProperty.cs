@@ -4,6 +4,7 @@
 using Axe.Windows.Core.Enums;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Axe.Windows.Core.CustomObjects
@@ -51,11 +52,20 @@ namespace Axe.Windows.Core.CustomObjects
                     case "element":
                         Type = CustomUIAPropertyType.Element;
                         break;
+                    case "enum":
+                        Type = CustomUIAPropertyType.Enum;
+                        break;
                     default:
                         throw new ArgumentException($"'${value}' is not a supported type", nameof(value));
                 }
                 _configType = value;
             }
         }
+
+        /// <summary>On enum types, a user-specified mapping of enumeration members to friendly descriptions.</summary>
+        [JsonProperty("values")]
+#pragma warning disable CA2227 // Collection properties should be read only: setter needed for deserialization
+        public Dictionary<int, string> Values { get; set; } // Todo: how to structurally validate (ensure only set if Type == Enum) given no guarantee of initialization order?
+#pragma warning restore CA2227 // Collection properties should be read only: setter needed for deserialization
     }
 }

@@ -25,6 +25,20 @@ namespace Axe.Windows.CoreTests.CustomObjects
         }
 
         [TestMethod, Timeout(1000)]
+        public void EnumConfigTest()
+        {
+            const string EnumConfig = "{\"properties\": [{\"guid\": \"F065BAA7-2794-48B6-A927-193DA1540B84\", \"programmaticName\": \"ViewType\", \"uiaType\": \"enum\", \"values\": {\"1\": \"ViewSlide\"}}]}";
+            Config conf = Config.ReadFromText(EnumConfig);
+            Assert.AreEqual(1, conf.Properties.Length);
+            CustomProperty prop = conf.Properties[0];
+            Assert.AreEqual(new Guid("F065BAA7-2794-48B6-A927-193DA1540B84"), prop.Guid);
+            Assert.AreEqual("ViewType", prop.ProgrammaticName);
+            Assert.AreEqual("enum", prop.ConfigType);
+            Assert.AreEqual(CustomUIAPropertyType.Enum, prop.Type);
+            Assert.AreEqual("ViewSlide", prop.Values[1]);
+        }
+
+        [TestMethod, Timeout(1000)]
         public void NullConfigTest()
         {
             try
