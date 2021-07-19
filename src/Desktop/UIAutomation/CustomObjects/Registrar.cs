@@ -8,6 +8,7 @@ using Axe.Windows.Core.Enums;
 using Interop.UIAutomationCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
@@ -50,7 +51,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             };
 
             _uiaRegistrar.RegisterProperty(ref info, out int dynamicId);
-            _converterRegistrationAction(dynamicId, CreateTypeConverter(prop.Type));
+            _converterRegistrationAction(dynamicId, CreateTypeConverter(prop));
             _idToCustomPropertyMap[dynamicId] = prop;
         }
 
@@ -63,7 +64,9 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             switch (type)
             {
                 case CustomUIAPropertyType.String: return UIAutomationType.UIAutomationType_String;
-                case CustomUIAPropertyType.Int: return UIAutomationType.UIAutomationType_Int;
+                case CustomUIAPropertyType.Int:
+                case CustomUIAPropertyType.Enum:
+                    return UIAutomationType.UIAutomationType_Int;
                 case CustomUIAPropertyType.Bool: return UIAutomationType.UIAutomationType_Bool;
                 case CustomUIAPropertyType.Double: return UIAutomationType.UIAutomationType_Double;
                 case CustomUIAPropertyType.Point: return UIAutomationType.UIAutomationType_Point;
@@ -72,9 +75,9 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             }
         }
 
-        internal static ITypeConverter CreateTypeConverter(CustomUIAPropertyType type)
+        internal static ITypeConverter CreateTypeConverter(CustomProperty prop)
         {
-            switch (type)
+            switch (prop.Type)
             {
                 case CustomUIAPropertyType.String: return new StringTypeConverter();
                 case CustomUIAPropertyType.Int: return new IntTypeConverter();
@@ -82,7 +85,8 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                 case CustomUIAPropertyType.Double: return new DoubleTypeConverter();
                 case CustomUIAPropertyType.Point: return new PointTypeConverter();
                 case CustomUIAPropertyType.Element: return new ElementTypeConverter();
-                default: throw new ArgumentException("Unset or unknown type", nameof(type));
+                case CustomUIAPropertyType.Enum: return new EnumTypeConverter(prop.Values);
+                default: throw new InvalidDataException("Unset or unknown type");
             }
         }
     }

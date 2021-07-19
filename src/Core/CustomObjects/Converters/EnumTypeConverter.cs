@@ -9,16 +9,16 @@ namespace Axe.Windows.Core.CustomObjects.Converters
     public class EnumTypeConverter : ITypeConverter
     {
         /// <summary>A user-specified mapping of enumeration members to friendly descriptions.</summary>
-        private Dictionary<int, string> Values { get; }
+        private IReadOnlyDictionary<int, string> _values { get; }
 
-        public EnumTypeConverter(Dictionary<int, string> values) { Values = values; }
+        public EnumTypeConverter(IReadOnlyDictionary<int, string> values) { _values = values; }
 
         public string Render(dynamic value)
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
             int raw = (int)value;
             string res = "";
-            if (Values.TryGetValue(raw, out res))
+            if (_values.TryGetValue(raw, out res))
                 return $"{res} ({raw})";
             return $"Unknown ({raw})";
         }
