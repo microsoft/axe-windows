@@ -64,15 +64,18 @@ namespace Axe.Windows.Actions
                     CustomProperties = LoadCustomProperties(customPropertiesPart);
                     customPropertiesPart.Close();
                 }
-                catch (InvalidOperationException e)  // Gets thrown if custom properties map doesn't exist in file
+#pragma warning disable CA1031 // Do not catch general exception types: specific handlers placed in conditional below
+                catch (Exception e)
+#pragma warning restore CA1031 // Do not catch general exception types: specific handlers placed in conditional below
                 {
-                    e.ReportException();
+                    if (!(e is InvalidOperationException))  // An expected exception thrown when file does not exist, such as in old a11ytest files
+                        e.ReportException();
                     CustomProperties = null;
                 }
 
                 var selectedElement = element.FindDescendant(k => k.UniqueId == meta.ScreenshotElementId);
 
-                return new LoadActionParts(element, bmp, selectedElement.SynthesizeBitmapFromElements(), meta, CustomProperties);
+                return new LoadActionParts(element, bmp, selectedElement.SynthesizeBitmapFromElements(), meta);
             }
         }
 

@@ -59,8 +59,12 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         public Dictionary<int, CustomProperty> GetCustomPropertyRegistrations() { return new Dictionary<int, CustomProperty>(_idToCustomPropertyMap); }
 #pragma warning restore CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
 
-        ///  <summary>Notifies ConverterRegistrationAction about all of the custom property registrations in the passed-in dictionary. This is used, for instance, when switching between file and live mode in Accessibility Insights for Windows.</summary>
-        ///  <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
+        /// <summary>
+        /// Notifies ConverterRegistrationAction about all of the custom property registrations in
+        // the passed-in dictionary. This is used, for instance, when switching between file and
+        // live mode in Accessibility Insights for Windows.
+        /// </summary>
+        /// <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
         public void MergeCustomPropertyRegistrations(IReadOnlyDictionary<int, CustomProperty> registrations)
         {
             if (registrations== null) throw new ArgumentNullException(nameof(registrations));
@@ -70,8 +74,12 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             }
         }
 
-        /// <summary>Re-notifies converterRegistrationAction of the custom properties registered with UIA, in effect restoring IDs registered in live mode to the state before any calls to MergeCustomPropertyRegistrations.</summary>
-        ///  <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
+        /// <summary>
+        // Re-notifies converterRegistrationAction of the custom properties registered with UIA, in
+        // effect restoring IDs registered in live mode to the state before any calls to
+        // MergeCustomPropertyRegistrations.
+        // </summary>
+        /// <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
         public void RestoreCustomPropertyRegistrations() { MergeCustomPropertyRegistrations(_idToCustomPropertyMap); }
 
         private static UIAutomationType GetUnderlyingUIAType(CustomUIAPropertyType type)

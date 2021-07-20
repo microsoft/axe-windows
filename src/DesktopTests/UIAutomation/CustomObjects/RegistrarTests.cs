@@ -3,12 +3,12 @@
 
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.CustomObjects.Converters;
-using Axe.Windows.Core.Enums;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Interop.UIAutomationCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
 {
@@ -95,6 +95,45 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
         public void CreateTypeConverterUnsetTest()
         {
             Assert.ThrowsException<ArgumentException>(() => Registrar.CreateTypeConverter(new CustomProperty()));
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void MergeRestorePropertyTest()
+        {
+            Mock<IUIAutomationRegistrar> uiaRegistrarMock = new Mock<IUIAutomationRegistrar>(MockBehavior.Strict);
+
+            Guid intPropertyGuid = new Guid("312F7536-259A-47C7-B192-AA16352522C4");
+            string intPropertyName = "CommentReplyCount";
+            CustomProperty intProperty = new CustomProperty { Guid = intPropertyGuid, ProgrammaticName = intPropertyName, ConfigType = "int" };
+            UIAutomationPropertyInfo expectedIntPropertyInfo = new UIAutomationPropertyInfo { guid = intPropertyGuid, pProgrammaticName = intPropertyName, type = UIAutomationType.UIAutomationType_Int };
+            int propertyId = 42;
+            uiaRegistrarMock.Setup(x => x.RegisterProperty(ref expectedIntPropertyInfo, out propertyId));
+
+            Guid boolPropertyGuid = new Guid("4BB56516-F354-44CF-A5AA-96B52E968CFD");
+            string boolPropertyName = "AreGridlinesVisible";
+            CustomProperty boolProperty = new CustomProperty { Guid = boolPropertyGuid, ProgrammaticName = boolPropertyName, ConfigType = "bool" };
+
+            int counter = 0;
+            Action<int, ITypeConverter> testCallback = new Action<int, ITypeConverter>((id, converter) =>
+            {
+                counter++;
+                if (counter % 2 == 1)
+                    Assert.IsInstanceOfType(converter, typeof(IntTypeConverter));
+                else
+                    Assert.IsInstanceOfType(converter, typeof(BoolTypeConverter));
+            });
+
+            Registrar r = new Registrar(uiaRegistrarMock.Object, testCallback);
+
+            r.RegisterCustomProperty(intProperty);
+            r.MergeCustomPropertyRegistrations(
+                new Dictionary<int, CustomProperty> { [42] = boolProperty }
+            ); 
+            r.RestoreCustomPropertyRegistrations();
+
+            Assert.AreEqual(3, counter); // Callback should be called three times: register int, merge bool, restore int.
+            Assert.AreEqual(intProperty, r.GetCustomPropertyRegistrations()[propertyId]);
+            uiaRegistrarMock.VerifyAll();
         }
     }
 }

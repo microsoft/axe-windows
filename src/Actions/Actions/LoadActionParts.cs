@@ -35,24 +35,18 @@ namespace Axe.Windows.Actions
         public SnapshotMetaInfo MetaInfo { get; private set; }
 
         /// <summary>
-        /// Custom UIA registrations
-        /// </summary>
-        IReadOnlyDictionary<int, CustomProperty> CustomProperties { get; }
-
-        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="el">The element that was selected when the file was saved</param>
         /// <param name="bmp">Actual screenshot</param>
         /// <param name="synthesizedBmp">Synthesized ("yellow box") bitmap</param>
         /// <param name="settings">Metadata about the snapshot</param>
-        public LoadActionParts(A11yElement el, Bitmap bmp, Bitmap synthesizedBmp, SnapshotMetaInfo settings, IReadOnlyDictionary<int, CustomProperty> customProperties)
+        public LoadActionParts(A11yElement el, Bitmap bmp, Bitmap synthesizedBmp, SnapshotMetaInfo settings)
         {
             this.Element = el;
             this.Bmp = bmp;
             this.SynthesizedBmp = synthesizedBmp;
             this.MetaInfo = settings;
-            this.CustomProperties = customProperties;
         }
     }
 }
