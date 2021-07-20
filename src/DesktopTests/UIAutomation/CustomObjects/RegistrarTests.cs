@@ -42,46 +42,59 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
             uiaRegistrarMock.VerifyAll();
         }
 
+        private CustomProperty CreateEmptyPropertyOfType(string type)
+        {
+            CustomProperty prop = new CustomProperty();
+            prop.ConfigType = type;
+            return prop;
+        }
+
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterStringTest()
         {
-            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CustomUIAPropertyType.String), typeof(StringTypeConverter));
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.StringConfigType)), typeof(StringTypeConverter));
         }
 
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterIntTest()
         {
-            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CustomUIAPropertyType.Int), typeof(IntTypeConverter));
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.IntConfigType)), typeof(IntTypeConverter));
         }
 
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterBoolTest()
         {
-            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CustomUIAPropertyType.Bool), typeof(BoolTypeConverter));
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.BoolConfigType)), typeof(BoolTypeConverter));
         }
 
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterDoubleTest()
         {
-            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CustomUIAPropertyType.Double), typeof(DoubleTypeConverter));
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.DoubleConfigType)), typeof(DoubleTypeConverter));
         }
 
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterPointTest()
         {
-            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CustomUIAPropertyType.Point), typeof(PointTypeConverter));
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.PointConfigType)), typeof(PointTypeConverter));
         }
 
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterElementTest()
         {
-            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CustomUIAPropertyType.Element), typeof(ElementTypeConverter));
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.ElementConfigType)), typeof(ElementTypeConverter));
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void CreateTypeConverterEnumTest()
+        {
+            Assert.IsInstanceOfType(Registrar.CreateTypeConverter(CreateEmptyPropertyOfType(CustomProperty.EnumConfigType)), typeof(EnumTypeConverter));
         }
 
         [TestMethod, Timeout(1000)]
         public void CreateTypeConverterUnsetTest()
         {
-            Assert.ThrowsException<ArgumentException>(() => Registrar.CreateTypeConverter(CustomUIAPropertyType.Unset));
+            Assert.ThrowsException<ArgumentException>(() => Registrar.CreateTypeConverter(new CustomProperty()));
         }
     }
 }

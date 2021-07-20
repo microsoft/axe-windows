@@ -14,7 +14,8 @@ namespace Axe.Windows.Core.Enums
         Bool,
         Double,
         Point,
-        Element
+        Element,
+        Enum
 #pragma warning restore CA1720 // Identifier contains type name: type names from JSON
     }
 }
