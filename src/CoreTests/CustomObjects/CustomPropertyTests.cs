@@ -35,7 +35,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void StringPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "string";
+            prop.ConfigType = CustomProperty.StringConfigType;
             Assert.AreEqual(CustomUIAPropertyType.String, prop.Type);
         }
 
@@ -43,7 +43,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void IntPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "int";
+            prop.ConfigType = CustomProperty.IntConfigType;
             Assert.AreEqual(CustomUIAPropertyType.Int, prop.Type);
         }
 
@@ -51,7 +51,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void BoolPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "bool";
+            prop.ConfigType = CustomProperty.BoolConfigType;
             Assert.AreEqual(CustomUIAPropertyType.Bool, prop.Type);
         }
 
@@ -59,7 +59,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void DoublePropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "double";
+            prop.ConfigType = CustomProperty.DoubleConfigType;
             Assert.AreEqual(CustomUIAPropertyType.Double, prop.Type);
         }
 
@@ -67,7 +67,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void PointPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "point";
+            prop.ConfigType = CustomProperty.PointConfigType;
             Assert.AreEqual(CustomUIAPropertyType.Point, prop.Type);
         }
 
@@ -75,7 +75,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void ElementPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "element";
+            prop.ConfigType = CustomProperty.ElementConfigType;
             Assert.AreEqual(CustomUIAPropertyType.Element, prop.Type);
         }
 
@@ -83,7 +83,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         public void EnumPropertyTest()
         {
             CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "enum";
+            prop.ConfigType = CustomProperty.EnumConfigType;
             Assert.AreEqual(CustomUIAPropertyType.Enum, prop.Type);
         }
 

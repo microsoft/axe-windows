@@ -85,7 +85,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                 case CustomUIAPropertyType.Point: return new PointTypeConverter();
                 case CustomUIAPropertyType.Element: return new ElementTypeConverter();
                 case CustomUIAPropertyType.Enum: return new EnumTypeConverter(prop.Values);
-                default: throw new ArgumentException("Unset or unknown type", nameof(prop));
+                default: throw new ArgumentException($"Unset or unknown type {prop.ConfigType}", nameof(prop));
             }
         }
     }
