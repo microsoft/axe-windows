@@ -24,6 +24,14 @@ namespace Axe.Windows.Core.CustomObjects
         ///  <summary>An internal representation of this property's type. For performance reasons, calling code should always use this property in place of the config representation.s</summary>
         public CustomUIAPropertyType Type { get; private set; }
 
+        public const string StringConfigType = "string";
+        public const string IntConfigType = "int";
+        public const string BoolConfigType = "bool";
+        public const string DoubleConfigType = "double";
+        public const string PointConfigType = "point";
+        public const string ElementConfigType = "element";
+        public const string EnumConfigType = "enum";
+
         private string _configType;
         /// <summary>The data type of this property's value as specified in user configuration, one of string, int, bool, double, point, element, or enum.</summary>
         [JsonProperty("uiaType")]
@@ -34,25 +42,25 @@ namespace Axe.Windows.Core.CustomObjects
             {
                 switch (value)
                 {
-                    case "string":
+                    case StringConfigType:
                         Type = CustomUIAPropertyType.String;
                         break;
-                    case "int":
+                    case IntConfigType:
                         Type = CustomUIAPropertyType.Int;
                         break;
-                    case "bool":
+                    case BoolConfigType:
                         Type = CustomUIAPropertyType.Bool;
                         break;
-                    case "double":
+                    case DoubleConfigType:
                         Type = CustomUIAPropertyType.Double;
                         break;
-                    case "point":
+                    case PointConfigType:
                         Type = CustomUIAPropertyType.Point;
                         break;
-                    case "element":
+                    case ElementConfigType:
                         Type = CustomUIAPropertyType.Element;
                         break;
-                    case "enum":
+                    case EnumConfigType:
                         Type = CustomUIAPropertyType.Enum;
                         break;
                     default:

@@ -17,8 +17,8 @@ namespace Axe.Windows.Core.CustomObjects.Converters
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
             int raw = (int)value;
-            if (_values.TryGetValue(raw, out string res))
-                return $"{res} ({raw})";
+            if (_values.TryGetValue(raw, out string friendlyName))
+                return $"{friendlyName} ({raw})";
             return $"Unknown ({raw})";
         }
     }

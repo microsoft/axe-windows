@@ -8,7 +8,6 @@ using Axe.Windows.Core.Enums;
 using Interop.UIAutomationCore;
 using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
@@ -16,7 +15,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
     {
         private IUIAutomationRegistrar _uiaRegistrar;
         private Action<int, ITypeConverter> _converterRegistrationAction;
-        private Dictionary<int, CustomProperty> _idToCustomPropertyMap { get;}
+        private Dictionary<int, CustomProperty> _idToCustomPropertyMap { get; }
 
         internal Registrar()
             : this(new CUIAutomationRegistrar(), new Action<int, ITypeConverter>(A11yProperty.RegisterCustomProperty)) { }
@@ -57,7 +56,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         }
 
 #pragma warning disable CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
-        public Dictionary<int, CustomProperty> GetCustomPropertyRegistrations() { return new Dictionary<int, CustomProperty>(_idToCustomPropertyMap);  }
+        public Dictionary<int, CustomProperty> GetCustomPropertyRegistrations() { return new Dictionary<int, CustomProperty>(_idToCustomPropertyMap); }
 #pragma warning restore CA1024 // Use properties where appropriate: this is a copy of the object, not the object itself
 
         private static UIAutomationType GetUnderlyingUIAType(CustomUIAPropertyType type)
@@ -65,13 +64,12 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             switch (type)
             {
                 case CustomUIAPropertyType.String: return UIAutomationType.UIAutomationType_String;
-                case CustomUIAPropertyType.Int:
-                case CustomUIAPropertyType.Enum:
-                    return UIAutomationType.UIAutomationType_Int;
+                case CustomUIAPropertyType.Int: return UIAutomationType.UIAutomationType_Int;
                 case CustomUIAPropertyType.Bool: return UIAutomationType.UIAutomationType_Bool;
                 case CustomUIAPropertyType.Double: return UIAutomationType.UIAutomationType_Double;
                 case CustomUIAPropertyType.Point: return UIAutomationType.UIAutomationType_Point;
                 case CustomUIAPropertyType.Element: return UIAutomationType.UIAutomationType_Element;
+                case CustomUIAPropertyType.Enum: return UIAutomationType.UIAutomationType_Int;
                 default: throw new ArgumentException("Unset or unknown type", nameof(type));
             }
         }
@@ -87,7 +85,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                 case CustomUIAPropertyType.Point: return new PointTypeConverter();
                 case CustomUIAPropertyType.Element: return new ElementTypeConverter();
                 case CustomUIAPropertyType.Enum: return new EnumTypeConverter(prop.Values);
-                default: throw new InvalidDataException("Unset or unknown type");
+                default: throw new ArgumentException("Unset or unknown type", nameof(prop));
             }
         }
     }
