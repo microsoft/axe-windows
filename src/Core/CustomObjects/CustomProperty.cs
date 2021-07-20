@@ -25,7 +25,7 @@ namespace Axe.Windows.Core.CustomObjects
         public CustomUIAPropertyType Type { get; private set; }
 
         private string _configType;
-        /// <summary>The data type of this property's value as specified in user configuration, one of string, int, bool, double, point, or element.</summary>
+        /// <summary>The data type of this property's value as specified in user configuration, one of string, int, bool, double, point, element, or enum.</summary>
         [JsonProperty("uiaType")]
         public string ConfigType
         {
@@ -65,7 +65,16 @@ namespace Axe.Windows.Core.CustomObjects
         /// <summary>On enum types, a user-specified mapping of enumeration members to friendly descriptions.</summary>
         [JsonProperty("values")]
 #pragma warning disable CA2227 // Collection properties should be read only: setter needed for deserialization
-        public Dictionary<int, string> Values { get; set; } // Todo: how to structurally validate (ensure only set if Type == Enum) given no guarantee of initialization order?
+        public Dictionary<int, string> Values { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only: setter needed for deserialization
+
+        ///<summary>Checks that a property is structurally well-formed. For instance, verifies that Values is unset on non-enum types.</summary>
+        public void Validate()
+        {
+            if (Values == null && Type == CustomUIAPropertyType.Enum) 
+                throw new InvalidDataException("Values required for enumeration types.");
+            if (Values != null && Type != CustomUIAPropertyType.Enum) 
+                throw new InvalidDataException("Values cannot be defined for non-enumeration types.");
+        }
     }
 }

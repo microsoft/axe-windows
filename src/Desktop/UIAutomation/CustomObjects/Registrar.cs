@@ -43,6 +43,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         public void RegisterCustomProperty(CustomProperty prop)
         {
             if (prop == null) throw new ArgumentNullException(nameof(prop));
+            prop.Validate();
             UIAutomationPropertyInfo info = new UIAutomationPropertyInfo
             {
                 guid = prop.Guid,

@@ -5,6 +5,8 @@ using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Axe.Windows.CoreTests.CustomObjects
 {
@@ -83,6 +85,26 @@ namespace Axe.Windows.CoreTests.CustomObjects
             CustomProperty prop = new CustomProperty();
             prop.ConfigType = "enum";
             Assert.AreEqual(CustomUIAPropertyType.Enum, prop.Type);
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void NonEnumValuesPropertyTest()
+        {
+            CustomProperty prop = new CustomProperty();
+            prop.ConfigType = "int";
+            prop.Values = new Dictionary<int, string>
+            {
+                [1] = "ViewSlide"
+            };
+            Assert.ThrowsException<InvalidDataException>(() => prop.Validate());
+        }
+
+        [TestMethod, Timeout(1000)]
+        public void MissingValuesPropertyTest()
+        {
+            CustomProperty prop = new CustomProperty();
+            prop.ConfigType = "enum";
+            Assert.ThrowsException<InvalidDataException>(() => prop.Validate());
         }
     }
 }
