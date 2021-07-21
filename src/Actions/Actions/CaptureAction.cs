@@ -7,6 +7,7 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 using System.Collections.Generic;
@@ -91,6 +92,8 @@ namespace Axe.Windows.Actions
             if (ec.DataContext != null && ec.DataContext.Mode == DataContextMode.Live)
             {
                 ec.DataContext = null;
+                // Re-register user-configured custom UIA data
+                Registrar.GetDefaultInstance().RestoreCustomPropertyRegistrations();
             }
 
             if (NeedNewDataContext(ec.DataContext, dm, tvm) || force)

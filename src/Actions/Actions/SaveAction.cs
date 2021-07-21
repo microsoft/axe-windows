@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Settings;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.RuleSelection;
 using Newtonsoft.Json;
 using System;
@@ -25,6 +27,7 @@ namespace Axe.Windows.Actions
         public const string elementFileName = "el.snapshot";
         public const string screenshotFileName = "scshot.png";
         public const string metadataFileName = "metadata.json";
+        public const string customPropsFileName = "CustomProperties.json";
 
         /// <summary>
         /// Buffer size for stream copying
@@ -76,6 +79,13 @@ namespace Axe.Windows.Actions
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonMeta)))
             {
                 AddStream(package, mStrm, metadataFileName);
+            }
+
+            var customProps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations();
+            var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
+            using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
+            {
+                AddStream(package, mStrm, customPropsFileName);
             }
         }
 

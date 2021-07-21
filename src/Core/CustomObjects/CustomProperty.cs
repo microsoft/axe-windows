@@ -22,6 +22,7 @@ namespace Axe.Windows.Core.CustomObjects
         public string ProgrammaticName { get; set; }
 
         ///  <summary>An internal representation of this property's type. For performance reasons, calling code should always use this property in place of the config representation.s</summary>
+        [JsonIgnore]
         public CustomUIAPropertyType Type { get; private set; }
 
         public const string StringConfigType = "string";
