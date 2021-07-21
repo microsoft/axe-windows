@@ -75,10 +75,10 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         }
 
         /// <summary>
-        // Re-notifies converterRegistrationAction of the custom properties registered with UIA, in
-        // effect restoring IDs registered in live mode to the state before any calls to
-        // MergeCustomPropertyRegistrations.
-        // </summary>
+        /// Re-notifies converterRegistrationAction of the custom properties registered with UIA, in
+        /// effect restoring IDs registered in live mode to the state before any calls to
+        /// MergeCustomPropertyRegistrations.
+        /// </summary>
         /// <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
         public void RestoreCustomPropertyRegistrations() { MergeCustomPropertyRegistrations(_idToCustomPropertyMap); }
 
