@@ -117,9 +117,9 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
             Action<int, ITypeConverter> testCallback = new Action<int, ITypeConverter>((id, converter) =>
             {
                 counter++;
-                if (counter % 2 == 1)
+                if (counter % 2 == 1) // first and third calls (register and restore)
                     Assert.IsInstanceOfType(converter, typeof(IntTypeConverter));
-                else
+                else // second call (merge)
                     Assert.IsInstanceOfType(converter, typeof(BoolTypeConverter));
             });
 
