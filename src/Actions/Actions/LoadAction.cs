@@ -112,9 +112,9 @@ namespace Axe.Windows.Actions
             using (StreamReader reader = new StreamReader(stream))
             {
                 string jsonProps = reader.ReadToEnd();
-                Dictionary<int, CustomProperty> res = JsonConvert.DeserializeObject<Dictionary<int, CustomProperty>>(jsonProps);
-                Registrar.GetDefaultInstance().MergeCustomPropertyRegistrations(res);
-                return res;
+                Dictionary<int, CustomProperty> deserializedProperties = JsonConvert.DeserializeObject<Dictionary<int, CustomProperty>>(jsonProps);
+                Registrar.GetDefaultInstance().MergeCustomPropertyRegistrations(deserializedProperties);
+                return deserializedProperties;
             }
         }
     }
