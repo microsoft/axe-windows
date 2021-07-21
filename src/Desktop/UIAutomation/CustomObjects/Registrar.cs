@@ -61,8 +61,8 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 
         /// <summary>
         /// Notifies ConverterRegistrationAction about all of the custom property registrations in
-        // the passed-in dictionary. This is used, for instance, when switching between file and
-        // live mode in Accessibility Insights for Windows.
+        /// the passed-in dictionary. This is used, for instance, when switching between file and
+        /// live mode in Accessibility Insights for Windows.
         /// </summary>
         /// <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
         public void MergeCustomPropertyRegistrations(IReadOnlyDictionary<int, CustomProperty> registrations)
