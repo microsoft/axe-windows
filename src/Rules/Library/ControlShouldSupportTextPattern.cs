@@ -31,12 +31,14 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
+            var winFormsEdit = Edit & WinForms;
             var win32Edit = Edit & Win32Framework;
             var nonfocusableDirectUIEdit = Edit & ~IsKeyboardFocusable & DirectUI;
 
             return Document
                 | (Edit
                 & ~win32Edit
+                & ~winFormsEdit
                 & ~nonfocusableDirectUIEdit);
         }
     } // class
