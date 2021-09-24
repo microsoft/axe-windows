@@ -59,6 +59,16 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
+        public void WinFormsEdit_NotApplicable()
+        {
+            var e = new MockA11yElement();
+            e.ControlTypeId = ControlType.Edit;
+            e.Framework = FrameworkId.WinForm;
+
+            Assert.IsFalse(Rule.Condition.Matches(e));
+        }
+
+        [TestMethod]
         public void DirectUIEdit_NotApplicable()
         {
             var e = new MockA11yElement();

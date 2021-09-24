@@ -19,7 +19,7 @@ namespace Axe.Windows.AutomationTests
         // These values should change only in response to intentional rule modifications
         const int WildlifeManagerKnownErrorCount = 12;
         const int Win32ControlSamplerKnownErrorCount = 0;
-        const int WindowsFormsControlSamplerKnownErrorCount = 6;
+        const int WindowsFormsControlSamplerKnownErrorCount = 4;
         const int WpfControlSamplerKnownErrorCount = 5;
 
         readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
