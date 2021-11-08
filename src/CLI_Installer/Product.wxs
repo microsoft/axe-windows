@@ -101,7 +101,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
     </ComponentGroup>
 
     <ComponentGroup Id="NetCoreApp31Components" Directory="NetCoreApp31Folder">
-      <Component Id="NetCoreApp31Component" Guid="1D2C21D8-E43C-45F6-8530-B59CA4BAF9A6">
+      <Component Id="NetCoreApp31Component" Guid="2F921C55-E303-46DF-81B7-95923D83C32D">
         <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll" Id="netcoreapp31_microsoft_win32_systemevents" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll" Id="netcoreapp31_system_drawing_common" />
       </Component>
