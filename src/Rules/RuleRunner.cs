@@ -33,7 +33,7 @@ namespace Axe.Windows.Rules
                 };
             }
 
-            var retVal = RunRule(rule, element);
+            var retVal = RunRuleWithRetries(rule, element);
 
             return retVal;
         }
@@ -44,35 +44,43 @@ namespace Axe.Windows.Rules
 
             foreach (var rule in _provider.All)
             {
-                var result = RunRule(rule, element);
+                var result = RunRuleWithRetries(rule, element);
                 results.Add(result);
             } // for all rules
 
             return results;
         }
 
-        private static RunResult RunRule(IRule rule, IA11yElement element)
+        private static RunResult RunRuleWithRetries(IRule rule, IA11yElement element)
         {
-            try
-            {
-                return RunRuleWorker(rule, element);
-            }
-#pragma warning disable CA1031
-            catch (Exception ex)
-#pragma warning restore CA1031
-            {
-                ex.ReportException();
-                if (System.Diagnostics.Debugger.IsLogging())
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+            int remainingAttempts = 3;
 
-                return new RunResult
+            while (true)
+            {
+                try
                 {
-                    RuleInfo = rule.Info,
-                    element = element,
-                    EvaluationCode = EvaluationCode.RuleExecutionError,
-                    ErrorMessage = ex.ToString()
-                };
-            } // catch
+                    return RunRuleWorker(rule, element);
+                }
+#pragma warning disable CA1031
+                catch (Exception ex)
+#pragma warning restore CA1031
+                {
+                    ex.ReportException();
+                    if (System.Diagnostics.Debugger.IsLogging())
+                        System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                    if (--remainingAttempts == 0)
+                    {
+                        return new RunResult
+                        {
+                            RuleInfo = rule.Info,
+                            element = element,
+                            EvaluationCode = EvaluationCode.RuleExecutionError,
+                            ErrorMessage = ex.ToString()
+                        };
+                    }
+                } // catch
+            }
         }
 
         private static RunResult RunRuleWorker(IRule rule, IA11yElement element)

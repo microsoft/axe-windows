@@ -222,6 +222,47 @@ namespace Axe.Windows.RulesTests
         }
 
         [TestMethod]
+        public void RunRuleByID_PassesOnRetryAfterTestThrowsInitialException()
+        {
+            int testCount = 0;
+            var e = new MockA11yElement();
+
+            var conditionMock = new Mock<Condition>(MockBehavior.Strict);
+            conditionMock.Setup(m => m.Matches(e)).Returns(true).Verifiable();
+
+            var infoStub = new RuleInfo();
+
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
+            ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e))
+                .Callback<IA11yElement>((_) =>
+                {
+                    if (testCount++ == 0)
+                    {
+                        throw new Exception();
+                    }
+                })
+                .Returns(true)
+                .Verifiable();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.AreEqual(EvaluationCode.Pass, result.EvaluationCode);
+            Assert.AreEqual(e, result.element);
+            Assert.AreEqual(infoStub, result.RuleInfo);
+            Assert.AreEqual(2, testCount);
+
+            conditionMock.VerifyAll();
+            ruleMock.VerifyAll();
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
         public void RunRuleByID_CallsPassesTestWhenConditionIsNull()
         {
             var e = new MockA11yElement();
