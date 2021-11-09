@@ -35,7 +35,7 @@ namespace Axe.Windows.Rules.Library
 
             if (names == null) throw new InvalidProgramException(ErrorMessages.NoLocalizedControlTypeStringFound);
 
-            return Array.Exists(names, s => string.Compare(e.LocalizedControlType, s, StringComparison.OrdinalIgnoreCase) == 0);
+            return Array.Exists(names, s => string.Equals(e.LocalizedControlType, s, StringComparison.OrdinalIgnoreCase));
         }
 
         private static string[] GetExpectedLocalizedControlTypeNames(int controlTypeId)
