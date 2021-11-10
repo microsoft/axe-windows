@@ -141,7 +141,7 @@ namespace Axe.Windows.Rules.PropertyConditions
                 | ToolTip | Tree | TreeItem | Window
                 | trueWhenElementHasSiblingsOfSameType)
                 & ~IsWPFCheckBoxText
-                &~isWPFPopupOrContextMenu;
+                & ~isWPFPopupOrContextMenu;
         }
 
         private static Condition CreateNameOptionalCondition()
