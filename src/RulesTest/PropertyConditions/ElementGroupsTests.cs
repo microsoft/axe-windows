@@ -280,5 +280,54 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 Assert.IsFalse(ElementGroups.IsButtonText.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void IsCheckBoxText_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
+
+                e.ControlTypeId = Button;
+                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
+
+                e.ControlTypeId = Text;
+                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
+
+                e.Parent = parent;
+                parent.ControlTypeId = CheckBox;
+                Assert.IsTrue(ElementGroups.IsCheckBoxText.Matches(e));
+
+                parent.ControlTypeId = Window;
+                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
+
+                e.ControlTypeId = Button;
+                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void IsWPFCheckBoxText_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.IsWPFCheckBoxText.Matches(e));
+
+                // Exhaustive checks for IsCheckBoxText is handled in
+                // IsCheckBoxText_MatchExpected, so just need 1 true case
+                parent.ControlTypeId = CheckBox;
+                e.Parent = parent;
+                e.ControlTypeId = Text;
+                Assert.IsFalse(ElementGroups.IsWPFCheckBoxText.Matches(e));
+
+                e.Framework = "WPF";
+                Assert.IsTrue(ElementGroups.IsWPFCheckBoxText.Matches(e));
+
+                e.Parent = null;
+                Assert.IsFalse(ElementGroups.IsWPFCheckBoxText.Matches(e));
+            } // using
+        }
     } // class
 } // namespace
