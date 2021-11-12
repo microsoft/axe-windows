@@ -287,8 +287,6 @@ namespace Axe.Windows.RulesTests.PropertyConditions
             using (var e = new MockA11yElement())
             using (var parent = new MockA11yElement())
             {
-                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
-
                 e.ControlTypeId = Button;
                 Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
 
@@ -298,9 +296,6 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 e.Parent = parent;
                 parent.ControlTypeId = CheckBox;
                 Assert.IsTrue(ElementGroups.IsCheckBoxText.Matches(e));
-
-                parent.ControlTypeId = Window;
-                Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
 
                 e.ControlTypeId = Button;
                 Assert.IsFalse(ElementGroups.IsCheckBoxText.Matches(e));
