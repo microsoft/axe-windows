@@ -43,7 +43,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(new ColorPair(new CCColor(204, 204, 204), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
         // [TestMethod] TODO: we will revisit this test case after issue#231 has been fixed
@@ -57,7 +57,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(new ColorPair(new CCColor(55, 0, 110), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.Low, result.Confidence);
         }
 
         // [TestMethod] TODO: we will revisit this test case after issue#231 has been fixed
@@ -71,7 +71,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(new ColorPair(new CCColor(27, 12, 170), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.Low, result.Confidence);
         }
 
         [TestMethod, Timeout(2000)]
@@ -84,7 +84,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(new ColorPair(new CCColor(171, 153, 153), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
         [TestMethod, Timeout(2000)]
@@ -97,7 +97,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(new ColorPair(new CCColor(0, 0, 0), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.Low, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.Low, result.Confidence);
         }
 
         [TestMethod, Timeout(2000)]
@@ -110,7 +110,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(new ColorPair(new CCColor(0, 0, 0), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
         /**
@@ -131,8 +131,8 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(expected, resultOffsetUpImage.MostLikelyColorPair);
             Assert.AreEqual(expected, resultOffsetDownImage.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.High, resultOffsetDownImage.ConfidenceValue());
-            Assert.AreEqual(Confidence.High, resultOffsetUpImage.ConfidenceValue());
+            Assert.AreEqual(Confidence.High, resultOffsetDownImage.Confidence);
+            Assert.AreEqual(Confidence.High, resultOffsetUpImage.Confidence);
         }
 
         [TestMethod, Timeout(2000)]
@@ -142,7 +142,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.Mid, colorContrastResult.ConfidenceValue());
+            Assert.AreEqual(Confidence.Mid, colorContrastResult.Confidence);
 
             Assert.AreEqual(approximateColorPair, colorContrastResult.MostLikelyColorPair);
         }
@@ -163,7 +163,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.High, result.ConfidenceValue());
+            Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
         [TestMethod, Timeout(2000)]

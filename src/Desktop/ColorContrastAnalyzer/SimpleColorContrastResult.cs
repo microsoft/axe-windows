@@ -16,9 +16,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public ColorPair MostLikelyColorPair => _mostLikelyColorPair;
 
-        public Confidence ConfidenceValue()
-        {
-            return _confidence;
-        }
+        public Confidence Confidence => _confidence;
     }
 }

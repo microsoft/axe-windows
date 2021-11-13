@@ -80,13 +80,15 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                     if (result == null) result = newResult;
 
-                    if (newResult.ConfidenceValue() == Confidence.High)
+                    if (newResult.Confidence == Confidence.High)
                     {
                         result = newResult;
                         break;
                     }
-                    else if (newResult.ConfidenceValue() == Confidence.Mid &&
-                      result.ConfidenceValue() == Confidence.Low)
+                    else if (newResult.Confidence == Confidence.Mid &&
+#pragma warning disable CA1508 // Avoid dead conditional code
+                      result.Confidence == Confidence.Low)
+#pragma warning restore CA1508 // Avoid dead conditional code
                     {
                         result = newResult;
                     }
