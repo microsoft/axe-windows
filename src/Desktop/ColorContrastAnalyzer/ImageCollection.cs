@@ -37,6 +37,28 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * Run the Color Contrast calculation on the image.
          */
+        public IColorContrastResult RunSimplifiedColorContrastCalculation()
+        {
+            SimpleColorContrastRunner runner = new SimpleColorContrastRunner(_colorContrastConfig);
+
+            RowColorAccumulator accumulator = new RowColorAccumulator();
+
+            foreach (var pixel in GetAllRowsIterator())
+            {
+                runner.OnPixel(pixel.Color);
+
+                if (IsEndOfRow(pixel))
+                {
+                    accumulator.AddRowResult(runner.OnRowEnd(pixel.Column));
+                }
+            }
+
+            return accumulator.GetResult();
+        }
+
+        /**
+         * Run the Color Contrast calculation on the image.
+         */
         public ColorContrastResult RunColorContrastCalculation()
         {
             ColorContrastResult result = null;
@@ -58,13 +80,13 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                     if (result == null) result = newResult;
 
-                    if (newResult.ConfidenceValue() == ColorContrastResult.Confidence.High)
+                    if (newResult.ConfidenceValue() == Confidence.High)
                     {
                         result = newResult;
                         break;
                     }
-                    else if (newResult.ConfidenceValue() == ColorContrastResult.Confidence.Mid &&
-                      result.ConfidenceValue() == ColorContrastResult.Confidence.Low)
+                    else if (newResult.ConfidenceValue() == Confidence.Mid &&
+                      result.ConfidenceValue() == Confidence.Low)
                     {
                         result = newResult;
                     }
@@ -72,6 +94,17 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
 
             return result;
+        }
+
+        public IEnumerable<Pixel> GetAllRowsIterator()
+        {
+            for (var row = 0; row < NumRows(); row++)
+            {
+                for (var column = 0; column < NumColumns(); column++)
+                {
+                    yield return new Pixel(GetColor(row, column), row, column);
+                }
+            }
         }
 
         /**
