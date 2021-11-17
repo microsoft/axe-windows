@@ -3,6 +3,7 @@
 
 using Axe.Windows.Automation;
 using CommandLine;
+using CommandLine.Text;
 using System;
 using System.IO;
 using System.Threading;
@@ -59,8 +60,18 @@ namespace AxeWindowsCLI
             {
                 using (var parser = CaseInsensitiveParser())
                 {
-                    parser.ParseArguments<Options>(_args)
-                        .WithParsed<Options>(RunWithParsedInputs);
+                    ParserResult<Options> parserResult = parser.ParseArguments<Options>(_args);
+                    parserResult.WithParsed(RunWithParsedInputs)
+                        .WithNotParsed(_ =>
+                        {
+                            HelpText helpText = HelpText.AutoBuild(parserResult, h =>
+                            {
+                                h.AutoHelp = false;     // hides --help
+                                h.AutoVersion = false;  // hides --version
+                                return HelpText.DefaultParsingErrorsHandler(parserResult, h);
+                            }, e => e);
+                            Console.WriteLine(helpText);
+                        });
                 }
             }
 #pragma warning disable CA1031
