@@ -70,7 +70,7 @@ namespace AxeWindowsCLI
                                 h.AutoVersion = false;  // hides --version
                                 return HelpText.DefaultParsingErrorsHandler(parserResult, h);
                             }, e => e);
-                            Console.WriteLine(helpText);
+                            _writer.WriteLine(helpText);
                         });
                 }
             }
