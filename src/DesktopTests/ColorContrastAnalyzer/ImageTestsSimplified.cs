@@ -67,10 +67,10 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             var result = image.RunSimplifiedColorContrastCalculation();
 
-            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(204, 204, 236)),
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(14, 19, 184)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
         }
 
         [TestMethod]
@@ -142,7 +142,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void VisualStudioTab()
         {
-            ColorPair approximateColorPair = new ColorPair(new CCColor(15, 121, 221), new CCColor(37, 37, 38));
+            ColorPair approximateColorPair = new ColorPair(new CCColor(6, 135, 217), new CCColor(37, 37, 38));
 
             var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunSimplifiedColorContrastCalculation();
 
@@ -151,23 +151,23 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(approximateColorPair, colorContrastResult.MostLikelyColorPair);
         }
 
-        ///**
-        // * Note in this test case we have Mide confidence. As such, we also are asserting that the color is only
-        // * approximately what we expect, this allows our algorithm a little flexibility, without having to modify
-        // * these tests every time we sneeze on our configuration file.
-        // */
-        //[TestMethod, Timeout(2000)]
-        //public void WeirdTextArrangement()
-        //{
-        //    var image = LoadFromResources("weird_text_arrangement.bmp");
+        /**
+         * Note in this test case we have Mide confidence. As such, we also are asserting that the color is only
+         * approximately what we expect, this allows our algorithm a little flexibility, without having to modify
+         * these tests every time we sneeze on our configuration file.
+         */
+        [TestMethod]
+        public void WeirdTextArrangement()
+        {
+            var image = LoadFromResources("weird_text_arrangement.bmp");
 
-        //    ColorPair approximateColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(177, 199, 188));
+            ColorPair approximateColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(220, 215, 209));
 
-        //    IColorContrastResult result = image.RunSimplifiedColorContrastCalculation();
+            IColorContrastResult result = image.RunSimplifiedColorContrastCalculation();
 
-        //    Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
 
-        //    Assert.AreEqual(Confidence.High, result.ConfidenceValue());
-        //}
+            Assert.AreEqual(Confidence.Low, result.Confidence);
+        }
     }
 }

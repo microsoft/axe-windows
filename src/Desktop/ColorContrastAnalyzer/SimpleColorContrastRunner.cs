@@ -36,6 +36,15 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             // Assume that the background color is the most common color in the row
             var backgroundColor = colorsByFrequency.First().Key;
 
+            Color foregroundColor = FindForegroundColor(backgroundColor);
+
+            countExactColors.Clear();
+
+            return new SimpleRowResult(backgroundColor, foregroundColor);
+        }
+
+        private Color FindForegroundColor(Color backgroundColor)
+        {
             var contrastingColors = countExactColors.OrderByDescending(x =>
             {
                 ColorPair cp = new ColorPair(backgroundColor, x.Key);
@@ -47,9 +56,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             var foregroundColor = mostContrastingColor.Equals(backgroundColor) ?
                 null : mostContrastingColor;
 
-            countExactColors.Clear();
-
-            return new SimpleRowResult(backgroundColor, foregroundColor);
+            return foregroundColor;
         }
     }
 }

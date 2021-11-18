@@ -3,6 +3,7 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
+    // The order of these matters for combining confidences. Please do not change them
     public enum Confidence { None, Low, Mid, High }
 
     public interface IColorContrastResult
