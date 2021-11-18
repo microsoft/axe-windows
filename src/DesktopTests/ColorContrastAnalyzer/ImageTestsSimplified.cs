@@ -134,8 +134,8 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         //    Assert.AreEqual(expected, resultOffsetUpImage.MostLikelyColorPair);
         //    Assert.AreEqual(expected, resultOffsetDownImage.MostLikelyColorPair);
 
-        //    Assert.AreEqual(Confidence.High, resultOffsetDownImage.ConfidenceValue());
-        //    Assert.AreEqual(Confidence.High, resultOffsetUpImage.ConfidenceValue());
+        //    Assert.AreEqual(Confidence.High, resultOffsetDownImage.Confidence);
+        //    Assert.AreEqual(Confidence.High, resultOffsetUpImage.Confidence);
         //}
 
         [TestMethod]
@@ -157,6 +157,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
          * these tests every time we sneeze on our configuration file.
          */
         [TestMethod]
+        [Timeout(2000)]
         public void WeirdTextArrangement()
         {
             var image = LoadFromResources("weird_text_arrangement.bmp");
