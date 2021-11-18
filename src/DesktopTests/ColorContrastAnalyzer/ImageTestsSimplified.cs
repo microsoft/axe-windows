@@ -115,28 +115,29 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
-        ///**
-        // * In this test we are analyzing two similar images. One with text near the bottom of the image
-        // * and the other with the text near the top. The results should be identical.
-        // */
-        //[TestMethod]
-        //[Timeout(2000)]
-        //public void CortanaImagesWithDifferentOffsets()
-        //{
-        //    ColorPair expected = new ColorPair(new CCColor(0, 0, 0), new CCColor(139, 204, 41));
+        /**
+         * In this test we are analyzing two similar images. One with text near the bottom of the image
+         * and the other with the text near the top. The results should be identical.
+         */
+        [TestMethod]
+        [Timeout(2000)]
+        public void CortanaImagesWithDifferentOffsets()
+        {
+            ColorPair expectedUp = new ColorPair(new CCColor(0, 0, 0), new CCColor(139, 204, 41));
+            ColorPair expectedDown = new ColorPair(new CCColor(0, 0, 0), new CCColor(138, 202, 41));
 
-        //    IColorContrastResult resultOffsetDownImage = LoadFromResources("cortana_with_offset_down.bmp")
-        //        .RunSimplifiedColorContrastCalculation();
+            IColorContrastResult resultOffsetDownImage = LoadFromResources("cortana_with_offset_down.bmp")
+                .RunSimplifiedColorContrastCalculation();
 
-        //    IColorContrastResult resultOffsetUpImage = LoadFromResources("cortana_with_offset_up.bmp")
-        //        .RunSimplifiedColorContrastCalculation();
+            IColorContrastResult resultOffsetUpImage = LoadFromResources("cortana_with_offset_up.bmp")
+                .RunSimplifiedColorContrastCalculation();
 
-        //    Assert.AreEqual(expected, resultOffsetUpImage.MostLikelyColorPair);
-        //    Assert.AreEqual(expected, resultOffsetDownImage.MostLikelyColorPair);
+            Assert.AreEqual(expectedUp, resultOffsetUpImage.MostLikelyColorPair);
+            Assert.AreEqual(expectedDown, resultOffsetDownImage.MostLikelyColorPair);
 
-        //    Assert.AreEqual(Confidence.High, resultOffsetDownImage.Confidence);
-        //    Assert.AreEqual(Confidence.High, resultOffsetUpImage.Confidence);
-        //}
+            Assert.AreEqual(Confidence.High, resultOffsetDownImage.Confidence);
+            Assert.AreEqual(Confidence.High, resultOffsetUpImage.Confidence);
+        }
 
         [TestMethod]
         [Timeout(2000)]
