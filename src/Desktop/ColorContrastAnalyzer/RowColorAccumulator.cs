@@ -44,20 +44,20 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         private ColorVoteInfo GetBackgroundInfo()
         {
-            CountMap<Color> backgroundColors = new CountMap<Color>();
+            CountMap<Color> backgroundColorBallots = new CountMap<Color>();
 
             _rowResults.ForEach(r =>
             {
                 Color backgroundColor = r.BackgroundColor;
                 if (backgroundColor != null)
                 {
-                    backgroundColors.Increment(r.BackgroundColor);
+                    backgroundColorBallots.Increment(r.BackgroundColor);
                 }
             });
 
-            var backgroundColorByFrequency = backgroundColors.OrderByDescending(x => x.Value);
+            var sortedBackgroundColorBallots = backgroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(backgroundColorByFrequency);
+            return MeasureConfidence(sortedBackgroundColorBallots);
         }
 
         private  ColorVoteInfo GetForegroundInfo(Color backgroundColor)
@@ -79,55 +79,55 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 return null;
             }
 
-            var foregroundColorByContrast = foregroundColors.OrderByDescending(x =>
+            var foregroundColorsSortedByContrast = foregroundColors.OrderByDescending(x =>
             {
                 ColorPair cp = new ColorPair(backgroundColor, x.Key);
                 return cp.ColorContrast();
             });
 
-            CountMap<Color> adjustColorsByContrast = new CountMap<Color>();
+            CountMap<Color> unsortedForegroundColorBallots = new CountMap<Color>();
             Color currentSimilarColor = null;
 
-            foreach (var pair in foregroundColorByContrast)
+            foreach (var pair in foregroundColorsSortedByContrast)
             {
                 if (currentSimilarColor == null)
                 {
-                    adjustColorsByContrast.Increment(pair.Key, pair.Value);
+                    unsortedForegroundColorBallots.Increment(pair.Key, pair.Value);
                     currentSimilarColor = pair.Key;
                 }
                 else if (currentSimilarColor.IsSimilarColor(pair.Key))
                 {
-                    adjustColorsByContrast.Increment(currentSimilarColor, pair.Value);
+                    unsortedForegroundColorBallots.Increment(currentSimilarColor, pair.Value);
                 }
                 else
                 {
-                    adjustColorsByContrast.Increment(pair.Key, pair.Value);
+                    unsortedForegroundColorBallots.Increment(pair.Key, pair.Value);
                     currentSimilarColor = pair.Key;
                 }
             }
 
-            var similarColorFrequencies = adjustColorsByContrast.OrderByDescending(x => x.Value);
+            var sortedForegroundColorBallots = unsortedForegroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(similarColorFrequencies);
+            return MeasureConfidence(sortedForegroundColorBallots);
         }
 
-        private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> colorInputs)
+        private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots)
         {
-            var inputsAsList = new List<KeyValuePair<Color, int>>(colorInputs);
-            int pluralityInputs = 0;
+            var ballotsAsList = new List<KeyValuePair<Color, int>>(sortedBallots);
+            int pluralityBallots = 0;
             int pluralityVotes = 0;
             int totalVotes = 0;
 
-            foreach (var colorInput in inputsAsList)
+            foreach (var colorInput in ballotsAsList)
             {
                 totalVotes += colorInput.Value;
             }
 
             int plurality = totalVotes / 2 + 1;
 
-            foreach (var colorCount in inputsAsList)
+            foreach (var colorCount in ballotsAsList)
             {
-                pluralityInputs++;
+                pluralityBallots++;
                 pluralityVotes += colorCount.Value;
 
                 if (pluralityVotes >= plurality)
@@ -137,9 +137,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
 
             return new ColorVoteInfo(
-                inputsAsList.First().Key,
-                inputsAsList.First().Value,
-                DetermineConfidence(pluralityInputs, inputsAsList.Count));
+                ballotsAsList.First().Key,
+                ballotsAsList.First().Value,
+                DetermineConfidence(pluralityBallots, ballotsAsList.Count));
         }
 
         private static Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
