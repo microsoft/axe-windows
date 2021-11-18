@@ -36,10 +36,6 @@ Copyright c 2020
                              a default of 0.
 
   --customuia                The path to a configuration file specifying custom UI Automation attributes
-
-  --help                     Display this help screen.
-
-  --version                  Display version information.
 ```
 
   To scan an application, you need to specify the application's process via either the `--processId` or `--processName` parameters
