@@ -57,7 +57,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             var sortedBackgroundColorBallots = backgroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedBackgroundColorBallots, CountSimpleBallots);
+            return MeasureConfidence(sortedBackgroundColorBallots, CountVotesViaSimpleBallots);
         }
 
         private  ColorVoteInfo GetForegroundInfo(Color backgroundColor)
@@ -109,16 +109,16 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             var sortedForegroundColorBallots = aggregatedForegroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedForegroundColorBallots, CountAggregatedBallots);
+            return MeasureConfidence(sortedForegroundColorBallots, CountVotesViaAggregatedBallots);
         }
 
         private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
-            Func<IReadOnlyList<KeyValuePair<Color, int>>, int> voteMethod)
+            Func<IReadOnlyList<KeyValuePair<Color, int>>, int> voteCounter)
         {
             var ballotsAsList = new List<KeyValuePair<Color, int>>(sortedBallots);
             int pluralityBallots = 0;
             int pluralityVotes = 0;
-            int targetVotes = voteMethod(ballotsAsList);
+            int targetVotes = voteCounter(ballotsAsList);
 
             int plurality = targetVotes / 2 + 1;
 
@@ -139,7 +139,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 DetermineConfidence(pluralityBallots, targetVotes));
         }
 
-        private static int CountSimpleBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
+        private static int CountVotesViaSimpleBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
         {
             int totalVotes = 0;
             foreach (var ballot in ballots)
@@ -149,7 +149,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return totalVotes;
         }
 
-        private static int CountAggregatedBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
+        private static int CountVotesViaAggregatedBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
         {
             return ballots.Count;
         }
