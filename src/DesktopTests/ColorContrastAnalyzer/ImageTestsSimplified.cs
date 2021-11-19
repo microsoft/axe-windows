@@ -67,10 +67,10 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             var result = image.RunSimplifiedColorContrastCalculation();
 
-            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(14, 19, 184)),
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(32, 13, 159)),
                 result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.Mid, result.Confidence);
+            Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
         [TestMethod]
@@ -124,7 +124,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         public void CortanaImagesWithDifferentOffsets()
         {
             ColorPair expectedUp = new ColorPair(new CCColor(0, 0, 0), new CCColor(139, 204, 41));
-            ColorPair expectedDown = new ColorPair(new CCColor(0, 0, 0), new CCColor(138, 202, 41));
+            ColorPair expectedDown = new ColorPair(new CCColor(0, 0, 0), new CCColor(142, 208, 42));
 
             IColorContrastResult resultOffsetDownImage = LoadFromResources("cortana_with_offset_down.bmp")
                 .RunSimplifiedColorContrastCalculation();
@@ -152,24 +152,19 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(approximateColorPair, colorContrastResult.MostLikelyColorPair);
         }
 
-        /**
-         * Note in this test case we have Mide confidence. As such, we also are asserting that the color is only
-         * approximately what we expect, this allows our algorithm a little flexibility, without having to modify
-         * these tests every time we sneeze on our configuration file.
-         */
         [TestMethod]
         [Timeout(2000)]
         public void WeirdTextArrangement()
         {
             var image = LoadFromResources("weird_text_arrangement.bmp");
 
-            ColorPair approximateColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(220, 215, 209));
+            ColorPair approximateColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(199, 207, 188));
 
             IColorContrastResult result = image.RunSimplifiedColorContrastCalculation();
 
             Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
 
-            Assert.AreEqual(Confidence.Low, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
         }
     }
 }

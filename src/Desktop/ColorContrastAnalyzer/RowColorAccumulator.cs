@@ -57,12 +57,12 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             var sortedBackgroundColorBallots = backgroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedBackgroundColorBallots);
+            return MeasureConfidence(sortedBackgroundColorBallots, CountSimpleBallots);
         }
 
         private  ColorVoteInfo GetForegroundInfo(Color backgroundColor)
         {
-            CountMap<Color> foregroundColors = new CountMap<Color>();
+            CountMap<Color> simpleForegroundColorBallots = new CountMap<Color>();
 
             _rowResults.ForEach(r =>
             {
@@ -70,60 +70,57 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 Color testBackgroundColor = r.BackgroundColor;
                 if (foregroundColor != null && backgroundColor.Equals(testBackgroundColor))
                 {
-                    foregroundColors.Increment(r.ForegroundColor);
+                    simpleForegroundColorBallots.Increment(r.ForegroundColor);
                 }
             });
 
-            if (!foregroundColors.Any())
+            if (!simpleForegroundColorBallots.Any())
             {
                 return null;
             }
 
-            var foregroundColorsSortedByContrast = foregroundColors.OrderByDescending(x =>
+            var simpleForegroundBallotsSortedByContrast = simpleForegroundColorBallots.OrderByDescending(x =>
             {
                 ColorPair cp = new ColorPair(backgroundColor, x.Key);
                 return cp.ColorContrast();
             });
 
-            CountMap<Color> unsortedForegroundColorBallots = new CountMap<Color>();
-            Color currentSimilarColor = null;
+            CountMap<Color> aggregatedForegroundColorBallots = new CountMap<Color>();
 
-            foreach (var pair in foregroundColorsSortedByContrast)
+            foreach (var pair in simpleForegroundBallotsSortedByContrast)
             {
-                if (currentSimilarColor == null)
+                CountMap<Color> countsToAddOutsideOfIterator = new CountMap<Color>();
+
+                foreach (var aggregateForegroundColorBallot in aggregatedForegroundColorBallots)
                 {
-                    unsortedForegroundColorBallots.Increment(pair.Key, pair.Value);
-                    currentSimilarColor = pair.Key;
+                    if (aggregateForegroundColorBallot.Key.IsSimilarColor(pair.Key))
+                    {
+                        countsToAddOutsideOfIterator.Increment(aggregateForegroundColorBallot.Key, pair.Value);
+                    }
                 }
-                else if (currentSimilarColor.IsSimilarColor(pair.Key))
+
+                foreach (var countToAdd  in countsToAddOutsideOfIterator)
                 {
-                    unsortedForegroundColorBallots.Increment(currentSimilarColor, pair.Value);
+                    aggregatedForegroundColorBallots.Increment(countToAdd.Key, countToAdd.Value);
                 }
-                else
-                {
-                    unsortedForegroundColorBallots.Increment(pair.Key, pair.Value);
-                    currentSimilarColor = pair.Key;
-                }
+
+                aggregatedForegroundColorBallots.Increment(pair.Key, pair.Value);
             }
 
-            var sortedForegroundColorBallots = unsortedForegroundColorBallots.OrderByDescending(x => x.Value);
+            var sortedForegroundColorBallots = aggregatedForegroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedForegroundColorBallots);
+            return MeasureConfidence(sortedForegroundColorBallots, CountAggregatedBallots);
         }
 
-        private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots)
+        private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
+            Func<IReadOnlyList<KeyValuePair<Color, int>>, int> voteMethod)
         {
             var ballotsAsList = new List<KeyValuePair<Color, int>>(sortedBallots);
             int pluralityBallots = 0;
             int pluralityVotes = 0;
-            int totalVotes = 0;
+            int targetVotes = voteMethod(ballotsAsList);
 
-            foreach (var colorInput in ballotsAsList)
-            {
-                totalVotes += colorInput.Value;
-            }
-
-            int plurality = totalVotes / 2 + 1;
+            int plurality = targetVotes / 2 + 1;
 
             foreach (var colorCount in ballotsAsList)
             {
@@ -139,7 +136,22 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return new ColorVoteInfo(
                 ballotsAsList.First().Key,
                 ballotsAsList.First().Value,
-                DetermineConfidence(pluralityBallots, ballotsAsList.Count));
+                DetermineConfidence(pluralityBallots, targetVotes));
+        }
+
+        private static int CountSimpleBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
+        {
+            int totalVotes = 0;
+            foreach (var ballot in ballots)
+            {
+                totalVotes += ballot.Value;
+            }
+            return totalVotes;
+        }
+
+        private static int CountAggregatedBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
+        {
+            return ballots.Count;
         }
 
         private static Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
