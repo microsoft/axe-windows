@@ -117,7 +117,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
         /**
          * In this test we are analyzing two similar images. One with text near the bottom of the image
-         * and the other with the text near the top. The results should be identical.
+         * and the other with the text near the top. The results should be similar.
          */
         [TestMethod]
         [Timeout(2000)]
@@ -143,13 +143,13 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void VisualStudioTab()
         {
-            ColorPair approximateColorPair = new ColorPair(new CCColor(6, 135, 217), new CCColor(37, 37, 38));
+            ColorPair excpectedColorPair = new ColorPair(new CCColor(6, 135, 217), new CCColor(37, 37, 38));
 
             var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunSimplifiedColorContrastCalculation();
 
             Assert.AreEqual(Confidence.High, colorContrastResult.Confidence);
 
-            Assert.AreEqual(approximateColorPair, colorContrastResult.MostLikelyColorPair);
+            Assert.AreEqual(excpectedColorPair, colorContrastResult.MostLikelyColorPair);
         }
 
         [TestMethod]
@@ -158,11 +158,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("weird_text_arrangement.bmp");
 
-            ColorPair approximateColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(199, 207, 188));
+            ColorPair expectedColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(199, 207, 188));
 
             IColorContrastResult result = image.RunSimplifiedColorContrastCalculation();
 
-            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
 
             Assert.AreEqual(Confidence.Mid, result.Confidence);
         }
