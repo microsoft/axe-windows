@@ -970,7 +970,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A split button must not support both the Invoke and Toggle patterns..
+        ///   Looks up a localized string similar to A split button must support exactly one of the Invoke or Toggle patterns..
         /// </summary>
         internal static string SplitButtonInvokeAndTogglePatterns {
             get {
