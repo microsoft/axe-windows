@@ -30,8 +30,9 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
+            var elligbleSplitButton = SplitButton & ~Parent(SplitButton);
             var complexComboBox = ComboBox & ~PlatformProperties.SimpleStyle;
-            return AppBar | complexComboBox | SplitButton | (TreeItem & TreeItemChildrenExist);
+            return AppBar | complexComboBox | elligbleSplitButton | (TreeItem & TreeItemChildrenExist);
         }
     } // class
 } // namespace
