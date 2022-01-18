@@ -36,7 +36,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_black_and_grey_button.bmp");
 
-            var result = image.RunSimplifiedColorContrastCalculation();
+            var result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(new ColorPair(new CCColor(204, 204, 204), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -50,7 +50,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_purple_and_white_button.bmp");
 
-            var result = image.RunSimplifiedColorContrastCalculation();
+            var result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(new ColorPair(new CCColor(55, 0, 110), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -64,7 +64,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_blue_and_white_text.bmp");
 
-            var result = image.RunSimplifiedColorContrastCalculation();
+            var result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(32, 13, 159)),
                 result.MostLikelyColorPair);
@@ -78,7 +78,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_grey_and_white_title.bmp");
 
-            var result = image.RunSimplifiedColorContrastCalculation();
+            var result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(153, 153, 153)),
                 result.MostLikelyColorPair);
@@ -92,7 +92,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_black_and_white_title.bmp");
 
-            var result = image.RunSimplifiedColorContrastCalculation();
+            var result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(new ColorPair(new CCColor(0, 0, 0), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -106,7 +106,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_white_and_black_text.bmp");
 
-            var result = image.RunSimplifiedColorContrastCalculation();
+            var result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(new ColorPair(new CCColor(0, 0, 0), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -126,10 +126,10 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             ColorPair expectedDown = new ColorPair(new CCColor(0, 0, 0), new CCColor(142, 208, 42));
 
             IColorContrastResult resultOffsetDownImage = LoadFromResources("cortana_with_offset_down.bmp")
-                .RunSimplifiedColorContrastCalculation();
+                .RunColorContrastCalculationV2();
 
             IColorContrastResult resultOffsetUpImage = LoadFromResources("cortana_with_offset_up.bmp")
-                .RunSimplifiedColorContrastCalculation();
+                .RunColorContrastCalculationV2();
 
             Assert.AreEqual(expectedUp, resultOffsetUpImage.MostLikelyColorPair);
             Assert.AreEqual(expectedDown, resultOffsetDownImage.MostLikelyColorPair);
@@ -144,7 +144,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             ColorPair excpectedColorPair = new ColorPair(new CCColor(6, 135, 217), new CCColor(37, 37, 38));
 
-            var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunSimplifiedColorContrastCalculation();
+            var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunColorContrastCalculationV2();
 
             Assert.AreEqual(Confidence.High, colorContrastResult.Confidence);
 
@@ -159,7 +159,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             ColorPair expectedColorPair = new ColorPair(new CCColor(30, 30, 30), new CCColor(199, 207, 188));
 
-            IColorContrastResult result = image.RunSimplifiedColorContrastCalculation();
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
 
             Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
 

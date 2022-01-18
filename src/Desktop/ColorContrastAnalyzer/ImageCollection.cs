@@ -37,7 +37,21 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * Run the Color Contrast calculation on the image.
          */
-        public IColorContrastResult RunSimplifiedColorContrastCalculation()
+        public IColorContrastResult RunColorContrastCalculation()
+        {
+            switch (_colorContrastConfig.AnalyzerVersion)
+            {
+                case AnalyzerVersion.V2:
+                    return RunColorContrastCalculationV2();
+                default:
+                    return RunColorContrastCalculationV1();
+            }
+        }
+
+        /**
+            * Run the Color Contrast calculation on the image.
+            */
+        public IColorContrastResult RunColorContrastCalculationV2()
         {
             ColorContrastRunnerV2 runner = new ColorContrastRunnerV2(_colorContrastConfig);
 
@@ -59,7 +73,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * Run the Color Contrast calculation on the image.
          */
-        public ColorContrastResult RunColorContrastCalculation()
+        public IColorContrastResult RunColorContrastCalculationV1()
         {
             ColorContrastResult result = null;
 
