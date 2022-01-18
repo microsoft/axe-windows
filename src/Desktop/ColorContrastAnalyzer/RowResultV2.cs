@@ -3,13 +3,13 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class SimpleRowResult
+    public class RowResultV2
     {
         internal Color BackgroundColor { get; }
 
         internal Color ForegroundColor { get; }
 
-        public SimpleRowResult(Color backgroundColor = null,
+        public RowResultV2(Color backgroundColor = null,
             Color foregroundColor = null)
         {
             BackgroundColor = backgroundColor;

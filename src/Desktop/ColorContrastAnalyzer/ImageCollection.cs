@@ -39,7 +39,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         public IColorContrastResult RunSimplifiedColorContrastCalculation()
         {
-            SimpleColorContrastRunner runner = new SimpleColorContrastRunner(_colorContrastConfig);
+            ColorContrastRunnerV2 runner = new ColorContrastRunnerV2(_colorContrastConfig);
 
             RowColorAccumulator accumulator = new RowColorAccumulator();
 

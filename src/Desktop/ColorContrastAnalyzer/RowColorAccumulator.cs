@@ -23,9 +23,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
         }
 
-        private readonly List<SimpleRowResult> _rowResults = new List<SimpleRowResult>();
+        private readonly List<RowResultV2> _rowResults = new List<RowResultV2>();
 
-        internal void AddRowResult(SimpleRowResult rowResult)
+        internal void AddRowResult(RowResultV2 rowResult)
         {
             _rowResults.Add(rowResult);
         }
@@ -37,7 +37,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             // TODO: Non-trivial cases
 
-            return new SimpleColorContrastResult(
+            return new ColorContrastResultV2(
                 new ColorPair(backgroundInfo.Color, foregroundInfo.Color),
                 CombinedConfidence(backgroundInfo.Confidence, foregroundInfo.Confidence));
         }

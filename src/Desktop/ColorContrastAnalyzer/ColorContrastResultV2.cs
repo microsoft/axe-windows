@@ -3,12 +3,12 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class SimpleColorContrastResult: IColorContrastResult
+    public class ColorContrastResultV2: IColorContrastResult
     {
         private readonly ColorPair _mostLikelyColorPair;
         private readonly Confidence _confidence;
 
-        public SimpleColorContrastResult(ColorPair mostLikelycolorPair, Confidence confidence)
+        public ColorContrastResultV2(ColorPair mostLikelycolorPair, Confidence confidence)
         {
             _mostLikelyColorPair = mostLikelycolorPair;
             _confidence = confidence;

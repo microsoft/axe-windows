@@ -12,5 +12,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         public int MinSpaceBetweenSamples => 12;
 
         public int TransitionCountDominanceFactor => 2;
+
+        public AnalyzerVersion AnalyzerVersion => AnalyzerVersion.V1;
     }
 }

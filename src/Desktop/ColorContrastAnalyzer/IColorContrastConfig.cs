@@ -33,5 +33,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// combinations in a "Row" of pixels for us to be positive about any given pair.
         /// </summary>
         int TransitionCountDominanceFactor { get; }
+
+        /// <summary>
+        /// Returns the current AnalyzerVersion
+        /// </summary>
+        AnalyzerVersion AnalyzerVersion { get; }
     }
 }

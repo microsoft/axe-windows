@@ -12,7 +12,7 @@ using System.Reflection;
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
     [TestClass()]
-    public class ImageTestsSimplified
+    public class ImageTestsV2
     {
         // A convenience method for loading Bitmap images from test resources.
         public static BitmapCollection LoadFromResources(string name)

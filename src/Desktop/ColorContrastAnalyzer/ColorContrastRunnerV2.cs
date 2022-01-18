@@ -9,13 +9,13 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     * Manages running of the color contrast calculation. Collects transition and
     * color counts and attempts to come to conclusions based on these values.
     */
-    internal class SimpleColorContrastRunner
+    internal class ColorContrastRunnerV2
     {
         private readonly IColorContrastConfig _colorContrastConfig;
 
         private CountMap<Color> countExactColors = new CountMap<Color>();
 
-        internal SimpleColorContrastRunner(IColorContrastConfig colorContrastConfig)
+        internal ColorContrastRunnerV2(IColorContrastConfig colorContrastConfig)
         {
             _colorContrastConfig = colorContrastConfig;
         }
@@ -27,9 +27,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         // Returns true when entries have lead to a confident conclusion about Text and Background color.
 
-        internal SimpleRowResult OnRowEnd(int countOfPixelsInRow)
+        internal RowResultV2 OnRowEnd(int countOfPixelsInRow)
         {
-            SimpleRowResult result = new SimpleRowResult();
+            RowResultV2 result = new RowResultV2();
 
             var colorsByFrequency = countExactColors.OrderByDescending(x => x.Value);
 
@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             countExactColors.Clear();
 
-            return new SimpleRowResult(backgroundColor, foregroundColor);
+            return new RowResultV2(backgroundColor, foregroundColor);
         }
 
         private Color FindForegroundColor(Color backgroundColor)
