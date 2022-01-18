@@ -235,7 +235,7 @@
     <value>The RangeValue pattern of an edit control must have a null LargeChange property.</value>
   </data>
   <data name="SplitButtonInvokeAndTogglePatterns" xml:space="preserve">
-    <value>A split button must not support both the Invoke and Toggle patterns.</value>
+    <value>A split button must support exactly one of the Invoke or Toggle patterns.</value>
   </data>
   <data name="ControlShouldNotSupportInvokePattern" xml:space="preserve">
     <value>An element of the given ControlType must not support the Invoke pattern.</value>

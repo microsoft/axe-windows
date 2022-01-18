@@ -65,5 +65,71 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(this.Rule.Condition.Matches(e));
             Assert.IsTrue(Rule.PassesTest(e));
         }
+        
+        /// <summary>
+        /// Condition should match since SplitButton has a child text item
+        /// and ExpandCollapse is supported. so scan succeeds
+        /// </summary>
+        [TestMethod]
+        public void TestSplitButtonWithChildItem()
+        {
+            var e = new MockA11yElement();
+            var ec = new MockA11yElement();
+
+            e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_SplitButtonControlTypeId;
+            ec.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TextControlTypeId;
+
+            e.Children.Add(ec);
+            e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ExpandCollapsePatternId));
+            ec.Parent = e;
+
+            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(Rule.PassesTest(e));
+        }
+        
+        /// <summary>
+        /// Condition should not match since SplitButton has a child SplitButton
+        /// and ExpandCollapse is supported. so scan succeeds
+        /// </summary>
+        [TestMethod]
+        public void TestSplitButtonWithChildSplitButton()
+        {
+            var e = new MockA11yElement();
+            var ec = new MockA11yElement();
+
+            e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_SplitButtonControlTypeId;
+            ec.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_SplitButtonControlTypeId;
+
+            e.Children.Add(ec);
+            e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ExpandCollapsePatternId));
+            ec.Parent = e;
+
+            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(this.Rule.Condition.Matches(ec));
+            Assert.IsTrue(Rule.PassesTest(e));
+        }
+
+
+        /// <summary>
+        /// Condition should match since SplitButton is child of a Pane
+        /// and ExpandCollapse is supported. so scan succeeds
+        /// </summary>
+        [TestMethod]
+        public void TestPaneWithSplitButtonChild()
+        {
+            var e = new MockA11yElement();
+            var ec = new MockA11yElement();
+
+            e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_PaneControlTypeId;
+            ec.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_SplitButtonControlTypeId;
+
+            e.Children.Add(ec);
+            ec.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ExpandCollapsePatternId));
+            ec.Parent = e;
+
+            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(this.Rule.Condition.Matches(ec));
+            Assert.IsTrue(Rule.PassesTest(ec));
+        }
     }
 }

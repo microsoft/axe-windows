@@ -13,7 +13,7 @@ BoundingRectangleOnUWPMenuBar | Open | The BoundingRectangle property of a menub
 BoundingRectangleOnUWPMenuItem | Open | The BoundingRectangle property of a menu item in UWP may have a null or empty value. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleOnWPFTextParent | Open | The BoundingRectangle property of a given element in the WPF framework whose parent is of type text may have a null or empty value. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleSizeReasonable | Error | The BoundingRectangle property must represent an area of at least 25 pixels. | Section 508 502.3.1 ObjectInformation
-SplitButtonInvokeAndTogglePatterns | Error | A split button must not support both the Invoke and Toggle patterns. | WCAG 4.1.2 NameRoleValue
+SplitButtonInvokeAndTogglePatterns | Error | A split button must support exactly one of the Invoke or Toggle patterns. | WCAG 4.1.2 NameRoleValue
 ButtonShouldHavePatterns | Error | A button must support one of these patterns: Invoke, Toggle, or ExpandCollapse. | WCAG 4.1.2 NameRoleValue
 ButtonInvokeAndTogglePatterns | Error | A button must not support both the Invoke and Toggle patterns. | WCAG 4.1.2 NameRoleValue
 ButtonInvokeAndExpandCollapsePatterns | Warning | A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them.  | WCAG 1.3.1 InfoAndRelationships
