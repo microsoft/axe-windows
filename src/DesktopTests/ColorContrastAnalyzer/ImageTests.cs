@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using static Axe.Windows.Desktop.ColorContrastAnalyzer.ColorContrastResult;
 using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
 using System.Reflection;
 
