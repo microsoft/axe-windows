@@ -21,7 +21,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return this;
         }
 
-        public ConfigBuilder WithMinNumberOfColorTransitions(int minNumberOfColorTransitions)
+        public ConfigBuilder WithMinNumberColorTransitions(int minNumberOfColorTransitions)
         {
             _minNumberOfColorTransitions = minNumberOfColorTransitions;
             return this;
