@@ -231,6 +231,17 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             Assert.AreEqual(Confidence.None, result.Confidence);
         }
 
+        [TestMethod]
+        [Timeout(2000)]
+        public void ButtonIconAntialiased()
+        {
+            var image = LoadFromResources("button_icon_antialiased.bmp");
+
+            IColorContrastResult result = image.RunColorContrastCalculationV1();
+
+            Assert.AreEqual(Confidence.None, result.Confidence);
+        }
+
         [TestMethod, Timeout(2000)]
         public void BinaryRowSearchIterator()
         {

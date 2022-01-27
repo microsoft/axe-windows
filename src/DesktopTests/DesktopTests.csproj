@@ -22,6 +22,7 @@
     <None Remove="wildlife_manager_listbox_owl.bmp" />
     <None Remove="wildlife_manager_listbox_owl_cropped.bmp" />
     <None Remove="wildlife_manager_species_label.bmp" />
+    <None Remove="button_icon_antialiased.bmp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -113,6 +114,10 @@
 
   <ItemGroup>
     <EmbeddedResource Include="TestImages\wildlife_manager_species_label.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\button_icon_antialiased.bmp" />
   </ItemGroup>
 
   <Import Project="..\..\build\NetStandardTest.targets" />

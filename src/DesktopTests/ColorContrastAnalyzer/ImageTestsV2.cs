@@ -240,5 +240,20 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             Assert.AreEqual(Confidence.High, result.Confidence);
         }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void ButtonIconAntialiased()
+        {
+            var image = LoadFromResources("button_icon_antialiased.bmp");
+
+            ColorPair approximateColorPair = new ColorPair(new CCColor(247, 247, 247), new CCColor(0, 0, 0));
+
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
+
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
     }
 }
