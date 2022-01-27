@@ -17,6 +17,11 @@
     <None Remove="TestImages\simple_white_and_black_text.bmp" />
     <None Remove="TestImages\visual_studio_tab.bmp" />
     <None Remove="TestImages\weird_text_arrangement.bmp" />
+    <None Remove="wildlife_manager_listbox_beetle.bmp" />
+    <None Remove="wildlife_manager_listbox_mouse.bmp" />
+    <None Remove="wildlife_manager_listbox_owl.bmp" />
+    <None Remove="wildlife_manager_listbox_owl_cropped.bmp" />
+    <None Remove="wildlife_manager_species_label.bmp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,6 +93,26 @@
 
   <ItemGroup>
     <EmbeddedResource Include="TestImages\weird_text_arrangement.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\wildlife_manager_listbox_beetle.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\wildlife_manager_listbox_mouse.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\wildlife_manager_listbox_owl.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\wildlife_manager_listbox_owl_cropped.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\wildlife_manager_species_label.bmp" />
   </ItemGroup>
 
   <Import Project="..\..\build\NetStandardTest.targets" />

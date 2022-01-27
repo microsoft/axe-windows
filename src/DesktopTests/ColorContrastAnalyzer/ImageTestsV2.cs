@@ -165,5 +165,80 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             Assert.AreEqual(Confidence.Mid, result.Confidence);
         }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void WildlifeManager_ListboxBeetle()
+        {
+            var image = LoadFromResources("wildlife_manager_listbox_beetle.bmp");
+
+            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0));
+
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
+
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void WildlifeManager_ListboxMouse()
+        {
+            var image = LoadFromResources("wildlife_manager_listbox_mouse.bmp");
+
+            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0));
+
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
+
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void WildlifeManager_ListboxOwl()
+        {
+            var image = LoadFromResources("wildlife_manager_listbox_owl.bmp");
+
+            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0));
+
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
+
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void WildlifeManager_ListboxOwl_Cropped()
+        {
+            var image = LoadFromResources("wildlife_manager_listbox_owl_cropped.bmp");
+
+            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0));
+
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
+
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void WildlifeManager_SpeciesLabel()
+        {
+            var image = LoadFromResources("wildlife_manager_species_label.bmp");
+
+            ColorPair approximateColorPair = new ColorPair(new CCColor(255, 255, 255), new CCColor(0, 0, 0));
+
+            IColorContrastResult result = image.RunColorContrastCalculationV2();
+
+            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
     }
 }
