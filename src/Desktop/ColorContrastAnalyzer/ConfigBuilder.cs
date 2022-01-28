@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    class ConfigBuilder
+    public class ConfigBuilder
     {
         private int? _maxTextThickness;
         private int? _minNumberOfColorTransitions;
