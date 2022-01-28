@@ -36,7 +36,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_black_and_grey_button.bmp");
 
-            var result = image.RunColorContrastCalculationV1();
+            var result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(new ColorPair(new CCColor(204, 204, 204), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -50,7 +50,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_purple_and_white_button.bmp");
 
-            var result = image.RunColorContrastCalculationV1();
+            var result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(new ColorPair(new CCColor(55, 0, 110), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -64,7 +64,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_blue_and_white_text.bmp");
 
-            var result = image.RunColorContrastCalculationV1();
+            var result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(new ColorPair(new CCColor(27, 12, 170), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -77,7 +77,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_grey_and_white_title.bmp");
 
-            var result = image.RunColorContrastCalculationV1();
+            var result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(new ColorPair(new CCColor(171, 153, 153), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -90,7 +90,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_black_and_white_title.bmp");
 
-            var result = image.RunColorContrastCalculationV1();
+            var result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(new ColorPair(new CCColor(0, 0, 0), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -103,7 +103,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("simple_white_and_black_text.bmp");
 
-            var result = image.RunColorContrastCalculationV1();
+            var result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(new ColorPair(new CCColor(0, 0, 0), new CCColor(255, 255, 255)),
                 result.MostLikelyColorPair);
@@ -121,10 +121,10 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             ColorPair expected = new ColorPair(new CCColor(0, 0, 0), new CCColor(139, 204, 41));
 
             IColorContrastResult resultOffsetDownImage = LoadFromResources("cortana_with_offset_down.bmp")
-                .RunColorContrastCalculationV1();
+                .RunColorContrastCalculation();
 
             IColorContrastResult resultOffsetUpImage = LoadFromResources("cortana_with_offset_up.bmp")
-                .RunColorContrastCalculationV1();
+                .RunColorContrastCalculation();
 
             Assert.AreEqual(expected, resultOffsetUpImage.MostLikelyColorPair);
             Assert.AreEqual(expected, resultOffsetDownImage.MostLikelyColorPair);
@@ -138,7 +138,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             ColorPair approximateColorPair = new ColorPair(new CCColor(9, 126, 206), new CCColor(37, 37, 38));
 
-            var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunColorContrastCalculationV1();
+            var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunColorContrastCalculation();
 
             Assert.AreEqual(Confidence.Mid, colorContrastResult.Confidence);
 
@@ -155,11 +155,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("weird_text_arrangement.bmp");
 
-            ColorPair approximateColorPair = new ColorPair(new CCColor(177, 199, 188), new CCColor(30, 30, 30));
+            ColorPair expectedColorPair = new ColorPair(new CCColor(177, 199, 188), new CCColor(30, 30, 30));
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
 
             Assert.AreEqual(Confidence.High, result.Confidence);
         }
@@ -170,11 +170,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("wildlife_manager_listbox_beetle.bmp");
 
-            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 51, 143));
+            ColorPair expectedColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 51, 143));
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
 
             Assert.AreEqual(Confidence.High, result.Confidence);
         }
@@ -185,11 +185,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("wildlife_manager_listbox_mouse.bmp");
 
-            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0));
+            ColorPair expectedColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0));
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
 
             Assert.AreEqual(Confidence.High, result.Confidence);
         }
@@ -200,11 +200,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("wildlife_manager_listbox_owl.bmp");
 
-            ColorPair approximateColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(56, 3, 0));
+            ColorPair expectedColorPair = new ColorPair(new CCColor(229, 243, 251), new CCColor(56, 3, 0));
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(approximateColorPair, result.MostLikelyColorPair);
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
 
             Assert.AreEqual(Confidence.High, result.Confidence);
         }
@@ -215,7 +215,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("wildlife_manager_listbox_owl_cropped.bmp");
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(Confidence.None, result.Confidence);
         }
@@ -226,7 +226,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("wildlife_manager_species_label.bmp");
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(Confidence.None, result.Confidence);
         }
@@ -237,9 +237,54 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var image = LoadFromResources("button_icon_antialiased.bmp");
 
-            IColorContrastResult result = image.RunColorContrastCalculationV1();
+            IColorContrastResult result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(Confidence.None, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void OutlookTranslate()
+        {
+            var image = LoadFromResources("outlook_translate.bmp");
+
+            ColorPair expectedColorPair = new ColorPair(new CCColor(16, 110, 190), new CCColor(41, 41, 41));
+
+            IColorContrastResult result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void OutlookShareToTeams()
+        {
+            var image = LoadFromResources("outlook_share_to_teams.bmp");
+
+            ColorPair expectedColorPair = new ColorPair(new CCColor(123, 131, 235), new CCColor(41, 41, 41));
+
+            IColorContrastResult result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void OutlookGetAddIns()
+        {
+            var image = LoadFromResources("outlook_get_add_ins.bmp");
+
+            ColorPair expectedColorPair = new ColorPair(new CCColor(216, 59, 1), new CCColor(41, 41, 41));
+
+            IColorContrastResult result = image.RunColorContrastCalculation();
+
+            Assert.AreEqual(expectedColorPair, result.MostLikelyColorPair);
+
+            Assert.AreEqual(Confidence.High, result.Confidence);
         }
 
         [TestMethod, Timeout(2000)]
