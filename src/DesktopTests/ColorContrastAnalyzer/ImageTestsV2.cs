@@ -252,6 +252,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void OutlookTranslate()
         {
+            // TODO: Can V2 analyzer return more accurate results?
             var image = LoadFromResources("outlook_translate.bmp");
 
             IColorContrastResult result = image.RunColorContrastCalculation();
@@ -266,6 +267,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void OutlookShareToTeams()
         {
+            // TODO: Can V2 analyzer return more accurate results?
             var image = LoadFromResources("outlook_share_to_teams.bmp");
 
             IColorContrastResult result = image.RunColorContrastCalculation();
@@ -280,6 +282,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void OutlookGetAddIns()
         {
+            // TODO: Can V2 analyzer return more accurate results?
             var image = LoadFromResources("outlook_get_add_ins.bmp");
 
             IColorContrastResult result = image.RunColorContrastCalculation();
