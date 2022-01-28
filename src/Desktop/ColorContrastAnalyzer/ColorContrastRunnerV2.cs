@@ -5,15 +5,14 @@ using System.Linq;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    /**
-    * Manages running of the color contrast calculation. Collects transition and
-    * color counts and attempts to come to conclusions based on these values.
-    */
+    /// <summary>
+    /// Runs color contrast V2 analysis
+    /// </summary>
     internal class ColorContrastRunnerV2
     {
         private readonly IColorContrastConfig _colorContrastConfig;
 
-        private CountMap<Color> countExactColors = new CountMap<Color>();
+        private CountMap<Color> _countExactColors = new CountMap<Color>();
 
         internal ColorContrastRunnerV2(IColorContrastConfig colorContrastConfig)
         {
@@ -22,30 +21,28 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal void OnPixel(Color color)
         {
-            countExactColors.Increment(color);
+            _countExactColors.Increment(color);
         }
-
-        // Returns true when entries have lead to a confident conclusion about Text and Background color.
 
         internal RowResultV2 OnRowEnd(int countOfPixelsInRow)
         {
             RowResultV2 result = new RowResultV2();
 
-            var colorsByFrequency = countExactColors.OrderByDescending(x => x.Value);
+            var colorsByFrequency = _countExactColors.OrderByDescending(x => x.Value);
 
             // Assume that the background color is the most common color in the row
             var backgroundColor = colorsByFrequency.First().Key;
 
             Color foregroundColor = FindForegroundColor(backgroundColor);
 
-            countExactColors.Clear();
+            _countExactColors.Clear();
 
             return new RowResultV2(backgroundColor, foregroundColor);
         }
 
         private Color FindForegroundColor(Color backgroundColor)
         {
-            var contrastingColors = countExactColors.OrderByDescending(x =>
+            var contrastingColors = _countExactColors.OrderByDescending(x =>
             {
                 ColorPair cp = new ColorPair(backgroundColor, x.Key);
                 return cp.ColorContrast();
