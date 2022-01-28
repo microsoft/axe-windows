@@ -9,11 +9,15 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal Color ForegroundColor { get; }
 
+        internal int TransitionCount { get; }
+
         public RowResultV2(Color backgroundColor = null,
-            Color foregroundColor = null)
+            Color foregroundColor = null,
+            int transitionCount = 0)
         {
             BackgroundColor = backgroundColor;
             ForegroundColor = foregroundColor;
+            TransitionCount = transitionCount;
         }
     }
 }

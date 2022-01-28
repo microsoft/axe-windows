@@ -69,7 +69,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                 if (IsEndOfRow(pixel))
                 {
-                    accumulator.AddRowResult(runner.OnRowEnd(pixel.Column));
+                    accumulator.AddRowResult(runner.OnRowEnd());
                 }
             }
 

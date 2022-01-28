@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
@@ -12,6 +13,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         private readonly IColorContrastConfig _colorContrastConfig;
 
+        private List<Color> _colorsInRow = new List<Color>();
         private CountMap<Color> _countExactColors = new CountMap<Color>();
 
         internal ColorContrastRunnerV2(IColorContrastConfig colorContrastConfig)
@@ -21,23 +23,29 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal void OnPixel(Color color)
         {
+            _colorsInRow.Add(color);
             _countExactColors.Increment(color);
         }
 
-        internal RowResultV2 OnRowEnd(int countOfPixelsInRow)
+        internal RowResultV2 OnRowEnd()
         {
-            RowResultV2 result = new RowResultV2();
+            Color backgroundColor = FindBackgroundColor();
+            Color foregroundColor = FindForegroundColor(backgroundColor);
+            int transitionCount = GetTransitionCount(backgroundColor);
+
+            _countExactColors.Clear();
+            _colorsInRow.Clear();
+
+            return new RowResultV2(backgroundColor, foregroundColor, transitionCount);
+        }
+
+        private Color FindBackgroundColor()
+        {
 
             var colorsByFrequency = _countExactColors.OrderByDescending(x => x.Value);
 
-            // Assume that the background color is the most common color in the row
-            var backgroundColor = colorsByFrequency.First().Key;
-
-            Color foregroundColor = FindForegroundColor(backgroundColor);
-
-            _countExactColors.Clear();
-
-            return new RowResultV2(backgroundColor, foregroundColor);
+            // Assume that the most common color in the row is the background color
+            return colorsByFrequency.First().Key;
         }
 
         private Color FindForegroundColor(Color backgroundColor)
@@ -54,6 +62,26 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 null : mostContrastingColor;
 
             return foregroundColor;
+        }
+
+        private int GetTransitionCount(Color backgroundColor)
+        {
+            int transitionCount = 0;
+            Color previousColor = _colorsInRow[0];
+
+            foreach (Color pixelColor in _colorsInRow)
+            {
+                if (pixelColor != previousColor)
+                {
+                    if (pixelColor == backgroundColor)
+                    {
+                        transitionCount++;
+                    }
+                    previousColor = pixelColor;
+                }
+            }
+
+            return transitionCount;
         }
     }
 }
