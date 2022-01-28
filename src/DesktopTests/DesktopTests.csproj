@@ -23,6 +23,9 @@
     <None Remove="wildlife_manager_listbox_owl_cropped.bmp" />
     <None Remove="wildlife_manager_species_label.bmp" />
     <None Remove="button_icon_antialiased.bmp" />
+    <None Remove="outlook_translate.bmp" />
+    <None Remove="outlook_share_to_teams.bmp" />
+    <None Remove="outlook_get_add_ins.bmp" />
   </ItemGroup>
 
   <ItemGroup>
@@ -118,6 +121,18 @@
 
   <ItemGroup>
     <EmbeddedResource Include="TestImages\button_icon_antialiased.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\outlook_translate.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\outlook_share_to_teams.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImages\outlook_get_add_ins.bmp" />
   </ItemGroup>
 
   <Import Project="..\..\build\NetStandardTest.targets" />
