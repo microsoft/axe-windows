@@ -23,7 +23,13 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
         }
 
+        private readonly IColorContrastConfig _colorContrastConfig;
         private readonly List<RowResultV2> _rowResults = new List<RowResultV2>();
+
+        internal RowColorAccumulator(IColorContrastConfig colorContastConfig)
+        {
+            _colorContrastConfig = colorContastConfig;
+        }
 
         internal void AddRowResult(RowResultV2 rowResult)
         {
@@ -60,7 +66,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return MeasureConfidence(sortedBackgroundColorBallots, CountVotesViaSimpleBallots);
         }
 
-        private  ColorVoteInfo GetForegroundInfo(Color backgroundColor)
+        private ColorVoteInfo GetForegroundInfo(Color backgroundColor)
         {
             CountMap<Color> simpleForegroundColorBallots = new CountMap<Color>();
 
@@ -70,7 +76,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 Color testBackgroundColor = r.BackgroundColor;
                 if (foregroundColor != null && backgroundColor.Equals(testBackgroundColor))
                 {
-                    simpleForegroundColorBallots.Increment(r.ForegroundColor);
+                    simpleForegroundColorBallots.Increment(r.ForegroundColor, r.TransitionCount);
                 }
             });
 
@@ -109,7 +115,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             var sortedForegroundColorBallots = aggregatedForegroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedForegroundColorBallots, CountVotesViaAggregatedBallots);
+            return MeasureConfidence(sortedForegroundColorBallots, CountVotesViaSimpleBallots);
         }
 
         private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
@@ -136,7 +142,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return new ColorVoteInfo(
                 ballotsAsList.First().Key,
                 ballotsAsList.First().Value,
-                DetermineConfidence(pluralityBallots, targetVotes));
+                DetermineConfidence(pluralityBallots, ballotsAsList.Count));
         }
 
         private static int CountVotesViaSimpleBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
@@ -149,21 +155,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return totalVotes;
         }
 
-        private static int CountVotesViaAggregatedBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
-        {
-            return ballots.Count;
-        }
-
         private static Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
         {
-            switch (pluralityBlocks)
-            {
-                case 1: return Confidence.High;  // Plurality in 1 block
-                case 2: return Confidence.Mid;   // Plurality in 2 blocks
-            }
+            var pluralityBlockPercentage = pluralityBlocks * 1.0 / totalBlocks;
 
-            // No confidence if we had to consider at least half the blocks
-            return ((2 * pluralityBlocks) < totalBlocks) ? Confidence.Low : Confidence.None;
+            if (pluralityBlocks == 1 || pluralityBlockPercentage <= 0.1) return Confidence.High;
+            if (pluralityBlocks == 2 || pluralityBlockPercentage <= 0.23) return Confidence.Mid;
+            if (pluralityBlockPercentage <= 0.5) return Confidence.Low;
+            return Confidence.None;
         }
 
         private static Confidence CombinedConfidence(Confidence confidence1, Confidence confidence2)

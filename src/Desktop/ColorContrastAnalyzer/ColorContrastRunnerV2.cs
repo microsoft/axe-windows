@@ -71,9 +71,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             foreach (Color pixelColor in _colorsInRow)
             {
-                if (pixelColor != previousColor)
+                if (!pixelColor.Equals(previousColor))
                 {
-                    if (pixelColor == backgroundColor)
+                    if (pixelColor.Equals(backgroundColor))
                     {
                         transitionCount++;
                     }

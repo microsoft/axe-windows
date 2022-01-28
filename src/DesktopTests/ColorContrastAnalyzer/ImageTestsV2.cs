@@ -66,7 +66,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             var result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Low, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(32, 13, 159)),
                 result.MostLikelyColorPair);
@@ -131,7 +131,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             IColorContrastResult resultOffsetUpImage = LoadFromResources("cortana_with_offset_up.bmp")
                 .RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, resultOffsetDownImage.Confidence);
+            Assert.AreEqual(Confidence.Mid, resultOffsetDownImage.Confidence);
             Assert.AreEqual(Confidence.High, resultOffsetUpImage.Confidence);
 
             Assert.AreEqual(expectedUp, resultOffsetUpImage.MostLikelyColorPair);
@@ -144,7 +144,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         {
             var colorContrastResult = LoadFromResources("visual_studio_tab.bmp").RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, colorContrastResult.Confidence);
+            Assert.AreEqual(Confidence.Low, colorContrastResult.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(6, 135, 217), new CCColor(37, 37, 38)),
                 colorContrastResult.MostLikelyColorPair);
@@ -160,7 +160,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             Assert.AreEqual(Confidence.Mid, result.Confidence);
 
-            Assert.AreEqual(new ColorPair(new CCColor(30, 30, 30), new CCColor(199, 207, 188)),
+            Assert.AreEqual(new ColorPair(new CCColor(30, 30, 30), new CCColor(220, 215, 209)),
                 result.MostLikelyColorPair);
         }
 
@@ -172,7 +172,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -186,7 +186,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -200,7 +200,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -214,7 +214,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(229, 243, 251), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -242,7 +242,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(247, 247, 247), new CCColor(0, 0, 0)),
                 result.MostLikelyColorPair);
@@ -252,14 +252,13 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void OutlookTranslate()
         {
-            // TODO: Can V2 analyzer return more accurate results?
             var image = LoadFromResources("outlook_translate.bmp");
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.High, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
-            Assert.AreEqual(new ColorPair(new CCColor(16, 110, 190), new CCColor(41, 41, 41)),
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(41, 41, 41)),
                 result.MostLikelyColorPair);
         }
 
@@ -267,14 +266,13 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void OutlookShareToTeams()
         {
-            // TODO: Can V2 analyzer return more accurate results?
             var image = LoadFromResources("outlook_share_to_teams.bmp");
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(Confidence.High, result.Confidence);
 
-            Assert.AreEqual(new ColorPair(new CCColor(123, 131, 235), new CCColor(41, 41, 41)),
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(41, 41, 41)),
                 result.MostLikelyColorPair);
         }
 
@@ -282,14 +280,13 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void OutlookGetAddIns()
         {
-            // TODO: Can V2 analyzer return more accurate results?
             var image = LoadFromResources("outlook_get_add_ins.bmp");
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
             Assert.AreEqual(Confidence.High, result.Confidence);
 
-            Assert.AreEqual(new ColorPair(new CCColor(216, 59, 1), new CCColor(41, 41, 41)),
+            Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(41, 41, 41)),
                 result.MostLikelyColorPair);
         }
     }
