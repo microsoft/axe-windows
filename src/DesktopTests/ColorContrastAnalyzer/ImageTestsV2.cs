@@ -66,7 +66,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             var result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.Low, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
 
             Assert.AreEqual(new ColorPair(new CCColor(255, 255, 255), new CCColor(32, 13, 159)),
                 result.MostLikelyColorPair);

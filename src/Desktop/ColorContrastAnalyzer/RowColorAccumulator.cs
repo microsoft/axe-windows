@@ -160,7 +160,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             var pluralityBlockPercentage = pluralityBlocks * 1.0 / totalBlocks;
 
             if (pluralityBlocks == 1 || pluralityBlockPercentage <= 0.1) return Confidence.High;
-            if (pluralityBlocks == 2 || pluralityBlockPercentage <= 0.23) return Confidence.Mid;
+            if (pluralityBlocks == 2 || pluralityBlockPercentage <= 0.3) return Confidence.Mid;
             if (pluralityBlockPercentage <= 0.5) return Confidence.Low;
             return Confidence.None;
         }
