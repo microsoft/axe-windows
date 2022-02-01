@@ -40,20 +40,20 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         AnalyzerVersion AnalyzerVersion { get; }
 
         /// <summary>
-        /// When calculating foreground confidence, plurality <= this value
-        /// is treated as High Confidence
+        /// When calculating foreground confidence, difference values <= this value
+        /// are reported as High Confidence
         /// </summary>
         double HighConfidenceThreshold { get; }
 
         /// <summary>
-        /// When calculating foreground confidence, plurality <= this value
-        /// and > HighConfidenceThresholdValue is treated as Mid Confidence
+        /// When calculating foreground confidence, difference values <= this value
+        /// and > HighConfidenceThresholdare reported as Mid Confidence
         /// </summary>
         double MidConfidenceThreshold { get; }
 
         /// <summary>
-        /// When calculating foreground confidence, plurality <= this value
-        /// and > MidConfidenceThresholdValue is treated as Low Confidence.
+        /// When calculating foreground confidence, difference values <= this value
+        /// and > MidConfidenceThreshold are reported as Low Confidence.
         /// </summary>
         double LowConfidenceThreshold { get; }
     }

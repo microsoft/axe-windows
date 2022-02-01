@@ -155,21 +155,21 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         private Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
         {
-            var pluralityBlockPercentage = pluralityBlocks * 1.0 / totalBlocks;
+            var differenceValue = pluralityBlocks * 1.0 / totalBlocks;
 
             if (pluralityBlocks == 1 ||
-                pluralityBlockPercentage <= _colorContrastConfig.HighConfidenceThreshold)
+                differenceValue <= _colorContrastConfig.HighConfidenceThreshold)
             {
                 return Confidence.High;
             }
 
             if (pluralityBlocks == 2 ||
-                pluralityBlockPercentage <= _colorContrastConfig.MidConfidenceThreshold)
+                differenceValue <= _colorContrastConfig.MidConfidenceThreshold)
             {
                 return Confidence.Mid;
             }
 
-            if (pluralityBlockPercentage <= _colorContrastConfig.LowConfidenceThreshold)
+            if (differenceValue <= _colorContrastConfig.LowConfidenceThreshold)
             {
                 return Confidence.Low;
             }
