@@ -58,6 +58,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         private int GetTransitionCount(Color backgroundColor)
         {
+            if (!_colorsInRow.Any())
+                return 0;
+
             int transitionCount = 0;
             Color previousColor = _colorsInRow[0];
 
