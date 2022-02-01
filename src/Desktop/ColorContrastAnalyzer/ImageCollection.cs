@@ -59,8 +59,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          */
         internal IColorContrastResult RunColorContrastCalculationV2()
         {
-            ColorContrastRunnerV2 runner = new ColorContrastRunnerV2(_colorContrastConfig);
-
+            ColorContrastRunnerV2 runner = new ColorContrastRunnerV2();
             RowColorAccumulator accumulator = new RowColorAccumulator(_colorContrastConfig);
 
             foreach (var pixel in GetAllRowsIterator())

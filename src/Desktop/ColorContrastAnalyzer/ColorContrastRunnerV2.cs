@@ -11,15 +11,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     /// </summary>
     internal class ColorContrastRunnerV2
     {
-        private readonly IColorContrastConfig _colorContrastConfig;
-
         private List<Color> _colorsInRow = new List<Color>();
         private CountMap<Color> _countExactColors = new CountMap<Color>();
-
-        internal ColorContrastRunnerV2(IColorContrastConfig colorContrastConfig)
-        {
-            _colorContrastConfig = colorContrastConfig;
-        }
 
         internal void OnPixel(Color color)
         {
@@ -41,7 +34,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         private Color FindBackgroundColor()
         {
-
             var colorsByFrequency = _countExactColors.OrderByDescending(x => x.Value);
 
             // Assume that the most common color in the row is the background color
