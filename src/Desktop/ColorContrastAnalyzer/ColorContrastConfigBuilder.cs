@@ -52,9 +52,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         }
 
         /// <summary>
-        /// Sets the maximum threshold for high confidence. Default value is 0.1.
-        /// Larger values will report high confidence for more images, while
-        /// smaller values will report high confidence for fewer images.
+        /// Sets the maximum threshold for high confidence. Default value is 0.9.
+        /// Smaller values will report high confidence for more images, while
+        /// larger values will report high confidence for fewer images.
         /// </summary>
         /// <param name="highConfidenceThreshold">The high confidence threshold</param>
         /// <returns>The updated ConfigBuilder</returns>
@@ -65,9 +65,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         }
 
         /// <summary>
-        /// Sets the maximum threshold for mid confidence. Default value is 0.3.
-        /// Larger values will report mid confidence for more images, while
-        /// smaller values will report mid confidence for fewer images.
+        /// Sets the maximum threshold for mid confidence. Default value is 0.7.
+        /// Smaller values will report mid confidence for more images, while
+        /// larger values will report mid confidence for fewer images.
         /// </summary>
         /// <param name="midConfidenceThreshold">The mid confidence threshold</param>
         /// <returns>The updated ConfigBuilder</returns>
@@ -79,8 +79,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         /// <summary>
         /// Sets the maximum threshold for low confidence. Default value is 0.5.
-        /// Larger values will report low confidence for more images, while
-        /// smaller values will report low confidence for fewer images.
+        /// Smaller values will report low confidence for more images, while
+        /// larger values will report low confidence for fewer images.
         /// </summary>
         /// <param name="lowConfidenceThreshold">The low confidence threshold</param>
         /// <returns>The updated ConfigBuilder</returns>
