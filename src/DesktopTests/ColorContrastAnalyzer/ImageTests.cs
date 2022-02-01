@@ -228,7 +228,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
             IColorContrastResult result = image.RunColorContrastCalculation();
 
-            Assert.AreEqual(Confidence.None, result.Confidence);
+            Assert.AreEqual(Confidence.Mid, result.Confidence);
         }
 
         [TestMethod]

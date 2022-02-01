@@ -99,17 +99,23 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                     if (result == null) result = newResult;
 
+                    // Save newResult if it's higher confidence than the current result.
+                    // newResult.Confidence is guaranteed to be either High, Mid, or Low
                     if (newResult.Confidence == Confidence.High)
                     {
                         result = newResult;
                         break;
                     }
-                    else if (newResult.Confidence == Confidence.Mid &&
-#pragma warning disable CA1508 // Avoid dead conditional code
-                      result.Confidence == Confidence.Low)
-#pragma warning restore CA1508 // Avoid dead conditional code
+                    else if (newResult.Confidence == Confidence.Mid)
                     {
-                        result = newResult;
+                        // The analyzer claims that this condition is always false, but testing
+                        // proves that we definitely execute the code inside the if block.
+#pragma warning disable CA1508 // Avoid dead conditional code
+                        if (result.Confidence != Confidence.Mid)
+#pragma warning restore CA1508 // Avoid dead conditional code
+                        {
+                            result = newResult;
+                        }
                     }
                 }
             }
