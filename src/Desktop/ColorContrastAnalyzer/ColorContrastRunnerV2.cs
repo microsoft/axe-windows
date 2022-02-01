@@ -56,6 +56,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return foregroundColor;
         }
 
+        /// <summary>
+        /// We count a transition for each time we return to the specified background color.
+        /// Transitions help us to weigh text rows more heavily than non-text rows
+        /// </summary>
         private int GetTransitionCount(Color backgroundColor)
         {
             int transitionCount = 0;

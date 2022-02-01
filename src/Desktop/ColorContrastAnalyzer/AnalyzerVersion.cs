@@ -5,8 +5,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public enum AnalyzerVersion
     {
-        None,
-        V1,     // Based on code from axe-android
-        V2,     // Based on new code
+        Default, // Use whatever the current default happens to be
+        V1,      // Decides based on a single scanline
+        V2,      // Decides based on all scanlines in the image
     }
 }

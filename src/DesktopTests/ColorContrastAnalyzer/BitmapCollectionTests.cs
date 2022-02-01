@@ -3,13 +3,6 @@
 
 using Axe.Windows.Desktop.ColorContrastAnalyzer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
-using System.Reflection;
 using Moq;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
@@ -39,15 +32,14 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
         [TestMethod]
         [Timeout(2000)]
-        public void GetColorContrastCalculator_OptionsSpecifyNoVersion_ReturnsV1()
+        public void GetColorContrastCalculator_OptionsSpecifyDefaultVersion_ReturnsV1()
         {
-            ConfigureConfigMockForAzalyzerVersion(AnalyzerVersion.None);
+            ConfigureConfigMockForAzalyzerVersion(AnalyzerVersion.Default);
             BitmapCollection collection = new BitmapCollection(null, _configMock.Object);
             Assert.AreEqual(collection.RunColorContrastCalculationV1,
                 collection.GetColorContrastCalculator());
             VerifyAllMocks();
         }
-
 
         [TestMethod]
         [Timeout(2000)]
