@@ -15,7 +15,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         /// <summary>
         /// Summarizes color information--what color, how many votes it had, and
-        /// and the conputed confidence of that color
+        /// and the computed confidence of that color
         /// </summary>
         private class ColorVoteInfo
         {
@@ -54,6 +54,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 CombinedConfidence(backgroundInfo.Confidence, foregroundInfo.Confidence));
         }
 
+        /// <summary>
+        /// Counts up the BackgroundColor from each entry in _rowResults, then
+        /// selects the most frequent BackgroundColor as the overall BackgroundColor.
+        /// </summary>
         private ColorVoteInfo GetBackgroundInfo()
         {
             CountMap<Color> backgroundColorBallots = new CountMap<Color>();
@@ -69,9 +73,16 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             var sortedBackgroundColorBallots = backgroundColorBallots.OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedBackgroundColorBallots, CountVotesViaSimpleBallots);
+            return BuildColorVoteInfo(sortedBackgroundColorBallots, GetTotalVoteCountFromAllBallots);
         }
 
+        /// <summary>
+        /// Counts up the ForegrounColor from each entry in _rowResults, then
+        /// combines similar colors to allow for things like antialiasing.
+        /// Candidate colors are evaluated, beginning at the highest contrast
+        /// from backgroundColor, until we find a candidate that seems to occur
+        /// frequently enough that we accept it as the foreground color.
+        /// </summary>
         private ColorVoteInfo GetForegroundInfo(Color backgroundColor)
         {
             CountMap<Color> simpleForegroundColorBallots = new CountMap<Color>();
@@ -101,40 +112,52 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             foreach (var pair in simpleForegroundBallotsSortedByContrast)
             {
-                CountMap<Color> countsToAddOutsideOfIterator = new CountMap<Color>();
+                // Remember counts so we can add them after we iterate the entire list
+                CountMap<Color> rememberedCounts = new CountMap<Color>();
 
                 foreach (var aggregateForegroundColorBallot in aggregatedForegroundColorBallots)
                 {
                     if (aggregateForegroundColorBallot.Key.IsSimilarColor(pair.Key))
                     {
-                        countsToAddOutsideOfIterator.Increment(aggregateForegroundColorBallot.Key, pair.Value);
+                        rememberedCounts
+                            .Increment(aggregateForegroundColorBallot.Key, pair.Value);
                     }
                 }
 
-                foreach (var countToAdd  in countsToAddOutsideOfIterator)
+                foreach (var countToAdd in rememberedCounts)
                 {
-                    aggregatedForegroundColorBallots.Increment(countToAdd.Key, countToAdd.Value);
+                    aggregatedForegroundColorBallots
+                        .Increment(countToAdd.Key, countToAdd.Value);
                 }
 
                 aggregatedForegroundColorBallots.Increment(pair.Key, pair.Value);
             }
 
-            var sortedForegroundColorBallots = aggregatedForegroundColorBallots.OrderByDescending(x => x.Value);
+            var sortedForegroundColorBallots = aggregatedForegroundColorBallots
+                .OrderByDescending(x => x.Value);
 
-            return MeasureConfidence(sortedForegroundColorBallots, CountVotesViaSimpleBallots);
+            return BuildColorVoteInfo(sortedForegroundColorBallots, GetTotalVoteCountFromAllBallots);
         }
 
-        private ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
-            Func<IReadOnlyList<KeyValuePair<Color, int>>, int> voteCounter)
+        /// <summary>
+        /// Build the ColorVoteInfo, using the first value in sortedBallots as
+        /// the color. The Confidence will be determined by how much consensus
+        /// exists among the ballots to support that color choice.
+        /// </summary>
+        /// <param name="sortedBallots">Ballots being considered, in order of consideration</param>
+        /// <param name="voteCounter">A method to count the underlying votes 
+        /// represented by the sortedBallots parameter</param>
+        private ColorVoteInfo BuildColorVoteInfo(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
+            Func<IEnumerable<KeyValuePair<Color, int>>, int> voteCounter)
         {
-            var ballotsAsList = new List<KeyValuePair<Color, int>>(sortedBallots);
+            List<KeyValuePair<Color, int>> ballotList = new List<KeyValuePair<Color, int>>(sortedBallots);
             int pluralityBallots = 0;
             int pluralityVotes = 0;
-            int targetVotes = voteCounter(ballotsAsList);
+            int targetVotes = voteCounter(ballotList);
 
             int plurality = targetVotes / 2 + 1;
 
-            foreach (var colorCount in ballotsAsList)
+            foreach (var colorCount in ballotList)
             {
                 pluralityBallots++;
                 pluralityVotes += colorCount.Value;
@@ -146,12 +169,12 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
 
             return new ColorVoteInfo(
-                ballotsAsList.First().Key,
-                ballotsAsList.First().Value,
-                DetermineConfidence(pluralityBallots, ballotsAsList.Count));
+                ballotList.First().Key,
+                ballotList.First().Value,
+                DetermineConfidence(pluralityBallots, ballotList.Count));
         }
 
-        private static int CountVotesViaSimpleBallots(IReadOnlyList<KeyValuePair<Color, int>> ballots)
+        private static int GetTotalVoteCountFromAllBallots(IEnumerable<KeyValuePair<Color, int>> ballots)
         {
             int totalVotes = 0;
             foreach (var ballot in ballots)
@@ -161,23 +184,29 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return totalVotes;
         }
 
-        private Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
+        /// <summary>
+        /// Heuristically assign a Confidence based on how many total ballots
+        /// we had and how many ballots we had to consider before reaching a
+        /// plurality of votes. The confidence thresholds are configurable via
+        /// the IColorContrastConfig.
+        /// </summary>
+        private Confidence DetermineConfidence(int pluralityBallotCount, int totalBallotCount)
         {
-            var differenceValue = pluralityBlocks * 1.0 / totalBlocks;
+            var percentageToPlurality = pluralityBallotCount * 1.0 / totalBallotCount;
 
-            if (pluralityBlocks == 1 ||
-                differenceValue <= _colorContrastConfig.HighConfidenceThreshold)
+            if (pluralityBallotCount == 1 ||
+                percentageToPlurality <= _colorContrastConfig.HighConfidenceThreshold)
             {
                 return Confidence.High;
             }
 
-            if (pluralityBlocks == 2 ||
-                differenceValue <= _colorContrastConfig.MidConfidenceThreshold)
+            if (pluralityBallotCount == 2 ||
+                percentageToPlurality <= _colorContrastConfig.MidConfidenceThreshold)
             {
                 return Confidence.Mid;
             }
 
-            if (differenceValue <= _colorContrastConfig.LowConfidenceThreshold)
+            if (percentageToPlurality <= _colorContrastConfig.LowConfidenceThreshold)
             {
                 return Confidence.Low;
             }
