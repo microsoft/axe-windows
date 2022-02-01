@@ -118,7 +118,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return MeasureConfidence(sortedForegroundColorBallots, CountVotesViaSimpleBallots);
         }
 
-        private static ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
+        private ColorVoteInfo MeasureConfidence(IOrderedEnumerable<KeyValuePair<Color, int>> sortedBallots,
             Func<IReadOnlyList<KeyValuePair<Color, int>>, int> voteCounter)
         {
             var ballotsAsList = new List<KeyValuePair<Color, int>>(sortedBallots);
@@ -155,13 +155,27 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return totalVotes;
         }
 
-        private static Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
+        private Confidence DetermineConfidence(int pluralityBlocks, int totalBlocks)
         {
             var pluralityBlockPercentage = pluralityBlocks * 1.0 / totalBlocks;
 
-            if (pluralityBlocks == 1 || pluralityBlockPercentage <= 0.1) return Confidence.High;
-            if (pluralityBlocks == 2 || pluralityBlockPercentage <= 0.3) return Confidence.Mid;
-            if (pluralityBlockPercentage <= 0.5) return Confidence.Low;
+            if (pluralityBlocks == 1 ||
+                pluralityBlockPercentage <= _colorContrastConfig.HighConfidenceThreshold)
+            {
+                return Confidence.High;
+            }
+
+            if (pluralityBlocks == 2 ||
+                pluralityBlockPercentage <= _colorContrastConfig.MidConfidenceThreshold)
+            {
+                return Confidence.Mid;
+            }
+
+            if (pluralityBlockPercentage <= _colorContrastConfig.LowConfidenceThreshold)
+            {
+                return Confidence.Low;
+            }
+
             return Confidence.None;
         }
 

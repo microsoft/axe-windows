@@ -18,25 +18,35 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         private void EnsureConfigValues(IColorContrastConfig config,
-            int maxTextThickness = 20, int minNumberColorTransitions = 4,
-            int minSpaceBetweenSamples = 12, int transitionCountDominanceFactor = 2,
-            AnalyzerVersion analyzerVersion = AnalyzerVersion.V1)
+            int maxTextThickness = ColorContrastConfig.DefaultMaxTextThickness,
+            int minNumberColorTransitions = ColorContrastConfig.DefaultMinColorTransitions,
+            int minSpaceBetweenSamples = ColorContrastConfig.DefaultMinSpaceBetweenSamples,
+            int transitionCountDominanceFactor = ColorContrastConfig.DefaultTransitionCountDominanceFactor,
+            AnalyzerVersion analyzerVersion = ColorContrastConfig.DefaultAnalyzerVersion,
+            double highConfidenceThreshold = ColorContrastConfig.DefaultHighConfidenceThreshold,
+            double midConfidenceThreshold = ColorContrastConfig.DefaultMidConfidenceThreshold,
+            double lowConfidenceThreshold = ColorContrastConfig.DefaultLowConfidenceThreshold)
         {
             Assert.AreEqual(maxTextThickness, config.MaxTextThickness);
             Assert.AreEqual(minNumberColorTransitions, config.MinNumberColorTransitions);
             Assert.AreEqual(minSpaceBetweenSamples, config.MinSpaceBetweenSamples);
             Assert.AreEqual(transitionCountDominanceFactor, config.TransitionCountDominanceFactor);
             Assert.AreEqual(analyzerVersion, config.AnalyzerVersion);
+            Assert.AreEqual(highConfidenceThreshold, config.HighConfidenceThreshold);
+            Assert.AreEqual(midConfidenceThreshold, config.MidConfidenceThreshold);
+            Assert.AreEqual(lowConfidenceThreshold, config.LowConfidenceThreshold);
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void Build_DefaultInputs_ConfigIsDefault()
         {
             EnsureConfigValues(_builder.Build());
         }
 
         [TestMethod]
-        public void Build_SetMaxTestThickness_ConfigIsCorrect()
+        [Timeout(2000)]
+        public void Build_WithMaxTestThickness_ConfigIsCorrect()
         {
             const int maxTextThickness = 90;
             EnsureConfigValues(_builder.WithMaxTextThickness(maxTextThickness).Build(),
@@ -44,7 +54,8 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
-        public void Build_SetMinNumberColorTransitions_ConfigIsCorrect()
+        [Timeout(2000)]
+        public void Build_WithMinNumberColorTransitions_ConfigIsCorrect()
         {
             const int minNumberColorTransitions = 80;
             EnsureConfigValues(_builder.WithMinNumberColorTransitions(minNumberColorTransitions).Build(),
@@ -52,7 +63,8 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
-        public void Build_SetMinSpaceBetweenSamples_ConfigIsCorrect()
+        [Timeout(2000)]
+        public void Build_WithMinSpaceBetweenSamples_ConfigIsCorrect()
         {
             const int minSpaceBetweenSamples = 3;
             EnsureConfigValues(_builder.WithMinSpaceBetweenSamples(minSpaceBetweenSamples).Build(),
@@ -60,7 +72,8 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
-        public void Build_SetTransitionCountDominanceFactor_ConfigIsCorrect()
+        [Timeout(2000)]
+        public void Build_WithTransitionCountDominanceFactor_ConfigIsCorrect()
         {
             const int transitionCountDominanceFactor = 4;
             EnsureConfigValues(_builder.WithTransitionCountDominanceFactor(transitionCountDominanceFactor).Build(),
@@ -68,11 +81,39 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
-        public void Build_SetAnalyzerVersion_ConfigIsCorrect()
+        [Timeout(2000)]
+        public void Build_WithAnalyzerVersion_ConfigIsCorrect()
         {
             const AnalyzerVersion analyzerVersion = AnalyzerVersion.V2;
             EnsureConfigValues(_builder.WithAnalyzerVersion(analyzerVersion).Build(),
                 analyzerVersion: analyzerVersion);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithHighConfidenceThreshold_ConfigIsCorrect()
+        {
+            const double highConfidenceThreshold = 0.2;
+            EnsureConfigValues(_builder.WithHighConfidenceThreshold(highConfidenceThreshold).Build(),
+                highConfidenceThreshold: highConfidenceThreshold);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithMidConfidenceThreshold_ConfigIsCorrect()
+        {
+            const double midConfidenceThreshold = 0.4;
+            EnsureConfigValues(_builder.WithMidConfidenceThreshold(midConfidenceThreshold).Build(),
+                midConfidenceThreshold: midConfidenceThreshold);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithLowConfidenceThreshold_ConfigIsCorrect()
+        {
+            const double lowConfidenceThreshold = 0.6;
+            EnsureConfigValues(_builder.WithLowConfidenceThreshold(lowConfidenceThreshold).Build(),
+                lowConfidenceThreshold: lowConfidenceThreshold);
         }
     }
 }

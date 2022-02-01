@@ -5,14 +5,20 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public class DefaultColorContrastConfig : IColorContrastConfig
     {
-        public int MaxTextThickness => 20;
+        public int MaxTextThickness => ColorContrastConfig.DefaultMaxTextThickness;
 
-        public int MinNumberColorTransitions => 4;
+        public int MinNumberColorTransitions => ColorContrastConfig.DefaultMinColorTransitions;
 
-        public int MinSpaceBetweenSamples => 12;
+        public int MinSpaceBetweenSamples => ColorContrastConfig.DefaultMinSpaceBetweenSamples;
 
-        public int TransitionCountDominanceFactor => 2;
+        public int TransitionCountDominanceFactor => ColorContrastConfig.DefaultTransitionCountDominanceFactor;
 
-        public AnalyzerVersion AnalyzerVersion => AnalyzerVersion.V1;
+        public AnalyzerVersion AnalyzerVersion => ColorContrastConfig.DefaultAnalyzerVersion;
+
+        public double HighConfidenceThreshold => ColorContrastConfig.DefaultHighConfidenceThreshold;
+
+        public double MidConfidenceThreshold => ColorContrastConfig.DefaultMidConfidenceThreshold;
+
+        public double LowConfidenceThreshold => ColorContrastConfig.DefaultLowConfidenceThreshold;
     }
 }

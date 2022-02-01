@@ -38,5 +38,23 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// Returns the current AnalyzerVersion
         /// </summary>
         AnalyzerVersion AnalyzerVersion { get; }
+
+        /// <summary>
+        /// When calculating foreground confidence, plurality <= this value
+        /// is treated as High Confidence
+        /// </summary>
+        double HighConfidenceThreshold { get; }
+
+        /// <summary>
+        /// When calculating foreground confidence, plurality <= this value
+        /// and > HighConfidenceThresholdValue is treated as Mid Confidence
+        /// </summary>
+        double MidConfidenceThreshold { get; }
+
+        /// <summary>
+        /// When calculating foreground confidence, plurality <= this value
+        /// and > MidConfidenceThresholdValue is treated as Low Confidence.
+        /// </summary>
+        double LowConfidenceThreshold { get; }
     }
 }

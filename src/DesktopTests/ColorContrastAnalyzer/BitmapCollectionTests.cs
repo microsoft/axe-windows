@@ -38,6 +38,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void GetColorContrastCalculator_OptionsSpecifyNoVersion_ReturnsV1()
         {
             ConfigureConfigMockForAzalyzerVersion(AnalyzerVersion.None);
@@ -49,6 +50,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
 
         [TestMethod]
+        [Timeout(2000)]
         public void GetColorContrastCalculator_OptionsSpecifyV1_ReturnsV1()
         {
             ConfigureConfigMockForAzalyzerVersion(AnalyzerVersion.V1);
@@ -59,6 +61,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         }
 
         [TestMethod]
+        [Timeout(2000)]
         public void GetColorContrastCalculator_OptionsSpecifyV2_ReturnsV2()
         {
             ConfigureConfigMockForAzalyzerVersion(AnalyzerVersion.V2);

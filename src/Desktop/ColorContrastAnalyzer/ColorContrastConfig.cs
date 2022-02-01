@@ -2,13 +2,20 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     class ColorContrastConfig : IColorContrastConfig
     {
+        internal const int DefaultMaxTextThickness = 20;
+        internal const int DefaultMinColorTransitions = 4;
+        internal const int DefaultMinSpaceBetweenSamples = 12;
+        internal const int DefaultTransitionCountDominanceFactor = 2;
+        internal const AnalyzerVersion DefaultAnalyzerVersion = AnalyzerVersion.V1;
+        internal const double DefaultHighConfidenceThreshold = 0.1;
+        internal const double DefaultMidConfidenceThreshold = 0.3;
+        internal const double DefaultLowConfidenceThreshold = 0.5;
+
         public int MaxTextThickness { get; }
 
         public int MinNumberColorTransitions { get; }
@@ -19,19 +26,54 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public AnalyzerVersion AnalyzerVersion { get; }
 
-        public ColorContrastConfig(int? maxTextThickness, int? minNumberOfColorTransitions,
-            int? minSpaceBetweenSamples, int? transitionCountDominanceFactor, AnalyzerVersion? analyzerVersion)
+        public double HighConfidenceThreshold { get; }
+
+        public double MidConfidenceThreshold { get; }
+
+        public double LowConfidenceThreshold { get; }
+
+        public ColorContrastConfig(int? maxTextThickness = null,
+            int? minNumberOfColorTransitions = null,
+            int? minSpaceBetweenSamples = null,
+            int? transitionCountDominanceFactor = null,
+            AnalyzerVersion? analyzerVersion = null,
+            double? highConfidenceThreshold = null,
+            double? midConfidenceThreshold = null,
+            double? lowConfidenceThreshold = null)
         {
             MaxTextThickness = maxTextThickness.HasValue ?
-                maxTextThickness.Value : 20;
+                maxTextThickness.Value : DefaultMaxTextThickness;
             MinNumberColorTransitions = minNumberOfColorTransitions.HasValue ?
-                minNumberOfColorTransitions.Value : 4;
+                minNumberOfColorTransitions.Value : DefaultMinColorTransitions;
             MinSpaceBetweenSamples = minSpaceBetweenSamples.HasValue ?
-                minSpaceBetweenSamples.Value : 12;
+                minSpaceBetweenSamples.Value : DefaultMinSpaceBetweenSamples;
             TransitionCountDominanceFactor = transitionCountDominanceFactor.HasValue ?
-                transitionCountDominanceFactor.Value : 2;
+                transitionCountDominanceFactor.Value : DefaultTransitionCountDominanceFactor;
             AnalyzerVersion = analyzerVersion.HasValue ?
-                analyzerVersion.Value : AnalyzerVersion.V1;
+                analyzerVersion.Value : DefaultAnalyzerVersion;
+            HighConfidenceThreshold = highConfidenceThreshold.HasValue ?
+                highConfidenceThreshold.Value : DefaultHighConfidenceThreshold;
+            MidConfidenceThreshold = midConfidenceThreshold.HasValue ?
+                midConfidenceThreshold.Value : DefaultMidConfidenceThreshold;
+            LowConfidenceThreshold = lowConfidenceThreshold.HasValue ?
+                lowConfidenceThreshold.Value : DefaultLowConfidenceThreshold;
+
+            if (HighConfidenceThreshold >= MidConfidenceThreshold)
+            {
+                throw new ArgumentException("High Confidence plurality must be smaller than Mid confidence");
+            }
+            if (MidConfidenceThreshold >= LowConfidenceThreshold)
+            {
+                throw new ArgumentException("Mid Confidence plurality must be smaller than Low confidence");
+            }
+            if (HighConfidenceThreshold < 0.0)
+            {
+                throw new ArgumentException("High Confidence plurality must be >= 0.0");
+            }
+            if (lowConfidenceThreshold >= 0.95)
+            {
+                throw new ArgumentException("Low Confidence plurality must be <= 0.95");
+            }
         }
     }
 }
