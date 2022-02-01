@@ -6,7 +6,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     public enum AnalyzerVersion
     {
         Default, // Use whatever the current default happens to be
-        V1,      // Decides based on a single scanline
+        V1,      // Decides based on the contents of a single scanline
         V2,      // Decides based on all scanlines in the image
     }
 }
