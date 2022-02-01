@@ -7,8 +7,16 @@ using System.Linq;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    internal class RowColorAccumulator
+    /// <summary>
+    /// Accumulate the RowResultV2 of each row, then combine them into a single
+    /// result for the entire image
+    /// </summary>
+    internal class RowResultV2Accumulator
     {
+        /// <summary>
+        /// Summarizes color information--what color, how many votes it had, and
+        /// and the conputed confidence of that color
+        /// </summary>
         private class ColorVoteInfo
         {
             public Color Color { get; }
@@ -26,7 +34,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         private readonly IColorContrastConfig _colorContrastConfig;
         private readonly List<RowResultV2> _rowResults = new List<RowResultV2>();
 
-        internal RowColorAccumulator(IColorContrastConfig colorContastConfig)
+        internal RowResultV2Accumulator(IColorContrastConfig colorContastConfig)
         {
             _colorContrastConfig = colorContastConfig;
         }
