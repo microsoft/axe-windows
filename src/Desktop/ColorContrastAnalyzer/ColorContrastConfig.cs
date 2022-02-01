@@ -60,11 +60,11 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             if (HighConfidenceThreshold <= MidConfidenceThreshold)
             {
-                throw new ArgumentException("High Confidence threshold must be smaller than Mid confidence threshold");
+                throw new ArgumentException("High Confidence threshold must be larger than Mid confidence threshold");
             }
             if (MidConfidenceThreshold <= LowConfidenceThreshold)
             {
-                throw new ArgumentException("Mid Confidence threshold must be smaller than Low confidence threshold");
+                throw new ArgumentException("Mid Confidence threshold must be larger than Low confidence threshold");
             }
             if (HighConfidenceThreshold >= 1.0)
             {
