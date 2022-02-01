@@ -8,14 +8,14 @@ using System;
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
     [TestClass]
-    public class ConfigBuilderTests
+    public class ColorContrastConfigBuilderTests
     {
-        private ConfigBuilder _builder;
+        private ColorContrastConfigBuilder _builder;
 
         [TestInitialize]
         public void BeforeEachTest()
         {
-            _builder = new ConfigBuilder();
+            _builder = new ColorContrastConfigBuilder();
         }
 
         private void EnsureConfigValues(IColorContrastConfig config,

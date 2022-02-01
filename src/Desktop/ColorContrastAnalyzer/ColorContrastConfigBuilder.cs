@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class ConfigBuilder
+    public class ColorContrastConfigBuilder
     {
         private int? _maxTextThickness;
         private int? _minNumberOfColorTransitions;
@@ -21,31 +21,31 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             _midConfidenceThreshold,
             _lowConfidenceThreshold);
 
-        public ConfigBuilder WithMaxTextThickness(int maxTextThickness)
+        public ColorContrastConfigBuilder WithMaxTextThickness(int maxTextThickness)
         {
             _maxTextThickness = maxTextThickness;
             return this;
         }
 
-        public ConfigBuilder WithMinNumberColorTransitions(int minNumberOfColorTransitions)
+        public ColorContrastConfigBuilder WithMinNumberColorTransitions(int minNumberOfColorTransitions)
         {
             _minNumberOfColorTransitions = minNumberOfColorTransitions;
             return this;
         }
 
-        public ConfigBuilder WithMinSpaceBetweenSamples(int minSpaceBetweenSamples)
+        public ColorContrastConfigBuilder WithMinSpaceBetweenSamples(int minSpaceBetweenSamples)
         {
             _minSpaceBetweenSamples = minSpaceBetweenSamples;
             return this;
         }
 
-        public ConfigBuilder WithTransitionCountDominanceFactor(int transitionCountDominanceFactor)
+        public ColorContrastConfigBuilder WithTransitionCountDominanceFactor(int transitionCountDominanceFactor)
         {
             _transitionCountDominanceFactor = transitionCountDominanceFactor;
             return this;
         }
 
-        public ConfigBuilder WithAnalyzerVersion(AnalyzerVersion analyzerVersion)
+        public ColorContrastConfigBuilder WithAnalyzerVersion(AnalyzerVersion analyzerVersion)
         {
             _analyzerVersion = analyzerVersion;
             return this;
@@ -58,7 +58,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// </summary>
         /// <param name="highConfidenceThreshold">The high confidence threshold</param>
         /// <returns>The updated ConfigBuilder</returns>
-        public ConfigBuilder WithHighConfidenceThreshold(double highConfidenceThreshold)
+        public ColorContrastConfigBuilder WithHighConfidenceThreshold(double highConfidenceThreshold)
         {
             _highConfidenceThreshold = highConfidenceThreshold;
             return this;
@@ -71,7 +71,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// </summary>
         /// <param name="midConfidenceThreshold">The mid confidence threshold</param>
         /// <returns>The updated ConfigBuilder</returns>
-        public ConfigBuilder WithMidConfidenceThreshold(double midConfidenceThreshold)
+        public ColorContrastConfigBuilder WithMidConfidenceThreshold(double midConfidenceThreshold)
         {
             _midConfidenceThreshold = midConfidenceThreshold;
             return this;
@@ -84,7 +84,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// </summary>
         /// <param name="lowConfidenceThreshold">The low confidence threshold</param>
         /// <returns>The updated ConfigBuilder</returns>
-        public ConfigBuilder WithLowConfidenceThreshold(double lowConfidenceThreshold)
+        public ColorContrastConfigBuilder WithLowConfidenceThreshold(double lowConfidenceThreshold)
         {
             _lowConfidenceThreshold = lowConfidenceThreshold;
             return this;
