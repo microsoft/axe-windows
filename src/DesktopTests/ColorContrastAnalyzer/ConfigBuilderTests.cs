@@ -3,6 +3,7 @@
 
 using Axe.Windows.Desktop.ColorContrastAnalyzer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
@@ -114,6 +115,46 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
             const double lowConfidenceThreshold = 0.6;
             EnsureConfigValues(_builder.WithLowConfidenceThreshold(lowConfidenceThreshold).Build(),
                 lowConfidenceThreshold: lowConfidenceThreshold);
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithHighConfidenceThreshold_NegativeInput_ThrowsException()
+        {
+            const double highConfidenceThreshold = -.01;
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(() =>
+                _builder.WithHighConfidenceThreshold(highConfidenceThreshold).Build());
+            Assert.IsTrue(e.Message.StartsWith("High Confidence threshold"));
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithLowConfidenceThreshold_TooHigh_ThrowsException()
+        {
+            const double lowConfidenceThreshold = 1.0;
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(() =>
+                _builder.WithLowConfidenceThreshold(lowConfidenceThreshold).Build());
+            Assert.IsTrue(e.Message.StartsWith("Low Confidence threshold"));
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithMidConfidence_ValueMatchesHighConfidence_ThrowsException()
+        {
+            const double midConfidenceThreshold = ColorContrastConfig.DefaultHighConfidenceThreshold;
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(() =>
+                _builder.WithMidConfidenceThreshold(midConfidenceThreshold).Build());
+            Assert.IsTrue(e.Message.StartsWith("High Confidence threshold"));
+        }
+
+        [TestMethod]
+        [Timeout(2000)]
+        public void Build_WithMidConfidence_ValueMatchesLowConfidence_ThrowsException()
+        {
+            const double midConfidenceThreshold = ColorContrastConfig.DefaultLowConfidenceThreshold;
+            ArgumentException e = Assert.ThrowsException<ArgumentException>(() =>
+                _builder.WithMidConfidenceThreshold(midConfidenceThreshold).Build());
+            Assert.IsTrue(e.Message.StartsWith("Mid Confidence threshold"));
         }
     }
 }
