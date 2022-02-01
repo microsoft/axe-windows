@@ -12,8 +12,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         internal const int DefaultMinSpaceBetweenSamples = 12;
         internal const int DefaultTransitionCountDominanceFactor = 2;
         internal const AnalyzerVersion DefaultAnalyzerVersion = AnalyzerVersion.V1;
-        internal const double DefaultHighConfidenceThreshold = 0.1;
-        internal const double DefaultMidConfidenceThreshold = 0.3;
+        internal const double DefaultHighConfidenceThreshold = 0.9;
+        internal const double DefaultMidConfidenceThreshold = 0.7;
         internal const double DefaultLowConfidenceThreshold = 0.5;
 
         public int MaxTextThickness { get; }
@@ -58,21 +58,21 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             LowConfidenceThreshold = lowConfidenceThreshold.HasValue ?
                 lowConfidenceThreshold.Value : DefaultLowConfidenceThreshold;
 
-            if (HighConfidenceThreshold >= MidConfidenceThreshold)
+            if (HighConfidenceThreshold <= MidConfidenceThreshold)
             {
                 throw new ArgumentException("High Confidence threshold must be smaller than Mid confidence threshold");
             }
-            if (MidConfidenceThreshold >= LowConfidenceThreshold)
+            if (MidConfidenceThreshold <= LowConfidenceThreshold)
             {
                 throw new ArgumentException("Mid Confidence threshold must be smaller than Low confidence threshold");
             }
-            if (HighConfidenceThreshold < 0.0)
+            if (HighConfidenceThreshold >= 1.0)
             {
-                throw new ArgumentException("High Confidence threshold must be >= 0.0");
+                throw new ArgumentException("High Confidence threshold must be < 1.0");
             }
-            if (lowConfidenceThreshold >= 1.0)
+            if (lowConfidenceThreshold <= 0.0)
             {
-                throw new ArgumentException("Low Confidence threshold must be < 1.0");
+                throw new ArgumentException("Low Confidence threshold must be > 0.0");
             }
         }
     }

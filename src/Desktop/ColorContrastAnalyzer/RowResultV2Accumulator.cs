@@ -192,21 +192,21 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// </summary>
         private Confidence DetermineConfidence(int pluralityBallotCount, int totalBallotCount)
         {
-            var percentageToPlurality = pluralityBallotCount * 1.0 / totalBallotCount;
+            var ballotConfidence = (totalBallotCount - pluralityBallotCount) * 1.0 / totalBallotCount;
 
             if (pluralityBallotCount == 1 ||
-                percentageToPlurality <= _colorContrastConfig.HighConfidenceThreshold)
+                ballotConfidence >= _colorContrastConfig.HighConfidenceThreshold)
             {
                 return Confidence.High;
             }
 
             if (pluralityBallotCount == 2 ||
-                percentageToPlurality <= _colorContrastConfig.MidConfidenceThreshold)
+                ballotConfidence >= _colorContrastConfig.MidConfidenceThreshold)
             {
                 return Confidence.Mid;
             }
 
-            if (percentageToPlurality <= _colorContrastConfig.LowConfidenceThreshold)
+            if (ballotConfidence > _colorContrastConfig.LowConfidenceThreshold)
             {
                 return Confidence.Low;
             }

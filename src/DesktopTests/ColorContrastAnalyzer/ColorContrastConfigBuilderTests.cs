@@ -94,7 +94,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void Build_WithHighConfidenceThreshold_ConfigIsCorrect()
         {
-            const double highConfidenceThreshold = 0.2;
+            const double highConfidenceThreshold = 0.88;
             EnsureConfigValues(_builder.WithHighConfidenceThreshold(highConfidenceThreshold).Build(),
                 highConfidenceThreshold: highConfidenceThreshold);
         }
@@ -103,7 +103,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
         [Timeout(2000)]
         public void Build_WithMidConfidenceThreshold_ConfigIsCorrect()
         {
-            const double midConfidenceThreshold = 0.4;
+            const double midConfidenceThreshold = 0.77;
             EnsureConfigValues(_builder.WithMidConfidenceThreshold(midConfidenceThreshold).Build(),
                 midConfidenceThreshold: midConfidenceThreshold);
         }
@@ -119,9 +119,9 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
         [TestMethod]
         [Timeout(2000)]
-        public void Build_WithHighConfidenceThreshold_NegativeInput_ThrowsException()
+        public void Build_WithHighConfidenceThreshold_InputTooHigh_ThrowsException()
         {
-            const double highConfidenceThreshold = -.01;
+            const double highConfidenceThreshold = 1.0;
             ArgumentException e = Assert.ThrowsException<ArgumentException>(() =>
                 _builder.WithHighConfidenceThreshold(highConfidenceThreshold).Build());
             Assert.IsTrue(e.Message.StartsWith("High Confidence threshold"));
@@ -129,9 +129,9 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 
         [TestMethod]
         [Timeout(2000)]
-        public void Build_WithLowConfidenceThreshold_TooHigh_ThrowsException()
+        public void Build_WithLowConfidenceThreshold_InputTooLow_ThrowsException()
         {
-            const double lowConfidenceThreshold = 1.0;
+            const double lowConfidenceThreshold = 0.0;
             ArgumentException e = Assert.ThrowsException<ArgumentException>(() =>
                 _builder.WithLowConfidenceThreshold(lowConfidenceThreshold).Build());
             Assert.IsTrue(e.Message.StartsWith("Low Confidence threshold"));
