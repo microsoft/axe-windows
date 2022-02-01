@@ -41,8 +41,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             ColorVoteInfo backgroundInfo = GetBackgroundInfo();
             ColorVoteInfo foregroundInfo = GetForegroundInfo(backgroundInfo.Color);
 
-            // TODO: Non-trivial cases
-
             return new ColorContrastResultV2(
                 new ColorPair(backgroundInfo.Color, foregroundInfo.Color),
                 CombinedConfidence(backgroundInfo.Confidence, foregroundInfo.Confidence));
