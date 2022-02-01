@@ -114,10 +114,11 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
                 result.MostLikelyColorPair);
         }
 
-        /**
-         * In this test we are analyzing two similar images. One with text near the bottom of the image
-         * and the other with the text near the top. The results should be similar.
-         */
+        /// <summary>
+        /// In this test we are analyzing two similar images. One with text near the
+        /// bottom of the image and the other with the text near the top. The results
+        /// should be similar.
+        /// </summary>
         [TestMethod]
         [Timeout(2000)]
         public void CortanaImagesWithDifferentOffsets()
