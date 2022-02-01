@@ -14,13 +14,20 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
     [TestClass()]
     public class ImageTestsV2
     {
+        private static readonly IColorContrastConfig ColorContrastConfig =
+            new ColorContrastConfigBuilder()
+            .WithAnalyzerVersion(AnalyzerVersion.V2)
+            .Build();
+
         // A convenience method for loading Bitmap images from test resources.
         public static BitmapCollection LoadFromResources(string name)
         {
             Assembly myAssembly = Assembly.GetExecutingAssembly();
-            Stream myStream = myAssembly.GetManifestResourceStream("Axe.Windows.DesktopTests.TestImages." + name);
-            Bitmap bmp = new Bitmap(myStream);
-            return new BitmapCollection(bmp, new ColorContrastConfigBuilder().WithAnalyzerVersion(AnalyzerVersion.V2).Build());
+            using (Stream myStream = myAssembly.GetManifestResourceStream("Axe.Windows.DesktopTests.TestImages." + name))
+            {
+                Bitmap bmp = new Bitmap(myStream);
+                return new BitmapCollection(bmp, ColorContrastConfig);
+            }
         }
 
         [TestMethod]
