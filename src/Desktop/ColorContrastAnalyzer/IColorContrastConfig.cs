@@ -33,5 +33,28 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /// combinations in a "Row" of pixels for us to be positive about any given pair.
         /// </summary>
         int TransitionCountDominanceFactor { get; }
+
+        /// <summary>
+        /// Returns the current AnalyzerVersion
+        /// </summary>
+        AnalyzerVersion AnalyzerVersion { get; }
+
+        /// <summary>
+        /// When calculating foreground confidence, confidence values >= this value
+        /// are reported as High Confidence
+        /// </summary>
+        double HighConfidenceThreshold { get; }
+
+        /// <summary>
+        /// When calculating foreground confidence, confidence values >= this value
+        /// and less than HighConfidenceThreshold are reported as Mid Confidence
+        /// </summary>
+        double MidConfidenceThreshold { get; }
+
+        /// <summary>
+        /// When calculating foreground confidence, confidence values >= this value
+        /// and less than MidConfidenceThreshold are reported as Low Confidence.
+        /// </summary>
+        double LowConfidenceThreshold { get; }
     }
 }

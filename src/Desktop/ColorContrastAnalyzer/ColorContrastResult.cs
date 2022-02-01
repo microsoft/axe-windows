@@ -1,13 +1,12 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using System.Collections.Generic;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class ColorContrastResult
+    public class ColorContrastResult: IColorContrastResult
     {
-        public enum Confidence { None, Low, Mid, High }
-
         private List<ColorPair> alternatives = new List<ColorPair>();
 
         private ColorPair mostContrastingPair;
@@ -63,9 +62,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public ColorPair MostLikelyColorPair => mostContrastingPair;
 
-        public Confidence ConfidenceValue()
-        {
-            return this.confidence;
-        }
+        public Confidence Confidence => this.confidence;
     }
 }

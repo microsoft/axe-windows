@@ -37,7 +37,48 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * Run the Color Contrast calculation on the image.
          */
-        public ColorContrastResult RunColorContrastCalculation()
+        public IColorContrastResult RunColorContrastCalculation()
+        {
+            Func<IColorContrastResult> contastCalculator = GetColorContrastCalculator();
+            return contastCalculator();
+        }
+
+        internal Func<IColorContrastResult> GetColorContrastCalculator()
+        {
+            switch (_colorContrastConfig.AnalyzerVersion)
+            {
+                case AnalyzerVersion.V2:
+                    return RunColorContrastCalculationV2;
+                default:
+                    return RunColorContrastCalculationV1;
+            }
+        }
+
+        /**
+         * Run the Color Contrast calculation on the image.
+         */
+        internal IColorContrastResult RunColorContrastCalculationV2()
+        {
+            ColorContrastRunnerV2 runner = new ColorContrastRunnerV2();
+            RowResultV2Accumulator accumulator = new RowResultV2Accumulator(_colorContrastConfig);
+
+            foreach (var pixel in GetAllRowsIterator())
+            {
+                runner.OnPixel(pixel.Color);
+
+                if (IsEndOfRow(pixel))
+                {
+                    accumulator.AddRowResult(runner.OnRowEnd());
+                }
+            }
+
+            return accumulator.GetResult();
+        }
+
+        /**
+         * Run the Color Contrast calculation on the image.
+         */
+        internal IColorContrastResult RunColorContrastCalculationV1()
         {
             ColorContrastResult result = null;
 
@@ -58,20 +99,39 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                     if (result == null) result = newResult;
 
-                    if (newResult.ConfidenceValue() == ColorContrastResult.Confidence.High)
+                    // Save newResult if it's higher confidence than the current result.
+                    // newResult.Confidence is guaranteed to be either High, Mid, or Low
+                    if (newResult.Confidence == Confidence.High)
                     {
                         result = newResult;
                         break;
                     }
-                    else if (newResult.ConfidenceValue() == ColorContrastResult.Confidence.Mid &&
-                      result.ConfidenceValue() == ColorContrastResult.Confidence.Low)
+                    else if (newResult.Confidence == Confidence.Mid)
                     {
-                        result = newResult;
+                        // The analyzer claims that this condition is always false, but testing
+                        // proves that we definitely execute the code inside the if block.
+#pragma warning disable CA1508 // Avoid dead conditional code
+                        if (result.Confidence != Confidence.Mid)
+#pragma warning restore CA1508 // Avoid dead conditional code
+                        {
+                            result = newResult;
+                        }
                     }
                 }
             }
 
             return result;
+        }
+
+        public IEnumerable<Pixel> GetAllRowsIterator()
+        {
+            for (var row = 0; row < NumRows(); row++)
+            {
+                for (var column = 0; column < NumColumns(); column++)
+                {
+                    yield return new Pixel(GetColor(row, column), row, column);
+                }
+            }
         }
 
         /**
