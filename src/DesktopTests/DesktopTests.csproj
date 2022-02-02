@@ -17,15 +17,15 @@
     <None Remove="TestImages\simple_white_and_black_text.bmp" />
     <None Remove="TestImages\visual_studio_tab.bmp" />
     <None Remove="TestImages\weird_text_arrangement.bmp" />
-    <None Remove="wildlife_manager_listbox_beetle.bmp" />
-    <None Remove="wildlife_manager_listbox_mouse.bmp" />
-    <None Remove="wildlife_manager_listbox_owl.bmp" />
-    <None Remove="wildlife_manager_listbox_owl_cropped.bmp" />
-    <None Remove="wildlife_manager_species_label.bmp" />
-    <None Remove="button_icon_antialiased.bmp" />
-    <None Remove="outlook_translate.bmp" />
-    <None Remove="outlook_share_to_teams.bmp" />
-    <None Remove="outlook_get_add_ins.bmp" />
+    <None Remove="TestImages\wildlife_manager_listbox_beetle.bmp" />
+    <None Remove="TestImages\wildlife_manager_listbox_mouse.bmp" />
+    <None Remove="TestImages\wildlife_manager_listbox_owl.bmp" />
+    <None Remove="TestImages\wildlife_manager_listbox_owl_cropped.bmp" />
+    <None Remove="TestImages\wildlife_manager_species_label.bmp" />
+    <None Remove="TestImages\button_icon_antialiased.bmp" />
+    <None Remove="TestImages\outlook_translate.bmp" />
+    <None Remove="TestImages\outlook_share_to_teams.bmp" />
+    <None Remove="TestImages\outlook_get_add_ins.bmp" />
   </ItemGroup>
 
   <ItemGroup>
