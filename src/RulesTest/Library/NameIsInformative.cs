@@ -33,7 +33,7 @@ namespace Axe.Windows.RulesTests.Library
                 };
 
                 foreach (var s in stringsToTry)
-                    {
+                {
                     e.Name = s;
                     Assert.IsFalse(Rule.PassesTest(e));
                 }

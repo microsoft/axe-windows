@@ -15,11 +15,12 @@ namespace Axe.Windows.RulesTests.PropertyConditions
             using (var e = new MockA11yElement())
             {
                 var pattern = new A11yPattern(e, PatternIDs.Text);
-                var property = new A11yPatternProperty {  Name = "SupportedTextSelection", Value = UIAutomationClient.SupportedTextSelection.SupportedTextSelection_Single};
+                var property = new A11yPatternProperty { Name = "SupportedTextSelection", Value = UIAutomationClient.SupportedTextSelection.SupportedTextSelection_Single };
                 pattern.Properties.Add(property);
                 e.Patterns.Add(pattern);
                 Assert.IsTrue(Patterns.TextSelectionSupported.Matches(e));
-;            } // using
+                ;
+            } // using
         }
 
         [TestMethod]

@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// Ctor to create an event handler (with CUIAutomation) and register it.
         /// </summary>
         protected EventListenerBase(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
-            : this (element, scope, eventId, peDelegate)
+            : this(element, scope, eventId, peDelegate)
         {
             this.UIAutomation = uia;
         }

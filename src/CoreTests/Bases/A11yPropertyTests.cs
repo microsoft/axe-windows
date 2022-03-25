@@ -6,7 +6,6 @@ using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Types;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Axe.Windows.CoreTests.Bases
 {
@@ -46,7 +45,7 @@ namespace Axe.Windows.CoreTests.Bases
         }
 
         [TestMethod()]
-        public void SimpleCustomPropertyTest() 
+        public void SimpleCustomPropertyTest()
         {
             const int testId = 42;
             dynamic testValue = 1;

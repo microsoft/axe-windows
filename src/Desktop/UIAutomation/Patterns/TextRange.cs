@@ -181,7 +181,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (!disposedValue)
             {
-                if(this.UIATextRange != null)
+                if (this.UIATextRange != null)
                 {
                     Marshal.ReleaseComObject(UIATextRange);
                     UIATextRange = null;

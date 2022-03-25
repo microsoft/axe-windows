@@ -31,7 +31,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private static Condition CreateSecondChildCondition()
         {
-            return Condition.Create(e => MatchOrderInSiblings(e,2));
+            return Condition.Create(e => MatchOrderInSiblings(e, 2));
         }
 
         private static bool MatchOrderInSiblings(IA11yElement e, int index)
@@ -40,7 +40,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (e.Parent == null || e.Parent.Children == null) return false;
             if (index < 1 || index > e.Parent.Children.Count()) return false;
 
-            return e.Parent.Children.ElementAt(index -1).RuntimeId == e.RuntimeId;
+            return e.Parent.Children.ElementAt(index - 1).RuntimeId == e.RuntimeId;
         }
 
         private static bool HasSiblingsOfSameType(IA11yElement e)
@@ -170,12 +170,12 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
 
-            var description= string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AnyChild, c);
+            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AnyChild, c);
 
             return AnyChildInternal(c)[description];
         }
 
-            private static Condition AnyChildInternal(Condition c)
+        private static Condition AnyChildInternal(Condition c)
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
 

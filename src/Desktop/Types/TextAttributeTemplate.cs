@@ -9,8 +9,8 @@ using System.Linq;
 
 namespace Axe.Windows.Desktop.Types
 {
-    using TemplateData = Tuple<int, string, dynamic, Type>;
     using static Axe.Windows.Desktop.Types.TextAttributeType;
+    using TemplateData = Tuple<int, string, dynamic, Type>;
 
     public static class TextAttributeTemplate
     {

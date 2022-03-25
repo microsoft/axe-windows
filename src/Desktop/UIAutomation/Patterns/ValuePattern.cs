@@ -31,7 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             {
                 this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
             }
-            catch(InvalidOperationException e)
+            catch (InvalidOperationException e)
             {
                 e.ReportException();
                 // there is a known case that CurrentValue is not ready.

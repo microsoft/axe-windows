@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Results;
-using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using Utility = Axe.Windows.UnitTestSharedLibrary.Utility;
@@ -36,12 +35,12 @@ namespace Axe.Windows.CoreTests.Misc
                 Utility.PopulateChildrenTests(c);
             };
             var statuses = (from child in ke.Children
-                           select child.TestStatus);
+                            select child.TestStatus);
             int[] statusCounts = statuses.GetStatusCounts();
-            Assert.AreEqual(3, statusCounts[(int) ScanStatus.Fail]);
-            Assert.AreEqual(2, statusCounts[(int) ScanStatus.Pass]);
-            Assert.AreEqual(0, statusCounts[(int) ScanStatus.Uncertain]);
-            Assert.AreEqual(0, statusCounts[(int) ScanStatus.NoResult]);
+            Assert.AreEqual(3, statusCounts[(int)ScanStatus.Fail]);
+            Assert.AreEqual(2, statusCounts[(int)ScanStatus.Pass]);
+            Assert.AreEqual(0, statusCounts[(int)ScanStatus.Uncertain]);
+            Assert.AreEqual(0, statusCounts[(int)ScanStatus.NoResult]);
         }
     }
 }

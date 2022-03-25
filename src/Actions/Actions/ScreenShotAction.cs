@@ -50,7 +50,7 @@ namespace Axe.Windows.Actions
                 ec.DataContext.Screenshot = bmp;
                 ec.DataContext.ScreenshotElementId = el.UniqueId;
             }
-            catch(TypeInitializationException e)
+            catch (TypeInitializationException e)
             {
                 e.ReportException();
                 // silently ignore. since it happens only on WCOS.

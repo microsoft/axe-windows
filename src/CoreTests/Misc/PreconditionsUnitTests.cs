@@ -11,7 +11,7 @@ namespace Axe.Windows.CoreTests.Misc
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        [Timeout (2000)]
+        [Timeout(2000)]
         public void IsNotNull_ValueIsNull_ThrowsCorrectException()
         {
             object someVariable = null;
@@ -28,7 +28,7 @@ namespace Axe.Windows.CoreTests.Misc
         }
 
         [TestMethod]
-        [Timeout (2000)]
+        [Timeout(2000)]
         public void IsNotNull_ValueIsNotNoll_DoesNotThrow()
         {
             object someVariable = new object();
@@ -37,7 +37,7 @@ namespace Axe.Windows.CoreTests.Misc
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        [Timeout (2000)]
+        [Timeout(2000)]
         public void IsNotTrivialString_IsTrivial_ThrowsCorrectException()
         {
             string someString = "";
@@ -53,7 +53,7 @@ namespace Axe.Windows.CoreTests.Misc
         }
 
         [TestMethod]
-        [Timeout (2000)]
+        [Timeout(2000)]
         public void IsNotTrivialString_IsNotTrivial_DoesNotThrow()
         {
             string someString = "hello";

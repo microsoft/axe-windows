@@ -61,7 +61,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             return CustomNavigation | Drag | Dock | ExpandCollapse
                 | Invoke | RangeValue | SelectionItem | Transform
-                | Transform2 | Text | Toggle ;
+                | Transform2 | Text | Toggle;
         }
 
         private static bool IsTextSelectionSupported(IA11yElement e)

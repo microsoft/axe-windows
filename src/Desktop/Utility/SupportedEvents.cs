@@ -199,7 +199,7 @@ namespace Axe.Windows.Desktop.Utility
         public static IEnumerable<int> GetEventsForControl(int controlId, IEnumerable<A11yPattern> patterns)
         {
             return (from map in EventTypeMappings
-                    where map.ControlId == controlId && (map.PatternId == null || patterns.Select(p=>p.Id).Contains(map.PatternId.Value))
+                    where map.ControlId == controlId && (map.PatternId == null || patterns.Select(p => p.Id).Contains(map.PatternId.Value))
                     select map.EventId).ToList();
         }
     }

@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using System;
-
 namespace Axe.Windows.Automation
 {
     /// <summary>
@@ -39,12 +37,12 @@ namespace Axe.Windows.Automation
         public OutputFileFormat OutputFileFormat { get; private set; }
 
         ///  <summary>The path to a file containing configuration instructing Axe Windows how to interpret custom UI Automation data.</summary>
-        public string CustomUIAConfigPath{ get; private set; }
+        public string CustomUIAConfigPath { get; private set; }
 
         private Config()
         { }
 
-        #pragma warning disable CA1034 // Do not nest type
+#pragma warning disable CA1034 // Do not nest type
         /// <summary>
         /// Builds an instance of the <see cref="Config"/> class
         /// </summary>
@@ -115,6 +113,6 @@ namespace Axe.Windows.Automation
                 };
             }
         } // Builder
-        #pragma warning restore CA1034
+#pragma warning restore CA1034
     } // class
 } // namespace

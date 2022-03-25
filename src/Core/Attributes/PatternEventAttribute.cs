@@ -8,7 +8,7 @@ namespace Axe.Windows.Core.Attributes
     /// PatternEventAttribute class
     /// indicate the expected events for the pattern
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class,AllowMultiple = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public sealed class PatternEventAttribute : Attribute
     {
         /// <summary>

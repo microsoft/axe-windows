@@ -231,7 +231,7 @@ namespace Axe.Windows.Core.Misc
                 {
                     return element1.RuntimeId == runtimeId;
                 }
-                else if(element1.Name == name)
+                else if (element1.Name == name)
                 {
                     if (element1.ControlTypeId == controltype)
                     {
@@ -392,7 +392,7 @@ namespace Axe.Windows.Core.Misc
 
             foreach (var status in scanStatuses)
             {
-                results[(int) status]++;
+                results[(int)status]++;
             }
             return results;
         }
@@ -406,7 +406,7 @@ namespace Axe.Windows.Core.Misc
         {
             if (tss.Any())
             {
-                if(HasTestResults(tss, ScanStatus.ScanNotSupported))
+                if (HasTestResults(tss, ScanStatus.ScanNotSupported))
                 {
                     return ScanStatus.ScanNotSupported;
                 }
@@ -684,7 +684,7 @@ namespace Axe.Windows.Core.Misc
                 ? value : default(T);
         }
 
-        public static bool HasAttribute<T>(this FieldInfo field) where T: Attribute
+        public static bool HasAttribute<T>(this FieldInfo field) where T : Attribute
         {
             if (field == null) throw new ArgumentNullException(nameof(field));
 

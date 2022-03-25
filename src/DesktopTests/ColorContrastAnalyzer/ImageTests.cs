@@ -7,8 +7,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
 using System.Reflection;
+using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {

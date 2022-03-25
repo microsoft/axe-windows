@@ -108,7 +108,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             dynamic value = null;
             try
             {
-               value = element.GetCurrentPropertyValue(id);
+                value = element.GetCurrentPropertyValue(id);
                 if (id == PropertyType.UIA_LabeledByPropertyId && value != null)
                 {
                     value = GetHeaderOfLabelBy(value);

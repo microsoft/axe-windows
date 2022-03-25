@@ -66,13 +66,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (child == null) throw new ArgumentNullException(nameof(child));
 
-            return new TextRange(this.Pattern.RangeFromChild(child.PlatformObject),this);
+            return new TextRange(this.Pattern.RangeFromChild(child.PlatformObject), this);
         }
 
         [PatternMethod]
         public TextRange RangeFromPoint(tagPOINT pt)
         {
-            return new TextRange(this.Pattern.RangeFromPoint(pt),this);
+            return new TextRange(this.Pattern.RangeFromPoint(pt), this);
         }
 
         List<TextRange> ToListOfTextRanges(IUIAutomationTextRangeArray array)

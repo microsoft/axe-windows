@@ -12,7 +12,7 @@ namespace AxeWindowsCLI
         { }
 
         public ParameterException(string message)
-            : this (message, null)
+            : this(message, null)
         { }
 
         public ParameterException()

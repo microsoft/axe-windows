@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
-using Axe.Windows.RulesTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

@@ -250,9 +250,9 @@ namespace Axe.Windows.Actions
         /// <returns>true when there is new selection</returns>
         public bool Select()
         {
-            lock(_elementContextLock)
+            lock (_elementContextLock)
             {
-                if(CandidateEC != null && ( POIElementContext == null || POIElementContext.Element.IsSameUIElement(CandidateEC.Element) == false))
+                if (CandidateEC != null && (POIElementContext == null || POIElementContext.Element.IsSameUIElement(CandidateEC.Element) == false))
                 {
                     POIElementContext = CandidateEC;
                     CandidateEC = null;
@@ -377,7 +377,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static SelectAction GetDefaultInstance()
         {
-            if(sDefaultInstance == null)
+            if (sDefaultInstance == null)
             {
                 sDefaultInstance = new SelectAction();
             }
@@ -391,7 +391,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public static void ClearDefaultInstance()
         {
-            if(sDefaultInstance != null)
+            if (sDefaultInstance != null)
             {
                 sDefaultInstance.Dispose();
                 sDefaultInstance = null;
@@ -423,7 +423,7 @@ namespace Axe.Windows.Actions
                         this.MouseTracker.Dispose();
                         this.MouseTracker = null;
                     }
-                    if(this.FocusTracker != null)
+                    if (this.FocusTracker != null)
                     {
                         this.FocusTracker.Stop();
                         this.FocusTracker.Dispose();

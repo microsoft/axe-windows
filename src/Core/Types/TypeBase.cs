@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Misc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using static System.FormattableString;
 
@@ -34,9 +32,9 @@ namespace Axe.Windows.Core.Types
         /// </summary>
         private void PopulateDictionary()
         {
-            var fields =  this.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy );
+            var fields = this.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy);
 
-            foreach(var f in fields)
+            foreach (var f in fields)
             {
                 if (ShouldIncludeFieldInDictionary(f))
                     AddFieldToDictionary(f);
@@ -60,7 +58,7 @@ namespace Axe.Windows.Core.Types
         /// <param name="name"></param>
         /// <param name="id"></param>
         /// <returns></returns>
-        protected virtual string GetNameInProperFormat(string name,int id)
+        protected virtual string GetNameInProperFormat(string name, int id)
         {
             return name;
         }
@@ -84,7 +82,7 @@ namespace Axe.Windows.Core.Types
 
             foreach (var k in this.Dic.Keys)
             {
-                if(IsPartOfKeyValuePairList(k))
+                if (IsPartOfKeyValuePairList(k))
                 {
                     list.Add(new KeyValuePair<int, string>(k, this.Dic[k]));
                 }

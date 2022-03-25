@@ -98,7 +98,7 @@ namespace Axe.Windows.Desktop.Types
         /// <returns></returns>
         protected override bool IsPartOfKeyValuePairList(int id)
         {
-            switch(id)
+            switch (id)
             {
                 case UIA_AutomationFocusChangedEventId:
                 case UIA_AutomationPropertyChangedEventId:

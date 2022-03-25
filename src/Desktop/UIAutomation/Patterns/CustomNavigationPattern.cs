@@ -17,7 +17,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     {
         IUIAutomationCustomNavigationPattern Pattern;
 
-        public CustomNavigationPattern(A11yElement e, IUIAutomationCustomNavigationPattern p) :base(e, PatternType.UIA_CustomNavigationPatternId)
+        public CustomNavigationPattern(A11yElement e, IUIAutomationCustomNavigationPattern p) : base(e, PatternType.UIA_CustomNavigationPatternId)
         {
             this.Pattern = p;
         }

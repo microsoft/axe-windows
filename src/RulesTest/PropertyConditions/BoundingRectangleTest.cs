@@ -3,8 +3,8 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BoundingRectangle = Axe.Windows.Rules.PropertyConditions.BoundingRectangle;
 using System.Drawing;
+using BoundingRectangle = Axe.Windows.Rules.PropertyConditions.BoundingRectangle;
 
 namespace Axe.Windows.RulesTests.PropertyConditions
 {

@@ -38,7 +38,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             {
                 for (int i = 0; i < array.Length; i++)
                 {
-                    this.Properties.Add(new A11yPatternProperty() { Name = Invariant($"DropTargetEffects[{i}]"), Value = array.GetValue(i)?.ToString()});
+                    this.Properties.Add(new A11yPatternProperty() { Name = Invariant($"DropTargetEffects[{i}]"), Value = array.GetValue(i)?.ToString() });
                 }
             }
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()

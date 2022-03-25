@@ -90,7 +90,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        public static Tuple<string,string> GetProcessAndUIFrameworkOfElementContext(Guid ecId)
+        public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId)
         {
             var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
 

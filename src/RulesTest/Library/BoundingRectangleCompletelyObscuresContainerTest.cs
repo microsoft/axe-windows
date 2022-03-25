@@ -227,7 +227,7 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(Rule.Condition.Matches(e));
 
             e = CreateLightDismissButton();
-            e.ControlTypeId = 0 ;
+            e.ControlTypeId = 0;
             Assert.IsTrue(Rule.Condition.Matches(e));
         }
 

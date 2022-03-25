@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Extensions;
 using Axe.Windows.Extensions.Interfaces.ReferenceLinks;
 using Axe.Windows.Rules;
 
@@ -26,7 +25,7 @@ namespace Axe.Windows.RuleSelection
             if (link == null) return (string.Empty, string.Empty);
 
             return (link.ShortDescription ?? string.Empty,
-                    TryGetValidUrl(link.Uri, out string url) ? url: string.Empty);
+                    TryGetValidUrl(link.Uri, out string url) ? url : string.Empty);
         }
 
         private static IReferenceLink GetReferenceLink(string lookupToken) => DefaultLinks.GetReferenceLink(lookupToken);

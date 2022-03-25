@@ -33,8 +33,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             {
                 for (int i = 0; i < array.Length; i++)
                 {
-                    var view = (int) array.GetValue(i);
-                    Properties.Add(new A11yPatternProperty() { Name = Invariant($"SupportedViews[{i}]"), Value = Invariant($"{view}: {Pattern.GetViewName(view)}")});
+                    var view = (int)array.GetValue(i);
+                    Properties.Add(new A11yPatternProperty() { Name = Invariant($"SupportedViews[{i}]"), Value = Invariant($"{view}: {Pattern.GetViewName(view)}") });
                 }
             }
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()

@@ -19,7 +19,7 @@ namespace Axe.Windows.Core.Bases
         string AutomationId { get; }
         Rectangle BoundingRectangle { get; }
         string ClassName { get; }
-        string HelpText{ get; }
+        string HelpText { get; }
         bool IsEnabled { get; }
         bool IsKeyboardFocusable { get; }
         bool IsContentElement { get; }
@@ -34,7 +34,7 @@ namespace Axe.Windows.Core.Bases
         int ProcessId { get; }
         string Framework { get; }
         bool TransformPatternCanResize { get; }
-        string ProcessName { get;  }
+        string ProcessName { get; }
 
         IA11yElement Parent { get; }
         IEnumerable<IA11yElement> Children { get; }

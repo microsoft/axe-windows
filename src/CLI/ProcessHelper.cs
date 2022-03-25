@@ -33,7 +33,7 @@ namespace AxeWindowsCLI
                 caughtException = e;
             }
 
-            if (caughtException != null ||  processes == null || processes.Length == 0)
+            if (caughtException != null || processes == null || processes.Length == 0)
             {
                 throw new ParameterException(
                     string.Format(CultureInfo.CurrentCulture, DisplayStrings.ErrorNoMatchingProcessNameFormat, processName),

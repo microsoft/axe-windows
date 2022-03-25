@@ -5,8 +5,8 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.Resources;
 using System;
-using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
+using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {

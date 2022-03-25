@@ -269,7 +269,7 @@ namespace AxeWindowsCLITests
         {
             List<ScanResult> errors = new List<ScanResult>(errorCount);
 
-            for(int loop = 0; loop < errorCount; loop++)
+            for (int loop = 0; loop < errorCount; loop++)
             {
                 errors.Add(new ScanResult
                 {

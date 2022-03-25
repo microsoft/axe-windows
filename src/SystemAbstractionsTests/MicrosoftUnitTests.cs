@@ -3,7 +3,6 @@
 using Axe.Windows.SystemAbstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Win32;
-using Moq;
 
 namespace Axe.Windows.SystemAbstractionsTests
 {

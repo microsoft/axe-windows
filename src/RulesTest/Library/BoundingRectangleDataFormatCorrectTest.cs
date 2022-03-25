@@ -16,7 +16,7 @@ namespace Axe.Windows.RulesTests.Library
         {
             using (var e = new MockA11yElement())
             {
-                var p = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new double[] {  1, 2, 3, 4 });
+                var p = new A11yProperty(PropertyType.UIA_BoundingRectanglePropertyId, new double[] { 1, 2, 3, 4 });
                 e.Properties.Add(PropertyType.UIA_BoundingRectanglePropertyId, p);
                 Assert.IsTrue(Rule.PassesTest(e));
             } // using

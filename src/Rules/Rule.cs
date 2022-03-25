@@ -7,7 +7,7 @@ namespace Axe.Windows.Rules
 {
     interface IRule
     {
-        RuleInfo Info { get;  }
+        RuleInfo Info { get; }
         Condition Condition { get; }
         bool PassesTest(IA11yElement element);
     }

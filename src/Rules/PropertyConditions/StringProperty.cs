@@ -179,7 +179,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
                 Regex r = new Regex(s, options);
                 return r.IsMatch(propertyValue);
-                },
+            },
                 string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.MatchesRegExWithOptions, PropertyDescription, s, options.ToString()));
         }
     } // class

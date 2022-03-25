@@ -20,7 +20,7 @@ namespace Axe.Windows.Telemetry
         public Type ExcludedType => InnerException.GetType();
 
         public ExcludedException(Exception innerException)
-            : base (innerException?.Message, innerException)
+            : base(innerException?.Message, innerException)
         {
             if (innerException == null) throw new ArgumentNullException(nameof(innerException));
         }

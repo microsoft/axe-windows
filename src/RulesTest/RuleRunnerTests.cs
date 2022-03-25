@@ -281,7 +281,8 @@ namespace Axe.Windows.RulesTests
 
         private static Mock<IRule> CreateRuleMock(Condition condition, EvaluationCode code, A11yElement e)
         {
-            var infoStub = new RuleInfo {
+            var infoStub = new RuleInfo
+            {
                 ErrorCode = code
             };
 

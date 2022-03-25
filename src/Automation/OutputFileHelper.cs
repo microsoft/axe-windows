@@ -5,9 +5,8 @@ using Axe.Windows.Core.Exceptions;
 using Axe.Windows.SystemAbstractions;
 using System;
 using System.Globalization;
-using Path = System.IO.Path;
-
 using static System.FormattableString;
+using Path = System.IO.Path;
 
 namespace Axe.Windows.Automation
 {

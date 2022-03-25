@@ -80,9 +80,9 @@ namespace Axe.Windows.Core.CustomObjects
         ///<summary>Checks that a property is structurally well-formed. For instance, verifies that Values is unset on non-enum types.</summary>
         public void Validate()
         {
-            if (Values == null && Type == CustomUIAPropertyType.Enum) 
+            if (Values == null && Type == CustomUIAPropertyType.Enum)
                 throw new InvalidDataException("Values required for enumeration types.");
-            if (Values != null && Type != CustomUIAPropertyType.Enum) 
+            if (Values != null && Type != CustomUIAPropertyType.Enum)
                 throw new InvalidDataException("Values cannot be defined for non-enumeration types.");
         }
     }

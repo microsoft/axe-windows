@@ -44,7 +44,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             var array = this.Pattern.GetCurrentAnnotationTypes();
             List<string> list = new List<string>();
 
-            if(array.Length > 0)
+            if (array.Length > 0)
             {
                 for (int i = 0; i < array.Length; i++)
                 {

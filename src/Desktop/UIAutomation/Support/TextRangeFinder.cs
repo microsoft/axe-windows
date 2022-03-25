@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Desktop.Types;
 using Axe.Windows.Desktop.UIAutomation.Patterns;
 
 namespace Axe.Windows.Desktop.UIAutomation.Support
@@ -48,9 +47,9 @@ namespace Axe.Windows.Desktop.UIAutomation.Support
         {
             var range = this.OriginalRange.Clone();
 
-            if(this.FoundRange != null)
+            if (this.FoundRange != null)
             {
-                if(backward == true)
+                if (backward == true)
                 {
                     range.MoveEndpointByRange(UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_End, this.FoundRange, UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_Start);
                 }
