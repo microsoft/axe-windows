@@ -19,7 +19,6 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 pattern.Properties.Add(property);
                 e.Patterns.Add(pattern);
                 Assert.IsTrue(Patterns.TextSelectionSupported.Matches(e));
-                ;
             } // using
         }
 
