@@ -4,6 +4,7 @@
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+using Interop.UIAutomationCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;

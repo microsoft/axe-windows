@@ -5,6 +5,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Enums;
+using Interop.UIAutomationCore;
 using System;
 using System.Collections.Generic;
 
