@@ -61,6 +61,15 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The argument must be a non-empty IEnumerable.
+        /// </summary>
+        internal static string NoDesktopElements {
+            get {
+                return ResourceManager.GetString("NoDesktopElements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Actions property of the given ScanTools object should not be null.
         /// </summary>
         internal static string ScanToolsActionsNull {

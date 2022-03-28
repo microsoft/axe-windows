@@ -125,7 +125,7 @@
     <value>The directory "{0}" was invalid.</value>
   </data>
   <data name="ErrorFailToGetRootElementOfProcess" xml:space="preserve">
-    <value>ERROR Automation017: Fail to get the root element of a process({0}) : {1}</value>
+    <value>ERROR Automation017: Failed to get the root element(s) of the specified process({0}) : {1}</value>
   </data>
   <data name="ErrorIsNotFullPath" xml:space="preserve">
     <value>The given path was not an absolute path.</value>
