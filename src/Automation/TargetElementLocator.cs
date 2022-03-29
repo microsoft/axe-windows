@@ -27,7 +27,7 @@ namespace Axe.Windows.Automation
         }
 
         private static IEnumerable<A11yElement> GetA11YElementsFromDesktopElements(IEnumerable<DesktopElement> desktopElements)
-            {
+        {
             if (!desktopElements.Any()) throw new ArgumentException(ErrorMessages.NoDesktopElements, nameof(desktopElements));
 
             foreach (var e in desktopElements)
