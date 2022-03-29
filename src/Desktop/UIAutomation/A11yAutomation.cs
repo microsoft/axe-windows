@@ -91,7 +91,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     Marshal.ReleaseComObject(elementArray);
                 }
-                    }
+            }
 
             return elements;
         }
