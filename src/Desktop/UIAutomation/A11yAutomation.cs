@@ -153,9 +153,8 @@ namespace Axe.Windows.Desktop.UIAutomation
             for (int i = 0; i < elementArray.Length; ++i)
             {
                 var uiaElement = elementArray.GetElement(i);
-                if (DesktopElement.IsFromCurrentProcess(uiaElement)) continue;
-
-                var e = new DesktopElement(uiaElement, true, false);
+                var e = ElementFromUIAElement(uiaElement);
+                if (e == null) continue;
 
                 e.PopulateMinimumPropertiesForSelection();
 
