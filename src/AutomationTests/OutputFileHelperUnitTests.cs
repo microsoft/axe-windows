@@ -112,7 +112,7 @@ namespace Axe.Windows.AutomationTests
             string testParam = @"c:\TestDir";
             mockEnvironment.Setup(x => x.CurrentDirectory).Returns(testParam);
 
-string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutputDirectoryName);
+            string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutputDirectoryName);
 
             var outputFileHelper = new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
             string result = outputFileHelper.GetNewA11yTestFilePath();

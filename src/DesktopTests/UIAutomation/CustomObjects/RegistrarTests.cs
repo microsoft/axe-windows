@@ -20,7 +20,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
         {
             Guid propertyGuid = new Guid("312F7536-259A-47C7-B192-AA16352522C4");
             string propertyName = "CommentReplyCount";
-            CustomProperty propertyToRegister = new CustomProperty { Guid = propertyGuid, ProgrammaticName = propertyName, ConfigType = CustomProperty.IntConfigType};
+            CustomProperty propertyToRegister = new CustomProperty { Guid = propertyGuid, ProgrammaticName = propertyName, ConfigType = CustomProperty.IntConfigType };
             UIAutomationPropertyInfo expectedPropertyInfo = new UIAutomationPropertyInfo { guid = propertyGuid, pProgrammaticName = propertyName, type = UIAutomationType.UIAutomationType_Int };
             int propertyId = 43;
             Mock<IUIAutomationRegistrar> uiaRegistrarMock = new Mock<IUIAutomationRegistrar>(MockBehavior.Strict);
@@ -104,14 +104,14 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
 
             Guid intPropertyGuid = new Guid("312F7536-259A-47C7-B192-AA16352522C4");
             string intPropertyName = "CommentReplyCount";
-            CustomProperty intProperty = new CustomProperty { Guid = intPropertyGuid, ProgrammaticName = intPropertyName, ConfigType = CustomProperty.IntConfigType};
+            CustomProperty intProperty = new CustomProperty { Guid = intPropertyGuid, ProgrammaticName = intPropertyName, ConfigType = CustomProperty.IntConfigType };
             UIAutomationPropertyInfo expectedIntPropertyInfo = new UIAutomationPropertyInfo { guid = intPropertyGuid, pProgrammaticName = intPropertyName, type = UIAutomationType.UIAutomationType_Int };
             int propertyId = 42;
             uiaRegistrarMock.Setup(x => x.RegisterProperty(ref expectedIntPropertyInfo, out propertyId));
 
             Guid boolPropertyGuid = new Guid("4BB56516-F354-44CF-A5AA-96B52E968CFD");
             string boolPropertyName = "AreGridlinesVisible";
-            CustomProperty boolProperty = new CustomProperty { Guid = boolPropertyGuid, ProgrammaticName = boolPropertyName, ConfigType = CustomProperty.BoolConfigType};
+            CustomProperty boolProperty = new CustomProperty { Guid = boolPropertyGuid, ProgrammaticName = boolPropertyName, ConfigType = CustomProperty.BoolConfigType };
 
             int counter = 0;
             Action<int, ITypeConverter> testCallback = new Action<int, ITypeConverter>((id, converter) =>
@@ -128,7 +128,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
             r.RegisterCustomProperty(intProperty);
             r.MergeCustomPropertyRegistrations(
                 new Dictionary<int, CustomProperty> { [42] = boolProperty }
-            ); 
+            );
             r.RestoreCustomPropertyRegistrations();
 
             Assert.AreEqual(3, counter); // Callback should be called three times: register int, merge bool, restore int.

@@ -360,7 +360,7 @@ namespace Axe.Windows.Core.Bases
             if (!(temp is T))
                 return false;
 
-            value = temp ;
+            value = temp;
 
             return true;
         }
@@ -541,7 +541,7 @@ namespace Axe.Windows.Core.Bases
                 return ScanStatus.NoResult;
             }
         }
-#endregion
+        #endregion
 
         /// <summary>
         /// Header of this element
@@ -684,7 +684,7 @@ namespace Axe.Windows.Core.Bases
         /// <returns></returns>
         private static A11yElement FromText(string json)
         {
-            var e =  JsonConvert.DeserializeObject<A11yElement>(json);
+            var e = JsonConvert.DeserializeObject<A11yElement>(json);
 
             UpdateParent(null, e);
 
@@ -702,14 +702,14 @@ namespace Axe.Windows.Core.Bases
         /// <param name="e"></param>
         private static void UpdateParent(A11yElement p, A11yElement e)
         {
-            if(e != null)
+            if (e != null)
             {
                 e.Parent = p;
             }
 
-            if(e.Children != null && e.Children.Count != 0)
+            if (e.Children != null && e.Children.Count != 0)
             {
-                foreach(var c in e.Children)
+                foreach (var c in e.Children)
                 {
                     UpdateParent(e, c);
                 }
@@ -785,6 +785,6 @@ namespace Axe.Windows.Core.Bases
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-#endregion
+        #endregion
     }
 }

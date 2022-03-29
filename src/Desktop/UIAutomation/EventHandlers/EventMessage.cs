@@ -22,7 +22,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public string TimeStamp { get; set; }
 
 #pragma warning disable CA2227 // Collection properties should be read only
-        public IList<KeyValuePair<string,dynamic>> Properties { get; set; }
+        public IList<KeyValuePair<string, dynamic>> Properties { get; set; }
 #pragma warning restore CA2227 // Collection properties should be read only
 
         public A11yElement Element { get; set; }
@@ -79,7 +79,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         {
             if (sender == null || !DesktopElement.IsFromCurrentProcess(sender))
             {
-                    return new EventMessage(id, sender);
+                return new EventMessage(id, sender);
             }
 
             return null;

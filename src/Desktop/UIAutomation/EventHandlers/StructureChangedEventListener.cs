@@ -13,7 +13,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// Create an event handler and register it.
         /// </summary>
-        public StructureChangedEventListener(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate) : base(uia,element, scope, EventType.UIA_StructureChangedEventId, peDelegate)
+        public StructureChangedEventListener(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate) : base(uia, element, scope, EventType.UIA_StructureChangedEventId, peDelegate)
         {
             Init();
         }

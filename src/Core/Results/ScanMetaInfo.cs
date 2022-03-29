@@ -29,7 +29,7 @@ namespace Axe.Windows.Core.Results
         /// </summary>
         /// <param name="e"></param>
         /// <param name="propertyid"></param>
-        public ScanMetaInfo(IA11yElement e, int propertyid):this(e)
+        public ScanMetaInfo(IA11yElement e, int propertyid) : this(e)
         {
             this.PropertyId = propertyid;
         }

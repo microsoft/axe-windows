@@ -4,8 +4,6 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Diagnostics;
-using UIAutomationClient;
 
 namespace Axe.Windows.RulesTests.Library
 {

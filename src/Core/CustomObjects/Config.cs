@@ -2,9 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Newtonsoft.Json;
-using System;
 using System.IO;
-using System.Linq;
 
 namespace Axe.Windows.Core.CustomObjects
 {

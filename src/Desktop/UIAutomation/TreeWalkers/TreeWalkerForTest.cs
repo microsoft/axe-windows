@@ -146,7 +146,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     rootNode.Children.Add(childNode);
                     childNode.Parent = rootNode;
                     childNode.UniqueId = startChildId++;
-                    startChildId = PopulateChildrenTreeNode(childNode, rootNode,startChildId);
+                    startChildId = PopulateChildrenTreeNode(childNode, rootNode, startChildId);
                     try
                     {
                         child = walker.GetNextSiblingElement(child);

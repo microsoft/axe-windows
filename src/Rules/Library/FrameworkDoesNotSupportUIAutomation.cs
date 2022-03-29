@@ -17,7 +17,7 @@ namespace Axe.Windows.Rules.Library
             @"^\s*SunAwt.*$",
         };
 
-        public FrameworkDoesNotSupportUIAutomation ()
+        public FrameworkDoesNotSupportUIAutomation()
         {
             this.Info.Description = Descriptions.FrameworkDoesNotSupportUIAutomation;
             this.Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;

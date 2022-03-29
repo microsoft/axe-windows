@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Desktop.Utility;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
@@ -132,7 +131,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             if (e == null) return null;
             if (e.PlatformObject == null) return null;
 
-                try
+            try
             {
                 var cache = DesktopElementHelper.BuildCacheRequest(MiniumProperties, null);
 
@@ -208,7 +207,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Get windows extended style and add it into Platform Properties
         /// </summary>
-        private static void AddWindowsExtendedStyleIntoPlatformProperties(this A11yElement element,IntPtr handle)
+        private static void AddWindowsExtendedStyleIntoPlatformProperties(this A11yElement element, IntPtr handle)
         {
             var val = Win32.NativeMethods.GetWindowLong(handle, Win32.Win32Constants.GWL_EXSTYLE);
             if (val != 0)
@@ -256,7 +255,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 }
 
                 A11yAutomation.UIAutomationObject.PollForPotentialSupportedPatterns((IUIAutomationElement)element.PlatformObject, out int[] ptids, out string[] ptns);
-                var ptl = new List<Tuple<int,string>>();
+                var ptl = new List<Tuple<int, string>>();
 
                 for (int i = 0; i < ptids.Length; i++)
                 {
@@ -288,9 +287,9 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 // retrieve patterns from cache
                 var ptlst = from pt in ptl
-                          let pi = A11yPatternFactory.GetPatternInstance(element, uia, pt.Item1, pt.Item2)
-                          where pi != null
-                          select pi;
+                            let pi = A11yPatternFactory.GetPatternInstance(element, uia, pt.Item1, pt.Item2)
+                            where pi != null
+                            select pi;
 
                 element.Patterns = ptlst.ToList();
 
@@ -321,7 +320,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
             bool ret = false;
 
-            if(element.PlatformObject != null)
+            if (element.PlatformObject != null)
             {
                 try
                 {
@@ -439,7 +438,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     variant = GetGlimpsesOfUIAElements(variant);
                     NativeMethods.VariantClear(ref tmp);
                 }
-                else if(Marshal.IsComObject(variant))
+                else if (Marshal.IsComObject(variant))
                 {
                     /* When checked against the four common return types for
                      * IUIAutomation.GetPropertyValueEx: int, bool, string, and double[]

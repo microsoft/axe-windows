@@ -25,7 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public NotificationEventListener EventListenerNotification { get; private set; }
         public TextEditTextChangedEventListener EventListenerTextEditTextChanged { get; private set; }
         public ActiveTextPositionChangedEventListener EventListenerActiveTextPositionChanged { get; private set; }
-        public Dictionary<int,EventListener> EventListeners { get; private set; }
+        public Dictionary<int, EventListener> EventListeners { get; private set; }
 
         public TreeScope Scope { get; private set; }
         public CUIAutomation UIAutomation { get; private set; }
@@ -107,7 +107,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     // Get a message from the queue of action-related messages.
                     lock (_msgQueue)
                     {
-                        if(_msgQueue.Count != 0)
+                        if (_msgQueue.Count != 0)
                         {
                             msgData = _msgQueue.Dequeue();
                         }
@@ -117,7 +117,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                     }
 
-                    switch(msgData.MessageType)
+                    switch (msgData.MessageType)
                     {
                         case EventListenerFactoryMessageType.FinishThread:
                             // The main UI thread is telling this background thread to close down.
@@ -208,7 +208,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 e.ReportException();
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-                var m  = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
+                var m = EventMessage.GetInstance(EventType.UIA_EventRecorderNotificationEventId, null);
 #pragma warning restore CA2000
 
                 m.Properties = new List<KeyValuePair<string, dynamic>> { new KeyValuePair<string, dynamic>("Message", $"Failed to unregister all listeners: {e.Message}") };
@@ -351,7 +351,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     case EventType.UIA_AutomationFocusChangedEventId:
                         if (this.EventListenerFocusChanged == null)
                         {
-                            var uia = (IUIAutomation) UIAutomation8 ?? UIAutomation;
+                            var uia = (IUIAutomation)UIAutomation8 ?? UIAutomation;
                             this.EventListenerFocusChanged = new FocusChangedEventListener(uia, msgData.Listener);
                         }
                         break;
@@ -364,7 +364,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     case EventType.UIA_AutomationPropertyChangedEventId:
                         if (this.EventListenerPropertyChanged == null)
                         {
-                            this.EventListenerPropertyChanged = new PropertyChangedEventListener(this.UIAutomation, this.RootElement.PlatformObject, this.Scope, msgData.Listener,msgData.Properties);
+                            this.EventListenerPropertyChanged = new PropertyChangedEventListener(this.UIAutomation, this.RootElement.PlatformObject, this.Scope, msgData.Listener, msgData.Properties);
                         }
                         break;
                     case EventType.UIA_TextEdit_TextChangedEventId:
@@ -446,7 +446,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     new KeyValuePair<string, dynamic>("Event Name", EventType.GetInstance().GetNameById(msgData.EventId)),
                 };
                 msgData.Listener(m);
-                if(msgData.EventId == EventType.UIA_AutomationFocusChangedEventId)
+                if (msgData.EventId == EventType.UIA_AutomationFocusChangedEventId)
                 {
                     this.EventListenerFocusChanged.ReadyToListen = true;
                 }
@@ -500,7 +500,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         private void AddMessageToQueue(EventListenerFactoryMessage msgData)
         {
             // Request the lock, and block until it is obtained.
-            lock(_msgQueue)
+            lock (_msgQueue)
             {
                 // When the lock is obtained, add an element.
                 _msgQueue.Enqueue(msgData);
@@ -559,14 +559,14 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 Properties = properties
             });
 #pragma warning restore CA2000
-}
+        }
 
         /// <summary>
         /// Unregister a automation event listener
         /// </summary>
         /// <param name="eventId"></param>
         /// <param name="wait">wait to complete</param>
-        public void UnregisterAutomationEventListener(int eventId,bool wait = false)
+        public void UnregisterAutomationEventListener(int eventId, bool wait = false)
         {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
             var msg = new EventListenerFactoryMessage()

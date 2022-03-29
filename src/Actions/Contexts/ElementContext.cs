@@ -37,7 +37,7 @@ namespace Axe.Windows.Actions.Contexts
         /// Constructor
         /// </summary>
         /// <param name="element"></param>
-        public ElementContext (A11yElement element)
+        public ElementContext(A11yElement element)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
 

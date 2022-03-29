@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var controls =  (Button & NotParent(ComboBox | ScrollBar | TitleBar))
+            var controls = (Button & NotParent(ComboBox | ScrollBar | TitleBar))
                 | Calendar | CheckBox | ComboBox | DataGrid | DataItem
                 | Document | Edit | Group
                 | Hyperlink | List | ListItem | MenuItem

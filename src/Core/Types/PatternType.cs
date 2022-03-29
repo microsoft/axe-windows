@@ -84,5 +84,5 @@ namespace Axe.Windows.Core.Types
 
             return sb.ToString();
         }
-     }
+    }
 }

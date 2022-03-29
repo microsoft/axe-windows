@@ -16,7 +16,7 @@ namespace Axe.Windows.Rules
     class ValueCondition<T> : Condition where T : IComparable, IEquatable<T>
     {
         public delegate T GetterDelegate(IA11yElement e);
-        private readonly string Description ;
+        private readonly string Description;
         public readonly GetterDelegate GetValue;
 
         public ValueCondition(GetterDelegate getter, string description)

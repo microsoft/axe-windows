@@ -25,7 +25,7 @@ namespace Axe.Windows.AutomationTests
         const string TestString = "He's dead, Jim!";
 
         [TestMethod]
-        [Timeout (5000)]
+        [Timeout(5000)]
         public void ExecuteCommand_CommandIsNull_ThrowsInnerNullReferenceException_Automation003InMessage()
         {
             try
@@ -40,7 +40,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout (1000)]
+        [Timeout(1000)]
         public void ExecuteCommand_CommandThrowsNonAutomationException_WrapsInAutomationException_Automation003InMessage()
         {
             try
@@ -60,7 +60,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout (1000)]
+        [Timeout(1000)]
         public void ExecuteCommand_CommandThrowsAutomationException_TestStringInMessage()
         {
             try
@@ -78,7 +78,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout (1000)]
+        [Timeout(1000)]
         public void ExecuteCommand_CommandReturnsObject_SameObjectIsReturnedToCaller()
         {
             TestResult result = ExecutionWrapper.ExecuteCommand<TestResult>(

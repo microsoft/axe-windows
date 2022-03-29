@@ -29,7 +29,7 @@ namespace Axe.Windows.Rules.Library
 
             var landmark = Landmarks.Banner & (Edge | IsNotOffScreen);
             var condition = DescendantCount(landmark) <= 1;
-            return  condition.Matches(e);
+            return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()

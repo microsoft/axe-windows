@@ -29,6 +29,6 @@ namespace Axe.Windows.Rules
         /// this property may contain a description of the error.
         /// Otherwise, it should be null.
         /// </summary>
-        public string ErrorMessage{ get; set; }
+        public string ErrorMessage { get; set; }
     } // class
 } // namespace

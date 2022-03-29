@@ -14,7 +14,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// Create an event handler and register it.
         /// </summary>
-        public PropertyChangedEventListener(CUIAutomation uia,IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate, int[] properties) : base(uia,element, scope, EventType.UIA_AutomationPropertyChangedEventId, peDelegate)
+        public PropertyChangedEventListener(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate, int[] properties) : base(uia, element, scope, EventType.UIA_AutomationPropertyChangedEventId, peDelegate)
         {
             this.propertyArray = properties;
             Init();

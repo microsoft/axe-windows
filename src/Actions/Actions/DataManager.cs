@@ -178,7 +178,7 @@ namespace Axe.Windows.Actions
         public static DataManager GetDefaultInstance()
         {
             var dm = GetInstance(DefaultInstanceName);
-            if(dm == null)
+            if (dm == null)
             {
                 sDataManagers.Add(DefaultInstanceName, new DataManager());
             }

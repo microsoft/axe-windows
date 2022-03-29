@@ -56,7 +56,7 @@ namespace Axe.Windows.Core.Bases
         /// Constructor
         /// </summary>
         /// <param name="e"></param>
-        public A11yPattern(A11yElement e, int id): this(e,id, PatternType.GetInstance().GetNameById(id)) { }
+        public A11yPattern(A11yElement e, int id) : this(e, id, PatternType.GetInstance().GetNameById(id)) { }
 
         /// <summary>
         /// Base class constructor for unknown pattern type.
@@ -64,7 +64,7 @@ namespace Axe.Windows.Core.Bases
         /// <param name="e"></param>
         /// <param name="id"></param>
         /// <param name="name"></param>
-        public A11yPattern(A11yElement e, int id,string name)
+        public A11yPattern(A11yElement e, int id, string name)
         {
             this.Element = e;
             this.Id = id;

@@ -6,8 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Drawing;
 using System.IO;
-using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
 using System.Reflection;
+using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
@@ -51,7 +51,7 @@ namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
                 result.MostLikelyColorPair);
         }
 
-        [TestMethod] 
+        [TestMethod]
         [Timeout(2000)]
         public void SimplePurpleAndWhiteButton()
         {

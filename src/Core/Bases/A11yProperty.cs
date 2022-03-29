@@ -54,7 +54,7 @@ namespace Axe.Windows.Core.Bases
         /// </summary>
         /// <param name="id"></param>
         /// <param name="element"></param>
-        public A11yProperty (int id, dynamic value,string name = null): this(id,name)
+        public A11yProperty(int id, dynamic value, string name = null) : this(id, name)
         {
             this.Value = value;
         }
@@ -112,7 +112,7 @@ namespace Axe.Windows.Core.Bases
                     case PropertyType.UIA_SizeOfSetPropertyId:
                         /// these properties are 1 based.
                         /// if value is smaller than 1, it should be ignored.
-                        if(this.Value != null && this.Value > 0)
+                        if (this.Value != null && this.Value > 0)
                         {
                             txt = this.Value?.ToString();
                         }
@@ -168,9 +168,9 @@ namespace Axe.Windows.Core.Bases
             return text;
         }
 
-        public static void RegisterCustomProperty(int dynamicId, ITypeConverter converter) 
+        public static void RegisterCustomProperty(int dynamicId, ITypeConverter converter)
         {
-            TypeConverterMap[dynamicId] = converter; 
+            TypeConverterMap[dynamicId] = converter;
         }
 
         #region IDisposable Support
@@ -185,7 +185,7 @@ namespace Axe.Windows.Core.Bases
                     this.Name = null;
                     if (this.Value != null)
                     {
-                        if(NativeMethods.VariantClear(ref this.Value) == Win32Constants.S_OK)
+                        if (NativeMethods.VariantClear(ref this.Value) == Win32Constants.S_OK)
                         {
                             this.Value = null;
                         }

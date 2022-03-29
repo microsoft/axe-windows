@@ -17,7 +17,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     {
         IUIAutomationAnnotationPattern Pattern;
 
-        public AnnotationPattern(A11yElement e, IUIAutomationAnnotationPattern p) :base(e, PatternType.UIA_AnnotationPatternId)
+        public AnnotationPattern(A11yElement e, IUIAutomationAnnotationPattern p) : base(e, PatternType.UIA_AnnotationPatternId)
         {
             Pattern = p;
 
@@ -44,7 +44,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         protected override void Dispose(bool disposing)
         {
-            if(Pattern != null)
+            if (Pattern != null)
             {
                 Marshal.ReleaseComObject(Pattern);
                 this.Pattern = null;

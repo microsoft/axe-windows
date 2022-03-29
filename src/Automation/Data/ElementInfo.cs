@@ -1,6 +1,5 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
 using System.Collections.Generic;
 
 namespace Axe.Windows.Automation
@@ -13,7 +12,7 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// This element's parent element.
         /// </summary>
-        public ElementInfo Parent { get; internal set;  }
+        public ElementInfo Parent { get; internal set; }
 
         /// <summary>
         /// A string to string dictionary where the key is a UIAutomation property name

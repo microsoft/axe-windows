@@ -59,7 +59,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
             this.SetMembers = setMem;
-            SetParent(e,-1);
+            SetParent(e, -1);
 
             if (Items.Count != 0)
             {

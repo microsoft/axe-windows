@@ -26,7 +26,7 @@ namespace Axe.Windows.Rules.Library
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             return PositionInSet.Exists.Matches(e) & SizeOfSet.Exists.Matches(e);
-}
+        }
 
         protected override Condition CreateCondition()
         {

@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using CommandLine;
 using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace RulesMD
@@ -24,7 +24,7 @@ namespace RulesMD
 
         static void DoWork(string[] args)
         {
-            Parser.Default.ParseArguments < CLIOptions>(args)
+            Parser.Default.ParseArguments<CLIOptions>(args)
                 .WithParsed<CLIOptions>(Run);
         }
 

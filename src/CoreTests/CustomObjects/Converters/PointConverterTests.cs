@@ -14,7 +14,7 @@ namespace Axe.Windows.CoreTests.CustomObjects.Converters
         [TestMethod, Timeout(1000)]
         public void RenderTest()
         {
-            dynamic value=new double[2] { 42.0, 42.0 };
+            dynamic value = new double[2] { 42.0, 42.0 };
             Assert.AreEqual("[x=42,y=42]", new PointTypeConverter().Render(value));
         }
 

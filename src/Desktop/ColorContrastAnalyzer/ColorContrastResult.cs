@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class ColorContrastResult: IColorContrastResult
+    public class ColorContrastResult : IColorContrastResult
     {
         private List<ColorPair> alternatives = new List<ColorPair>();
 
@@ -50,7 +50,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             else if (numDifferentBackgroundColors > 1 || numVisiblyDifferentTextColors > 1)
             {
                 confidence = Confidence.Mid;
-            } else
+            }
+            else
             {
                 this.confidence = Confidence.High;
             }

@@ -84,7 +84,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 var scrollPattern = new A11yPattern(e, PatternType.UIA_ScrollPatternId);
                 e.Patterns.Add(scrollPattern);
                 scrollPattern.Properties.Add(new A11yPatternProperty() { Name = ScrollPattern.HorizontallyScrollableProperty, Value = true });
-                scrollPattern.Properties.Add(new A11yPatternProperty() { Name = ScrollPattern.HorizontalScrollPercentProperty, Value = (double)0/0 });
+                scrollPattern.Properties.Add(new A11yPatternProperty() { Name = ScrollPattern.HorizontalScrollPercentProperty, Value = (double)0 / 0 });
                 Assert.IsFalse(ScrollPattern.HorizontallyScrollable.Matches(e));
             } // using
         }

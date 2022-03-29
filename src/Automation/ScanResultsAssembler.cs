@@ -87,11 +87,11 @@ namespace Axe.Windows.Automation
 
         private static IEnumerable<RuleResult> GetFailedRuleResultsFromElement(A11yElement element)
         {
-           return from scanResult in element.ScanResults.Items
-                  where scanResult.Status == ScanStatus.Fail
-                  from ruleResult in scanResult.Items
-                  where ruleResult.Status == ScanStatus.Fail
-                  select ruleResult;
+            return from scanResult in element.ScanResults.Items
+                   where scanResult.Status == ScanStatus.Fail
+                   from ruleResult in scanResult.Items
+                   where ruleResult.Status == ScanStatus.Fail
+                   select ruleResult;
         }
     }
 }

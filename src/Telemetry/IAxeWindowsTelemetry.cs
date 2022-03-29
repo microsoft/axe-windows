@@ -24,6 +24,6 @@ namespace Axe.Windows.Telemetry
         /// Whether or not telemetry is enabled. Exposed to allow callers who do lots of
         /// work to short-circuit their processing when telemetry is disabled
         /// </summary>
-        bool IsEnabled { get;  }
+        bool IsEnabled { get; }
     } // interface
 } // namespace

@@ -27,7 +27,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         public TextRange GetActiveComposition()
         {
             var tr = this.Pattern.GetActiveComposition();
-            return tr != null ? new TextRange(tr, null) : null ;
+            return tr != null ? new TextRange(tr, null) : null;
         }
 
         [PatternMethod]

@@ -42,7 +42,7 @@ namespace Axe.Windows.Rules.Library
         {
             string names = null;
 
-            switch(controlTypeId)
+            switch (controlTypeId)
             {
                 case Axe.Windows.Core.Types.ControlType.UIA_AppBarControlTypeId:
                     names = LocalizedControlTypeNames.AppBar;

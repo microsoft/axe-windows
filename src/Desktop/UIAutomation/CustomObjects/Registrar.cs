@@ -67,7 +67,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         /// <remarks>This function assumes that when ConverterRegistrationAction is called multiple times, the last call wins.</remarks>
         public void MergeCustomPropertyRegistrations(IReadOnlyDictionary<int, CustomProperty> registrations)
         {
-            if (registrations== null) throw new ArgumentNullException(nameof(registrations));
+            if (registrations == null) throw new ArgumentNullException(nameof(registrations));
             foreach (KeyValuePair<int, CustomProperty> entry in registrations)
             {
                 _converterRegistrationAction(entry.Key, CreateTypeConverter(entry.Value));

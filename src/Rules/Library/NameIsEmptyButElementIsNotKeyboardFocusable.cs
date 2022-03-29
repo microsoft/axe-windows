@@ -7,8 +7,8 @@ using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
-using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
+using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {

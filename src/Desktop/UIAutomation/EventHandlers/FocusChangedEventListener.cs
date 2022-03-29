@@ -29,7 +29,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
             this.UIAutomation = uia;
             this.ListenEventMessage = peDelegate;
-            this.UIAutomation.AddFocusChangedEventHandler(null,this);
+            this.UIAutomation.AddFocusChangedEventHandler(null, this);
             IsHooked = true;
         }
 
@@ -62,7 +62,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         this.UIAutomation.RemoveFocusChangedEventHandler(this);
                         this.UIAutomation = null;
                     }
-                    catch(ThreadAbortException)
+                    catch (ThreadAbortException)
                     {
                         // silently ignore exception since a ThreadAbortException is thrown at the process exit.
                     }

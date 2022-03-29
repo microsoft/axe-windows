@@ -65,7 +65,7 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(this.Rule.Condition.Matches(e));
             Assert.IsTrue(Rule.PassesTest(e));
         }
-        
+
         /// <summary>
         /// Condition should match since SplitButton has a child text item
         /// and ExpandCollapse is supported. so scan succeeds
@@ -86,7 +86,7 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(this.Rule.Condition.Matches(e));
             Assert.IsTrue(Rule.PassesTest(e));
         }
-        
+
         /// <summary>
         /// Condition should not match since SplitButton has a child SplitButton
         /// and ExpandCollapse is supported. so scan succeeds

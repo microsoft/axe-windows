@@ -44,7 +44,7 @@ namespace Axe.Windows.Rules.Library
         {
             return Name.NotNullOrEmpty & Name.NotWhiteSpace & BoundingRectangle.Valid
                 & ~Win32Framework
-                & ( ElementGroups.NameRequired | ElementGroups.NameOptional);
+                & (ElementGroups.NameRequired | ElementGroups.NameOptional);
         }
     } // class
 } // namespace

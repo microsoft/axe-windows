@@ -26,7 +26,7 @@ namespace Axe.Windows.RulesTests
                 return;
             }
 
-            var property = new A11yProperty {  Id = id, Value = value };
+            var property = new A11yProperty { Id = id, Value = value };
             this.Properties[id] = property;
         }
 
@@ -216,7 +216,7 @@ namespace Axe.Windows.RulesTests
 
             set
             {
-                SetProperty(PropertyType.UIA_OrientationPropertyId, (int) value);
+                SetProperty(PropertyType.UIA_OrientationPropertyId, (int)value);
             }
         }
 

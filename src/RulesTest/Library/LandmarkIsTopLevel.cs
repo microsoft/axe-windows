@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     public class LandmarkIsTopLevel
     {
         private readonly Axe.Windows.Rules.IRule Rule = null;
-        private readonly  int LandmarkType = 0;
+        private readonly int LandmarkType = 0;
         private readonly string LocalizedLandmarkType = null;
 
         protected LandmarkIsTopLevel(object rule, int landmarkType, string localizedLandmarkType)

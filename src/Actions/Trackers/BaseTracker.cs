@@ -68,7 +68,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <returns></returns>
         protected A11yElement GetElementBasedOnScope(A11yElement e)
         {
-            if(e != null && Scope == SelectionScope.App)
+            if (e != null && Scope == SelectionScope.App)
             {
                 var el = A11yAutomation.GetAppElement(e);
 
