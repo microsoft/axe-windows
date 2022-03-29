@@ -50,7 +50,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements based on Process Id.
         /// </summary>
         /// <param name="pid"></param>
-        /// <returns>return null if fail to get elements by process Id</returns>
+        /// <returns>return null if we fail to get elements by process Id</returns>
         public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid)
         {
             IUIAutomationElement root = null;
@@ -91,7 +91,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     Marshal.ReleaseComObject(elementArray);
                 }
-                    }
+            }
 
             return elements;
         }
