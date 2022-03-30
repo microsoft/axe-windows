@@ -87,6 +87,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     Marshal.ReleaseComObject(condition);
                 }
+
                 if (elementArray != null)
                 {
                     Marshal.ReleaseComObject(elementArray);
@@ -150,16 +151,27 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
         private static IEnumerable<DesktopElement> ElementsFromUIAElements(IUIAutomationElementArray elementArray)
         {
-            for (int i = 0; i < elementArray.Length; ++i)
+            if (elementArray == null) throw new ArgumentNullException(nameof(elementArray));
+
+            var count = elementArray.Length;
+            if (count <= 0) return null;
+
+            // This function was originally an iterator
+            // Meaning it used the yield keyword to yield return each element
+            // But that caused a com exception IRL
+            // So now we use a list
+            List<DesktopElement> elements = new List<DesktopElement>();
+
+            for (int i = 0; i < count; ++i)
             {
                 var uiaElement = elementArray.GetElement(i);
                 var e = ElementFromUIAElement(uiaElement);
                 if (e == null) continue;
 
-                e.PopulateMinimumPropertiesForSelection();
-
-                yield return e;
+                elements.Add(e);
             } // for each element
+
+            return elements;
         }
 
         /// <summary>
