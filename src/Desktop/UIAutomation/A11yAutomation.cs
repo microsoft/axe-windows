@@ -153,8 +153,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             if (elementArray == null) throw new ArgumentNullException(nameof(elementArray));
 
+            // Return an empty IEnumerable<DesktopElement> instead of null from ElementsFromUIAElements so that downstream calls to Linq extensions on the IEnumerable don't throw null reference exceptions.
             var count = elementArray.Length;
-            if (count <= 0) return null;
+            if (count <= 0) return Enumerable.Empty<DesktopElement>();
 
             // This function was originally an iterator
             // Meaning it used the yield keyword to yield return each element
