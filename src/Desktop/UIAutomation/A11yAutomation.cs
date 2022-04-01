@@ -8,6 +8,7 @@ using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -41,19 +42,32 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns>return null if fail to get an element by process Id</returns>
         public static DesktopElement ElementFromProcessId(int pid)
         {
+            var elements = ElementsFromProcessId(pid);
+            return elements != null ? elements.First() : null;
+        }
+
+        /// <summary>
+        /// Get DesktopElements based on Process Id.
+        /// </summary>
+        /// <param name="pid"></param>
+        /// <returns>return null if we fail to get elements by process Id</returns>
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid)
+        {
             IUIAutomationElement root = null;
-            DesktopElement element = null;
+            IEnumerable<DesktopElement> elements = null;
             IUIAutomationCondition condition = null;
+            IUIAutomationElementArray elementArray = null;
+
             try
             {
-                // check whether process exist first.
+                // check whether process exists first.
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
                     root = UIAutomation.GetRootElement();
                     condition = UIAutomation.CreatePropertyCondition(PropertyType.UIA_ProcessIdPropertyId, pid);
-                    var uia = root.FindFirst(TreeScope.TreeScope_Descendants, condition);
-                    element = ElementFromUIAElement(uia);
+                    elementArray = root.FindAll(TreeScope.TreeScope_Children, condition);
+                    elements = ElementsFromUIAElements(elementArray);
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -73,8 +87,14 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     Marshal.ReleaseComObject(condition);
                 }
+
+                if (elementArray != null)
+                {
+                    Marshal.ReleaseComObject(elementArray);
+                }
             }
-            return element;
+
+            return elements;
         }
 
         /// <summary>
@@ -122,6 +142,37 @@ namespace Axe.Windows.Desktop.UIAutomation
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Get DesktopElements from UIAElements.
+        /// </summary>
+        /// <param name="uia"></param>
+        /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
+        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IUIAutomationElementArray elementArray)
+        {
+            if (elementArray == null) throw new ArgumentNullException(nameof(elementArray));
+
+            // Return an empty IEnumerable<DesktopElement> instead of null from ElementsFromUIAElements so that downstream calls to Linq extensions on the IEnumerable don't throw null reference exceptions.
+            var count = elementArray.Length;
+            if (count <= 0) return Enumerable.Empty<DesktopElement>();
+
+            // This function was originally an iterator
+            // Meaning it used the yield keyword to yield return each element
+            // But that caused a com exception IRL
+            // So now we use a list
+            List<DesktopElement> elements = new List<DesktopElement>();
+
+            for (int i = 0; i < count; ++i)
+            {
+                var uiaElement = elementArray.GetElement(i);
+                var e = ElementFromUIAElement(uiaElement);
+                if (e == null) continue;
+
+                elements.Add(e);
+            } // for each element
+
+            return elements;
         }
 
         /// <summary>

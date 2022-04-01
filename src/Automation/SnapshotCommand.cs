@@ -5,6 +5,7 @@ using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using System;
 using System.Globalization;
+using System.Linq;
 
 namespace Axe.Windows.Automation
 {
@@ -34,9 +35,9 @@ namespace Axe.Windows.Automation
             if (config.CustomUIAConfigPath != null)
                 scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
 
-            var rootElement = scanTools.TargetElementLocator.LocateRootElement(config.ProcessId);
+            var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId);
 
-            return scanTools.Actions.Scan(rootElement, (element, elementId) =>
+            return scanTools.Actions.Scan(rootElements?.First(), (element, elementId) =>
             {
                 return ProcessResults(element, elementId, config, scanTools);
             });

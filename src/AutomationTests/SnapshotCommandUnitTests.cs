@@ -5,6 +5,8 @@ using Axe.Windows.Core.Bases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -48,6 +50,16 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<ScanResults>>()))
                 .Callback<A11yElement, ScanActionCallback<ScanResults>>((e, cb) => tempResults = cb(e, Guid.Empty))
                 .Returns(() => tempResults);
+        }
+
+        private IEnumerable<A11yElement> CreateMockElementArray()
+        {
+            var elements = new List<A11yElement>();
+
+            for (int i = 0; i < 3; ++i)
+                elements.Add(new A11yElement());
+
+            return elements;
         }
 
         [TestMethod]
@@ -114,7 +126,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns<A11yElement>(null);
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns<IEnumerable<A11yElement>>(null);
             _actionsMock.Setup(x => x.Scan(null, It.IsNotNull<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
@@ -135,7 +147,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(expectedProcessId)).Returns<A11yElement>(null);
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(expectedProcessId)).Returns<IEnumerable<A11yElement>>(null);
             _actionsMock.Setup(x => x.Scan(null, It.IsNotNull<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
 
             var config = Config.Builder.ForProcessId(expectedProcessId).Build();
@@ -156,10 +168,12 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
 
-            var element = new A11yElement();
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(element);
 
-            _actionsMock.Setup(x => x.Scan(element, It.IsAny<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
+            var elements = CreateMockElementArray();            
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(elements);
+
+            _actionsMock.Setup(x => x.Scan(
+                elements.First(), It.IsAny<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
@@ -178,7 +192,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
             var expectedResults = new ScanResults();
             InitResultsCallback(expectedResults);
@@ -202,7 +216,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns<IScanResultsAssembler>(null);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
             ScanResults tempResults = null;
             _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<ScanResults>>()))
@@ -228,7 +242,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
             var expectedResults = new ScanResults();
             expectedResults.ErrorCount = 0;
@@ -261,7 +275,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
             var expectedResults = new ScanResults();
             expectedResults.ErrorCount = 1;
             InitResultsCallback(expectedResults);
@@ -285,7 +299,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
             var expectedResults = new ScanResults();
             expectedResults.ErrorCount = 1;
@@ -323,7 +337,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
             var expectedResults = new ScanResults();
             expectedResults.ErrorCount = 75;
@@ -364,7 +378,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElement(It.IsAny<int>())).Returns(new A11yElement());
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
             var expectedResults = new ScanResults();
             InitResultsCallback(expectedResults);
             _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
