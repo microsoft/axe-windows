@@ -34,11 +34,11 @@ namespace Axe.Windows.Automation
                     GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id);
                     if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
                         throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
-                    TimeSpan scanDuration = TimeSpan.FromTicks(stopwatch.Stopwatch.ElapsedTicks);
+                    long scanDurationInMilliseconds = stopwatch.Stopwatch.ElapsedMilliseconds;
 
                     // send telemetry of scan results.
                     var dc = GetDataAction.GetElementDataContext(ec2.Id);
-                    dc.PublishScanResults(scanDuration);
+                    dc.PublishScanResults(scanDurationInMilliseconds);
 
                     if (dc.ElementCounter.UpperBoundExceeded)
                     {

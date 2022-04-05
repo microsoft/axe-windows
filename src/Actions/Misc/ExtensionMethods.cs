@@ -79,7 +79,7 @@ namespace Axe.Windows.Actions.Misc
         ///
         /// </summary>
         /// <param name="dc"></param>
-        public static void PublishScanResults(this ElementDataContext dc, TimeSpan scanDuration)
+        public static void PublishScanResults(this ElementDataContext dc, long scanDurationInMilliseconds)
         {
             if (dc == null)
                 return; // no op
@@ -90,7 +90,7 @@ namespace Axe.Windows.Actions.Misc
             Logger.PublishTelemetryEvent(TelemetryAction.Scan_Statistics, new Dictionary<TelemetryProperty, string>
             {
                 { TelemetryProperty.ElementsInScan, dc.ElementCounter.Attempts.ToString(CultureInfo.InvariantCulture) },
-                { TelemetryProperty.ScanDuration, scanDuration.ToString("c", CultureInfo.InvariantCulture) },
+                { TelemetryProperty.ScanDurationInMilliseconds, scanDurationInMilliseconds.ToString("d", CultureInfo.InvariantCulture) },
                 { TelemetryProperty.UpperBoundExceeded, dc.ElementCounter.UpperBoundExceeded.ToString(CultureInfo.InvariantCulture) }
 
             });
