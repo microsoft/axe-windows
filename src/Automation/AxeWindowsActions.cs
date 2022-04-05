@@ -29,14 +29,16 @@ namespace Axe.Windows.Automation
                     throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
 
                 using (ElementContext ec2 = sa.POIElementContext)
+                using (var stopwatch = new DisposableStopwatch())
                 {
                     GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id);
                     if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
                         throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                    TimeSpan scanDuration = TimeSpan.FromTicks(stopwatch.Stopwatch.ElapsedTicks);
 
                     // send telemetry of scan results.
                     var dc = GetDataAction.GetElementDataContext(ec2.Id);
-                    dc.PublishScanResults();
+                    dc.PublishScanResults(scanDuration);
 
                     if (dc.ElementCounter.UpperBoundExceeded)
                     {

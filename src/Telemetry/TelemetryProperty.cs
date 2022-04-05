@@ -10,6 +10,7 @@ namespace Axe.Windows.Telemetry
     {
         ControlType,
         ElementsInScan,
+        ScanDuration,
         Results,
         RuleId,
         TestResults, // parent container, has rule id and results
