@@ -92,7 +92,6 @@ namespace Axe.Windows.Actions.Misc
                 { TelemetryProperty.ElementsInScan, dc.ElementCounter.Attempts.ToString(CultureInfo.InvariantCulture) },
                 { TelemetryProperty.ScanDurationInMilliseconds, scanDurationInMilliseconds.ToString("d", CultureInfo.InvariantCulture) },
                 { TelemetryProperty.UpperBoundExceeded, dc.ElementCounter.UpperBoundExceeded.ToString(CultureInfo.InvariantCulture) }
-
             });
 
             var ruleResults = dc.Elements.Where(pair => pair.Value.ScanResults != null)
