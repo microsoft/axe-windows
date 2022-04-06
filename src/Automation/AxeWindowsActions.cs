@@ -9,6 +9,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Desktop.Settings;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace Axe.Windows.Automation
@@ -29,12 +30,12 @@ namespace Axe.Windows.Automation
                     throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
 
                 using (ElementContext ec2 = sa.POIElementContext)
-                using (var stopwatch = new DisposableStopwatch())
                 {
+                    Stopwatch stopwatch = Stopwatch.StartNew();
                     GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id);
                     if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control))
                         throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
-                    long scanDurationInMilliseconds = stopwatch.Stopwatch.ElapsedMilliseconds;
+                    long scanDurationInMilliseconds = stopwatch.ElapsedMilliseconds;
 
                     // send telemetry of scan results.
                     var dc = GetDataAction.GetElementDataContext(ec2.Id);
