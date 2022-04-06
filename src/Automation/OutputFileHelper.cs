@@ -80,10 +80,11 @@ namespace Axe.Windows.Automation
                 _directory.CreateDirectory(_outputDirectory);
         }
 
-        public string GetNewA11yTestFilePath()
+        public string GetNewA11yTestFilePath(Func<string, string> decorator)
         {
+            Func<string, string> baseFileNameDecorator = decorator ?? ((name) => name);
             return Path.Combine(_outputDirectory,
-                GetBaseFileName() + ".a11ytest");
+                baseFileNameDecorator(GetBaseFileName()) + ".a11ytest");
         }
 
         private string GetBaseFileName()
