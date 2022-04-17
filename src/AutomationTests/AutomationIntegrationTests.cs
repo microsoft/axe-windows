@@ -22,11 +22,13 @@ namespace Axe.Windows.AutomationTests
         const int Win32ControlSamplerKnownErrorCount = 0;
         const int WindowsFormsControlSamplerKnownErrorCount = 4;
         const int WpfControlSamplerKnownErrorCount = 5;
+        const int WpfWpfMultiWindowSampleKnownErrorCount = 2;
 
         readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
         readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
         readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
+        readonly string WpfMultiWindowSampleAppPath = Path.GetFullPath("../../../../../tools/WpfMultiWindowSample/WpfMultiWindowSample.exe");
 
         readonly string OutputDir = Path.GetFullPath("./TestOutput");
         readonly string ValidationAppFolder;
@@ -100,6 +102,13 @@ namespace Axe.Windows.AutomationTests
         public void Scan_Integration_WpfControlSampler()
         {
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WpfMultiWindowSample()
+        {
+            Scan_Integration_Core(WpfMultiWindowSampleAppPath, WpfWpfMultiWindowSampleKnownErrorCount);
         }
 
         private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount)

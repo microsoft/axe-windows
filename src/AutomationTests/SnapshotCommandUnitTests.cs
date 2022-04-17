@@ -334,7 +334,49 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_WithErrors_CreatesSnapshotAndA11yTestFile()
+        public void Execute_WithErrors_SingleFileNamedCorrectly()
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            _scanToolsMock.Setup(x => x.NativeMethods).Returns(_nativeMethodsMock.Object);
+            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray().ToArray()[0..1]);
+
+            var expectedResults = new ScanResults();
+            expectedResults.ErrorCount = 75;
+            InitResultsCallback(expectedResults);
+            
+            var expectedPath = "Test.File_1_of_1";
+
+            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
+            _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
+
+            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
+
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .Build();
+
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            Assert.AreEqual(1, actualResults.Count);
+            Assert.AreEqual(75, actualResults.First().ErrorCount);
+            Assert.AreEqual(expectedPath, actualResults.First().OutputFile.A11yTest);
+
+            _scanToolsMock.VerifyAll();
+            _nativeMethodsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _actionsMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void Execute_WithErrors_MultipleFilesNamedCorrectly()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
@@ -348,13 +390,12 @@ namespace Axe.Windows.AutomationTests
             expectedResults.ErrorCount = 75;
             InitResultsCallback(expectedResults);
 
-            var expectedPath = "Test.file";
 
             _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
-            _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
-
+            _actionsMock.Setup(x => x.SaveA11yTestFile(It.IsAny<string>(), It.IsAny<A11yElement>(), It.IsAny<Guid>()));
+            _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(() => new ScanResults() { ErrorCount = 1});
             _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns(expectedPath);
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -362,8 +403,18 @@ namespace Axe.Windows.AutomationTests
                 .Build();
 
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
-            Assert.AreEqual(75, actualResults.First().ErrorCount);
-            Assert.AreEqual(expectedPath, actualResults.First().OutputFile.A11yTest);
+            var expectedPaths = new string[]
+            {
+                "Test.File_1_of_3",
+                "Test.File_2_of_3",
+                "Test.File_3_of_3",
+            };
+            Assert.AreEqual(1, actualResults.First().ErrorCount);
+            var fileNames = actualResults.Select(result => result.OutputFile.A11yTest).OrderBy(x => x).ToArray();
+            for (int i = 0; i < expectedPaths.Length; i++)
+            {
+                Assert.AreEqual(expectedPaths[i], fileNames[i]);
+            }
 
             _scanToolsMock.VerifyAll();
             _nativeMethodsMock.VerifyAll();
