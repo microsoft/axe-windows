@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation.Resources;
 using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.Automation
 {
@@ -27,7 +28,7 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.Scan()"/>
         /// </summary>
         /// <returns></returns>
-        public ScanResults Scan()
+        public IReadOnlyCollection<ScanResults> Scan()
         {
             return ExecuteScan(null);
         }
@@ -36,14 +37,14 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.Scan(string)"/>
         /// </summary>
         /// <returns></returns>
-        public ScanResults Scan(string scanId)
+        public IReadOnlyCollection<ScanResults> Scan(string scanId)
         {
             return ExecuteScan(scanId);
         }
 
-        private ScanResults ExecuteScan(string scanId)
+        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId)
         {
-            return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
+            return ExecutionWrapper.ExecuteCommand(() =>
             {
                 _scanTools.OutputFileHelper.SetScanId(scanId);
 

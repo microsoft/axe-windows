@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.Automation
 {
@@ -24,7 +25,7 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        ScanResults Scan();
+        IReadOnlyCollection<ScanResults> Scan();
 
         /// <summary>
         /// Run AxeWindows automated tests
@@ -42,7 +43,7 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        ScanResults Scan(string scanId);
+        IReadOnlyCollection<ScanResults> Scan(string scanId);
 
     } // interface
 } // namespace

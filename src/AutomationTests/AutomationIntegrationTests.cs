@@ -4,6 +4,7 @@ using Axe.Windows.Automation;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -114,30 +115,30 @@ namespace Axe.Windows.AutomationTests
             var output = ScanWithProvisionForBuildAgents(scanner);
 
             // Validate for consistency
-            Assert.AreEqual(expectedErrorCount, output.ErrorCount);
-            Assert.AreEqual(expectedErrorCount, output.Errors.Count());
+            Assert.AreEqual(expectedErrorCount, output.First().ErrorCount);
+            Assert.AreEqual(expectedErrorCount, output.First().Errors.Count());
 
             if (expectedErrorCount > 0)
             {
                 var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
 
                 // Validate the output file exists where it is expected
-                Assert.IsTrue(Regex.IsMatch(output.OutputFile.A11yTest, regexForExpectedFile));
-                Assert.IsTrue(File.Exists(output.OutputFile.A11yTest));
+                Assert.IsTrue(Regex.IsMatch(output.First().OutputFile.A11yTest, regexForExpectedFile));
+                Assert.IsTrue(File.Exists(output.First().OutputFile.A11yTest));
 
                 // Validate that we got some properties and patterns
-                Assert.IsTrue(output.Errors.All(error => error.Element.Properties != null));
-                Assert.IsTrue(output.Errors.All(error => error.Element.Patterns != null));
+                Assert.IsTrue(output.First().Errors.All(error => error.Element.Properties != null));
+                Assert.IsTrue(output.First().Errors.All(error => error.Element.Patterns != null));
             }
             else
             {
-                Assert.IsNull(output.OutputFile.A11yTest);
+                Assert.IsNull(output.First().OutputFile.A11yTest);
             }
 
-            return output;
+            return output.First();
         }
 
-        private ScanResults ScanWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner)
         {
             try
             {

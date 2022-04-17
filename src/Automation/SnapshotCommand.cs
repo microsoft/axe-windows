@@ -60,13 +60,16 @@ namespace Axe.Windows.Automation
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
-            if (targetCount > 0)
+            if (results.ErrorCount > 0)
             {
-                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
-            }
-            else if (results.ErrorCount > 0)
-            {
-                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null);
+                if (targetCount > 0)
+                {
+                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
+                }
+                else 
+                {
+                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null);
+                }
             }
 
             return results;
