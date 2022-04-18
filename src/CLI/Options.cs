@@ -32,6 +32,9 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "CustomUia", ResourceType = typeof(Resources.OptionsHelpText))]
         public string CustomUia { get; set; }
 
+        [Option(Required = false, HelpText = "ScanMultipleWindows", ResourceType = typeof(Resources.OptionsHelpText), Default = true)]
+        public bool ScanMultipleWindows { get; set; } = true;
+
         // CommandLineParser will never set this value!
         public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;
     }

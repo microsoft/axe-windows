@@ -135,6 +135,9 @@
   <data name="ScanId" xml:space="preserve">
     <value>Scan ID</value>
   </data>
+  <data name="ScanMultipleWindows" xml:space="preserve">
+    <value>Determines if all windows should be scanned (true) or not (false).</value>
+  </data>
   <data name="ShowThirdPartyNotices" xml:space="preserve">
     <value>Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored.</value>
   </data>

@@ -151,7 +151,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.Scan();
+                return scanner.Scan(true);
             }
             catch (AxeWindowsAutomationException e)
             {

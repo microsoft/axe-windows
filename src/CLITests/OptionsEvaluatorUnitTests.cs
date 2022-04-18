@@ -31,7 +31,7 @@ namespace AxeWindowsCLITests
 
         private void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
-            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0)
+            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0, bool scanMultipleWindows = true)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -39,6 +39,7 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosityLevel, options.VerbosityLevel);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
+            Assert.AreEqual(scanMultipleWindows, options.ScanMultipleWindows);
         }
 
         [TestMethod]
@@ -271,6 +272,21 @@ namespace AxeWindowsCLITests
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
                 processId: TestProcessId, delayInSeconds: expectedDelay);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_SpecifiesScanOptions_SetsMultiscan()
+        {
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = TestProcessName,
+                ScanMultipleWindows = false
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, scanMultipleWindows: false);
             VerifyAllMocks();
         }
     }

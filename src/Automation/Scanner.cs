@@ -3,6 +3,7 @@
 using Axe.Windows.Automation.Resources;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.Automation
 {
@@ -28,21 +29,39 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.Scan()"/>
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<ScanResults> Scan()
+        public ScanResults Scan()
         {
-            return ExecuteScan(null);
+            return Scan(false).First();
+        }
+
+        /// <summary>
+        /// See <see cref="IScanner.Scan()"/>
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyCollection<ScanResults> Scan(bool enableMultipleWindows)
+        {
+            return ExecuteScan(null, enableMultipleWindows);
         }
 
         /// <summary>
         /// See <see cref="IScanner.Scan(string)"/>
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<ScanResults> Scan(string scanId)
+        public ScanResults Scan(string scanId)
         {
-            return ExecuteScan(scanId);
+            return Scan(scanId, false).First();
         }
 
-        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId)
+        /// <summary>
+        /// See <see cref="IScanner.Scan()"/>
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyCollection<ScanResults> Scan(string scanId, bool enableMultipleWindows)
+        {
+            return ExecuteScan(null, enableMultipleWindows);
+        }
+
+        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId, bool enableMultipleWindows)
         {
             return ExecutionWrapper.ExecuteCommand(() =>
             {
