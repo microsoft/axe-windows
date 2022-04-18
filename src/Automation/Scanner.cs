@@ -35,7 +35,7 @@ namespace Axe.Windows.Automation
         }
 
         /// <summary>
-        /// See <see cref="IScanner.Scan()"/>
+        /// See <see cref="IScanner.Scan(bool)"/>
         /// </summary>
         /// <returns></returns>
         public IReadOnlyCollection<ScanResults> Scan(bool enableMultipleWindows)
@@ -53,7 +53,7 @@ namespace Axe.Windows.Automation
         }
 
         /// <summary>
-        /// See <see cref="IScanner.Scan()"/>
+        /// See <see cref="IScanner.Scan(string,bool)"/>
         /// </summary>
         /// <returns></returns>
         public IReadOnlyCollection<ScanResults> Scan(string scanId, bool enableMultipleWindows)
@@ -67,7 +67,7 @@ namespace Axe.Windows.Automation
             {
                 _scanTools.OutputFileHelper.SetScanId(scanId);
 
-                return SnapshotCommand.Execute(_config, _scanTools);
+                return SnapshotCommand.Execute(_config, _scanTools, enableMultipleWindows);
             });
         }
     } // class

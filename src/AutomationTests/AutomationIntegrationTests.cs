@@ -22,13 +22,14 @@ namespace Axe.Windows.AutomationTests
         const int Win32ControlSamplerKnownErrorCount = 0;
         const int WindowsFormsControlSamplerKnownErrorCount = 4;
         const int WpfControlSamplerKnownErrorCount = 5;
-        const int WpfWpfMultiWindowSampleKnownErrorCount = 2;
+        const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 8;
+        const int WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount = 4;
 
         readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
         readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
+        readonly string WindowsFormsMultiWindowSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsMultiWindowSample/WindowsFormsMultiWindowSample.exe");
         readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
-        readonly string WpfMultiWindowSampleAppPath = Path.GetFullPath("../../../../../tools/WpfMultiWindowSample/WpfMultiWindowSample.exe");
 
         readonly string OutputDir = Path.GetFullPath("./TestOutput");
         readonly string ValidationAppFolder;
@@ -99,19 +100,26 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsMultiWindowSample()
+        {
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow()
+        {
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount, false);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
         public void Scan_Integration_WpfControlSampler()
         {
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        [TestMethod]
-        [Timeout(30000)]
-        public void Scan_Integration_WpfMultiWindowSample()
-        {
-            Scan_Integration_Core(WpfMultiWindowSampleAppPath, WpfWpfMultiWindowSampleKnownErrorCount);
-        }
-
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount)
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool scanMultipleWindows = true)
         {
             LaunchTestApp(testAppPath);
             var config = Config.Builder.ForProcessId(TestProcess.Id)
@@ -121,11 +129,11 @@ namespace Axe.Windows.AutomationTests
 
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var output = ScanWithProvisionForBuildAgents(scanner);
+            var output = ScanWithProvisionForBuildAgents(scanner, scanMultipleWindows);
 
             // Validate for consistency
-            Assert.AreEqual(expectedErrorCount, output.First().ErrorCount);
-            Assert.AreEqual(expectedErrorCount, output.First().Errors.Count());
+            Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
+            Assert.AreEqual(expectedErrorCount, output.Sum(x => x.Errors.Count()));
 
             if (expectedErrorCount > 0)
             {
@@ -147,11 +155,11 @@ namespace Axe.Windows.AutomationTests
             return output.First();
         }
 
-        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner, bool scanMultipleWindows)
         {
             try
             {
-                return scanner.Scan(true);
+                return scanner.Scan(scanMultipleWindows);
             }
             catch (AxeWindowsAutomationException e)
             {
