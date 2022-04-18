@@ -62,7 +62,7 @@ namespace Axe.Windows.Automation
 
             if (results.ErrorCount > 0)
             {
-                if (targetCount > 0)
+                if (targetCount > 1)
                 {
                     results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
                 }

@@ -333,7 +333,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(1000)]
+        [Timeout(100000)]
         public void Execute_WithErrors_SingleFileNamedCorrectly()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
@@ -348,13 +348,13 @@ namespace Axe.Windows.AutomationTests
             expectedResults.ErrorCount = 75;
             InitResultsCallback(expectedResults);
             
-            var expectedPath = "Test.File_1_of_1";
+            var expectedPath = "Test.File";
 
             _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
             _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>()));
 
             _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator == null ? expectedPath : decorator("Test.File"));
 
             var config = Config.Builder
                 .ForProcessId(-1)
