@@ -55,7 +55,6 @@ namespace AxeWindowsCLI
                 }
             }
 
-
             return new Options
             {
                 OutputDirectory = rawInputs.OutputDirectory,
@@ -65,7 +64,7 @@ namespace AxeWindowsCLI
                 VerbosityLevel = verbosityLevel,
                 DelayInSeconds = delayInSeconds,
                 CustomUia = rawInputs.CustomUia,
-                ScanMultipleWindows = rawInputs.ScanMultipleWindows
+                EnableMultipleScanRoots = rawInputs.EnableMultipleScanRoots
             };
         }
 

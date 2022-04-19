@@ -123,6 +123,9 @@
   <data name="DelayInSeconds" xml:space="preserve">
     <value>How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with a default of 0.</value>
   </data>
+  <data name="EnableMultipleScanRoots" xml:space="preserve">
+    <value>Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false).</value>
+  </data>
   <data name="OutputDirectory" xml:space="preserve">
     <value>Output directory</value>
   </data>
@@ -134,9 +137,6 @@
   </data>
   <data name="ScanId" xml:space="preserve">
     <value>Scan ID</value>
-  </data>
-  <data name="ScanMultipleWindows" xml:space="preserve">
-    <value>Determines if all windows should be scanned (true) or not (false).</value>
   </data>
   <data name="ShowThirdPartyNotices" xml:space="preserve">
     <value>Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored.</value>

@@ -119,7 +119,7 @@ namespace Axe.Windows.AutomationTests
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool scanMultipleWindows = true)
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = true)
         {
             LaunchTestApp(testAppPath);
             var config = Config.Builder.ForProcessId(TestProcess.Id)
@@ -129,7 +129,7 @@ namespace Axe.Windows.AutomationTests
 
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var output = ScanWithProvisionForBuildAgents(scanner, scanMultipleWindows);
+            var output = ScanWithProvisionForBuildAgents(scanner, enableMultipleScanRoots);
 
             // Validate for consistency
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
@@ -155,11 +155,11 @@ namespace Axe.Windows.AutomationTests
             return output.First();
         }
 
-        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner, bool scanMultipleWindows)
+        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner, bool enableMultipleScanRoots)
         {
             try
             {
-                return scanner.Scan(scanMultipleWindows);
+                return scanner.Scan(enableMultipleScanRoots);
             }
             catch (AxeWindowsAutomationException e)
             {

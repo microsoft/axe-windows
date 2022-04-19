@@ -39,7 +39,12 @@ namespace Axe.Windows.Automation
 
             List<ScanResults> resultList = new List<ScanResults>();
 
-            var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId).ToList();
+            var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId);
+
+            if (rootElements is null || !rootElements.Any())
+            {
+                return resultList;
+            }
 
             int targetIndex = 1;
 
@@ -47,7 +52,7 @@ namespace Axe.Windows.Automation
             {
                 resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
                 {
-                    return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count);
+                    return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
                 }));
 
                 if (!useMultipleWindows)
@@ -67,13 +72,13 @@ namespace Axe.Windows.Automation
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
-            if (results.ErrorCount > 0)
+            if (targetCount > 1)
             {
-                if (targetCount > 1)
-                {
-                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
-                }
-                else 
+                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
+            }
+            else
+            {
+                if (results.ErrorCount > 0)
                 {
                     results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null);
                 }

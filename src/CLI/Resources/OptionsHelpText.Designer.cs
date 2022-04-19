@@ -79,6 +79,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false)..
+        /// </summary>
+        public static string EnableMultipleScanRoots {
+            get {
+                return ResourceManager.GetString("EnableMultipleScanRoots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output directory.
         /// </summary>
         public static string OutputDirectory {
@@ -111,15 +120,6 @@ namespace AxeWindowsCLI.Resources {
         public static string ScanId {
             get {
                 return ResourceManager.GetString("ScanId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Determines if all windows should be scanned (true) or not (false)..
-        /// </summary>
-        public static string ScanMultipleWindows {
-            get {
-                return ResourceManager.GetString("ScanMultipleWindows", resourceCulture);
             }
         }
         
