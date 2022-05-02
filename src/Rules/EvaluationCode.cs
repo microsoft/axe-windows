@@ -35,11 +35,6 @@ namespace Axe.Windows.Rules
         NeedsReview,
 
         /// <summary>
-        /// The rule's description is informational and does not indicate success or failure.
-        /// </summary>
-        Note,
-
-        /// <summary>
         /// The given element did not meet the success criteria of the rule evaluation,
         /// but the cause is known to be difficult for developers to fix
         /// (as in issues caused by the platform itself)

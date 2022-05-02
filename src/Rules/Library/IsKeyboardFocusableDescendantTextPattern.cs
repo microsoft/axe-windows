@@ -19,7 +19,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.IsKeyboardFocusableDescendantTextPattern;
             this.Info.Standard = A11yCriteriaId.Keyboard;
             this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Note;
+            this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

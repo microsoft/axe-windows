@@ -19,7 +19,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.NameOnCustomWithParentWPFDataItem;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Note;
+            this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -38,7 +38,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.SiblingUniqueAndNotFocusable;
             this.Info.HowToFix = HowToFix.SiblingUniqueAndNotFocusable;
             this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Note;
+            this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

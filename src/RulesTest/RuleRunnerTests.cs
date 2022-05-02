@@ -106,7 +106,7 @@ namespace Axe.Windows.RulesTests
 
             var infoStub = new RuleInfo
             {
-                ErrorCode = EvaluationCode.Note,
+                ErrorCode = EvaluationCode.NeedsReview,
             };
 
             var ruleMock = new Mock<IRule>(MockBehavior.Strict);
@@ -139,7 +139,7 @@ namespace Axe.Windows.RulesTests
 
             var infoStub = new RuleInfo
             {
-                ErrorCode = EvaluationCode.Note,
+                ErrorCode = EvaluationCode.NeedsReview,
             };
 
             var ruleMock = new Mock<IRule>(MockBehavior.Strict);
@@ -153,7 +153,7 @@ namespace Axe.Windows.RulesTests
             var runner = new RuleRunner(providerMock.Object);
             var result = runner.RunRuleByID(default(RuleId), e);
 
-            Assert.AreEqual(EvaluationCode.Note, result.EvaluationCode);
+            Assert.AreEqual(EvaluationCode.NeedsReview, result.EvaluationCode);
             Assert.AreEqual(e, result.element);
             Assert.AreEqual(ruleMock.Object.Info, result.RuleInfo);
 
