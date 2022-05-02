@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.ItemTypeRecommended;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_ItemTypePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Open;
+            this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

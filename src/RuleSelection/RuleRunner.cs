@@ -96,7 +96,7 @@ namespace Axe.Windows.RuleSelection
                 case EvaluationCode.Error:
                     return ScanStatus.Fail;
                 case EvaluationCode.Note:
-                case EvaluationCode.Open:
+                case EvaluationCode.NeedsReview:
                 case EvaluationCode.Warning:
                     return ScanStatus.Uncertain;
                 case EvaluationCode.NotApplicable:

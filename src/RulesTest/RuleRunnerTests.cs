@@ -79,7 +79,7 @@ namespace Axe.Windows.RulesTests
             var conditionMock = new Mock<Condition>(MockBehavior.Strict);
             conditionMock.Setup(m => m.Matches(e)).Returns(true).Verifiable();
 
-            var ruleMock = CreateRuleMock(conditionMock.Object, EvaluationCode.Open, e);
+            var ruleMock = CreateRuleMock(conditionMock.Object, EvaluationCode.NeedsReview, e);
 
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
             providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
@@ -87,7 +87,7 @@ namespace Axe.Windows.RulesTests
             var runner = new RuleRunner(providerMock.Object);
             var result = runner.RunRuleByID(default(RuleId), e);
 
-            Assert.AreEqual(EvaluationCode.Open, result.EvaluationCode);
+            Assert.AreEqual(EvaluationCode.NeedsReview, result.EvaluationCode);
             Assert.AreEqual(e, result.element);
             Assert.AreEqual(ruleMock.Object.Info, result.RuleInfo);
 
