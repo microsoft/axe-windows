@@ -717,15 +717,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide exactly one main landmark per page..
-        /// </summary>
-        internal static string LandmarkOneMain {
-            get {
-                return ResourceManager.GetString("LandmarkOneMain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Provide unique names for sibling list items..
         /// </summary>
         internal static string ListItemSiblingsUnique {

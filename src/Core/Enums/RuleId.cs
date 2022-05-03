@@ -144,7 +144,6 @@ namespace Axe.Windows.Core.Enums
         LandmarkMainIsTopLevel,
         LandmarkNoDuplicateBanner,
         LandmarkNoDuplicateContentInfo,
-        LandmarkOneMain,
 
         LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters,
         LocalizedLandmarkTypeIsReasonableLength,

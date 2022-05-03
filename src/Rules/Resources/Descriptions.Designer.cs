@@ -673,15 +673,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A page must have exactly one element with the LocalizedLandmarkType &quot;main.&quot;.
-        /// </summary>
-        internal static string LandmarkOneMain {
-            get {
-                return ResourceManager.GetString("LandmarkOneMain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The Name property of sibling list items should be unique..
         /// </summary>
         internal static string ListItemSiblingsUnique {

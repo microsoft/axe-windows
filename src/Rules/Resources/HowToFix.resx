@@ -405,9 +405,6 @@ For example, if an element has a level-5 heading, its descendants can have only 
   <data name="LandmarkNoDuplicateContentInfo" xml:space="preserve">
     <value>Use the contentinfo landmark only once per page.</value>
   </data>
-  <data name="LandmarkOneMain" xml:space="preserve">
-    <value>Provide exactly one main landmark per page.</value>
-  </data>
   <data name="LocalizedLandmarkTypeIsReasonableLength" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property that contains at most 64 characters.
 Where appropriate, use a standard localized landmark type:

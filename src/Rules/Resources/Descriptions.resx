@@ -354,9 +354,6 @@
   <data name="LandmarkNoDuplicateContentInfo" xml:space="preserve">
     <value>A page must not have multiple elements with LocalizedLandmarkType "contentinfo."</value>
   </data>
-  <data name="LandmarkOneMain" xml:space="preserve">
-    <value>A page must have exactly one element with the LocalizedLandmarkType "main."</value>
-  </data>
   <data name="LocalizedLandmarkTypeIsReasonableLength" xml:space="preserve">
     <value>The LocalizedLandmarkType property must not be longer than 64 characters.</value>
   </data>

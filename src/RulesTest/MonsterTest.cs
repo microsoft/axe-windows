@@ -123,7 +123,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -266,7 +265,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -409,7 +407,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -552,7 +549,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
@@ -695,7 +691,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -838,7 +833,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -981,7 +975,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
