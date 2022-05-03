@@ -124,7 +124,6 @@ namespace Axe.Windows.Core.Enums
         ControlShouldSupportSpreadsheetItemPattern,
         ControlShouldSupportTableItemPattern,
         ControlShouldSupportTablePattern,
-        ControlShouldSupportTablePatternInEdge,
         ControlShouldSupportTogglePattern,
         ControlShouldSupportTransformPattern,
         ControlShouldSupportTextPattern,
