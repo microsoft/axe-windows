@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Bases;
+
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -45,41 +44,6 @@ namespace Axe.Windows.RulesTests.Library
             parent.LocalizedLandmarkType = this.LocalizedLandmarkType;
 
             Assert.IsFalse(Rule.PassesTest(e));
-        }
-
-        [TestMethod]
-        public void LandmarkIsTopLevel_OutsideEdgePass()
-        {
-            var parent = new MockA11yElement();
-            parent.LandmarkType = this.LandmarkType;
-            parent.LocalizedLandmarkType = this.LocalizedLandmarkType;
-
-            var m = new Mock<IA11yElement>();
-            m.Setup(e => e.ProcessName).Returns("MicrosoftEdgeCP");
-            m.Setup(e => e.LandmarkType).Returns(this.LandmarkType);
-            m.Setup(e => e.LocalizedLandmarkType).Returns(this.LocalizedLandmarkType);
-            m.Setup(e => e.Parent).Returns(parent);
-
-            // the result below should pass because the parent is not inside Edge like the child.
-            Assert.IsTrue(Rule.PassesTest(m.Object));
-        }
-
-        [TestMethod]
-        public void LandmarkIsTopLevel_InsideEdgeError()
-        {
-            var parent = new Mock<IA11yElement>();
-            parent.Setup(e => e.LandmarkType).Returns(this.LandmarkType);
-            parent.Setup(e => e.LocalizedLandmarkType).Returns(this.LocalizedLandmarkType);
-            parent.Setup(e => e.ProcessName).Returns("MicrosoftEdgeCP");
-
-            var m = new Mock<IA11yElement>();
-            m.Setup(e => e.ProcessName).Returns("MicrosoftEdgeCP");
-            m.Setup(e => e.LandmarkType).Returns(this.LandmarkType);
-            m.Setup(e => e.LocalizedLandmarkType).Returns(this.LocalizedLandmarkType);
-            m.Setup(e => e.Parent).Returns(parent.Object);
-
-            // the result below should pass because the parent is not inside Edge like the child.
-            Assert.IsFalse(Rule.PassesTest(m.Object));
         }
     } // class
 
