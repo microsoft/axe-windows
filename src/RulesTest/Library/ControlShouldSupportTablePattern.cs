@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -62,11 +61,6 @@ namespace Axe.Windows.RulesTests.Library
                 e.ControlTypeId = type;
                 Assert.IsFalse(Rule.Condition.Matches(e));
             }
-
-            e.ControlTypeId = expectedTypes[0];
-            e.Framework = FrameworkId.Edge;
-
-            Assert.IsFalse(Rule.Condition.Matches(e));
         }
     } // class
 } // namespace
