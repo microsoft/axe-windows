@@ -34,7 +34,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.Note, results[RuleId.ContentViewButtonStructure]);
+            Assert.AreEqual(EvaluationCode.NeedsReview, results[RuleId.ContentViewButtonStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
@@ -565,7 +565,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.Note, results[RuleId.NameNoSiblingsOfSameType]);
+            Assert.AreEqual(EvaluationCode.NeedsReview, results[RuleId.NameNoSiblingsOfSameType]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotWhiteSpace]);
@@ -643,7 +643,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.Note, results[RuleId.ControlViewEditStructure]);
+            Assert.AreEqual(EvaluationCode.NeedsReview, results[RuleId.ControlViewEditStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);

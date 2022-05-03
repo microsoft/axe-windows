@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = string.Format(CultureInfo.InvariantCulture, Descriptions.Structure, ContentView.ButtonStructure);
             this.Info.HowToFix = string.Format(CultureInfo.InvariantCulture, HowToFix.Structure, ContentView.ButtonStructure);
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Note;
+            this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.IsKeyboardFocusableOnEmptyContainer;
             this.Info.Standard = A11yCriteriaId.Keyboard;
             this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Open;
+            this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

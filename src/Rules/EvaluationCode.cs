@@ -30,14 +30,9 @@ namespace Axe.Windows.Rules
         Error,
 
         /// <summary>
-        /// The rule is unable to make a determination, and the element should be investigated.
+        /// The rule highlights possible accessibility issues that need to be reviewed and verified by a human.
         /// </summary>
-        Open,
-
-        /// <summary>
-        /// The rule's description is informational and does not indicate success or failure.
-        /// </summary>
-        Note,
+        NeedsReview,
 
         /// <summary>
         /// The given element did not meet the success criteria of the rule evaluation,
