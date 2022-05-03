@@ -96,6 +96,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.Warning, results[RuleId.HelpTextNotEqualToName]);
@@ -238,6 +239,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -380,6 +382,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -522,6 +525,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -664,6 +668,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -806,6 +811,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -948,6 +954,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);

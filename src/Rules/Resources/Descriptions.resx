@@ -426,4 +426,7 @@
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
     <value>The framework used to build this application does not support UI Automation.</value>
   </data>
+  <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
+    <value>The non-Chromium version of Microsoft Edge has been deprecated.</value>
+  </data>
 </root>

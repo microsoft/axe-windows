@@ -260,5 +260,6 @@ namespace Axe.Windows.Core.Enums
         ClickablePointOffScreen,
 
         FrameworkDoesNotSupportUIAutomation,
+        EdgeBrowserHasBeenDeprecated,
     }
 }

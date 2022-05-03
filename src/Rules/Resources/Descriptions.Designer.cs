@@ -403,6 +403,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The non-Chromium version of Microsoft Edge has been deprecated..
+        /// </summary>
+        internal static string EdgeBrowserHasBeenDeprecated {
+            get {
+                return ResourceManager.GetString("EdgeBrowserHasBeenDeprecated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The RangeValue pattern of an edit control must have a null LargeChange property..
         /// </summary>
         internal static string EditSupportsIncorrectRangeValuePattern {
