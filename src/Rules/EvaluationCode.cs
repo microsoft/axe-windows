@@ -30,7 +30,7 @@ namespace Axe.Windows.Rules
         Error,
 
         /// <summary>
-        /// The rule requires human review to decide if it is satisfied
+        /// The rule highlights possible accessibility issues that need to be reviewed and verified by a human.
         /// </summary>
         NeedsReview,
 

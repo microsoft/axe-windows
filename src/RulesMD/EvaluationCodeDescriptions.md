@@ -10,4 +10,4 @@ The given element did not meet the success criteria of the rule evaluation, but 
 
 ### NeedsReview
 
-The rule requires human review to decide if it was satisfied.
+The rule highlights possible accessibility issues that need to be reviewed and verified by a human.
