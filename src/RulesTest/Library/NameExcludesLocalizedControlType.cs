@@ -97,29 +97,5 @@ namespace Axe.Windows.RulesTests.Library
                 Assert.IsTrue(Rule.Condition.Matches(e), $"Type: {t}");
             } // for each type
         }
-
-        [TestMethod]
-        public void NameExcludesLocalizedControlType_EditButNotEdge_Match()
-        {
-            var e = new MockA11yElement();
-            e.Name = "not empty";
-
-            e.ControlTypeId = ControlType.Edit;
-            e.LocalizedControlType = "password";
-
-            Assert.IsTrue(Rule.Condition.Matches(e));
-        }
-
-        [TestMethod]
-        public void NameExcludesLocalizedControlType_EdgeButNotEdit_Match()
-        {
-            var e = new MockA11yElement();
-            e.Name = "not empty";
-
-            e.Framework = Core.Enums.FrameworkId.Edge;
-            e.LocalizedControlType = "password";
-
-            Assert.IsTrue(Rule.Condition.Matches(e));
-        }
     } // class
 } // namespace
