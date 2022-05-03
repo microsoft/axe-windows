@@ -99,27 +99,6 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void NameExcludesLocalizedControlType_EdgeEdit_ApplicableLCT()
-        {
-            var e = new MockA11yElement();
-            e.Name = "not empty";
-            e.LocalizedControlType = "not empty";
-
-            e.ControlTypeId = ControlType.Edit;
-            e.Framework = Core.Enums.FrameworkId.Edge;
-
-            Assert.IsTrue(Rule.Condition.Matches(e));
-
-            string[] nonMatchingTypes = { "password", "email" };
-
-            foreach (var lct in nonMatchingTypes)
-            {
-                e.LocalizedControlType = lct;
-                Assert.IsFalse(Rule.Condition.Matches(e));
-            } // for each type
-        }
-
-        [TestMethod]
         public void NameExcludesLocalizedControlType_EditButNotEdge_Match()
         {
             var e = new MockA11yElement();

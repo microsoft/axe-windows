@@ -63,24 +63,6 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
-        public void AllowSameNameAndControlType_True_EdgeEdit()
-        {
-            var e = new MockA11yElement();
-            e.ControlTypeId = Edit;
-            e.Framework = Core.Enums.FrameworkId.Edge;
-
-            Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
-
-            string[] allowedLocalizedControlTypes = { "password", "email" };
-
-            foreach (var lct in allowedLocalizedControlTypes)
-            {
-                e.LocalizedControlType = lct;
-                Assert.IsTrue(ElementGroups.AllowSameNameAndControlType.Matches(e));
-            } // for each type
-        }
-
-        [TestMethod]
         public void AllowSameNameAndControlType_False_EditButNotEdge()
         {
             var e = new MockA11yElement();
