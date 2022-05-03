@@ -27,14 +27,14 @@ namespace Axe.Windows.Rules.Library
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var landmark = Landmarks.ContentInfo & (Edge | IsNotOffScreen);
+            var landmark = Landmarks.ContentInfo & IsNotOffScreen;
             var condition = DescendantCount(landmark) <= 1;
             return condition.Matches(e);
         }
 
         protected override Condition CreateCondition()
         {
-            return EdgeDocument | UWP.TopLevelElement;
+            return UWP.TopLevelElement;
         }
     } // class
 } // namespace

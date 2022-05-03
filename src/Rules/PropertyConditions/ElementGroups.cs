@@ -37,7 +37,6 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition NameOptional = CreateNameOptionalCondition();
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
-        public static Condition EdgeDocument = Pane & Edge & NotParent(Edge);
         public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
         public static Condition IsButtonText = Text & Parent(Button);
 
