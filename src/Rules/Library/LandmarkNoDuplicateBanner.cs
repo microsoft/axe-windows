@@ -6,8 +6,6 @@ using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
-using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
-using static Axe.Windows.Rules.PropertyConditions.Framework;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 
 namespace Axe.Windows.Rules.Library
