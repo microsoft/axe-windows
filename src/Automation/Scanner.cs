@@ -31,16 +31,20 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-            return Scan(false).First();
+            if (_config.EnableMultipleScanRoots)
+            {
+                throw new InvalidOperationException("Multiple scan roots are not supported when calling Scan(). Use ScanAll() instead.");
+            }
+            return ExecuteScan(null).First();
         }
 
         /// <summary>
-        /// See <see cref="IScanner.Scan(bool)"/>
+        /// See <see cref="IScanner.ScanAll()"/>
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<ScanResults> Scan(bool enableMultipleWindows)
+        public IReadOnlyCollection<ScanResults> ScanAll()
         {
-            return ExecuteScan(null, enableMultipleWindows);
+            return ExecuteScan(null);
         }
 
         /// <summary>
@@ -49,25 +53,29 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan(string scanId)
         {
-            return Scan(scanId, false).First();
+            if (_config.EnableMultipleScanRoots)
+            {
+                throw new InvalidOperationException("Multiple scan roots are not supported when calling Scan(). Use ScanAll() instead.");
+            }
+            return ExecuteScan(scanId).First();
         }
 
         /// <summary>
-        /// See <see cref="IScanner.Scan(string,bool)"/>
+        /// See <see cref="IScanner.ScanAll(string)"/>
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<ScanResults> Scan(string scanId, bool enableMultipleWindows)
+        public IReadOnlyCollection<ScanResults> ScanAll(string scanId)
         {
-            return ExecuteScan(null, enableMultipleWindows);
+            return ExecuteScan(scanId);
         }
 
-        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId, bool enableMultipleWindows)
+        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId)
         {
             return ExecutionWrapper.ExecuteCommand(() =>
             {
                 _scanTools.OutputFileHelper.SetScanId(scanId);
 
-                return SnapshotCommand.Execute(_config, _scanTools, enableMultipleWindows);
+                return SnapshotCommand.Execute(_config, _scanTools);
             });
         }
     } // class

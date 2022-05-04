@@ -22,14 +22,13 @@ namespace Axe.Windows.Automation
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
         /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
         /// will contain the exception.
-        /// Calling this function is equivalent to passing false to <see cref="IScanner.Scan(bool)"/> and passing false for <c>enableMultipleWindows</c>.
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
         ScanResults Scan();
 
         /// <summary>
-        /// Run AxeWindows automated tests on all windows or the first window found.
+        /// Run AxeWindows automated tests on all windows.
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
@@ -40,12 +39,10 @@ namespace Axe.Windows.Automation
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
         /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
         /// will contain the exception.
-        /// If <paramref name="enableMultipleWindows"/> is set to true, all windows will be scanned. If it is set to false, only the first window will be scanned.
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        IReadOnlyCollection<ScanResults> Scan(bool enableMultipleWindows);
-
+        IReadOnlyCollection<ScanResults> ScanAll();
 
         /// <summary>
         /// Run AxeWindows automated tests
@@ -60,14 +57,13 @@ namespace Axe.Windows.Automation
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
         /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
         /// will contain the exception.
-        /// Calling this function is equivalent to passing false to <see cref="IScanner.Scan(string, bool)"/> and passing false for <c>enableMultipleWindows</c>.
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
         ScanResults Scan(string scanId);
 
         /// <summary>
-        /// Run AxeWindows automated tests on all windows or the first window found.
+        /// Run AxeWindows automated tests on all windows.
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
@@ -78,10 +74,9 @@ namespace Axe.Windows.Automation
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
         /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
         /// will contain the exception.
-        /// If <paramref name="enableMultipleWindows"/> is set to true, all windows will be scanned. If it is set to false, only the first window will be scanned.
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        IReadOnlyCollection<ScanResults> Scan(string scanId, bool enableMultipleWindows);
+        IReadOnlyCollection<ScanResults> ScanAll(string scanId);
     } // interface
 } // namespace

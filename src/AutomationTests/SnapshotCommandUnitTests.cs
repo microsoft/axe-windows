@@ -169,11 +169,8 @@ namespace Axe.Windows.AutomationTests
 
             var elements = CreateMockElementArray();
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(elements);
-            foreach (var element in elements)
-            {
-                _actionsMock.Setup(x => x.Scan(
-                    element, It.IsAny<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
-            }
+            _actionsMock.Setup(x => x.Scan(
+                elements.First(), It.IsAny<ScanActionCallback<ScanResults>>())).Returns<ScanResults>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
@@ -326,6 +323,7 @@ namespace Axe.Windows.AutomationTests
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
                 .Build();
 
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
@@ -412,7 +410,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(100000)]
+        [Timeout(1000)]
         public void Execute_WithErrors_SingleFileNamedCorrectly()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
@@ -479,6 +477,7 @@ namespace Axe.Windows.AutomationTests
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
                 .Build();
 
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);

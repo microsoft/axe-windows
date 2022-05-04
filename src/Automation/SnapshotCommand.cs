@@ -21,9 +21,8 @@ namespace Axe.Windows.Automation
         /// <param name="config">A set of configuration options</param>
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
-        /// <param name="useMultipleWindows">Determines whether only the first window should be scanned or all windows. Default is <code>true</code></param>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static IReadOnlyCollection<ScanResults> Execute(Config config, IScanTools scanTools, bool useMultipleWindows = true)
+        public static IReadOnlyCollection<ScanResults> Execute(Config config, IScanTools scanTools)
         {
             if (config == null) throw new ArgumentNullException(nameof(config));
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
@@ -55,7 +54,7 @@ namespace Axe.Windows.Automation
                     return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
                 }));
 
-                if (!useMultipleWindows)
+                if (!config.EnableMultipleScanRoots)
                 {
                     // We only want to scan the first window so just break for loop here
                     break;

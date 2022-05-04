@@ -11,7 +11,7 @@ namespace AxeWindowsCLI
         public static IReadOnlyCollection<ScanResults> RunScan(IOptions options)
         {
             IScanner scanner = BuildScanner(options);
-            return scanner.Scan(options.ScanId, options.EnableMultipleScanRoots);
+            return scanner.ScanAll(options.ScanId);
         }
 
         private static IScanner BuildScanner(IOptions options)
@@ -23,6 +23,9 @@ namespace AxeWindowsCLI
 
             if (!string.IsNullOrEmpty(options.OutputDirectory))
                 builder = builder.WithOutputDirectory(options.OutputDirectory);
+
+            if (options.EnableMultipleScanRoots)
+                builder = builder.WithMultipleScanRootsEnabled();
 
             return ScannerFactory.CreateScanner(builder.Build());
         }

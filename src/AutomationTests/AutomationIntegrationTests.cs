@@ -119,17 +119,55 @@ namespace Axe.Windows.AutomationTests
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = true)
+        [TestMethod]
+        [Timeout(30000)]
+        public void SingleWindowScan_MultipleRootsEnabledThrows()
         {
-            LaunchTestApp(testAppPath);
+            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
             var config = Config.Builder.ForProcessId(TestProcess.Id)
                 .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
                 .Build();
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var action = new Action(() => scanner.Scan());
+            Assert.ThrowsException<InvalidOperationException>(action);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void SingleWindowScanWithID_MultipleRootsEnabledThrows()
+        {
+            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
+            var config = Config.Builder.ForProcessId(TestProcess.Id)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
+                .Build();
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var action = new Action(() => scanner.Scan("TestIDForThrow"));
+            Assert.ThrowsException<InvalidOperationException>(action);
+        }
+
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = true)
+        {
+            LaunchTestApp(testAppPath);
+            var builder = Config.Builder.ForProcessId(TestProcess.Id)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+            if (enableMultipleScanRoots)
+            {
+                builder = builder.WithMultipleScanRootsEnabled();
+            }
+
+            var config = builder.Build();
 
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var output = ScanWithProvisionForBuildAgents(scanner, enableMultipleScanRoots);
+            var output = ScanWithProvisionForBuildAgents(scanner);
 
             // Validate for consistency
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
@@ -155,11 +193,11 @@ namespace Axe.Windows.AutomationTests
             return output.First();
         }
 
-        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner, bool enableMultipleScanRoots)
+        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner)
         {
             try
             {
-                return scanner.Scan(enableMultipleScanRoots);
+                return scanner.ScanAll();
             }
             catch (AxeWindowsAutomationException e)
             {
@@ -210,6 +248,9 @@ namespace Axe.Windows.AutomationTests
             TestProcess = null;
         }
 
-        private void CleanupTestOutput() => Directory.Delete(OutputDir, true);
+        private void CleanupTestOutput() {
+            if (Directory.Exists(OutputDir))
+                Directory.Delete(OutputDir, true);
+        }
     }
 }
