@@ -348,7 +348,7 @@ namespace Axe.Windows.Core.Bases
         public bool TryGetPropertyValue<T>(int propertyId, out T value)
         {
             // assignment required
-            value = default(T);
+            value = default;
 
             var property = this.GetPropertySafely(propertyId);
             if (property == null) return false;
@@ -381,12 +381,10 @@ namespace Axe.Windows.Core.Bases
             return GetValueAsArray<int>(jArray);
         }
 
-#pragma warning disable CA1801 // Parameter id of method ConvertValueIfNecessary is never used.Remove the parameter or use it in the method body.
-        private static dynamic ConvertValueIfNecessary(int id, dynamic value)
+        private static dynamic ConvertValueIfNecessary(int _, dynamic value)
         {
             return value;
         }
-#pragma warning restore CA1801 // Parameter id of method ConvertValueIfNecessary is never used.Remove the parameter or use it in the method body.
 
         private static T[] GetValueAsArray<T>(Newtonsoft.Json.Linq.JArray jArray)
         {
@@ -418,7 +416,7 @@ namespace Axe.Windows.Core.Bases
         public T GetPlatformPropertyValue<T>(int propertyId)
         {
             var property = this.PlatformProperties?.ById(propertyId);
-            if (property == null) return default(T);
+            if (property == null) return default;
             if (!(property.Value is T)) throw new AxeWindowsException(Invariant($"Expected property.Value, which is type {property.Value.GetType().Name}, to be type {typeof(T).Name}"));
 
             return property.Value;

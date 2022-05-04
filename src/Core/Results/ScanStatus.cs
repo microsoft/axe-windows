@@ -5,9 +5,7 @@ namespace Axe.Windows.Core.Results
     /// <summary>
     /// Test status enum
     /// </summary>
-#pragma warning disable CA1717 // Only FlagsAttribute enums should have plural names
     public enum ScanStatus
-#pragma warning restore CA1717 // Only FlagsAttribute enums should have plural names
     {
         NoResult = 0,
         Pass = 1,
