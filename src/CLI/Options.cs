@@ -32,8 +32,8 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "CustomUia", ResourceType = typeof(Resources.OptionsHelpText))]
         public string CustomUia { get; set; }
 
-        [Option(Required = false, HelpText = "EnableMultipleScanRoots", ResourceType = typeof(Resources.OptionsHelpText), Default = true)]
-        public bool EnableMultipleScanRoots { get; set; } = true;
+        [Option(Required = false, HelpText = "EnableMultipleScanRoots", ResourceType = typeof(Resources.OptionsHelpText))]
+        public bool EnableMultipleScanRoots { get; set; }
 
         // CommandLineParser will never set this value!
         public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;

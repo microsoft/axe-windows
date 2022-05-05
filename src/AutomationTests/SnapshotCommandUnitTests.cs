@@ -217,14 +217,23 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
 
+            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
+            _actionsMock.Setup(x => x.SaveA11yTestFile(It.IsAny<string>(), It.IsAny<A11yElement>(), It.IsAny<Guid>()));
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
-            //_outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            //_outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
+            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
+
+
+            var config = Config.Builder
+                .ForProcessId(-1)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
+                .Build();
 
             var expectedResults = new ScanResults();
             InitResultsCallback(expectedResults);
 
-            var actualResults = SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
+            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
             foreach (var actualResult in actualResults)
             {
                 Assert.AreEqual(expectedResults, actualResult);

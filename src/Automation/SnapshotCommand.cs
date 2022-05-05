@@ -71,7 +71,7 @@ namespace Axe.Windows.Automation
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
-            if (targetCount > 1)
+            if (config.EnableMultipleScanRoots)
             {
                 results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
             }

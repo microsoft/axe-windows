@@ -31,7 +31,7 @@ namespace AxeWindowsCLITests
 
         private void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
-            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0, bool enableMultipleScanRoots = true)
+            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0, bool enableMultipleScanRoots = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -283,10 +283,10 @@ namespace AxeWindowsCLITests
             Options input = new Options
             {
                 ProcessName = TestProcessName,
-                EnableMultipleScanRoots = false
+                EnableMultipleScanRoots = true
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processId: TestProcessId, enableMultipleScanRoots: false);
+                processId: TestProcessId, enableMultipleScanRoots: true);
             VerifyAllMocks();
         }
     }

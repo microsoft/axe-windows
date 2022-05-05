@@ -102,7 +102,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample()
         {
-            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount);
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, expectedWindowCount : 2);
         }
 
         [TestMethod]
@@ -151,7 +151,7 @@ namespace Axe.Windows.AutomationTests
             Assert.ThrowsException<InvalidOperationException>(action);
         }
 
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = true)
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = true, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);
             var builder = Config.Builder.ForProcessId(TestProcess.Id)
@@ -170,6 +170,7 @@ namespace Axe.Windows.AutomationTests
             var output = ScanWithProvisionForBuildAgents(scanner);
 
             // Validate for consistency
+            Assert.AreEqual(expectedWindowCount, output.Count);
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.Errors.Count()));
 

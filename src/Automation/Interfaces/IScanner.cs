@@ -28,12 +28,11 @@ namespace Axe.Windows.Automation
         ScanResults Scan();
 
         /// <summary>
-        /// Run AxeWindows automated tests on all windows.
+        /// Run AxeWindows automated tests on all windows associated with the process.
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
-        /// output files may be written to the specified directory.
-        /// (Note: no output files will be written if no errors were found.)
+        /// an output file for every window will be written.
         /// An exception may be thrown if the value of <see cref="Config.ProcessId"/> is invalid
         /// or if the directory provided in <see cref="Config.OutputDirectory"/> cannot be created or accessed.
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
@@ -63,12 +62,11 @@ namespace Axe.Windows.Automation
         ScanResults Scan(string scanId);
 
         /// <summary>
-        /// Run AxeWindows automated tests on all windows.
+        /// Run AxeWindows automated tests on all windows associated with the process.
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
-        /// output files may be written to the specified directory.
-        /// (Note: no output files will be written if no errors were found.)
+        /// an output file for every window will be written.
         /// An exception may be thrown if the value of <see cref="Config.ProcessId"/> is invalid
         /// or if the directory provided in <see cref="Config.OutputDirectory"/> cannot be created or accessed.
         /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
