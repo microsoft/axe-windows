@@ -54,7 +54,7 @@ namespace Axe.Windows.Automation
                     return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
                 }));
 
-                if (!config.EnableMultipleScanRoots)
+                if (!config.AreMultipleScanRootsEnabled)
                 {
                     // We only want to scan the first window so just break for loop here
                     break;
@@ -71,7 +71,7 @@ namespace Axe.Windows.Automation
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
-            if (config.EnableMultipleScanRoots)
+            if (config.AreMultipleScanRootsEnabled)
             {
                 results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
             }

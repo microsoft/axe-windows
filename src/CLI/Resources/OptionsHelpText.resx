@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AreMultipleScanRootsEnabled" xml:space="preserve">
+    <value>Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false).</value>
+  </data>
   <data name="CustomUia" xml:space="preserve">
     <value>The path to a configuration file specifying custom UI Automation attributes</value>
   </data>
   <data name="DelayInSeconds" xml:space="preserve">
     <value>How many seconds to delay before triggering the scan. Valid range is 0 to 60 seconds, with a default of 0.</value>
-  </data>
-  <data name="EnableMultipleScanRoots" xml:space="preserve">
-    <value>Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false).</value>
   </data>
   <data name="OutputDirectory" xml:space="preserve">
     <value>Output directory</value>

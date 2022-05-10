@@ -102,14 +102,14 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample()
         {
-            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, expectedWindowCount : 2);
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
         }
 
         [TestMethod]
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow()
         {
-            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount, false);
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
         }
 
         [TestMethod]
@@ -151,7 +151,7 @@ namespace Axe.Windows.AutomationTests
             Assert.ThrowsException<InvalidOperationException>(action);
         }
 
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = true, int expectedWindowCount = 1)
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);
             var builder = Config.Builder.ForProcessId(TestProcess.Id)
@@ -249,7 +249,8 @@ namespace Axe.Windows.AutomationTests
             TestProcess = null;
         }
 
-        private void CleanupTestOutput() {
+        private void CleanupTestOutput()
+        {
             if (Directory.Exists(OutputDir))
                 Directory.Delete(OutputDir, true);
         }

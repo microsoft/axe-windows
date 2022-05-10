@@ -24,7 +24,7 @@ namespace AxeWindowsCLI
             if (!string.IsNullOrEmpty(options.OutputDirectory))
                 builder = builder.WithOutputDirectory(options.OutputDirectory);
 
-            if (options.EnableMultipleScanRoots)
+            if (options.AreMultipleScanRootsEnabled)
                 builder = builder.WithMultipleScanRootsEnabled();
 
             return ScannerFactory.CreateScanner(builder.Build());

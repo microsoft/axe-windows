@@ -64,7 +64,7 @@ namespace AxeWindowsCLI
                 VerbosityLevel = verbosityLevel,
                 DelayInSeconds = delayInSeconds,
                 CustomUia = rawInputs.CustomUia,
-                EnableMultipleScanRoots = rawInputs.EnableMultipleScanRoots
+                AreMultipleScanRootsEnabled = rawInputs.AreMultipleScanRootsEnabled
             };
         }
 

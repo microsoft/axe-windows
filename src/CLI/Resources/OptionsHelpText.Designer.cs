@@ -19,7 +19,7 @@ namespace AxeWindowsCLI.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class OptionsHelpText {
@@ -61,6 +61,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false)..
+        /// </summary>
+        public static string AreMultipleScanRootsEnabled {
+            get {
+                return ResourceManager.GetString("AreMultipleScanRootsEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The path to a configuration file specifying custom UI Automation attributes.
         /// </summary>
         public static string CustomUia {
@@ -75,15 +84,6 @@ namespace AxeWindowsCLI.Resources {
         public static string DelayInSeconds {
             get {
                 return ResourceManager.GetString("DelayInSeconds", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false)..
-        /// </summary>
-        public static string EnableMultipleScanRoots {
-            get {
-                return ResourceManager.GetString("EnableMultipleScanRoots", resourceCulture);
             }
         }
         

@@ -31,7 +31,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
-            if (_config.EnableMultipleScanRoots)
+            if (_config.AreMultipleScanRootsEnabled)
             {
                 throw new InvalidOperationException("Multiple scan roots are not supported when calling Scan(). Use ScanAll() instead.");
             }
@@ -53,7 +53,7 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan(string scanId)
         {
-            if (_config.EnableMultipleScanRoots)
+            if (_config.AreMultipleScanRootsEnabled)
             {
                 throw new InvalidOperationException("Multiple scan roots are not supported when calling Scan(). Use ScanAll() instead.");
             }

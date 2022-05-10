@@ -42,7 +42,7 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Determines whether multiple UIA roots will be scanned or just the first one.
         /// </summary>
-        public bool EnableMultipleScanRoots { get; private set; }
+        public bool AreMultipleScanRootsEnabled { get; private set; }
 
         private Config()
         { }
@@ -109,7 +109,7 @@ namespace Axe.Windows.Automation
             /// <returns></returns>
             public Builder WithMultipleScanRootsEnabled()
             {
-                _config.EnableMultipleScanRoots = true;
+                _config.AreMultipleScanRootsEnabled = true;
                 return this;
             }
 
@@ -125,7 +125,7 @@ namespace Axe.Windows.Automation
                     OutputFileFormat = _config.OutputFileFormat,
                     OutputDirectory = _config.OutputDirectory,
                     CustomUIAConfigPath = _config.CustomUIAConfigPath,
-                    EnableMultipleScanRoots = _config.EnableMultipleScanRoots,
+                    AreMultipleScanRootsEnabled = _config.AreMultipleScanRootsEnabled,
                 };
             }
         } // Builder
