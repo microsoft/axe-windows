@@ -2,6 +2,8 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation.Resources;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.Automation
 {
@@ -29,6 +31,19 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan()
         {
+            if (_config.AreMultipleScanRootsEnabled)
+            {
+                throw new InvalidOperationException("Multiple scan roots are not supported when calling Scan(). Use ScanAll() instead.");
+            }
+            return ExecuteScan(null).First();
+        }
+
+        /// <summary>
+        /// See <see cref="IScanner.ScanAll()"/>
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyCollection<ScanResults> ScanAll()
+        {
             return ExecuteScan(null);
         }
 
@@ -38,12 +53,25 @@ namespace Axe.Windows.Automation
         /// <returns></returns>
         public ScanResults Scan(string scanId)
         {
+            if (_config.AreMultipleScanRootsEnabled)
+            {
+                throw new InvalidOperationException("Multiple scan roots are not supported when calling Scan(). Use ScanAll() instead.");
+            }
+            return ExecuteScan(scanId).First();
+        }
+
+        /// <summary>
+        /// See <see cref="IScanner.ScanAll(string)"/>
+        /// </summary>
+        /// <returns></returns>
+        public IReadOnlyCollection<ScanResults> ScanAll(string scanId)
+        {
             return ExecuteScan(scanId);
         }
 
-        private ScanResults ExecuteScan(string scanId)
+        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId)
         {
-            return ExecutionWrapper.ExecuteCommand<ScanResults>(() =>
+            return ExecutionWrapper.ExecuteCommand(() =>
             {
                 _scanTools.OutputFileHelper.SetScanId(scanId);
 

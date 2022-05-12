@@ -4,6 +4,7 @@
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -21,7 +22,7 @@ namespace Axe.Windows.Automation
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
         /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static ScanResults Execute(Config config, IScanTools scanTools)
+        public static IReadOnlyCollection<ScanResults> Execute(Config config, IScanTools scanTools)
         {
             if (config == null) throw new ArgumentNullException(nameof(config));
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
@@ -35,28 +36,57 @@ namespace Axe.Windows.Automation
             if (config.CustomUIAConfigPath != null)
                 scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
 
+            List<ScanResults> resultList = new List<ScanResults>();
+
             var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId);
 
-            return scanTools.Actions.Scan(rootElements?.First(), (element, elementId) =>
+            if (rootElements is null || !rootElements.Any())
             {
-                return ProcessResults(element, elementId, config, scanTools);
-            });
+                return resultList;
+            }
+
+            int targetIndex = 1;
+
+            foreach (var rootElement in rootElements)
+            {
+                resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
+                {
+                    return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
+                }));
+
+                if (!config.AreMultipleScanRootsEnabled)
+                {
+                    // We only want to scan the first window so just break for loop here
+                    break;
+                }
+            }
+
+            return resultList;
         }
 
-        private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools)
+        private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount)
         {
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.ResultsAssembler == null) throw new ArgumentException(ErrorMessages.ScanToolsResultsAssemblerNull, nameof(scanTools));
 
             var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
 
-            if (results.ErrorCount > 0)
-                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId);
+            if (config.AreMultipleScanRootsEnabled)
+            {
+                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}");
+            }
+            else
+            {
+                if (results.ErrorCount > 0)
+                {
+                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null);
+                }
+            }
 
             return results;
         }
 
-        private static OutputFile WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId)
+        private static OutputFile WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId, Func<string, string> decorator)
         {
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.OutputFileHelper == null) throw new ArgumentException(ErrorMessages.ScanToolsOutputFileHelperNull, nameof(scanTools));
@@ -69,7 +99,7 @@ namespace Axe.Windows.Automation
 
                 scanTools.OutputFileHelper.EnsureOutputDirectoryExists();
 
-                a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath();
+                a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath(decorator);
                 if (a11yTestOutputFile == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(a11yTestOutputFile)));
 
                 scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId);

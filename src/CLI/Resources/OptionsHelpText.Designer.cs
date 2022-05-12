@@ -61,6 +61,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false)..
+        /// </summary>
+        public static string AreMultipleScanRootsEnabled {
+            get {
+                return ResourceManager.GetString("AreMultipleScanRootsEnabled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The path to a configuration file specifying custom UI Automation attributes.
         /// </summary>
         public static string CustomUia {

@@ -39,6 +39,11 @@ namespace Axe.Windows.Automation
         ///  <summary>The path to a file containing configuration instructing Axe Windows how to interpret custom UI Automation data.</summary>
         public string CustomUIAConfigPath { get; private set; }
 
+        /// <summary>
+        /// Determines whether multiple UIA roots will be scanned or just the first one.
+        /// </summary>
+        public bool AreMultipleScanRootsEnabled { get; private set; }
+
         private Config()
         { }
 
@@ -99,6 +104,16 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
+            /// Enables the scanning of multiple top level UIA roots.
+            /// </summary>
+            /// <returns></returns>
+            public Builder WithMultipleScanRootsEnabled()
+            {
+                _config.AreMultipleScanRootsEnabled = true;
+                return this;
+            }
+
+            /// <summary>
             /// Build an instance of <see cref="Config"/>
             /// </summary>
             /// <returns></returns>
@@ -110,6 +125,7 @@ namespace Axe.Windows.Automation
                     OutputFileFormat = _config.OutputFileFormat,
                     OutputDirectory = _config.OutputDirectory,
                     CustomUIAConfigPath = _config.CustomUIAConfigPath,
+                    AreMultipleScanRootsEnabled = _config.AreMultipleScanRootsEnabled,
                 };
             }
         } // Builder

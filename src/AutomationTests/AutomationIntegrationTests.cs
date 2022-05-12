@@ -4,6 +4,7 @@ using Axe.Windows.Automation;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -21,10 +22,13 @@ namespace Axe.Windows.AutomationTests
         const int Win32ControlSamplerKnownErrorCount = 0;
         const int WindowsFormsControlSamplerKnownErrorCount = 4;
         const int WpfControlSamplerKnownErrorCount = 5;
+        const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 8;
+        const int WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount = 4;
 
         readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
         readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
+        readonly string WindowsFormsMultiWindowSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsMultiWindowSample/WindowsFormsMultiWindowSample.exe");
         readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
 
         readonly string OutputDir = Path.GetFullPath("./TestOutput");
@@ -96,52 +100,105 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsMultiWindowSample()
+        {
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow()
+        {
+            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
         public void Scan_Integration_WpfControlSampler()
         {
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount)
+        [TestMethod]
+        [Timeout(30000)]
+        public void SingleWindowScan_MultipleRootsEnabledThrows()
         {
-            LaunchTestApp(testAppPath);
+            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
             var config = Config.Builder.ForProcessId(TestProcess.Id)
                 .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
                 .Build();
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var action = new Action(() => scanner.Scan());
+            Assert.ThrowsException<InvalidOperationException>(action);
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public void SingleWindowScanWithID_MultipleRootsEnabledThrows()
+        {
+            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
+            var config = Config.Builder.ForProcessId(TestProcess.Id)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithMultipleScanRootsEnabled()
+                .Build();
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var action = new Action(() => scanner.Scan("TestIDForThrow"));
+            Assert.ThrowsException<InvalidOperationException>(action);
+        }
+
+        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        {
+            LaunchTestApp(testAppPath);
+            var builder = Config.Builder.ForProcessId(TestProcess.Id)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+            if (enableMultipleScanRoots)
+            {
+                builder = builder.WithMultipleScanRootsEnabled();
+            }
+
+            var config = builder.Build();
 
             var scanner = ScannerFactory.CreateScanner(config);
 
             var output = ScanWithProvisionForBuildAgents(scanner);
 
             // Validate for consistency
-            Assert.AreEqual(expectedErrorCount, output.ErrorCount);
-            Assert.AreEqual(expectedErrorCount, output.Errors.Count());
+            Assert.AreEqual(expectedWindowCount, output.Count);
+            Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
+            Assert.AreEqual(expectedErrorCount, output.Sum(x => x.Errors.Count()));
 
             if (expectedErrorCount > 0)
             {
                 var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
 
                 // Validate the output file exists where it is expected
-                Assert.IsTrue(Regex.IsMatch(output.OutputFile.A11yTest, regexForExpectedFile));
-                Assert.IsTrue(File.Exists(output.OutputFile.A11yTest));
+                Assert.IsTrue(Regex.IsMatch(output.First().OutputFile.A11yTest, regexForExpectedFile));
+                Assert.IsTrue(File.Exists(output.First().OutputFile.A11yTest));
 
                 // Validate that we got some properties and patterns
-                Assert.IsTrue(output.Errors.All(error => error.Element.Properties != null));
-                Assert.IsTrue(output.Errors.All(error => error.Element.Patterns != null));
+                Assert.IsTrue(output.First().Errors.All(error => error.Element.Properties != null));
+                Assert.IsTrue(output.First().Errors.All(error => error.Element.Patterns != null));
             }
             else
             {
-                Assert.IsNull(output.OutputFile.A11yTest);
+                Assert.IsNull(output.First().OutputFile.A11yTest);
             }
 
-            return output;
+            return output.First();
         }
 
-        private ScanResults ScanWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner)
         {
             try
             {
-                return scanner.Scan();
+                return scanner.ScanAll();
             }
             catch (AxeWindowsAutomationException e)
             {
@@ -192,6 +249,10 @@ namespace Axe.Windows.AutomationTests
             TestProcess = null;
         }
 
-        private void CleanupTestOutput() => Directory.Delete(OutputDir, true);
+        private void CleanupTestOutput()
+        {
+            if (Directory.Exists(OutputDir))
+                Directory.Delete(OutputDir, true);
+        }
     }
 }

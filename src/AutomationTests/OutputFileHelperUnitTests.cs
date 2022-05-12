@@ -115,7 +115,7 @@ namespace Axe.Windows.AutomationTests
             string expectedDirectory = Path.Combine(testParam, OutputFileHelper.DefaultOutputDirectoryName);
 
             var outputFileHelper = new OutputFileHelper(outputDirectory: null, system: mockSystem.Object);
-            string result = outputFileHelper.GetNewA11yTestFilePath();
+            string result = outputFileHelper.GetNewA11yTestFilePath((value) => value);
 
             Assert.AreEqual(expectedDirectory, Path.GetDirectoryName(result));
 
@@ -144,7 +144,7 @@ namespace Axe.Windows.AutomationTests
             string expectedDirectory = @"c:\TestDir";
 
             var outputFileHelper = new OutputFileHelper(expectedDirectory, mockSystem.Object);
-            string result = outputFileHelper.GetNewA11yTestFilePath();
+            string result = outputFileHelper.GetNewA11yTestFilePath((value) => value);
 
             Assert.AreEqual(expectedDirectory, Path.GetDirectoryName(result));
 
@@ -257,7 +257,7 @@ namespace Axe.Windows.AutomationTests
             mockDateTime.Setup(x => x.Now).Returns(dateTime);
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
-            var result = outputFileHelper.GetNewA11yTestFilePath();
+            var result = outputFileHelper.GetNewA11yTestFilePath((value) => value);
 
             var expectedFileName = $"{OutputFileHelper.DefaultFileNameBase}_19-04-01_20-08-08.0012345.a11ytest";
             var actualFileName = Path.GetFileName(result);
@@ -287,7 +287,7 @@ namespace Axe.Windows.AutomationTests
 
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
             outputFileHelper.SetScanId("myScanId");
-            var result = outputFileHelper.GetNewA11yTestFilePath();
+            var result = outputFileHelper.GetNewA11yTestFilePath((value) => value);
 
             var expectedFileName = "myScanId.a11ytest";
             var actualFileName = Path.GetFileName(result);

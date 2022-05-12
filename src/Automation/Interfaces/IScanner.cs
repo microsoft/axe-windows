@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
+using System.Collections.Generic;
 
 namespace Axe.Windows.Automation
 {
@@ -10,7 +11,7 @@ namespace Axe.Windows.Automation
     public interface IScanner
     {
         /// <summary>
-        /// Run AxeWindows automated tests
+        /// Run AxeWindows automated tests on the first window found
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
@@ -25,6 +26,22 @@ namespace Axe.Windows.Automation
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
         ScanResults Scan();
+
+        /// <summary>
+        /// Run AxeWindows automated tests on all windows associated with the process.
+        /// </summary>
+        /// <remarks>
+        /// If a value was provided in <see cref="Config.OutputDirectory"/>,
+        /// an output file for every window will be written.
+        /// An exception may be thrown if the value of <see cref="Config.ProcessId"/> is invalid
+        /// or if the directory provided in <see cref="Config.OutputDirectory"/> cannot be created or accessed.
+        /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
+        /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
+        /// will contain the exception.
+        /// </remarks>
+        /// <returns>Information about the scan and any issues detected</returns>
+        /// <exception cref="AxeWindowsAutomationException"/>
+        IReadOnlyCollection<ScanResults> ScanAll();
 
         /// <summary>
         /// Run AxeWindows automated tests
@@ -44,5 +61,20 @@ namespace Axe.Windows.Automation
         /// <exception cref="AxeWindowsAutomationException"/>
         ScanResults Scan(string scanId);
 
+        /// <summary>
+        /// Run AxeWindows automated tests on all windows associated with the process.
+        /// </summary>
+        /// <remarks>
+        /// If a value was provided in <see cref="Config.OutputDirectory"/>,
+        /// an output file for every window will be written.
+        /// An exception may be thrown if the value of <see cref="Config.ProcessId"/> is invalid
+        /// or if the directory provided in <see cref="Config.OutputDirectory"/> cannot be created or accessed.
+        /// All exceptions are wrapped in <see cref="AxeWindowsAutomationException"/>.
+        /// If the exception was not thrown by AxeWindows automation, the <see cref="Exception.InnerException"/> property
+        /// will contain the exception.
+        /// </remarks>
+        /// <returns>Information about the scan and any issues detected</returns>
+        /// <exception cref="AxeWindowsAutomationException"/>
+        IReadOnlyCollection<ScanResults> ScanAll(string scanId);
     } // interface
 } // namespace
