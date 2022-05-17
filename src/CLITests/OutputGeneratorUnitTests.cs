@@ -36,6 +36,7 @@ namespace AxeWindowsCLITests
         const string ErrorVerbosePatternsHeaderStart = "  Element Patterns";
         const string ErrorVerbosePatternIndex = "    {0}";
         const string ErrorVerboseSeparatorStart = "---------------------";
+        const string FrameworkIssueLinkOneParam = "  Potential Framework Issue: {0}";
         const string OutputFileStart = "Results were written ";
         const string UnableToComplete = "Unable to complete. ";
         const string NoFurtherData = "No further data is available.";
@@ -265,7 +266,7 @@ namespace AxeWindowsCLITests
         }
 
         private ScanResults BuildTestScanResults(int errorCount = 0, string a11yTestFile = null,
-            int? propertyCount = null, int? patternCount = null)
+            int? propertyCount = null, int? patternCount = null, string frameworkIssueLink = null)
         {
             List<ScanResult> errors = new List<ScanResult>(errorCount);
 
@@ -281,6 +282,7 @@ namespace AxeWindowsCLITests
                     Rule = new RuleInfo
                     {
                         Description = "Test Rule",
+                        FrameworkIssueLink = frameworkIssueLink,
                     },
                 }); ;
             };
@@ -472,6 +474,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(FrameworkIssueLinkOneParam, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorVerbosePropertiesHeaderStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
                 new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
@@ -480,6 +483,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(ErrorVerbosePatternIndex, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorVerboseSeparatorStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(ErrorVerboseCountStart, WriteSource.WriteLineTwoParams),
+                new WriteCall(FrameworkIssueLinkOneParam, WriteSource.WriteLineOneParam),
                 new WriteCall(ErrorVerbosePropertiesHeaderStart, WriteSource.WriteLineStringOnly),
                 new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
                 new WriteCall(ErrorVerbosePropertyPairStart, WriteSource.WriteLineTwoParams),
@@ -491,7 +495,7 @@ namespace AxeWindowsCLITests
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
             ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
-                patternCount: 2, propertyCount: 2);
+                patternCount: 2, propertyCount: 2, frameworkIssueLink: "https://docs.microsoft.com");
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
