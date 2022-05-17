@@ -12,5 +12,6 @@ namespace AxeWindowsCLI
         VerbosityLevel VerbosityLevel { get; }
         int DelayInSeconds { get; }
         string CustomUia { get; }
+        bool AreMultipleScanRootsEnabled { get; }
     }
 }

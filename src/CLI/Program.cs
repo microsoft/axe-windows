@@ -5,6 +5,7 @@ using Axe.Windows.Automation;
 using CommandLine;
 using CommandLine.Text;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
@@ -19,7 +20,7 @@ namespace AxeWindowsCLI
         private readonly IBrowserAbstraction _browserAbstraction;
         private readonly IScanDelay _scanDelay;
 
-        private ScanResults _scanResults;
+        private IReadOnlyCollection<ScanResults> _scanResultsCollection;
         private IOptions _options;
 
         public Program(string[] args,
@@ -83,9 +84,12 @@ namespace AxeWindowsCLI
 
             if (_options != null)
             {
-                _outputGenerator.WriteOutput(_options, _scanResults, caughtException);
+                foreach (var scanResult in _scanResultsCollection)
+                {
+                    _outputGenerator.WriteOutput(_options, scanResult, caughtException);
+                }
             }
-            return ReturnValueChooser.GetReturnValue(_scanResults, caughtException);
+            return ReturnValueChooser.GetReturnValue(_scanResultsCollection, caughtException);
         }
 
         void RunWithParsedInputs(Options options)
@@ -102,7 +106,7 @@ namespace AxeWindowsCLI
             _options = OptionsEvaluator.ProcessInputs(options, _processHelper);
             _outputGenerator.WriteBanner(_options);
             _scanDelay.DelayWithCountdown(_options);
-            _scanResults = ScanRunner.RunScan(_options);
+            _scanResultsCollection = ScanRunner.RunScan(_options);
         }
 
         private Parser CaseInsensitiveParser()

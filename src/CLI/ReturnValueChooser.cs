@@ -3,6 +3,7 @@
 
 using Axe.Windows.Automation;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AxeWindowsCLI
@@ -15,17 +16,17 @@ namespace AxeWindowsCLI
         public const int ThirdPartyNoticesDisplayed = 3;  // Used outside this class
         public const int BadInputParameters = 255;
 
-        public static int GetReturnValue(ScanResults scanResults, Exception caughtException)
+        public static int GetReturnValue(IReadOnlyCollection<ScanResults> scanResults, Exception caughtException)
         {
             if (caughtException as ParameterException != null)
                 return BadInputParameters;
 
 #pragma warning disable CA1508
-            if (caughtException != null || scanResults == null)
+            if (caughtException != null || scanResults.Any(result => result == null))
                 return ScanFailedToComplete;
 #pragma warning restore CA1508
 
-            if (scanResults.Errors.Any())
+            if (scanResults.Any(result => result.Errors.Any()))
                 return ScanCompletedAndFoundErrors;
 
             return ScanCompletedAndFoundNoErrors;

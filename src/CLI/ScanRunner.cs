@@ -2,15 +2,16 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation;
+using System.Collections.Generic;
 
 namespace AxeWindowsCLI
 {
     internal static class ScanRunner
     {
-        public static ScanResults RunScan(IOptions options)
+        public static IReadOnlyCollection<ScanResults> RunScan(IOptions options)
         {
             IScanner scanner = BuildScanner(options);
-            return scanner.Scan(options.ScanId);
+            return scanner.ScanAll(options.ScanId);
         }
 
         private static IScanner BuildScanner(IOptions options)
@@ -22,6 +23,9 @@ namespace AxeWindowsCLI
 
             if (!string.IsNullOrEmpty(options.OutputDirectory))
                 builder = builder.WithOutputDirectory(options.OutputDirectory);
+
+            if (options.AreMultipleScanRootsEnabled)
+                builder = builder.WithMultipleScanRootsEnabled();
 
             return ScannerFactory.CreateScanner(builder.Build());
         }

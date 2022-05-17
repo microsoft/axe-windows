@@ -3,6 +3,7 @@
 using Axe.Windows.Automation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -32,7 +33,7 @@ namespace Axe.Windows.AutomationTests
                 .Callback<string>(s => tempString = s)
                 .Returns(outputFileHelperMock.Object);
 
-            outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath())
+            outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>()))
                 .Returns(() => tempString);
 
             var builder = new ScanToolsBuilder(factoryMock.Object);
@@ -47,7 +48,7 @@ namespace Axe.Windows.AutomationTests
             Assert.IsNotNull(scanTools.ResultsAssembler);
             Assert.IsNotNull(scanTools.TargetElementLocator);
 
-            Assert.AreEqual(expectedPath, scanTools.OutputFileHelper.GetNewA11yTestFilePath());
+            Assert.AreEqual(expectedPath, scanTools.OutputFileHelper.GetNewA11yTestFilePath((value) => value));
 
             factoryMock.VerifyAll();
         }
