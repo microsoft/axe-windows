@@ -53,6 +53,12 @@ namespace Axe.Windows.Core.Results
         public HelpUrl HelpUrl { get; set; }
 
         /// <summary>
+        /// The link to a known framework issue that can cause this rule to fail.
+        /// This field will be null if no known framework issue exists.
+        /// </summary>
+        public string FrameworkIssueLink { get; set; }
+
+        /// <summary>
         /// Keep the Meta Info Scan Result
         /// </summary>
         public ScanMetaInfo MetaInfo { get; set; }
@@ -71,10 +77,11 @@ namespace Axe.Windows.Core.Results
         /// <param name="e">A11yElement</param>
         /// <param name="propertyId"> if the value is 0, it means that it is not using property for scan</param>
         /// <param name="status"></param>
-        public ScanResult(string description, string source, IA11yElement e, int propertyId = 0)
+        public ScanResult(string description, string source, string frameworkIssueLink, IA11yElement e, int propertyId = 0)
         {
             this.Description = description;
             this.Source = source;
+            this.FrameworkIssueLink = frameworkIssueLink;
             this.MetaInfo = propertyId != 0 ? new ScanMetaInfo(e, propertyId) : new ScanMetaInfo(e);
             this.Items = new List<RuleResult>();
         }
@@ -93,11 +100,10 @@ namespace Axe.Windows.Core.Results
         /// </summary>
         /// <param name="status"></param>
         /// <param name="desc"></param>
-        /// <param name="frameworkIssueLink"></param>
         /// <returns></returns>
-        public RuleResult GetRuleResultInstance(RuleId id, string desc, string frameworkIssueLink)
+        public RuleResult GetRuleResultInstance(RuleId id, string desc)
         {
-            var rr = new RuleResult(id, desc, this.Source, this.HelpUrl, frameworkIssueLink, this.MetaInfo.Clone());
+            var rr = new RuleResult(id, desc, this.Source, this.HelpUrl, this.FrameworkIssueLink, this.MetaInfo.Clone());
 
             this.Items.Add(rr);
 
