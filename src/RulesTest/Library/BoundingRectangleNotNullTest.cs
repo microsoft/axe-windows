@@ -101,22 +101,6 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void BoundingRectangleNotNull_EdgeGroup_NotApplicable()
-        {
-            using (var e = new MockA11yElement())
-            using (var parent = new MockA11yElement())
-            {
-                parent.ControlTypeId = ControlType.Slider;
-                e.Framework = FrameworkId.Edge;
-                e.ControlTypeId = ControlType.Group;
-                parent.Children.Add(e);
-                e.Parent = parent;
-
-                Assert.IsFalse(Rule.Condition.Matches(e));
-            } // using
-        }
-
-        [TestMethod]
         public void BoundingRectangleNotNull_SystemMenu_NotApplicable()
         {
             using (var e = new MockA11yElement())

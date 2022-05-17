@@ -437,6 +437,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The non-Chromium version of Edge has reached its end of life and should not be used for current product development. Please migrate your application to a supported browser..
+        /// </summary>
+        internal static string EdgeBrowserHasBeenDeprecated {
+            get {
+                return ResourceManager.GetString("EdgeBrowserHasBeenDeprecated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Implement the edit control&apos;s RangeValue pattern with a null LargeChange property..
         /// </summary>
         internal static string EditSupportsIncorrectRangeValuePattern {
@@ -704,15 +713,6 @@ namespace Axe.Windows.Rules.Resources {
         internal static string LandmarkNoDuplicateContentInfo {
             get {
                 return ResourceManager.GetString("LandmarkNoDuplicateContentInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provide exactly one main landmark per page..
-        /// </summary>
-        internal static string LandmarkOneMain {
-            get {
-                return ResourceManager.GetString("LandmarkOneMain", resourceCulture);
             }
         }
         

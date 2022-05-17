@@ -96,6 +96,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.Warning, results[RuleId.HelpTextNotEqualToName]);
@@ -122,7 +123,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -238,6 +238,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -264,7 +265,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -380,6 +380,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -406,7 +407,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -522,6 +522,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -548,7 +549,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
@@ -664,6 +664,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -690,7 +691,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -806,6 +806,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -832,7 +833,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
@@ -948,6 +948,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
@@ -974,7 +975,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkOneMain]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotEmpty]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);

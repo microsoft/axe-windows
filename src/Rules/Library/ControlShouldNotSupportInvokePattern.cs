@@ -6,7 +6,6 @@ using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
-using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -30,7 +29,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return AppBar | (TabItem & ~Edge);
+            return AppBar | TabItem;
         }
     } // class
 } // namespace

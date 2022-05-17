@@ -23,16 +23,5 @@ namespace Axe.Windows.RulesTests.Library
 
             Assert.IsTrue(Rule.Condition.Matches(e));
         }
-
-        [TestMethod]
-        public void TabControlWithSelectionPatternEdgeFramework_NotApplicable()
-        {
-            var e = new MockA11yElement();
-            e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_TabControlTypeId;
-            e.Patterns.Add(new A11yPattern(e, PatternType.UIA_SelectionPatternId));
-            e.Framework = FrameworkId.Edge;
-
-            Assert.IsFalse(Rule.Condition.Matches(e));
-        }
     } // class
 } // namespace

@@ -5,7 +5,6 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using static Axe.Windows.Rules.PropertyConditions.EdgeConditions;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 
 namespace Axe.Windows.Rules.Library
@@ -25,7 +24,7 @@ namespace Axe.Windows.Rules.Library
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var stopCondition = InsideEdge.Matches(e) ? NotInsideEdge : Condition.False;
+            var stopCondition = Condition.False;
 
             return !AnyAncestor(Landmarks.Any, stopCondition).Matches(e);
         }

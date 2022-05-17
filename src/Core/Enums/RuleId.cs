@@ -124,7 +124,6 @@ namespace Axe.Windows.Core.Enums
         ControlShouldSupportSpreadsheetItemPattern,
         ControlShouldSupportTableItemPattern,
         ControlShouldSupportTablePattern,
-        ControlShouldSupportTablePatternInEdge,
         ControlShouldSupportTogglePattern,
         ControlShouldSupportTransformPattern,
         ControlShouldSupportTextPattern,
@@ -144,7 +143,6 @@ namespace Axe.Windows.Core.Enums
         LandmarkMainIsTopLevel,
         LandmarkNoDuplicateBanner,
         LandmarkNoDuplicateContentInfo,
-        LandmarkOneMain,
 
         LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters,
         LocalizedLandmarkTypeIsReasonableLength,
@@ -260,5 +258,6 @@ namespace Axe.Windows.Core.Enums
         ClickablePointOffScreen,
 
         FrameworkDoesNotSupportUIAutomation,
+        EdgeBrowserHasBeenDeprecated,
     }
 }

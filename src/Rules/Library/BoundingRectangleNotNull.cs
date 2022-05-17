@@ -6,7 +6,6 @@ using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
-using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -32,9 +31,6 @@ namespace Axe.Windows.Rules.Library
             var sysmenubar = ControlType.MenuBar & StringProperties.AutomationID.Is("SystemMenuBar");
             var sysmenuitem = ControlType.MenuItem & Relationships.Parent(sysmenubar);
 
-            // This exception is meant to apply to the non-Chromium version of Edge
-            var edgeGroups = ControlType.Group & Edge;
-
             // the Bounding rectangle property might be empty due to
             // a non-existent property, or an invalid data format.
             // If the Bounding rectangle property is not empty, it means all the above criteria were met successfully
@@ -47,7 +43,6 @@ namespace Axe.Windows.Rules.Library
             return IsNotOffScreen
                 & ~WPFScrollBarPageButtons
                 & ~NonFocusableSliderButtons
-                & ~edgeGroups
                 & ~sysmenubar
                 & ~sysmenuitem;
         }

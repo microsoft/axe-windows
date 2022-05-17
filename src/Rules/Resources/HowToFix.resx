@@ -405,9 +405,6 @@ For example, if an element has a level-5 heading, its descendants can have only 
   <data name="LandmarkNoDuplicateContentInfo" xml:space="preserve">
     <value>Use the contentinfo landmark only once per page.</value>
   </data>
-  <data name="LandmarkOneMain" xml:space="preserve">
-    <value>Provide exactly one main landmark per page.</value>
-  </data>
   <data name="LocalizedLandmarkTypeIsReasonableLength" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property that contains at most 64 characters.
 Where appropriate, use a standard localized landmark type:
@@ -540,5 +537,8 @@ If the element's ClickablePoint property is incorrect, please ensure it returns 
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
     <value>Switch your application to a framework that supports UI Automation.</value>
+  </data>
+  <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
+    <value>The non-Chromium version of Edge has reached its end of life and should not be used for current product development. Please migrate your application to a supported browser.</value>
   </data>
 </root>

@@ -37,7 +37,6 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition NameOptional = CreateNameOptionalCondition();
         public static Condition IsControlElementTrueRequired = CreateIsControlRequiredCondition();
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
-        public static Condition EdgeDocument = Pane & Edge & NotParent(Edge);
         public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
         public static Condition IsButtonText = Text & Parent(Button);
 
@@ -231,18 +230,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
             var types = AppBar | Custom | Header | MenuBar | SemanticZoom | StatusBar | TitleBar | Text;
 
-            /*
-            For edit controls in Edge prior to Anaheim, the name property for password and e-mail
-            fields will contain "password" and "email" in the LocalizedControlType property.
-            Since this cannot be addressed by users, and because that version of Edge is legacy, such edit fields are allowed.
-            */
-
-            var edgeEdits = Edit
-                & Edge
-                & (LocalizedControlType.IsNoCase("password")
-                | LocalizedControlType.IsNoCase("email"));
-
-            return types | Name.Length > 50 | edgeEdits;
+            return types | Name.Length > 50;
         }
     } // class
 } // namespace
