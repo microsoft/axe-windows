@@ -84,7 +84,6 @@ ControlShouldSupportSetInfoXAML | Error | The element's ControlType requires val
 ControlShouldSupportSpreadsheetItemPattern | Error | An element whose parent supports the Spreadsheet pattern must support the SpreadsheetItem pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTableItemPattern | Error | An element whose parent supports the Table pattern must support the TableItem pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTablePattern | Error | An element of the given ControlType must support the Table pattern. | Section 508 502.3.10 AvailableActions
-ControlShouldSupportTablePatternInEdge | Warning | An element of the given ControlType must support the Table pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTogglePattern | Error | An element of the given ControlType must support the Toggle pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTransformPattern | Error | An element that can be resized must support the Transform pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTextPattern | Error | An element of the given ControlType must support the Text pattern. | Section 508 502.3.10 AvailableActions
@@ -96,7 +95,6 @@ LandmarkContentInfoIsTopLevel | Error | An element with LocalizedLandmarkType "c
 LandmarkMainIsTopLevel | Error | An element with LocalizedLandmarkType "main" must not descend from another landmark. | WCAG 1.3.1 InfoAndRelationships
 LandmarkNoDuplicateBanner | Error | A page must not have multiple elements with LocalizedLandmarkType "banner." | WCAG 1.3.1 InfoAndRelationships
 LandmarkNoDuplicateContentInfo | Error | A page must not have multiple elements with LocalizedLandmarkType "contentinfo." | WCAG 1.3.1 InfoAndRelationships
-LandmarkOneMain | Warning | A page must have exactly one element with the LocalizedLandmarkType "main." | WCAG 1.3.1 InfoAndRelationships
 LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters | Error | The [StringProperty not set] property must not contain any characters in the private Unicode range. | WCAG 1.3.1 InfoAndRelationships
 LocalizedLandmarkTypeIsReasonableLength | Error | The LocalizedLandmarkType property must not be longer than 64 characters. | WCAG 1.3.1 InfoAndRelationships
 LocalizedLandmarkTypeNotCustom | Error | The LandmarkType and LocalizedLandmarkType must not both be set to "custom." | WCAG 1.3.1 InfoAndRelationships
@@ -154,6 +152,7 @@ LocalizedControlTypeExcludesPrivateUnicodeCharacters | Error | The LocalizedCont
 ClickablePointOnScreen | Error | An element's IsOffScreen property must be false when its clickable point is on screen. | Section 508 502.3.1 ObjectInformation
 ClickablePointOffScreen | Warning | An element's IsOffScreen property must be true when its clickable point is off screen. | Section 508 502.3.1 ObjectInformation
 FrameworkDoesNotSupportUIAutomation | Error | The framework used to build this application does not support UI Automation. | Section 508 502.3.1 ObjectInformation
+EdgeBrowserHasBeenDeprecated | Error | The non-Chromium version of Microsoft Edge has been deprecated. | Section 508 502.3.1 ObjectInformation
 
 ## Severity descriptions
 
