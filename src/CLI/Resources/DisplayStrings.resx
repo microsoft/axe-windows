@@ -140,6 +140,10 @@
   <data name="ErrorNoTarget" xml:space="preserve">
     <value>Please specify either processId or processName on the command line.</value>
   </data>
+  <data name="FrameworkIssueLink" xml:space="preserve">
+    <value>  Potential Framework Issue: {0}</value>
+    <comment>{0} is the link to the known framework issue</comment>
+  </data>
   <data name="ScanDelayCountdownMoreThanOneSecondLeft" xml:space="preserve">
     <value>  {0} seconds before scan.</value>
     <comment>{0} is the remaining countdown. Leading spaces are intentional</comment>

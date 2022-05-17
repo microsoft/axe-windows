@@ -93,10 +93,11 @@ namespace Axe.Windows.Core.Results
         /// </summary>
         /// <param name="status"></param>
         /// <param name="desc"></param>
+        /// <param name="frameworkIssueLink"></param>
         /// <returns></returns>
-        public RuleResult GetRuleResultInstance(RuleId id, string desc)
+        public RuleResult GetRuleResultInstance(RuleId id, string desc, string frameworkIssueLink)
         {
-            var rr = new RuleResult(id, desc, this.Source, this.HelpUrl, this.MetaInfo.Clone());
+            var rr = new RuleResult(id, desc, this.Source, this.HelpUrl, frameworkIssueLink, this.MetaInfo.Clone());
 
             this.Items.Add(rr);
 

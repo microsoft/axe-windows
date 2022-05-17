@@ -59,6 +59,12 @@ namespace Axe.Windows.Rules
         public EvaluationCode ErrorCode { get; set; } = EvaluationCode.NotSet;
 
         /// <summary>
+        /// The link to a known framework issue that can cause this rule to fail.
+        /// This field will be null if no known framework issue exists.
+        /// </summary>
+        public string FrameworkIssueLink { get; set; }
+
+        /// <summary>
         /// Provides a string summary of the information contained in the RuleInfo object.
         /// </summary>
         public override string ToString()

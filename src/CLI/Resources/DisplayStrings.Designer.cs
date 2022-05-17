@@ -115,6 +115,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to   Potential Framework Issue: {0}.
+        /// </summary>
+        internal static string FrameworkIssueLink {
+            get {
+                return ResourceManager.GetString("FrameworkIssueLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to   {0} seconds before scan..
         /// </summary>
         internal static string ScanDelayCountdownMoreThanOneSecondLeft {

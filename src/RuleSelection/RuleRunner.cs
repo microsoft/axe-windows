@@ -62,7 +62,7 @@ namespace Axe.Windows.RuleSelection
             var scanResult = CreateResult(runResult.RuleInfo, runResult.element);
 
             var description = runResult.RuleInfo.Description;
-            var ruleResult = scanResult.GetRuleResultInstance(runResult.RuleInfo.ID, description);
+            var ruleResult = scanResult.GetRuleResultInstance(runResult.RuleInfo.ID, description, runResult.RuleInfo.FrameworkIssueLink);
             ruleResult.Status = ConvertEvaluationCodeToScanStatus(runResult.EvaluationCode);
             ruleResult.AddMessage(runResult.RuleInfo.HowToFix);
 
