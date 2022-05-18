@@ -115,15 +115,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The BoundingRectangle property of a menubar in UWP may have a null or empty value..
-        /// </summary>
-        internal static string BoundingRectangleOnUWPMenuBar {
-            get {
-                return ResourceManager.GetString("BoundingRectangleOnUWPMenuBar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The BoundingRectangle property of a menu item in UWP may have a null or empty value..
         /// </summary>
         internal static string BoundingRectangleOnUWPMenuItem {

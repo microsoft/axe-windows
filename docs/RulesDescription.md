@@ -9,7 +9,6 @@ BoundingRectangleNotValidButOffScreen | NeedsReview | The BoundingRectangle prop
 BoundingRectangleDataFormatCorrect | Error | The BoundingRectangle property must return a valid rectangle. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleCompletelyObscuresContainer | Error | An element's BoundingRectangle must not obscure its container element. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleContainedInParent | Warning | An element's BoundingRectangle must be contained within its parent element. | Section 508 502.3.1 ObjectInformation
-BoundingRectangleOnUWPMenuBar | NeedsReview | The BoundingRectangle property of a menubar in UWP may have a null or empty value. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleOnUWPMenuItem | NeedsReview | The BoundingRectangle property of a menu item in UWP may have a null or empty value. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleOnWPFTextParent | NeedsReview | The BoundingRectangle property of a given element in the WPF framework whose parent is of type text may have a null or empty value. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleSizeReasonable | Error | The BoundingRectangle property must represent an area of at least 25 pixels. | Section 508 502.3.1 ObjectInformation
