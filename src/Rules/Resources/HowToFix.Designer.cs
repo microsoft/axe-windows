@@ -126,15 +126,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The BoundingRectangle property of a given element in the WPF framework whose parent is of type text may have a null or empty value..
-        /// </summary>
-        internal static string BoundingRectangleOnWPFTextParent {
-            get {
-                return ResourceManager.GetString("BoundingRectangleOnWPFTextParent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Modify the BoundingRectangle property so that its width and height define an area of at least 25 pixels..
         /// </summary>
         internal static string BoundingRectangleSizeReasonable {
