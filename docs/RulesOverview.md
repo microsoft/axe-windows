@@ -37,8 +37,7 @@ The `Evaluate` method of a rule should return either `EvaluationCode.Pass` or on
 `EvaluationCode` | Description
 --- | ---
 `Error` | if the violation represents an unambiguous accessibility issue and can be conclusively determined by the tool
-`Open` | if the violation can be conclusively determined by the tool but may or may not represent an accessibility issue
-`Note` | if the violation cannot be conclusively determined by the tool and may or may not represent an accessibility issue
+`NeedsReview` | if the violation highlights possible accessibility issues that need to be reviewed and verified by a human
 `Warning` | if the violation represents an unambiguous accessibility issue but cannot be conclusively determined by the tool
 `RuleExecutionError` | if a problem occurred while executing the test
 
