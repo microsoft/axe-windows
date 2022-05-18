@@ -13,6 +13,12 @@ namespace Axe.Windows.RulesTests.Library
         private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportSetInfoWPF();
 
         [TestMethod]
+        public void FrameworkIssueLink_IsNotNull()
+        {
+            Assert.IsNotNull(Rule.Info.FrameworkIssueLink);
+        }
+
+        [TestMethod]
         public void TestControlShouldSupportSetInfoWPFNoPositionInSetPropertyFail()
         {
             var e = new MockA11yElement();

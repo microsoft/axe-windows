@@ -19,6 +19,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.ControlShouldSupportSetInfo;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.ErrorCode = EvaluationCode.Warning;
+            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ControlShouldSupportSetInfoWPF";
         }
 
         public override bool PassesTest(IA11yElement e)
