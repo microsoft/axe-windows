@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.Description = Descriptions.ControlShouldSupportSetInfo;
             this.Info.HowToFix = HowToFix.ControlShouldSupportSetInfo;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            this.Info.ErrorCode = EvaluationCode.Error;
             this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ControlShouldSupportSetInfoWPF";
         }
 
