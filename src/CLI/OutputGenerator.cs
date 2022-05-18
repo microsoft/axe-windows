@@ -153,9 +153,18 @@ namespace AxeWindowsCLI
             foreach (ScanResult scanResult in scanResults.Errors)
             {
                 _writer.WriteLine(DisplayStrings.ScanResultDetailHeader, ++errorCount, scanResult.Rule.Description);
+                WriteFrameworkLink(scanResult);
                 WriteProperties(scanResult);
                 WritePatterns(scanResult);
                 _writer.WriteLine(DisplayStrings.ScanResultDetailFooter);
+            }
+        }
+
+        private void WriteFrameworkLink(ScanResult scanResult)
+        {
+            if (scanResult.Rule.FrameworkIssueLink != null)
+            {
+                _writer.WriteLine(DisplayStrings.FrameworkIssueLink, scanResult.Rule.FrameworkIssueLink);
             }
         }
 

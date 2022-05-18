@@ -60,6 +60,12 @@ namespace Axe.Windows.Core.Results
         public Uri IssueLink { get; set; }
 
         /// <summary>
+        /// The link to a known framework issue that can cause this rule to fail.
+        /// This field will be null if no known framework issue exists.
+        /// </summary>
+        public string FrameworkIssueLink { get; set; }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="status"></param>
@@ -67,7 +73,8 @@ namespace Axe.Windows.Core.Results
         /// <param name="source"></param>
         /// <param name="url"></param>
         /// <param name="meta"></param>
-        internal RuleResult(RuleId id, string desc, string source, HelpUrl url, ScanMetaInfo meta)
+        /// <param name="frameworkIssueLink"></param>
+        internal RuleResult(RuleId id, string desc, string source, HelpUrl url, string frameworkIssueLink, ScanMetaInfo meta)
         {
             this.Rule = id;
             this.Description = desc;
@@ -75,6 +82,7 @@ namespace Axe.Windows.Core.Results
             this.Messages = new List<string>();
             this.MetaInfo = meta;
             this.HelpUrl = url;
+            this.FrameworkIssueLink = frameworkIssueLink;
         }
 
         /// <summary>

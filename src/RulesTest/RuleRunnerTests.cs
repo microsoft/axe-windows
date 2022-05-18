@@ -163,6 +163,70 @@ namespace Axe.Windows.RulesTests
         }
 
         [TestMethod]
+        public void RunRuleByID_FrameworkIssueLinkIsNull_PropagatesToResult()
+        {
+            var e = new MockA11yElement();
+
+            var conditionMock = new Mock<Condition>(MockBehavior.Strict);
+            conditionMock.Setup(m => m.Matches(e)).Returns(true).Verifiable();
+
+            var infoStub = new RuleInfo
+            {
+                ErrorCode = EvaluationCode.NeedsReview,
+            };
+
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e)).Returns(true).Verifiable();
+            ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.IsNull(result.RuleInfo.FrameworkIssueLink);
+
+            conditionMock.VerifyAll();
+            ruleMock.VerifyAll();
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RunRuleByID_FrameworkIssueLinkIsNotNull_PropagatesToResult()
+        {
+            const string frameworkIssueLink = "https://docs.microsoft.com/known-framework-link";
+            var e = new MockA11yElement();
+
+            var conditionMock = new Mock<Condition>(MockBehavior.Strict);
+            conditionMock.Setup(m => m.Matches(e)).Returns(true).Verifiable();
+
+            var infoStub = new RuleInfo
+            {
+                ErrorCode = EvaluationCode.NeedsReview,
+                FrameworkIssueLink = frameworkIssueLink,
+            };
+
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
+            ruleMock.Setup(m => m.PassesTest(e)).Returns(true).Verifiable();
+            ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var result = runner.RunRuleByID(default(RuleId), e);
+
+            Assert.AreEqual(frameworkIssueLink, result.RuleInfo.FrameworkIssueLink);
+
+            conditionMock.VerifyAll();
+            ruleMock.VerifyAll();
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
         public void RunRuleByID_ReturnsExecutionErrorWhenPassesTestThrowsException()
         {
             var e = new MockA11yElement();
