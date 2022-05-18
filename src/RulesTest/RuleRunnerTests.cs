@@ -196,7 +196,7 @@ namespace Axe.Windows.RulesTests
         [TestMethod]
         public void RunRuleByID_FrameworkIssueLinkIsNotNull_PropagatesToResult()
         {
-            const string frameworkIssueLink = "htt[s://docs.microsoft.com/known-framework-link";
+            const string frameworkIssueLink = "https://docs.microsoft.com/known-framework-link";
             var e = new MockA11yElement();
 
             var conditionMock = new Mock<Condition>(MockBehavior.Strict);
