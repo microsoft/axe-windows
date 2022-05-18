@@ -32,7 +32,6 @@ namespace Axe.Windows.Core.Enums
         BoundingRectangleDataFormatCorrect,
         BoundingRectangleCompletelyObscuresContainer,
         BoundingRectangleContainedInParent,
-        BoundingRectangleOnUWPMenuItem,
         BoundingRectangleOnWPFTextParent,
         BoundingRectangleSizeReasonable,
 

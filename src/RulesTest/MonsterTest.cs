@@ -26,7 +26,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ButtonShouldHavePatterns]);
@@ -167,7 +166,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
@@ -308,7 +306,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
@@ -449,7 +446,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
@@ -590,7 +586,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
@@ -731,7 +726,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
@@ -872,7 +866,6 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnUWPMenuItem]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleOnWPFTextParent]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
