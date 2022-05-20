@@ -16,6 +16,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.HowToFix = HowToFix.EdgeBrowserHasBeenDeprecated;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.ErrorCode = EvaluationCode.Error;
+            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-EdgeBrowserHasBeenDeprecated";
         }
 
         public override bool PassesTest(IA11yElement e)

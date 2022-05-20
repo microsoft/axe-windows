@@ -21,6 +21,12 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
+        public void FrameworkIssueLink_IsNotNull()
+        {
+            Assert.IsNotNull(Rule.Info.FrameworkIssueLink);
+        }
+
+        [TestMethod]
         public void Condition_FrameworkIsNotEdge_ReturnsFalse()
         {
             string[] nonWin32Values = { FrameworkId.DirectUI, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, FrameworkId.Win32, "NotEdge" };
