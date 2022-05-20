@@ -428,15 +428,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It is best when Edit controls support the Text pattern. The Value pattern is acceptable, but much less accessible..
-        /// </summary>
-        internal static string EditSupportsOnlyValuePattern {
-            get {
-                return ResourceManager.GetString("EditSupportsOnlyValuePattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Switch your application to a framework that supports UI Automation..
         /// </summary>
         internal static string FrameworkDoesNotSupportUIAutomation {

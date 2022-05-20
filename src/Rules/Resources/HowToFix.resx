@@ -135,9 +135,6 @@
   <data name="ControlShouldNotSupportWindowPattern" xml:space="preserve">
     <value>An element of the given type should not support the Window pattern.</value>
   </data>
-  <data name="EditSupportsOnlyValuePattern" xml:space="preserve">
-    <value>It is best when Edit controls support the Text pattern. The Value pattern is acceptable, but much less accessible.</value>
-  </data>
   <data name="HelpTextNotEqualToName" xml:space="preserve">
     <value>The HelpText property of an element must not be the same as the element's Name property.</value>
   </data>
