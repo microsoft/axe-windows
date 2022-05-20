@@ -288,5 +288,53 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 Assert.IsFalse(ElementGroups.IsWPFCheckBoxText.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void ListXAML_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.ListXAML.Matches(e));
+
+                e.ControlTypeId = List;
+                Assert.IsFalse(ElementGroups.ListXAML.Matches(e));
+
+                e.Framework = "XAML";
+                Assert.IsTrue(ElementGroups.ListXAML.Matches(e));
+
+                e.ControlTypeId = ListItem;
+                Assert.IsFalse(ElementGroups.ListXAML.Matches(e));
+            } // using
+
+        }
+
+        [TestMethod]
+        public void HyperlinkInTextXAML_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
+
+                e.ControlTypeId = Hyperlink;
+                Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
+
+                e.Framework = "XAML";
+                Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
+
+                e.Parent = parent;
+                Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
+
+                parent.ControlTypeId = Text;
+                Assert.IsTrue(ElementGroups.HyperlinkInTextXAML.Matches(e));
+
+                e.ControlTypeId = Text;
+                Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
+
+                e.ControlTypeId = Hyperlink;
+                e.Framework = "WPF";
+                Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
+            } // using
+        }
     } // class
 } // namespace
