@@ -16,9 +16,20 @@ Rules have three basic components
    - `Description`: a short description (fewer than 80 characters) of the standards violation (e.g., "The Name property must not be null")
    - `HowToFix`: an in-depth description of the standards violation and suggested remediation(s)
    - `Standard`: a value from the `A11yCriteriaId` enumeration which maps the given rule to a documented standard
+   - `ErrorCode`: an [`EvaluationCode`](https://github.com/microsoft/axe-windows/blob/main/src/Rules/EvaluationCode.cs) that reflects the severity of failures of this rule
    - `PropertyID`: an optional property id (e.g., `PropertyType.UIA_ControlTypePropertyId`) used to link a rule to a property-platform-based snippet with extended information about the rule
+   - `FrameworkIssueLink`: an optional URL that exists only for rules which fail due to known framework issues. The referenced page provides more detailed information about how to investigate or resolve this issue
 - `Condition`: a `Condition` object which determines under what circumstances the rule is run (see below)
-- `Evaluate`: a method which determines if the test passes or is in violation of a standard
+- `PassesTest`: a method which determines if the test passes or is in violation of a standard
+
+#### Values for `RuleInfo.ErrorCode`
+The `RuleInfo.ErrorCode` _must_ be set to one of the following supported values:
+
+`EvaluationCode` | Description
+--- | ---
+`Error` | if the violation represents an unambiguous accessibility issue and can be conclusively determined by the tool
+`Warning` | if the violation represents an unambiguous accessibility issue but cannot be conclusively determined by the tool
+`NeedsReview` | if the violation highlights possible accessibility issues that need to be reviewed and verified by a human
 
 ### Inheritance
 
@@ -30,22 +41,11 @@ All rules must inherit from the `Axe.Windows.Rules.Rule` base class. Rules are d
 
 A rule represents a single, self-contained test. For example, `NameIsNotNull`, `NameIsNotEmpty`, and `NameIsNotWhiteSpace` all test the value of the Name property in similar ways; but they are split into separate rules. This increases the specificity of the feedback given to the user and makes it possible to change the evaluation code or applicability (`Condition`) of each rule individually without unintentionally affecting other rules.
 
-#### The `Evaluate` method returns only one failing `EvaluationCode`
+#### The `PassesTest` method
 
-The `Evaluate` method of a rule should return either `EvaluationCode.Pass` or only one of the following evaluation codes:
+The `PassesTest` method of a rule returns `false` only when a violation of a standard is identified. When this occurs, the severity indicated by `RuleInfo.ErrorCode` will be reflected in the accessibility test results.
 
-`EvaluationCode` | Description
---- | ---
-`Error` | if the violation represents an unambiguous accessibility issue and can be conclusively determined by the tool
-`NeedsReview` | if the violation highlights possible accessibility issues that need to be reviewed and verified by a human
-`Warning` | if the violation represents an unambiguous accessibility issue but cannot be conclusively determined by the tool
-`RuleExecutionError` | if a problem occurred while executing the test
-
-_Note:_ `EvaluationCode.NotApplicable` is never returned by the `Evaluate` method of the `Rule` class. It indicates that the rule in question is not applicable to the given situation. For example, a rule which checks for specific patterns on a button is not applicable to an edit control.
-
-_Note:_ Because results from automated tests may be represented in the SARIF format, evaluation codes are loosely based on the "Level" property described in the [SARIF specification](http://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html##_Toc517436065) under section 3.19.7.
-
-#### Use conditions in the `Evaluate` method
+#### Use conditions in the `PassesTest` method
 
 Using conditions (described below) makes it possible to represent the evaluation logic both as code and as a string that can be understood by a user. Please see the "Future" section of this document for more details.
 
@@ -69,6 +69,5 @@ When conditions are combined using operators, so too are there associated descri
 
 There are many ready-made conditions you can use from the `Axe.Windows.Rules.PropertyConditions` namespace.
 
-### Future development
-
-Ideally, all rules would be modified so that instead of an `Evaluate` method, they would contain an `Evaluation` condition property and a single possible `EvaluationCode` property to be returned in the case of a violation. This would make it possible (through the self-describing mechanism of conditions) to document every part of a rules logic and information. Exposing this information would make it easier to have conversations about exactly when rules apply, what evaluation logic should be performed, and what the severity of a violation should be. Such information has historically been either opaque, out-of-date, or non-existent. But it would be helpful to have discussion starting from a place where all the rules information is easily available without looking in the code.
+### Rule documentation file
+All PR's that modify rules should update the [`docs/RulesDescription.md`](https://github.com/microsoft/axe-windows/blob/main/docs/RulesDescription.md) file. This file is auto-generated by the tool built in the [`RulesMD`](https://github.com/microsoft/axe-windows/tree/main/src/RulesMD) project
