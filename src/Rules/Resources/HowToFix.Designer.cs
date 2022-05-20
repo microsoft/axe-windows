@@ -126,33 +126,6 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The BoundingRectangle property of a menubar in UWP may have a null or empty value..
-        /// </summary>
-        internal static string BoundingRectangleOnUWPMenuBar {
-            get {
-                return ResourceManager.GetString("BoundingRectangleOnUWPMenuBar", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The BoundingRectangle property of a menu item in UWP may have a null or empty value..
-        /// </summary>
-        internal static string BoundingRectangleOnUWPMenuItem {
-            get {
-                return ResourceManager.GetString("BoundingRectangleOnUWPMenuItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The BoundingRectangle property of a given element in the WPF framework whose parent is of type text may have a null or empty value..
-        /// </summary>
-        internal static string BoundingRectangleOnWPFTextParent {
-            get {
-                return ResourceManager.GetString("BoundingRectangleOnWPFTextParent", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Modify the BoundingRectangle property so that its width and height define an area of at least 25 pixels..
         /// </summary>
         internal static string BoundingRectangleSizeReasonable {
@@ -451,15 +424,6 @@ namespace Axe.Windows.Rules.Resources {
         internal static string EditSupportsIncorrectRangeValuePattern {
             get {
                 return ResourceManager.GetString("EditSupportsIncorrectRangeValuePattern", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to It is best when Edit controls support the Text pattern. The Value pattern is acceptable, but much less accessible..
-        /// </summary>
-        internal static string EditSupportsOnlyValuePattern {
-            get {
-                return ResourceManager.GetString("EditSupportsOnlyValuePattern", resourceCulture);
             }
         }
         

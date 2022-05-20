@@ -120,15 +120,6 @@
   <data name="BoundingRectangleNotValidButOffScreen" xml:space="preserve">
     <value>The BoundingRectangle property is not valid, but the element is off-screen.</value>
   </data>
-  <data name="BoundingRectangleOnUWPMenuBar" xml:space="preserve">
-    <value>The BoundingRectangle property of a menubar in UWP may have a null or empty value.</value>
-  </data>
-  <data name="BoundingRectangleOnUWPMenuItem" xml:space="preserve">
-    <value>The BoundingRectangle property of a menu item in UWP may have a null or empty value.</value>
-  </data>
-  <data name="BoundingRectangleOnWPFTextParent" xml:space="preserve">
-    <value>The BoundingRectangle property of a given element in the WPF framework whose parent is of type text may have a null or empty value.</value>
-  </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
     <value>A button element should only support one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. </value>
   </data>
@@ -143,9 +134,6 @@
   </data>
   <data name="ControlShouldNotSupportWindowPattern" xml:space="preserve">
     <value>An element of the given type should not support the Window pattern.</value>
-  </data>
-  <data name="EditSupportsOnlyValuePattern" xml:space="preserve">
-    <value>It is best when Edit controls support the Text pattern. The Value pattern is acceptable, but much less accessible.</value>
   </data>
   <data name="HelpTextNotEqualToName" xml:space="preserve">
     <value>The HelpText property of an element must not be the same as the element's Name property.</value>

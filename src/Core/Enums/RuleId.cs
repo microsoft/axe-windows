@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using System;
 
 namespace Axe.Windows.Core.Enums
 {
@@ -11,13 +10,11 @@ namespace Axe.Windows.Core.Enums
     /// If writing a ScanException, generally the first rule within a scan grouping
     ///     is appropriate to use in the constructor of GetRuleResultInstance(...)
     ///
-    /// Please don't remove or rename any existing ruleIDs.
-    /// since RuleIds are serialized in string format, if any name is changed or removed, it may cause an error while deserializing an existing reesults file.
+    /// Unneeded RuleId values should be removed from this enum when the rule is removed.
     /// </summary>
     public enum RuleId
     {
-        // this value will be set if the RuleResult.Rule is loaded from Old results file.
-        // it happens since we removed RuleId propert and replace it with Rule which is serialized in string format.
+        // this value will be used if the RuleResult.Rule is loaded from disk
         Indecisive = 0,
 
         ScanMutedByException,
@@ -32,9 +29,6 @@ namespace Axe.Windows.Core.Enums
         BoundingRectangleDataFormatCorrect,
         BoundingRectangleCompletelyObscuresContainer,
         BoundingRectangleContainedInParent,
-        BoundingRectangleOnUWPMenuBar,
-        BoundingRectangleOnUWPMenuItem,
-        BoundingRectangleOnWPFTextParent,
         BoundingRectangleSizeReasonable,
 
         // Axe.Windows.Rules
@@ -43,15 +37,11 @@ namespace Axe.Windows.Core.Enums
         ButtonInvokeAndTogglePatterns, // Button should not have Invoke and Toggle patterns together.
         ButtonInvokeAndExpandCollapsePatterns, // Button may have Invoke and ExpandCollapse patterns together. (warning)
         ButtonToggleAndExpandCollapsePatterns, // Button should have have Toggle and ExpandCollapse patterns together.
-        ButtonExpandCollapsePattern,   // obsolete but don't remove since removal will break backward compatibility.
-        ButtonPatterns, // obsolete. keep it to avoid backward compat issue.
 
         // scans
         ChildUniqueNameOrType,
 
         // Axe.Windows.Rules
-        ChildUniqueNameOrTypeAndFocusable, // deprecated
-        ChildUniqueNameOrTypeAndNotFocusable, // deprecated
         SiblingUniqueAndFocusable,
         SiblingUniqueAndNotFocusable,
 
@@ -130,9 +120,6 @@ namespace Axe.Windows.Core.Enums
 
         // Axe.Windows.Rules
         EditSupportsIncorrectRangeValuePattern,
-
-        [Obsolete("This rule has been deprecated", true)]
-        EditSupportsOnlyValuePattern,
 
         HeadingLevelDescendsWhenNested,
 
