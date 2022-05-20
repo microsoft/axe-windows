@@ -76,7 +76,7 @@ ControlShouldSupportInvokePattern | Error | An element of the given ControlType 
 ControlShouldSupportScrollItemPattern | Error | An element whose parent supports the Scroll pattern must support the ScrollItem pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportSelectionItemPattern | Error | An element of the given ControlType must support the SelectionItem pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportSelectionPattern | Error | An element of the given ControlType must support the Selection pattern. | Section 508 502.3.10 AvailableActions
-ControlShouldSupportSetInfoWPF | Warning | The element's ControlType requires valid values for SizeOfSet and PositionInSet. | Section 508 502.3.1 ObjectInformation
+ControlShouldSupportSetInfoWPF | Error | The element's ControlType requires valid values for SizeOfSet and PositionInSet. | Section 508 502.3.1 ObjectInformation
 ControlShouldSupportSetInfoXAML | Error | The element's ControlType requires valid values for SizeOfSet and PositionInSet. | Section 508 502.3.1 ObjectInformation
 ControlShouldSupportSpreadsheetItemPattern | Error | An element whose parent supports the Spreadsheet pattern must support the SpreadsheetItem pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTableItemPattern | Error | An element whose parent supports the Table pattern must support the TableItem pattern. | Section 508 502.3.10 AvailableActions
