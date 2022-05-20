@@ -16,7 +16,7 @@ Rules have three basic components
    - `Description`: a short description (fewer than 80 characters) of the standards violation (e.g., "The Name property must not be null")
    - `HowToFix`: an in-depth description of the standards violation and suggested remediation(s)
    - `Standard`: a value from the `A11yCriteriaId` enumeration which maps the given rule to a documented standard
-   - `ErrorCode`: an [`EvaluationCode`](https://github.com/microsoft/axe-windows/blob/main/src/Rules/EvaluationCode.cs) that reflects the severity of failures of this rule
+   - `ErrorCode`: an `EvaluationCode` that reflects the severity of failures of this rule
    - `PropertyID`: an optional property id (e.g., `PropertyType.UIA_ControlTypePropertyId`) used to link a rule to a property-platform-based snippet with extended information about the rule
    - `FrameworkIssueLink`: an optional URL that exists only for rules which fail due to known framework issues. The referenced page provides more detailed information about how to investigate or resolve this issue
 - `Condition`: a `Condition` object which determines under what circumstances the rule is run (see below)
