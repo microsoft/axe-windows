@@ -4,12 +4,7 @@
 namespace Axe.Windows.Core.Enums
 {
     /// <summary>
-    /// Strong rule ids. Previously rules were only identifiable through
-    ///     their string description values
-    /// Rules are grouped by scan via whitespace when relevant
-    /// If writing a ScanException, generally the first rule within a scan grouping
-    ///     is appropriate to use in the constructor of GetRuleResultInstance(...)
-    ///
+    /// Strong rule ids. Each rule must have a unique ID.
     /// Unneeded RuleId values should be removed from this enum when the rule is removed.
     /// </summary>
     public enum RuleId
@@ -17,12 +12,6 @@ namespace Axe.Windows.Core.Enums
         // this value will be used if the RuleResult.Rule is loaded from disk
         Indecisive = 0,
 
-        ScanMutedByException,
-
-        // scans
-        BoundingRectangleExists,
-
-        // Axe.Windows.Rules
         BoundingRectangleNotAllZeros,
         BoundingRectangleNotNull,
         BoundingRectangleNotValidButOffScreen,
@@ -31,24 +20,17 @@ namespace Axe.Windows.Core.Enums
         BoundingRectangleContainedInParent,
         BoundingRectangleSizeReasonable,
 
-        // Axe.Windows.Rules
         SplitButtonInvokeAndTogglePatterns,
         ButtonShouldHavePatterns, // check whether button has at least one of three patterns(Invoke,Toggle,ExpandCollapse)
         ButtonInvokeAndTogglePatterns, // Button should not have Invoke and Toggle patterns together.
         ButtonInvokeAndExpandCollapsePatterns, // Button may have Invoke and ExpandCollapse patterns together. (warning)
         ButtonToggleAndExpandCollapsePatterns, // Button should have have Toggle and ExpandCollapse patterns together.
 
-        // scans
-        ChildUniqueNameOrType,
-
-        // Axe.Windows.Rules
         SiblingUniqueAndFocusable,
         SiblingUniqueAndNotFocusable,
 
-        // Axe.Windows.Rules
         ChildrenNotAllowedInContentView,
 
-        // Axe.Windows.Rules
         ContentViewButtonStructure,
         ContentViewCalendarStructure,
         ContentViewCheckBoxStructure,
@@ -96,7 +78,6 @@ namespace Axe.Windows.Core.Enums
         ControlViewTreeStructure,
         ControlViewTreeItemStructure,
 
-        // Axe.Windows.Rules
         ComboBoxShouldNotSupportScrollPattern,
         ControlShouldNotSupportInvokePattern,
         ControlShouldNotSupportScrollPattern,
@@ -118,12 +99,10 @@ namespace Axe.Windows.Core.Enums
         ControlShouldSupportTransformPattern,
         ControlShouldSupportTextPattern,
 
-        // Axe.Windows.Rules
         EditSupportsIncorrectRangeValuePattern,
 
         HeadingLevelDescendsWhenNested,
 
-        // Axe.Windows.Rules
         LandmarkBannerIsTopLevel,
         LandmarkComplementaryIsTopLevel,
         LandmarkContentInfoIsTopLevel,
@@ -140,30 +119,18 @@ namespace Axe.Windows.Core.Enums
 
         PatternsSupportedByControlType,
 
-        PatternsExpectedBasedOnParent,
-
-        PatternsExpectedBasedOnControlType,
-
-        HelpTextExists,
         HelpTextNotEqualToName,
 
         HyperlinkNameShouldBeUnique,
 
         IsControlElementPropertyExists,
-        IsControlElementPropertyCorrect,
 
-        // Axe.Windows.Rules
         IsContentElementPropertyExists,
         IsContentElementFalseOptional,
         IsContentElementTrueOptional,
         IsControlElementTrueOptional,
         IsControlElementTrueRequired,
 
-        // Scans
-        IsKeyboardFocusable,
-        IsKeyboardFocusableBasedOnPatterns,
-
-        // Axe.Windows.Rules
         IsKeyboardFocusableShouldBeTrue,
         IsKeyboardFocusableFalseButDisabled,
         IsKeyboardFocusableForListItemShouldBeTrue,
@@ -174,19 +141,10 @@ namespace Axe.Windows.Core.Enums
         IsKeyboardFocusableShouldBeFalse,
         IsKeyboardFocusableTopLevelTextPattern,
 
-        ItemTypeCorrect,
-
-        // Axe.Windows.Rules
         ItemTypeRecommended,
 
-        // Axe.Windows.Rules
-        LocalizedControlTypeExists,
         LocalizedControlTypeReasonable,
 
-        // scans
-        NameNonEmpty,
-
-        // Axe.Windows.Rules
         NameNotEmpty,
         NameExcludesControlType,
         NameExcludesLocalizedControlType,
@@ -195,17 +153,6 @@ namespace Axe.Windows.Core.Enums
         OrientationPropertyExists,
         ProgressBarRangeValue,
 
-        IncludesWebContent,
-
-        // These come from the "ScanPropertyAttribute" scan, which
-        // are used in Scanner.Controls in a dynamic way, e.g.
-        // [ScanProperty(PropertyTypes.UIA_IsContentElementPropertyId, ExpectedValue = false, ...
-        // But each such property will require its own rule id here.
-        // given by ExtensionMethods.GetPropertyCorrectRule(int A11yProperty)
-        IsContentElementPropertyCorrect,
-        ItemStatusPropertyCorrect,
-
-        // Axe.Windows.Rules
         ItemStatusExists,
 
         // given by ExtensionMethods.GetTreeStructureRule(TreeViewModes)
@@ -231,7 +178,6 @@ namespace Axe.Windows.Core.Enums
 
         ParentChildShouldNotHaveSameNameAndLocalizedControlType,
 
-        // Axe.Windows.Rules
         SelectionPatternSelectionRequired,
         SelectionPatternSingleSelection,
         SelectionItemPatternSingleSelection,
