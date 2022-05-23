@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using Axe.Windows.Core.Enums;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
+using static Axe.Windows.RulesTests.ControlType;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -123,6 +124,35 @@ namespace Axe.Windows.RulesTests.Library
             {
                 e.ControlTypeId = ControlType.MenuBar;
                 e.AutomationId = "SystemMenuBar";
+
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void BoundingRectangleNotNull_ListViewXAML_NotApplicable()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.IsOffScreen = true;
+                e.Framework = "XAML";
+                e.ControlTypeId = List;
+
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void BoundingRectangleNotNull_HyperlinkInTextBlockXAML_NotApplicable()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                parent.ControlTypeId = Text;
+                e.Parent = parent;
+                e.IsOffScreen = true;
+                e.Framework = "XAML";
+                e.ControlTypeId = Hyperlink;
 
                 Assert.IsFalse(Rule.Condition.Matches(e));
             } // using

@@ -40,7 +40,11 @@ namespace Axe.Windows.Rules.Library
             // These two are excluded since Windows 10 sets the bounding rectangles of these as null by default.
             // WPF Scrollbar page buttons may sometimes
             // legitimately be null or all zeros when the thumb control is at the maximum or minimum value.
+            //
+            // We also exclude cases handled by rules split from this rule
             return IsNotOffScreen
+                & ~ListXAML                  // Covered by BoundingRectangleNotNullListViewXAML
+                & ~HyperlinkInTextXAML       // Covered by BoundingRectangleNotNullTextBlockXAML
                 & ~WPFScrollBarPageButtons
                 & ~NonFocusableSliderButtons
                 & ~sysmenubar

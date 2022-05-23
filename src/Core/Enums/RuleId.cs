@@ -20,6 +20,10 @@ namespace Axe.Windows.Core.Enums
         BoundingRectangleContainedInParent,
         BoundingRectangleSizeReasonable,
 
+        // 2 special case rules for known framework issues
+        BoundingRectangleNotNullListViewXAML,
+        BoundingRectangleNotNullTextBlockXAML,
+
         SplitButtonInvokeAndTogglePatterns,
         ButtonShouldHavePatterns, // check whether button has at least one of three patterns(Invoke,Toggle,ExpandCollapse)
         ButtonInvokeAndTogglePatterns, // Button should not have Invoke and Toggle patterns together.

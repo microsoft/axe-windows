@@ -39,6 +39,8 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsControlElementTrueOptional = CreateIsControlOptionalCondition();
         public static Condition WPFDataGridCell = WPF & StringProperties.ClassName.Is("DataGridCell");
         public static Condition IsButtonText = Text & Parent(Button);
+        public static Condition ListXAML = List & XAML;
+        public static Condition HyperlinkInTextXAML = Hyperlink & XAML & Parent(Text);
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
