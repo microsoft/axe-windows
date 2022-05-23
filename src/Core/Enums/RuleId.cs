@@ -134,6 +134,8 @@ namespace Axe.Windows.Core.Enums
         IsContentElementTrueOptional,
         IsControlElementTrueOptional,
         IsControlElementTrueRequired,
+        IsControlElementTrueRequiredButtonWPF,
+        IsControlElementTrueRequiredTextInEditXAML,
 
         IsKeyboardFocusableShouldBeTrue,
         IsKeyboardFocusableFalseButDisabled,

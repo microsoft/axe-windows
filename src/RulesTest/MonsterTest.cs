@@ -102,7 +102,7 @@ namespace Axe.Windows.RulesTests
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
             Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequired]);
+            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueRequired]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
             Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
