@@ -149,6 +149,7 @@ NameExcludesPrivateUnicodeCharacters | Error | The Name property must not contai
 HelpTextExcludesPrivateUnicodeCharacters | Error | The HelpText property must not contain any characters in the private Unicode range. | Section 508 502.3.1 ObjectInformation
 LocalizedControlTypeExcludesPrivateUnicodeCharacters | Error | The LocalizedControlType property must not contain any characters in the private Unicode range. | Section 508 502.3.1 ObjectInformation
 ClickablePointOnScreen | Error | An element's IsOffScreen property must be false when its clickable point is on screen. | Section 508 502.3.1 ObjectInformation
+ClickablePointOnScreenWPF | Error | An element's IsOffScreen property must be false when its clickable point is on screen. | Section 508 502.3.1 ObjectInformation
 ClickablePointOffScreen | Warning | An element's IsOffScreen property must be true when its clickable point is off screen. | Section 508 502.3.1 ObjectInformation
 FrameworkDoesNotSupportUIAutomation | Error | The framework used to build this application does not support UI Automation. | Section 508 502.3.1 ObjectInformation
 EdgeBrowserHasBeenDeprecated | Error | The non-Chromium version of Microsoft Edge has been deprecated. | Section 508 502.3.1 ObjectInformation
