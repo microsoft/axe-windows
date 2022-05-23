@@ -8,9 +8,9 @@ using static Axe.Windows.Rules.PropertyConditions.Framework;
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.EdgeBrowserHasBeenDeprecated)]
-    class EdgeBroswerHasBeenDeprecated : Rule
+    class EdgeBrowserHasBeenDeprecated : Rule
     {
-        public EdgeBroswerHasBeenDeprecated()
+        public EdgeBrowserHasBeenDeprecated()
         {
             this.Info.Description = Descriptions.EdgeBrowserHasBeenDeprecated;
             this.Info.HowToFix = HowToFix.EdgeBrowserHasBeenDeprecated;

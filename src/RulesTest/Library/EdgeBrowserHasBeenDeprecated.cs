@@ -11,7 +11,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class EdgeBrowserHasBeenDeprecated
     {
-        private readonly static Rules.IRule Rule = new Rules.Library.EdgeBroswerHasBeenDeprecated();
+        private readonly static Rules.IRule Rule = new Rules.Library.EdgeBrowserHasBeenDeprecated();
         private Mock<IA11yElement> _elementMock;
 
         [TestInitialize]
