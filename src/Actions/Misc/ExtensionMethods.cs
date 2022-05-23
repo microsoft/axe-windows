@@ -72,7 +72,7 @@ namespace Axe.Windows.Actions.Misc
         ///
         /// example:
         /// {
-        ///     "RuleId":"NameNonEmpty",
+        ///     "RuleId":"NameNotEmpty",
         ///     "SingleTestResults":[{"ControlType":"Window","UIFramework":"WPF","Pass":"1"},
         ///                          {"ControlType":"MenuBar","UIFramework":"WPF","Pass":"2", "Fail":"4"}]
         /// }
