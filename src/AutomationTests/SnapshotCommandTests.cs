@@ -13,7 +13,7 @@ namespace Axe.Windows.AutomationTests
     using ScanResults = ScanResults;
 
     [TestClass]
-    public class SnapshotCommandUnitTests
+    public class SnapshotCommandTests
     {
         private MockRepository _mockRepo;
         private Mock<IScanTools> _scanToolsMock;
@@ -24,7 +24,7 @@ namespace Axe.Windows.AutomationTests
         private Mock<IScanResultsAssembler> _resultsAssemblerMock;
         private Config _minimalConfig;
 
-        public SnapshotCommandUnitTests()
+        public SnapshotCommandTests()
         {
             _mockRepo = new MockRepository(MockBehavior.Strict) { DefaultValue = DefaultValue.Mock };
             _minimalConfig = Config.Builder.ForProcessId(-1).Build();

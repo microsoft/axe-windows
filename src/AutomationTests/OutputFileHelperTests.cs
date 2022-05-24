@@ -11,7 +11,7 @@ using Path = System.IO.Path;
 namespace Axe.Windows.AutomationTests
 {
     [TestClass]
-    public class OutputFileHelperUnitTests
+    public class OutputFileHelperTests
     {
         private static readonly ISystemDateTime InertDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict).Object;
         private static readonly ISystemEnvironment InertEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict).Object;

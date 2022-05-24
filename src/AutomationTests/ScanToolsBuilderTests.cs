@@ -8,7 +8,7 @@ using System;
 namespace Axe.Windows.AutomationTests
 {
     [TestClass]
-    public class ScanToolsBuilderUnitTests
+    public class ScanToolsBuilderTests
     {
         [TestMethod]
         [Timeout(1000)]

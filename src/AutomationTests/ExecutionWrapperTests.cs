@@ -7,7 +7,7 @@ using System;
 namespace Axe.Windows.AutomationTests
 {
     [TestClass]
-    public class ExecutionWrapperUnitTests
+    public class ExecutionWrapperTests
     {
         private class TestResult
         {
