@@ -20,10 +20,10 @@ namespace Axe.Windows.AutomationTests
         // These values should change only in response to intentional rule modifications
         const int WildlifeManagerKnownErrorCount = 15;
         const int Win32ControlSamplerKnownErrorCount = 0;
-        const int WindowsFormsControlSamplerKnownErrorCount = 4;
+        const int WindowsFormsControlSamplerKnownErrorCount = 6;
         const int WpfControlSamplerKnownErrorCount = 7;
-        const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 8;
-        const int WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount = 4;
+        const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 12;
+        const int WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount = 6;
 
         readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");

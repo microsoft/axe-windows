@@ -103,6 +103,9 @@ namespace Axe.Windows.Core.Enums
         ControlShouldSupportTransformPattern,
         ControlShouldSupportTextPattern,
 
+        // special case rule for known framework issue
+        ControlShouldSupportTextPatternEditWinform,
+
         EditSupportsIncorrectRangeValuePattern,
 
         HeadingLevelDescendsWhenNested,

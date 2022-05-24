@@ -86,6 +86,7 @@ ControlShouldSupportTablePattern | Error | An element of the given ControlType m
 ControlShouldSupportTogglePattern | Error | An element of the given ControlType must support the Toggle pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTransformPattern | Error | An element that can be resized must support the Transform pattern. | Section 508 502.3.10 AvailableActions
 ControlShouldSupportTextPattern | Error | An element of the given ControlType must support the Text pattern. | Section 508 502.3.10 AvailableActions
+ControlShouldSupportTextPatternEditWinform | Error | An element of the given ControlType must support the Text pattern. | Section 508 502.3.10 AvailableActions
 EditSupportsIncorrectRangeValuePattern | Error | The RangeValue pattern of an edit control must have a null LargeChange property. | Section 508 502.3.10 AvailableActions
 HeadingLevelDescendsWhenNested | Error | An element's HeadingLevel must be greater than or equal to that of its ancestors. | WCAG 1.3.1 InfoAndRelationships
 LandmarkBannerIsTopLevel | Error | An element with LocalizedLandmarkType "banner" must not descend from another landmark. | WCAG 1.3.1 InfoAndRelationships
