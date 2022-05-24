@@ -10,7 +10,7 @@ using System.Diagnostics;
 namespace AxeWindowsCLITests
 {
     [TestClass]
-    public class ProcessHelperUnitTests
+    public class ProcessHelperTests
     {
         const string TestProcessName = "SomeProcess";
         const int TestProcessId = -123;

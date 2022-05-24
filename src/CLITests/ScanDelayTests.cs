@@ -12,7 +12,7 @@ using System.IO;
 namespace AxeWindowsCLITests
 {
     [TestClass]
-    public class ScanDelayUnitTests
+    public class ScanDelayTests
     {
         private Mock<TextWriter> _writerMock;
         private Mock<Action> _oneSecondDelayMock;

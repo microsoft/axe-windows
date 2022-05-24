@@ -14,7 +14,7 @@ using System.IO;
 namespace AxeWindowsCLITests
 {
     [TestClass]
-    public class OutputGeneratorUnitTests
+    public class OutputGeneratorTests
     {
         const string TestProcessName = "SuperDuperApp";
         const int TestProcessId = 2468;
