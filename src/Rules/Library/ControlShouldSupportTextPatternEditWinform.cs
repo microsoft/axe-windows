@@ -5,8 +5,7 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using static Axe.Windows.Rules.PropertyConditions.ControlType;
-using static Axe.Windows.Rules.PropertyConditions.Framework;
+using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -31,7 +30,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Edit & WinForms;
+            return WinFormsEdit;
         }
     } // class
 } // namespace

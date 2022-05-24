@@ -336,5 +336,21 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 Assert.IsFalse(ElementGroups.HyperlinkInTextXAML.Matches(e));
             } // using
         }
+
+        [TestMethod]
+        public void WinFormsEdit_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.WinFormsEdit.Matches(e));
+
+                e.ControlTypeId = Edit;
+                Assert.IsFalse(ElementGroups.WinFormsEdit.Matches(e));
+
+                e.Framework = "WinForm";
+                Assert.IsTrue(ElementGroups.WinFormsEdit.Matches(e));
+            } // using
+
+        }
     } // class
 } // namespace

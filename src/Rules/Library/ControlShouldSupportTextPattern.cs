@@ -7,6 +7,7 @@ using Axe.Windows.Rules.Resources;
 using System;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
+using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
@@ -31,14 +32,13 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var winFormsEdit = Edit & WinForms;
             var win32Edit = Edit & Win32Framework;
             var nonfocusableDirectUIEdit = Edit & ~IsKeyboardFocusable & DirectUI;
 
             return Document
                 | (Edit
                 & ~win32Edit
-                & ~winFormsEdit
+                & ~WinFormsEdit
                 & ~nonfocusableDirectUIEdit);
         }
     } // class

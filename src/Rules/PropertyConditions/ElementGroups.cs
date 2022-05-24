@@ -41,6 +41,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition IsButtonText = Text & Parent(Button);
         public static Condition ListXAML = List & XAML;
         public static Condition HyperlinkInTextXAML = Hyperlink & XAML & Parent(Text);
+        public static Condition WinFormsEdit = Edit & WinForms;
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
