@@ -12,7 +12,7 @@ using System.Drawing;
 namespace Axe.Windows.ActionsTests.Actions
 {
     [TestClass]
-    public class ScreenShotActionUnitTests
+    public class ScreenShotActionTests
     {
         // This sets the Bounding Rectangle. It breaks encapsulation in
         // many reproachable ways

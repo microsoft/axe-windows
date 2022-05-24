@@ -15,7 +15,7 @@ using System.Collections.Generic;
 namespace Axe.Windows.ActionsTests.Actions
 {
     [TestClass]
-    public class CaptureActionUnitTests
+    public class CaptureActionTests
     {
         DataManager mockDataManager;
         A11yElement mockElement;
