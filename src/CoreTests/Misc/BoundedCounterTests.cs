@@ -7,7 +7,7 @@ using System;
 namespace Axe.Windows.CoreTests.Misc
 {
     [TestClass]
-    public class BoundedCounterUnitTests
+    public class BoundedCounterTests
     {
         [TestMethod]
         [Timeout(1000)]

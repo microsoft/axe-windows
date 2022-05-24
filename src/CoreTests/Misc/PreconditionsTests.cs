@@ -7,7 +7,7 @@ using System;
 namespace Axe.Windows.CoreTests.Misc
 {
     [TestClass]
-    public class PreconditionsUnitTests
+    public class PreconditionsTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
