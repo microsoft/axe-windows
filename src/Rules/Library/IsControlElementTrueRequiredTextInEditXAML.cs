@@ -10,16 +10,17 @@ using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.IsControlElementTrueRequired)]
-    class IsControlElementTrueRequired : Rule
+    [RuleInfo(ID = RuleId.IsControlElementTrueRequiredTextInEditXAML)]
+    class IsControlElementTrueRequiredTextInEditXAML : Rule
     {
-        public IsControlElementTrueRequired()
+        public IsControlElementTrueRequiredTextInEditXAML()
         {
             this.Info.Description = Descriptions.IsControlElementTrueRequired;
             this.Info.HowToFix = HowToFix.IsControlElementTrueRequired;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
             this.Info.ErrorCode = EvaluationCode.Error;
+            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-IsControlElementTrueRequiredTextBoxXAML";
         }
 
         public override bool PassesTest(IA11yElement e)
@@ -33,8 +34,7 @@ namespace Axe.Windows.Rules.Library
         {
             return BoundingRectangle.Valid
                 & ElementGroups.IsControlElementTrueRequired
-                & ~ElementGroups.XAMLTextInEdit
-                & ~ElementGroups.WPFButton;
+                & ElementGroups.XAMLTextInEdit;
         }
     } // class
 } // namespace

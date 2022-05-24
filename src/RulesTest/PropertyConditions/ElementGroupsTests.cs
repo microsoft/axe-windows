@@ -338,6 +338,53 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
+        public void WPFButton_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.WPFButton.Matches(e));
+
+                e.ControlTypeId = Button;
+                Assert.IsFalse(ElementGroups.WPFButton.Matches(e));
+
+                e.Framework = "WPF";
+                Assert.IsTrue(ElementGroups.WPFButton.Matches(e));
+
+                e.Framework = "AnythingElse";
+                Assert.IsFalse(ElementGroups.WPFButton.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void XAMLTextInEdit_MatchExpected()
+        {
+            using (var e = new MockA11yElement())
+            using (var parent = new MockA11yElement())
+            {
+                Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
+
+                e.ControlTypeId = Text;
+                Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
+
+                parent.ControlTypeId = Edit;
+                e.Parent = parent;
+                Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
+
+                e.Framework = "XAML";
+                Assert.IsTrue(ElementGroups.XAMLTextInEdit.Matches(e));
+
+                e.ControlTypeId = ComboBox;
+                Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
+
+                parent.ControlTypeId = ComboBox;
+                Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
+
+                e.Parent = null;
+                Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
+            } // using
+        }
+
+        [TestMethod]
         public void WinFormsEdit_MatchExpected()
         {
             using (var e = new MockA11yElement())
@@ -350,7 +397,6 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 e.Framework = "WinForm";
                 Assert.IsTrue(ElementGroups.WinFormsEdit.Matches(e));
             } // using
-
         }
     } // class
 } // namespace
