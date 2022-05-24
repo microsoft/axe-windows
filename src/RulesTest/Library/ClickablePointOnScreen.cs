@@ -58,7 +58,7 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void ClickablePointOnScreen_FocusableClickable_FrameworkIsWPF_NoMatche()
+        public void ClickablePointOnScreen_FocusableClickable_FrameworkIsWPF_NoMatches()
         {
             SetupTryGetProperty(new Point(100, 100));
             mockElement.Setup(m => m.IsKeyboardFocusable).Returns(true);
