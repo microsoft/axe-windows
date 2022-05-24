@@ -382,6 +382,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 e.Parent = null;
                 Assert.IsFalse(ElementGroups.XAMLTextInEdit.Matches(e));
             } // using
+        }
 
         [TestMethod]
         public void WinFormsEdit_MatchExpected()
