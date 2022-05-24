@@ -20,972 +20,190 @@ namespace Axe.Windows.RulesTests
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterButton.snapshot");
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NeedsReview, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.Warning, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequiredButtonWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ButtonInvokeAndExpandCollapsePatterns, EvaluationCode.Pass },
+                { RuleId.ButtonInvokeAndTogglePatterns, EvaluationCode.Pass },
+                { RuleId.ButtonShouldHavePatterns, EvaluationCode.Pass },
+                { RuleId.ButtonToggleAndExpandCollapsePatterns, EvaluationCode.Pass },
+                { RuleId.ContentViewButtonStructure, EvaluationCode.NeedsReview },
+                { RuleId.ControlViewButtonStructure, EvaluationCode.Pass },
+                { RuleId.HelpTextExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.HelpTextNotEqualToName, EvaluationCode.Warning },
+                { RuleId.IsControlElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.IsControlElementTrueRequiredButtonWPF, EvaluationCode.Pass },
+                { RuleId.IsKeyboardFocusableShouldBeTrue, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotEmpty, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotNull, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameExcludesControlType, EvaluationCode.Pass },
+                { RuleId.NameExcludesLocalizedControlType, EvaluationCode.Pass },
+                { RuleId.NameExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.NameIsInformative, EvaluationCode.Pass },
+                { RuleId.NameNotEmpty, EvaluationCode.Pass },
+                { RuleId.NameNotNull, EvaluationCode.Pass },
+                { RuleId.NameNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.NameReasonableLength, EvaluationCode.Pass },
+                { RuleId.ParentChildShouldNotHaveSameNameAndLocalizedControlType, EvaluationCode.RuleExecutionError },
+            });
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterListView()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterListView.snapshot");
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Error, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ContentViewListStructure, EvaluationCode.Pass },
+                { RuleId.ControlViewListStructure, EvaluationCode.Pass },
+                { RuleId.IsControlElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.IsControlElementTrueRequired, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotEmpty, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotNull, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameNotNull, EvaluationCode.Error },
+                { RuleId.ParentChildShouldNotHaveSameNameAndLocalizedControlType, EvaluationCode.RuleExecutionError },
+            });
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterDataGrid()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterDataGrid.snapshot");
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Error, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ContentViewDataGridStructure, EvaluationCode.Pass },
+                { RuleId.ControlShouldSupportGridPattern, EvaluationCode.Pass },
+                { RuleId.ControlViewDataGridStructure, EvaluationCode.Pass },
+                { RuleId.IsControlElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.IsControlElementTrueRequired, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotEmpty, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotNull, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameNotNull, EvaluationCode.Error },
+                { RuleId.ParentChildShouldNotHaveSameNameAndLocalizedControlType, EvaluationCode.RuleExecutionError },
+            });
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterDataGridHeader()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterDataGrid.snapshot").Children.First<A11yElement>();
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NeedsReview, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleCompletelyObscuresContainer, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleContainedInParent, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ControlViewHeaderStructure, EvaluationCode.Pass },
+                { RuleId.IsControlElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.IsControlElementTrueRequired, EvaluationCode.Pass },
+                { RuleId.IsKeyboardFocusableShouldBeFalse, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameNoSiblingsOfSameType, EvaluationCode.NeedsReview },
+            });
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterEdit()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterEdit.snapshot");
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NeedsReview, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Error, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ContentViewEditStructure, EvaluationCode.Pass },
+                { RuleId.ControlShouldSupportTextPattern, EvaluationCode.Pass },
+                { RuleId.ControlViewEditStructure, EvaluationCode.NeedsReview },
+                { RuleId.IsControlElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.IsControlElementTrueRequired, EvaluationCode.Pass },
+                { RuleId.IsKeyboardFocusableShouldBeTrue, EvaluationCode.Pass },
+                { RuleId.IsKeyboardFocusableTopLevelTextPattern, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotEmpty, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotNull, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameNotNull, EvaluationCode.Error },
+                { RuleId.ParentChildShouldNotHaveSameNameAndLocalizedControlType, EvaluationCode.RuleExecutionError },
+            });
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterMenu()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterMenu.snapshot");
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.Error, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ContentViewMenuStructure, EvaluationCode.Pass },
+                { RuleId.ControlViewMenuStructure, EvaluationCode.Pass },
+                { RuleId.IsControlElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.IsControlElementTrueRequired, EvaluationCode.Pass },
+                { RuleId.IsKeyboardFocusableShouldBeTrue, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotEmpty, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotNull, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameNotNull, EvaluationCode.Error },
+                { RuleId.ParentChildShouldNotHaveSameNameAndLocalizedControlType, EvaluationCode.RuleExecutionError },
+            });
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterUserControl()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterUserControl.snapshot");
             var results = GetTestResultsAsDictionary(e);
 
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleCompletelyObscuresContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleContainedInParent]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleDataFormatCorrect]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotAllZeros]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.BoundingRectangleNotValidButOffScreen]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.BoundingRectangleSizeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ButtonShouldHavePatterns]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ChildrenNotAllowedInContentView]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SiblingUniqueAndNotFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ContentViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportScrollPattern]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.ControlShouldNotSupportValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldNotSupportWindowPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportExpandCollapsePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportGridPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportInvokePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportScrollItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSelectionPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSpreadsheetItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTableItemPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTablePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTogglePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportTransformPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCalendarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewCheckBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewComboBoxStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewDataGridStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewEditStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHeaderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewHyperlinkStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewImageStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewListStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewMenuStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewProgressBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewRadioButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSemanticZoomStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSeparatorStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSliderStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSpinnerStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewSplitButtonStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewStatusBarStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTabStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewThumbStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewToolTipStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeItemStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlViewTreeStructure]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EdgeBrowserHasBeenDeprecated]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.EditSupportsIncorrectRangeValuePattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HeadingLevelDescendsWhenNested]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.HelpTextNotEqualToName]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementFalseOptional]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.IsContentElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsContentElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueOptional]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsControlElementTrueRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableDescendantTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButDisabled]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableFalseButOffscreen]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForCustomShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableForListItemShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableOnEmptyContainer]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeFalse]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableShouldBeTrue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.IsKeyboardFocusableTopLevelTextPattern]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemStatusExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ItemTypeRecommended]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkBannerIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkComplementaryIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkContentInfoIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkMainIsTopLevel]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateBanner]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LandmarkNoDuplicateContentInfo]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedControlTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.LocalizedControlTypeReasonable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeIsReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotCustom]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotNull]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.LocalizedLandmarkTypeNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameEmptyButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesControlType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameExcludesLocalizedControlType]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameExcludesPrivateUnicodeCharacters]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameIsInformative]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNoSiblingsOfSameType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotEmpty]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameNotNull]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNotWhiteSpace]);
-            Assert.AreEqual(EvaluationCode.Pass, results[RuleId.NameNullButElementNotKeyboardFocusable]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnCustomWithParentWPFDataItem]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameOnOptionalType]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameReasonableLength]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.NameWithValidBoundingRectangle]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.OrientationPropertyExists]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ProgressBarRangeValue]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSelectionRequired]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.SelectionPatternSingleSelection]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoWPF]);
-            Assert.AreEqual(EvaluationCode.NotApplicable, results[RuleId.ControlShouldSupportSetInfoXAML]);
+            CheckResults(results, new Dictionary<RuleId, EvaluationCode>
+            {
+                { RuleId.BoundingRectangleNotAllZeros, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleNotNull, EvaluationCode.Pass },
+                { RuleId.BoundingRectangleSizeReasonable, EvaluationCode.Pass },
+                { RuleId.ControlShouldNotSupportValuePattern, EvaluationCode.Pass },
+                { RuleId.IsContentElementPropertyExists, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
+                { RuleId.NameEmptyButElementNotKeyboardFocusable, EvaluationCode.Pass },
+                { RuleId.NameExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
+                { RuleId.NameIsInformative, EvaluationCode.Pass },
+                { RuleId.NameNotWhiteSpace, EvaluationCode.Pass },
+                { RuleId.NameNullButElementNotKeyboardFocusable, EvaluationCode.Pass },
+            });
         }
 
         private static Dictionary<RuleId, EvaluationCode> GetTestResultsAsDictionary(A11yElement e)
@@ -994,14 +212,53 @@ namespace Axe.Windows.RulesTests
             return results.ToDictionary(r => r.RuleInfo.ID, r => r.EvaluationCode);
         }
 
-        private static void WriteResultsToDebugOutput(Dictionary<RuleId, EvaluationCode> results)
+        private static void CheckResults(Dictionary<RuleId, EvaluationCode> actualResults,
+            Dictionary<RuleId, EvaluationCode> expectedResults)
         {
-            System.Diagnostics.Debug.WriteLine("{");
+            DoNotPassNotApplicableAsExpectedResults(expectedResults);
 
-            foreach (var key in results.Keys.OrderBy(k => k.ToString()))
-                System.Diagnostics.Debug.WriteLine($"Assert.AreEqual(EvaluationCode.{results[key]}, results[RuleId.{key}]);");
+            foreach (KeyValuePair<RuleId, EvaluationCode> actualPair in actualResults)
+            {
+                if (actualPair.Value == EvaluationCode.NotApplicable)
+                    continue;
 
-            System.Diagnostics.Debug.WriteLine("}");
+                if (expectedResults.TryGetValue(actualPair.Key, out EvaluationCode expectedValue))
+                {
+                    Assert.AreEqual(expectedValue, actualPair.Value, $"Rule: {actualPair.Key}");
+                    expectedResults.Remove(actualPair.Key);
+                }
+                else
+                {
+                    Assert.Fail($"You must pass an expected value for this rule: {actualPair.Key}");
+                }
+            }
+
+            CheckForExtraRules(expectedResults);
+        }
+
+        private static void DoNotPassNotApplicableAsExpectedResults(Dictionary<RuleId, EvaluationCode> expectedResults)
+        {
+            foreach (KeyValuePair<RuleId, EvaluationCode> expectedResult in expectedResults)
+            {
+                if (expectedResult.Value == EvaluationCode.NotApplicable)
+                {
+                    Assert.Fail($"Do not pass EvaluationCode.NotApplicable as an expected result. Key: {expectedResult.Key}");
+                }
+            }
+        }
+
+        private static void CheckForExtraRules(Dictionary<RuleId, EvaluationCode> results)
+        {
+            List<string> extraRules = new List<string>();
+            foreach (KeyValuePair<RuleId, EvaluationCode> pair in results)
+            {
+                extraRules.Add(pair.Key.ToString());
+            }
+
+            if (!extraRules.Any()) return;
+
+            extraRules.Sort();
+            Assert.Fail($"Remove {extraRules.Count} extra rule(s) from expected: {string.Join(", ", extraRules)}");
         }
     } // class
 } // namespace
