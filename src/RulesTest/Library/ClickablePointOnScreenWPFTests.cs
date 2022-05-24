@@ -9,9 +9,9 @@ using System.Drawing;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-    public class ClickablePointOnScreenTests
+    public class ClickablePointOnScreenWPFTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOnScreen();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOnScreenWPF();
         private Mock<IA11yElement> mockElement = new Mock<IA11yElement>(MockBehavior.Strict);
         private delegate void TryGetDelegate(int propertyId, out Point value);
 
@@ -32,6 +32,12 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
+        public void FrameworkIssueLink_IsNotNull()
+        {
+            Assert.IsNotNull(Rule.Info.FrameworkIssueLink);
+        }
+
+        [TestMethod]
         public void ClickablePointOnScreen_OffScreen_Error()
         {
             mockElement.Setup(m => m.IsOffScreen).Returns(true);
@@ -48,31 +54,22 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void ClickablePointOnScreen_FocusableClickable_FrameworkIsNotWPF_Matches()
+        public void ClickablePointOnScreen_FocusableClickable_FrameworkIsNotWPF_NoMatch()
         {
             SetupTryGetProperty(new Point(100, 100));
             mockElement.Setup(m => m.IsKeyboardFocusable).Returns(true);
             mockElement.Setup(m => m.Framework).Returns("Anything but WPF");
-            Assert.IsTrue(Rule.Condition.Matches(mockElement.Object));
+            Assert.IsFalse(Rule.Condition.Matches(mockElement.Object));
             mockElement.VerifyAll();
         }
 
         [TestMethod]
-        public void ClickablePointOnScreen_FocusableClickable_FrameworkIsWPF_NoMatches()
+        public void ClickablePointOnScreen_FocusableClickable_FrameworkIsWPF_Matche()
         {
             SetupTryGetProperty(new Point(100, 100));
             mockElement.Setup(m => m.IsKeyboardFocusable).Returns(true);
             mockElement.Setup(m => m.Framework).Returns("WPF");
-            Assert.IsFalse(Rule.Condition.Matches(mockElement.Object));
-            mockElement.VerifyAll();
-        }
-
-        [TestMethod]
-        public void ClickablePointOnScreen_IsNotClickable_NoMatch()
-        {
-            SetupTryGetProperty(new Point(-100, -100));
-            mockElement.Setup(m => m.IsKeyboardFocusable).Returns(true);
-            Assert.IsFalse(Rule.Condition.Matches(mockElement.Object));
+            Assert.IsTrue(Rule.Condition.Matches(mockElement.Object));
             mockElement.VerifyAll();
         }
 

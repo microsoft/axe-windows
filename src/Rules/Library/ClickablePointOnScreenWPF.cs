@@ -11,16 +11,17 @@ using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.ClickablePointOnScreen)]
-    class ClickablePointOnScreen : Rule
+    [RuleInfo(ID = RuleId.ClickablePointOnScreenWPF)]
+    class ClickablePointOnScreenWPF : Rule
     {
-        public ClickablePointOnScreen()
+        public ClickablePointOnScreenWPF()
         {
             this.Info.Description = Descriptions.ClickablePointOnScreen;
             this.Info.HowToFix = HowToFix.ClickablePointOnScreen;
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
             this.Info.ErrorCode = EvaluationCode.Error;
+            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ClickablePointOnScreenListViewWPF";
         }
 
         public override bool PassesTest(IA11yElement e)
@@ -32,7 +33,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return (IsKeyboardFocusable & ClickablePoint.OnScreen) & ~WPF;
+            return IsKeyboardFocusable & ClickablePoint.OnScreen & WPF;
         }
     } // class
 } // namespace

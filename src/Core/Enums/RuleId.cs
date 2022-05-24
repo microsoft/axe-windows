@@ -197,6 +197,7 @@ namespace Axe.Windows.Core.Enums
         LocalizedControlTypeExcludesPrivateUnicodeCharacters,
 
         ClickablePointOnScreen,
+        ClickablePointOnScreenWPF,
         ClickablePointOffScreen,
 
         FrameworkDoesNotSupportUIAutomation,
