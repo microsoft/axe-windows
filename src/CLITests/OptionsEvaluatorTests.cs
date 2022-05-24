@@ -11,7 +11,7 @@ using System.Globalization;
 namespace AxeWindowsCLITests
 {
     [TestClass]
-    public class OptionEvaluatorUnitTests
+    public class OptionsEvaluatorTests
     {
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;

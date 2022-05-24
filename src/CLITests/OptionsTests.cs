@@ -10,7 +10,7 @@ using System.Globalization;
 namespace AxeWindowsCLITests
 {
     [TestClass]
-    public class OptionUnitTests
+    public class OptionsTests
     {
         const int ExpectedParseSuccess = 123;
         const int UnexpectedFailure = 789;
