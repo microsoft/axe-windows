@@ -10,7 +10,7 @@
 ## Standards
 * The test project is appropriately named (tests for the `Foo.Bar.dll` are in `Foo.BarTests.dll`)
 * The test namespace is appropriately named (the top level namespace matches the assembly name, then the hierarchy in the assembly is preserved. So if `Foo.Bar.dll` contains a namespace named `Widget`, the tests will be in the `Foo.BarTests.Widget` namespace)
-* The test class is appropriately named (tests for the `ExplodingWidget` class will be in the `ExplodingWidgetUnitTests` class)
+* The test class is appropriately named (tests for the `ExplodingWidget` class will be in the `ExplodingWidgetTests` class)
 * Each test follows the naming conventions documented at [Unit Test Basics](https://msdn.microsoft.com/en-us/library/hh694602.aspx) Summarizing:
   * Name is in the general form `MethodName_TestCase_ExpectedBehavior`
   * If the test is expected to throw an `Exception`, the test should declare this via the `ExpectedException` attribute. If the test needs to check the contents of the `Exception`, the best pattern is to catch the expected `Exception` type, validate it, then re-throw the `Exception`
