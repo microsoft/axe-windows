@@ -6,10 +6,10 @@ using Moq;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Axe.Windows.RulesTests.Library
+namespace Axe.Windows.RulesTests.Library.Structure.ControlView
 {
     [TestClass]
-    public class ControlViewScrollbarStructureTest
+    public class ScrollbarTests
     {
         private static Rules.IRule Rule = new Rules.Library.ControlViewScrollbarStructure();
 

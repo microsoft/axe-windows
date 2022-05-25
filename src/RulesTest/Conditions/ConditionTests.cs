@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Axe.Windows.RulesTests.Conditions
 {
     [TestClass]
-    public class ConditionTest
+    public class ConditionTests
     {
         [TestMethod]
         public void TestTrue()
