@@ -44,9 +44,6 @@ Visit [Adding a new project](NewProject.md) for instructions.
 
 For an overview of the solution, please visit the [solution overview](./solution.md).
 
-### Q. Do you provide any code samples showing how to configure UIA properties?
-Visit [Code Sample Links](CodeSampleLinks.md) for more information.
-
 ### q. On my pull request, the "license/cla" check does not complete. What should I do?
 Make sure that you have signed our [CLA agreement](../Contributing.md). If you haven't, please sign the agreement, then close and reopen the PR. This will trigger a new build with the CLA agreement in place.
 
