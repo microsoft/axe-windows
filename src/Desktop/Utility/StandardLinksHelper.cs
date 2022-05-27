@@ -25,7 +25,7 @@ namespace Axe.Windows.Desktop.Utility
         StandardLinksHelper()
         {
             // get the path of dictionary file.
-            var json = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Axe.Windows.CodeSampleLinks.json"));
+            var json = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "links.json"));
             StoredLinks = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
