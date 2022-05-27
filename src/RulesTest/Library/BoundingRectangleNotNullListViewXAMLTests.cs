@@ -13,6 +13,12 @@ namespace Axe.Windows.RulesTests.Library
         private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleNotNullListViewXAML();
 
         [TestMethod]
+        public void FrameworkIssueLink_IsNotNull()
+        {
+            Assert.IsNotNull(Rule.Info.FrameworkIssueLink);
+        }
+
+        [TestMethod]
         public void TestBoundingRectangleNotNullPass()
         {
             using (var e = new MockA11yElement())

@@ -14,6 +14,12 @@ namespace Axe.Windows.RulesTests.Library
         private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTextPatternEditWinform();
 
         [TestMethod]
+        public void FrameworkIssueLink_IsNotNull()
+        {
+            Assert.IsNotNull(Rule.Info.FrameworkIssueLink);
+        }
+
+        [TestMethod]
         public void HasTextPattern_Pass()
         {
             var e = new MockA11yElement();
