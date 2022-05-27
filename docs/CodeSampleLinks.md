@@ -3,7 +3,7 @@
 
 ## Code Sample Links
 
-We provide web-hosted documentation containing additional guidance on how to create a more accessible application. This documentation is indexed in [Axe.Windows.CodeSampleLinks.json](../Desktop/Resources/Axe.Windows.CodeSampleLinks.json), which is a JSON-serialized dictionary. This file is included in the NuGet package that provides the Axe.Windows binaries.
+We provide web-hosted documentation containing additional guidance on how to create a more accessible application. This documentation is indexed in [Axe.Windows.CodeSampleLinks.json](../src/Desktop/Resources/Axe.Windows.CodeSampleLinks.json), which is a JSON-serialized dictionary. This file is included in the NuGet package that provides the Axe.Windows binaries.
 
 ### Keys
 Each key is formatted in 3 parts:
