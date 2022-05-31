@@ -11,7 +11,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ControlShouldSupportTextPatternEditWinformTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTextPatternEditWinform();
+        private readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTextPatternEditWinform();
 
         [TestMethod]
         public void FrameworkIssueLink_IsNotNull()
@@ -39,8 +39,10 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void NoFramework_NotApplicable()
         {
-            var e = new MockA11yElement();
-            e.ControlTypeId = ControlType.Edit;
+            var e = new MockA11yElement
+            {
+                ControlTypeId = ControlType.Edit
+            };
 
             Assert.IsFalse(Rule.Condition.Matches(e));
         }
@@ -48,9 +50,11 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void WinFormsEdit_Applicable()
         {
-            var e = new MockA11yElement();
-            e.ControlTypeId = ControlType.Edit;
-            e.Framework = FrameworkId.WinForm;
+            var e = new MockA11yElement
+            {
+                ControlTypeId = ControlType.Edit,
+                Framework = FrameworkId.WinForm
+            };
 
             Assert.IsTrue(Rule.Condition.Matches(e));
         }
