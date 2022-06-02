@@ -75,6 +75,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InteropDummy", "InteropDumm
 		{7E616C64-EAD7-458C-92AC-B50643E64D38} = {7E616C64-EAD7-458C-92AC-B50643E64D38}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7B4C4F1E-5D41-4052-81F6-BA8534F2DFD4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

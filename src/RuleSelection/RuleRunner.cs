@@ -1,15 +1,13 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
-using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.HelpLinks;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Rules;
 using Axe.Windows.RuleSelection.Resources;
 using Axe.Windows.Telemetry;
 using System;
-using static System.FormattableString;
 
 namespace Axe.Windows.RuleSelection
 {
@@ -106,15 +104,5 @@ namespace Axe.Windows.RuleSelection
         }
 
         public static string RuleVersion => RuleVersions.Version;
-
-        private static Exception Error(string message)
-        {
-#if DEBUG
-            var callStack = new System.Diagnostics.StackFrame(1, true);
-            return new AxeWindowsException(Invariant($"{message} in {callStack.GetMethod()} at line {callStack.GetFileLineNumber()} in {callStack.GetFileName()}"));
-#else
-            return new AxeWindowsException(message);
-#endif
-        }
     } // class
 } // namespace
