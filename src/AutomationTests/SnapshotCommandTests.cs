@@ -206,7 +206,7 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
         }
-        
+
         [TestMethod]
         [Timeout(1000)]
         public void Execute_ReturnsExpectedResults_MultiRoot()
@@ -305,7 +305,7 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.VerifyAll();
             _resultsAssemblerMock.VerifyAll();
         }
-        
+
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NoErrors_MultiRootHasOutputFiles()

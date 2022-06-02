@@ -9,7 +9,6 @@ using Axe.Windows.Rules;
 using Axe.Windows.RuleSelection.Resources;
 using Axe.Windows.Telemetry;
 using System;
-using static System.FormattableString;
 
 namespace Axe.Windows.RuleSelection
 {

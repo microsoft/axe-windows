@@ -45,7 +45,7 @@ namespace Axe.Windows.RulesTests.Library
         public void Condition_EmptyBoundingRectangle_ReturnsFalse()
         {
             _elementMock.Setup(m => m.BoundingRectangle).Returns(Rectangle.Empty);
-            
+
             Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
 
             VerifyAllMocks();
