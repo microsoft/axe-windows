@@ -22,7 +22,7 @@ namespace AxeWindowsCLI
                 return BadInputParameters;
 
 #pragma warning disable CA1508
-            if (caughtException != null || scanResults.Any(result => result == null))
+            if (caughtException != null || scanResults == null || scanResults.Any(result => result == null))
                 return ScanFailedToComplete;
 #pragma warning restore CA1508
 

@@ -109,15 +109,15 @@ namespace AxeWindowsCLI
             _scanResultsCollection = ScanRunner.RunScan(_options);
         }
 
-        private Parser CaseInsensitiveParser()
+        private static Parser CaseInsensitiveParser()
         {
             // CommandLineParser is case-sensitive by default (intentional choice by the code
             // owners for better compatibility with *nix platforms). This removes the case
-            // sensitivity and routes all output ot the same stream (Console.Out)
+            // sensitivity and disables default output so we can override it
             return new Parser((settings) =>
             {
                 settings.CaseSensitive = false;
-                settings.HelpWriter = _writer;
+                settings.HelpWriter = null;
             });
         }
 
