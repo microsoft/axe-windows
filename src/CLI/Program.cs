@@ -84,9 +84,16 @@ namespace AxeWindowsCLI
 
             if (_options != null)
             {
-                foreach (var scanResult in _scanResultsCollection)
+                if (_scanResultsCollection == null)
                 {
-                    _outputGenerator.WriteOutput(_options, scanResult, caughtException);
+                    _outputGenerator.WriteOutput(_options, null, caughtException);
+                }
+                else
+                {
+                    foreach (var scanResult in _scanResultsCollection)
+                    {
+                        _outputGenerator.WriteOutput(_options, scanResult, caughtException);
+                    }
                 }
             }
             return ReturnValueChooser.GetReturnValue(_scanResultsCollection, caughtException);
