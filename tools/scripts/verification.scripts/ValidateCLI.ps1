@@ -11,11 +11,11 @@ Automates some CLI checks to streamline release validation. Run from its locatio
 
 function ValidateExitCode($actualCode, $expectedCode)
 {
-	if ($expectedCode -ne $actualCode)
-	{
-		Write-Host 'WRONG ERROR CODE! Received' $actualCode 'instead of' $expectedCode
-		Exit 255
-	}
+    if ($expectedCode -ne $actualCode)
+    {
+        Write-Host 'WRONG ERROR CODE! Received' $actualCode 'instead of' $expectedCode
+        Exit 255
+    }
 }
 
 function PromptAndWait($prompt)
