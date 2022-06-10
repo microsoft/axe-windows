@@ -1,3 +1,14 @@
+# Copyright (c) Microsoft. All rights reserved.
+# Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+<#
+.SYNOPSIS
+Automates some CLI checks to streamline release validation. Run from its location in the file system.
+
+.Example Usage
+.\ValidateCLI.ps1
+#>
+
 function ValidateExitCode($actualCode, $expectedCode)
 {
 	if ($expectedCode -ne $actualCode)
