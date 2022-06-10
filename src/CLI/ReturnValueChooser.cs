@@ -16,13 +16,13 @@ namespace AxeWindowsCLI
         public const int ThirdPartyNoticesDisplayed = 3;  // Used outside this class
         public const int BadInputParameters = 255;
 
-        public static int GetReturnValue(IReadOnlyCollection<ScanResults> scanResults, Exception caughtException)
+        public static int GetReturnValue(bool parserError, IReadOnlyCollection<ScanResults> scanResults, Exception caughtException)
         {
-            if (caughtException as ParameterException != null)
+            if (parserError || caughtException is ParameterException)
                 return BadInputParameters;
 
 #pragma warning disable CA1508
-            if (caughtException != null || scanResults.Any(result => result == null))
+            if (caughtException != null || scanResults == null || scanResults.Any(result => result == null))
                 return ScanFailedToComplete;
 #pragma warning restore CA1508
 

@@ -57,11 +57,13 @@ namespace AxeWindowsCLI
         private int Run()
         {
             Exception caughtException = null;
+            bool parserError = false;
             try
             {
                 using (var parser = CaseInsensitiveParser())
                 {
                     ParserResult<Options> parserResult = parser.ParseArguments<Options>(_args);
+                    parserError = parserResult.Tag == ParserResultType.NotParsed;
                     parserResult.WithParsed(RunWithParsedInputs)
                         .WithNotParsed(_ =>
                         {
@@ -84,12 +86,14 @@ namespace AxeWindowsCLI
 
             if (_options != null)
             {
-                foreach (var scanResult in _scanResultsCollection)
+                IEnumerable<ScanResults> guaranteedScanResults = _scanResultsCollection ?? new List<ScanResults> { null };
+
+                foreach (var scanResult in guaranteedScanResults)
                 {
                     _outputGenerator.WriteOutput(_options, scanResult, caughtException);
                 }
             }
-            return ReturnValueChooser.GetReturnValue(_scanResultsCollection, caughtException);
+            return ReturnValueChooser.GetReturnValue(parserError, _scanResultsCollection, caughtException);
         }
 
         void RunWithParsedInputs(Options options)
@@ -109,15 +113,15 @@ namespace AxeWindowsCLI
             _scanResultsCollection = ScanRunner.RunScan(_options);
         }
 
-        private Parser CaseInsensitiveParser()
+        private static Parser CaseInsensitiveParser()
         {
             // CommandLineParser is case-sensitive by default (intentional choice by the code
             // owners for better compatibility with *nix platforms). This removes the case
-            // sensitivity and routes all output ot the same stream (Console.Out)
+            // sensitivity and disables default output so we can override it
             return new Parser((settings) =>
             {
                 settings.CaseSensitive = false;
-                settings.HelpWriter = _writer;
+                settings.HelpWriter = null;
             });
         }
 
