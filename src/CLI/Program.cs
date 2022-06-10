@@ -57,11 +57,13 @@ namespace AxeWindowsCLI
         private int Run()
         {
             Exception caughtException = null;
+            bool parserError = false;
             try
             {
                 using (var parser = CaseInsensitiveParser())
                 {
                     ParserResult<Options> parserResult = parser.ParseArguments<Options>(_args);
+                    parserError = parserResult.Tag == ParserResultType.NotParsed;
                     parserResult.WithParsed(RunWithParsedInputs)
                         .WithNotParsed(_ =>
                         {
@@ -91,7 +93,7 @@ namespace AxeWindowsCLI
                     _outputGenerator.WriteOutput(_options, scanResult, caughtException);
                 }
             }
-            return ReturnValueChooser.GetReturnValue(_scanResultsCollection, caughtException);
+            return ReturnValueChooser.GetReturnValue(parserError, _scanResultsCollection, caughtException);
         }
 
         void RunWithParsedInputs(Options options)
