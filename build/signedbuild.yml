@@ -233,6 +233,7 @@ jobs:
       vsVersion: 16.0
       platform: '$(BuildPlatform)'
       configuration: release
+      msbuildArgs: '/p:SourceLinkCreate=true'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
     displayName: 'Run BinSkim'
