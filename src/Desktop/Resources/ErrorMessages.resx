@@ -123,6 +123,18 @@
   <data name="InvalidColor" xml:space="preserve">
     <value>Color components are values between 0 and 255</value>
   </data>
+  <data name="InvalidHighConfidenceThreshold" xml:space="preserve">
+    <value>High Confidence threshold must be &lt; 1.0</value>
+  </data>
+  <data name="InvalidHighConfidenceThresholdGreaterThanMidThreshold" xml:space="preserve">
+    <value>High Confidence threshold must be larger than Mid confidence threshold</value>
+  </data>
+  <data name="InvalidLowConfidenceThreshold" xml:space="preserve">
+    <value>Low Confidence threshold must be &gt; 0.0</value>
+  </data>
+  <data name="InvalidMidConfidenceThreshold" xml:space="preserve">
+    <value>Mid Confidence threshold must be larger than Low confidence threshold</value>
+  </data>
   <data name="PatternNoLongerValid" xml:space="preserve">
     <value>The pattern may no longer be valid</value>
     <comment>Pattern may not be valid any more.</comment>

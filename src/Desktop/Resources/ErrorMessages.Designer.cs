@@ -19,7 +19,7 @@ namespace Axe.Windows.Desktop.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ErrorMessages {
@@ -75,6 +75,42 @@ namespace Axe.Windows.Desktop.Resources {
         internal static string InvalidColor {
             get {
                 return ResourceManager.GetString("InvalidColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Confidence threshold must be &lt; 1.0.
+        /// </summary>
+        internal static string InvalidHighConfidenceThreshold {
+            get {
+                return ResourceManager.GetString("InvalidHighConfidenceThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Confidence threshold must be larger than Mid confidence threshold.
+        /// </summary>
+        internal static string InvalidHighConfidenceThresholdGreaterThanMidThreshold {
+            get {
+                return ResourceManager.GetString("InvalidHighConfidenceThresholdGreaterThanMidThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low Confidence threshold must be &gt; 0.0.
+        /// </summary>
+        internal static string InvalidLowConfidenceThreshold {
+            get {
+                return ResourceManager.GetString("InvalidLowConfidenceThreshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mid Confidence threshold must be larger than Low confidence threshold.
+        /// </summary>
+        internal static string InvalidMidConfidenceThreshold {
+            get {
+                return ResourceManager.GetString("InvalidMidConfidenceThreshold", resourceCulture);
             }
         }
         
