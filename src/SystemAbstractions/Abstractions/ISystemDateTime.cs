@@ -4,7 +4,7 @@ using System;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    internal interface ISystemDateTime
+    public interface ISystemDateTime
     {
         DateTime Now { get; }
     } // interface

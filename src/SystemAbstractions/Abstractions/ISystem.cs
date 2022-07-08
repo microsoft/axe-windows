@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.SystemAbstractions
 {
-    internal interface ISystem
+    public interface ISystem
     {
         ISystemDateTime DateTime { get; }
         ISystemEnvironment Environment { get; }

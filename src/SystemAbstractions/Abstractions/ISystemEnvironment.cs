@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.SystemAbstractions
 {
-    internal interface ISystemEnvironment
+    public interface ISystemEnvironment
     {
         string CurrentDirectory { get; }
     } // interface
