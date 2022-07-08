@@ -13,7 +13,7 @@ using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
-    public interface ITreeWalkerForTest
+    internal interface ITreeWalkerForTest
     {
         IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
@@ -24,7 +24,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     /// Wrapper for UIAutomation Tree Walker 2nd edition
     /// Do tree walking by retrieving all children at once.
     /// </summary>
-    public class TreeWalkerForTest : ITreeWalkerForTest
+    internal class TreeWalkerForTest : ITreeWalkerForTest
     {
         private readonly BoundedCounter _elementCounter;
 

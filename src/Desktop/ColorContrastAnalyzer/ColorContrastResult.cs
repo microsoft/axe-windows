@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class ColorContrastResult : IColorContrastResult
+    internal class ColorContrastResult : IColorContrastResult
     {
         private List<ColorPair> alternatives = new List<ColorPair>();
 
