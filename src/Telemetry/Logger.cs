@@ -34,7 +34,7 @@ namespace Axe.Windows.Telemetry
         /// <param name="action"></param>
         /// <param name="property"></param>
         /// <param name="value"></param>
-        public static void PublishTelemetryEvent(TelemetryAction action, TelemetryProperty property, string value)
+        internal static void PublishTelemetryEvent(TelemetryAction action, TelemetryProperty property, string value)
         {
             // Check IsEnabled because ToString on enums is expensive
             if (!IsEnabled) return;
@@ -50,7 +50,7 @@ namespace Axe.Windows.Telemetry
         /// </summary>
         /// <param name="action">The action being recorded</param>
         /// <param name="propertyBag">Associated property bag--this may be null</param>
-        public static void PublishTelemetryEvent(TelemetryAction action)
+        internal static void PublishTelemetryEvent(TelemetryAction action)
         {
             PublishTelemetryEvent(action, null);
         }
@@ -60,7 +60,7 @@ namespace Axe.Windows.Telemetry
         /// </summary>
         /// <param name="action">The action being recorded</param>
         /// <param name="propertyBag">Associated property bag--this may be null</param>
-        public static void PublishTelemetryEvent(TelemetryAction action, IReadOnlyDictionary<TelemetryProperty, string> propertyBag)
+        internal static void PublishTelemetryEvent(TelemetryAction action, IReadOnlyDictionary<TelemetryProperty, string> propertyBag)
         {
             // Check IsEnabled because ToString on enums is expensive
             if (!IsEnabled) return;
@@ -78,7 +78,7 @@ namespace Axe.Windows.Telemetry
         /// Report an Exception into the pipeline
         /// </summary>
         /// <param name="e">The Exception to report</param>
-        public static void ReportException(this Exception e)
+        internal static void ReportException(this Exception e)
         {
             if (e == null) return;
             if (e is ExcludedException) return;
@@ -92,7 +92,7 @@ namespace Axe.Windows.Telemetry
 #pragma warning restore CA1031
         }
 
-        internal static IReadOnlyDictionary<string, string> ConvertFromProperties(IReadOnlyDictionary<TelemetryProperty, string> properties)
+        private static IReadOnlyDictionary<string, string> ConvertFromProperties(IReadOnlyDictionary<TelemetryProperty, string> properties)
         {
             if (properties == null || !properties.Any())
                 return null;
