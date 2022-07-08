@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.SystemAbstractions
 {
-    public interface IMicrosoft
+    internal interface IMicrosoft
     {
         IMicrosoftWin32 Win32 { get; }
     } // interface

@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    public interface ISystemIODirectory
+    internal interface ISystemIODirectory
     {
         DirectoryInfo CreateDirectory(string path);
         bool Exists(string path);

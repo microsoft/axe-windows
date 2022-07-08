@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.SystemAbstractions
 {
-    public interface ISystemIO
+    internal interface ISystemIO
     {
         ISystemIODirectory Directory { get; }
     } // interface
