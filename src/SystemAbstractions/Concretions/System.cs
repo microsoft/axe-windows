@@ -4,7 +4,7 @@ using System;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    class System : ISystem
+    internal class System : ISystem
     {
         private readonly Lazy<ISystemDateTime> _dateTime;
         private readonly Lazy<ISystemEnvironment> _environment;

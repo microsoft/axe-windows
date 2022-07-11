@@ -4,7 +4,7 @@ using System;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    class SystemIO : ISystemIO
+    internal class SystemIO : ISystemIO
     {
         private readonly Lazy<ISystemIODirectory> _directory;
 

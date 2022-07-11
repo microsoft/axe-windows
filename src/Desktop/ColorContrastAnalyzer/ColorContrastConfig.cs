@@ -5,7 +5,7 @@ using System;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    class ColorContrastConfig : IColorContrastConfig
+    internal class ColorContrastConfig : IColorContrastConfig
     {
         internal const int DefaultMaxTextThickness = 20;
         internal const int DefaultMinColorTransitions = 4;

@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.SystemAbstractions
 {
-    public interface IMicrosoftWin32Registry
+    internal interface IMicrosoftWin32Registry
     {
         object GetValue(string keyName, string valueName, object defaultValue);
     } // interface

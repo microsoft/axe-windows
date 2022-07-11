@@ -4,7 +4,7 @@ using Microsoft.Win32;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    class MicrosoftWin32Registry : IMicrosoftWin32Registry
+    internal class MicrosoftWin32Registry : IMicrosoftWin32Registry
     {
         public object GetValue(string keyName, string valueName, object defaultValue)
         {

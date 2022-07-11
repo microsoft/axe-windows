@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 namespace Axe.Windows.Win32
 {
     [StructLayout(LayoutKind.Sequential)]
-    struct HighContrastData
+    internal struct HighContrastData
     {
         public UInt32 Size;
         public Int32 Flags;

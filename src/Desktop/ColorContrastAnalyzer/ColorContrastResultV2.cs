@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class ColorContrastResultV2 : IColorContrastResult
+    internal class ColorContrastResultV2 : IColorContrastResult
     {
         public ColorPair MostLikelyColorPair { get; }
         public Confidence Confidence { get; }

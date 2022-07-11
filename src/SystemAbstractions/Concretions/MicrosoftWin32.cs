@@ -4,7 +4,7 @@ using System;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    class MicrosoftWin32 : IMicrosoftWin32
+    internal class MicrosoftWin32 : IMicrosoftWin32
     {
         private readonly Lazy<IMicrosoftWin32Registry> _win32Registry;
 

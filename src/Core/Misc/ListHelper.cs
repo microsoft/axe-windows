@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Axe.Windows.Core.Misc
 {
-    public static class ListHelper
+    internal static class ListHelper
     {
         public static void DisposeAllItemsAndClearList<T>(IList<T> items) where T : IDisposable
         {

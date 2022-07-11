@@ -4,7 +4,7 @@ using System;
 
 namespace Axe.Windows.SystemAbstractions
 {
-    class SystemEnvironment : ISystemEnvironment
+    internal class SystemEnvironment : ISystemEnvironment
     {
         public string CurrentDirectory => Environment.CurrentDirectory;
     } // class

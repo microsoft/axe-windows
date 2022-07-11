@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
-    public class RowResultV2
+    internal class RowResultV2
     {
         internal Color BackgroundColor { get; }
 

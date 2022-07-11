@@ -3,7 +3,7 @@
 
 namespace Axe.Windows.SystemAbstractions
 {
-    public class MicrosoftFactory : IMicrosoftFactory
+    internal class MicrosoftFactory : IMicrosoftFactory
     {
         private readonly static IMicrosoftFactory MicrosoftFactoryInstance = new MicrosoftFactory();
 
