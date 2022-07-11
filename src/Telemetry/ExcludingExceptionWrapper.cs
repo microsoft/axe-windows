@@ -11,7 +11,7 @@ namespace Axe.Windows.Telemetry
     /// ExcludedException, which telemetry will then ignore. If you have catch
     /// handlers that distinguish on type, be sure to allow
     /// </summary>
-    public static class ExcludingExceptionWrapper
+    internal static class ExcludingExceptionWrapper
     {
         /// <summary>
         /// Execute a block of code within a try/catch block. If it throws the specified

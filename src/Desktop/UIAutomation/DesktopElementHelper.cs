@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
@@ -11,7 +11,7 @@ namespace Axe.Windows.Desktop.UIAutomation
     /// <summary>
     /// A helper class to manage the cached properties that we always request from UIA
     /// </summary>
-    public static class DesktopElementHelper
+    internal static class DesktopElementHelper
     {
         /// <summary>
         /// Build a cacherequest for properties and patterns

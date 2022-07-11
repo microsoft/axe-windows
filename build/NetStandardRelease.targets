@@ -6,7 +6,14 @@
     <!-- used by Microsoft.CodeAnalysis.NetAnalyzers -->
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
   </PropertyGroup>
-  
+
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
   <Import Project="..\src\props\version.props" />
 
   <ItemGroup>

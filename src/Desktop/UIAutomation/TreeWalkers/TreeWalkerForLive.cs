@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -12,7 +12,7 @@ using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 {
-    public interface ITreeWalkerForLive
+    internal interface ITreeWalkerForLive
     {
         IList<A11yElement> Elements { get; }
         A11yElement RootElement { get; }
@@ -23,7 +23,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     /// Wrapper for UIAutomation Tree Walker for Live mode.
     /// it is based on 2nd edition of TreeWalker
     /// </summary>
-    public class TreeWalkerForLive : ITreeWalkerForLive
+    internal class TreeWalkerForLive : ITreeWalkerForLive
     {
         /// <summary>
         /// List to keep all elements in tree walking(Ancestors, self and children)

@@ -30,6 +30,9 @@ Please follow the guidelines outline in the [Adding Unit Tests](AddUnitTests.md)
 ### Q. Where can I find the standards for unit tests?
 Standards have been documented on [Unit Test Bar and Standards](UnitTestBarAndStandards.md).
 
+#### Q. Why do I sometimes see delays when running the CLI locally or running unit tests?
+This may be a result of your local virus scanner. [Virus Scanner Exclusions](VirusScannerExclusions.md) provides more information.
+
 ### Q. How do I go about making internal interfaces available for testing? 
 Please visit [Accessing Internals](AccessingInternals.md).
 
