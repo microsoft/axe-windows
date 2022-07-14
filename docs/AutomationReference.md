@@ -214,12 +214,20 @@ example below):
 
 #### Debugging with symbols
 
-There may be occasions where you want to debug assemblies within the Axe.Windows [NuGet package](https://www.nuget.org/packages/Axe.Windows) that your process is consuming. This is possible from inside Visual Studio via the following steps:
-1. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **General** and uncheck "Enable Just My Code". This enables debugging of code from NuGet packages
-2. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **Symbols** and check "NuGet.org Symbol Server". This tells Visual Studio to attempt to download symbols for NuGet packages. (Note that this download will occur on the first app boot after the setting is enabled or after a version changes, so you may experience a delay in loading the app after making this change)
+There may be occasions where you want to debug assemblies within the Axe.Windows [NuGet package](https://www.nuget.org/packages/Axe.Windows) that your process is consuming. The specific steps depend on the version of Axe.Windows that you are using.
+
+##### Axe.Windows 1.1.5 and earlier
+These versions require you to access the symbols from the NuGet symbol server for debugging. The steps to enable debugging are:
+1. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **General** and uncheck "Enable Just My Code".
+2. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **Symbols** and check "NuGet.org Symbol Server". This tells Visual Studio to attempt to download symbols for NuGet packages. (Note that this download will occur on the first app boot after the setting is enabled or after a version changes, so you may experience a delay in loading the app after making this change).
+3. You will need to have a local copy of the sources at the same commit as the release (one easy to do this is to download the source code zip file from the corresponding [release](https://github.com/microsoft/axe-windows/releases)). When Visual Studio needs the sources, it will prompt for the location of the source code.
+4. Run and debug as usual.
+
+##### Axe.Windows 1.1.6 and newer
+These versions embed the symbols into the assemblies and support [SourceLink](https://github.com/dotnet/sourcelink) to easily obtain the source code at the correct commit. The steps to enable debugging are:
+1. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **General** and uncheck "Enable Just My Code".
+2. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **General** and check "Enable Source Link support". When Visual Studio needs the sources, it will ask for permission to retrieve them, then it will cache a local copy for future use.
 3. Run and debug as usual.
-4. For Axe.Windows versions 1.1.5 and earlier, you will need to have a local copy of the sources at the same commit as the release (one easy to do this is to download the source code zip file from the corresponding [release](https://github.com/microsoft/axe-windows/releases)). When Visual Studio needs the sources, it will prompt for the location of the source code.
-5. For Axe.Windows versions 1.1.6 and later, Visual Studio has the ability to automatically fetch the correct sources. In Visual Studio, go to **Tools** > **Options** > **Debugging** > **General** and check "Enable Source Link support". When Visual Studio needs the sources, it will ask for permission to retrieve them, then it will cache a local copy for future use.
 
 #### Error handling
 
