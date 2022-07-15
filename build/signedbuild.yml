@@ -245,6 +245,7 @@ jobs:
                       src\\Desktop\\bin\\Release\\*.dll;\
                       src\\Rules\\bin\\Release\\*.dll;\
                       src\\RuleSelection\\bin\\Release\\*.dll;\
+                      src\\SystemAbstractions\\bin\\Release\\*.dll;\
                       src\\Telemetry\\bin\\Release\\*.dll;\
                       src\\Win32\\bin\\Release\\*.dll;"
 
