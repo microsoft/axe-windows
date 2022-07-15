@@ -15,7 +15,7 @@ variables:
 jobs:
 - job: ComplianceRelease
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'windows-2022'
   steps:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet 5.x'
@@ -42,7 +42,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 16.0
+      vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: release
 
@@ -75,7 +75,7 @@ jobs:
 
 - job: ComplianceDebug
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'windows-2022'
   steps:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet 5.x'
@@ -95,7 +95,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 16.0
+      vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: debug
 
@@ -121,7 +121,7 @@ jobs:
         userProvideBuildInfo: msBuildInfo
         msbuildVersion: 16.0
         msBuildArchitecture: '$(BuildPlatform)'
-        msBuildCommandline: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\msbuild.exe" "$(Build.SourcesDirectory)\src\AxeWindows.sln" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"'
+        msBuildCommandline: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\msbuild.exe" "$(Build.SourcesDirectory)\src\AxeWindows.sln" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"'
         rulesetName: recommended
         internalAnalyzersVersion: Latest
         microsoftAnalyzersVersion: Latest
@@ -187,7 +187,7 @@ jobs:
   - ComplianceRelease
   - ComplianceDebug
   condition: and(succeeded(), succeeded())
-  pool: MSEngSS-MicroBuild2019-1ES
+  pool: MSEngSS-MicroBuild2022-1ES
   variables:
     PublicRelease: 'true'
     MicroBuild_NuPkgSigningEnabled: 'true'
@@ -230,7 +230,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 16.0
+      vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: release
 

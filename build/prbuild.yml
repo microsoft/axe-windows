@@ -11,7 +11,7 @@ variables:
 jobs:
 - job: Release
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'windows-2022'
   steps:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet 5.x'
@@ -38,7 +38,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 16.0
+      vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: release
 
@@ -61,7 +61,7 @@ jobs:
 
 - job: Debug
   pool:
-    vmImage: 'windows-2019'
+    vmImage: 'windows-2022'
   steps:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet 5.x'
@@ -81,7 +81,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
-      vsVersion: 16.0
+      vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: debug
 
