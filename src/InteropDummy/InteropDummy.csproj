@@ -9,10 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Interop.UIAutomationCore.Signed" Version="10.19041.0" />
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <Import Project="..\..\build\NetStandardTest.targets" />
