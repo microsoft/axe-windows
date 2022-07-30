@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -132,10 +132,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             int childId = 1;
 
             IUIAutomationTreeWalker walker = this.TreeWalker;
-            IUIAutomationElement child = null;
-
             if ((IUIAutomationElement)parentNode.PlatformObject != null)
             {
+                IUIAutomationElement child;
                 try
                 {
                     child = walker.GetFirstChildElement((IUIAutomationElement)parentNode.PlatformObject);

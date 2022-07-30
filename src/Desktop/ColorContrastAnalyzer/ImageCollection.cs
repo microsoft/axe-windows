@@ -12,10 +12,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         protected ImageCollection(IColorContrastConfig colorContrastConfig)
         {
-            if (colorContrastConfig == null)
-                throw new ArgumentNullException(nameof(colorContrastConfig));
-
-            _colorContrastConfig = colorContrastConfig;
+            _colorContrastConfig = colorContrastConfig ?? throw new ArgumentNullException(nameof(colorContrastConfig));
         }
 
         public abstract int NumColumns();

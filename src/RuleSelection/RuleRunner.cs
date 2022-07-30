@@ -72,12 +72,12 @@ namespace Axe.Windows.RuleSelection
             if (info == null) throw new ArgumentNullException(nameof(info));
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var guidelineInfo = ReferenceLinks.GetGuidelineInfo(info.Standard);
-            var scanResult = new ScanResult(info.Description, guidelineInfo.ShortDescription, info.FrameworkIssueLink, e, info.PropertyID)
+            var (ShortDescription, Url) = ReferenceLinks.GetGuidelineInfo(info.Standard);
+            var scanResult = new ScanResult(info.Description, ShortDescription, info.FrameworkIssueLink, e, info.PropertyID)
             {
                 HelpUrl = new HelpUrl
                 {
-                    Url = guidelineInfo.Url,
+                    Url = Url,
                     Type = UrlType.Info
                 }
             };

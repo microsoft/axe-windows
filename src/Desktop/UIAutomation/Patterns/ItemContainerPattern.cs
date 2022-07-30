@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -14,14 +14,12 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     public class ItemContainerPattern : A11yPattern
     {
         IUIAutomationItemContainerPattern Pattern;
-        private IUIAutomationElement UIAElement;
 
         public ItemContainerPattern(A11yElement e, IUIAutomationItemContainerPattern p) : base(e, PatternType.UIA_ItemContainerPatternId)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             Pattern = p;
-            this.UIAElement = e.PlatformObject;
         }
 
         [PatternMethod]

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
@@ -31,7 +31,7 @@ namespace Axe.Windows.Actions
         /// ElementContext dictionary
         /// keep the record of all element context added by AddElementContext
         /// </summary>
-        Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
+        readonly Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
 
         /// <summary>
         /// Get A11yPattern from an indicated element/elementcontext
@@ -168,7 +168,7 @@ namespace Axe.Windows.Actions
         #endregion
 
         #region static members
-        static Dictionary<string, DataManager> sDataManagers = new Dictionary<string, DataManager>();
+        static readonly Dictionary<string, DataManager> sDataManagers = new Dictionary<string, DataManager>();
 
         /// <summary>
         /// Get default Data Manager instance
@@ -194,7 +194,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         static DataManager GetInstance(string key)
         {
-            DataManager dm = null;
+            DataManager dm;
             if (sDataManagers.ContainsKey(key))
             {
                 dm = sDataManagers[key];

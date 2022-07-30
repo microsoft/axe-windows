@@ -57,8 +57,10 @@ namespace Axe.Windows.Automation
 
             private Builder(int processId)
             {
-                _config = new Config();
-                _config.ProcessId = processId;
+                _config = new Config
+                {
+                    ProcessId = processId
+                };
             }
 
             /// <summary>

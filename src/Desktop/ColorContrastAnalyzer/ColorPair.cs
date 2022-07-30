@@ -6,8 +6,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public class ColorPair
     {
-        readonly internal Color backgroundColor;
-        readonly internal Color foregroundColor;
+        internal readonly Color backgroundColor;
+        internal readonly Color foregroundColor;
 
         public ColorPair(Color potentialBackgroundColor, Color potentialForegroundColor)
         {

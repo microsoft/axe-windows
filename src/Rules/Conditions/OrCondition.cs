@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Rules.Resources;
@@ -14,11 +14,8 @@ namespace Axe.Windows.Rules
 
         public OrCondition(Condition a, Condition b)
         {
-            if (a == null) throw new ArgumentNullException(nameof(a));
-            if (b == null) throw new ArgumentNullException(nameof(b));
-
-            this.A = a;
-            this.B = b;
+            this.A = a ?? throw new ArgumentNullException(nameof(a));
+            this.B = b ?? throw new ArgumentNullException(nameof(b));
         }
 
         public override bool Matches(IA11yElement element)

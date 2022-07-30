@@ -14,11 +14,8 @@ namespace AxeWindowsCLI
 
         internal ScanDelay(TextWriter writer, Action oneSecondDelay)
         {
-            if (writer == null) throw new ArgumentNullException(nameof(writer));
-            if (oneSecondDelay == null) throw new ArgumentNullException(nameof(oneSecondDelay));
-
-            _writer = writer;
-            _oneSecondDelay = oneSecondDelay;
+            _writer = writer ?? throw new ArgumentNullException(nameof(writer));
+            _oneSecondDelay = oneSecondDelay ?? throw new ArgumentNullException(nameof(oneSecondDelay));
         }
 
         public void DelayWithCountdown(IOptions options)

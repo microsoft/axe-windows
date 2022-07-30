@@ -35,7 +35,7 @@ namespace Axe.Windows.Automation
         /// </summary>
         /// <param name="a11yTestFile"></param>
         /// <returns></returns>
-        static internal OutputFile BuildFromA11yTestFile(string a11yTestFile)
+        internal static OutputFile BuildFromA11yTestFile(string a11yTestFile)
         {
             return new OutputFile(a11yTest: a11yTestFile);
         }

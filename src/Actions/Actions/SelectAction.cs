@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
@@ -283,7 +283,7 @@ namespace Axe.Windows.Actions
 
             ec.DataContext.Screenshot = parts.Bmp ?? parts.SynthesizedBmp;
             ec.DataContext.ScreenshotElementId = meta.ScreenshotElementId;
-            ec.DataContext.FocusedElementUniqueId = selectedElementId.HasValue ? selectedElementId.Value : meta.SelectedItems?.First();
+            ec.DataContext.FocusedElementUniqueId = selectedElementId ?? (meta.SelectedItems?.First());
 
             return new Tuple<Guid, SnapshotMetaInfo>(ec.Id, meta);
         }

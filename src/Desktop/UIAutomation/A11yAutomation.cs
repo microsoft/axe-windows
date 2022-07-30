@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -43,7 +43,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         public static DesktopElement ElementFromProcessId(int pid)
         {
             var elements = ElementsFromProcessId(pid);
-            return elements != null ? elements.First() : null;
+            return elements?.First();
         }
 
         /// <summary>

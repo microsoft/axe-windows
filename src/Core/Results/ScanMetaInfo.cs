@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
@@ -82,10 +82,12 @@ namespace Axe.Windows.Core.Results
         /// <returns></returns>
         internal ScanMetaInfo Clone()
         {
-            var mi = new ScanMetaInfo();
-            mi.ControlType = this.ControlType;
-            mi.PropertyId = this.PropertyId;
-            mi.UIFramework = this.UIFramework;
+            var mi = new ScanMetaInfo
+            {
+                ControlType = this.ControlType,
+                PropertyId = this.PropertyId,
+                UIFramework = this.UIFramework
+            };
 
             return mi;
         }

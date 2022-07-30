@@ -7,7 +7,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     internal class ColorContrastResult : IColorContrastResult
     {
-        private List<ColorPair> alternatives = new List<ColorPair>();
+        private readonly List<ColorPair> alternatives = new List<ColorPair>();
 
         private ColorPair mostContrastingPair;
 
@@ -24,9 +24,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal ColorContrastResult Add(ColorPair newColorPair)
         {
+#if ENABLE_COLOR_CONTRAST_DEBUGGING
             var newTextColor = newColorPair.foregroundColor;
-
             var newBackgroundColor = newColorPair.backgroundColor;
+#endif
 
             if (mostContrastingPair == null ||
                 mostContrastingPair.ColorContrast() < newColorPair.ColorContrast())

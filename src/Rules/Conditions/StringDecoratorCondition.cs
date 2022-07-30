@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using System;
@@ -12,16 +12,13 @@ namespace Axe.Windows.Rules
     /// </summary>
     class StringDecoratorCondition : Condition
     {
-        private Condition Sub;
+        private readonly Condition Sub;
         private readonly string Decoration;
 
         public StringDecoratorCondition(Condition c, string decoration)
         {
-            if (c == null) throw new ArgumentNullException(nameof(c));
-            if (decoration == null) throw new ArgumentNullException(nameof(decoration));
-
-            this.Sub = c;
-            this.Decoration = decoration;
+            this.Sub = c ?? throw new ArgumentNullException(nameof(c));
+            this.Decoration = decoration ?? throw new ArgumentNullException(nameof(decoration));
         }
 
         public override bool Matches(IA11yElement element)

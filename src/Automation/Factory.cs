@@ -12,7 +12,7 @@ namespace Axe.Windows.Automation
         private Factory()
         { }
 
-        static public IScanToolsBuilder CreateScanToolsBuilder()
+        public static IScanToolsBuilder CreateScanToolsBuilder()
         {
             return new ScanToolsBuilder(new Factory());
         }

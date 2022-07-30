@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using System;
@@ -21,11 +21,8 @@ namespace Axe.Windows.Rules
 
         public ValueCondition(GetterDelegate getter, string description)
         {
-            if (getter == null) throw new ArgumentNullException(nameof(getter));
-            if (description == null) throw new ArgumentNullException(nameof(description));
-
-            this.GetValue = getter;
-            this.Description = description;
+            this.GetValue = getter ?? throw new ArgumentNullException(nameof(getter));
+            this.Description = description ?? throw new ArgumentNullException(nameof(description));
         }
 
         public override bool Matches(IA11yElement element)

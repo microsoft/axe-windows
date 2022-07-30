@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.SystemAbstractions;
 using System;
@@ -21,9 +21,7 @@ namespace Axe.Windows.Win32
 
         public Win32Helper(IMicrosoftWin32Registry registry)
         {
-            if (registry == null) throw new ArgumentNullException(nameof(registry));
-
-            _registry = registry;
+            _registry = registry ?? throw new ArgumentNullException(nameof(registry));
         }
 
         public Win32Helper()

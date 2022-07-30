@@ -15,7 +15,7 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.HyperlinkNameShouldBeUnique)]
     class HyperlinkNameShouldBeUnique : Rule
     {
-        private static Condition EligibleHyperlink = CreateHyperlinkSiblingCondition();
+        private static readonly Condition EligibleHyperlink = CreateHyperlinkSiblingCondition();
 
         public HyperlinkNameShouldBeUnique()
         {

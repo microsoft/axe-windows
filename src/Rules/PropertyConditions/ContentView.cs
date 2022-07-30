@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
@@ -12,8 +12,8 @@ namespace Axe.Windows.Rules.PropertyConditions
     /// </summary>
     static class ContentView
     {
-        static Condition NoChildren = NoChild(IsContentElement);
-        static Condition RequiresChildren = AnyChild(IsContentElement);
+        static readonly Condition NoChildren = NoChild(IsContentElement);
+        static readonly Condition RequiresChildren = AnyChild(IsContentElement);
 
         public static Condition ButtonStructure = Button & NoChildren;
         public static Condition CalendarStructure = Calendar & (NoChildren | Children(ListItem))[ConditionDescriptions.Parentheses];

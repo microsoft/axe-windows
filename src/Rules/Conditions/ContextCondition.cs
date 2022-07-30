@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using System;
@@ -19,13 +19,9 @@ namespace Axe.Windows.Rules
 
         public ContextCondition(Condition sub, ContextDelegate initialize, ContextDelegate finalize)
         {
-            if (sub == null) throw new ArgumentNullException(nameof(sub));
-            if (initialize == null) throw new ArgumentNullException(nameof(initialize));
-            if (finalize == null) throw new ArgumentNullException(nameof(finalize));
-
-            this.Sub = sub;
-            this.Initialize = initialize;
-            this.Finalize = finalize;
+            this.Sub = sub ?? throw new ArgumentNullException(nameof(sub));
+            this.Initialize = initialize ?? throw new ArgumentNullException(nameof(initialize));
+            this.Finalize = finalize ?? throw new ArgumentNullException(nameof(finalize));
         }
 
         public override bool Matches(IA11yElement e)

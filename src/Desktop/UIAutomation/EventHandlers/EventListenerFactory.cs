@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Types;
@@ -39,7 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <summary>
         /// Message Queue to keep the request from callers on other thread(s)
         /// </summary>
-        private Queue<EventListenerFactoryMessage> _msgQueue = new Queue<EventListenerFactoryMessage>();
+        private readonly Queue<EventListenerFactoryMessage> _msgQueue = new Queue<EventListenerFactoryMessage>();
 
         private Thread _threadBackground;
         private AutoResetEvent _autoEventInit; // Event used to allow background thread to take any required initialization action.

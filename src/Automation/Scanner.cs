@@ -17,12 +17,10 @@ namespace Axe.Windows.Automation
 
         internal Scanner(Config config, IScanTools scanTools)
         {
-            if (config == null) throw new ArgumentNullException(nameof(config));
-            if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
-            if (scanTools.OutputFileHelper == null) throw new ArgumentException(ErrorMessages.ScanToolsOutputFileHelperNull, nameof(scanTools));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
+            _scanTools = scanTools ?? throw new ArgumentNullException(nameof(scanTools));
 
-            _config = config;
-            _scanTools = scanTools;
+            if (scanTools.OutputFileHelper == null) throw new ArgumentException(ErrorMessages.ScanToolsOutputFileHelperNull, nameof(scanTools));
         }
 
         /// <summary>
