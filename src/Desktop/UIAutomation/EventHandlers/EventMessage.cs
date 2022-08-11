@@ -4,7 +4,6 @@ using Axe.Windows.Core.Bases;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
