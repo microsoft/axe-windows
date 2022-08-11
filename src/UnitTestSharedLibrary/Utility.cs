@@ -64,10 +64,13 @@ namespace Axe.Windows.UnitTestSharedLibrary
 
             foreach (var item in ke.ScanResults.Items)
             {
-                item.Items = new List<RuleResult>();
-                RuleResult r = new RuleResult();
-                r.Status = ke.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail;
-                item.Items.Add(r);
+                item.Items = new List<RuleResult>
+                {
+                    new RuleResult
+                    {
+                        Status = ke.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail
+                    }
+                };
             };
             foreach (var c in ke.Children)
             {

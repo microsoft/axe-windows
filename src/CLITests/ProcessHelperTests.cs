@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using AxeWindowsCLI;
@@ -14,7 +14,6 @@ namespace AxeWindowsCLITests
     {
         const string TestProcessName = "SomeProcess";
         const int TestProcessId = -123;
-        const string TestProcessIdAsString = "-123";
 
         Mock<IProcessAbstraction> _processAbstractionMock;
 

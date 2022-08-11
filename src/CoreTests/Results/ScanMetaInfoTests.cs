@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Results;
@@ -17,10 +17,14 @@ namespace Axe.Windows.CoreTests.Results
         [TestMethod()]
         public void ScanMetaInfoTest()
         {
-            A11yElement e = new A11yElement();
-            e.Properties = new Dictionary<int, A11yProperty>();
-            e.Properties.Add(PropertyType.UIA_ControlTypePropertyId, new A11yProperty(PropertyType.UIA_ControlTypePropertyId, ControlType.UIA_ButtonControlTypeId));
-            e.Properties.Add(PropertyType.UIA_FrameworkIdPropertyId, new A11yProperty(PropertyType.UIA_FrameworkIdPropertyId, "WPF"));
+            A11yElement e = new A11yElement
+            {
+                Properties = new Dictionary<int, A11yProperty>
+                {
+                    { PropertyType.UIA_ControlTypePropertyId, new A11yProperty(PropertyType.UIA_ControlTypePropertyId, ControlType.UIA_ButtonControlTypeId) },
+                    { PropertyType.UIA_FrameworkIdPropertyId, new A11yProperty(PropertyType.UIA_FrameworkIdPropertyId, "WPF") }
+                }
+            };
 
             var s = new ScanMetaInfo(e, PropertyType.UIA_AccessKeyPropertyId);
 
@@ -35,10 +39,14 @@ namespace Axe.Windows.CoreTests.Results
         [TestMethod()]
         public void ScanMetaInfoTest2()
         {
-            A11yElement e = new A11yElement();
-            e.Properties = new Dictionary<int, A11yProperty>();
-            e.Properties.Add(PropertyType.UIA_ControlTypePropertyId, new A11yProperty(PropertyType.UIA_ControlTypePropertyId, ControlType.UIA_AppBarControlTypeId));
-            e.Properties.Add(PropertyType.UIA_FrameworkIdPropertyId, new A11yProperty(PropertyType.UIA_FrameworkIdPropertyId, "Win32"));
+            A11yElement e = new A11yElement
+            {
+                Properties = new Dictionary<int, A11yProperty>
+                {
+                    { PropertyType.UIA_ControlTypePropertyId, new A11yProperty(PropertyType.UIA_ControlTypePropertyId, ControlType.UIA_AppBarControlTypeId) },
+                    { PropertyType.UIA_FrameworkIdPropertyId, new A11yProperty(PropertyType.UIA_FrameworkIdPropertyId, "Win32") }
+                }
+            };
 
             var s = new ScanMetaInfo(e);
 

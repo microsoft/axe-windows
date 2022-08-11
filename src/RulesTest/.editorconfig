@@ -1,0 +1,7 @@
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+#################################################################
+# .NET Coding Conventions (overridden for just this project     #
+#################################################################
+[*.{cs}]
+dotnet_style_object_initializer = false
+dotnet_style_readonly_field	 = false

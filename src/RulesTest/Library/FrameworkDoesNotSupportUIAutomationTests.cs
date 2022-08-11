@@ -12,7 +12,7 @@ namespace Axe.Windows.RulesTests.Library
 
     public class FrameworkDoesNotSupportUIAutomationTests
     {
-        private readonly static Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation();
+        private static readonly Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation();
         private Mock<IA11yElement> _elementMock;
 
         [TestInitialize]

@@ -44,8 +44,10 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
 
         private CustomProperty CreateEmptyPropertyOfType(string type)
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = type;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = type
+            };
             return prop;
         }
 
