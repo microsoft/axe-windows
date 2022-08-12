@@ -240,7 +240,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             // make sure that we have an app first
             if (app != null)
             {
-                // get first item under Desktop. if app is not Desktop, then it is ok to take it as is.
+                // get first item under Desktop. if app is not Desktop, then it is OK to take it as-is.
                 if (app.IsRootElement())
                 {
                     app = app.Children.First();

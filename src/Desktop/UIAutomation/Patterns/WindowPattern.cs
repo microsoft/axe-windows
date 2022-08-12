@@ -44,9 +44,9 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         /// <summary>
-        /// Wait for Input Idel
+        /// Wait for no input (i.e. idle)
         /// </summary>
-        /// <param name="ms">miliseconds</param>
+        /// <param name="ms">milliseconds</param>
         [PatternMethod]
         public void WaitForInputIdle(int ms)
         {

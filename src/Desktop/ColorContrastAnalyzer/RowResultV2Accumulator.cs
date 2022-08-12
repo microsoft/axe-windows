@@ -78,7 +78,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         /// <summary>
         /// Counts up the ForegroundColor from each entry in _rowResults, then
-        /// combines similar colors to allow for things like antialiasing.
+        /// combines similar colors to allow for things like anti-aliasing.
         /// Candidate colors are evaluated, beginning at the highest contrast
         /// from backgroundColor, until we find a candidate that seems to occur
         /// frequently enough that we accept it as the foreground color.

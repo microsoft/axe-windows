@@ -35,7 +35,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
-        //Scroll() means that it has scroll functionality. but doesn't mean that item should be focused since scroll actuall happens by scrollitem
+        //Scroll() means that it has scroll functionality. but doesn't mean that item should be focused since scroll actually happens by scrollitem
         [PatternMethod]
         public void Scroll(ScrollAmount ha, ScrollAmount va)
         {
