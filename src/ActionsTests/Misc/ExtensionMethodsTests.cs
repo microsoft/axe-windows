@@ -36,7 +36,7 @@ namespace Axe.Windows.ActionsTests.Misc
         /// <summary>
         /// Create 10 elements with bounding rectangle (i, i, i, i) from [0, 9]
         /// See which one is identified as smallest enclosing area of (5, 5)
-        /// Normal answer (3, 3, 3, 3) is offscreen
+        /// Normal answer (3, 3, 3, 3) is off-screen
         /// </summary>
         [TestMethod()]
         public void GetSmallestElementFromPointTest_Offscreen()
