@@ -10,7 +10,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 {
     /// <summary>
     /// Control pattern wrapper for Annotation Control Pattern
-    /// No actiona is available
+    /// No action is available
     /// https://msdn.microsoft.com/en-us/library/windows/desktop/hh448769(v=vs.85).aspx
     /// </summary>
     public class AnnotationPattern : A11yPattern
