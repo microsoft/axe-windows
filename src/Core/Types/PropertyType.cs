@@ -7,7 +7,7 @@ namespace Axe.Windows.Core.Types
     /// <summary>
     /// Class for Element Property Type IDs
     /// List is built based on UIAutomationClient.h
-    /// Any of pattern property should be modifiled like below.
+    /// Any of pattern property should be modified like below.
     ///
     /// UIA_ValueValuePropertyId => UIA_ValuePattern_ValuePropertyId
     ///

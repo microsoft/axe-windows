@@ -64,7 +64,7 @@ namespace Axe.Windows.Core.Types
         }
 
         /// <summary>
-        /// check whether the contant should be part of List
+        /// check whether the content should be part of List
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
