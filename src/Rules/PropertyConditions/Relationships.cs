@@ -217,7 +217,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AllChildren, c);
 
             // we must check for the existence of children because MatchAnyChild will return false if there are no children
-            // and the nott operator (~) below will cause this function to return true erroneously when no children exist.
+            // and the not operator (~) below will cause this function to return true erroneously when no children exist.
             return (ChildrenExist & ~AnyChild(~c))[description];
         }
 
