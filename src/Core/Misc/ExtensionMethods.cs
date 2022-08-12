@@ -259,7 +259,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Get the POI element with test results from this element and descendents
+        /// Get the POI element with test results from this element and descendants
         /// POI element Unique ID should be 0.
         /// </summary>
         /// <param name="element">The root of the element tree</param>
@@ -603,7 +603,7 @@ namespace Axe.Windows.Core.Misc
         }
 
         /// <summary>
-        /// Check whether the UI element is offscreen or not based on IsOffScreen property.
+        /// Check whether the UI element is off-screen or not based on IsOffScreen property.
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>

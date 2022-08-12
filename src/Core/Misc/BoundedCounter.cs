@@ -49,7 +49,7 @@ namespace Axe.Windows.Core.Misc
         /// <summary>
         /// Attempt to increment Count
         /// </summary>
-        /// <returns>true iff we can increment without exceeding UpperBound</returns>
+        /// <returns>true if and only if we can increment without exceeding UpperBound</returns>
         public bool TryIncrement()
         {
             if (Attempts == int.MaxValue)
@@ -67,7 +67,7 @@ namespace Axe.Windows.Core.Misc
         /// TryIncrement value times.
         /// </summary>
         /// <param name="valueToAdd">The value to add. Must be non-negative</param>
-        /// <returns>true iff we can add valueToAdd without exceeding UpperBound</returns>
+        /// <returns>true if and only if we can add valueToAdd without exceeding UpperBound</returns>
         public bool TryAdd(int valueToAdd)
         {
             if (valueToAdd < 0)
