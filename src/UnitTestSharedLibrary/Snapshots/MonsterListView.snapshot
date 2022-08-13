@@ -944,7 +944,7 @@
           {
             "Messages": [
               "There is child control(s) which are not image.",
-              "It may be ok not to have itemtype property since the type can be recognized via child element."
+              "It may be OK not to have itemtype property since the type can be recognized via child element."
             ],
             "Status": 1,
             "Description": "Property: ItemType",
@@ -1669,7 +1669,7 @@
           {
             "Messages": [
               "There is child control(s) which are not image.",
-              "It may be ok not to have itemtype property since the type can be recognized via child element."
+              "It may be OK not to have itemtype property since the type can be recognized via child element."
             ],
             "Status": 1,
             "Description": "Property: ItemType",
@@ -2394,7 +2394,7 @@
           {
             "Messages": [
               "There is child control(s) which are not image.",
-              "It may be ok not to have itemtype property since the type can be recognized via child element."
+              "It may be OK not to have itemtype property since the type can be recognized via child element."
             ],
             "Status": 1,
             "Description": "Property: ItemType",

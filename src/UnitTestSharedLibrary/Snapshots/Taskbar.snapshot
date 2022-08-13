@@ -1942,7 +1942,7 @@
                   },
                   {
                     "Messages": [
-                      "UI element is not keyboard focusible though it has some actionable control patterns.",
+                      "UI element is not keyboard focusable though it has some actionable control patterns.",
                       "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                       "UI interactable Pattern: InvokePattern"
                     ],
@@ -2183,7 +2183,7 @@
         "Items": [
           {
             "Messages": [
-              "Name doesn't exit or empty. but it is ok for this control type.(Pane(50033))"
+              "Name doesn't exist or is empty. but it is OK for this control type.(Pane(50033))"
             ],
             "Status": 1,
             "Description": "[4.1.2] Name",
@@ -3832,7 +3832,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -4254,7 +4254,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -4676,7 +4676,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -5098,7 +5098,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -5520,7 +5520,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -5948,7 +5948,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -6370,7 +6370,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -6792,7 +6792,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -7214,7 +7214,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -7636,7 +7636,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -8058,7 +8058,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -8492,7 +8492,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern, ExpandCollapsePattern"
                         ],
@@ -8867,7 +8867,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -9289,7 +9289,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -9668,7 +9668,7 @@
         "Items": [
           {
             "Messages": [
-              "Name doesn't exit or empty. but it is ok for this control type.(Pane(50033))"
+              "Name doesn't exist or is empty. but it is OK for this control type.(Pane(50033))"
             ],
             "Status": 1,
             "Description": "[4.1.2] Name",
@@ -11316,7 +11316,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -11738,7 +11738,7 @@
                       },
                       {
                         "Messages": [
-                          "UI element is not keyboard focusible though it has some actionable control patterns.",
+                          "UI element is not keyboard focusable though it has some actionable control patterns.",
                           "The element should have IsKeyboardFocusable True since it has UI interactive control pattern.",
                           "UI interactable Pattern: InvokePattern"
                         ],
@@ -11978,7 +11978,7 @@
             "Items": [
               {
                 "Messages": [
-                  "Name doesn't exit or empty. but it is ok for this control type.(Pane(50033))"
+                  "Name doesn't exist or is empty. but it is OK for this control type.(Pane(50033))"
                 ],
                 "Status": 1,
                 "Description": "[4.1.2] Name",
@@ -13392,7 +13392,7 @@
         "Items": [
           {
             "Messages": [
-              "Name doesn't exit or empty. but it is ok for this control type.(Pane(50033))"
+              "Name doesn't exist or is empty. but it is OK for this control type.(Pane(50033))"
             ],
             "Status": 1,
             "Description": "[4.1.2] Name",
@@ -13526,7 +13526,7 @@
     "Items": [
       {
         "Messages": [
-          "Name doesn't exit or empty. but it is ok for this control type.(Pane(50033))"
+          "Name doesn't exist or is empty. but it is OK for this control type.(Pane(50033))"
         ],
         "Status": 1,
         "Description": "[4.1.2] Name",
@@ -13612,7 +13612,7 @@
       },
       {
         "Messages": [
-          "pane is excluded, since it would be ok to have childrens with same name and localized control type."
+          "pane is excluded, since it would be OK to have children with same name and localized control type."
         ],
         "Status": 1,
         "Description": "[4.1.2] Name: Child element should have unique name.",
