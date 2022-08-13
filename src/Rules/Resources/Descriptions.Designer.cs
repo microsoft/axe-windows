@@ -97,7 +97,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An onscreen element must not have a null BoundingRectangle property..
+        ///   Looks up a localized string similar to An on-screen element must not have a null BoundingRectangle property..
         /// </summary>
         internal static string BoundingRectangleNotNull {
             get {
@@ -511,7 +511,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for a custome element should be true when the element supports actionable patterns..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns..
         /// </summary>
         internal static string IsKeyboardFocusableForCustomShouldBeTrue {
             get {
