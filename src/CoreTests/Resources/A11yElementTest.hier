@@ -1339,7 +1339,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=814,t=1537,r=899,b=1557]."
+                        "the bounding rectangle of the current element is [l=814,t=1537,r=899,b=1557]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -1463,7 +1463,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=814,t=1537,r=899,b=1557].",
+                    "the bounding rectangle of the current element is [l=814,t=1537,r=899,b=1557].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"5 references\" child is [l=814,t=1537,r=899,b=1557]"
                   ],
@@ -1477,8 +1477,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -1567,7 +1567,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -2098,7 +2098,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=913,t=1539,r=928,b=1554]."
+                        "the bounding rectangle of the current element is [l=913,t=1539,r=928,b=1554]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -2450,7 +2450,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=932,t=1537,r=1013,b=1557]."
+                        "the bounding rectangle of the current element is [l=932,t=1537,r=1013,b=1557]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -2574,7 +2574,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=899,t=1537,r=1013,b=1557].",
+                    "the bounding rectangle of the current element is [l=899,t=1537,r=1013,b=1557].",
                     "the bounding rectangle of image \"\" child is [l=913,t=1539,r=928,b=1554]",
                     "the bounding rectangle of text \"0/1 passing\" child is [l=932,t=1537,r=1013,b=1557]"
                   ],
@@ -2588,8 +2588,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -2678,7 +2678,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -3561,7 +3561,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1027,t=1537,r=1194,b=1557]."
+                        "the bounding rectangle of the current element is [l=1027,t=1537,r=1194,b=1557]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -3685,7 +3685,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1013,t=1537,r=1194,b=1557].",
+                    "the bounding rectangle of the current element is [l=1013,t=1537,r=1194,b=1557].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"John Alkire, 10 days ago\" child is [l=1027,t=1537,r=1194,b=1557]"
                   ],
@@ -3699,8 +3699,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -3789,7 +3789,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -4672,7 +4672,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1207,t=1537,r=1336,b=1557]."
+                        "the bounding rectangle of the current element is [l=1207,t=1537,r=1336,b=1557]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -4796,7 +4796,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1194,t=1537,r=1336,b=1557].",
+                    "the bounding rectangle of the current element is [l=1194,t=1537,r=1336,b=1557].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"1 author, 1 change\" child is [l=1207,t=1537,r=1336,b=1557]"
                   ],
@@ -4810,8 +4810,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -4900,7 +4900,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -4959,7 +4959,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=814,t=1537,r=1336,b=1557].",
+                "the bounding rectangle of the current element is [l=814,t=1537,r=1336,b=1557].",
                 "the bounding rectangle of button \"5 references\" child is [l=814,t=1537,r=899,b=1557]",
                 "the bounding rectangle of button \"0/1 passing\" child is [l=899,t=1537,r=1013,b=1557]",
                 "the bounding rectangle of button \"John Alkire, 10 days ago\" child is [l=1013,t=1537,r=1194,b=1557]",
@@ -6128,7 +6128,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=814,t=1288,r=908,b=1308]."
+                        "the bounding rectangle of the current element is [l=814,t=1288,r=908,b=1308]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -6252,7 +6252,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=814,t=1288,r=908,b=1308].",
+                    "the bounding rectangle of the current element is [l=814,t=1288,r=908,b=1308].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"12 references\" child is [l=814,t=1288,r=908,b=1308]"
                   ],
@@ -6266,8 +6266,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -6356,7 +6356,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -6887,7 +6887,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=922,t=1290,r=937,b=1305]."
+                        "the bounding rectangle of the current element is [l=922,t=1290,r=937,b=1305]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -7239,7 +7239,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=941,t=1288,r=1022,b=1308]."
+                        "the bounding rectangle of the current element is [l=941,t=1288,r=1022,b=1308]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -7363,7 +7363,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=908,t=1288,r=1022,b=1308].",
+                    "the bounding rectangle of the current element is [l=908,t=1288,r=1022,b=1308].",
                     "the bounding rectangle of image \"\" child is [l=922,t=1290,r=937,b=1305]",
                     "the bounding rectangle of text \"0/1 passing\" child is [l=941,t=1288,r=1022,b=1308]"
                   ],
@@ -7377,8 +7377,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -7467,7 +7467,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -8350,7 +8350,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1036,t=1288,r=1203,b=1308]."
+                        "the bounding rectangle of the current element is [l=1036,t=1288,r=1203,b=1308]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -8474,7 +8474,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1022,t=1288,r=1203,b=1308].",
+                    "the bounding rectangle of the current element is [l=1022,t=1288,r=1203,b=1308].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"John Alkire, 10 days ago\" child is [l=1036,t=1288,r=1203,b=1308]"
                   ],
@@ -8488,8 +8488,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -8578,7 +8578,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -9461,7 +9461,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1216,t=1288,r=1345,b=1308]."
+                        "the bounding rectangle of the current element is [l=1216,t=1288,r=1345,b=1308]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -9585,7 +9585,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1203,t=1288,r=1345,b=1308].",
+                    "the bounding rectangle of the current element is [l=1203,t=1288,r=1345,b=1308].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"1 author, 1 change\" child is [l=1216,t=1288,r=1345,b=1308]"
                   ],
@@ -9599,8 +9599,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -9689,7 +9689,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -9748,7 +9748,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=814,t=1288,r=1345,b=1308].",
+                "the bounding rectangle of the current element is [l=814,t=1288,r=1345,b=1308].",
                 "the bounding rectangle of button \"12 references\" child is [l=814,t=1288,r=908,b=1308]",
                 "the bounding rectangle of button \"0/1 passing\" child is [l=908,t=1288,r=1022,b=1308]",
                 "the bounding rectangle of button \"John Alkire, 10 days ago\" child is [l=1022,t=1288,r=1203,b=1308]",
@@ -10917,7 +10917,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=814,t=860,r=899,b=880]."
+                        "the bounding rectangle of the current element is [l=814,t=860,r=899,b=880]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -11041,7 +11041,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=814,t=860,r=899,b=880].",
+                    "the bounding rectangle of the current element is [l=814,t=860,r=899,b=880].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"4 references\" child is [l=814,t=860,r=899,b=880]"
                   ],
@@ -11055,8 +11055,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -11145,7 +11145,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -11676,7 +11676,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=913,t=863,r=928,b=878]."
+                        "the bounding rectangle of the current element is [l=913,t=863,r=928,b=878]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -12028,7 +12028,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=932,t=860,r=1013,b=880]."
+                        "the bounding rectangle of the current element is [l=932,t=860,r=1013,b=880]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -12152,7 +12152,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=899,t=860,r=1013,b=880].",
+                    "the bounding rectangle of the current element is [l=899,t=860,r=1013,b=880].",
                     "the bounding rectangle of image \"\" child is [l=913,t=863,r=928,b=878]",
                     "the bounding rectangle of text \"0/1 passing\" child is [l=932,t=860,r=1013,b=880]"
                   ],
@@ -12166,8 +12166,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -12256,7 +12256,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -13139,7 +13139,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1027,t=860,r=1194,b=880]."
+                        "the bounding rectangle of the current element is [l=1027,t=860,r=1194,b=880]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -13263,7 +13263,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1013,t=860,r=1194,b=880].",
+                    "the bounding rectangle of the current element is [l=1013,t=860,r=1194,b=880].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"John Alkire, 10 days ago\" child is [l=1027,t=860,r=1194,b=880]"
                   ],
@@ -13277,8 +13277,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -13367,7 +13367,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -14250,7 +14250,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1207,t=860,r=1343,b=880]."
+                        "the bounding rectangle of the current element is [l=1207,t=860,r=1343,b=880]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -14374,7 +14374,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1194,t=860,r=1343,b=880].",
+                    "the bounding rectangle of the current element is [l=1194,t=860,r=1343,b=880].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"1 author, 2 changes\" child is [l=1207,t=860,r=1343,b=880]"
                   ],
@@ -14388,8 +14388,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -14478,7 +14478,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -14537,7 +14537,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=814,t=860,r=1343,b=880].",
+                "the bounding rectangle of the current element is [l=814,t=860,r=1343,b=880].",
                 "the bounding rectangle of button \"4 references\" child is [l=814,t=860,r=899,b=880]",
                 "the bounding rectangle of button \"0/1 passing\" child is [l=899,t=860,r=1013,b=880]",
                 "the bounding rectangle of button \"John Alkire, 10 days ago\" child is [l=1013,t=860,r=1194,b=880]",
@@ -15706,7 +15706,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=814,t=356,r=899,b=376]."
+                        "the bounding rectangle of the current element is [l=814,t=356,r=899,b=376]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -15830,7 +15830,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=814,t=356,r=899,b=376].",
+                    "the bounding rectangle of the current element is [l=814,t=356,r=899,b=376].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"3 references\" child is [l=814,t=356,r=899,b=376]"
                   ],
@@ -15844,8 +15844,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -15934,7 +15934,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -16817,7 +16817,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=913,t=356,r=1080,b=376]."
+                        "the bounding rectangle of the current element is [l=913,t=356,r=1080,b=376]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -16941,7 +16941,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=899,t=356,r=1080,b=376].",
+                    "the bounding rectangle of the current element is [l=899,t=356,r=1080,b=376].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"John Alkire, 10 days ago\" child is [l=913,t=356,r=1080,b=376]"
                   ],
@@ -16955,8 +16955,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -17045,7 +17045,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -17928,7 +17928,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1093,t=356,r=1222,b=376]."
+                        "the bounding rectangle of the current element is [l=1093,t=356,r=1222,b=376]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -18052,7 +18052,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1080,t=356,r=1222,b=376].",
+                    "the bounding rectangle of the current element is [l=1080,t=356,r=1222,b=376].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"1 author, 1 change\" child is [l=1093,t=356,r=1222,b=376]"
                   ],
@@ -18066,8 +18066,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -18156,7 +18156,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -18215,7 +18215,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=814,t=356,r=1222,b=376].",
+                "the bounding rectangle of the current element is [l=814,t=356,r=1222,b=376].",
                 "the bounding rectangle of button \"3 references\" child is [l=814,t=356,r=899,b=376]",
                 "the bounding rectangle of button \"John Alkire, 10 days ago\" child is [l=899,t=356,r=1080,b=376]",
                 "the bounding rectangle of button \"1 author, 1 change\" child is [l=1080,t=356,r=1222,b=376]"
@@ -19383,7 +19383,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=814,t=209,r=899,b=229]."
+                        "the bounding rectangle of the current element is [l=814,t=209,r=899,b=229]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -19507,7 +19507,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=814,t=209,r=899,b=229].",
+                    "the bounding rectangle of the current element is [l=814,t=209,r=899,b=229].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"6 references\" child is [l=814,t=209,r=899,b=229]"
                   ],
@@ -19521,8 +19521,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -19611,7 +19611,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -20142,7 +20142,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=913,t=212,r=928,b=227]."
+                        "the bounding rectangle of the current element is [l=913,t=212,r=928,b=227]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -20494,7 +20494,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=932,t=209,r=1013,b=229]."
+                        "the bounding rectangle of the current element is [l=932,t=209,r=1013,b=229]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -20618,7 +20618,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=899,t=209,r=1013,b=229].",
+                    "the bounding rectangle of the current element is [l=899,t=209,r=1013,b=229].",
                     "the bounding rectangle of image \"\" child is [l=913,t=212,r=928,b=227]",
                     "the bounding rectangle of text \"0/1 passing\" child is [l=932,t=209,r=1013,b=229]"
                   ],
@@ -20632,8 +20632,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -20722,7 +20722,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -21605,7 +21605,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1027,t=209,r=1194,b=229]."
+                        "the bounding rectangle of the current element is [l=1027,t=209,r=1194,b=229]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -21729,7 +21729,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1013,t=209,r=1194,b=229].",
+                    "the bounding rectangle of the current element is [l=1013,t=209,r=1194,b=229].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"John Alkire, 10 days ago\" child is [l=1027,t=209,r=1194,b=229]"
                   ],
@@ -21743,8 +21743,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -21833,7 +21833,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -22716,7 +22716,7 @@
                     {
                       "Messages": [
                         "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                        "the bounding rectagle of the current element is [l=1207,t=209,r=1336,b=229]."
+                        "the bounding rectangle of the current element is [l=1207,t=209,r=1336,b=229]."
                       ],
                       "Status": 1,
                       "Description": "Property: BoundingRectangle - Element33A",
@@ -22840,7 +22840,7 @@
                 {
                   "Messages": [
                     "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                    "the bounding rectagle of the current element is [l=1194,t=209,r=1336,b=229].",
+                    "the bounding rectangle of the current element is [l=1194,t=209,r=1336,b=229].",
                     "the bounding rectangle of image \"\" child is [l=0,t=0,r=0,b=0]",
                     "the bounding rectangle of text \"1 author, 1 change\" child is [l=1207,t=209,r=1336,b=229]"
                   ],
@@ -22854,8 +22854,8 @@
                 },
                 {
                   "Messages": [
-                    "UI element is not keyboard focusible though it has some actionable control patterns.",
-                    "The element should be keyboardfocusible since it has UI interactive control pattern.",
+                    "UI element is not keyboard focusable though it has some actionable control patterns.",
+                    "The element should be keyboardfocusable since it has UI interactive control pattern.",
                     "UI interactable Pattern: InvokePattern"
                   ],
                   "Status": 3,
@@ -22944,7 +22944,7 @@
                 },
                 {
                   "Messages": [
-                    "One of Inoke/Toggle/ExpandCollapse patterns expected.",
+                    "One of Invoke/Toggle/ExpandCollapse patterns expected.",
                     "Invoke pattern exists."
                   ],
                   "Status": 1,
@@ -23003,7 +23003,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=814,t=209,r=1336,b=229].",
+                "the bounding rectangle of the current element is [l=814,t=209,r=1336,b=229].",
                 "the bounding rectangle of button \"6 references\" child is [l=814,t=209,r=899,b=229]",
                 "the bounding rectangle of button \"0/1 passing\" child is [l=899,t=209,r=1013,b=229]",
                 "the bounding rectangle of button \"John Alkire, 10 days ago\" child is [l=1013,t=209,r=1194,b=229]",
@@ -23361,7 +23361,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=1079,t=1379,r=1202,b=1382]."
+                "the bounding rectangle of the current element is [l=1079,t=1379,r=1202,b=1382]."
               ],
               "Status": 1,
               "Description": "Property: BoundingRectangle - Element33A",
@@ -23681,7 +23681,7 @@
             {
               "Messages": [
                 "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-                "the bounding rectagle of the current element is [l=859,t=1628,r=923,b=1631]."
+                "the bounding rectangle of the current element is [l=859,t=1628,r=923,b=1631]."
               ],
               "Status": 1,
               "Description": "Property: BoundingRectangle - Element33A",
@@ -23761,7 +23761,7 @@
         {
           "Messages": [
             "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-            "the bounding rectagle of the current element is [l=723,t=203,r=2103,b=1212].",
+            "the bounding rectangle of the current element is [l=723,t=203,r=2103,b=1212].",
             "the bounding rectangle of group \"ConfigurationBase.RemoveConfiguration\" child is [l=814,t=1537,r=1336,b=1557]",
             "group \"ConfigurationBase.RemoveConfiguration\" child is not contained.",
             "the bounding rectangle of group \"ConfigurationBase.BuildPathBasedOnDefaultConfigPath\" child is [l=814,t=1288,r=1345,b=1308]",
