@@ -267,7 +267,7 @@
         {
           "Messages": [
             "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-            "the bounding rectagle of the current element is [l=1285,t=91,r=1368,b=116]."
+            "the bounding rectangle of the current element is [l=1285,t=91,r=1368,b=116]."
           ],
           "Status": 1,
           "Description": "Property: BoundingRectangle - Element33A",
