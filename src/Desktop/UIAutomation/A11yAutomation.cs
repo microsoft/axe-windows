@@ -1,9 +1,8 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
@@ -46,6 +45,63 @@ namespace Axe.Windows.Desktop.UIAutomation
             return elements != null ? elements.First() : null;
         }
 
+        private static bool FindProcessMatchingChildren(IUIAutomationElement parent, IUIAutomationTreeWalker walker, int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements)
+        {
+            for (var child = walker.GetFirstChildElement(parent); child != null; child = walker.GetNextSiblingElement(child))
+            {
+                if (child.CurrentProcessId == pid)
+                {
+                    matchingElements.Add(child);
+                }
+                else
+                {
+                    nonMatchingElements.Add(child);
+                }
+            }
+
+            return matchingElements.Any();
+        }
+
+        private static IList<IUIAutomationElement> FindProcessMatchingChildrenOrGrandchildren(IUIAutomationElement root, int pid)
+        {
+            IUIAutomationTreeWalker walker = GetTreeWalker(TreeViewMode.Control);
+            List<IUIAutomationElement> matchingElements = new List<IUIAutomationElement>();
+            List<IUIAutomationElement> nonMatchingElements = new List<IUIAutomationElement>();
+            List<IUIAutomationElement> nonMatchingElementsSecondLevel = new List<IUIAutomationElement>();
+
+            if (FindProcessMatchingChildren(root, walker, pid, matchingElements, nonMatchingElements))
+            {
+                CleanUpNonMatchingElements();
+                return matchingElements;
+            }
+
+            foreach (var nonMatchingElement in nonMatchingElements)
+            {
+                if (FindProcessMatchingChildren(nonMatchingElement, walker, pid, matchingElements, nonMatchingElementsSecondLevel))
+                {
+                    CleanUpNonMatchingElements();
+                    return matchingElements;
+                }
+            }
+            CleanUpNonMatchingElements();
+            return matchingElements; // Will always be empty
+
+            void CleanUpNonMatchingElements()
+            {
+                foreach (var nonMatchingElementToBeCleaned in nonMatchingElements)
+                {
+                    Marshal.ReleaseComObject(nonMatchingElementToBeCleaned);
+                }
+                nonMatchingElements = null;
+                foreach (var nonMatchingElementToBeCleaned in nonMatchingElementsSecondLevel)
+                {
+                    Marshal.ReleaseComObject(nonMatchingElementToBeCleaned);
+                }
+                nonMatchingElementsSecondLevel = null;
+                Marshal.ReleaseComObject(walker);
+            }
+        }
+
         /// <summary>
         /// Get DesktopElements based on Process Id.
         /// </summary>
@@ -55,8 +111,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             IUIAutomationElement root = null;
             IEnumerable<DesktopElement> elements = null;
-            IUIAutomationCondition condition = null;
-            IUIAutomationElementArray elementArray = null;
+            IList<IUIAutomationElement> matchingElements;
 
             try
             {
@@ -65,9 +120,8 @@ namespace Axe.Windows.Desktop.UIAutomation
                 using (var proc = Process.GetProcessById(pid))
                 {
                     root = UIAutomation.GetRootElement();
-                    condition = UIAutomation.CreatePropertyCondition(PropertyType.UIA_ProcessIdPropertyId, pid);
-                    elementArray = root.FindAll(TreeScope.TreeScope_Children, condition);
-                    elements = ElementsFromUIAElements(elementArray);
+                    matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
+                    elements = ElementsFromUIAElements(matchingElements);
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -82,15 +136,6 @@ namespace Axe.Windows.Desktop.UIAutomation
                 if (root != null)
                 {
                     Marshal.ReleaseComObject(root);
-                }
-                if (condition != null)
-                {
-                    Marshal.ReleaseComObject(condition);
-                }
-
-                if (elementArray != null)
-                {
-                    Marshal.ReleaseComObject(elementArray);
                 }
             }
 
@@ -149,13 +194,12 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="uia"></param>
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
-        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IUIAutomationElementArray elementArray)
+        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList)
         {
-            if (elementArray == null) throw new ArgumentNullException(nameof(elementArray));
+            if (elementList == null) throw new ArgumentNullException(nameof(elementList));
 
             // Return an empty IEnumerable<DesktopElement> instead of null from ElementsFromUIAElements so that downstream calls to Linq extensions on the IEnumerable don't throw null reference exceptions.
-            var count = elementArray.Length;
-            if (count <= 0) return Enumerable.Empty<DesktopElement>();
+            if (!elementList.Any()) return Enumerable.Empty<DesktopElement>();
 
             // This function was originally an iterator
             // Meaning it used the yield keyword to yield return each element
@@ -163,9 +207,8 @@ namespace Axe.Windows.Desktop.UIAutomation
             // So now we use a list
             List<DesktopElement> elements = new List<DesktopElement>();
 
-            for (int i = 0; i < count; ++i)
+            foreach (var uiaElement in elementList)
             {
-                var uiaElement = elementArray.GetElement(i);
                 var e = ElementFromUIAElement(uiaElement);
                 if (e == null) continue;
 
