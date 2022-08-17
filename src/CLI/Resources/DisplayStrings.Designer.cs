@@ -259,7 +259,7 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Results were written to \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Results were written to &quot;{0}&quot;.
         /// </summary>
         internal static string ScanResultsLocationFormat {
             get {
@@ -322,7 +322,7 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Opening Third Party Notices in default browser. If this fails, manually open \&quot;{0}\&quot;.
+        ///   Looks up a localized string similar to Opening Third Party Notices in default browser. If this fails, manually open &quot;{0}&quot;.
         /// </summary>
         internal static string ThirdPartyNoticeFormat {
             get {

@@ -201,7 +201,7 @@
     <comment>{0} is the error index. {1} is the error description</comment>
   </data>
   <data name="ScanResultsLocationFormat" xml:space="preserve">
-    <value>Results were written to \"{0}\"</value>
+    <value>Results were written to "{0}"</value>
     <comment>{0} is the path to the output file</comment>
   </data>
   <data name="ScanResultsMultipleErrorsFormat" xml:space="preserve">
@@ -226,7 +226,7 @@
     <value>,</value>
   </data>
   <data name="ThirdPartyNoticeFormat" xml:space="preserve">
-    <value>Opening Third Party Notices in default browser. If this fails, manually open \"{0}\"</value>
+    <value>Opening Third Party Notices in default browser. If this fails, manually open "{0}"</value>
     <comment>{0} is the path to the notices file</comment>
   </data>
   <data name="VersionFormat" xml:space="preserve">
