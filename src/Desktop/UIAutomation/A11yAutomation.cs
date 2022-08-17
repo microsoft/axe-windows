@@ -72,7 +72,6 @@ namespace Axe.Windows.Desktop.UIAutomation
             {
                 if (FindProcessMatchingChildren(root, walker, pid, matchingElements, nonMatchingElements))
                 {
-                    ReleaseElements(walker, nonMatchingElements);
                     return matchingElements;
                 }
 
@@ -80,7 +79,6 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     if (FindProcessMatchingChildren(nonMatchingElement, walker, pid, matchingElements, nonMatchingElementsSecondLevel))
                     {
-                        ReleaseElements(walker, nonMatchingElements, nonMatchingElementsSecondLevel);
                         return matchingElements;
                     }
                 }
