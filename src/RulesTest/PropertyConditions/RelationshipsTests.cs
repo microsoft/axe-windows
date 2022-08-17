@@ -1157,7 +1157,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
             // where the parent element is saved on the per-thread Context stack
             // and compared with its child in the HasSameType condition.
             // the idea of the test is that if the parents and children get out of sync, the assertion should fail.
-            // if all the assertions in the loop are true, then the the thread local storage worked as expected.
+            // if all the assertions in the loop are true, then the thread local storage worked as expected.
             var tasks = new System.Collections.Generic.List<Task>();
             for (var i = 0; i < 20; ++i)
             {

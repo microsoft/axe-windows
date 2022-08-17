@@ -160,7 +160,7 @@
     <value>The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable.</value>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for a custome element should be true when the element supports actionable patterns.</value>
+    <value>The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.</value>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>The IsKeyboardFocusable property may be false when the given element supports the text pattern and is the descendant of an element that also supports the text pattern. Please consider if the given element should or should not be focusable.</value>
@@ -347,8 +347,8 @@ If the element can't be resized, ensure the TransformPattern_CanResize property 
  4. Height</value>
   </data>
   <data name="BoundingRectangleNotNull" xml:space="preserve">
-    <value>If the element is offscreen, set its IsOffscreen property to TRUE.
-If the element is onscreen, provide a BoundingRectangle property.</value>
+    <value>If the element is off-screen, set its IsOffscreen property to TRUE.
+If the element is on-screen, provide a BoundingRectangle property.</value>
   </data>
   <data name="BoundingRectangleSizeReasonable" xml:space="preserve">
     <value>Modify the BoundingRectangle property so that its width and height define an area of at least 25 pixels.</value>
