@@ -68,38 +68,40 @@ namespace Axe.Windows.Desktop.UIAutomation
             List<IUIAutomationElement> matchingElements = new List<IUIAutomationElement>();
             List<IUIAutomationElement> nonMatchingElements = new List<IUIAutomationElement>();
             List<IUIAutomationElement> nonMatchingElementsSecondLevel = new List<IUIAutomationElement>();
-
-            if (FindProcessMatchingChildren(root, walker, pid, matchingElements, nonMatchingElements))
+            try
             {
-                CleanUpNonMatchingElements();
-                return matchingElements;
-            }
-
-            foreach (var nonMatchingElement in nonMatchingElements)
-            {
-                if (FindProcessMatchingChildren(nonMatchingElement, walker, pid, matchingElements, nonMatchingElementsSecondLevel))
+                if (FindProcessMatchingChildren(root, walker, pid, matchingElements, nonMatchingElements))
                 {
-                    CleanUpNonMatchingElements();
+                    ReleaseElements(walker, nonMatchingElements);
                     return matchingElements;
                 }
-            }
-            CleanUpNonMatchingElements();
-            return matchingElements; // Will always be empty
 
-            void CleanUpNonMatchingElements()
-            {
-                foreach (var nonMatchingElementToBeCleaned in nonMatchingElements)
+                foreach (var nonMatchingElement in nonMatchingElements)
                 {
-                    Marshal.ReleaseComObject(nonMatchingElementToBeCleaned);
+                    if (FindProcessMatchingChildren(nonMatchingElement, walker, pid, matchingElements, nonMatchingElementsSecondLevel))
+                    {
+                        ReleaseElements(walker, nonMatchingElements, nonMatchingElementsSecondLevel);
+                        return matchingElements;
+                    }
                 }
-                nonMatchingElements = null;
-                foreach (var nonMatchingElementToBeCleaned in nonMatchingElementsSecondLevel)
-                {
-                    Marshal.ReleaseComObject(nonMatchingElementToBeCleaned);
-                }
-                nonMatchingElementsSecondLevel = null;
-                Marshal.ReleaseComObject(walker);
             }
+            finally
+            {
+                ReleaseElements(walker, nonMatchingElements, nonMatchingElementsSecondLevel);
+            }
+            return matchingElements; // Will always be empty
+        }
+
+        private static void ReleaseElements(IUIAutomationTreeWalker walker, params IList<IUIAutomationElement>[] elementLists)
+        {
+            foreach (var list in elementLists)
+            {
+                foreach(var element in list)
+                {
+                    Marshal.ReleaseComObject(element);
+                }
+            }
+            Marshal.ReleaseComObject(walker);
         }
 
         /// <summary>
