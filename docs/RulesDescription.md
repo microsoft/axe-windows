@@ -4,14 +4,14 @@
 Name | Severity | Description | Standard referenced
 --- | --- | --- | ---
 BoundingRectangleNotAllZeros | Error | The BoundingRectangle property must not be defined as [0,0,0,0] | Section 508 502.3.1 ObjectInformation
-BoundingRectangleNotNull | Error | An onscreen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation
+BoundingRectangleNotNull | Error | An on-screen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleNotValidButOffScreen | NeedsReview | The BoundingRectangle property is not valid, but the element is off-screen. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleDataFormatCorrect | Error | The BoundingRectangle property must return a valid rectangle. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleCompletelyObscuresContainer | Error | An element's BoundingRectangle must not obscure its container element. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleContainedInParent | Warning | An element's BoundingRectangle must be contained within its parent element. | Section 508 502.3.1 ObjectInformation
 BoundingRectangleSizeReasonable | Error | The BoundingRectangle property must represent an area of at least 25 pixels. | Section 508 502.3.1 ObjectInformation
-BoundingRectangleNotNullListViewXAML | Error | An onscreen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation
-BoundingRectangleNotNullTextBlockXAML | Error | An onscreen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation
+BoundingRectangleNotNullListViewXAML | Error | An on-screen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation
+BoundingRectangleNotNullTextBlockXAML | Error | An on-screen element must not have a null BoundingRectangle property. | Section 508 502.3.1 ObjectInformation
 SplitButtonInvokeAndTogglePatterns | Error | A split button must support exactly one of the Invoke or Toggle patterns. | WCAG 4.1.2 NameRoleValue
 ButtonShouldHavePatterns | Error | A button must support one of these patterns: Invoke, Toggle, or ExpandCollapse. | WCAG 4.1.2 NameRoleValue
 ButtonInvokeAndTogglePatterns | Error | A button must not support both the Invoke and Toggle patterns. | WCAG 4.1.2 NameRoleValue
@@ -115,7 +115,7 @@ IsKeyboardFocusableShouldBeTrue | Warning | The IsKeyboardFocusable property for
 IsKeyboardFocusableFalseButDisabled | NeedsReview | The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableForListItemShouldBeTrue | Warning | The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableFalseButOffscreen | NeedsReview | The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable. | WCAG 2.1.1 Keyboard
-IsKeyboardFocusableForCustomShouldBeTrue | Warning | The IsKeyboardFocusable property for a custome element should be true when the element supports actionable patterns. | WCAG 2.1.1 Keyboard
+IsKeyboardFocusableForCustomShouldBeTrue | Warning | The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableDescendantTextPattern | NeedsReview | The IsKeyboardFocusable property may be false when the given element supports the text pattern and is the descendant of an element that also supports the text pattern. Please consider if the given element should or should not be focusable. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableOnEmptyContainer | NeedsReview | The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by AT users. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableShouldBeFalse | Warning | The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type. | WCAG 2.1.1 Keyboard
