@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Rules;
 using Axe.Windows.Rules.PropertyConditions;
@@ -1267,7 +1267,6 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         public void SiblingCount_NoMatch_ParentHasNoChildren()
         {
             var child = new MockA11yElement();
-            var parent = new MockA11yElement();
 
             var condition = Relationships.SiblingCount(Condition.True) == -1;
 
