@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
 using System;
@@ -11,7 +11,7 @@ namespace Axe.Windows.Rules
     class RuleFactory : IRuleFactory
     {
         private static readonly IReadOnlyDictionary<RuleId, Type> RuleTypes = CreateRuleTypes();
-        private static Lazy<IEnumerable<RuleId>> _RuleIds = new Lazy<IEnumerable<RuleId>>(() => RuleTypes.Keys);
+        private static readonly Lazy<IEnumerable<RuleId>> _RuleIds = new Lazy<IEnumerable<RuleId>>(() => RuleTypes.Keys);
         public static IEnumerable<RuleId> RuleIds => _RuleIds.Value;
 
         private static IReadOnlyDictionary<RuleId, Type> CreateRuleTypes()
