@@ -15,9 +15,7 @@ namespace Axe.Windows.Rules
 
         public RuleRunner(IRuleProvider provider)
         {
-            if (provider == null) throw new ArgumentNullException(nameof(provider));
-
-            _provider = provider;
+            _provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
 
         public RunResult RunRuleByID(RuleId id, IA11yElement element)
