@@ -125,7 +125,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Clone A11yElement for selection
         /// </summary>
         /// <param name="e"></param>
-        /// <returns>if element is not live, don't allow clow</returns>
+        /// <returns>if element is not live, don't allow clone</returns>
         public static A11yElement CloneForSelection(this A11yElement e)
         {
             if (e == null) return null;

@@ -60,6 +60,6 @@ Scan results data has been organized relationally to minimize the
 possible ripple effects of changing any single type of data. This is mainly
 done in the `IAutomationScanResult` interface. The interface contains only 
 the ids of a rule and an element. Therefore, the `IElementInfo` interface
-and the `IRuleInfo` interface can change completely independenly.
+and the `IRuleInfo` interface can change completely independently.
 And of course, unless something drastic happens, the `IAutomationScanResult` interface doesn't need to change.
 This has the added benefit of not duplicating data unnecessarily in memory.

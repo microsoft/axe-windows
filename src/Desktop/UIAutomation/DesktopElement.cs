@@ -30,7 +30,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="element"></param>
         /// <param name="keepElement">default is true</param>
-        /// <param name="setMembers">default is true. if it is true, sets propeties and patterns at construction</param>
+        /// <param name="setMembers">default is true. if it is true, sets properties and patterns at construction</param>
         public DesktopElement(IUIAutomationElement element, bool keepElement = true, bool setMembers = true)
         {
             this.PlatformObject = element;
@@ -132,7 +132,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         #endregion
 
         /// <summary>
-        /// Dispos for Desktop Level
+        /// Dispose for Desktop Level
         /// </summary>
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)

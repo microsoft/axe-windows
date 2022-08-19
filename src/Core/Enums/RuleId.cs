@@ -28,7 +28,7 @@ namespace Axe.Windows.Core.Enums
         ButtonShouldHavePatterns, // check whether button has at least one of three patterns(Invoke,Toggle,ExpandCollapse)
         ButtonInvokeAndTogglePatterns, // Button should not have Invoke and Toggle patterns together.
         ButtonInvokeAndExpandCollapsePatterns, // Button may have Invoke and ExpandCollapse patterns together. (warning)
-        ButtonToggleAndExpandCollapsePatterns, // Button should have have Toggle and ExpandCollapse patterns together.
+        ButtonToggleAndExpandCollapsePatterns, // Button should not have Toggle and ExpandCollapse patterns together.
 
         SiblingUniqueAndFocusable,
         SiblingUniqueAndNotFocusable,

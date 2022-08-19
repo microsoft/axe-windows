@@ -1003,8 +1003,8 @@
         "Messages": [
           "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
           "The BoundingRectagle of the current element is [l=246,t=778,r=546,b=804].",
-          "The BoundingRectangle of {0} child is zero size. possibily collapsed. it is considered as contained.",
-          "The BoundingRectangle of {0} child is zero size. possibily collapsed. it is considered as contained."
+          "The BoundingRectangle of {0} child is zero size. possibly collapsed. it is considered as contained.",
+          "The BoundingRectangle of {0} child is zero size. possibly collapsed. it is considered as contained."
         ],
         "Status": 1,
         "Description": "[4.2.1] BoundingRectangle: All child elements must be contained within BoundingRectangle.",

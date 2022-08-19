@@ -6,7 +6,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     /**
     * Fundamental to the color contrast analysis process is collecting counts
-    * of occurences by a complex key and fetching those values.
+    * of occurrences by a complex key and fetching those values.
     */
     internal class CountMap<T> : Dictionary<T, int>
     {

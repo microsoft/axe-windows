@@ -109,7 +109,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         }
 
         /**
-         * The W3C Luinance calculation separates the component colors. This function calculates
+         * The W3C Luminance calculation separates the component colors. This function calculates
          * the Luminance component from a given color component.
          *
          */

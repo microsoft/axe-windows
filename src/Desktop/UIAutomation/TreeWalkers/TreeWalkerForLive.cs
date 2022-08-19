@@ -38,7 +38,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         TreeViewMode WalkerMode;
 
         /// <summary>
-        /// Last walk time spane
+        /// Last walk time span
         /// </summary>
         public TimeSpan LastWalkTime { get; private set; }
 
@@ -84,7 +84,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             PopulateChildrenTreeNode(e, ancestry.NextId);
 
-            // populate decendent Elements first in parallel
+            // populate descendant Elements first in parallel
             this.Elements.AsParallel().ForAll(el =>
             {
                 el.PopulateMinimumPropertiesForSelection();

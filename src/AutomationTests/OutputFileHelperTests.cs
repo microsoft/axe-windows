@@ -173,7 +173,7 @@ namespace Axe.Windows.AutomationTests
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
             outputFileHelper.EnsureOutputDirectoryExists();
 
-            // the folowing verifies that Exists was called
+            // the following verifies that Exists was called
 
             mockSystem.VerifyAll();
             mockIO.VerifyAll();
@@ -198,7 +198,7 @@ namespace Axe.Windows.AutomationTests
             var outputFileHelper = new OutputFileHelper(directory, mockSystem.Object);
             outputFileHelper.EnsureOutputDirectoryExists();
 
-            // the folowing verifies that CreateDirectory was not called
+            // the following verifies that CreateDirectory was not called
 
             mockSystem.VerifyAll();
             mockIO.VerifyAll();

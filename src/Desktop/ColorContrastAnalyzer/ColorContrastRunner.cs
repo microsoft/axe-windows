@@ -103,7 +103,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             foreach (var entry in sortedByValueAndContrast)
             {
-                // Only Collect Pairs that have a reasonable occurence count.
+                // Only Collect Pairs that have a reasonable occurrence count.
                 if (entry.Value < firstEntryCountAdjusted) break;
 
                 resultPairs.Add(entry.Key);

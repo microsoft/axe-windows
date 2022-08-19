@@ -513,7 +513,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public EventListenerFactory(A11yElement rootElement) : this(rootElement, ListenScope.Subtree) { }
 
         /// <summary>
-        /// Cosntructor.
+        /// Constructor.
         /// </summary>
         /// <param name="peDelegate"></param>
         /// <param name="rootElement">can be null but it is only for global events like focusChanged</param>

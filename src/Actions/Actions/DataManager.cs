@@ -21,7 +21,7 @@ namespace Axe.Windows.Actions
     /// - Property
     /// - Pattern
     /// - etc
-    /// When Actions needs data(object) to do anything(excute/select and etc), they should get data from Actions.
+    /// When Actions needs data(object) to do anything(execute/select and so on), they should get data from Actions.
     /// the Action caller will pass the ID of data to use than actual object.
     /// </summary>
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]

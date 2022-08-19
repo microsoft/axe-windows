@@ -948,7 +948,7 @@
             },
             {
               "Messages": [
-                "UI element is not keyboard focusible though it has some actionable control patterns.",
+                "UI element is not keyboard focusable though it has some actionable control patterns.",
                 "The UI Element is hidden or collapsed."
               ],
               "Status": 1,
@@ -1024,7 +1024,7 @@
             {
               "Messages": [
                 "There is child control(s) which are not image.",
-                "It may be ok not to have itemtype property since the type can be recognized via child element."
+                "It may be OK not to have itemtype property since the type can be recognized via child element."
               ],
               "Status": 1,
               "Description": "Property: ItemType",
@@ -1692,7 +1692,7 @@
             },
             {
               "Messages": [
-                "UI element is not keyboard focusible though it has some actionable control patterns.",
+                "UI element is not keyboard focusable though it has some actionable control patterns.",
                 "The UI Element is hidden or collapsed."
               ],
               "Status": 1,
@@ -1768,7 +1768,7 @@
             {
               "Messages": [
                 "There is child control(s) which are not image.",
-                "It may be ok not to have itemtype property since the type can be recognized via child element."
+                "It may be OK not to have itemtype property since the type can be recognized via child element."
               ],
               "Status": 1,
               "Description": "Property: ItemType",
@@ -2436,7 +2436,7 @@
             },
             {
               "Messages": [
-                "UI element is not keyboard focusible though it has some actionable control patterns.",
+                "UI element is not keyboard focusable though it has some actionable control patterns.",
                 "The UI Element is hidden or collapsed."
               ],
               "Status": 1,
@@ -2512,7 +2512,7 @@
             {
               "Messages": [
                 "There is child control(s) which are not image.",
-                "It may be ok not to have itemtype property since the type can be recognized via child element."
+                "It may be OK not to have itemtype property since the type can be recognized via child element."
               ],
               "Status": 1,
               "Description": "Property: ItemType",
@@ -2582,7 +2582,7 @@
         {
           "Messages": [
             "Check whether the bounding rectangle of the element contains the bounding rectangles of all children.",
-            "the bounding rectagle of the current element is [l=428,t=86,r=526,b=122].",
+            "the bounding rectangle of the current element is [l=428,t=86,r=526,b=122].",
             "the bounding rectangle of list item \"Debug\" child is [l=0,t=0,r=0,b=0]",
             "the bounding rectangle of list item \"Release\" child is [l=0,t=0,r=0,b=0]",
             "the bounding rectangle of list item \"Configuration Manager...\" child is [l=0,t=0,r=0,b=0]"
@@ -2597,7 +2597,7 @@
         },
         {
           "Messages": [
-            "UI element is not keyboard focusible though it has some actionable control patterns.",
+            "UI element is not keyboard focusable though it has some actionable control patterns.",
             "The UI Element is disabled."
           ],
           "Status": 1,

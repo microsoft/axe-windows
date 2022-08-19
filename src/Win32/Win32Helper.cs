@@ -88,7 +88,7 @@ namespace Axe.Windows.Win32
         /// Helper function to evaluate builds
         /// </summary>
         /// <param name="minimalBuild">The minimal build needed to pass</param>
-        /// <returns>True iff the OS is at least Win10 at the specified build</returns>
+        /// <returns>True if and only if the OS is at least Win10 at the specified build</returns>
         internal bool IsAtLeastWin10WithSpecificBuild(uint minimalBuild)
         {
             OsComparisonResult win10ComparisonResult = CompareWindowsVersionToWin10();
@@ -100,7 +100,7 @@ namespace Axe.Windows.Win32
         /// <summary>
         /// Check whether current OS is Win10 RS3 or later
         /// </summary>
-        /// <returns>True iff the OS is at least Win10 RS3</returns>
+        /// <returns>True if and only if the OS is at least Win10 RS3</returns>
         internal bool IsWindowsRS3OrLater()
         {
             return IsAtLeastWin10WithSpecificBuild(16228); // Build 16228 is confirmed in the RS3 range
@@ -109,7 +109,7 @@ namespace Axe.Windows.Win32
         /// <summary>
         /// Check whether current OS is Win10 RS5 or later
         /// </summary>
-        /// <returns>True iff the OS is at least Win10 RS5</returns>
+        /// <returns>True if and only if the OS is at least Win10 RS5</returns>
         internal bool IsWindowsRS5OrLater()
         {
             return IsAtLeastWin10WithSpecificBuild(17713); // Build 17713 is confirmed in the RS5 range

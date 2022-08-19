@@ -28,7 +28,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         protected IUIAutomation6 IUIAutomation6 => UIAutomation8 as IUIAutomation6;
 
         /// <summary>
-        /// Ctor to create an event handler (with CUIAutomation8) and register it.
+        /// Constructor to create an event handler (with CUIAutomation8) and register it.
         /// </summary>
         protected EventListenerBase(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
@@ -37,7 +37,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         /// <summary>
-        /// Ctor to create an event handler (with CUIAutomation) and register it.
+        /// Constructor to create an event handler (with CUIAutomation) and register it.
         /// </summary>
         protected EventListenerBase(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
@@ -46,7 +46,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         /// <summary>
-        /// Private ctor to set common fields
+        /// Private constructor to set common fields
         /// </summary>
         protected EventListenerBase(IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
         {

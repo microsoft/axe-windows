@@ -52,7 +52,7 @@ namespace Axe.Windows.UnitTestSharedLibrary
         }
 
         /// <summary>
-        /// Populates all descendents with test results and sets them to
+        /// Populates all descendants with test results and sets them to
         ///     pass if the control is a button (any predicate would work)
         ///     and returns number that should pass
         /// </summary>

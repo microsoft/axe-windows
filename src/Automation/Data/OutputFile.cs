@@ -20,7 +20,7 @@ namespace Axe.Windows.Automation
         public string Sarif { get; }
 
         /// <summary>
-        /// Private ctor. Called by the BuildFrom* methods
+        /// Private constructor. Called by the BuildFrom* methods
         /// </summary>
         /// <param name="a11yTest">The A11yTest file that was created (if any)</param>
         /// <param name="sarif">The Sarif file that was created (if any)</param>

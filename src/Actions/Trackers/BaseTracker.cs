@@ -85,7 +85,7 @@ namespace Axe.Windows.Actions.Trackers
         }
 
         /// <summary>
-        /// Select the specified element if it meets all eligibilty requirements
+        /// Select the specified element if it meets all eligibility requirements
         /// </summary>
         /// <param name="element">The potential element to select</param>
         /// <returns>true if the element was selected</returns>
