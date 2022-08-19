@@ -28,8 +28,10 @@ namespace Axe.Windows.ActionsTests.Actions
         public void ResetMocks()
         {
             mockDataManager = new DataManager();
-            mockElement = new A11yElement();
-            mockElement.UniqueId = 0;
+            mockElement = new A11yElement
+            {
+                UniqueId = 0
+            };
             mockElementContext = new ElementContext(mockElement);
             irrelevantMaxElements = 10;
             mockDataContext = new ElementDataContext(mockElement, irrelevantMaxElements);
@@ -79,10 +81,14 @@ namespace Axe.Windows.ActionsTests.Actions
 
             var mockTreeWalkerForLive = new Mock<ITreeWalkerForLive>();
             var mockTopMostElement = new A11yElement();
-            var mockElementsItem1 = new A11yElement();
-            mockElementsItem1.UniqueId = 101;
-            var mockElementsItem2 = new A11yElement();
-            mockElementsItem2.UniqueId = 102;
+            var mockElementsItem1 = new A11yElement
+            {
+                UniqueId = 101
+            };
+            var mockElementsItem2 = new A11yElement
+            {
+                UniqueId = 102
+            };
             mockTreeWalkerForLive.Setup(w => w.Elements).Returns(new List<A11yElement> { mockElementsItem1, mockElementsItem2 });
             mockTreeWalkerForLive.Setup(w => w.RootElement).Returns(mockTopMostElement);
 
@@ -154,10 +160,14 @@ namespace Axe.Windows.ActionsTests.Actions
 
             var mockTreeWalkerForTest = new Mock<ITreeWalkerForTest>();
             var mockTopMostElement = new A11yElement();
-            var mockElementsItem1 = new A11yElement();
-            mockElementsItem1.UniqueId = 101;
-            var mockElementsItem2 = new A11yElement();
-            mockElementsItem2.UniqueId = 102;
+            var mockElementsItem1 = new A11yElement
+            {
+                UniqueId = 101
+            };
+            var mockElementsItem2 = new A11yElement
+            {
+                UniqueId = 102
+            };
             mockTreeWalkerForTest.Setup(w => w.Elements).Returns(new List<A11yElement> { mockElementsItem1, mockElementsItem2 });
             mockTreeWalkerForTest.Setup(w => w.TopMostElement).Returns(mockTopMostElement);
 
@@ -205,12 +215,18 @@ namespace Axe.Windows.ActionsTests.Actions
 
             var mockOriginAncestor = mockElement;
             mockOriginAncestor.UniqueId = 1;
-            var mockChild1 = new A11yElement();
-            mockChild1.UniqueId = 2;
-            var mockChild2 = new A11yElement();
-            mockChild2.UniqueId = 3;
-            var mockGrandChild1 = new A11yElement();
-            mockGrandChild1.UniqueId = 4;
+            var mockChild1 = new A11yElement
+            {
+                UniqueId = 2
+            };
+            var mockChild2 = new A11yElement
+            {
+                UniqueId = 3
+            };
+            var mockGrandChild1 = new A11yElement
+            {
+                UniqueId = 4
+            };
             mockOriginAncestor.Children = new List<A11yElement>() { mockChild1, mockChild2 };
             mockChild2.Children = new List<A11yElement>() { mockGrandChild1 };
 

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
@@ -26,8 +26,10 @@ namespace Axe.Windows.CoreTests.Misc
             foreach (var item in ke.ScanResults.Items)
             {
                 item.Items = new System.Collections.Generic.List<RuleResult>();
-                RuleResult r = new RuleResult();
-                r.Status = ScanStatus.Pass;
+                RuleResult r = new RuleResult
+                {
+                    Status = ScanStatus.Pass
+                };
                 item.Items.Add(r);
             };
             foreach (var c in ke.Children)
