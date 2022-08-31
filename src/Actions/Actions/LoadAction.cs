@@ -36,14 +36,14 @@ namespace Axe.Windows.Actions
             {
                 var parts = package.GetParts();
 
-                var elementPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.ElementFileName select p.GetStream()).First();
+                var elementPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.ElementFileName select p.GetStream()).First();
                 A11yElement element = A11yElement.FromStream(elementPart);
                 elementPart.Close();
 
                 Bitmap bmp;
                 try
                 {
-                    var bmpPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.ScreenshotFileName select p.GetStream()).First();
+                    var bmpPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.ScreenshotFileName select p.GetStream()).First();
                     bmp = LoadBmp(bmpPart);
                     bmpPart.Close();
                 }
@@ -53,14 +53,14 @@ namespace Axe.Windows.Actions
                     bmp = null;
                 }
 
-                var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.MetadataFileName select p.GetStream()).First();
+                var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.MetadataFileName select p.GetStream()).First();
                 SnapshotMetaInfo meta = SnapshotMetaInfo.DeserializeFromStream(metadataPart);
                 metadataPart.Close();
 
                 IReadOnlyDictionary<int, CustomProperty> CustomProperties;
                 try
                 {
-                    var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.CustomPropsFileName select p.GetStream()).First();
+                    var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.CustomPropsFileName select p.GetStream()).First();
                     CustomProperties = LoadCustomProperties(customPropertiesPart);
                     customPropertiesPart.Close();
                 }

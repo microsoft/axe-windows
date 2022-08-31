@@ -22,14 +22,6 @@ namespace Axe.Windows.Actions
     public static class SaveAction
     {
         /// <summary>
-        /// Names for files inside of zipped snapshot
-        /// </summary>
-        public const string ElementFileName = "el.snapshot";
-        public const string ScreenshotFileName = "scshot.png";
-        public const string MetadataFileName = "metadata.json";
-        public const string CustomPropsFileName = "CustomProperties.json";
-
-        /// <summary>
         /// Buffer size for stream copying
         /// </summary>
         const int BuffSize = 0x1000;
@@ -60,7 +52,7 @@ namespace Axe.Windows.Actions
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                AddStream(package, mStrm, ElementFileName);
+                AddStream(package, mStrm, StreamName.ElementFileName);
             }
 
             if (ec.DataContext.Screenshot != null)
@@ -70,7 +62,7 @@ namespace Axe.Windows.Actions
                     ec.DataContext.Screenshot.Save(mStrm, System.Drawing.Imaging.ImageFormat.Png);
                     mStrm.Seek(0, SeekOrigin.Begin);
 
-                    AddStream(package, mStrm, ScreenshotFileName);
+                    AddStream(package, mStrm, StreamName.ScreenshotFileName);
                 }
             }
 
@@ -78,14 +70,14 @@ namespace Axe.Windows.Actions
             var jsonMeta = JsonConvert.SerializeObject(meta, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonMeta)))
             {
-                AddStream(package, mStrm, MetadataFileName);
+                AddStream(package, mStrm, StreamName.MetadataFileName);
             }
 
             var customProps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations();
             var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
             {
-                AddStream(package, mStrm, CustomPropsFileName);
+                AddStream(package, mStrm, StreamName.CustomPropsFileName);
             }
         }
 
