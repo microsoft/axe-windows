@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
@@ -18,12 +18,12 @@ namespace Axe.Windows.Rules.PropertyConditions
     static class ElementGroups
     {
         // the following occurs for xaml expand/collapse controls
-        private static Condition FocusableGroup = Group & IsKeyboardFocusable & (WPF | XAML);
+        private static readonly Condition FocusableGroup = Group & IsKeyboardFocusable & (WPF | XAML);
 
         public static Condition MinMaxCloseButton = CreateMinMaxCloseButtonCondition();
         public static Condition FocusableButton = CreateFocusableButtonCondition();
-        private static Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
-        private static Condition UnfocusableControlsBasedOnOffice = CreateUnfocusableControlsBasedOnOfficeCondition();
+        private static readonly Condition UnfocusableControlsBasedOnExplorer = CreateUnfocusableControlsBasedOnExplorerCondition();
+        private static readonly Condition UnfocusableControlsBasedOnOffice = CreateUnfocusableControlsBasedOnOfficeCondition();
         public static Condition ExpectedNotToBeFocusable = CreateExpectedNotToBeFocusableCondition();
         public static Condition Container = CreateContainerCondition();
         public static Condition EmptyContainer = CreateEmptyContainerCondition();

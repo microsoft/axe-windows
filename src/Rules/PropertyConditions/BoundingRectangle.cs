@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -35,8 +35,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         private static bool IsBoundingRectangleNull(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-
-            return !e.TryGetPropertyValue(PropertyType.UIA_BoundingRectanglePropertyId, out double[] array);
+            return !e.TryGetPropertyValue(PropertyType.UIA_BoundingRectanglePropertyId, out double[] _);
         }
 
         private static bool HasCorrectDataFormat(IA11yElement e)

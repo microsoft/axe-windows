@@ -34,67 +34,83 @@ namespace Axe.Windows.CoreTests.CustomObjects
         [TestMethod, Timeout(1000)]
         public void StringPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.StringConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.StringConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.String, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void IntPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.IntConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.IntConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.Int, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void BoolPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.BoolConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.BoolConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.Bool, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void DoublePropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.DoubleConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.DoubleConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.Double, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void PointPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.PointConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.PointConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.Point, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void ElementPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.ElementConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.ElementConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.Element, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void EnumPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = CustomProperty.EnumConfigType;
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = CustomProperty.EnumConfigType
+            };
             Assert.AreEqual(CustomUIAPropertyType.Enum, prop.Type);
         }
 
         [TestMethod, Timeout(1000)]
         public void NonEnumValuesPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "int";
-            prop.Values = new Dictionary<int, string>
+            CustomProperty prop = new CustomProperty
             {
-                [1] = "ViewSlide"
+                ConfigType = "int",
+                Values = new Dictionary<int, string>
+                {
+                    [1] = "ViewSlide"
+                }
             };
             Assert.ThrowsException<InvalidDataException>(() => prop.Validate());
         }
@@ -102,8 +118,10 @@ namespace Axe.Windows.CoreTests.CustomObjects
         [TestMethod, Timeout(1000)]
         public void MissingValuesPropertyTest()
         {
-            CustomProperty prop = new CustomProperty();
-            prop.ConfigType = "enum";
+            CustomProperty prop = new CustomProperty
+            {
+                ConfigType = "enum"
+            };
             Assert.ThrowsException<InvalidDataException>(() => prop.Validate());
         }
     }

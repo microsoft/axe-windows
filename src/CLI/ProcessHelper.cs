@@ -14,8 +14,7 @@ namespace AxeWindowsCLI
 
         public ProcessHelper(IProcessAbstraction processAbstraction)
         {
-            if (processAbstraction == null) throw new ArgumentNullException(nameof(processAbstraction));
-            _processAbstraction = processAbstraction;
+            _processAbstraction = processAbstraction ?? throw new ArgumentNullException(nameof(processAbstraction));
         }
 
         public int ProcessIdFromName(string processName)

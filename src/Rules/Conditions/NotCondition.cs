@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Rules.Resources;
@@ -13,9 +13,7 @@ namespace Axe.Windows.Rules
 
         public NotCondition(Condition a)
         {
-            if (a == null) throw new ArgumentNullException(nameof(a));
-
-            this.A = a;
+            this.A = a ?? throw new ArgumentNullException(nameof(a));
         }
 
         public override bool Matches(IA11yElement element)

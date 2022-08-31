@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -262,9 +262,11 @@ namespace Axe.Windows.RulesTests.Library
 
             var pattern = new A11yPattern();
             pattern.Id = PatternIDs.Scroll;
-            pattern.Properties = new List<A11yPatternProperty>();
-            pattern.Properties.Add(new A11yPatternProperty { Name = "VerticallyScrollable", Value = true });
-            pattern.Properties.Add(new A11yPatternProperty { Name = "VerticalScrollPercent", Value = 0 });
+            pattern.Properties = new List<A11yPatternProperty>
+            {
+                new A11yPatternProperty { Name = "VerticallyScrollable", Value = true },
+                new A11yPatternProperty { Name = "VerticalScrollPercent", Value = 0 }
+            };
 
             parent.Patterns.Add(pattern);
             e.Parent = parent;
@@ -284,9 +286,11 @@ namespace Axe.Windows.RulesTests.Library
 
             var pattern = new A11yPattern();
             pattern.Id = PatternIDs.Scroll;
-            pattern.Properties = new List<A11yPatternProperty>();
-            pattern.Properties.Add(new A11yPatternProperty { Name = "HorizontallyScrollable", Value = true });
-            pattern.Properties.Add(new A11yPatternProperty { Name = "HorizontalScrollPercent", Value = 0 });
+            pattern.Properties = new List<A11yPatternProperty>
+            {
+                new A11yPatternProperty { Name = "HorizontallyScrollable", Value = true },
+                new A11yPatternProperty { Name = "HorizontalScrollPercent", Value = 0 }
+            };
 
             parent.Patterns.Add(pattern);
             e.Parent = parent;

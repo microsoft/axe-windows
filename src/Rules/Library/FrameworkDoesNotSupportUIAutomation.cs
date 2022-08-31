@@ -12,7 +12,7 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.FrameworkDoesNotSupportUIAutomation)]
     class FrameworkDoesNotSupportUIAutomation : Rule
     {
-        private readonly static string[] KnownProblematicClasses =
+        private static readonly string[] KnownProblematicClasses =
         {
             @"^\s*SunAwt.*$",
         };

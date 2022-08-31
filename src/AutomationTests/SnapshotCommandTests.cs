@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
 using Axe.Windows.Core.Bases;
@@ -15,14 +15,14 @@ namespace Axe.Windows.AutomationTests
     [TestClass]
     public class SnapshotCommandTests
     {
-        private MockRepository _mockRepo;
+        private readonly MockRepository _mockRepo;
         private Mock<IScanTools> _scanToolsMock;
         private Mock<ITargetElementLocator> _targetElementLocatorMock;
         private Mock<IAxeWindowsActions> _actionsMock;
         private Mock<INativeMethods> _nativeMethodsMock;
         private Mock<IOutputFileHelper> _outputFileHelperMock;
         private Mock<IScanResultsAssembler> _resultsAssemblerMock;
-        private Config _minimalConfig;
+        private readonly Config _minimalConfig;
 
         public SnapshotCommandTests()
         {
@@ -283,8 +283,10 @@ namespace Axe.Windows.AutomationTests
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray().ToArray()[0..1]);
 
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 0;
+            var expectedResults = new ScanResults
+            {
+                ErrorCount = 0
+            };
             InitResultsCallback(expectedResults);
 
             // In addition to throwing an ArgumentNullException
@@ -318,8 +320,10 @@ namespace Axe.Windows.AutomationTests
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 0;
+            var expectedResults = new ScanResults
+            {
+                ErrorCount = 0
+            };
             InitResultsCallback(expectedResults);
 
 
@@ -367,8 +371,10 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 1;
+            var expectedResults = new ScanResults
+            {
+                ErrorCount = 1
+            };
             InitResultsCallback(expectedResults);
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<ArgumentException>(action);
@@ -392,8 +398,10 @@ namespace Axe.Windows.AutomationTests
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 1;
+            var expectedResults = new ScanResults
+            {
+                ErrorCount = 1
+            };
             InitResultsCallback(expectedResults);
 
             _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>()));
@@ -430,8 +438,10 @@ namespace Axe.Windows.AutomationTests
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray().ToArray()[0..1]);
 
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 75;
+            var expectedResults = new ScanResults
+            {
+                ErrorCount = 75
+            };
             InitResultsCallback(expectedResults);
 
             var expectedPath = "Test.File";
@@ -472,8 +482,10 @@ namespace Axe.Windows.AutomationTests
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
 
-            var expectedResults = new ScanResults();
-            expectedResults.ErrorCount = 75;
+            var expectedResults = new ScanResults
+            {
+                ErrorCount = 75
+            };
             InitResultsCallback(expectedResults);
 
 

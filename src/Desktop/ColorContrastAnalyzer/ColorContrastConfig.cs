@@ -41,22 +41,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             double? midConfidenceThreshold = null,
             double? lowConfidenceThreshold = null)
         {
-            MaxTextThickness = maxTextThickness.HasValue ?
-                maxTextThickness.Value : DefaultMaxTextThickness;
-            MinNumberColorTransitions = minNumberOfColorTransitions.HasValue ?
-                minNumberOfColorTransitions.Value : DefaultMinColorTransitions;
-            MinSpaceBetweenSamples = minSpaceBetweenSamples.HasValue ?
-                minSpaceBetweenSamples.Value : DefaultMinSpaceBetweenSamples;
-            TransitionCountDominanceFactor = transitionCountDominanceFactor.HasValue ?
-                transitionCountDominanceFactor.Value : DefaultTransitionCountDominanceFactor;
-            AnalyzerVersion = analyzerVersion.HasValue ?
-                analyzerVersion.Value : DefaultAnalyzerVersion;
-            HighConfidenceThreshold = highConfidenceThreshold.HasValue ?
-                highConfidenceThreshold.Value : DefaultHighConfidenceThreshold;
-            MidConfidenceThreshold = midConfidenceThreshold.HasValue ?
-                midConfidenceThreshold.Value : DefaultMidConfidenceThreshold;
-            LowConfidenceThreshold = lowConfidenceThreshold.HasValue ?
-                lowConfidenceThreshold.Value : DefaultLowConfidenceThreshold;
+            MaxTextThickness = maxTextThickness ?? DefaultMaxTextThickness;
+            MinNumberColorTransitions = minNumberOfColorTransitions ?? DefaultMinColorTransitions;
+            MinSpaceBetweenSamples = minSpaceBetweenSamples ?? DefaultMinSpaceBetweenSamples;
+            TransitionCountDominanceFactor = transitionCountDominanceFactor ?? DefaultTransitionCountDominanceFactor;
+            AnalyzerVersion = analyzerVersion ?? DefaultAnalyzerVersion;
+            HighConfidenceThreshold = highConfidenceThreshold ?? DefaultHighConfidenceThreshold;
+            MidConfidenceThreshold = midConfidenceThreshold ?? DefaultMidConfidenceThreshold;
+            LowConfidenceThreshold = lowConfidenceThreshold ?? DefaultLowConfidenceThreshold;
 
             if (HighConfidenceThreshold <= MidConfidenceThreshold)
             {

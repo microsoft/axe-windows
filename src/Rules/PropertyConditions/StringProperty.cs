@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Rules.Resources;
@@ -23,7 +23,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public Condition IncludesPrivateUnicodeCharacters;
         public Condition ExcludesPrivateUnicodeCharacters;
         public ValueCondition<int> Length;
-        private Func<IA11yElement, string> GetStringPropertyValue;
+        private readonly Func<IA11yElement, string> GetStringPropertyValue;
 
         /// <summary>
         /// Represents a string property of an element such as "Name", "LocalizedControlType", etc.

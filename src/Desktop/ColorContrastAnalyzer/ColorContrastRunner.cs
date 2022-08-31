@@ -13,11 +13,11 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         private readonly IColorContrastConfig _colorContrastConfig;
 
-        private Dictionary<Color, ColorContrastTransition> openTransitions = new Dictionary<Color, ColorContrastTransition>();
+        private readonly Dictionary<Color, ColorContrastTransition> openTransitions = new Dictionary<Color, ColorContrastTransition>();
 
-        private CountMap<Color> countExactColors = new CountMap<Color>();
+        private readonly CountMap<Color> countExactColors = new CountMap<Color>();
 
-        private CountMap<ColorPair> countExactPairs = new CountMap<ColorPair>();
+        private readonly CountMap<ColorPair> countExactPairs = new CountMap<ColorPair>();
 
         internal ColorContrastRunner(IColorContrastConfig colorContrastConfig)
         {

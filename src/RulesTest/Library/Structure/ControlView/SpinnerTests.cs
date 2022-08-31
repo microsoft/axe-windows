@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library.Structure.ControlView
     [TestClass]
     public class SpinnerTests
     {
-        private readonly static IRule Rule = new Axe.Windows.Rules.Library.ControlViewSpinnerStructure();
+        private static readonly IRule Rule = new Axe.Windows.Rules.Library.ControlViewSpinnerStructure();
 
         [TestMethod]
         public void Spinner_ZeroListItemChildren_Pass()

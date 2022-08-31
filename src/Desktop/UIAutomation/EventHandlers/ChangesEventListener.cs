@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Desktop.Types;
 using System.Collections.Generic;
@@ -20,8 +20,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             // https://docs.microsoft.com/en-us/windows/win32/api/uiautomationcore/ns-uiautomationcore-uiachangeinfo
             // Note: property ids are not included as they are already handled by the property changed event handler.
 
-            var changeTypes = new List<int>();
-            changeTypes.Add(ChangeInfoType.UIA_SummaryChangeId);
+            var changeTypes = new List<int>
+            {
+                ChangeInfoType.UIA_SummaryChangeId
+            };
             changeTypes.AddRange(TextAttributeType.GetInstance().Values);
             changeTypes.AddRange(AnnotationType.GetInstance().Values);
             changeTypes.AddRange(Styles.StyleId.GetInstance().Values);

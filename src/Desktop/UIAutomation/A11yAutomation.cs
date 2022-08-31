@@ -42,7 +42,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         public static DesktopElement ElementFromProcessId(int pid)
         {
             var elements = ElementsFromProcessId(pid);
-            return elements != null ? elements.First() : null;
+            return elements?.First();
         }
 
         private static bool FindProcessMatchingChildren(IUIAutomationElement parent, IUIAutomationTreeWalker walker, int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements)

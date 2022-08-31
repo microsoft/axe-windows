@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -105,7 +105,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
 
-            dynamic value = null;
+            dynamic value;
             try
             {
                 value = element.GetCurrentPropertyValue(id);

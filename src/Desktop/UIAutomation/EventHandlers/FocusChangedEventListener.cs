@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Desktop.Types;
 using System;
@@ -25,9 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public FocusChangedEventListener(IUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
         {
-            if (uia == null) throw new ArgumentNullException(nameof(uia));
-
-            this.UIAutomation = uia;
+            this.UIAutomation = uia ?? throw new ArgumentNullException(nameof(uia));
             this.ListenEventMessage = peDelegate;
             this.UIAutomation.AddFocusChangedEventHandler(null, this);
             IsHooked = true;

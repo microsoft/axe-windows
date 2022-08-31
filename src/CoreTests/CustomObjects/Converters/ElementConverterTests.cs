@@ -14,8 +14,10 @@ namespace Axe.Windows.CoreTests.CustomObjects.Converters
         [TestMethod, Timeout(1000)]
         public void RenderTest()
         {
-            A11yElement elem = new A11yElement();
-            elem.Glimpse = "the glimpse";
+            A11yElement elem = new A11yElement
+            {
+                Glimpse = "the glimpse"
+            };
             Assert.AreEqual("the glimpse", new ElementTypeConverter().Render(elem));
         }
 

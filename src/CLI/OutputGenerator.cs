@@ -20,9 +20,7 @@ namespace AxeWindowsCLI
 
         public OutputGenerator(TextWriter writer)
         {
-            if (writer == null) throw new ArgumentNullException(nameof(writer));
-
-            _writer = writer;
+            _writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
         public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)

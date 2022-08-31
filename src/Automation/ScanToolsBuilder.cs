@@ -6,14 +6,12 @@ namespace Axe.Windows.Automation
 {
     internal class ScanToolsBuilder : IScanToolsBuilder
     {
-        private IFactory _factory;
+        private readonly IFactory _factory;
         private IOutputFileHelper _outputFileHelper;
 
         public ScanToolsBuilder(IFactory factory)
         {
-            if (factory == null) throw new ArgumentNullException(nameof(factory));
-
-            _factory = factory;
+            _factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
         public IScanToolsBuilder WithOutputDirectory(string outputDirectory)

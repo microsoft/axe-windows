@@ -1,10 +1,9 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
@@ -46,22 +45,6 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// Constructor for serialization
         /// </summary>
         public EventMessage() { }
-
-        private string BuildMessage(string comment)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (this.Element != null)
-            {
-                sb.Append($"{this.Element.Glimpse}:{comment}");
-            }
-            else
-            {
-                sb.Append(comment);
-            }
-
-            return sb.ToString();
-        }
 
         #region static members
         /// <summary>

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Resources;
 using System;
@@ -8,7 +8,7 @@ namespace Axe.Windows.Core.Misc
     /// <summary>
     /// Extension methods used to provide a compact way to specify preconditions
     /// </summary>
-    static public class Preconditions
+    public static class Preconditions
     {
         /// <summary>
         /// Throw ArgumentNullException if value is null

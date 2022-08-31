@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
@@ -36,14 +36,14 @@ namespace Axe.Windows.Actions
             {
                 var parts = package.GetParts();
 
-                var elementPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.elementFileName select p.GetStream()).First();
+                var elementPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.ElementFileName select p.GetStream()).First();
                 A11yElement element = A11yElement.FromStream(elementPart);
                 elementPart.Close();
 
                 Bitmap bmp;
                 try
                 {
-                    var bmpPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.screenshotFileName select p.GetStream()).First();
+                    var bmpPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.ScreenshotFileName select p.GetStream()).First();
                     bmp = LoadBmp(bmpPart);
                     bmpPart.Close();
                 }
@@ -53,14 +53,14 @@ namespace Axe.Windows.Actions
                     bmp = null;
                 }
 
-                var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.metadataFileName select p.GetStream()).First();
+                var metadataPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.MetadataFileName select p.GetStream()).First();
                 SnapshotMetaInfo meta = SnapshotMetaInfo.DeserializeFromStream(metadataPart);
                 metadataPart.Close();
 
                 IReadOnlyDictionary<int, CustomProperty> CustomProperties;
                 try
                 {
-                    var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + SaveAction.customPropsFileName select p.GetStream()).First();
+                    var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.CustomPropsFileName select p.GetStream()).First();
                     CustomProperties = LoadCustomProperties(customPropertiesPart);
                     customPropertiesPart.Close();
                 }
@@ -88,20 +88,6 @@ namespace Axe.Windows.Actions
         {
             Image img = Image.FromStream(stream);
             return new Bitmap(img);
-        }
-
-        /// <summary>
-        /// Load JSON stored metadata file from stream
-        /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        private static SnapshotMetaInfo LoadMetadata(Stream stream)
-        {
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                string jsonMeta = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<SnapshotMetaInfo>(jsonMeta);
-            }
         }
 
         /// <summary>

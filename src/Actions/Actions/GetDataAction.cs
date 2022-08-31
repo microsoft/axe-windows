@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
@@ -22,7 +22,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        static public ElementContext GetElementContext(Guid ecId)
+        public static ElementContext GetElementContext(Guid ecId)
         {
             return DataManager.GetDefaultInstance().GetElementContext(ecId);
         }
@@ -32,7 +32,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        static public bool ExistElementContext(Guid ecId)
+        public static bool ExistElementContext(Guid ecId)
         {
             return DataManager.GetDefaultInstance().GetElementContext(ecId) != null;
         }
@@ -42,7 +42,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId">Element context Id</param>
         /// <returns></returns>
-        static public int GetSelectedElementId(Guid ecId)
+        public static int GetSelectedElementId(Guid ecId)
         {
             return DataManager.GetDefaultInstance().GetElementContext(ecId).Element.UniqueId;
         }
@@ -52,7 +52,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        static public ElementDataContext GetElementDataContext(Guid ecId)
+        public static ElementDataContext GetElementDataContext(Guid ecId)
         {
             return DataManager.GetDefaultInstance().GetElementContext(ecId)?.DataContext;
         }

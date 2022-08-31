@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
@@ -18,7 +18,6 @@ namespace Axe.Windows.Actions
     [InteractionLevel(UxInteractionLevel.NoUxInteraction)]
     public class ListenAction : IDisposable
     {
-        ElementContext ElementContext { get; set; }
         EventListenerFactory EventListener { get; set; }
         /// <summary>
         /// External event listener. it should be called if it is not null.
@@ -38,7 +37,6 @@ namespace Axe.Windows.Actions
         private ListenAction(ListenScope listenScope, ElementContext ec, HandleUIAutomationEventMessage listener)
         {
             this.Id = Guid.NewGuid();
-            this.ElementContext = ec;
             this.EventListener = new EventListenerFactory(ec.Element, listenScope);
             this.ExternalListener = listener;
         }
@@ -104,7 +102,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Dictionary of all live listenAction instances
         /// </summary>
-        static Dictionary<Guid, ListenAction> sListenActions = new Dictionary<Guid, ListenAction>();
+        static readonly Dictionary<Guid, ListenAction> sListenActions = new Dictionary<Guid, ListenAction>();
 
         /// <summary>
         /// Create new Instance of ListenAction

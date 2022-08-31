@@ -14,17 +14,11 @@ namespace Axe.Windows.Automation
 
         public ScanTools(IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler, ITargetElementLocator targetElementLocator, IAxeWindowsActions actions, INativeMethods nativeMethods)
         {
-            if (outputFileHelper == null) throw new ArgumentNullException(nameof(outputFileHelper));
-            if (resultsAssembler == null) throw new ArgumentNullException(nameof(resultsAssembler));
-            if (targetElementLocator == null) throw new ArgumentNullException(nameof(targetElementLocator));
-            if (actions == null) throw new ArgumentNullException(nameof(actions));
-            if (nativeMethods == null) throw new ArgumentNullException(nameof(nativeMethods));
-
-            OutputFileHelper = outputFileHelper;
-            ResultsAssembler = resultsAssembler;
-            TargetElementLocator = targetElementLocator;
-            Actions = actions;
-            NativeMethods = nativeMethods;
+            OutputFileHelper = outputFileHelper ?? throw new ArgumentNullException(nameof(outputFileHelper));
+            ResultsAssembler = resultsAssembler ?? throw new ArgumentNullException(nameof(resultsAssembler));
+            TargetElementLocator = targetElementLocator ?? throw new ArgumentNullException(nameof(targetElementLocator));
+            Actions = actions ?? throw new ArgumentNullException(nameof(actions));
+            NativeMethods = nativeMethods ?? throw new ArgumentNullException(nameof(nativeMethods));
         }
     } // class
 } // namespace

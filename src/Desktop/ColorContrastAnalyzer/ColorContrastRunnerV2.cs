@@ -11,8 +11,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     /// </summary>
     internal class ColorContrastRunnerV2
     {
-        private List<Color> _colorsInRow = new List<Color>();
-        private CountMap<Color> _countExactColors = new CountMap<Color>();
+        private readonly List<Color> _colorsInRow = new List<Color>();
+        private readonly CountMap<Color> _countExactColors = new CountMap<Color>();
 
         internal void OnPixel(Color color)
         {

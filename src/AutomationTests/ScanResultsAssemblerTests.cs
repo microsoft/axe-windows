@@ -15,7 +15,7 @@ namespace Axe.Windows.AutomationTests
     [TestClass()]
     public class ScanResultsAssemblerTests
     {
-        ScanResultsAssembler assembler = new ScanResultsAssembler();
+        readonly ScanResultsAssembler assembler = new ScanResultsAssembler();
 
         [TestMethod]
         [Timeout(2000)]
@@ -141,14 +141,13 @@ namespace Axe.Windows.AutomationTests
 
         private A11yElement GenerateA11yElementWithChild()
         {
-            A11yElement element = new A11yElement()
+            A11yElement element = new A11yElement
             {
                 ScanResults = new Core.Results.ScanResults(),
                 Children = new List<A11yElement>(),
+                Properties = null,
+                Patterns = GetFillerPatterns()
             };
-
-            element.Properties = null;
-            element.Patterns = GetFillerPatterns();
             AddScanResults(element.ScanResults.Items, GetFillerScanResults());
             element.Children.Add(GenerateA11yElementWithoutChild());
 
@@ -156,10 +155,12 @@ namespace Axe.Windows.AutomationTests
         }
         private A11yElement GenerateA11yElementWithoutChild()
         {
-            A11yElement element = new A11yElement() { ScanResults = new Core.Results.ScanResults() };
-
-            element.Properties = GetFillerProperties();
-            element.Patterns = null;
+            A11yElement element = new A11yElement
+            {
+                ScanResults = new Core.Results.ScanResults(),
+                Properties = GetFillerProperties(),
+                Patterns = null
+            };
             AddScanResults(element.ScanResults.Items, GetFillerScanResults());
 
             return element;

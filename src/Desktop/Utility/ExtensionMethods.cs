@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
@@ -114,7 +114,7 @@ namespace Axe.Windows.Desktop.Utility
         public static A11yElement GetParentWindow(this A11yElement el)
         {
             A11yElement prev = null;
-            A11yElement curr = el;
+            A11yElement curr = el ?? throw new ArgumentNullException(nameof(el));
             while (curr != null && curr.Parent != null && curr.ControlTypeId != ControlType.UIA_WindowControlTypeId && !curr.IsRootElement())
             {
                 prev = curr;

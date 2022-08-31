@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Resources;
@@ -117,9 +117,11 @@ namespace Axe.Windows.Actions.Misc
                 var controlFrameworkGroups = ruleGroup.GroupBy(tuple => (controlType: tuple.controlType, framework: tuple.framework));
                 foreach (var secondGroup in controlFrameworkGroups)
                 {
-                    Dictionary<string, string> groupDict = new Dictionary<string, string>();
-                    groupDict.Add(TelemetryProperty.ControlType.ToString(), secondGroup.Key.controlType);
-                    groupDict.Add(TelemetryProperty.UIFramework.ToString(), secondGroup.Key.framework);
+                    Dictionary<string, string> groupDict = new Dictionary<string, string>
+                    {
+                        { TelemetryProperty.ControlType.ToString(), secondGroup.Key.controlType },
+                        { TelemetryProperty.UIFramework.ToString(), secondGroup.Key.framework }
+                    };
                     foreach (var statusGroup in secondGroup.GroupBy(group => group.status))
                     {
                         groupDict.Add(statusGroup.Key, statusGroup.Count().ToString(CultureInfo.InvariantCulture));

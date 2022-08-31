@@ -13,8 +13,8 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
 {
     public class Registrar
     {
-        private IUIAutomationRegistrar _uiaRegistrar;
-        private Action<int, ITypeConverter> _converterRegistrationAction;
+        private readonly IUIAutomationRegistrar _uiaRegistrar;
+        private readonly Action<int, ITypeConverter> _converterRegistrationAction;
         private Dictionary<int, CustomProperty> _idToCustomPropertyMap { get; }
 
         internal Registrar()

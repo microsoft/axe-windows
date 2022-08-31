@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.CustomObjects.Converters;
@@ -47,7 +47,7 @@ namespace Axe.Windows.Core.Bases
             }
         }
 
-        static Dictionary<int, ITypeConverter> TypeConverterMap = new Dictionary<int, ITypeConverter>();
+        static readonly Dictionary<int, ITypeConverter> TypeConverterMap = new Dictionary<int, ITypeConverter>();
 
         /// <summary>
         /// Constructor with normal case
@@ -152,9 +152,9 @@ namespace Axe.Windows.Core.Bases
         /// <returns></returns>
         private string GetBoundingRectangleText()
         {
-            string text = null;
             var arr = this.Value;
 
+            string text;
             if ((double)arr[2] < 0 || (double)arr[3] < 0)
             {
                 // the 3rd and 4th values in array are negative value, we need to show value in different format like l,t,w,h

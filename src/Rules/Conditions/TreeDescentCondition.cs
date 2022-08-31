@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using System;
@@ -17,11 +17,8 @@ namespace Axe.Windows.Rules
 
         public TreeDescentCondition(Condition parentCondition, Condition childCondition)
         {
-            if (parentCondition == null) throw new ArgumentNullException(nameof(parentCondition));
-            if (childCondition == null) throw new ArgumentNullException(nameof(childCondition));
-
-            this.ParentCondition = parentCondition;
-            this.ChildCondition = childCondition;
+            this.ParentCondition = parentCondition ?? throw new ArgumentNullException(nameof(parentCondition));
+            this.ChildCondition = childCondition ?? throw new ArgumentNullException(nameof(childCondition));
         }
 
         public override bool Matches(IA11yElement e)

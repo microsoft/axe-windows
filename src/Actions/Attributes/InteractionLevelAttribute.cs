@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Enums;
 using System;
@@ -11,7 +11,7 @@ namespace Axe.Windows.Actions.Attributes
     [AttributeUsage(AttributeTargets.Class)]
     sealed class InteractionLevelAttribute : Attribute
     {
-        private UxInteractionLevel _interactionLevel;
+        private readonly UxInteractionLevel _interactionLevel;
 
         /// <summary>
         /// The ux interaction level of described class

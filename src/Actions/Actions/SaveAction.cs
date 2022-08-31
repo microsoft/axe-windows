@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
@@ -22,17 +22,9 @@ namespace Axe.Windows.Actions
     public static class SaveAction
     {
         /// <summary>
-        /// Names for files inside of zipped snapshot
-        /// </summary>
-        public const string elementFileName = "el.snapshot";
-        public const string screenshotFileName = "scshot.png";
-        public const string metadataFileName = "metadata.json";
-        public const string customPropsFileName = "CustomProperties.json";
-
-        /// <summary>
         /// Buffer size for stream copying
         /// </summary>
-        const int buffSize = 0x1000;
+        const int BuffSize = 0x1000;
 
         /// <summary>
         /// Save snapshot zip
@@ -60,7 +52,7 @@ namespace Axe.Windows.Actions
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
-                AddStream(package, mStrm, elementFileName);
+                AddStream(package, mStrm, StreamName.ElementFileName);
             }
 
             if (ec.DataContext.Screenshot != null)
@@ -70,7 +62,7 @@ namespace Axe.Windows.Actions
                     ec.DataContext.Screenshot.Save(mStrm, System.Drawing.Imaging.ImageFormat.Png);
                     mStrm.Seek(0, SeekOrigin.Begin);
 
-                    AddStream(package, mStrm, screenshotFileName);
+                    AddStream(package, mStrm, StreamName.ScreenshotFileName);
                 }
             }
 
@@ -78,14 +70,14 @@ namespace Axe.Windows.Actions
             var jsonMeta = JsonConvert.SerializeObject(meta, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonMeta)))
             {
-                AddStream(package, mStrm, metadataFileName);
+                AddStream(package, mStrm, StreamName.MetadataFileName);
             }
 
             var customProps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations();
             var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
             {
-                AddStream(package, mStrm, customPropsFileName);
+                AddStream(package, mStrm, StreamName.CustomPropsFileName);
             }
         }
 
@@ -110,10 +102,10 @@ namespace Axe.Windows.Actions
         /// <param name="target"></param>
         private static void CopyStream(Stream source, Stream target)
         {
-            byte[] buf = new byte[buffSize];
+            byte[] buf = new byte[BuffSize];
             int bytesRead;
 
-            while ((bytesRead = source.Read(buf, 0, buffSize)) > 0)
+            while ((bytesRead = source.Read(buf, 0, BuffSize)) > 0)
             {
                 target.Write(buf, 0, bytesRead);
             }

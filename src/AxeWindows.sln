@@ -24,6 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Desktop", "Desktop\Desktop.
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopTests", "DesktopTests\DesktopTests.csproj", "{AB9E59B6-54CE-4F5D-8055-8AD6745F3B84}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54177AEF-1D6D-42EE-8922-3630413917EA} = {54177AEF-1D6D-42EE-8922-3630413917EA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rules", "Rules\Rules.csproj", "{7FE58829-560E-4142-BF81-291A66D3844B}"
 EndProject

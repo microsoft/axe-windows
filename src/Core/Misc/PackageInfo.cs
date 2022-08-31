@@ -10,8 +10,8 @@ namespace Axe.Windows.Core.Misc
     /// </summary>
     public static class PackageInfo
     {
-        private static Lazy<Assembly> ThisAssembly = new Lazy<Assembly>(() => Assembly.GetExecutingAssembly(), true);
-        private static Lazy<string> LazyInformationalVersion = new Lazy<string>(GetInformationalVersion, true);
+        private static readonly Lazy<Assembly> ThisAssembly = new Lazy<Assembly>(() => Assembly.GetExecutingAssembly(), true);
+        private static readonly Lazy<string> LazyInformationalVersion = new Lazy<string>(GetInformationalVersion, true);
 
         private static String GetInformationalVersion()
         {

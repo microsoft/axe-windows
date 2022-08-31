@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
 using System;
@@ -25,9 +25,7 @@ namespace Axe.Windows.Rules
 
         public RuleProvider(IRuleFactory ruleFactory)
         {
-            if (ruleFactory == null) throw new ArgumentNullException(nameof(ruleFactory));
-
-            this.RuleFactory = ruleFactory;
+            this.RuleFactory = ruleFactory ?? throw new ArgumentNullException(nameof(ruleFactory));
         }
 
         private void InitAllRules()
