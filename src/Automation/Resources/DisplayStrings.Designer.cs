@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Axe.Windows.Automation {
+namespace Axe.Windows.Automation.Resources {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace Axe.Windows.Automation {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class DisplayStrings {
@@ -39,7 +39,7 @@ namespace Axe.Windows.Automation {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Axe.Windows.Automation.DisplayStrings", typeof(DisplayStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Axe.Windows.Automation.Resources.DisplayStrings", typeof(DisplayStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -79,11 +79,11 @@ namespace Axe.Windows.Automation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation017: Fail to get the root element of a process({0}) : {1}.
+        ///   Looks up a localized string similar to ERROR Automation017: Failed to get the root element(s) of the specified process({0}) : {1}.
         /// </summary>
-        internal static string ErrorFailToGetRootElementOfProcess {
+        internal static string ErrorFailToGetRootElementsOfProcess {
             get {
-                return ResourceManager.GetString("ErrorFailToGetRootElementOfProcess", resourceCulture);
+                return ResourceManager.GetString("ErrorFailToGetRootElementsOfProcess", resourceCulture);
             }
         }
         

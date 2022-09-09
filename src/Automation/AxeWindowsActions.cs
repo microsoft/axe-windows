@@ -5,6 +5,7 @@ using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Actions.Misc;
+using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Desktop.Settings;
