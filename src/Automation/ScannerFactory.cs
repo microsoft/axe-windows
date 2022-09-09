@@ -19,7 +19,10 @@ namespace Axe.Windows.Automation
             if (config == null) throw new ArgumentNullException(nameof(config));
 
             var scanToolsBuilder = Factory.CreateScanToolsBuilder();
-            var scanTools = scanToolsBuilder.WithOutputDirectory(config.OutputDirectory).Build();
+            var scanTools = scanToolsBuilder
+                .WithOutputDirectory(config.OutputDirectory)
+                .WithDPIAwareness(config.DPIAwareness)
+                .Build();
             return new Scanner(config, scanTools);
         }
     } // class

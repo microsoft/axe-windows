@@ -79,11 +79,11 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The NativeMethods property of the given ScanTools object should not be null.
+        ///   Looks up a localized string similar to The DpiAwareness property of the given ScanTools object should not be null.
         /// </summary>
-        internal static string ScanToolsNativeMethodsNull {
+        internal static string ScanToolsDpiAwarenessNull {
             get {
-                return ResourceManager.GetString("ScanToolsNativeMethodsNull", resourceCulture);
+                return ResourceManager.GetString("ScanToolsDpiAwarenessNull", resourceCulture);
             }
         }
         

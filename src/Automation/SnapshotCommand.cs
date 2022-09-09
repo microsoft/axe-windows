@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation.Resources;
@@ -28,40 +28,46 @@ namespace Axe.Windows.Automation
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
             if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
-            if (scanTools.NativeMethods == null) throw new ArgumentException(ErrorMessages.ScanToolsNativeMethodsNull, nameof(scanTools));
+            if (scanTools.DpiAwareness == null) throw new ArgumentException(ErrorMessages.ScanToolsDpiAwarenessNull, nameof(scanTools));
 
             // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
-            scanTools.NativeMethods.SetProcessDPIAware();
-
-            if (config.CustomUIAConfigPath != null)
-                scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
-
-            List<ScanResults> resultList = new List<ScanResults>();
-
-            var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId);
-
-            if (rootElements is null || !rootElements.Any())
+            object dpiAwarenessObject = scanTools.DpiAwareness.Enable();
+            try
             {
+                if (config.CustomUIAConfigPath != null)
+                    scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
+
+                List<ScanResults> resultList = new List<ScanResults>();
+
+                var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId);
+
+                if (rootElements is null || !rootElements.Any())
+                {
+                    return resultList;
+                }
+
+                int targetIndex = 1;
+
+                foreach (var rootElement in rootElements)
+                {
+                    resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
+                    {
+                        return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
+                    }));
+
+                    if (!config.AreMultipleScanRootsEnabled)
+                    {
+                        // We only want to scan the first window so just break for loop here
+                        break;
+                    }
+                }
+
                 return resultList;
             }
-
-            int targetIndex = 1;
-
-            foreach (var rootElement in rootElements)
+            finally
             {
-                resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
-                {
-                    return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
-                }));
-
-                if (!config.AreMultipleScanRootsEnabled)
-                {
-                    // We only want to scan the first window so just break for loop here
-                    break;
-                }
+                scanTools.DpiAwareness.Restore(dpiAwarenessObject);
             }
-
-            return resultList;
         }
 
         private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount)

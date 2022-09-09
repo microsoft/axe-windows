@@ -19,7 +19,7 @@ processId | `int` | The process Id of the application to test. If the value is i
 
 ###### Return object
 
-The `ForProcessId` method returns an instance of `Config.Builder`.
+The `ForProcessId` method returns a new instance of `Config.Builder`.
 
 ##### `WithOutputFileFormat`
 
@@ -42,7 +42,7 @@ format | `OutputFileFormat` | The type(s) of output files you wish AxeWindows to
 
 ###### Return object
 
-The `WithOutputFileFormat` method returns the  `Config.Builder` configured with the specified format.
+The `WithOutputFileFormat` method returns the `Config.Builder` configured with the specified format.
 
 ##### `WithOutputDirectory`
 
@@ -58,7 +58,23 @@ directory | `string` | The directory where any output files should be written; i
 
 ###### Return object
 
-The `WithOutputDirectory` method returns the  `Config.Builder` configured with the specified output directory.
+The `WithOutputDirectory` method returns the `Config.Builder` configured with the specified output directory.
+
+##### `WithDPIAwareness`
+
+Override the default implementation of [`IDPIAwareness`](#idpiawareness) with a caller-specified implementation. The default implementation calls the Win32 [`SetDPIProcessAware`](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setprocessdpiaware) function on `Enable`, and does nothing on `Restore`.
+
+###### Parameters
+
+The `WithDPIAwareness` method accepts the following parameters:
+
+**Name** | **Type** | **Description**
+---|---|---
+dpiAwareness | `IDPIAwareness` | The caller-provided implementation of [`IDPIAwareness`](#idpiawareness).
+
+###### Return object
+
+The `WithDPIAwareness` method returns the `Config.Builder` configured with the specified output directory.
 
 ##### `WithCustomUIAConfig`
 
@@ -159,6 +175,36 @@ Condition | `string` | A description of the conditions under which a rule will b
 ---|---|---
 Properties | `Dictionary<string, string>` | A string to string dictionary where the key is a UI Automation property name and the value is the corresponding UI Automation property value.
 Patterns | `IEnumerable<string>` | A list of names of supported patterns.
+
+#### IDPIAwareness
+
+UIA operates in physical screen coordinates, so DPI awareness must be enabled while scanning. Methods on this interface will be called before the first scan begins and after the last scan completes.
+
+##### `Enable`
+Enable DPI awareness for the scan.
+
+###### Parameters
+
+The `Enable` method accepts no parameters
+
+###### Return object
+
+The return object from `Enable` is passed as a parameter to the `Restore` method. It allows calls to `Enable` and `Restore` to be easily associated and is not used by Axe.Windows.
+
+##### `Restore`
+Restore DPI awareness to its non-scanning state.
+
+###### Parameters
+
+The `Restore` method accepts 1 parameter
+
+**Name** | **Type** | **Description**
+---|---|---
+dataFromEnable | `string` | This is the data returned from the `Enable` method. It allows calls to `Enable` and `Restore` to be easily associated.
+
+###### Return object
+
+The return object from `Enable` is passed as a parameter to the `Restore` method. It is not used by Axe.Windows.
 
 ### Using the assembly
 You can get the files via a [NuGet package](https://www.nuget.org/packages/Axe.Windows); configure NuGet to retrieve the

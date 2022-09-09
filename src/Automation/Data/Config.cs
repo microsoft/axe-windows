@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Actions;
+
 namespace Axe.Windows.Automation
 {
     /// <summary>
@@ -44,6 +46,13 @@ namespace Axe.Windows.Automation
         /// </summary>
         public bool AreMultipleScanRootsEnabled { get; private set; }
 
+        /// <summary>
+        /// Custom handling of DPI awareness. The default handling is to set the entire process as DPI-aware
+        /// before running the scan, and to leave it in that state after the scan completes. If your process
+        /// needs to be non-DPI aware, create your own implementation of IDPIAwareness that meets your needs.
+        /// </summary>
+        public IDPIAwareness DPIAwareness { get; set; }
+
         private Config()
         { }
 
@@ -85,6 +94,17 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
+            /// Specifies a custom mechansm to 
+            /// </summary>
+            /// <param name="dpiAwareness"></param>
+            /// <returns></returns>
+            public Builder WithDPIAwareness(IDPIAwareness dpiAwareness)
+            {
+                _config.DPIAwareness = dpiAwareness;
+                return this;
+            }
+
+            /// <summary>
             /// Specify the type(s) of output files you wish AxeWindows to create
             /// </summary>
             /// <param name="format"></param>
@@ -100,7 +120,6 @@ namespace Axe.Windows.Automation
             /// </summary>
             public Builder WithCustomUIAConfig(string path)
             {
-
                 _config.CustomUIAConfigPath = path;
                 return this;
             }
@@ -128,6 +147,7 @@ namespace Axe.Windows.Automation
                     OutputDirectory = _config.OutputDirectory,
                     CustomUIAConfigPath = _config.CustomUIAConfigPath,
                     AreMultipleScanRootsEnabled = _config.AreMultipleScanRootsEnabled,
+                    DPIAwareness = _config.DPIAwareness,
                 };
             }
         } // Builder
