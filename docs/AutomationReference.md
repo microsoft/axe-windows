@@ -178,7 +178,7 @@ Patterns | `IEnumerable<string>` | A list of names of supported patterns.
 
 #### IDPIAwareness
 
-UIA operates in physical screen coordinates, so DPI awareness must be enabled while scanning. Methods on this interface will be called before the first scan begins and after the last scan completes.
+UIA operates in physical screen coordinates, so DPI awareness _must_ be enabled while scanning. Methods on this interface will be called in pairs on each call to `IScanner.Scan` or `IScanner.ScanAll`.
 
 ##### `Enable`
 Enable DPI awareness for the scan.
