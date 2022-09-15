@@ -60,6 +60,9 @@ namespace Axe.Windows.Automation
             return resultList;
         }
 
+        /// <summary>
+        /// This method is our atomic scanner. When we add async support, keep it all within the scope of a single thread.
+        /// </summary>
         private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<ScanResults> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement)
         {
             // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
