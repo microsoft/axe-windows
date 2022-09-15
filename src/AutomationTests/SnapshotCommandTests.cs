@@ -38,7 +38,6 @@ namespace Axe.Windows.AutomationTests
             _targetElementLocatorMock = _mockRepo.Create<ITargetElementLocator>();
             _actionsMock = _mockRepo.Create<IAxeWindowsActions>();
             _dpiAwarenessMock = _mockRepo.Create<IDPIAwareness>();
-            _dpiAwarenessMock.Setup(x => x.Enable()).Returns(null);
             _outputFileHelperMock = _mockRepo.Create<IOutputFileHelper>();
             _resultsAssemblerMock = _mockRepo.Create<IScanResultsAssembler>();
         }
@@ -132,7 +131,7 @@ namespace Axe.Windows.AutomationTests
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            SetupDpiAwarenessMock(null);
+            _scanToolsMock.Setup(x => x.DpiAwareness).Returns(_dpiAwarenessMock.Object);
 
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns<IEnumerable<A11yElement>>(null);
 
@@ -251,7 +250,6 @@ namespace Axe.Windows.AutomationTests
             _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>())).Returns(CreateMockElementArray());
             _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
             _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
-
 
             var config = Config.Builder
                 .ForProcessId(-1)
