@@ -2,16 +2,19 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Runs AxeWindows automated tests
+    /// Runs AxeWindows automated tests synchronously
+    /// This interface is maintained for backwards compatibility, but no new features will be added. Consider using IAsyncScanner instead.
     /// </summary>
     public interface IScanner
     {
         /// <summary>
-        /// Run AxeWindows automated tests on the first window found
+        /// Synchronously run AxeWindows automated tests on the first window found
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
@@ -28,7 +31,7 @@ namespace Axe.Windows.Automation
         ScanResults Scan();
 
         /// <summary>
-        /// Run AxeWindows automated tests on all windows associated with the process.
+        /// Synchronously run AxeWindows automated tests on all windows associated with the process.
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,
@@ -44,7 +47,7 @@ namespace Axe.Windows.Automation
         IReadOnlyCollection<ScanResults> ScanAll();
 
         /// <summary>
-        /// Run AxeWindows automated tests
+        /// Synchronously run AxeWindows automated tests
         /// </summary>
         /// <param name="scanId">The ID of this scan. Must be null or meet the requirements for a file name.</param>
         /// <remarks>
@@ -62,7 +65,7 @@ namespace Axe.Windows.Automation
         ScanResults Scan(string scanId);
 
         /// <summary>
-        /// Run AxeWindows automated tests on all windows associated with the process.
+        /// Synchronously run AxeWindows automated tests on all windows associated with the process.
         /// </summary>
         /// <remarks>
         /// If a value was provided in <see cref="Config.OutputDirectory"/>,

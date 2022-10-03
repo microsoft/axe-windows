@@ -1,19 +1,23 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Automation.Data;
 using Axe.Windows.Automation.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Implementation of <see cref="IScanner"/>
+    /// Implementation of <see cref="IAsyncScanner"/> (recommended for new projects) and <see cref="IScanner"/>
     /// </summary>
-    class Scanner : IScanner
+    class Scanner : IScanner, IAsyncScanner
     {
         private readonly Config _config;
         private readonly IScanTools _scanTools;
+        private static readonly ScanOptions DefaultScanOptions = new ScanOptions(null);
 
         internal Scanner(Config config, IScanTools scanTools)
         {
@@ -72,9 +76,15 @@ namespace Axe.Windows.Automation
             return ExecutionWrapper.ExecuteCommand(() =>
             {
                 _scanTools.OutputFileHelper.SetScanId(scanId);
-
                 return SnapshotCommand.Execute(_config, _scanTools);
             });
+        }
+
+        public Task<AsyncScanResults> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken)
+        {
+            scanOptions = scanOptions ?? DefaultScanOptions;
+            _scanTools.OutputFileHelper.SetScanId(scanOptions.ScanId);
+            return SnapshotCommand.ExecuteScanAsync(_config, _scanTools, cancellationToken);
         }
     } // class
 } // namespace
