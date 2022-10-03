@@ -87,19 +87,20 @@ namespace Axe.Windows.Actions
         /// <returns>boolean</returns>
         public static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, bool force = false, DataManager dataManager = null)
         {
+            dataManager = GetDataManager(dataManager);
             var ec = GetDataManager(dataManager).GetElementContext(ecId);
             // if Data context is set via Live Mode, set it to null.
             if (ec.DataContext != null && ec.DataContext.Mode == DataContextMode.Live)
             {
                 ec.DataContext = null;
                 // Re-register user-configured custom UIA data
-                Registrar.GetDefaultInstance().RestoreCustomPropertyRegistrations();
+                dataManager.Registrar.RestoreCustomPropertyRegistrations();
             }
 
             if (NeedNewDataContext(ec.DataContext, dm, tvm) || force)
             {
                 ec.DataContext = new ElementDataContext(ec.Element, MaxElements);
-                PopulateData(ec.DataContext, dm, tvm);
+                PopulateData(ec.DataContext, dm, tvm, dataManager);
 
                 return true;
             }
@@ -113,7 +114,7 @@ namespace Axe.Windows.Actions
         /// <param name="dc"></param>
         /// <param name="dcMode"></param>
         /// <param name="tm"></param>
-        internal static void PopulateData(ElementDataContext dc, DataContextMode dcMode, TreeViewMode tm)
+        internal static void PopulateData(ElementDataContext dc, DataContextMode dcMode, TreeViewMode tm, DataManager dataManager)
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
@@ -122,7 +123,7 @@ namespace Axe.Windows.Actions
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm);
+                    stw.RefreshTreeData(tm, dataManager.Registrar);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;

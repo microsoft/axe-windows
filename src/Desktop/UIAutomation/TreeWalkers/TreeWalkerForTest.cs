@@ -1,8 +1,9 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.RuleSelection;
 using Axe.Windows.Telemetry;
 using System;
@@ -17,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
-        void RefreshTreeData(TreeViewMode mode);
+        void RefreshTreeData(TreeViewMode mode, Registrar registrar);
     }
 
     /// <summary>
@@ -57,7 +58,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Refresh tree node data with all children at once.
         /// <param name="mode">indicate the mode</param>
         /// </summary>
-        public void RefreshTreeData(TreeViewMode mode)
+        public void RefreshTreeData(TreeViewMode mode, Registrar registrar)
         {
             this.WalkerMode = mode;
             if (this.Elements.Count != 0)
@@ -66,7 +67,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             //Set parent of Root explicitly for testing.
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement);
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, registrar: registrar);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
             _elementCounter.TryAdd(ancestry.Items.Count);
@@ -87,7 +88,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             // populate Elements first
-            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData());
+            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(registrar));
 
             // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence.
             var nuel = this.Elements.Where(e => e.Properties == null);

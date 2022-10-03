@@ -40,6 +40,11 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             return sDefaultInstance;
         }
 
+        internal static Registrar CreateInstance()
+        {
+            return new Registrar();
+        }
+
         public void RegisterCustomProperty(CustomProperty prop)
         {
             if (prop == null) throw new ArgumentNullException(nameof(prop));

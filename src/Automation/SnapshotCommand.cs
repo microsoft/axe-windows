@@ -39,18 +39,18 @@ namespace Axe.Windows.Automation
 
             List<ScanResults> resultList = new List<ScanResults>();
 
-            var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId);
-
-            if (rootElements is null || !rootElements.Any())
+            using (var dataManager = DataManager.CreateInstance())
             {
-                return resultList;
-            }
+                var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, dataManager);
 
-            int targetIndex = 1;
+                if (rootElements is null || !rootElements.Any())
+                {
+                    return resultList;
+                }
 
-            foreach (var rootElement in rootElements)
-            {
-                using (var dataManager = DataManager.CreateInstance())
+                int targetIndex = 1;
+
+                foreach (var rootElement in rootElements)
                 {
                     resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
                     {

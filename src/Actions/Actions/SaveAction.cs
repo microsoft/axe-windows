@@ -35,12 +35,13 @@ namespace Axe.Windows.Actions
         /// <param name="mode">The type of file being saved</param>
         public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, DataManager dataManager = null)
         {
-            var ec = GetDataManager(dataManager).GetElementContext(ecId);
+            dataManager = GetDataManager(dataManager);
+            var ec = dataManager.GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
-                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment);
+                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, dataManager);
             }
         }
 
@@ -52,7 +53,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Private helper function (formerly in SaveSnapshotZip) to make it easier to call with different inputs
         /// </summary>
-        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Contexts.ElementContext ec, Package package, A11yElement root)
+        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Contexts.ElementContext ec, Package package, A11yElement root, DataManager dataManager)
         {
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
@@ -78,7 +79,7 @@ namespace Axe.Windows.Actions
                 AddStream(package, mStrm, StreamName.MetadataFileName);
             }
 
-            var customProps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations();
+            var customProps = dataManager.Registrar.GetCustomPropertyRegistrations();
             var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
             {

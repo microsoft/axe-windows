@@ -6,6 +6,7 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -27,7 +28,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [TestInitialize]
         public void ResetMocks()
         {
-            mockDataManager = new DataManager();
+            mockDataManager = new DataManager(Registrar.CreateInstance());
             mockElement = new A11yElement
             {
                 UniqueId = 0
@@ -186,7 +187,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Test, result.Mode);
                 Assert.AreEqual(mockTopMostElement, result.RootElment);
-                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode));
+                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode, It.IsAny<Registrar>()));
                 Assert.AreEqual(2, result.Elements.Count);
                 Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
                 Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);

@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
@@ -38,7 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// it would make Ux and Runtime separation easier since all communication is done via Actions.
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateAllPropertiesWithLiveData(this A11yElement element)
+        public static void PopulateAllPropertiesWithLiveData(this A11yElement element, Registrar registrar = null)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
 
@@ -46,7 +47,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
             if (element.IsSafeToRefresh())
             {
-                element.PopulatePropertiesAndPatternsFromCache();
+                element.PopulatePropertiesAndPatternsFromCache(registrar);
                 element.PopulatePlatformProperties();
             }
         }
@@ -58,11 +59,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// - BoundingRectangle
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateMinimumPropertiesForSelection(this A11yElement element)
+        public static void PopulateMinimumPropertiesForSelection(this A11yElement element, Registrar registrar = null)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
 
-            element.PopulateWithIndicatedProperties(MiniumProperties);
+            element.PopulateWithIndicatedProperties(MiniumProperties, registrar);
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="element"></param>
         /// <param name="list"></param>
-        private static void PopulateWithIndicatedProperties(this A11yElement element, List<int> list)
+        private static void PopulateWithIndicatedProperties(this A11yElement element, List<int> list, Registrar registrar)
         {
             element.Clear();
             if (element.IsSafeToRefresh())
@@ -103,7 +104,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 A11yAutomation.UIAutomationObject.PollForPotentialSupportedProperties((IUIAutomationElement)element.PlatformObject, out int[] ppids, out string[] ppns);
 
                 // build a cache based on the lists
-                var cache = DesktopElementHelper.BuildCacheRequest(list, null);
+                var cache = DesktopElementHelper.BuildCacheRequest(list, null, registrar);
 
                 // buildupdate cached element
                 var uia = ((IUIAutomationElement)element.PlatformObject).BuildUpdatedCache(cache);
@@ -234,7 +235,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// the update is done via caching to improve performance.
         /// </summary>
         /// <param name="useProperties">default is false to refresh it from UIElement directly</param>
-        private static void PopulatePropertiesAndPatternsFromCache(this A11yElement element)
+        private static void PopulatePropertiesAndPatternsFromCache(this A11yElement element, Registrar registrar)
         {
             try
             {
@@ -268,7 +269,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                               select pt.Item1).ToList();
 
                 // build a cache based on the lists
-                var cache = DesktopElementHelper.BuildCacheRequest(pplist, ptlist);
+                var cache = DesktopElementHelper.BuildCacheRequest(pplist, ptlist, registrar);
 
                 // buildupdate cached element
                 var uia = ((IUIAutomationElement)element.PlatformObject).BuildUpdatedCache(cache);

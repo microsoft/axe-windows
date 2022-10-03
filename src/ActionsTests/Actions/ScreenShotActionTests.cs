@@ -4,6 +4,7 @@ using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (var dm = new DataManager())
+            using (var dm = new DataManager(Registrar.CreateInstance()))
             {
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
@@ -67,7 +68,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (var dm = new DataManager())
+            using (var dm = new DataManager(Registrar.CreateInstance()))
             {
                 A11yElement element = new A11yElement
                 {
@@ -99,7 +100,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (var dm = new DataManager())
+            using (var dm = new DataManager(Registrar.CreateInstance()))
             {
                 A11yElement element = new A11yElement
                 {

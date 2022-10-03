@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="walker"></param>
         /// <param name="e"></param>
-        public DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem = false)
+        public DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem = false, Registrar registrar = null)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -59,7 +60,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
             this.SetMembers = setMem;
-            SetParent(e, -1);
+            SetParent(e, -1, registrar: registrar);
 
             if (Items.Count != 0)
             {
@@ -84,7 +85,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="e"></param>
         /// <param name="uniqueId"></param>
-        private void SetParent(A11yElement e, int uniqueId)
+        private void SetParent(A11yElement e, int uniqueId, Registrar registrar)
         {
             if (e == null || e.PlatformObject == null || e.IsRootElement()) return;
 
@@ -95,7 +96,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
                 var parent = new DesktopElement(puia, true, SetMembers);
-                parent.PopulateMinimumPropertiesForSelection();
+                parent.PopulateMinimumPropertiesForSelection(registrar);
 
                 // we need to avoid infinite loop of self reference as parent.
                 // it is a probably a bug in UIA or the target app.
@@ -107,7 +108,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     this.Items.Add(parent);
                     parent.UniqueId = uniqueId;
 
-                    SetParent(parent, uniqueId - 1);
+                    SetParent(parent, uniqueId - 1, registrar);
                 }
 #pragma warning restore CA2000
             }

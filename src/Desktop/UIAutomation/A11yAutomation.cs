@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
@@ -107,7 +108,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pid"></param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid)
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, Registrar registrar = null)
         {
             IUIAutomationElement root = null;
             IEnumerable<DesktopElement> elements = null;
@@ -121,7 +122,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     root = UIAutomation.GetRootElement();
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
-                    elements = ElementsFromUIAElements(matchingElements);
+                    elements = ElementsFromUIAElements(matchingElements, registrar);
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -151,7 +152,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             try
             {
-                return ElementFromUIAElement(UIAutomation.ElementFromHandle(hWnd));
+                return ElementFromUIAElement(UIAutomation.ElementFromHandle(hWnd), null);
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
@@ -168,7 +169,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="uia"></param>
         /// <returns></returns>
-        private static DesktopElement ElementFromUIAElement(IUIAutomationElement uia)
+        private static DesktopElement ElementFromUIAElement(IUIAutomationElement uia, Registrar registrar)
         {
             if (uia != null)
             {
@@ -176,7 +177,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     var el = new DesktopElement(uia, true, false);
 
-                    el.PopulateMinimumPropertiesForSelection();
+                    el.PopulateMinimumPropertiesForSelection(registrar);
 
                     return el;
                 }
@@ -194,7 +195,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="uia"></param>
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
-        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList)
+        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, Registrar registrar)
         {
             if (elementList == null) throw new ArgumentNullException(nameof(elementList));
 
@@ -209,7 +210,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
             foreach (var uiaElement in elementList)
             {
-                var e = ElementFromUIAElement(uiaElement);
+                var e = ElementFromUIAElement(uiaElement, registrar);
                 if (e == null) continue;
 
                 elements.Add(e);

@@ -18,9 +18,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pps">Property ids</param>
         /// <param name="pts">Pattern ids</param>
-        public static IUIAutomationCacheRequest BuildCacheRequest(IEnumerable<int> pps, IEnumerable<int> pts)
+        public static IUIAutomationCacheRequest BuildCacheRequest(IEnumerable<int> pps, IEnumerable<int> pts, Registrar registrar = null)
         {
-            return GetPropertiesCache(A11yAutomation.UIAutomationObject, pps, pts);
+            return GetPropertiesCache(A11yAutomation.UIAutomationObject, pps, pts, registrar);
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pps">Property ids</param>
         /// <param name="pts">Pattern ids</param>
         /// <returns></returns>
-        public static IUIAutomationCacheRequest GetPropertiesCache(IUIAutomation uia, IEnumerable<int> pps, IEnumerable<int> pts)
+        public static IUIAutomationCacheRequest GetPropertiesCache(IUIAutomation uia, IEnumerable<int> pps, IEnumerable<int> pts, Registrar registrar)
         {
             if (uia == null) throw new ArgumentNullException(nameof(uia));
 
@@ -44,7 +44,8 @@ namespace Axe.Windows.Desktop.UIAutomation
                 }
             }
 
-            IEnumerable<int> cps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations().Keys;
+            registrar = registrar ?? Registrar.GetDefaultInstance();
+            IEnumerable<int> cps = registrar.GetCustomPropertyRegistrations().Keys;
             foreach (var cp in cps)
             {
                 cr.AddProperty(cp);

@@ -5,6 +5,7 @@ using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -32,6 +33,13 @@ namespace Axe.Windows.Actions
         /// keep the record of all element context added by AddElementContext
         /// </summary>
         readonly Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
+
+        public Registrar Registrar { get; }
+
+        public DataManager(Registrar registrar)
+        {
+            Registrar = registrar ?? throw new ArgumentNullException(nameof(registrar));
+        }
 
         /// <summary>
         /// Get A11yPattern from an indicated element/elementcontext
@@ -181,7 +189,7 @@ namespace Axe.Windows.Actions
             var dm = GetInstance(DefaultInstanceName);
             if (dm == null)
             {
-                sDataManagers.Add(DefaultInstanceName, new DataManager());
+                sDataManagers.Add(DefaultInstanceName, new DataManager(Registrar.GetDefaultInstance()));
             }
 
             return dm;
@@ -202,7 +210,7 @@ namespace Axe.Windows.Actions
             }
             else
             {
-                dm = new DataManager();
+                dm = new DataManager(Registrar.CreateInstance());
                 sDataManagers.Add(key, dm);
             }
 
@@ -222,7 +230,7 @@ namespace Axe.Windows.Actions
 
         public static DataManager CreateInstance()
         {
-            return new DataManager();
+            return new DataManager(Registrar.CreateInstance());
         }
 
         #region IDisposable Support
