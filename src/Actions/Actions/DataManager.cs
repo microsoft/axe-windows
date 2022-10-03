@@ -177,6 +177,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static DataManager GetDefaultInstance()
         {
+            System.Diagnostics.Debugger.Log(0, "DHT", "***DHT*** DataManager.GetDefaultInstance\r\n");
             var dm = GetInstance(DefaultInstanceName);
             if (dm == null)
             {
@@ -218,6 +219,11 @@ namespace Axe.Windows.Actions
             sDataManagers.Clear();
         }
         #endregion
+
+        public static DataManager CreateInstance()
+        {
+            return new DataManager();
+        }
 
         #region IDisposable Support
         private bool disposedValue; // To detect redundant calls

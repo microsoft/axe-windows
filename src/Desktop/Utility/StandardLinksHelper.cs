@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
@@ -68,6 +68,7 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static StandardLinksHelper GetDefaultInstance()
         {
+            System.Diagnostics.Debugger.Log(0, "DHT", "***DHT*** StandardLinksHelper.GetDefaultInstance\r\n");
             if (sDefaultInstance == null)
             {
                 sDefaultInstance = new StandardLinksHelper();

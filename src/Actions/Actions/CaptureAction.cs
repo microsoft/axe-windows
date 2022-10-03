@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
@@ -26,7 +26,7 @@ namespace Axe.Windows.Actions
         // Test hooks; making this non-static and enabling constructor injection
         // would be nicer, but this was the minimal set of changes to remove the
         // need to use Fakes to test this class.
-        internal static Func<DataManager> GetDataManager = () => DataManager.GetDefaultInstance();
+        internal static Func<DataManager, DataManager> GetDataManager = (dataManager) => (dataManager ?? DataManager.GetDefaultInstance());
         internal static Func<ITreeWalkerForLive> NewTreeWalkerForLive = () => new TreeWalkerForLive();
         internal static Func<A11yElement, BoundedCounter, ITreeWalkerForTest> NewTreeWalkerForTest = (A11yElement e, BoundedCounter bc) => new TreeWalkerForTest(e, bc);
 
@@ -47,7 +47,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, bool force = false)
         {
-            var ec = GetDataManager().GetElementContext(ecId);
+            var ec = GetDataManager(null).GetElementContext(ecId);
 
             if (NeedNewDataContext(ec.DataContext, DataContextMode.Live, mode) || force)
             {
@@ -85,9 +85,9 @@ namespace Axe.Windows.Actions
         /// <param name="tvm"></param>
         /// <param name="force">Force the update</param>
         /// <returns>boolean</returns>
-        public static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, bool force = false)
+        public static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, bool force = false, DataManager dataManager = null)
         {
-            var ec = GetDataManager().GetElementContext(ecId);
+            var ec = GetDataManager(dataManager).GetElementContext(ecId);
             // if Data context is set via Live Mode, set it to null.
             if (ec.DataContext != null && ec.DataContext.Mode == DataContextMode.Live)
             {

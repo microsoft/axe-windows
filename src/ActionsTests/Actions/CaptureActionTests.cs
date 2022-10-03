@@ -49,7 +49,7 @@ namespace Axe.Windows.ActionsTests.Actions
         {
             mockDataContext.Mode = DataContextMode.Live;
 
-            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, null))
+            using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, null))
             {
                 CaptureAction.SetLiveModeDataContext(mockElementContext.Id, mockTreeViewMode, force: false);
             }
@@ -92,7 +92,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockTreeWalkerForLive.Setup(w => w.Elements).Returns(new List<A11yElement> { mockElementsItem1, mockElementsItem2 });
             mockTreeWalkerForLive.Setup(w => w.RootElement).Returns(mockTopMostElement);
 
-            using (new CaptureActionTestHookOverrides(() => mockDataManager, () => mockTreeWalkerForLive.Object, null))
+            using (new CaptureActionTestHookOverrides((_) => mockDataManager, () => mockTreeWalkerForLive.Object, null))
             {
                 // Act
                 CaptureAction.SetLiveModeDataContext(mockElementContext.Id, treeViewMode, force);
@@ -127,7 +127,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataContext.Mode = originalMode;
             mockDataContext.TreeMode = originalTreeMode;
 
-            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, null))
+            using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, null))
             {
                 bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, force: false);
 
@@ -171,7 +171,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockTreeWalkerForTest.Setup(w => w.Elements).Returns(new List<A11yElement> { mockElementsItem1, mockElementsItem2 });
             mockTreeWalkerForTest.Setup(w => w.TopMostElement).Returns(mockTopMostElement);
 
-            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, (_1, _2) => mockTreeWalkerForTest.Object))
+            using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, (_1, _2) => mockTreeWalkerForTest.Object))
             {
                 // Act
                 bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, force);
@@ -230,7 +230,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockOriginAncestor.Children = new List<A11yElement>() { mockChild1, mockChild2 };
             mockChild2.Children = new List<A11yElement>() { mockGrandChild1 };
 
-            using (new CaptureActionTestHookOverrides(() => mockDataManager, null, null))
+            using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, null))
             {
                 // Act
                 bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, force);
@@ -256,11 +256,11 @@ namespace Axe.Windows.ActionsTests.Actions
 
         private class CaptureActionTestHookOverrides : IDisposable
         {
-            internal static Func<DataManager> originalGetDataManager;
+            internal static Func<DataManager, DataManager> originalGetDataManager;
             internal static Func<ITreeWalkerForLive> originalNewTreeWalkerForLive;
             internal static Func<A11yElement, BoundedCounter, ITreeWalkerForTest> originalNewTreeWalkerForTest;
 
-            public CaptureActionTestHookOverrides(Func<DataManager> getDataManager, Func<ITreeWalkerForLive> newTreeWalkerForLive, Func<A11yElement, BoundedCounter, ITreeWalkerForTest> newTreeWalkerForTest)
+            public CaptureActionTestHookOverrides(Func<DataManager, DataManager> getDataManager, Func<ITreeWalkerForLive> newTreeWalkerForLive, Func<A11yElement, BoundedCounter, ITreeWalkerForTest> newTreeWalkerForTest)
             {
                 originalGetDataManager = CaptureAction.GetDataManager;
                 originalNewTreeWalkerForLive = CaptureAction.NewTreeWalkerForLive;

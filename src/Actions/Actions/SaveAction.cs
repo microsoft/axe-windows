@@ -33,15 +33,20 @@ namespace Axe.Windows.Actions
         /// <param name="path">The output file</param>
         /// <param name="focusedElementId">The ID of the element with the current focus</param>
         /// <param name="mode">The type of file being saved</param>
-        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode)
+        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, DataManager dataManager = null)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            var ec = GetDataManager(dataManager).GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
                 SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment);
             }
+        }
+
+        private static DataManager GetDataManager(DataManager dataManager)
+        {
+            return dataManager ?? DataManager.GetDefaultInstance();
         }
 
         /// <summary>

@@ -36,6 +36,8 @@ namespace Axe.Windows.Actions
         /// </summary>
         public bool IsFocusSelectOn { get; set; }
 
+        private DataManager DataManager { get; }
+
         /// <summary>
         /// Mouse Selector Delay in Milliseconds
         /// </summary>
@@ -81,7 +83,7 @@ namespace Axe.Windows.Actions
 
             private set
             {
-                var dma = DataManager.GetDefaultInstance();
+                var dma = DataManager;
                 if (_POIElementContext != null)
                 {
                     dma.RemoveElementContext(_POIElementContext.Id);
@@ -118,11 +120,12 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// private Constructor
         /// </summary>
-        private SelectAction()
+        private SelectAction(DataManager dataManager)
         {
             this.FocusTracker = new FocusTracker(SetCandidateElement);
             this.MouseTracker = new MouseTracker(SetCandidateElement);
             this.TreeTracker = new TreeTracker(this.SetCandidateElement, this);
+            DataManager = dataManager;
         }
 
         /// <summary>
@@ -214,7 +217,7 @@ namespace Axe.Windows.Actions
         /// <param name="eId"></param>
         public void SetCandidateElement(Guid ecId, int eId)
         {
-            var el = DataManager.GetDefaultInstance().GetA11yElement(ecId, eId).CloneForSelection();
+            var el = DataManager.GetA11yElement(ecId, eId).CloneForSelection();
 
             SetCandidateElement(el);
         }
@@ -377,14 +380,20 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static SelectAction GetDefaultInstance()
         {
+            System.Diagnostics.Debugger.Log(0, "DHT", "***DHT*** SelectAction.GetDefaultInstance\r\n");
             if (sDefaultInstance == null)
             {
-                sDefaultInstance = new SelectAction();
+                sDefaultInstance = new SelectAction(DataManager.GetDefaultInstance());
             }
 
             return sDefaultInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
+
+        public static SelectAction CreateInstance(DataManager dataManager)
+        {
+            return new SelectAction(dataManager);
+        }
 
         /// <summary>
         /// Clear default Instance.

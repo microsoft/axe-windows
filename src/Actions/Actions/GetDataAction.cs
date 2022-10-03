@@ -52,9 +52,9 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        public static ElementDataContext GetElementDataContext(Guid ecId)
+        public static ElementDataContext GetElementDataContext(Guid ecId, DataManager dataManager = null)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId)?.DataContext;
+            return GetDataManager(dataManager).GetElementContext(ecId)?.DataContext;
         }
 
         /// <summary>
@@ -90,11 +90,16 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId)
+        public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId, DataManager dataManager = null)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            var ec = GetDataManager(dataManager).GetElementContext(ecId);
 
             return new Tuple<string, string>(ec.ProcessName, ec.Element.GetUIFramework());
+        }
+
+        private static DataManager GetDataManager(DataManager dataManager)
+        {
+            return dataManager ?? DataManager.GetDefaultInstance();
         }
 
         /// <summary>
