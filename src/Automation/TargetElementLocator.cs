@@ -14,12 +14,12 @@ namespace Axe.Windows.Automation
 {
     class TargetElementLocator : ITargetElementLocator
     {
-        public IEnumerable<A11yElement> LocateRootElements(int processId, IScanContext scanContext)
+        public IEnumerable<A11yElement> LocateRootElements(int processId, IActionContext actionContext)
         {
             try
             {
-                scanContext = scanContext ?? DefaultScanContext.GetDefaultInstance();
-                var desktopElements = A11yAutomation.ElementsFromProcessId(processId, scanContext.Registrar);
+                actionContext = actionContext ?? DefaultActionContext.GetDefaultInstance();
+                var desktopElements = A11yAutomation.ElementsFromProcessId(processId, actionContext.Registrar);
                 return GetA11YElementsFromDesktopElements(desktopElements);
             }
             catch (Exception ex)

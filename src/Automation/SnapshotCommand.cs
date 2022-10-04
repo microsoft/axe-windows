@@ -40,9 +40,9 @@ namespace Axe.Windows.Automation
 
             List<ScanResults> resultList = new List<ScanResults>();
 
-            using (var scanContext = TransientScanContext.CreateInstance())
+            using (var actionContext = TransientActionContext.CreateInstance())
             {
-                var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, scanContext);
+                var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext);
 
                 if (rootElements is null || !rootElements.Any())
                 {
@@ -55,8 +55,8 @@ namespace Axe.Windows.Automation
                 {
                     resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
                     {
-                        return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count(), scanContext);
-                    }, scanContext));
+                        return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count(), actionContext);
+                    }, actionContext));
 
                     if (!config.AreMultipleScanRootsEnabled)
                     {
@@ -69,7 +69,7 @@ namespace Axe.Windows.Automation
             return resultList;
         }
 
-        private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IScanContext scanContext)
+        private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IActionContext actionContext)
         {
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.ResultsAssembler == null) throw new ArgumentException(ErrorMessages.ScanToolsResultsAssemblerNull, nameof(scanTools));
@@ -78,20 +78,20 @@ namespace Axe.Windows.Automation
 
             if (config.AreMultipleScanRootsEnabled)
             {
-                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}", scanContext);
+                results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}", actionContext);
             }
             else
             {
                 if (results.ErrorCount > 0)
                 {
-                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null, scanContext);
+                    results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null, actionContext);
                 }
             }
 
             return results;
         }
 
-        private static OutputFile WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId, Func<string, string> decorator, IScanContext scanContext)
+        private static OutputFile WriteOutputFiles(OutputFileFormat outputFileFormat, IScanTools scanTools, A11yElement element, Guid elementId, Func<string, string> decorator, IActionContext actionContext)
         {
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.OutputFileHelper == null) throw new ArgumentException(ErrorMessages.ScanToolsOutputFileHelperNull, nameof(scanTools));
@@ -100,14 +100,14 @@ namespace Axe.Windows.Automation
 
             if (outputFileFormat.HasFlag(OutputFileFormat.A11yTest))
             {
-                scanTools.Actions.CaptureScreenshot(elementId, scanContext);
+                scanTools.Actions.CaptureScreenshot(elementId, actionContext);
 
                 scanTools.OutputFileHelper.EnsureOutputDirectoryExists();
 
                 a11yTestOutputFile = scanTools.OutputFileHelper.GetNewA11yTestFilePath(decorator);
                 if (a11yTestOutputFile == null) throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, ErrorMessages.VariableNull, nameof(a11yTestOutputFile)));
 
-                scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId, scanContext);
+                scanTools.Actions.SaveA11yTestFile(a11yTestOutputFile, element, elementId, actionContext);
             }
 
             return OutputFile.BuildFromA11yTestFile(a11yTestOutputFile);

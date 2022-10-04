@@ -30,7 +30,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        internal static LoadActionParts LoadSnapshotZip(string path, IScanContext scanContext)
+        internal static LoadActionParts LoadSnapshotZip(string path, IActionContext actionContext)
         {
             using (FileStream str = File.Open(path, FileMode.Open, FileAccess.Read))
             using (Package package = ZipPackage.Open(str, FileMode.Open, FileAccess.Read))
@@ -62,7 +62,7 @@ namespace Axe.Windows.Actions
                 try
                 {
                     var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.CustomPropsFileName select p.GetStream()).First();
-                    CustomProperties = LoadCustomProperties(customPropertiesPart, scanContext);
+                    CustomProperties = LoadCustomProperties(customPropertiesPart, actionContext);
                     customPropertiesPart.Close();
                 }
 #pragma warning disable CA1031 // Do not catch general exception types: specific handlers placed in conditional below
@@ -94,13 +94,13 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Load JSON stored custom property registrations from stream
         /// </summary>
-        private static IReadOnlyDictionary<int, CustomProperty> LoadCustomProperties(Stream stream, IScanContext scanContext)
+        private static IReadOnlyDictionary<int, CustomProperty> LoadCustomProperties(Stream stream, IActionContext actionContext)
         {
             using (StreamReader reader = new StreamReader(stream))
             {
                 string jsonProps = reader.ReadToEnd();
                 Dictionary<int, CustomProperty> deserializedProperties = JsonConvert.DeserializeObject<Dictionary<int, CustomProperty>>(jsonProps);
-                scanContext.Registrar.MergeCustomPropertyRegistrations(deserializedProperties);
+                actionContext.Registrar.MergeCustomPropertyRegistrations(deserializedProperties);
                 return deserializedProperties;
             }
         }

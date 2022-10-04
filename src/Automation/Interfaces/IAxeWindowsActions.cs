@@ -24,16 +24,16 @@ namespace Axe.Windows.Automation
         /// <typeparam name="T">The type of results object to be returned by the callback</typeparam>
         /// <param name="element">The element from which to start the scan</param>
         /// <param name="resultsCallback">A delegate which can act on results and transform them into a specified type</param>
-        /// <param name="scanContext">TODO</param>
+        /// <param name="actionContext">TODO</param>
         /// <returns></returns>
-        T Scan<T>(A11yElement element, ScanActionCallback<T> resultsCallback, IScanContext scanContext);
+        T Scan<T>(A11yElement element, ScanActionCallback<T> resultsCallback, IActionContext actionContext);
 
         /// <summary>
         /// Takes a screenshot, highlighting the given element
         /// </summary>
         /// <param name="elementId"></param>
-        /// <param name="scanContext">TODO</param>
-        void CaptureScreenshot(Guid elementId, IScanContext scanContext);
+        /// <param name="actionContext">TODO</param>
+        void CaptureScreenshot(Guid elementId, IActionContext actionContext);
 
         /// <summary>
         /// Saves an a11ytest file to the given path
@@ -41,8 +41,8 @@ namespace Axe.Windows.Automation
         /// <param name="path"></param>
         /// <param name="element"></param>
         /// <param name="elementId"></param>
-        /// <param name="scanContext">TODO</param>
-        void SaveA11yTestFile(string path, A11yElement element, Guid elementId, IScanContext scanContext = null);
+        /// <param name="actionContext">TODO</param>
+        void SaveA11yTestFile(string path, A11yElement element, Guid elementId, IActionContext actionContext = null);
 
         /// <summary>
         /// Registers the custom UI Automation properties defined in the configuration file at path

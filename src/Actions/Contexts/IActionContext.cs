@@ -6,7 +6,7 @@ using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
-    public interface IScanContext : IDisposable
+    public interface IActionContext : IDisposable
     {
         DataManager DataManager { get; }
         SelectAction SelectAction { get; }

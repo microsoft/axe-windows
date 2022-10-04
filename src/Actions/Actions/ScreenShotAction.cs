@@ -29,7 +29,7 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">Element Context Id</param>
         public static void CaptureScreenShot(Guid ecId)
         {
-            CaptureScreenShot(ecId, DefaultScanContext.GetDefaultInstance());
+            CaptureScreenShot(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
         /// <summary>
@@ -37,11 +37,11 @@ namespace Axe.Windows.Actions
         ///     returns null if the bounding rectangle is 0-sized
         /// </summary>
         /// <param name="ecId">Element Context Id</param>
-        internal static void CaptureScreenShot(Guid ecId, IScanContext scanContext)
+        internal static void CaptureScreenShot(Guid ecId, IActionContext actionContext)
         {
             try
             {
-                var ec = scanContext.DataManager.GetElementContext(ecId);
+                var ec = actionContext.DataManager.GetElementContext(ecId);
                 var el = ec.Element;
 
                 var win = el.GetParentWindow();

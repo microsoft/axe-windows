@@ -37,7 +37,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (var scanContext = TransientScanContext.CreateInstance())
+            using (var actionContext = TransientActionContext.CreateInstance())
             {
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
@@ -52,9 +52,9 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                scanContext.DataManager.AddElementContext(elementContext);
+                actionContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id, scanContext);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, actionContext);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);
@@ -65,7 +65,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (var scanContext = TransientScanContext.CreateInstance())
+            using (var actionContext = TransientActionContext.CreateInstance())
             {
                 A11yElement element = new A11yElement
                 {
@@ -81,11 +81,11 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                scanContext.DataManager.AddElementContext(elementContext);
+                actionContext.DataManager.AddElementContext(elementContext);
 
                 ScreenShotAction.CopyFromScreen = (g, x, y, s) => { };
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id, scanContext);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, actionContext);
 
                 Assert.IsNotNull(dc.Screenshot);
                 Assert.AreEqual(element.UniqueId, dc.ScreenshotElementId);
@@ -96,7 +96,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (var scanContext = TransientScanContext.CreateInstance())
+            using (var actionContext = TransientActionContext.CreateInstance())
             {
                 A11yElement element = new A11yElement
                 {
@@ -112,11 +112,11 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                scanContext.DataManager.AddElementContext(elementContext);
+                actionContext.DataManager.AddElementContext(elementContext);
 
                 ScreenShotAction.CreateBitmap = (w, h) => throw new TypeInitializationException("Bitmap", null);
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id, scanContext);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, actionContext);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);

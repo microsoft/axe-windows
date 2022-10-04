@@ -35,7 +35,7 @@ namespace Axe.Windows.Actions
         /// <param name="mode">The type of file being saved</param>
         public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode)
         {
-            SaveSnapshotZip(path, ecId, focusedElementId, mode, DefaultScanContext.GetDefaultInstance());
+            SaveSnapshotZip(path, ecId, focusedElementId, mode, DefaultActionContext.GetDefaultInstance());
         }
 
         /// <summary>
@@ -45,21 +45,21 @@ namespace Axe.Windows.Actions
         /// <param name="path">The output file</param>
         /// <param name="focusedElementId">The ID of the element with the current focus</param>
         /// <param name="mode">The type of file being saved</param>
-        internal static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, IScanContext scanContext = null)
+        internal static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, IActionContext actionContext = null)
         {
-            var ec = scanContext.DataManager.GetElementContext(ecId);
+            var ec = actionContext.DataManager.GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
-                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, scanContext);
+                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, actionContext);
             }
         }
 
         /// <summary>
         /// Private helper function (formerly in SaveSnapshotZip) to make it easier to call with different inputs
         /// </summary>
-        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, ElementContext ec, Package package, A11yElement root, IScanContext scanContext)
+        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, ElementContext ec, Package package, A11yElement root, IActionContext actionContext)
         {
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
@@ -85,7 +85,7 @@ namespace Axe.Windows.Actions
                 AddStream(package, mStrm, StreamName.MetadataFileName);
             }
 
-            var customProps = scanContext.Registrar.GetCustomPropertyRegistrations();
+            var customProps = actionContext.Registrar.GetCustomPropertyRegistrations();
             var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
             {

@@ -1,11 +1,14 @@
-﻿using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
-    internal class DefaultScanContext : IScanContext
+    internal class DefaultActionContext : IActionContext
     {
-        static IScanContext DefaultContext;
+        static IActionContext DefaultContext;
 
         public DataManager DataManager => DataManager.GetDefaultInstance();
 
@@ -25,11 +28,11 @@ namespace Axe.Windows.Actions.Contexts
             GC.SuppressFinalize(this);
         }
 
-        internal static IScanContext GetDefaultInstance()
+        internal static IActionContext GetDefaultInstance()
         {
             if (DefaultContext == null)
             {
-                DefaultContext = new DefaultScanContext();
+                DefaultContext = new DefaultActionContext();
             }
 
             return DefaultContext;

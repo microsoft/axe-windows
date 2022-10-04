@@ -25,12 +25,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static ElementContext GetElementContext(Guid ecId)
         {
-            return GetElementContext(ecId, DefaultScanContext.GetDefaultInstance());
+            return GetElementContext(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static ElementContext GetElementContext(Guid ecId, IScanContext scanContext)
+        internal static ElementContext GetElementContext(Guid ecId, IActionContext actionContext)
         {
-            return scanContext.DataManager.GetElementContext(ecId);
+            return actionContext.DataManager.GetElementContext(ecId);
         }
 
         /// <summary>
@@ -40,12 +40,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static bool ExistElementContext(Guid ecId)
         {
-            return ExistElementContext(ecId, DefaultScanContext.GetDefaultInstance());
+            return ExistElementContext(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static bool ExistElementContext(Guid ecId, IScanContext scanContext)
+        internal static bool ExistElementContext(Guid ecId, IActionContext actionContext)
         {
-            return scanContext.DataManager.GetElementContext(ecId) != null;
+            return actionContext.DataManager.GetElementContext(ecId) != null;
         }
 
         /// <summary>
@@ -55,12 +55,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static int GetSelectedElementId(Guid ecId)
         {
-            return GetSelectedElementId(ecId, DefaultScanContext.GetDefaultInstance());
+            return GetSelectedElementId(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static int GetSelectedElementId(Guid ecId, IScanContext scanContext)
+        internal static int GetSelectedElementId(Guid ecId, IActionContext actionContext)
         {
-            return scanContext.DataManager.GetElementContext(ecId).Element.UniqueId;
+            return actionContext.DataManager.GetElementContext(ecId).Element.UniqueId;
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static ElementDataContext GetElementDataContext(Guid ecId)
         {
-            return GetElementDataContext(ecId, DefaultScanContext.GetDefaultInstance());
+            return GetElementDataContext(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
         /// <summary>
@@ -78,9 +78,9 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        internal static ElementDataContext GetElementDataContext(Guid ecId, IScanContext scanContext)
+        internal static ElementDataContext GetElementDataContext(Guid ecId, IActionContext actionContext)
         {
-            return scanContext.DataManager.GetElementContext(ecId)?.DataContext;
+            return actionContext.DataManager.GetElementContext(ecId)?.DataContext;
         }
 
         /// <summary>
@@ -93,14 +93,14 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId)
         {
-            return GetA11yElementWithLiveData(ecId, eId, DefaultScanContext.GetDefaultInstance());
+            return GetA11yElementWithLiveData(ecId, eId, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId, IScanContext scanContext)
+        internal static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId, IActionContext actionContext)
         {
-            var e = scanContext.DataManager.GetA11yElement(ecId, eId);
+            var e = actionContext.DataManager.GetA11yElement(ecId, eId);
 
-            e?.PopulateAllPropertiesWithLiveData(scanContext.Registrar);
+            e?.PopulateAllPropertiesWithLiveData(actionContext.Registrar);
 
             return e;
         }
@@ -113,12 +113,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static A11yElement GetA11yElementInDataContext(Guid ecId, int eId)
         {
-            return GetA11yElementInDataContext(ecId, eId, DefaultScanContext.GetDefaultInstance());
+            return GetA11yElementInDataContext(ecId, eId, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static A11yElement GetA11yElementInDataContext(Guid ecId, int eId, IScanContext scanContext)
+        internal static A11yElement GetA11yElementInDataContext(Guid ecId, int eId, IActionContext actionContext)
         {
-            return scanContext.DataManager.GetA11yElement(ecId, eId);
+            return actionContext.DataManager.GetA11yElement(ecId, eId);
         }
 
         /// <summary>
@@ -128,15 +128,15 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId)
         {
-            return GetProcessAndUIFrameworkOfElementContext(ecId, DefaultScanContext.GetDefaultInstance());
+            return GetProcessAndUIFrameworkOfElementContext(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
         /// <summary>
         /// Get Process name and Ui Framework of Element Context in the specified context
         /// </summary>
-        internal static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId, IScanContext scanContext)
+        internal static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId, IActionContext actionContext)
         {
-            var ec = scanContext.DataManager.GetElementContext(ecId);
+            var ec = actionContext.DataManager.GetElementContext(ecId);
 
             return new Tuple<string, string>(ec.ProcessName, ec.Element.GetUIFramework());
         }
@@ -147,12 +147,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static DataContextMode GetDataContextMode()
         {
-            return GetDataContextMode(DefaultScanContext.GetDefaultInstance());
+            return GetDataContextMode(DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static DataContextMode GetDataContextMode(IScanContext scanContext)
+        internal static DataContextMode GetDataContextMode(IActionContext actionContext)
         {
-            var ec = scanContext.DataManager.GetElementContext(scanContext.SelectAction.SelectedElementContextId.Value);
+            var ec = actionContext.DataManager.GetElementContext(actionContext.SelectAction.SelectedElementContextId.Value);
 
             return ec.DataContext != null ? ec.DataContext.Mode : DataContextMode.Live;
         }

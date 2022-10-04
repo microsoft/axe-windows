@@ -29,13 +29,13 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static dynamic RunAction(int eId, int ptId, string mname, object[] parameters)
         {
-            return RunAction(eId, ptId, mname, DefaultScanContext.GetDefaultInstance(), parameters);
+            return RunAction(eId, ptId, mname, DefaultActionContext.GetDefaultInstance(), parameters);
         }
 
-        internal static dynamic RunAction(int eId, int ptId, string mname, IScanContext scanContext, object[] parameters)
+        internal static dynamic RunAction(int eId, int ptId, string mname, IActionContext actionContext, object[] parameters)
         {
-            var ecId = scanContext.SelectAction.SelectedElementContextId;
-            A11yPattern ptn = scanContext.DataManager.GetA11yPattern(ecId.Value, eId, ptId);
+            var ecId = actionContext.SelectAction.SelectedElementContextId;
+            A11yPattern ptn = actionContext.DataManager.GetA11yPattern(ecId.Value, eId, ptId);
 
             MethodInfo mi = ptn.Methods.Where(m => m.Name == mname).First();
 

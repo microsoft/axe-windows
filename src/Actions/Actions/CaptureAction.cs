@@ -45,12 +45,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, bool force = false)
         {
-            SetLiveModeDataContext(ecId, mode, DefaultScanContext.GetDefaultInstance(), force);
+            SetLiveModeDataContext(ecId, mode, DefaultActionContext.GetDefaultInstance(), force);
         }
 
-        internal static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, IScanContext scanContext, bool force = false)
+        internal static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, IActionContext actionContext, bool force = false)
         {
-            var ec = scanContext.DataManager.GetElementContext(ecId);
+            var ec = actionContext.DataManager.GetElementContext(ecId);
 
             if (NeedNewDataContext(ec.DataContext, DataContextMode.Live, mode) || force)
             {
@@ -90,7 +90,7 @@ namespace Axe.Windows.Actions
         /// <returns>boolean</returns>
         public static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, bool force = false)
         {
-            return SetTestModeDataContext(ecId, dm, tvm, DefaultScanContext.GetDefaultInstance(), force);
+            return SetTestModeDataContext(ecId, dm, tvm, DefaultActionContext.GetDefaultInstance(), force);
         }
 
         /// <summary>
@@ -102,21 +102,21 @@ namespace Axe.Windows.Actions
         /// <param name="tvm"></param>
         /// <param name="force">Force the update</param>
         /// <returns>boolean</returns>
-        internal static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, IScanContext scanContext, bool force = false)
+        internal static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, IActionContext actionContext, bool force = false)
         {
-            var ec = scanContext.DataManager.GetElementContext(ecId);
+            var ec = actionContext.DataManager.GetElementContext(ecId);
             // if Data context is set via Live Mode, set it to null.
             if (ec.DataContext != null && ec.DataContext.Mode == DataContextMode.Live)
             {
                 ec.DataContext = null;
                 // Re-register user-configured custom UIA data
-                scanContext.Registrar.RestoreCustomPropertyRegistrations();
+                actionContext.Registrar.RestoreCustomPropertyRegistrations();
             }
 
             if (NeedNewDataContext(ec.DataContext, dm, tvm) || force)
             {
                 ec.DataContext = new ElementDataContext(ec.Element, MaxElements);
-                PopulateData(ec.DataContext, dm, tvm, scanContext);
+                PopulateData(ec.DataContext, dm, tvm, actionContext);
 
                 return true;
             }
@@ -130,7 +130,7 @@ namespace Axe.Windows.Actions
         /// <param name="dc"></param>
         /// <param name="dcMode"></param>
         /// <param name="tm"></param>
-        internal static void PopulateData(ElementDataContext dc, DataContextMode dcMode, TreeViewMode tm, IScanContext scanContext)
+        internal static void PopulateData(ElementDataContext dc, DataContextMode dcMode, TreeViewMode tm, IActionContext actionContext)
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
@@ -139,7 +139,7 @@ namespace Axe.Windows.Actions
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm, scanContext.Registrar);
+                    stw.RefreshTreeData(tm, actionContext.Registrar);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;

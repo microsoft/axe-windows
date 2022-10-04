@@ -114,12 +114,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener)
         {
-            return CreateInstance(listenScope, ecId, listener, DefaultScanContext.GetDefaultInstance());
+            return CreateInstance(listenScope, ecId, listener, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener, IScanContext scanContext)
+        internal static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener, IActionContext actionContext)
         {
-            var ec = scanContext.DataManager.GetElementContext(ecId);
+            var ec = actionContext.DataManager.GetElementContext(ecId);
             var la = new ListenAction(listenScope, ec, listener);
 
             sListenActions.Add(la.Id, la);

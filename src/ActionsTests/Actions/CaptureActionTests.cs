@@ -19,7 +19,7 @@ namespace Axe.Windows.ActionsTests.Actions
     [TestClass]
     public class CaptureActionTests
     {
-        Mock<IScanContext> mockScanContext;
+        Mock<IActionContext> mockScanContext;
         DataManager mockDataManager;
         A11yElement mockElement;
         ElementContext mockElementContext;
@@ -46,7 +46,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataManager.AddElementContext(mockElementContext);
 
             Registrar registrar = new Registrar();
-            mockScanContext = new Mock<IScanContext>(MockBehavior.Strict);
+            mockScanContext = new Mock<IActionContext>(MockBehavior.Strict);
             mockScanContext.Setup(m => m.DataManager).Returns(mockDataManager);
             mockScanContext.Setup(m => m.Registrar).Returns(registrar);
         }

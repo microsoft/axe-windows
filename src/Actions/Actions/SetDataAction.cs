@@ -21,12 +21,12 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">ElementContext Id</param>
         public static void ReleaseElementContext(Guid ecId)
         {
-            ReleaseElementContext(ecId, DefaultScanContext.GetDefaultInstance());
+            ReleaseElementContext(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static void ReleaseElementContext(Guid ecId, IScanContext scanContext)
+        internal static void ReleaseElementContext(Guid ecId, IActionContext actionContext)
         {
-            scanContext.DataManager.RemoveDataContext(ecId);
+            actionContext.DataManager.RemoveDataContext(ecId);
         }
 
         /// <summary>

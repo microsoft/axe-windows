@@ -276,14 +276,14 @@ namespace Axe.Windows.Actions
         /// <returns>Tuple of ElementContextId and SnapshotMetaInfo</returns>
         public Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, int? selectedElementId = null)
         {
-            return SelectLoadedData(path, DefaultScanContext.GetDefaultInstance(), selectedElementId);
+            return SelectLoadedData(path, DefaultActionContext.GetDefaultInstance(), selectedElementId);
         }
 
-        internal Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, IScanContext scanContext, int? selectedElementId = null)
+        internal Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, IActionContext actionContext, int? selectedElementId = null)
         {
             ClearSelectedContext();
 
-            var parts = LoadAction.LoadSnapshotZip(path, scanContext);
+            var parts = LoadAction.LoadSnapshotZip(path, actionContext);
             var meta = parts.MetaInfo;
             var ec = new ElementContext(parts.Element.FindPOIElementFromLoadedData());
 

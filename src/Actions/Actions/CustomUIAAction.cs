@@ -15,15 +15,15 @@ namespace Axe.Windows.Actions
 
         public static void RegisterCustomProperties(IEnumerable<CustomProperty> properties)
         {
-            RegisterCustomProperties(properties, DefaultScanContext.GetDefaultInstance());
+            RegisterCustomProperties(properties, DefaultActionContext.GetDefaultInstance());
         }
 
-        internal static void RegisterCustomProperties(IEnumerable<CustomProperty> properties, IScanContext scanContext)
+        internal static void RegisterCustomProperties(IEnumerable<CustomProperty> properties, IActionContext actionContext)
         {
             if (properties == null) throw new ArgumentNullException(nameof(properties));
             foreach (CustomProperty p in properties)
             {
-                scanContext.Registrar.RegisterCustomProperty(p);
+                actionContext.Registrar.RegisterCustomProperty(p);
             }
         }
     }

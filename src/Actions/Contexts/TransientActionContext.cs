@@ -6,11 +6,11 @@ using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
-    internal class TransientScanContext : IScanContext
+    internal class TransientActionContext : IActionContext
     {
         private bool disposedValue;
 
-        private TransientScanContext(DataManager dataManager, SelectAction selectAction, Registrar registrar)
+        private TransientActionContext(DataManager dataManager, SelectAction selectAction, Registrar registrar)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             SelectAction = selectAction ?? throw new ArgumentNullException(nameof(selectAction));
@@ -44,10 +44,10 @@ namespace Axe.Windows.Actions.Contexts
             GC.SuppressFinalize(this);
         }
 
-        internal static IScanContext CreateInstance()
+        internal static IActionContext CreateInstance()
         {
             DataManager dataManager = DataManager.CreateInstance();
-            return new TransientScanContext(dataManager, SelectAction.CreateInstance(dataManager), new Registrar());
+            return new TransientActionContext(dataManager, SelectAction.CreateInstance(dataManager), new Registrar());
         }
     }
 }
