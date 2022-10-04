@@ -123,10 +123,10 @@ namespace Axe.Windows.Actions
         /// </summary>
         private SelectAction(DataManager dataManager)
         {
+            DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             this.FocusTracker = new FocusTracker(SetCandidateElement);
             this.MouseTracker = new MouseTracker(SetCandidateElement);
             this.TreeTracker = new TreeTracker(this.SetCandidateElement, this);
-            DataManager = dataManager;
         }
 
         /// <summary>
