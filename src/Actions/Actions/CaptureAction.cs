@@ -7,7 +7,6 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 using System.Collections.Generic;
@@ -26,7 +25,6 @@ namespace Axe.Windows.Actions
         // Test hooks; making this non-static and enabling constructor injection
         // would be nicer, but this was the minimal set of changes to remove the
         // need to use Fakes to test this class.
-        internal static Func<DataManager, DataManager> GetDataManager = (dataManager) => (dataManager ?? DataManager.GetDefaultInstance());
         internal static Func<ITreeWalkerForLive> NewTreeWalkerForLive = () => new TreeWalkerForLive();
         internal static Func<A11yElement, BoundedCounter, ITreeWalkerForTest> NewTreeWalkerForTest = (A11yElement e, BoundedCounter bc) => new TreeWalkerForTest(e, bc);
 
@@ -47,7 +45,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, bool force = false)
         {
-            var ec = GetDataManager(null).GetElementContext(ecId);
+            SetLiveModeDataContext(ecId, mode, DefaultScanContext.GetDefaultInstance(), force);
+        }
+
+        internal static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, IScanContext scanContext, bool force = false)
+        {
+            var ec = scanContext.DataManager.GetElementContext(ecId);
 
             if (NeedNewDataContext(ec.DataContext, DataContextMode.Live, mode) || force)
             {

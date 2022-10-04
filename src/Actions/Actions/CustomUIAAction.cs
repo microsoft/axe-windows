@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
@@ -14,10 +15,15 @@ namespace Axe.Windows.Actions
 
         public static void RegisterCustomProperties(IEnumerable<CustomProperty> properties)
         {
+            RegisterCustomProperties(properties, DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static void RegisterCustomProperties(IEnumerable<CustomProperty> properties, IScanContext scanContext)
+        {
             if (properties == null) throw new ArgumentNullException(nameof(properties));
             foreach (CustomProperty p in properties)
             {
-                Registrar.GetDefaultInstance().RegisterCustomProperty(p);
+                scanContext.Registrar.RegisterCustomProperty(p);
             }
         }
     }

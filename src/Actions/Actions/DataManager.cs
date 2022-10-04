@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -178,7 +178,6 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static DataManager GetDefaultInstance()
         {
-            System.Diagnostics.Debugger.Log(0, "DHT", "***DHT*** DataManager.GetDefaultInstance\r\n");
             var dm = GetInstance(DefaultInstanceName);
             if (dm == null)
             {

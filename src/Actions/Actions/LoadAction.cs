@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.CustomObjects;
@@ -29,7 +30,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        internal static LoadActionParts LoadSnapshotZip(string path)
+        internal static LoadActionParts LoadSnapshotZip(string path, IScanContext scanContext)
         {
             using (FileStream str = File.Open(path, FileMode.Open, FileAccess.Read))
             using (Package package = ZipPackage.Open(str, FileMode.Open, FileAccess.Read))
@@ -61,7 +62,7 @@ namespace Axe.Windows.Actions
                 try
                 {
                     var customPropertiesPart = (from p in parts where p.Uri.OriginalString == "/" + StreamName.CustomPropsFileName select p.GetStream()).First();
-                    CustomProperties = LoadCustomProperties(customPropertiesPart);
+                    CustomProperties = LoadCustomProperties(customPropertiesPart, scanContext);
                     customPropertiesPart.Close();
                 }
 #pragma warning disable CA1031 // Do not catch general exception types: specific handlers placed in conditional below
@@ -93,13 +94,13 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Load JSON stored custom property registrations from stream
         /// </summary>
-        private static IReadOnlyDictionary<int, CustomProperty> LoadCustomProperties(Stream stream)
+        private static IReadOnlyDictionary<int, CustomProperty> LoadCustomProperties(Stream stream, IScanContext scanContext)
         {
             using (StreamReader reader = new StreamReader(stream))
             {
                 string jsonProps = reader.ReadToEnd();
                 Dictionary<int, CustomProperty> deserializedProperties = JsonConvert.DeserializeObject<Dictionary<int, CustomProperty>>(jsonProps);
-                Registrar.GetDefaultInstance().MergeCustomPropertyRegistrations(deserializedProperties);
+                scanContext.Registrar.MergeCustomPropertyRegistrations(deserializedProperties);
                 return deserializedProperties;
             }
         }

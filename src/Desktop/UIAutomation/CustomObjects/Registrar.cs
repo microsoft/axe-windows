@@ -33,7 +33,6 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
         public static Registrar GetDefaultInstance()
 #pragma warning restore CA1024 // Use properties where appropriate: backing field
         {
-            System.Diagnostics.Debugger.Log(0, "DHT", "***DHT*** Registrar.GetDefaultInstance\r\n");
             // This code is currently not thread safe.
             if (sDefaultInstance == null)
                 sDefaultInstance = new Registrar();

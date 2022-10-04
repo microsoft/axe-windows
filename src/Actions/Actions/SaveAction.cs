@@ -6,7 +6,6 @@ using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Settings;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.RuleSelection;
 using Newtonsoft.Json;
 using System;
@@ -55,11 +54,6 @@ namespace Axe.Windows.Actions
             {
                 SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, scanContext);
             }
-        }
-
-        private static DataManager GetDataManager(DataManager dataManager)
-        {
-            return dataManager ?? DataManager.GetDefaultInstance();
         }
 
         /// <summary>

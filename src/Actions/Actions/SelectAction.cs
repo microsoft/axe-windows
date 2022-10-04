@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -275,9 +276,14 @@ namespace Axe.Windows.Actions
         /// <returns>Tuple of ElementContextId and SnapshotMetaInfo</returns>
         public Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, int? selectedElementId = null)
         {
+            return SelectLoadedData(path, DefaultScanContext.GetDefaultInstance(), selectedElementId);
+        }
+
+        internal Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, IScanContext scanContext, int? selectedElementId = null)
+        {
             ClearSelectedContext();
 
-            var parts = LoadAction.LoadSnapshotZip(path);
+            var parts = LoadAction.LoadSnapshotZip(path, scanContext);
             var meta = parts.MetaInfo;
             var ec = new ElementContext(parts.Element.FindPOIElementFromLoadedData());
 
@@ -380,7 +386,6 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static SelectAction GetDefaultInstance()
         {
-            System.Diagnostics.Debugger.Log(0, "DHT", "***DHT*** SelectAction.GetDefaultInstance\r\n");
             if (sDefaultInstance == null)
             {
                 sDefaultInstance = new SelectAction(DataManager.GetDefaultInstance());

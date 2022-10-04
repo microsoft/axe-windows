@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -24,7 +25,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static ElementContext GetElementContext(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId);
+            return GetElementContext(ecId, DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static ElementContext GetElementContext(Guid ecId, IScanContext scanContext)
+        {
+            return scanContext.DataManager.GetElementContext(ecId);
         }
 
         /// <summary>
@@ -34,7 +40,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static bool ExistElementContext(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId) != null;
+            return ExistElementContext(ecId, DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static bool ExistElementContext(Guid ecId, IScanContext scanContext)
+        {
+            return scanContext.DataManager.GetElementContext(ecId) != null;
         }
 
         /// <summary>
@@ -44,7 +55,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static int GetSelectedElementId(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId).Element.UniqueId;
+            return GetSelectedElementId(ecId, DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static int GetSelectedElementId(Guid ecId, IScanContext scanContext)
+        {
+            return scanContext.DataManager.GetElementContext(ecId).Element.UniqueId;
         }
 
         /// <summary>
@@ -77,9 +93,14 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId)
         {
-            var e = DataManager.GetDefaultInstance().GetA11yElement(ecId, eId);
+            return GetA11yElementWithLiveData(ecId, eId, DefaultScanContext.GetDefaultInstance());
+        }
 
-            e?.PopulateAllPropertiesWithLiveData();
+        internal static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId, IScanContext scanContext)
+        {
+            var e = scanContext.DataManager.GetA11yElement(ecId, eId);
+
+            e?.PopulateAllPropertiesWithLiveData(scanContext.Registrar);
 
             return e;
         }
@@ -92,7 +113,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static A11yElement GetA11yElementInDataContext(Guid ecId, int eId)
         {
-            return DataManager.GetDefaultInstance().GetA11yElement(ecId, eId);
+            return GetA11yElementInDataContext(ecId, eId, DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static A11yElement GetA11yElementInDataContext(Guid ecId, int eId, IScanContext scanContext)
+        {
+            return scanContext.DataManager.GetA11yElement(ecId, eId);
         }
 
         /// <summary>
@@ -121,7 +147,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static DataContextMode GetDataContextMode()
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(SelectAction.GetDefaultInstance().SelectedElementContextId.Value);
+            return GetDataContextMode(DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static DataContextMode GetDataContextMode(IScanContext scanContext)
+        {
+            var ec = scanContext.DataManager.GetElementContext(scanContext.SelectAction.SelectedElementContextId.Value);
 
             return ec.DataContext != null ? ec.DataContext.Mode : DataContextMode.Live;
         }

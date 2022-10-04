@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -113,7 +114,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            return CreateInstance(listenScope, ecId, listener, DefaultScanContext.GetDefaultInstance());
+        }
+
+        internal static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener, IScanContext scanContext)
+        {
+            var ec = scanContext.DataManager.GetElementContext(ecId);
             var la = new ListenAction(listenScope, ec, listener);
 
             sListenActions.Add(la.Id, la);

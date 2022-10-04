@@ -1,6 +1,8 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using System.Linq;
@@ -27,8 +29,13 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static dynamic RunAction(int eId, int ptId, string mname, object[] parameters)
         {
-            var ecId = SelectAction.GetDefaultInstance().SelectedElementContextId;
-            A11yPattern ptn = DataManager.GetDefaultInstance().GetA11yPattern(ecId.Value, eId, ptId);
+            return RunAction(eId, ptId, mname, DefaultScanContext.GetDefaultInstance(), parameters);
+        }
+
+        internal static dynamic RunAction(int eId, int ptId, string mname, IScanContext scanContext, object[] parameters)
+        {
+            var ecId = scanContext.SelectAction.SelectedElementContextId;
+            A11yPattern ptn = scanContext.DataManager.GetA11yPattern(ecId.Value, eId, ptId);
 
             MethodInfo mi = ptn.Methods.Where(m => m.Name == mname).First();
 
