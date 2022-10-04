@@ -29,7 +29,6 @@ namespace Axe.Windows.ActionsTests.Actions
         [TestCleanup]
         public void TestCleanup()
         {
-            ScreenShotAction.GetDataManager = (_) => DataManager.GetDefaultInstance();
             ScreenShotAction.CreateBitmap = (w, h) => new Bitmap(w, h);
             ScreenShotAction.CopyFromScreen = ScreenShotAction.DefaultCopyFromScreen;
         }
@@ -38,7 +37,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (var dm = new DataManager(Registrar.CreateInstance()))
+            using (var scanContext = TransientScanContext.CreateInstance())
             {
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
@@ -53,11 +52,9 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                dm.AddElementContext(elementContext);
+                scanContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.GetDataManager = (_) => dm;
-
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, scanContext);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);
@@ -68,7 +65,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (var dm = new DataManager(Registrar.CreateInstance()))
+            using (var scanContext = TransientScanContext.CreateInstance())
             {
                 A11yElement element = new A11yElement
                 {
@@ -84,12 +81,11 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                dm.AddElementContext(elementContext);
+                scanContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.GetDataManager = (_) => dm;
                 ScreenShotAction.CopyFromScreen = (g, x, y, s) => { };
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, scanContext);
 
                 Assert.IsNotNull(dc.Screenshot);
                 Assert.AreEqual(element.UniqueId, dc.ScreenshotElementId);
@@ -100,7 +96,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (var dm = new DataManager(Registrar.CreateInstance()))
+            using (var scanContext = TransientScanContext.CreateInstance())
             {
                 A11yElement element = new A11yElement
                 {
@@ -116,12 +112,11 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                dm.AddElementContext(elementContext);
+                scanContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.GetDataManager = (_) => dm;
                 ScreenShotAction.CreateBitmap = (w, h) => throw new TypeInitializationException("Bitmap", null);
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, scanContext);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);

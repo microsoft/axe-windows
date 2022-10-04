@@ -52,9 +52,19 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        public static ElementDataContext GetElementDataContext(Guid ecId, DataManager dataManager = null)
+        public static ElementDataContext GetElementDataContext(Guid ecId)
         {
-            return GetDataManager(dataManager).GetElementContext(ecId)?.DataContext;
+            return GetElementDataContext(ecId, DefaultScanContext.GetDefaultInstance());
+        }
+
+        /// <summary>
+        /// Get data context of ElementContext
+        /// </summary>
+        /// <param name="ecId"></param>
+        /// <returns></returns>
+        internal static ElementDataContext GetElementDataContext(Guid ecId, IScanContext scanContext)
+        {
+            return scanContext.DataManager.GetElementContext(ecId)?.DataContext;
         }
 
         /// <summary>
@@ -86,20 +96,23 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Get Process name and Ui Framework of Element Context
+        /// Get Process name and Ui Framework of Element Context in the default context
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
-        public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId, DataManager dataManager = null)
+        public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId)
         {
-            var ec = GetDataManager(dataManager).GetElementContext(ecId);
-
-            return new Tuple<string, string>(ec.ProcessName, ec.Element.GetUIFramework());
+            return GetProcessAndUIFrameworkOfElementContext(ecId, DefaultScanContext.GetDefaultInstance());
         }
 
-        private static DataManager GetDataManager(DataManager dataManager)
+        /// <summary>
+        /// Get Process name and Ui Framework of Element Context in the specified context
+        /// </summary>
+        internal static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId, IScanContext scanContext)
         {
-            return dataManager ?? DataManager.GetDefaultInstance();
+            var ec = scanContext.DataManager.GetElementContext(ecId);
+
+            return new Tuple<string, string>(ec.ProcessName, ec.Element.GetUIFramework());
         }
 
         /// <summary>

@@ -34,13 +34,6 @@ namespace Axe.Windows.Actions
         /// </summary>
         readonly Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
 
-        public Registrar Registrar { get; }
-
-        public DataManager(Registrar registrar)
-        {
-            Registrar = registrar ?? throw new ArgumentNullException(nameof(registrar));
-        }
-
         /// <summary>
         /// Get A11yPattern from an indicated element/elementcontext
         /// </summary>
@@ -189,7 +182,7 @@ namespace Axe.Windows.Actions
             var dm = GetInstance(DefaultInstanceName);
             if (dm == null)
             {
-                sDataManagers.Add(DefaultInstanceName, new DataManager(Registrar.GetDefaultInstance()));
+                sDataManagers.Add(DefaultInstanceName, new DataManager());
             }
 
             return dm;
@@ -210,7 +203,7 @@ namespace Axe.Windows.Actions
             }
             else
             {
-                dm = new DataManager(Registrar.CreateInstance());
+                dm = new DataManager();
                 sDataManagers.Add(key, dm);
             }
 
@@ -230,7 +223,7 @@ namespace Axe.Windows.Actions
 
         public static DataManager CreateInstance()
         {
-            return new DataManager(Registrar.CreateInstance());
+            return new DataManager();
         }
 
         #region IDisposable Support

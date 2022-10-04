@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Settings;
@@ -33,15 +34,26 @@ namespace Axe.Windows.Actions
         /// <param name="path">The output file</param>
         /// <param name="focusedElementId">The ID of the element with the current focus</param>
         /// <param name="mode">The type of file being saved</param>
-        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, DataManager dataManager = null)
+        public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode)
         {
-            dataManager = GetDataManager(dataManager);
-            var ec = dataManager.GetElementContext(ecId);
+            SaveSnapshotZip(path, ecId, focusedElementId, mode, DefaultScanContext.GetDefaultInstance());
+        }
+
+        /// <summary>
+        /// Save snapshot zip
+        /// </summary>
+        /// <param name="ecId">ElementContext Id</param>
+        /// <param name="path">The output file</param>
+        /// <param name="focusedElementId">The ID of the element with the current focus</param>
+        /// <param name="mode">The type of file being saved</param>
+        internal static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, IScanContext scanContext = null)
+        {
+            var ec = scanContext.DataManager.GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
-                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, dataManager);
+                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, scanContext);
             }
         }
 
@@ -53,7 +65,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Private helper function (formerly in SaveSnapshotZip) to make it easier to call with different inputs
         /// </summary>
-        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Contexts.ElementContext ec, Package package, A11yElement root, DataManager dataManager)
+        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, ElementContext ec, Package package, A11yElement root, IScanContext scanContext)
         {
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
@@ -79,7 +91,7 @@ namespace Axe.Windows.Actions
                 AddStream(package, mStrm, StreamName.MetadataFileName);
             }
 
-            var customProps = dataManager.Registrar.GetCustomPropertyRegistrations();
+            var customProps = scanContext.Registrar.GetCustomPropertyRegistrations();
             var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
             {

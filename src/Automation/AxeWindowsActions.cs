@@ -17,50 +17,48 @@ namespace Axe.Windows.Automation
 {
     class AxeWindowsActions : IAxeWindowsActions
     {
-        public ResultsT Scan<ResultsT>(A11yElement element, ScanActionCallback<ResultsT> scanCallback, DataManager dataManager)
+        public ResultsT Scan<ResultsT>(A11yElement element, ScanActionCallback<ResultsT> scanCallback, IScanContext scanContext)
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
             if (scanCallback == null) throw new ArgumentNullException(nameof(scanCallback));
 
-            using (var sa = SelectAction.CreateInstance(dataManager))
+            var sa = scanContext.SelectAction;
+            sa.SetCandidateElement(element);
+
+            if (!sa.Select())
+                throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+
+            using (ElementContext ec2 = sa.POIElementContext)
             {
-                sa.SetCandidateElement(element);
-
-                if (!sa.Select())
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id, scanContext);
+                if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control, scanContext))
                     throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                long scanDurationInMilliseconds = stopwatch.ElapsedMilliseconds;
 
-                using (ElementContext ec2 = sa.POIElementContext)
+                // send telemetry of scan results.
+                var dc = GetDataAction.GetElementDataContext(ec2.Id, scanContext);
+                dc.PublishScanResults(scanDurationInMilliseconds);
+
+                if (dc.ElementCounter.UpperBoundExceeded)
                 {
-                    Stopwatch stopwatch = Stopwatch.StartNew();
-                    GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id, dataManager);
-                    if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control, dataManager: dataManager))
-                        throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
-                    long scanDurationInMilliseconds = stopwatch.ElapsedMilliseconds;
+                    throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
+                        DisplayStrings.ErrorTooManyElementsToSetDataContext,
+                        dc.ElementCounter.UpperBound));
+                }
 
-                    // send telemetry of scan results.
-                    var dc = GetDataAction.GetElementDataContext(ec2.Id, dataManager);
-                    dc.PublishScanResults(scanDurationInMilliseconds);
-
-                    if (dc.ElementCounter.UpperBoundExceeded)
-                    {
-                        throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
-                            DisplayStrings.ErrorTooManyElementsToSetDataContext,
-                            dc.ElementCounter.UpperBound));
-                    }
-
-                    return scanCallback(ec2.Element, ec2.Id);
-                } // using
+                return scanCallback(ec2.Element, ec2.Id);
             } // using
         }
 
-        public void CaptureScreenshot(Guid elementId, DataManager dataManager)
+        public void CaptureScreenshot(Guid elementId, IScanContext scanContext)
         {
-            ScreenShotAction.CaptureScreenShot(elementId, dataManager);
+            ScreenShotAction.CaptureScreenShot(elementId, scanContext);
         }
 
-        public void SaveA11yTestFile(string path, A11yElement element, Guid elementId, DataManager dataManager = null)
+        public void SaveA11yTestFile(string path, A11yElement element, Guid elementId, IScanContext scanContext = null)
         {
-            SaveAction.SaveSnapshotZip(path, elementId, element.UniqueId, A11yFileMode.Test, dataManager);
+            SaveAction.SaveSnapshotZip(path, elementId, element.UniqueId, A11yFileMode.Test, scanContext);
         }
 
         public void RegisterCustomUIAPropertiesFromConfig(string path)

@@ -18,6 +18,7 @@ namespace Axe.Windows.ActionsTests.Actions
     [TestClass]
     public class CaptureActionTests
     {
+        Mock<IScanContext> mockScanContext;
         DataManager mockDataManager;
         A11yElement mockElement;
         ElementContext mockElementContext;
@@ -28,7 +29,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [TestInitialize]
         public void ResetMocks()
         {
-            mockDataManager = new DataManager(Registrar.CreateInstance());
+            mockDataManager = new DataManager();
             mockElement = new A11yElement
             {
                 UniqueId = 0
@@ -42,6 +43,11 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataContext.TreeMode = mockTreeViewMode;
             mockDataContext.Mode = DataContextMode.Live;
             mockDataManager.AddElementContext(mockElementContext);
+
+            Registrar registrar = new Registrar();
+            mockScanContext = new Mock<IScanContext>(MockBehavior.Strict);
+            mockScanContext.Setup(m => m.DataManager).Returns(mockDataManager);
+            mockScanContext.Setup(m => m.Registrar).Returns(registrar);
         }
 
         [TestMethod]
@@ -130,7 +136,7 @@ namespace Axe.Windows.ActionsTests.Actions
 
             using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, null))
             {
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, force: false);
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, mockScanContext.Object, force: false);
 
                 Assert.IsFalse(retVal);
                 Assert.AreSame(mockDataContext, mockElementContext.DataContext);
@@ -175,7 +181,7 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, (_1, _2) => mockTreeWalkerForTest.Object))
             {
                 // Act
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, force);
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, mockScanContext.Object, force);
 
                 // Assert
                 Assert.IsTrue(retVal);
@@ -234,7 +240,7 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides((_) => mockDataManager, null, null))
             {
                 // Act
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, force);
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, mockScanContext.Object, force);
 
                 // Assert
                 Assert.IsTrue(retVal);
