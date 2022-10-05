@@ -87,8 +87,8 @@ namespace Axe.Windows.Actions
         /// Remove DataContext from an ElementContext
         /// </summary>
         /// <param name="ecId">ElementContext Id</param>
-        /// <param name="keepMainElment">true, keep it</param>
-        internal void RemoveDataContext(Guid ecId)
+        /// <param name="keepMainElement">true, keep it</param>
+        internal void RemoveDataContext(Guid ecId, bool keepMainElement)
         {
             // check whether key exists. if not, just silently ignore.
             if (this.ElementContexts.ContainsKey(ecId))
@@ -96,8 +96,11 @@ namespace Axe.Windows.Actions
                 var ec = this.ElementContexts[ecId];
                 if (ec.DataContext != null)
                 {
-                    // make sure that selected element is not disposed by removing it from the list in DataContext
-                    ec.DataContext.Elements.Remove(ec.Element.UniqueId);
+                    if (keepMainElement)
+                    {
+                        // make sure that selected element is not disposed by removing it from the list in DataContext
+                        ec.DataContext.Elements.Remove(ec.Element.UniqueId);
+                    }
 
                     ec.DataContext.Dispose();
                     ec.DataContext = null;
@@ -161,69 +164,42 @@ namespace Axe.Windows.Actions
             return elementContext.DataContext.Screenshot;
         }
 
-        #region constants
-        /// <summary>
-        /// default instance name constant
-        /// </summary>
-        const string DefaultInstanceName = "Axe.WindowsDefault";
-        #endregion
-
         #region static members
-        static readonly Dictionary<string, DataManager> sDataManagers = new Dictionary<string, DataManager>();
+
+        static DataManager DefaultInstance;
 
         /// <summary>
         /// Get default Data Manager instance
-        /// if it doesn't exist, create one.
+        /// if it doesn't exist, create it.
         /// </summary>
-        /// <returns></returns>
         public static DataManager GetDefaultInstance()
         {
-            var dm = GetInstance(DefaultInstanceName);
-            if (dm == null)
+            if (DefaultInstance == null)
             {
-                sDataManagers.Add(DefaultInstanceName, new DataManager());
+                DefaultInstance = CreateInstance();
             }
 
-            return dm;
+            return DefaultInstance;
         }
 
         /// <summary>
-        /// Get DataManager by key.
-        /// if it doesn't exist, create a new instance with the key.
+        /// Clear the default instance
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
-        static DataManager GetInstance(string key)
+        public static void ClearDefaultInstance()
         {
-            DataManager dm;
-            if (sDataManagers.ContainsKey(key))
+            if (DefaultInstance != null)
             {
-                dm = sDataManagers[key];
+                DefaultInstance.Dispose();
+                DefaultInstance = null;
             }
-            else
-            {
-                dm = new DataManager();
-                sDataManagers.Add(key, dm);
-            }
-
-            return dm;
         }
-
-        /// <summary>
-        /// Clear all Data Managers
-        /// </summary>
-        /// <returns></returns>
-        public static void Clear()
-        {
-            sDataManagers.Values.AsParallel().ForAll(dm => dm.Dispose());
-            sDataManagers.Clear();
-        }
-        #endregion
 
         public static DataManager CreateInstance()
         {
             return new DataManager();
         }
+
+        #endregion
 
         #region IDisposable Support
         private bool disposedValue; // To detect redundant calls
@@ -234,18 +210,25 @@ namespace Axe.Windows.Actions
             {
                 if (disposing)
                 {
-                    // TODO: dispose managed state (managed objects).
+                    // We need an immutble copy of the ecId values for cleanup
+                    var ecIdList = ElementContexts.Keys.ToList();
+                    foreach(Guid ecId in ecIdList)
+                    {
+                        RemoveDataContext(ecId, false);
+                    }
+
+                    ElementContexts.Clear();
                 }
 
                 disposedValue = true;
             }
         }
 
-        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        // ~DataManager() {
-        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-        //   Dispose(false);
-        // }
+        ~DataManager()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(false);
+        }
 
         // This code added to correctly implement the disposable pattern.
         public void Dispose()

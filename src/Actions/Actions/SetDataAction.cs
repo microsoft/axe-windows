@@ -26,7 +26,7 @@ namespace Axe.Windows.Actions
 
         internal static void ReleaseElementContext(Guid ecId, IActionContext actionContext)
         {
-            actionContext.DataManager.RemoveDataContext(ecId);
+            actionContext.DataManager.RemoveDataContext(ecId, true);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public static void ReleaseAll()
         {
-            DataManager.Clear();
+            DataManager.ClearDefaultInstance();
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">ElementContext Id</param>
         public static void ReleaseDataContext(Guid ecId)
         {
-            DataManager.GetDefaultInstance().RemoveDataContext(ecId);
+            DataManager.GetDefaultInstance().RemoveDataContext(ecId, true);
         }
     }
 }
