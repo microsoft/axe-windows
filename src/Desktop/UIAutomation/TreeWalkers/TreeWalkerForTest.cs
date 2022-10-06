@@ -95,7 +95,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             if (nuel.Any())
             {
-                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData());
+                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(registrar));
             }
 
             // run tests
