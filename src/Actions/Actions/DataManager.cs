@@ -88,7 +88,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="ecId">ElementContext Id</param>
         /// <param name="keepMainElement">true, keep it</param>
-        internal void RemoveDataContext(Guid ecId, bool keepMainElement)
+        internal void RemoveDataContext(Guid ecId, bool keepMainElement = true)
         {
             // check whether key exists. if not, just silently ignore.
             if (this.ElementContexts.ContainsKey(ecId))
@@ -167,6 +167,7 @@ namespace Axe.Windows.Actions
         #region static members
 
         static DataManager DefaultInstance;
+        static readonly object LockObject = new object();
 
         /// <summary>
         /// Get default Data Manager instance
@@ -176,7 +177,15 @@ namespace Axe.Windows.Actions
         {
             if (DefaultInstance == null)
             {
-                DefaultInstance = CreateInstance();
+                lock (LockObject)
+                {
+#pragma warning disable CA1508 // Analyzer doesn't understand check/lock/check pattern
+                    if (DefaultInstance == null)
+                    {
+                        DefaultInstance = CreateInstance();
+                    }
+#pragma warning restore CA1508 // Analyzer doesn't understand check/lock/check pattern
+                }
             }
 
             return DefaultInstance;
@@ -189,8 +198,16 @@ namespace Axe.Windows.Actions
         {
             if (DefaultInstance != null)
             {
-                DefaultInstance.Dispose();
-                DefaultInstance = null;
+                lock (LockObject)
+                {
+#pragma warning disable CA1508 // Analyzer doesn't understand check/lock/check pattern
+                    if (DefaultInstance != null)
+                    {
+                        DefaultInstance.Dispose();
+                        DefaultInstance = null;
+                    }
+#pragma warning restore CA1508 // Analyzer doesn't understand check/lock/check pattern
+                }
             }
         }
 
@@ -210,7 +227,7 @@ namespace Axe.Windows.Actions
             {
                 if (disposing)
                 {
-                    // We need an immutble copy of the ecId values for cleanup
+                    // We need an immutable copy of the ecId values for cleanup
                     var ecIdList = ElementContexts.Keys.ToList();
                     foreach(Guid ecId in ecIdList)
                     {
