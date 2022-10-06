@@ -10,7 +10,7 @@ using Moq;
 using System;
 using System.Threading;
 
-namespace Axe.Windows.DesktopTests.UIAutomation
+namespace Axe.Windows.DesktopTests.UIAutomation.TreeWalkers
 {
     [TestClass]
     public class TreeWalkerForTestTests
@@ -35,7 +35,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation
             var cancellationToken = new CancellationTokenSource();
             cancellationToken.Cancel();
             var dataContext = new TreeWalkerDataContext(cancellationToken.Token);
-            var exception = Assert.ThrowsException<OperationCanceledException>(() => _treeWalker.RefreshTreeData(TreeViewMode.Raw, dataContext));
+            Assert.ThrowsException<OperationCanceledException>(() => _treeWalker.RefreshTreeData(TreeViewMode.Raw, dataContext));
         }
     }
 }

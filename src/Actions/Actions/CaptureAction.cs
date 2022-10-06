@@ -118,7 +118,7 @@ namespace Axe.Windows.Actions
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
-            var dataContext = new TreeWalkerDataContext();
+            var dataContext = new TreeWalkerDataContext(); // TODO: Initialize from parameters
 
             switch (dcMode)
             {
