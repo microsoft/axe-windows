@@ -34,7 +34,8 @@ namespace Axe.Windows.DesktopTests.UIAutomation
         {
             var cancellationToken = new CancellationTokenSource();
             cancellationToken.Cancel();
-            var exception = Assert.ThrowsException<OperationCanceledException>(() => _treeWalker.RefreshTreeData(TreeViewMode.Raw, cancellationToken.Token));
+            var dataContext = new TreeWalkerDataContext(cancellationToken.Token);
+            var exception = Assert.ThrowsException<OperationCanceledException>(() => _treeWalker.RefreshTreeData(TreeViewMode.Raw, dataContext));
         }
     }
 }

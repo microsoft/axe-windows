@@ -118,13 +118,13 @@ namespace Axe.Windows.Actions
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
-            var cancellationToken = CancellationToken.None; // In the future this will be passed in from the top level API
+            var dataContext = new TreeWalkerDataContext();
 
             switch (dcMode)
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm, cancellationToken);
+                    stw.RefreshTreeData(tm, dataContext);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;
