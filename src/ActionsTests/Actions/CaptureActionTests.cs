@@ -186,7 +186,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Test, result.Mode);
                 Assert.AreEqual(mockTopMostElement, result.RootElment);
-                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode));
+                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode, null));
                 Assert.AreEqual(2, result.Elements.Count);
                 Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
                 Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);

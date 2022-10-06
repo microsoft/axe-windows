@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -208,7 +208,7 @@ namespace Axe.Windows.RulesTests
 
         private static Dictionary<RuleId, EvaluationCode> GetTestResultsAsDictionary(A11yElement e)
         {
-            var results = Axe.Windows.Rules.Rules.RunAll(e);
+            var results = Axe.Windows.Rules.Rules.RunAll(e, null);
             return results.ToDictionary(r => r.RuleInfo.ID, r => r.EvaluationCode);
         }
 
