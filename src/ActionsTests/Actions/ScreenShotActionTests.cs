@@ -37,7 +37,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (var actionContext = TransientActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance())
             {
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
@@ -65,7 +65,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (var actionContext = TransientActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance())
             {
                 A11yElement element = new A11yElement
                 {
@@ -96,7 +96,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (var actionContext = TransientActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance())
             {
                 A11yElement element = new A11yElement
                 {

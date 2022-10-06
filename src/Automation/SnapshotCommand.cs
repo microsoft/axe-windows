@@ -40,7 +40,7 @@ namespace Axe.Windows.Automation
 
             List<ScanResults> resultList = new List<ScanResults>();
 
-            using (var actionContext = TransientActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance())
             {
                 var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext);
 

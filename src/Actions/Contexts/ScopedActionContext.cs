@@ -6,11 +6,11 @@ using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
-    internal class TransientActionContext : IActionContext
+    internal class ScopedActionContext : IActionContext
     {
         private bool disposedValue;
 
-        private TransientActionContext(DataManager dataManager, SelectAction selectAction, Registrar registrar)
+        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, Registrar registrar)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             SelectAction = selectAction ?? throw new ArgumentNullException(nameof(selectAction));
@@ -47,7 +47,7 @@ namespace Axe.Windows.Actions.Contexts
         internal static IActionContext CreateInstance()
         {
             DataManager dataManager = DataManager.CreateInstance();
-            return new TransientActionContext(dataManager, SelectAction.CreateInstance(dataManager), new Registrar());
+            return new ScopedActionContext(dataManager, SelectAction.CreateInstance(dataManager), new Registrar());
         }
     }
 }
