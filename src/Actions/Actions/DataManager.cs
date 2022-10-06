@@ -34,8 +34,6 @@ namespace Axe.Windows.Actions
         /// </summary>
         readonly Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
 
-        static readonly object LockObject = new object();
-
         /// <summary>
         /// Get A11yPattern from an indicated element/elementcontext
         /// </summary>
@@ -169,6 +167,7 @@ namespace Axe.Windows.Actions
         #region static members
 
         static DataManager DefaultInstance;
+        static readonly object LockObject = new object();
 
         /// <summary>
         /// Get default Data Manager instance
