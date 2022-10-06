@@ -94,7 +94,7 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
-            /// Specifies a custom mechansm to 
+            /// Specifies a custom mechanism to enable/restore DPI awareness during a scan
             /// </summary>
             /// <param name="dpiAwareness"></param>
             /// <returns></returns>
