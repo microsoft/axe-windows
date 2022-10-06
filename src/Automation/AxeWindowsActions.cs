@@ -56,7 +56,7 @@ namespace Axe.Windows.Automation
             ScreenShotAction.CaptureScreenShot(elementId, actionContext);
         }
 
-        public void SaveA11yTestFile(string path, A11yElement element, Guid elementId, IActionContext actionContext = null)
+        public void SaveA11yTestFile(string path, A11yElement element, Guid elementId, IActionContext actionContext)
         {
             SaveAction.SaveSnapshotZip(path, elementId, element.UniqueId, A11yFileMode.Test, actionContext);
         }
