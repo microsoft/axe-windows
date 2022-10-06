@@ -74,7 +74,7 @@ dpiAwareness | `IDPIAwareness` | The caller-provided implementation of [`IDPIAwa
 
 ###### Return object
 
-The `WithDPIAwareness` method returns the `Config.Builder` configured with the specified output directory.
+The `WithDPIAwareness` method returns the `Config.Builder` configured to use the specified implementation of IDPIAwareness.
 
 ##### `WithCustomUIAConfig`
 
