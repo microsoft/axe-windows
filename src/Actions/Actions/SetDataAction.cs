@@ -1,5 +1,6 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Enums;
 using System;
@@ -27,7 +28,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public static void ReleaseAll()
         {
-            DataManager.Clear();
+            DataManager.ClearDefaultInstance();
         }
 
         /// <summary>
