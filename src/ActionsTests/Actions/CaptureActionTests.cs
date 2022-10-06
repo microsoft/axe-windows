@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Axe.Windows.ActionsTests.Actions
 {
@@ -186,7 +187,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Test, result.Mode);
                 Assert.AreEqual(mockTopMostElement, result.RootElment);
-                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode, null));
+                mockTreeWalkerForTest.Verify(w => w.RefreshTreeData(treeViewMode, CancellationToken.None));
                 Assert.AreEqual(2, result.Elements.Count);
                 Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
                 Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);

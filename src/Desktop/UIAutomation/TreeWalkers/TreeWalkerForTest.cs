@@ -18,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
-        void RefreshTreeData(TreeViewMode mode, CancellationToken? cancellationToken = null);
+        void RefreshTreeData(TreeViewMode mode, CancellationToken cancellationToken);
     }
 
     /// <summary>
@@ -58,9 +58,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Refresh tree node data with all children at once.
         /// <param name="mode">indicate the mode</param>
         /// </summary>
-        public void RefreshTreeData(TreeViewMode mode, CancellationToken? cancellationToken = null)
+        public void RefreshTreeData(TreeViewMode mode, CancellationToken cancellationToken)
         {
-            cancellationToken?.ThrowIfCancellationRequested();
+            cancellationToken.ThrowIfCancellationRequested();
 
             this.WalkerMode = mode;
             if (this.Elements.Count != 0)
@@ -112,7 +112,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             catch (AggregateException)
             {
                 // An aggregate exception might be caused by cancellation being requested
-                cancellationToken?.ThrowIfCancellationRequested();
+                cancellationToken.ThrowIfCancellationRequested();
                 throw;
             }
 

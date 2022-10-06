@@ -51,7 +51,7 @@ namespace Axe.Windows.Rules
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken? cancellationToken)
+        public static IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken cancellationToken)
         {
             return Runner.RunAll(element, cancellationToken);
         }

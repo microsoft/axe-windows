@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
@@ -12,6 +12,7 @@ using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace Axe.Windows.Actions
 {
@@ -117,12 +118,13 @@ namespace Axe.Windows.Actions
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
+            var cancellationToken = CancellationToken.None; // In the future this will be passed in from the top level API
 
             switch (dcMode)
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm);
+                    stw.RefreshTreeData(tm, cancellationToken);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;

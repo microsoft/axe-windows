@@ -17,7 +17,7 @@ namespace Axe.Windows.RuleSelection
     /// </summary>
     public static class RuleRunner
     {
-        public static void Run(A11yElement e, CancellationToken? cancellationToken)
+        public static void Run(A11yElement e, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace Axe.Windows.RuleSelection
 #pragma warning restore CA1031 // Do not catch general exception types
         }
 
-        private static void RunUnsafe(A11yElement e, CancellationToken? cancellationToken)
+        private static void RunUnsafe(A11yElement e, CancellationToken cancellationToken)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -45,7 +45,7 @@ namespace Axe.Windows.RuleSelection
             Run(e.ScanResults, e, cancellationToken);
         }
 
-        private static void Run(ScanResults results, A11yElement e, CancellationToken? cancellationToken)
+        private static void Run(ScanResults results, A11yElement e, CancellationToken cancellationToken)
         {
             var runResults = Axe.Windows.Rules.Rules.RunAll(e, cancellationToken);
             foreach (var r in runResults)

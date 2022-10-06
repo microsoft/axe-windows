@@ -6,7 +6,7 @@ using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
 
 namespace Axe.Windows.RulesTests
@@ -208,7 +208,7 @@ namespace Axe.Windows.RulesTests
 
         private static Dictionary<RuleId, EvaluationCode> GetTestResultsAsDictionary(A11yElement e)
         {
-            var results = Axe.Windows.Rules.Rules.RunAll(e, null);
+            var results = Axe.Windows.Rules.Rules.RunAll(e, CancellationToken.None);
             return results.ToDictionary(r => r.RuleInfo.ID, r => r.EvaluationCode);
         }
 
