@@ -356,7 +356,7 @@ namespace Axe.Windows.RulesTests
             var runner = new RuleRunner(providerMock.Object);
             var cancellationToken = new CancellationTokenSource();
             cancellationToken.Cancel();
-            var exception = Assert.ThrowsException<OperationCanceledException>(() => runner.RunAll(e, CancellationToken.None));
+            var exception = Assert.ThrowsException<OperationCanceledException>(() => runner.RunAll(e, cancellationToken.Token));
         }
 
         private static Mock<IRule> CreateRuleMock(Condition condition, EvaluationCode code, A11yElement e)
