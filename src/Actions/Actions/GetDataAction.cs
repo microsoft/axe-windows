@@ -73,11 +73,6 @@ namespace Axe.Windows.Actions
             return GetElementDataContext(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
-        /// <summary>
-        /// Get data context of ElementContext
-        /// </summary>
-        /// <param name="ecId"></param>
-        /// <returns></returns>
         internal static ElementDataContext GetElementDataContext(Guid ecId, IActionContext actionContext)
         {
             return actionContext.DataManager.GetElementContext(ecId)?.DataContext;

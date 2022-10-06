@@ -93,15 +93,6 @@ namespace Axe.Windows.Actions
             return SetTestModeDataContext(ecId, dm, tvm, DefaultActionContext.GetDefaultInstance(), force);
         }
 
-        /// <summary>
-        /// Update Data context in given ElementContext for Test Mode
-        /// if Data Context is already up to date based on parameters, just skip.
-        /// </summary>
-        /// <param name="ecId">ElementContext Id</param>
-        /// <param name="dm"></param>
-        /// <param name="tvm"></param>
-        /// <param name="force">Force the update</param>
-        /// <returns>boolean</returns>
         internal static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, IActionContext actionContext, bool force = false)
         {
             var ec = actionContext.DataManager.GetElementContext(ecId);

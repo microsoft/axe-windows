@@ -38,14 +38,7 @@ namespace Axe.Windows.Actions
             SaveSnapshotZip(path, ecId, focusedElementId, mode, DefaultActionContext.GetDefaultInstance());
         }
 
-        /// <summary>
-        /// Save snapshot zip
-        /// </summary>
-        /// <param name="ecId">ElementContext Id</param>
-        /// <param name="path">The output file</param>
-        /// <param name="focusedElementId">The ID of the element with the current focus</param>
-        /// <param name="mode">The type of file being saved</param>
-        internal static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, IActionContext actionContext = null)
+        internal static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, IActionContext actionContext)
         {
             var ec = actionContext.DataManager.GetElementContext(ecId);
 

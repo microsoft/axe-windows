@@ -32,11 +32,6 @@ namespace Axe.Windows.Actions
             CaptureScreenShot(ecId, DefaultActionContext.GetDefaultInstance());
         }
 
-        /// <summary>
-        /// Take a screenshot of the given element's parent window, if it has one
-        ///     returns null if the bounding rectangle is 0-sized
-        /// </summary>
-        /// <param name="ecId">Element Context Id</param>
         internal static void CaptureScreenShot(Guid ecId, IActionContext actionContext)
         {
             try
