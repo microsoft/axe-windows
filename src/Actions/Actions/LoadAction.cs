@@ -7,7 +7,6 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Desktop.Settings;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Telemetry;
 using Newtonsoft.Json;
 using System;

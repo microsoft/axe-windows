@@ -3,7 +3,6 @@
 
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.CustomObjects;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System;
 using System.Collections.Generic;
 
