@@ -228,7 +228,7 @@ namespace Axe.Windows.Actions
             {
                 if (disposing)
                 {
-                    // We need an immutble copy of the ecId values for cleanup
+                    // We need an immutable copy of the ecId values for cleanup
                     var ecIdList = ElementContexts.Keys.ToList();
                     foreach(Guid ecId in ecIdList)
                     {
