@@ -34,7 +34,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         readonly Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
 
-        static readonly Object LockObject = new Object();
+        static readonly object LockObject = new object();
 
         /// <summary>
         /// Get A11yPattern from an indicated element/elementcontext
