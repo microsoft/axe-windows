@@ -2,7 +2,9 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
+using System.Threading;
 
 namespace Axe.Windows.Actions.Contexts
 {
@@ -14,11 +16,12 @@ namespace Axe.Windows.Actions.Contexts
     {
         private bool disposedValue;
 
-        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, Registrar registrar)
+        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, Registrar registrar, TreeWalkerDataContext treeWalkerDataContext)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             SelectAction = selectAction ?? throw new ArgumentNullException(nameof(selectAction));
             Registrar = registrar ?? throw new ArgumentNullException(nameof(registrar));
+            TreeWalkerDataContext = treeWalkerDataContext ?? throw new ArgumentNullException(nameof(treeWalkerDataContext));
         }
 
         public DataManager DataManager { get; }
@@ -26,6 +29,8 @@ namespace Axe.Windows.Actions.Contexts
         public SelectAction SelectAction { get; }
 
         public Registrar Registrar { get; }
+
+        public TreeWalkerDataContext TreeWalkerDataContext { get; }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -48,10 +53,15 @@ namespace Axe.Windows.Actions.Contexts
             GC.SuppressFinalize(this);
         }
 
-        internal static IActionContext CreateInstance()
+        internal static IActionContext CreateInstance(CancellationToken cancellationToken)
         {
             DataManager dataManager = DataManager.CreateInstance();
-            return new ScopedActionContext(dataManager, SelectAction.CreateInstance(dataManager), new Registrar());
+            Registrar registrar = new Registrar();
+            return new ScopedActionContext(
+                dataManager,
+                SelectAction.CreateInstance(dataManager),
+                registrar,
+                new TreeWalkerDataContext(registrar, cancellationToken));
         }
     }
 }

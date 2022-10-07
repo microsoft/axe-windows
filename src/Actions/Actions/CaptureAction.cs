@@ -126,13 +126,12 @@ namespace Axe.Windows.Actions
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
-            var dataContext = new TreeWalkerDataContext(); // TODO: Initialize from parameters
 
             switch (dcMode)
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm, dataContext);
+                    stw.RefreshTreeData(tm, actionContext.TreeWalkerDataContext);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;

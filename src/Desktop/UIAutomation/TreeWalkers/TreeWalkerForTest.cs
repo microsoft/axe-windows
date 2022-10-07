@@ -71,7 +71,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             //Set parent of Root explicitly for testing.
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, registrar: registrar);
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, registrar: dataContext.Registrar);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
             _elementCounter.TryAdd(ancestry.Items.Count);
@@ -92,14 +92,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             // populate Elements first
-            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(registrar));
+            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(dataContext.Registrar));
 
             // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence.
             var nuel = this.Elements.Where(e => e.Properties == null);
 
             if (nuel.Any())
             {
-                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(registrar));
+                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(dataContext.Registrar));
             }
 
             // run tests

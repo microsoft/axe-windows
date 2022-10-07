@@ -4,6 +4,7 @@
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Axe.Windows.ActionsTests.Contexts
@@ -40,17 +41,30 @@ namespace Axe.Windows.ActionsTests.Contexts
 
         [TestMethod]
         [Timeout(1000)]
+        public void TreeWalkerDataContext_IsDefaultTreeWalkerDataContext()
+        {
+            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().TreeWalkerDataContext;
+            Assert.IsNotNull(treeWalkerDataContext);
+            Assert.AreSame(TreeWalkerDataContext.DefaultContext, treeWalkerDataContext);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
         public void Dispose_DoesNotChangeObjects()
         {
+            var defaultActionContext = DefaultActionContext.GetDefaultInstance();
             var dataManager = DefaultActionContext.GetDefaultInstance().DataManager;
             var selectAction = DefaultActionContext.GetDefaultInstance().SelectAction;
             var registrar = DefaultActionContext.GetDefaultInstance().Registrar;
+            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().TreeWalkerDataContext;
 
             DefaultActionContext.GetDefaultInstance().Dispose();
 
+            Assert.AreSame(defaultActionContext, DefaultActionContext.GetDefaultInstance());
             Assert.AreSame(dataManager, DefaultActionContext.GetDefaultInstance().DataManager);
             Assert.AreSame(selectAction, DefaultActionContext.GetDefaultInstance().SelectAction);
             Assert.AreSame(registrar, DefaultActionContext.GetDefaultInstance().Registrar);
+            Assert.AreSame(treeWalkerDataContext, DefaultActionContext.GetDefaultInstance().TreeWalkerDataContext);
         }
     }
 }

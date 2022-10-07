@@ -20,7 +20,7 @@ namespace Axe.Windows.ActionsTests.Actions
     [TestClass]
     public class CaptureActionTests
     {
-        Mock<IActionContext> mockScanContext;
+        Mock<IActionContext> mockActionContext;
         DataManager mockDataManager;
         A11yElement mockElement;
         ElementContext mockElementContext;
@@ -47,9 +47,12 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataManager.AddElementContext(mockElementContext);
 
             Registrar registrar = new Registrar();
-            mockScanContext = new Mock<IActionContext>(MockBehavior.Strict);
-            mockScanContext.Setup(m => m.DataManager).Returns(mockDataManager);
-            mockScanContext.Setup(m => m.Registrar).Returns(registrar);
+            TreeWalkerDataContext treeWalkerDataContext = new TreeWalkerDataContext(registrar, CancellationToken.None);
+
+            mockActionContext = new Mock<IActionContext>(MockBehavior.Strict);
+            mockActionContext.Setup(m => m.DataManager).Returns(mockDataManager);
+            mockActionContext.Setup(m => m.Registrar).Returns(registrar);
+            mockActionContext.Setup(m => m.TreeWalkerDataContext).Returns(treeWalkerDataContext);
         }
 
         [TestMethod]
@@ -60,7 +63,7 @@ namespace Axe.Windows.ActionsTests.Actions
 
             using (new CaptureActionTestHookOverrides(null, null))
             {
-                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, mockTreeViewMode, mockScanContext.Object, force: false);
+                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, mockTreeViewMode, mockActionContext.Object, force: false);
             }
 
             Assert.AreSame(mockDataContext, mockElementContext.DataContext);
@@ -104,7 +107,7 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides(() => mockTreeWalkerForLive.Object, null))
             {
                 // Act
-                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, treeViewMode, mockScanContext.Object, force);
+                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, treeViewMode, mockActionContext.Object, force);
 
                 // Assert
                 Assert.IsNotNull(mockElementContext.DataContext);
@@ -138,7 +141,7 @@ namespace Axe.Windows.ActionsTests.Actions
 
             using (new CaptureActionTestHookOverrides(null, null))
             {
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, mockScanContext.Object, force: false);
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, mockActionContext.Object, force: false);
 
                 Assert.IsFalse(retVal);
                 Assert.AreSame(mockDataContext, mockElementContext.DataContext);
@@ -183,7 +186,7 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides(null, (_1, _2) => mockTreeWalkerForTest.Object))
             {
                 // Act
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, mockScanContext.Object, force);
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, mockActionContext.Object, force);
                 // Assert
                 Assert.IsTrue(retVal);
                 Assert.IsNotNull(mockElementContext.DataContext);
@@ -241,7 +244,7 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides(null, null))
             {
                 // Act
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, mockScanContext.Object, force);
+                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, mockActionContext.Object, force);
 
                 // Assert
                 Assert.IsTrue(retVal);
@@ -275,6 +278,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 CaptureAction.NewTreeWalkerForLive = newTreeWalkerForLive;
                 CaptureAction.NewTreeWalkerForTest = newTreeWalkerForTest;
             }
+
             public void Dispose()
             {
                 CaptureAction.NewTreeWalkerForLive = originalNewTreeWalkerForLive;

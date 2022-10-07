@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 
 namespace Axe.Windows.Actions.Contexts
@@ -19,6 +20,8 @@ namespace Axe.Windows.Actions.Contexts
         public SelectAction SelectAction => SelectAction.GetDefaultInstance();
 
         public Registrar Registrar => Registrar.GetDefaultInstance();
+        
+        public TreeWalkerDataContext TreeWalkerDataContext => TreeWalkerDataContext.DefaultContext;
 
         protected virtual void Dispose(bool disposing)
         {

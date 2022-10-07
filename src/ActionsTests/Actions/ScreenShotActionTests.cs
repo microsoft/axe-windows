@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 
 namespace Axe.Windows.ActionsTests.Actions
 {
@@ -37,7 +38,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (var actionContext = ScopedActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
@@ -65,7 +66,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (var actionContext = ScopedActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 A11yElement element = new A11yElement
                 {
@@ -96,7 +97,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (var actionContext = ScopedActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 A11yElement element = new A11yElement
                 {

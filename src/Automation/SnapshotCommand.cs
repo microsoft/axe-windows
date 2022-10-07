@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Threading;
 
 namespace Axe.Windows.Automation
 {
@@ -39,7 +40,7 @@ namespace Axe.Windows.Automation
 
             List<ScanResults> resultList = new List<ScanResults>();
 
-            using (var actionContext = ScopedActionContext.CreateInstance())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext);
 
