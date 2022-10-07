@@ -6,6 +6,10 @@ using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
+    /// <summary>
+    /// An implementation of <see cref="IActionContext"></see> for app-lifetime use. Everything goes to the 
+    /// default stores with no lifetime changes.
+    /// </summary>
     internal class DefaultActionContext : IActionContext
     {
         static IActionContext DefaultContext;

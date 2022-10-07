@@ -6,11 +6,26 @@ using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
+    /// <summary>
+    /// Actions need backing data. An IActionContext groups together related items
+    /// into a single package to ensure that the data remains consistent and has
+    /// a manageable lifetime.
+    /// </summary>
     public interface IActionContext : IDisposable
     {
+        /// <summary>
+        /// The <see cref="DataManager"/> object that provides primary access to the data
+        /// </summary>
         DataManager DataManager { get; }
+
+        /// <summary>
+        /// The <see cref="SelectAction"/> object that manages object selection
+        /// </summary>
         SelectAction SelectAction { get; }
 
+        /// <summary>
+        /// The <see cref="Registrar"/> object that provides access to CustomUIA data
+        /// </summary>
         Registrar Registrar { get; }
     }
 }

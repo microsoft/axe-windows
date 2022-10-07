@@ -6,6 +6,10 @@ using System;
 
 namespace Axe.Windows.Actions.Contexts
 {
+    /// <summary>
+    /// An implementation of <see cref="IActionContext"></see> for scoped duration.
+    /// Object cleanup occurs when the object is Disposed.
+    /// </summary>
     internal class ScopedActionContext : IActionContext
     {
         private bool disposedValue;
