@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
@@ -13,11 +14,11 @@ namespace Axe.Windows.Automation
 {
     class TargetElementLocator : ITargetElementLocator
     {
-        public IEnumerable<A11yElement> LocateRootElements(int processId)
+        public IEnumerable<A11yElement> LocateRootElements(int processId, IActionContext actionContext)
         {
             try
             {
-                var desktopElements = A11yAutomation.ElementsFromProcessId(processId);
+                var desktopElements = A11yAutomation.ElementsFromProcessId(processId, actionContext.Registrar);
                 return GetA11YElementsFromDesktopElements(desktopElements);
             }
             catch (Exception ex)

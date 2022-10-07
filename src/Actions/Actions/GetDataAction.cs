@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -24,7 +25,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static ElementContext GetElementContext(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId);
+            return GetElementContext(ecId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static ElementContext GetElementContext(Guid ecId, IActionContext actionContext)
+        {
+            return actionContext.DataManager.GetElementContext(ecId);
         }
 
         /// <summary>
@@ -34,7 +40,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static bool ExistElementContext(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId) != null;
+            return ExistElementContext(ecId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static bool ExistElementContext(Guid ecId, IActionContext actionContext)
+        {
+            return actionContext.DataManager.GetElementContext(ecId) != null;
         }
 
         /// <summary>
@@ -44,7 +55,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static int GetSelectedElementId(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId).Element.UniqueId;
+            return GetSelectedElementId(ecId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static int GetSelectedElementId(Guid ecId, IActionContext actionContext)
+        {
+            return actionContext.DataManager.GetElementContext(ecId).Element.UniqueId;
         }
 
         /// <summary>
@@ -54,7 +70,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static ElementDataContext GetElementDataContext(Guid ecId)
         {
-            return DataManager.GetDefaultInstance().GetElementContext(ecId)?.DataContext;
+            return GetElementDataContext(ecId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static ElementDataContext GetElementDataContext(Guid ecId, IActionContext actionContext)
+        {
+            return actionContext.DataManager.GetElementContext(ecId)?.DataContext;
         }
 
         /// <summary>
@@ -67,9 +88,14 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId)
         {
-            var e = DataManager.GetDefaultInstance().GetA11yElement(ecId, eId);
+            return GetA11yElementWithLiveData(ecId, eId, DefaultActionContext.GetDefaultInstance());
+        }
 
-            e?.PopulateAllPropertiesWithLiveData();
+        internal static A11yElement GetA11yElementWithLiveData(Guid ecId, int eId, IActionContext actionContext)
+        {
+            var e = actionContext.DataManager.GetA11yElement(ecId, eId);
+
+            e?.PopulateAllPropertiesWithLiveData(actionContext.Registrar);
 
             return e;
         }
@@ -82,17 +108,30 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static A11yElement GetA11yElementInDataContext(Guid ecId, int eId)
         {
-            return DataManager.GetDefaultInstance().GetA11yElement(ecId, eId);
+            return GetA11yElementInDataContext(ecId, eId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static A11yElement GetA11yElementInDataContext(Guid ecId, int eId, IActionContext actionContext)
+        {
+            return actionContext.DataManager.GetA11yElement(ecId, eId);
         }
 
         /// <summary>
-        /// Get Process name and Ui Framework of Element Context
+        /// Get Process name and Ui Framework of Element Context in the default context
         /// </summary>
         /// <param name="ecId"></param>
         /// <returns></returns>
         public static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            return GetProcessAndUIFrameworkOfElementContext(ecId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        /// <summary>
+        /// Get Process name and Ui Framework of Element Context in the specified context
+        /// </summary>
+        internal static Tuple<string, string> GetProcessAndUIFrameworkOfElementContext(Guid ecId, IActionContext actionContext)
+        {
+            var ec = actionContext.DataManager.GetElementContext(ecId);
 
             return new Tuple<string, string>(ec.ProcessName, ec.Element.GetUIFramework());
         }
@@ -103,7 +142,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static DataContextMode GetDataContextMode()
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(SelectAction.GetDefaultInstance().SelectedElementContextId.Value);
+            return GetDataContextMode(DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static DataContextMode GetDataContextMode(IActionContext actionContext)
+        {
+            var ec = actionContext.DataManager.GetElementContext(actionContext.SelectAction.SelectedElementContextId.Value);
 
             return ec.DataContext != null ? ec.DataContext.Mode : DataContextMode.Live;
         }

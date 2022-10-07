@@ -4,6 +4,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -34,7 +35,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.TreeWalkers
         {
             var cancellationToken = new CancellationTokenSource();
             cancellationToken.Cancel();
-            var dataContext = new TreeWalkerDataContext(cancellationToken.Token);
+            var dataContext = new TreeWalkerDataContext(Registrar.GetDefaultInstance(), cancellationToken.Token);
             Assert.ThrowsException<OperationCanceledException>(() => _treeWalker.RefreshTreeData(TreeViewMode.Raw, dataContext));
         }
     }

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
+// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
@@ -7,7 +7,6 @@ using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,6 @@ namespace Axe.Windows.Actions
         // Test hooks; making this non-static and enabling constructor injection
         // would be nicer, but this was the minimal set of changes to remove the
         // need to use Fakes to test this class.
-        internal static Func<DataManager> GetDataManager = () => DataManager.GetDefaultInstance();
         internal static Func<ITreeWalkerForLive> NewTreeWalkerForLive = () => new TreeWalkerForLive();
         internal static Func<A11yElement, BoundedCounter, ITreeWalkerForTest> NewTreeWalkerForTest = (A11yElement e, BoundedCounter bc) => new TreeWalkerForTest(e, bc);
 
@@ -48,7 +46,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, bool force = false)
         {
-            var ec = GetDataManager().GetElementContext(ecId);
+            SetLiveModeDataContext(ecId, mode, DefaultActionContext.GetDefaultInstance(), force);
+        }
+
+        internal static void SetLiveModeDataContext(Guid ecId, TreeViewMode mode, IActionContext actionContext, bool force = false)
+        {
+            var ec = actionContext.DataManager.GetElementContext(ecId);
 
             if (NeedNewDataContext(ec.DataContext, DataContextMode.Live, mode) || force)
             {
@@ -88,19 +91,24 @@ namespace Axe.Windows.Actions
         /// <returns>boolean</returns>
         public static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, bool force = false)
         {
-            var ec = GetDataManager().GetElementContext(ecId);
+            return SetTestModeDataContext(ecId, dm, tvm, DefaultActionContext.GetDefaultInstance(), force);
+        }
+
+        internal static bool SetTestModeDataContext(Guid ecId, DataContextMode dm, TreeViewMode tvm, IActionContext actionContext, bool force = false)
+        {
+            var ec = actionContext.DataManager.GetElementContext(ecId);
             // if Data context is set via Live Mode, set it to null.
             if (ec.DataContext != null && ec.DataContext.Mode == DataContextMode.Live)
             {
                 ec.DataContext = null;
                 // Re-register user-configured custom UIA data
-                Registrar.GetDefaultInstance().RestoreCustomPropertyRegistrations();
+                actionContext.Registrar.RestoreCustomPropertyRegistrations();
             }
 
             if (NeedNewDataContext(ec.DataContext, dm, tvm) || force)
             {
                 ec.DataContext = new ElementDataContext(ec.Element, MaxElements);
-                PopulateData(ec.DataContext, dm, tvm);
+                PopulateData(ec.DataContext, dm, tvm, actionContext);
 
                 return true;
             }
@@ -114,17 +122,16 @@ namespace Axe.Windows.Actions
         /// <param name="dc"></param>
         /// <param name="dcMode"></param>
         /// <param name="tm"></param>
-        internal static void PopulateData(ElementDataContext dc, DataContextMode dcMode, TreeViewMode tm)
+        internal static void PopulateData(ElementDataContext dc, DataContextMode dcMode, TreeViewMode tm, IActionContext actionContext)
         {
             dc.TreeMode = tm;
             dc.Mode = dcMode;
-            var dataContext = new TreeWalkerDataContext(); // TODO: Initialize from parameters
 
             switch (dcMode)
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm, dataContext);
+                    stw.RefreshTreeData(tm, actionContext.TreeWalkerDataContext);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
@@ -8,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 
 namespace Axe.Windows.ActionsTests.Actions
 {
@@ -28,7 +30,6 @@ namespace Axe.Windows.ActionsTests.Actions
         [TestCleanup]
         public void TestCleanup()
         {
-            ScreenShotAction.GetDataManager = () => DataManager.GetDefaultInstance();
             ScreenShotAction.CreateBitmap = (w, h) => new Bitmap(w, h);
             ScreenShotAction.CopyFromScreen = ScreenShotAction.DefaultCopyFromScreen;
         }
@@ -37,7 +38,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithoutBoundingRectangle_NoScreenShot()
         {
-            using (var dm = new DataManager())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 // no bounding rectangle.
                 A11yElement element = new A11yElement
@@ -52,11 +53,9 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                dm.AddElementContext(elementContext);
+                actionContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.GetDataManager = () => dm;
-
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, actionContext);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);
@@ -67,7 +66,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShot_ElementWithBoundingRectangle_ScreenShotCreated()
         {
-            using (var dm = new DataManager())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 A11yElement element = new A11yElement
                 {
@@ -83,12 +82,11 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                dm.AddElementContext(elementContext);
+                actionContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.GetDataManager = () => dm;
                 ScreenShotAction.CopyFromScreen = (g, x, y, s) => { };
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, actionContext);
 
                 Assert.IsNotNull(dc.Screenshot);
                 Assert.AreEqual(element.UniqueId, dc.ScreenshotElementId);
@@ -99,7 +97,7 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(2000)]
         public void CaptureScreenShotOnWCOS_ElementWithBoundingRectangle_NoScreenShot()
         {
-            using (var dm = new DataManager())
+            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 A11yElement element = new A11yElement
                 {
@@ -115,12 +113,11 @@ namespace Axe.Windows.ActionsTests.Actions
                     DataContext = dc,
                 };
 
-                dm.AddElementContext(elementContext);
+                actionContext.DataManager.AddElementContext(elementContext);
 
-                ScreenShotAction.GetDataManager = () => dm;
                 ScreenShotAction.CreateBitmap = (w, h) => throw new TypeInitializationException("Bitmap", null);
 
-                ScreenShotAction.CaptureScreenShot(elementContext.Id);
+                ScreenShotAction.CaptureScreenShot(elementContext.Id, actionContext);
 
                 Assert.IsNull(dc.Screenshot);
                 Assert.AreEqual(default(int), dc.ScreenshotElementId);

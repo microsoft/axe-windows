@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -105,7 +106,8 @@ namespace Axe.Windows.Actions
         static readonly Dictionary<Guid, ListenAction> sListenActions = new Dictionary<Guid, ListenAction>();
 
         /// <summary>
-        /// Create new Instance of ListenAction
+        /// Create new Instance of ListenAction in the default DataManager instance. This does not support
+        /// using a non-default DataManager
         /// </summary>
         /// <param name="config"></param>
         /// <param name="ecId"></param>

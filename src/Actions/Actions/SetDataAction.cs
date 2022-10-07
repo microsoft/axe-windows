@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using System;
 
@@ -20,7 +21,12 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">ElementContext Id</param>
         public static void ReleaseElementContext(Guid ecId)
         {
-            DataManager.GetDefaultInstance().RemoveDataContext(ecId);
+            ReleaseElementContext(ecId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static void ReleaseElementContext(Guid ecId, IActionContext actionContext)
+        {
+            actionContext.DataManager.RemoveDataContext(ecId, true);
         }
 
         /// <summary>
@@ -38,7 +44,7 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">ElementContext Id</param>
         public static void ReleaseDataContext(Guid ecId)
         {
-            DataManager.GetDefaultInstance().RemoveDataContext(ecId);
+            DataManager.GetDefaultInstance().RemoveDataContext(ecId, true);
         }
     }
 }

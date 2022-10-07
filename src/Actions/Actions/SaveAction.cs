@@ -2,10 +2,10 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Desktop.Settings;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.RuleSelection;
 using Newtonsoft.Json;
 using System;
@@ -35,19 +35,24 @@ namespace Axe.Windows.Actions
         /// <param name="mode">The type of file being saved</param>
         public static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode)
         {
-            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
+            SaveSnapshotZip(path, ecId, focusedElementId, mode, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal static void SaveSnapshotZip(string path, Guid ecId, int? focusedElementId, A11yFileMode mode, IActionContext actionContext)
+        {
+            var ec = actionContext.DataManager.GetElementContext(ecId);
 
             using (FileStream str = File.Open(path, FileMode.Create))
             using (Package package = ZipPackage.Open(str, FileMode.Create))
             {
-                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment);
+                SaveSnapshotFromElement(focusedElementId, mode, ec, package, ec.DataContext.RootElment, actionContext);
             }
         }
 
         /// <summary>
         /// Private helper function (formerly in SaveSnapshotZip) to make it easier to call with different inputs
         /// </summary>
-        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, Contexts.ElementContext ec, Package package, A11yElement root)
+        private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, ElementContext ec, Package package, A11yElement root, IActionContext actionContext)
         {
             var json = JsonConvert.SerializeObject(root, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
@@ -73,7 +78,7 @@ namespace Axe.Windows.Actions
                 AddStream(package, mStrm, StreamName.MetadataFileName);
             }
 
-            var customProps = Registrar.GetDefaultInstance().GetCustomPropertyRegistrations();
+            var customProps = actionContext.Registrar.GetCustomPropertyRegistrations();
             var jsonCustomProps = JsonConvert.SerializeObject(customProps, Formatting.Indented);
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(jsonCustomProps)))
             {

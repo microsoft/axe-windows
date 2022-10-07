@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Actions.Attributes;
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
@@ -35,6 +36,8 @@ namespace Axe.Windows.Actions
         /// On/Off Focus Select
         /// </summary>
         public bool IsFocusSelectOn { get; set; }
+
+        private DataManager DataManager { get; }
 
         /// <summary>
         /// Mouse Selector Delay in Milliseconds
@@ -81,7 +84,7 @@ namespace Axe.Windows.Actions
 
             private set
             {
-                var dma = DataManager.GetDefaultInstance();
+                var dma = DataManager;
                 if (_POIElementContext != null)
                 {
                     dma.RemoveElementContext(_POIElementContext.Id);
@@ -118,8 +121,9 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// private Constructor
         /// </summary>
-        private SelectAction()
+        private SelectAction(DataManager dataManager)
         {
+            DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             this.FocusTracker = new FocusTracker(SetCandidateElement);
             this.MouseTracker = new MouseTracker(SetCandidateElement);
             this.TreeTracker = new TreeTracker(this.SetCandidateElement, this);
@@ -214,34 +218,9 @@ namespace Axe.Windows.Actions
         /// <param name="eId"></param>
         public void SetCandidateElement(Guid ecId, int eId)
         {
-            var el = DataManager.GetDefaultInstance().GetA11yElement(ecId, eId).CloneForSelection();
+            var el = DataManager.GetA11yElement(ecId, eId).CloneForSelection();
 
             SetCandidateElement(el);
-        }
-
-        /// <summary>
-        /// Set candidate element by process Id
-        /// </summary>
-        /// <param name="pid">process Id</param>
-        public void SetCandidateElementFromProcessId(int pId)
-        {
-            var handle = System.Diagnostics.Process.GetProcessById(pId).Handle;
-
-            SetCandidateElementFromHandle(handle);
-        }
-
-        /// <summary>
-        /// Set candidate element by handle.
-        /// </summary>
-        /// <param name="handle"></param>
-        public void SetCandidateElementFromHandle(IntPtr handle)
-        {
-            lock (_elementContextLock)
-            {
-                var element = A11yAutomation.ElementFromHandle(handle);
-                this.CandidateEC?.Dispose();
-                this.CandidateEC = new ElementContext(element);
-            }
         }
 
         /// <summary>
@@ -272,9 +251,14 @@ namespace Axe.Windows.Actions
         /// <returns>Tuple of ElementContextId and SnapshotMetaInfo</returns>
         public Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, int? selectedElementId = null)
         {
+            return SelectLoadedData(path, DefaultActionContext.GetDefaultInstance(), selectedElementId);
+        }
+
+        internal Tuple<Guid, SnapshotMetaInfo> SelectLoadedData(string path, IActionContext actionContext, int? selectedElementId = null)
+        {
             ClearSelectedContext();
 
-            var parts = LoadAction.LoadSnapshotZip(path);
+            var parts = LoadAction.LoadSnapshotZip(path, actionContext);
             var meta = parts.MetaInfo;
             var ec = new ElementContext(parts.Element.FindPOIElementFromLoadedData());
 
@@ -379,12 +363,17 @@ namespace Axe.Windows.Actions
         {
             if (sDefaultInstance == null)
             {
-                sDefaultInstance = new SelectAction();
+                sDefaultInstance = new SelectAction(DataManager.GetDefaultInstance());
             }
 
             return sDefaultInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
+
+        public static SelectAction CreateInstance(DataManager dataManager)
+        {
+            return new SelectAction(dataManager);
+        }
 
         /// <summary>
         /// Clear default Instance.

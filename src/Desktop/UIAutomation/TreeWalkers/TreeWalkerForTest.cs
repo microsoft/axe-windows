@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.RuleSelection;
 using Axe.Windows.Telemetry;
 using System;
@@ -68,8 +70,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 this.Elements.Clear();
             }
 
-            // Set parent of Root explicitly for testing.
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement);
+            //Set parent of Root explicitly for testing.
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, registrar: dataContext.Registrar);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
             _elementCounter.TryAdd(ancestry.Items.Count);
@@ -90,14 +92,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             // populate Elements first
-            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData());
+            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(dataContext.Registrar));
 
             // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence.
             var nuel = this.Elements.Where(e => e.Properties == null);
 
             if (nuel.Any())
             {
-                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData());
+                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(dataContext.Registrar));
             }
 
             // run tests
