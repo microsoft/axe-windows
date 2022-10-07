@@ -6,6 +6,7 @@ namespace Axe.Windows.Automation
     internal interface IScanToolsBuilder
     {
         IScanToolsBuilder WithOutputDirectory(string outputDirectory);
+        IScanToolsBuilder WithDPIAwareness(IDPIAwareness dpiAwareness);
         IScanTools Build();
     } // interface
 } // namespace

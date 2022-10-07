@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.SystemAbstractions;
 
 namespace Axe.Windows.Automation
@@ -37,9 +38,9 @@ namespace Axe.Windows.Automation
             return new AxeWindowsActions();
         }
 
-        public INativeMethods CreateNativeMethods()
+        public IDPIAwareness CreateDPIAwareness()
         {
-            return new NativeMethods();
+            return new DPIAwareness();
         }
     } // class
 } // namespace

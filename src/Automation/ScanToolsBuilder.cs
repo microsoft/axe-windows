@@ -8,6 +8,7 @@ namespace Axe.Windows.Automation
     {
         private readonly IFactory _factory;
         private IOutputFileHelper _outputFileHelper;
+        private IDPIAwareness _dpiAwareness;
 
         public ScanToolsBuilder(IFactory factory)
         {
@@ -20,14 +21,20 @@ namespace Axe.Windows.Automation
             return this;
         }
 
+        public IScanToolsBuilder WithDPIAwareness(IDPIAwareness dpiAwareness)
+        {
+            _dpiAwareness = dpiAwareness;
+            return this;
+        }
+
         public IScanTools Build()
         {
             return new ScanTools(
                 _outputFileHelper ?? _factory.CreateOutputFileHelper(null),
-                    _factory.CreateResultsAssembler(),
-                    _factory.CreateTargetElementLocator(),
-                    _factory.CreateAxeWindowsActions(),
-                    _factory.CreateNativeMethods());
+                _factory.CreateResultsAssembler(),
+                _factory.CreateTargetElementLocator(),
+                _factory.CreateAxeWindowsActions(),
+                _dpiAwareness ?? _factory.CreateDPIAwareness());
         }
     } // class
 } // namespace

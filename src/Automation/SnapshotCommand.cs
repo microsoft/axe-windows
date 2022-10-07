@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation.Resources;
@@ -28,10 +28,7 @@ namespace Axe.Windows.Automation
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
             if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
-            if (scanTools.NativeMethods == null) throw new ArgumentException(ErrorMessages.ScanToolsNativeMethodsNull, nameof(scanTools));
-
-            // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
-            scanTools.NativeMethods.SetProcessDPIAware();
+            if (scanTools.DpiAwareness == null) throw new ArgumentException(ErrorMessages.ScanToolsDpiAwarenessNull, nameof(scanTools));
 
             if (config.CustomUIAConfigPath != null)
                 scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
@@ -49,10 +46,9 @@ namespace Axe.Windows.Automation
 
             foreach (var rootElement in rootElements)
             {
-                resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
-                {
-                    return ProcessResults(element, elementId, config, scanTools, targetIndex++, rootElements.Count());
-                }));
+                ScanAndProcessResults(config, scanTools, resultList, rootElements, targetIndex, rootElement);
+
+                targetIndex++;
 
                 if (!config.AreMultipleScanRootsEnabled)
                 {
@@ -62,6 +58,26 @@ namespace Axe.Windows.Automation
             }
 
             return resultList;
+        }
+
+        /// <summary>
+        /// This method is our atomic scanner. When we add async support, keep it all within the scope of a single thread.
+        /// </summary>
+        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<ScanResults> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement)
+        {
+            // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
+            object dpiAwarenessObject = scanTools.DpiAwareness.Enable();
+            try
+            {
+                resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
+                {
+                    return ProcessResults(element, elementId, config, scanTools, targetIndex, rootElements.Count());
+                }));
+            }
+            finally
+            {
+                scanTools.DpiAwareness.Restore(dpiAwarenessObject);
+            }
         }
 
         private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount)
