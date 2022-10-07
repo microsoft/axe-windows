@@ -224,31 +224,6 @@ namespace Axe.Windows.Actions
         }
 
         /// <summary>
-        /// Set candidate element by process Id
-        /// </summary>
-        /// <param name="pid">process Id</param>
-        public void SetCandidateElementFromProcessId(int pId)
-        {
-            var handle = System.Diagnostics.Process.GetProcessById(pId).Handle;
-
-            SetCandidateElementFromHandle(handle);
-        }
-
-        /// <summary>
-        /// Set candidate element by handle.
-        /// </summary>
-        /// <param name="handle"></param>
-        public void SetCandidateElementFromHandle(IntPtr handle)
-        {
-            lock (_elementContextLock)
-            {
-                var element = A11yAutomation.ElementFromHandle(handle);
-                this.CandidateEC?.Dispose();
-                this.CandidateEC = new ElementContext(element);
-            }
-        }
-
-        /// <summary>
         /// Select the element and return success(true)/failure(false)
         /// </summary>
         /// <returns>true when there is new selection</returns>

@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
@@ -34,17 +35,6 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// The IUIAutomation object currently in use.
         /// </summary>
         public static IUIAutomation UIAutomationObject => UIAutomation;
-
-        /// <summary>
-        /// Get DesktopElement based on Process Id.
-        /// </summary>
-        /// <param name="pid"></param>
-        /// <returns>return null if fail to get an element by process Id</returns>
-        public static DesktopElement ElementFromProcessId(int pid)
-        {
-            var elements = ElementsFromProcessId(pid);
-            return elements?.First();
-        }
 
         private static bool FindProcessMatchingChildren(IUIAutomationElement parent, IUIAutomationTreeWalker walker, int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements)
         {
@@ -108,7 +98,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pid"></param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, Registrar registrar = null)
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, Registrar registrar)
         {
             IUIAutomationElement root = null;
             IEnumerable<DesktopElement> elements = null;
@@ -141,27 +131,6 @@ namespace Axe.Windows.Desktop.UIAutomation
             }
 
             return elements;
-        }
-
-        /// <summary>
-        /// Get the top level DesktopElement from Windows handle
-        /// </summary>
-        /// <param name="hWnd"></param>
-        /// <returns></returns>
-        public static DesktopElement ElementFromHandle(IntPtr hWnd)
-        {
-            try
-            {
-                return ElementFromUIAElement(UIAutomation.ElementFromHandle(hWnd), null);
-            }
-#pragma warning disable CA1031 // Do not catch general exception types
-            catch (Exception e)
-            {
-                e.ReportException();
-            }
-#pragma warning restore CA1031 // Do not catch general exception types
-
-            return null;
         }
 
         /// <summary>
