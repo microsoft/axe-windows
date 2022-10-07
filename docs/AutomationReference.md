@@ -178,7 +178,7 @@ Patterns | `IEnumerable<string>` | A list of names of supported patterns.
 
 #### IDPIAwareness
 
-UIA operates in physical screen coordinates, so DPI awareness _must_ be enabled while scanning. Methods on this interface will be called in pairs on each call to `IScanner.Scan` or `IScanner.ScanAll`.
+UIA operates in physical screen coordinates, so DPI awareness _must_ be enabled while scanning. Methods on this interface will be called in pairs on each call to `IScanner.Scan` or `IScanner.ScanAll`. Each successful call to `Enable` will have a corresponding call to `Restore`.
 
 ##### `Enable`
 Enable DPI awareness for the scan.
@@ -191,6 +191,9 @@ The `Enable` method accepts no parameters
 
 The return object from `Enable` is passed as a parameter to the `Restore` method. It allows calls to `Enable` and `Restore` to be easily associated and is not used by Axe.Windows.
 
+###### Implementation Note
+If `Enable` throws an Exception, then Axe.Windows will _not_ call the `Restore` method. Any required cleanup becomes the responsibility of the Exception handler inside the implementation of `Enable`.
+
 ##### `Restore`
 Restore DPI awareness to its non-scanning state.
 
@@ -200,7 +203,7 @@ The `Restore` method accepts 1 parameter
 
 **Name** | **Type** | **Description**
 ---|---|---
-dataFromEnable | `string` | This is the data returned from the `Enable` method. It allows calls to `Enable` and `Restore` to be easily associated.
+dataFromEnable | `object` | This is the data returned from the `Enable` method. It allows calls to `Enable` and `Restore` to be easily associated.
 
 ###### Return object
 
