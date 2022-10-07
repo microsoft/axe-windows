@@ -15,7 +15,7 @@ namespace Axe.Windows.ActionsTests.Contexts
     {
         [TestMethod]
         [Timeout(1000)]
-        public void DataManager_IsnotDefaultDataManager()
+        public void DataManager_IsNotDefaultDataManager()
         {
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
@@ -64,6 +64,20 @@ namespace Axe.Windows.ActionsTests.Contexts
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 Assert.AreSame(actionContext.TreeWalkerDataContext.Registrar, actionContext.Registrar);
+            }
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void TreeWalkerDataContextCancellationToken_CancelSource_CancelsToken()
+        {
+            var source = new CancellationTokenSource();
+
+            using (var actionContext = ScopedActionContext.CreateInstance(source.Token))
+            {
+                Assert.IsFalse(actionContext.TreeWalkerDataContext.CancellationToken.IsCancellationRequested);
+                source.Cancel();
+                Assert.IsTrue(actionContext.TreeWalkerDataContext.CancellationToken.IsCancellationRequested);
             }
         }
 
