@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
@@ -17,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
-        void RefreshTreeData(TreeViewMode mode);
+        void RefreshTreeData(TreeViewMode mode, TreeWalkerDataContext dataContext);
     }
 
     /// <summary>
@@ -57,15 +58,17 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Refresh tree node data with all children at once.
         /// <param name="mode">indicate the mode</param>
         /// </summary>
-        public void RefreshTreeData(TreeViewMode mode)
+        public void RefreshTreeData(TreeViewMode mode, TreeWalkerDataContext dataContext)
         {
+            dataContext.CancellationToken.ThrowIfCancellationRequested();
+
             this.WalkerMode = mode;
             if (this.Elements.Count != 0)
             {
                 this.Elements.Clear();
             }
 
-            //Set parent of Root explicitly for testing.
+            // Set parent of Root explicitly for testing.
             var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
@@ -98,11 +101,21 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             // run tests
-            list.AsParallel().ForAll(e =>
+            try
             {
-                e.ScanResults?.Items.Clear();
-                RuleRunner.Run(e);
-            });
+                list.AsParallel().ForAll(e =>
+                {
+                    e.ScanResults?.Items.Clear();
+                    RuleRunner.Run(e, dataContext.CancellationToken);
+                });
+            }
+            catch (AggregateException)
+            {
+                // An aggregate exception might be caused by cancellation being requested
+                dataContext.CancellationToken.ThrowIfCancellationRequested();
+                throw;
+            }
+
         }
 
         /// <summary>

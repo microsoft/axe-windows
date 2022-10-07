@@ -8,6 +8,7 @@ using Axe.Windows.Rules;
 using Axe.Windows.RuleSelection.Resources;
 using Axe.Windows.Telemetry;
 using System;
+using System.Threading;
 
 namespace Axe.Windows.RuleSelection
 {
@@ -16,11 +17,15 @@ namespace Axe.Windows.RuleSelection
     /// </summary>
     public static class RuleRunner
     {
-        public static void Run(A11yElement e)
+        public static void Run(A11yElement e, CancellationToken cancellationToken)
         {
             try
             {
-                RunUnsafe(e);
+                RunUnsafe(e, cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
@@ -30,19 +35,19 @@ namespace Axe.Windows.RuleSelection
 #pragma warning restore CA1031 // Do not catch general exception types
         }
 
-        private static void RunUnsafe(A11yElement e)
+        private static void RunUnsafe(A11yElement e, CancellationToken cancellationToken)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             if (e.ScanResults == null)
                 e.ScanResults = new ScanResults();
 
-            Run(e.ScanResults, e);
+            Run(e.ScanResults, e, cancellationToken);
         }
 
-        private static void Run(ScanResults results, A11yElement e)
+        private static void Run(ScanResults results, A11yElement e, CancellationToken cancellationToken)
         {
-            var runResults = Axe.Windows.Rules.Rules.RunAll(e);
+            var runResults = Axe.Windows.Rules.Rules.RunAll(e, cancellationToken);
             foreach (var r in runResults)
             {
                 if (r.EvaluationCode == EvaluationCode.NotApplicable) continue;

@@ -1,9 +1,10 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace Axe.Windows.Rules
 {
@@ -50,9 +51,9 @@ namespace Axe.Windows.Rules
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IEnumerable<RunResult> RunAll(IA11yElement element)
+        public static IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken cancellationToken)
         {
-            return Runner.RunAll(element);
+            return Runner.RunAll(element, cancellationToken);
         }
     } // class
 } // namespace
