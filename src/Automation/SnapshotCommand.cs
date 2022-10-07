@@ -40,6 +40,7 @@ namespace Axe.Windows.Automation
 
             List<ScanResults> resultList = new List<ScanResults>();
 
+            // TODO: Pass the provided CancellationToken to ScopedActionContext.CreateInstance()
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
                 var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext);
