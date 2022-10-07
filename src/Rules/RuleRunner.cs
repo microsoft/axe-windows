@@ -5,6 +5,8 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using static System.FormattableString;
 
 namespace Axe.Windows.Rules
@@ -36,12 +38,13 @@ namespace Axe.Windows.Rules
             return retVal;
         }
 
-        public IEnumerable<RunResult> RunAll(IA11yElement element)
+        public IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken cancellationToken)
         {
             var results = new List<RunResult>();
 
             foreach (var rule in _provider.All)
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 var result = RunRule(rule, element);
                 results.Add(result);
             } // for all rules

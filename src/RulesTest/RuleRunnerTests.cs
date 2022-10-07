@@ -8,6 +8,8 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axe.Windows.RulesTests
 {
@@ -323,7 +325,7 @@ namespace Axe.Windows.RulesTests
             providerMock.Setup(m => m.All).Returns(() => rules).Verifiable();
 
             var runner = new RuleRunner(providerMock.Object);
-            var results = runner.RunAll(e);
+            var results = runner.RunAll(e, CancellationToken.None);
 
             Assert.AreEqual(codes.Count(), results.Count());
 
@@ -341,6 +343,20 @@ namespace Axe.Windows.RulesTests
             }
 
             providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RunAll_ThrowsOnCancellation()
+        {
+            var e = new MockA11yElement();
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.All).Returns(() => new IRule[] { ruleMock.Object }).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var cancellationToken = new CancellationTokenSource();
+            cancellationToken.Cancel();
+            Assert.ThrowsException<OperationCanceledException>(() => runner.RunAll(e, cancellationToken.Token));
         }
 
         private static Mock<IRule> CreateRuleMock(Condition condition, EvaluationCode code, A11yElement e)

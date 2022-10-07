@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
@@ -19,7 +20,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
-        void RefreshTreeData(TreeViewMode mode, Registrar registrar);
+        void RefreshTreeData(TreeViewMode mode, TreeWalkerDataContext dataContext);
     }
 
     /// <summary>
@@ -59,8 +60,10 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Refresh tree node data with all children at once.
         /// <param name="mode">indicate the mode</param>
         /// </summary>
-        public void RefreshTreeData(TreeViewMode mode, Registrar registrar)
+        public void RefreshTreeData(TreeViewMode mode, TreeWalkerDataContext dataContext)
         {
+            dataContext.CancellationToken.ThrowIfCancellationRequested();
+
             this.WalkerMode = mode;
             if (this.Elements.Count != 0)
             {
@@ -100,11 +103,21 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             // run tests
-            list.AsParallel().ForAll(e =>
+            try
             {
-                e.ScanResults?.Items.Clear();
-                RuleRunner.Run(e);
-            });
+                list.AsParallel().ForAll(e =>
+                {
+                    e.ScanResults?.Items.Clear();
+                    RuleRunner.Run(e, dataContext.CancellationToken);
+                });
+            }
+            catch (AggregateException)
+            {
+                // An aggregate exception might be caused by cancellation being requested
+                dataContext.CancellationToken.ThrowIfCancellationRequested();
+                throw;
+            }
+
         }
 
         /// <summary>
