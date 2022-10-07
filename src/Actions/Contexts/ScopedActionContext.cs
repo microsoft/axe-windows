@@ -16,11 +16,10 @@ namespace Axe.Windows.Actions.Contexts
     {
         private bool disposedValue;
 
-        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, Registrar registrar, TreeWalkerDataContext treeWalkerDataContext)
+        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, TreeWalkerDataContext treeWalkerDataContext)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             SelectAction = selectAction ?? throw new ArgumentNullException(nameof(selectAction));
-            Registrar = registrar ?? throw new ArgumentNullException(nameof(registrar));
             TreeWalkerDataContext = treeWalkerDataContext ?? throw new ArgumentNullException(nameof(treeWalkerDataContext));
         }
 
@@ -28,7 +27,7 @@ namespace Axe.Windows.Actions.Contexts
 
         public SelectAction SelectAction { get; }
 
-        public Registrar Registrar { get; }
+        public Registrar Registrar => TreeWalkerDataContext.Registrar;
 
         public TreeWalkerDataContext TreeWalkerDataContext { get; }
 
@@ -56,12 +55,10 @@ namespace Axe.Windows.Actions.Contexts
         internal static IActionContext CreateInstance(CancellationToken cancellationToken)
         {
             DataManager dataManager = DataManager.CreateInstance();
-            Registrar registrar = new Registrar();
             return new ScopedActionContext(
                 dataManager,
                 SelectAction.CreateInstance(dataManager),
-                registrar,
-                new TreeWalkerDataContext(registrar, cancellationToken));
+                new TreeWalkerDataContext(new Registrar(), cancellationToken));
         }
     }
 }

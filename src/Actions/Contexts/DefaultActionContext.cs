@@ -19,7 +19,7 @@ namespace Axe.Windows.Actions.Contexts
 
         public SelectAction SelectAction => SelectAction.GetDefaultInstance();
 
-        public Registrar Registrar => Registrar.GetDefaultInstance();
+        public Registrar Registrar => TreeWalkerDataContext.Registrar;
         
         public TreeWalkerDataContext TreeWalkerDataContext => TreeWalkerDataContext.DefaultContext;
 
