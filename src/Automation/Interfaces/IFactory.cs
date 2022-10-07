@@ -12,6 +12,6 @@ namespace Axe.Windows.Automation
         IScanResultsAssembler CreateResultsAssembler();
         ITargetElementLocator CreateTargetElementLocator();
         IAxeWindowsActions CreateAxeWindowsActions();
-        INativeMethods CreateNativeMethods();
+        IDPIAwareness CreateDPIAwareness();
     } // interface
 } // namespace
