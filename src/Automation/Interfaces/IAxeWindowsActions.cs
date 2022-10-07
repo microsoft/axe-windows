@@ -32,7 +32,7 @@ namespace Axe.Windows.Automation
         /// Takes a screenshot, highlighting the given element
         /// </summary>
         /// <param name="elementId"></param>
-        /// <param name="actionContext">TODO</param>
+        /// <param name="actionContext">Context for storing action-related data</param>
         void CaptureScreenshot(Guid elementId, IActionContext actionContext);
 
         /// <summary>
