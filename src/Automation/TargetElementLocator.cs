@@ -18,7 +18,6 @@ namespace Axe.Windows.Automation
         {
             try
             {
-                actionContext = actionContext ?? DefaultActionContext.GetDefaultInstance();
                 var desktopElements = A11yAutomation.ElementsFromProcessId(processId, actionContext.Registrar);
                 return GetA11YElementsFromDesktopElements(desktopElements);
             }
