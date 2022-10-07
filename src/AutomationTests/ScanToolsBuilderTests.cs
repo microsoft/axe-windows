@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Automation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -54,7 +55,6 @@ namespace Axe.Windows.AutomationTests
 
             factoryMock.VerifyAll();
         }
-
 
         [TestMethod]
         [Timeout(1000)]
