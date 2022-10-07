@@ -106,7 +106,8 @@ namespace Axe.Windows.Actions
         static readonly Dictionary<Guid, ListenAction> sListenActions = new Dictionary<Guid, ListenAction>();
 
         /// <summary>
-        /// Create new Instance of ListenAction
+        /// Create new Instance of ListenAction in the default DataManager instance. This does not support
+        /// using a non-default DataManager
         /// </summary>
         /// <param name="config"></param>
         /// <param name="ecId"></param>
@@ -114,12 +115,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener)
         {
-            return CreateInstance(listenScope, ecId, listener, DefaultActionContext.GetDefaultInstance());
-        }
-
-        internal static Guid CreateInstance(ListenScope listenScope, Guid ecId, HandleUIAutomationEventMessage listener, IActionContext actionContext)
-        {
-            var ec = actionContext.DataManager.GetElementContext(ecId);
+            var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
             var la = new ListenAction(listenScope, ec, listener);
 
             sListenActions.Add(la.Id, la);
