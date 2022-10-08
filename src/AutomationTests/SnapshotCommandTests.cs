@@ -17,7 +17,6 @@ namespace Axe.Windows.AutomationTests
     [TestClass]
     public class SnapshotCommandTests
     {
-        private readonly MockRepository _mockRepo;
         private Mock<IScanTools> _scanToolsMock;
         private Mock<ITargetElementLocator> _targetElementLocatorMock;
         private Mock<IAxeWindowsActions> _actionsMock;
@@ -28,19 +27,28 @@ namespace Axe.Windows.AutomationTests
 
         public SnapshotCommandTests()
         {
-            _mockRepo = new MockRepository(MockBehavior.Strict) { DefaultValue = DefaultValue.Mock };
             _minimalConfig = Config.Builder.ForProcessId(-1).Build();
         }
 
         [TestInitialize]
         public void TestInit()
         {
-            _scanToolsMock = _mockRepo.Create<IScanTools>();
-            _targetElementLocatorMock = _mockRepo.Create<ITargetElementLocator>();
-            _actionsMock = _mockRepo.Create<IAxeWindowsActions>();
-            _dpiAwarenessMock = _mockRepo.Create<IDPIAwareness>();
-            _outputFileHelperMock = _mockRepo.Create<IOutputFileHelper>();
-            _resultsAssemblerMock = _mockRepo.Create<IScanResultsAssembler>();
+            _scanToolsMock = new Mock<IScanTools>(MockBehavior.Strict);
+            _targetElementLocatorMock = new Mock<ITargetElementLocator>(MockBehavior.Strict);
+            _actionsMock = new Mock<IAxeWindowsActions>(MockBehavior.Strict);
+            _dpiAwarenessMock = new Mock<IDPIAwareness>(MockBehavior.Strict);
+            _outputFileHelperMock = new Mock<IOutputFileHelper>(MockBehavior.Strict);
+            _resultsAssemblerMock = new Mock<IScanResultsAssembler>(MockBehavior.Strict);
+        }
+
+        private void VerifyAllMocks()
+        {
+            _scanToolsMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _actionsMock.VerifyAll();
+            _dpiAwarenessMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
         }
 
         private void InitResultsCallback(ScanResults results)
@@ -65,9 +73,67 @@ namespace Axe.Windows.AutomationTests
 
         private void SetupDpiAwarenessMock(object dataFromEnable)
         {
-            _dpiAwarenessMock.Setup(m => m.Enable()).Returns(dataFromEnable);
-            _dpiAwarenessMock.Setup(m => m.Restore(dataFromEnable));
-            _scanToolsMock.Setup(m => m.DpiAwareness).Returns(_dpiAwarenessMock.Object);
+            _dpiAwarenessMock.Setup(x => x.Enable()).Returns(dataFromEnable);
+            _dpiAwarenessMock.Setup(x => x.Restore(dataFromEnable));
+            _scanToolsMock.Setup(x => x.DpiAwareness).Returns(_dpiAwarenessMock.Object);
+        }
+
+        private void SetupScanToolsMock(bool withResultsAssembler = true, bool withOutputFileHelper = false)
+        {
+            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
+            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            if (withResultsAssembler)
+            {
+                _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            }
+            if (withOutputFileHelper)
+            {
+                _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+            }
+        }
+
+        private void SetupActionsMock(string expectedPath = "")
+        {
+            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>(), It.IsAny<IActionContext>()));
+            switch (expectedPath)
+            {
+                case null:
+                    // Don't set the mock
+                    break;
+                case "":
+                    // Accept any string
+                    _actionsMock.Setup(x => x.SaveA11yTestFile(It.IsAny<string>(), It.IsAny<A11yElement>(), It.IsAny<Guid>(), It.IsAny<IActionContext>()));
+                    break;
+                default:
+                    // Accept only the expected path
+                    _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>(), It.IsAny<IActionContext>()));
+                    break;
+            }
+        }
+
+        private void SetupTargetElementLocatorMock(int processId = -1, bool overrideElements = false, IEnumerable<A11yElement> elements = null)
+        {
+            var overriddenElements = overrideElements ? elements : CreateMockElementArray();
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(processId, It.IsAny<IActionContext>())).Returns(overriddenElements);
+        }
+
+        private void SetupOutputFileHelperMock(string filePath = "Test.File")
+        {
+            _outputFileHelperMock.Setup(x => x.EnsureOutputDirectoryExists());
+            switch (filePath)
+            {
+                case null:
+                    // Don't set the mock
+                    break;
+                case "null":
+                    // Return null
+                    _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((string)null);
+                    break;
+                default:
+                    // set filePath
+                    _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator(filePath));
+                    break;
+            }
         }
 
         [TestMethod]
@@ -77,6 +143,8 @@ namespace Axe.Windows.AutomationTests
             var action = new Action(() => SnapshotCommand.Execute(config: null, scanTools: _scanToolsMock.Object));
             var ex = Assert.ThrowsException<ArgumentNullException>(action);
             Assert.IsTrue(ex.Message.Contains("config"));
+
+            VerifyAllMocks();
         }
 
         [TestMethod]
@@ -86,6 +154,8 @@ namespace Axe.Windows.AutomationTests
             var action = new Action(() => SnapshotCommand.Execute(config: _minimalConfig, scanTools: null));
             var ex = Assert.ThrowsException<ArgumentNullException>(action);
             Assert.IsTrue(ex.Message.Contains("scanTools"));
+
+            VerifyAllMocks();
         }
 
         [TestMethod]
@@ -96,7 +166,8 @@ namespace Axe.Windows.AutomationTests
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("TargetElementLocator"));
-            _scanToolsMock.VerifyAll();
+
+            VerifyAllMocks();
         }
 
         [TestMethod]
@@ -109,39 +180,35 @@ namespace Axe.Windows.AutomationTests
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("Actions"));
-            _scanToolsMock.VerifyAll();
+
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NullDpiAwareness_ThrowsException()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            SetupScanToolsMock(withResultsAssembler: false);
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns<IDPIAwareness>(null);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
             var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("DpiAwareness"));
-            _scanToolsMock.VerifyAll();
+
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_TargetElementLocatorReturnsNull_PassesNullToScan()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            SetupScanToolsMock(withResultsAssembler: false);
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns(_dpiAwarenessMock.Object);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns<IEnumerable<A11yElement>>(null);
+            SetupTargetElementLocatorMock(overrideElements: true, elements: null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
@@ -150,75 +217,60 @@ namespace Axe.Windows.AutomationTests
         {
             const int expectedProcessId = 42;
 
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            SetupScanToolsMock(withResultsAssembler: false);
             SetupDpiAwarenessMock(null);
+            SetupTargetElementLocatorMock(processId: expectedProcessId);
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(expectedProcessId, It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
             _actionsMock.Setup(x => x.Scan(It.IsNotNull<A11yElement>(), It.IsNotNull<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>())).Returns<ScanResults>(null);
 
             var config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
             SnapshotCommand.Execute(config, _scanToolsMock.Object);
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_ActionsScanWithDpiAwarenessObject_IsCalledWithExpectedElement()
+        public void Execute_ActionsScanWithDpiAwarenessObject_IsCalledWithExpectedElements()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            var elements = CreateMockElementArray();
+            SetupScanToolsMock(withResultsAssembler: false);
             SetupDpiAwarenessMock("This is an arbitrary object");
+            SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var elements = CreateMockElementArray();
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(elements);
             _actionsMock.Setup(x => x.Scan(
                 elements.First(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>())).Returns<ScanResults>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_ActionsScan_IsCalledWithExpectedElement()
+        public void Execute_ActionsScan_IsCalledWithExpectedElements()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            SetupDpiAwarenessMock(null);
-
             var elements = CreateMockElementArray();
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(elements);
+            SetupScanToolsMock(withResultsAssembler: false);
+            SetupDpiAwarenessMock(null);
+            SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
             _actionsMock.Setup(x => x.Scan(
                 elements.First(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>())).Returns<ScanResults>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_ReturnsExpectedResults_SingleRoot()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            var elements = CreateMockElementArray().ToArray()[0..1];
+            SetupScanToolsMock();
             SetupDpiAwarenessMock(null);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray().ToArray()[0..1]);
+            SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
             var expectedResults = new ScanResults();
             InitResultsCallback(expectedResults);
@@ -229,28 +281,18 @@ namespace Axe.Windows.AutomationTests
                 Assert.AreEqual(expectedResults, actualResult);
             }
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_ReturnsExpectedResults_MultiRoot()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+            SetupScanToolsMock(withOutputFileHelper: true);
+            SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
-
-            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-            _actionsMock.Setup(x => x.SaveA11yTestFile(It.IsAny<string>(), It.IsAny<A11yElement>(), It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
-            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
+            SetupActionsMock();
+            SetupOutputFileHelperMock();
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -267,23 +309,17 @@ namespace Axe.Windows.AutomationTests
                 Assert.AreEqual(expectedResults, actualResult);
             }
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NullResultsAssembler_ThrowsException()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
+            SetupScanToolsMock(withResultsAssembler: false);
+            SetupTargetElementLocatorMock();
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns<IScanResultsAssembler>(null);
             SetupDpiAwarenessMock(null);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
 
             ScanResults tempResults = null;
             _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>()))
@@ -294,22 +330,17 @@ namespace Axe.Windows.AutomationTests
             var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("ResultsAssembler"));
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NoErrors_SingleRootNoOutputFiles()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            var elements = CreateMockElementArray().ToArray()[0..1];
+            SetupScanToolsMock();
             SetupDpiAwarenessMock(null);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray().ToArray()[0..1]);
+            SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
             var expectedResults = new ScanResults
             {
@@ -328,24 +359,18 @@ namespace Axe.Windows.AutomationTests
             Assert.IsNull(actualResults.First().OutputFile.A11yTest);
             Assert.AreEqual(1, actualResults.Count);
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NoErrors_MultiRootHasOutputFiles()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+            SetupScanToolsMock(withOutputFileHelper: true);
+            SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
+            SetupActionsMock();
+            SetupOutputFileHelperMock();
 
             var expectedResults = new ScanResults
             {
@@ -353,11 +378,7 @@ namespace Axe.Windows.AutomationTests
             };
             InitResultsCallback(expectedResults);
 
-            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-            _actionsMock.Setup(x => x.SaveA11yTestFile(It.IsAny<string>(), It.IsAny<A11yElement>(), It.IsAny<Guid>(), It.IsAny<IActionContext>()));
             _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(() => new ScanResults() { ErrorCount = 1 });
-            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -379,23 +400,16 @@ namespace Axe.Windows.AutomationTests
                 Assert.AreEqual(expectedPaths[i], fileNames[i]);
             }
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NullOutputFileHelper_ThrowsException()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
+            SetupScanToolsMock();
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
+            SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
             var expectedResults = new ScanResults
             {
@@ -407,34 +421,25 @@ namespace Axe.Windows.AutomationTests
 
             var ex = Assert.ThrowsException<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
+
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_NullOutputFilePath_ThrowsException()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
+            SetupScanToolsMock(withOutputFileHelper: true);
+            SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
+            SetupActionsMock(expectedPath: null);
+            SetupOutputFileHelperMock(filePath: "null");
 
             var expectedResults = new ScanResults
             {
                 ErrorCount = 1
             };
             InitResultsCallback(expectedResults);
-
-            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-
-            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns<string>(null);
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -446,39 +451,28 @@ namespace Axe.Windows.AutomationTests
             var ex = Assert.ThrowsException<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("a11yTestOutputFile"));
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_WithErrors_SingleFileNamedCorrectly()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
-            SetupDpiAwarenessMock(null);
+            const string expectedPath = "Test.File";
+            var elements = CreateMockElementArray().ToArray()[0..1];
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray().ToArray()[0..1]);
+            SetupScanToolsMock(withOutputFileHelper: true);
+            SetupDpiAwarenessMock(null);
+            SetupActionsMock(expectedPath: expectedPath);
+            SetupOutputFileHelperMock(filePath: null);
+            SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator == null ? expectedPath : decorator("Test.File"));
 
             var expectedResults = new ScanResults
             {
                 ErrorCount = 75
             };
             InitResultsCallback(expectedResults);
-
-            var expectedPath = "Test.File";
-
-            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-            _actionsMock.Setup(x => x.SaveA11yTestFile(expectedPath, It.IsAny<A11yElement>(), It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-
-            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator == null ? expectedPath : decorator("Test.File"));
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -490,25 +484,18 @@ namespace Axe.Windows.AutomationTests
             Assert.AreEqual(75, actualResults.First().ErrorCount);
             Assert.AreEqual(expectedPath, actualResults.First().OutputFile.A11yTest);
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_WithErrors_MultipleFilesNamedCorrectly()
         {
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+            SetupScanToolsMock(withOutputFileHelper: true);
+            SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
-
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray());
+            SetupActionsMock();
+            SetupOutputFileHelperMock();
 
             var expectedResults = new ScanResults
             {
@@ -516,11 +503,7 @@ namespace Axe.Windows.AutomationTests
             };
             InitResultsCallback(expectedResults);
 
-            _actionsMock.Setup(x => x.CaptureScreenshot(It.IsAny<Guid>(), It.IsAny<IActionContext>()));
-            _actionsMock.Setup(x => x.SaveA11yTestFile(It.IsAny<string>(), It.IsAny<A11yElement>(), It.IsAny<Guid>(), It.IsAny<IActionContext>()));
             _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(() => new ScanResults() { ErrorCount = 1 });
-            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
-            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator("Test.File"));
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -542,28 +525,22 @@ namespace Axe.Windows.AutomationTests
                 Assert.AreEqual(expectedPaths[i], fileNames[i]);
             }
 
-            _scanToolsMock.VerifyAll();
-            _dpiAwarenessMock.VerifyAll();
-            _targetElementLocatorMock.VerifyAll();
-            _actionsMock.VerifyAll();
-            _resultsAssemblerMock.VerifyAll();
-            _outputFileHelperMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Execute_CustomUIAPropertyConfig_RegisterCustomUIAPropertiesCalled()
         {
-            string configPath = "test.json";
-            _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
-            _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
-            _scanToolsMock.Setup(x => x.ResultsAssembler).Returns(_resultsAssemblerMock.Object);
-            SetupDpiAwarenessMock(null);
+            const string configPath = "test.json";
+            var elements = CreateMockElementArray().ToArray()[0..1];
 
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(It.IsAny<int>(), It.IsAny<IActionContext>())).Returns(CreateMockElementArray().ToArray()[0..1]);
+            SetupScanToolsMock();
+            SetupDpiAwarenessMock(null);
+            SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
+
             var expectedResults = new ScanResults();
             InitResultsCallback(expectedResults);
-            _outputFileHelperMock.Setup(m => m.EnsureOutputDirectoryExists());
 
             _actionsMock.Setup(x => x.RegisterCustomUIAPropertiesFromConfig(configPath));
 
@@ -574,7 +551,7 @@ namespace Axe.Windows.AutomationTests
 
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
 
-            _actionsMock.VerifyAll();
+            VerifyAllMocks();
         }
     } // class
 } // namespace
