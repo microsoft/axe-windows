@@ -11,34 +11,55 @@ namespace Axe.Windows.AutomationTests
     [TestClass]
     public class ScanToolsBuilderTests
     {
+        private Mock<IAxeWindowsActions> _actionsMock;
+        private Mock<IDPIAwareness> _dpiAwarenessMock;
+        private Mock<IOutputFileHelper> _outputFileHelperMock;
+        private Mock<IScanResultsAssembler> _resultsAssemblerMock;
+        private Mock<ITargetElementLocator> _targetElementLocatorMock;
+        private Mock<IFactory> _factoryMock;
+
+        [TestInitialize]
+        public void BeforeEachTest()
+        {
+            _actionsMock = new Mock<IAxeWindowsActions>(MockBehavior.Strict);
+            _dpiAwarenessMock = new Mock<IDPIAwareness>(MockBehavior.Strict);
+            _outputFileHelperMock = new Mock<IOutputFileHelper>(MockBehavior.Strict);
+            _resultsAssemblerMock = new Mock<IScanResultsAssembler>(MockBehavior.Strict);
+            _targetElementLocatorMock = new Mock<ITargetElementLocator>(MockBehavior.Strict);
+            _factoryMock = new Mock<IFactory>(MockBehavior.Strict);
+
+            _factoryMock.Setup(x => x.CreateAxeWindowsActions()).Returns(_actionsMock.Object);
+            _factoryMock.Setup(x => x.CreateResultsAssembler()).Returns(_resultsAssemblerMock.Object);
+            _factoryMock.Setup(x => x.CreateTargetElementLocator()).Returns(_targetElementLocatorMock.Object);
+        }
+
+        private void VerifyAllMocks()
+        {
+            _actionsMock.VerifyAll();
+            _dpiAwarenessMock.VerifyAll();
+            _outputFileHelperMock.VerifyAll();
+            _resultsAssemblerMock.VerifyAll();
+            _targetElementLocatorMock.VerifyAll();
+            _factoryMock.VerifyAll();
+        }
+
         [TestMethod]
         [Timeout(1000)]
         public void Build_WithOutputDirectory_CreatesExpectedObject()
         {
             const string expectedPath = @"c:\_TestPath";
-            var mockRepository = new MockRepository(MockBehavior.Strict);
 
-            var actionsMock = mockRepository.Create<IAxeWindowsActions>();
-            var dpiAwarenessMock = mockRepository.Create<IDPIAwareness>();
-            var outputFileHelperMock = mockRepository.Create<IOutputFileHelper>();
-            var resultsAssemblerMock = mockRepository.Create<IScanResultsAssembler>();
-            var targetElementLocatorMock = mockRepository.Create<ITargetElementLocator>();
-
-            var factoryMock = mockRepository.Create<IFactory>();
-            factoryMock.Setup(x => x.CreateAxeWindowsActions()).Returns(actionsMock.Object);
-            factoryMock.Setup(x => x.CreateDPIAwareness()).Returns(dpiAwarenessMock.Object);
-            factoryMock.Setup(x => x.CreateResultsAssembler()).Returns(resultsAssemblerMock.Object);
-            factoryMock.Setup(x => x.CreateTargetElementLocator()).Returns(targetElementLocatorMock.Object);
+            _factoryMock.Setup(x => x.CreateDPIAwareness()).Returns(_dpiAwarenessMock.Object);
 
             string tempString = null;
-            factoryMock.Setup(x => x.CreateOutputFileHelper(expectedPath))
+            _factoryMock.Setup(x => x.CreateOutputFileHelper(expectedPath))
                 .Callback<string>(s => tempString = s)
-                .Returns(outputFileHelperMock.Object);
+                .Returns(_outputFileHelperMock.Object);
 
-            outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>()))
+            _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>()))
                 .Returns(() => tempString);
 
-            var builder = new ScanToolsBuilder(factoryMock.Object);
+            var builder = new ScanToolsBuilder(_factoryMock.Object);
 
             var scanTools = builder
                 .WithOutputDirectory(expectedPath)
@@ -53,33 +74,20 @@ namespace Axe.Windows.AutomationTests
 
             Assert.AreEqual(expectedPath, scanTools.OutputFileHelper.GetNewA11yTestFilePath((value) => value));
 
-            factoryMock.VerifyAll();
+            VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void Build_WithDPIAwareness_CreatesExpectedObject()
         {
-            var mockRepository = new MockRepository(MockBehavior.Strict);
+            _factoryMock.Setup(x => x.CreateOutputFileHelper(null))
+                .Returns(_outputFileHelperMock.Object);
 
-            var actionsMock = mockRepository.Create<IAxeWindowsActions>();
-            var dpiAwarenessMock = mockRepository.Create<IDPIAwareness>();
-            var outputFileHelperMock = mockRepository.Create<IOutputFileHelper>();
-            var resultsAssemblerMock = mockRepository.Create<IScanResultsAssembler>();
-            var targetElementLocatorMock = mockRepository.Create<ITargetElementLocator>();
-
-            var factoryMock = mockRepository.Create<IFactory>();
-            factoryMock.Setup(x => x.CreateAxeWindowsActions()).Returns(actionsMock.Object);
-            factoryMock.Setup(x => x.CreateResultsAssembler()).Returns(resultsAssemblerMock.Object);
-            factoryMock.Setup(x => x.CreateTargetElementLocator()).Returns(targetElementLocatorMock.Object);
-
-            factoryMock.Setup(x => x.CreateOutputFileHelper(null))
-                .Returns(outputFileHelperMock.Object);
-
-            var builder = new ScanToolsBuilder(factoryMock.Object);
+            var builder = new ScanToolsBuilder(_factoryMock.Object);
 
             var scanTools = builder
-                .WithDPIAwareness(dpiAwarenessMock.Object)
+                .WithDPIAwareness(_dpiAwarenessMock.Object)
                 .Build();
 
             Assert.IsNotNull(scanTools);
@@ -89,9 +97,9 @@ namespace Axe.Windows.AutomationTests
             Assert.IsNotNull(scanTools.ResultsAssembler);
             Assert.IsNotNull(scanTools.TargetElementLocator);
 
-            Assert.AreSame(dpiAwarenessMock.Object, scanTools.DpiAwareness);
+            Assert.AreSame(_dpiAwarenessMock.Object, scanTools.DpiAwareness);
 
-            factoryMock.VerifyAll();
+            VerifyAllMocks();
         }
     } // class
 } // namespace
