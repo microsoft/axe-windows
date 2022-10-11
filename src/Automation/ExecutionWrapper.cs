@@ -29,7 +29,7 @@ namespace Axe.Windows.Automation
                 }
                 catch (Exception ex)
                 {
-                    string message = string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorUnhandledExceptionFormat, ex.ToString());
+                    string message = string.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorUnhandledExceptionFormat, ex.ToString());
                     throw new AxeWindowsAutomationException(message, ex);
                 }
             }

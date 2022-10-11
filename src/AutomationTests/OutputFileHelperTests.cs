@@ -88,7 +88,7 @@ namespace Axe.Windows.AutomationTests
             var phonyDirectory = "flub";
             Action action = () => new OutputFileHelper(phonyDirectory, mockSystem.Object);
             var ex = Assert.ThrowsException<AxeWindowsAutomationException>(action);
-            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorDirectoryInvalid, phonyDirectory), ex.Message);
+            Assert.AreEqual(String.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorDirectoryInvalid, phonyDirectory), ex.Message);
 
             mockSystem.VerifyAll();
             mockIO.VerifyAll();

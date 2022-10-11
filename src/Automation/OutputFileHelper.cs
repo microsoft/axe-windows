@@ -58,11 +58,11 @@ namespace Axe.Windows.Automation
                 Path.GetFullPath(path);
 
                 if (!Path.IsPathRooted(path))
-                    throw new AxeWindowsException(DisplayStrings.ErrorIsNotFullPath);
+                    throw new AxeWindowsException(ErrorMessages.ErrorIsNotFullPath);
             }
             catch (Exception ex)
             {
-                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorDirectoryInvalid, path), ex);
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorDirectoryInvalid, path), ex);
             }
         }
 
