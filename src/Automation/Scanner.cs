@@ -73,11 +73,8 @@ namespace Axe.Windows.Automation
 
         private IReadOnlyCollection<WindowScanOutput> ExecuteScan(string scanId)
         {
-            return ExecutionWrapper.ExecuteCommand(() =>
-            {
-                _scanTools.OutputFileHelper.SetScanId(scanId);
-                return SnapshotCommand.Execute(_config, _scanTools);
-            });
+            _scanTools.OutputFileHelper.SetScanId(scanId);
+            return SnapshotCommand.Execute(_config, _scanTools);
         }
 
         public Task<ScanOutput> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken)
