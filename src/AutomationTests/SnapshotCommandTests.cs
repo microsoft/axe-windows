@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace Axe.Windows.AutomationTests
 {
-    using ScanResults = ScanResults;
+    using WindowScanOutput = WindowScanOutput;
 
     [TestClass]
     public class SnapshotCommandTests
@@ -51,13 +51,13 @@ namespace Axe.Windows.AutomationTests
             _resultsAssemblerMock.VerifyAll();
         }
 
-        private void InitResultsCallback(ScanResults results)
+        private void InitResultsCallback(WindowScanOutput results)
         {
-            _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(results);
+            _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(results);
 
-            ScanResults tempResults = null;
-            _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>()))
-                .Callback<A11yElement, ScanActionCallback<ScanResults>, IActionContext>((e, cb, _) => tempResults = cb(e, Guid.Empty))
+            WindowScanOutput tempResults = null;
+            _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>()))
+                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((e, cb, _) => tempResults = cb(e, Guid.Empty))
                 .Returns(() => tempResults);
         }
 
@@ -221,7 +221,7 @@ namespace Axe.Windows.AutomationTests
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(processId: expectedProcessId);
 
-            _actionsMock.Setup(x => x.Scan(It.IsNotNull<A11yElement>(), It.IsNotNull<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>())).Returns<ScanResults>(null);
+            _actionsMock.Setup(x => x.Scan(It.IsNotNull<A11yElement>(), It.IsNotNull<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
 
             var config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
@@ -240,7 +240,7 @@ namespace Axe.Windows.AutomationTests
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
             _actionsMock.Setup(x => x.Scan(
-                elements.First(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>())).Returns<ScanResults>(null);
+                elements.First(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
@@ -256,7 +256,7 @@ namespace Axe.Windows.AutomationTests
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
             _actionsMock.Setup(x => x.Scan(
-                elements.First(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>())).Returns<ScanResults>(null);
+                elements.First(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
 
             SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
 
@@ -272,7 +272,7 @@ namespace Axe.Windows.AutomationTests
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var expectedResults = new ScanResults();
+            var expectedResults = new WindowScanOutput();
             InitResultsCallback(expectedResults);
 
             var actualResults = SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
@@ -300,7 +300,7 @@ namespace Axe.Windows.AutomationTests
                 .WithMultipleScanRootsEnabled()
                 .Build();
 
-            var expectedResults = new ScanResults();
+            var expectedResults = new WindowScanOutput();
             InitResultsCallback(expectedResults);
 
             var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
@@ -321,9 +321,9 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns<IScanResultsAssembler>(null);
             SetupDpiAwarenessMock(null);
 
-            ScanResults tempResults = null;
-            _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<ScanResults>>(), It.IsAny<IActionContext>()))
-                .Callback<A11yElement, ScanActionCallback<ScanResults>, IActionContext>((e, cb, _) => tempResults = cb(e, Guid.Empty))
+            WindowScanOutput tempResults = null;
+            _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>()))
+                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((e, cb, _) => tempResults = cb(e, Guid.Empty))
                 .Returns(() => tempResults);
 
             var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
@@ -342,7 +342,7 @@ namespace Axe.Windows.AutomationTests
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var expectedResults = new ScanResults
+            var expectedResults = new WindowScanOutput
             {
                 ErrorCount = 0
             };
@@ -372,13 +372,13 @@ namespace Axe.Windows.AutomationTests
             SetupActionsMock();
             SetupOutputFileHelperMock();
 
-            var expectedResults = new ScanResults
+            var expectedResults = new WindowScanOutput
             {
                 ErrorCount = 0
             };
             InitResultsCallback(expectedResults);
 
-            _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(() => new ScanResults() { ErrorCount = 1 });
+            _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(() => new WindowScanOutput() { ErrorCount = 1 });
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -411,7 +411,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
             SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
-            var expectedResults = new ScanResults
+            var expectedResults = new WindowScanOutput
             {
                 ErrorCount = 1
             };
@@ -435,7 +435,7 @@ namespace Axe.Windows.AutomationTests
             SetupActionsMock(expectedPath: null);
             SetupOutputFileHelperMock(filePath: "null");
 
-            var expectedResults = new ScanResults
+            var expectedResults = new WindowScanOutput
             {
                 ErrorCount = 1
             };
@@ -468,7 +468,7 @@ namespace Axe.Windows.AutomationTests
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
             _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator == null ? expectedPath : decorator("Test.File"));
 
-            var expectedResults = new ScanResults
+            var expectedResults = new WindowScanOutput
             {
                 ErrorCount = 75
             };
@@ -497,13 +497,13 @@ namespace Axe.Windows.AutomationTests
             SetupActionsMock();
             SetupOutputFileHelperMock();
 
-            var expectedResults = new ScanResults
+            var expectedResults = new WindowScanOutput
             {
                 ErrorCount = 75
             };
             InitResultsCallback(expectedResults);
 
-            _resultsAssemblerMock.Setup(x => x.AssembleScanResultsFromElement(It.IsAny<A11yElement>())).Returns(() => new ScanResults() { ErrorCount = 1 });
+            _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(() => new WindowScanOutput() { ErrorCount = 1 });
 
             var config = Config.Builder
                 .ForProcessId(-1)
@@ -539,7 +539,7 @@ namespace Axe.Windows.AutomationTests
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var expectedResults = new ScanResults();
+            var expectedResults = new WindowScanOutput();
             InitResultsCallback(expectedResults);
 
             _actionsMock.Setup(x => x.RegisterCustomUIAPropertiesFromConfig(configPath));

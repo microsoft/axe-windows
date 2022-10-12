@@ -31,7 +31,7 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.Scan()"/>
         /// </summary>
         /// <returns></returns>
-        public ScanResults Scan()
+        public WindowScanOutput Scan()
         {
             if (_config.AreMultipleScanRootsEnabled)
             {
@@ -44,7 +44,7 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.ScanAll()"/>
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<ScanResults> ScanAll()
+        public IReadOnlyCollection<WindowScanOutput> ScanAll()
         {
             return ExecuteScan(null);
         }
@@ -53,7 +53,7 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.Scan(string)"/>
         /// </summary>
         /// <returns></returns>
-        public ScanResults Scan(string scanId)
+        public WindowScanOutput Scan(string scanId)
         {
             if (_config.AreMultipleScanRootsEnabled)
             {
@@ -66,12 +66,12 @@ namespace Axe.Windows.Automation
         /// See <see cref="IScanner.ScanAll(string)"/>
         /// </summary>
         /// <returns></returns>
-        public IReadOnlyCollection<ScanResults> ScanAll(string scanId)
+        public IReadOnlyCollection<WindowScanOutput> ScanAll(string scanId)
         {
             return ExecuteScan(scanId);
         }
 
-        private IReadOnlyCollection<ScanResults> ExecuteScan(string scanId)
+        private IReadOnlyCollection<WindowScanOutput> ExecuteScan(string scanId)
         {
             return ExecutionWrapper.ExecuteCommand(() =>
             {
@@ -80,7 +80,7 @@ namespace Axe.Windows.Automation
             });
         }
 
-        public Task<AsyncScanResults> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken)
+        public Task<ScanOutput> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken)
         {
             scanOptions = scanOptions ?? DefaultScanOptions;
             _scanTools.OutputFileHelper.SetScanId(scanOptions.ScanId);

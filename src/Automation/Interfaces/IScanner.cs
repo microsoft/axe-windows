@@ -28,7 +28,7 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        ScanResults Scan();
+        WindowScanOutput Scan();
 
         /// <summary>
         /// Synchronously run AxeWindows automated tests on all windows associated with the process.
@@ -44,7 +44,7 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        IReadOnlyCollection<ScanResults> ScanAll();
+        IReadOnlyCollection<WindowScanOutput> ScanAll();
 
         /// <summary>
         /// Synchronously run AxeWindows automated tests
@@ -62,7 +62,7 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        ScanResults Scan(string scanId);
+        WindowScanOutput Scan(string scanId);
 
         /// <summary>
         /// Synchronously run AxeWindows automated tests on all windows associated with the process.
@@ -78,6 +78,6 @@ namespace Axe.Windows.Automation
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
         /// <exception cref="AxeWindowsAutomationException"/>
-        IReadOnlyCollection<ScanResults> ScanAll(string scanId);
+        IReadOnlyCollection<WindowScanOutput> ScanAll(string scanId);
     } // interface
 } // namespace

@@ -20,7 +20,7 @@ namespace AxeWindowsCLI
         private readonly IBrowserAbstraction _browserAbstraction;
         private readonly IScanDelay _scanDelay;
 
-        private IReadOnlyCollection<ScanResults> _scanResultsCollection;
+        private IReadOnlyCollection<WindowScanOutput> _scanResultsCollection;
         private IOptions _options;
 
         public Program(string[] args,
@@ -86,7 +86,7 @@ namespace AxeWindowsCLI
 
             if (_options != null)
             {
-                IEnumerable<ScanResults> guaranteedScanResults = _scanResultsCollection ?? new List<ScanResults> { null };
+                IEnumerable<WindowScanOutput> guaranteedScanResults = _scanResultsCollection ?? new List<WindowScanOutput> { null };
 
                 foreach (var scanResult in guaranteedScanResults)
                 {

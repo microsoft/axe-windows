@@ -11,20 +11,20 @@ namespace Axe.Windows.Automation.Data
     /// This object currently contains ScanResults.
     /// However, additional fields may be added at a future time to add extra information without breaking existing users of the IAsyncScanner API.
     /// </summary>
-    public class AsyncScanResults
+    public class ScanOutput
     {
         /// <summary>
-        /// The ScanResults object associated with this scan
+        /// A collection of WindowScanOutput objects produced from this scan
         /// </summary>
-        public IReadOnlyCollection<ScanResults> ScanResultsCollection { get; }
+        public IReadOnlyCollection<WindowScanOutput> WindowScanOutputs { get; }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="scanResultsCollection">The collection of ScanResults to associate with this object</param>
-        public AsyncScanResults(IReadOnlyCollection<ScanResults> scanResultsCollection)
+        /// <param name="windowScanOutputs">A collection of WindowScanOutput objects produced from this scan</param>
+        public ScanOutput(IReadOnlyCollection<WindowScanOutput> windowScanOutputs)
         {
-            ScanResultsCollection = scanResultsCollection ?? throw new ArgumentNullException(nameof(scanResultsCollection));
+            WindowScanOutputs = windowScanOutputs ?? throw new ArgumentNullException(nameof(windowScanOutputs));
         }
     }
 }

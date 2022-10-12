@@ -28,6 +28,6 @@ namespace Axe.Windows.Automation
         /// or if the directory provided in <see cref="Config.OutputDirectory"/> cannot be created or accessed.
         /// </remarks>
         /// <returns>Information about the scan and any issues detected</returns>
-        Task<AsyncScanResults> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken);
+        Task<ScanOutput> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken);
     }
 }

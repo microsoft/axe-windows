@@ -26,18 +26,18 @@ namespace Axe.Windows.Automation
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
         /// <returns>A set of ScanResults objects that describes the result of the command</returns>
-        public static IReadOnlyCollection<ScanResults> Execute(Config config, IScanTools scanTools)
+        public static IReadOnlyCollection<WindowScanOutput> Execute(Config config, IScanTools scanTools)
         {
             ValidateScanParameters(config, scanTools);
 
-            return GetScanAllResults(config, scanTools, CancellationToken.None).ScanResultsCollection;
+            return GetScanOutput(config, scanTools, CancellationToken.None).WindowScanOutputs;
         }
 
-        public static Task<AsyncScanResults> ExecuteScanAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
+        public static Task<ScanOutput> ExecuteScanAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
         {
             ValidateScanParameters(config, scanTools);
 
-            return Task.Run<AsyncScanResults>(() => GetScanAllResults(config, scanTools, cancellationToken));
+            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
         }
 
         private static void ValidateScanParameters(Config config, IScanTools scanTools)
@@ -49,12 +49,12 @@ namespace Axe.Windows.Automation
             if (scanTools.DpiAwareness == null) throw new ArgumentException(ErrorMessages.ScanToolsDpiAwarenessNull, nameof(scanTools));
         }
 
-        private static AsyncScanResults GetScanAllResults(Config config, IScanTools scanTools, CancellationToken cancellationToken)
+        private static ScanOutput GetScanOutput(Config config, IScanTools scanTools, CancellationToken cancellationToken)
         {
             if (config.CustomUIAConfigPath != null)
                 scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
 
-            List<ScanResults> resultList = new List<ScanResults>();
+            List<WindowScanOutput> resultList = new List<WindowScanOutput>();
 
             using (var actionContext = ScopedActionContext.CreateInstance(cancellationToken))
             {
@@ -62,7 +62,7 @@ namespace Axe.Windows.Automation
 
                 if (rootElements is null || !rootElements.Any())
                 {
-                    return new AsyncScanResults(resultList);
+                    return new ScanOutput(resultList);
                 }
 
                 int targetIndex = 1;
@@ -81,13 +81,13 @@ namespace Axe.Windows.Automation
                 }
             }
 
-            return new AsyncScanResults(resultList);
+            return new ScanOutput(resultList);
         }
 
         /// <summary>
         /// This method is our atomic scanner. When we add async support, keep it all within the scope of a single thread.
         /// </summary>
-        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<ScanResults> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement, IActionContext actionContext)
+        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<WindowScanOutput> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement, IActionContext actionContext)
         {
             var dpiAwarenessObject = scanTools.DpiAwareness.Enable();
             try
@@ -103,7 +103,7 @@ namespace Axe.Windows.Automation
             }
         }
 
-        private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IActionContext actionContext)
+        private static WindowScanOutput ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IActionContext actionContext)
         {
             // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
             object dpiAwarenessObject = scanTools.DpiAwareness.Enable();
@@ -113,7 +113,7 @@ namespace Axe.Windows.Automation
                 if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
                 if (scanTools.ResultsAssembler == null) throw new ArgumentException(ErrorMessages.ScanToolsResultsAssemblerNull, nameof(scanTools));
 
-                var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
+                var results = scanTools.ResultsAssembler.AssembleWindowScanOutputFromElement(element);
 
                 if (config.AreMultipleScanRootsEnabled)
                 {

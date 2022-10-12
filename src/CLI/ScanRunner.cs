@@ -8,7 +8,7 @@ namespace AxeWindowsCLI
 {
     internal static class ScanRunner
     {
-        public static IReadOnlyCollection<ScanResults> RunScan(IOptions options)
+        public static IReadOnlyCollection<WindowScanOutput> RunScan(IOptions options)
         {
             IScanner scanner = BuildScanner(options);
             return scanner.ScanAll(options.ScanId);

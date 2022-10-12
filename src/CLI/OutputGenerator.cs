@@ -23,7 +23,7 @@ namespace AxeWindowsCLI
             _writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
-        public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
+        public void WriteOutput(IOptions options, WindowScanOutput scanResults, Exception caughtException)
         {
             bool failedToComplete = caughtException != null || scanResults == null;
 
@@ -113,7 +113,7 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void WriteScanResults(IOptions options, ScanResults scanResults)
+        private void WriteScanResults(IOptions options, WindowScanOutput scanResults)
         {
             if (options.VerbosityLevel == VerbosityLevel.Quiet)
             {
@@ -133,7 +133,7 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void WriteErrorCount(ScanResults scanResults)
+        private void WriteErrorCount(WindowScanOutput scanResults)
         {
             if (scanResults.ErrorCount == 1)
             {
@@ -145,7 +145,7 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void WriteVerboseResults(ScanResults scanResults)
+        private void WriteVerboseResults(WindowScanOutput scanResults)
         {
             int errorCount = 0;
             foreach (ScanResult scanResult in scanResults.Errors)
