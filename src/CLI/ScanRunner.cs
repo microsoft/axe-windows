@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation;
+using Axe.Windows.Automation.Data;
 using System.Collections.Generic;
 
 namespace AxeWindowsCLI
@@ -11,7 +12,7 @@ namespace AxeWindowsCLI
         public static IReadOnlyCollection<WindowScanOutput> RunScan(IOptions options)
         {
             IScanner scanner = BuildScanner(options);
-            return scanner.ScanAll(options.ScanId);
+            return scanner.Scan(new ScanOptions(options.ScanId)).WindowScanOutputs;
         }
 
         private static IScanner BuildScanner(IOptions options)

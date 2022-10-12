@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
+using Axe.Windows.Automation.Data;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -131,7 +132,7 @@ namespace Axe.Windows.AutomationTests
                 .Build();
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var action = new Action(() => scanner.Scan());
+            var action = new Action(() => scanner.Scan(null));
             Assert.ThrowsException<InvalidOperationException>(action);
         }
 
@@ -147,7 +148,7 @@ namespace Axe.Windows.AutomationTests
                 .Build();
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var action = new Action(() => scanner.Scan("TestIDForThrow"));
+            var action = new Action(() => scanner.Scan(new ScanOptions("TestIDForThrow")));
             Assert.ThrowsException<InvalidOperationException>(action);
         }
 
@@ -198,7 +199,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.ScanAll();
+                return scanner.Scan(null).WindowScanOutputs;
             }
             catch (AxeWindowsAutomationException e)
             {

@@ -7,7 +7,7 @@ using System.Threading;
 namespace Axe.Windows.Automation.Data
 {
     /// <summary>
-    /// Represents options for <see cref="IAsyncScanner.ScanAsync(ScanOptions, CancellationToken)"/>.
+    /// Represents options for <see cref="IScanner.ScanAsync(ScanOptions, CancellationToken)"/>.
     /// </summary>
     public class ScanOptions
     {
