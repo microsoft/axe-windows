@@ -9,6 +9,9 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -51,14 +54,14 @@ namespace Axe.Windows.AutomationTests
             _resultsAssemblerMock.VerifyAll();
         }
 
-        private void InitResultsCallback(WindowScanOutput results)
+        private void InitOutputCallback(WindowScanOutput output)
         {
-            _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(results);
+            _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(output);
 
-            WindowScanOutput tempResults = null;
+            WindowScanOutput tempOutput = null;
             _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>()))
-                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((e, cb, _) => tempResults = cb(e, Guid.Empty))
-                .Returns(() => tempResults);
+                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((e, cb, _) => tempOutput = cb(e, Guid.Empty))
+                .Returns(() => tempOutput);
         }
 
         private IEnumerable<A11yElement> CreateMockElementArray()
@@ -138,10 +141,10 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullConfig_ThrowsException()
+        public async Task ExecuteAsync_NullConfig_ThrowsException()
         {
-            var action = new Action(() => SnapshotCommand.Execute(config: null, scanTools: _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<ArgumentNullException>(action);
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(config: null, scanTools: _scanToolsMock.Object, cancellationToken: CancellationToken.None));
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentNullException>(action);
             Assert.IsTrue(ex.Message.Contains("config"));
 
             VerifyAllMocks();
@@ -149,10 +152,10 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullScanTools_ThrowsException()
+        public async Task ExecuteAsync_NullScanTools_ThrowsException()
         {
-            var action = new Action(() => SnapshotCommand.Execute(config: _minimalConfig, scanTools: null));
-            var ex = Assert.ThrowsException<ArgumentNullException>(action);
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(config: _minimalConfig, scanTools: null, cancellationToken: CancellationToken.None));
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentNullException>(action);
             Assert.IsTrue(ex.Message.Contains("scanTools"));
 
             VerifyAllMocks();
@@ -160,11 +163,11 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullTargetElementLocator_ThrowsException()
+        public async Task ExecuteAsync_NullTargetElementLocator_ThrowsException()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns<ITargetElementLocator>(null);
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<ArgumentException>(action);
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None));
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("TargetElementLocator"));
 
             VerifyAllMocks();
@@ -172,13 +175,13 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullAxeWindowsActions_ThrowsException()
+        public async Task ExecuteAsync_NullAxeWindowsActions_ThrowsException()
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns<IAxeWindowsActions>(null);
 
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<ArgumentException>(action);
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None));
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("Actions"));
 
             VerifyAllMocks();
@@ -186,13 +189,13 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullDpiAwareness_ThrowsException()
+        public async Task ExecuteAsync_NullDpiAwareness_ThrowsException()
         {
             SetupScanToolsMock(withResultsAssembler: false);
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns<IDPIAwareness>(null);
 
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<ArgumentException>(action);
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None));
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("DpiAwareness"));
 
             VerifyAllMocks();
@@ -200,20 +203,20 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_TargetElementLocatorReturnsNull_PassesNullToScan()
+        public async Task ExecuteAsync_TargetElementLocatorReturnsNull_PassesNullToScan()
         {
             SetupScanToolsMock(withResultsAssembler: false);
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns(_dpiAwarenessMock.Object);
             SetupTargetElementLocatorMock(overrideElements: true, elements: null);
 
-            SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
+            await SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_TargetElementLocatorReceivesConfigProcessId()
+        public async Task ExecuteAsync_TargetElementLocatorReceivesConfigProcessId()
         {
             const int expectedProcessId = 42;
 
@@ -225,14 +228,14 @@ namespace Axe.Windows.AutomationTests
 
             var config = Config.Builder.ForProcessId(expectedProcessId).Build();
 
-            SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_ActionsScanWithDpiAwarenessObject_IsCalledWithExpectedElements()
+        public async Task ExecuteAsync_ActionsScanWithDpiAwarenessObject_IsCalledWithExpectedElements()
         {
             var elements = CreateMockElementArray();
             SetupScanToolsMock(withResultsAssembler: false);
@@ -242,14 +245,14 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.Setup(x => x.Scan(
                 elements.First(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
 
-            SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
+            await SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_ActionsScan_IsCalledWithExpectedElements()
+        public async Task ExecuteAsync_ActionsScan_IsCalledWithExpectedElements()
         {
             var elements = CreateMockElementArray();
             SetupScanToolsMock(withResultsAssembler: false);
@@ -258,27 +261,27 @@ namespace Axe.Windows.AutomationTests
             _actionsMock.Setup(x => x.Scan(
                 elements.First(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
 
-            SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
+            await SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_ReturnsExpectedResults_SingleRoot()
+        public async Task ExecuteAsync_ReturnsExpectedResults_SingleRoot()
         {
             var elements = CreateMockElementArray().ToArray()[0..1];
             SetupScanToolsMock();
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var expectedResults = new WindowScanOutput();
-            InitResultsCallback(expectedResults);
+            var expectedWindowOutput = new WindowScanOutput();
+            InitOutputCallback(expectedWindowOutput);
 
-            var actualResults = SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object);
-            foreach (var actualResult in actualResults)
+            var actualOutput = await SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None);
+            foreach (var actualWindowOutput in actualOutput.WindowScanOutputs)
             {
-                Assert.AreEqual(expectedResults, actualResult);
+                Assert.AreEqual(expectedWindowOutput, actualWindowOutput);
             }
 
             VerifyAllMocks();
@@ -286,7 +289,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_ReturnsExpectedResults_MultiRoot()
+        public async Task ExecuteAsync_ReturnsExpectedResults_MultiRoot()
         {
             SetupScanToolsMock(withOutputFileHelper: true);
             SetupTargetElementLocatorMock();
@@ -300,13 +303,13 @@ namespace Axe.Windows.AutomationTests
                 .WithMultipleScanRootsEnabled()
                 .Build();
 
-            var expectedResults = new WindowScanOutput();
-            InitResultsCallback(expectedResults);
+            var expectedWindowOutput = new WindowScanOutput();
+            InitOutputCallback(expectedWindowOutput);
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
-            foreach (var actualResult in actualResults)
+            var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
+            foreach (var actualWindowOutput in actualOutput.WindowScanOutputs)
             {
-                Assert.AreEqual(expectedResults, actualResult);
+                Assert.AreEqual(expectedWindowOutput, actualWindowOutput);
             }
 
             VerifyAllMocks();
@@ -314,20 +317,20 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullResultsAssembler_ThrowsException()
+        public async Task ExecuteAsync_NullResultsAssembler_ThrowsException()
         {
             SetupScanToolsMock(withResultsAssembler: false);
             SetupTargetElementLocatorMock();
             _scanToolsMock.Setup(x => x.ResultsAssembler).Returns<IScanResultsAssembler>(null);
             SetupDpiAwarenessMock(null);
 
-            WindowScanOutput tempResults = null;
+            WindowScanOutput tempOutput = null;
             _actionsMock.Setup(x => x.Scan(It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>()))
-                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((e, cb, _) => tempResults = cb(e, Guid.Empty))
-                .Returns(() => tempResults);
+                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((e, cb, _) => tempOutput = cb(e, Guid.Empty))
+                .Returns(() => tempOutput);
 
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
-            var ex = Assert.ThrowsException<ArgumentException>(action);
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None));
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("ResultsAssembler"));
 
             VerifyAllMocks();
@@ -335,18 +338,18 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NoErrors_SingleRootNoOutputFiles()
+        public async Task ExecuteAsync_NoErrors_SingleRootNoOutputFiles()
         {
             var elements = CreateMockElementArray().ToArray()[0..1];
             SetupScanToolsMock();
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var expectedResults = new WindowScanOutput
+            var expectedWindowOutput = new WindowScanOutput
             {
                 ErrorCount = 0
             };
-            InitResultsCallback(expectedResults);
+            InitOutputCallback(expectedWindowOutput);
 
             // In addition to throwing an ArgumentNullException
             // The following call would cause mock exceptions for IAxeWindowsActions.CaptureScreenshot and IAxeWindowsActions.SaveA11yTestFile.
@@ -355,16 +358,16 @@ namespace Axe.Windows.AutomationTests
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
                 .Build();
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
-            Assert.IsNull(actualResults.First().OutputFile.A11yTest);
-            Assert.AreEqual(1, actualResults.Count);
+            var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
+            Assert.IsNull(actualOutput.WindowScanOutputs.First().OutputFile.A11yTest);
+            Assert.AreEqual(1, actualOutput.WindowScanOutputs.Count);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NoErrors_MultiRootHasOutputFiles()
+        public async Task ExecuteAsync_NoErrors_MultiRootHasOutputFiles()
         {
             SetupScanToolsMock(withOutputFileHelper: true);
             SetupTargetElementLocatorMock();
@@ -372,11 +375,11 @@ namespace Axe.Windows.AutomationTests
             SetupActionsMock();
             SetupOutputFileHelperMock();
 
-            var expectedResults = new WindowScanOutput
+            var expectedOutput = new WindowScanOutput
             {
                 ErrorCount = 0
             };
-            InitResultsCallback(expectedResults);
+            InitOutputCallback(expectedOutput);
 
             _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(() => new WindowScanOutput() { ErrorCount = 1 });
 
@@ -386,15 +389,15 @@ namespace Axe.Windows.AutomationTests
                 .WithMultipleScanRootsEnabled()
                 .Build();
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
             var expectedPaths = new string[]
             {
                 "Test.File_1_of_3",
                 "Test.File_2_of_3",
                 "Test.File_3_of_3",
             };
-            Assert.AreEqual(1, actualResults.First().ErrorCount);
-            var fileNames = actualResults.Select(result => result.OutputFile.A11yTest).OrderBy(x => x).ToArray();
+            Assert.AreEqual(1, actualOutput.WindowScanOutputs.First().ErrorCount);
+            var fileNames = actualOutput.WindowScanOutputs.Select(result => result.OutputFile.A11yTest).OrderBy(x => x).ToArray();
             for (int i = 0; i < expectedPaths.Length; i++)
             {
                 Assert.AreEqual(expectedPaths[i], fileNames[i]);
@@ -405,21 +408,21 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullOutputFileHelper_ThrowsException()
+        public async Task ExecuteAsync_NullOutputFileHelper_ThrowsException()
         {
             SetupScanToolsMock();
             _scanToolsMock.Setup(x => x.OutputFileHelper).Returns<IOutputFileHelper>(null);
             SetupTargetElementLocatorMock();
             SetupDpiAwarenessMock(null);
-            var expectedResults = new WindowScanOutput
+            var expectedOutput = new WindowScanOutput
             {
                 ErrorCount = 1
             };
-            InitResultsCallback(expectedResults);
+            InitOutputCallback(expectedOutput);
 
-            var action = new Action(() => SnapshotCommand.Execute(_minimalConfig, _scanToolsMock.Object));
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None));
 
-            var ex = Assert.ThrowsException<ArgumentException>(action);
+            var ex = await Assert.ThrowsExceptionAsync<ArgumentException>(action);
             Assert.IsTrue(ex.Message.Contains("OutputFileHelper"));
 
             VerifyAllMocks();
@@ -427,7 +430,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_NullOutputFilePath_ThrowsException()
+        public async Task ExecuteAsync_NullOutputFilePath_ThrowsException()
         {
             SetupScanToolsMock(withOutputFileHelper: true);
             SetupTargetElementLocatorMock();
@@ -435,20 +438,20 @@ namespace Axe.Windows.AutomationTests
             SetupActionsMock(expectedPath: null);
             SetupOutputFileHelperMock(filePath: "null");
 
-            var expectedResults = new WindowScanOutput
+            var expectedOutput = new WindowScanOutput
             {
                 ErrorCount = 1
             };
-            InitResultsCallback(expectedResults);
+            InitOutputCallback(expectedOutput);
 
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
                 .Build();
 
-            var action = new Action(() => SnapshotCommand.Execute(config, _scanToolsMock.Object));
+            var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None));
 
-            var ex = Assert.ThrowsException<InvalidOperationException>(action);
+            var ex = await Assert.ThrowsExceptionAsync<InvalidOperationException>(action);
             Assert.IsTrue(ex.Message.Contains("a11yTestOutputFile"));
 
             VerifyAllMocks();
@@ -456,7 +459,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_WithErrors_SingleFileNamedCorrectly()
+        public async Task ExecuteAsync_WithErrors_SingleFileNamedCorrectly()
         {
             const string expectedPath = "Test.File";
             var elements = CreateMockElementArray().ToArray()[0..1];
@@ -468,28 +471,28 @@ namespace Axe.Windows.AutomationTests
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
             _outputFileHelperMock.Setup(x => x.GetNewA11yTestFilePath(It.IsAny<Func<string, string>>())).Returns((Func<string, string> decorator) => decorator == null ? expectedPath : decorator("Test.File"));
 
-            var expectedResults = new WindowScanOutput
+            var expectedOutput = new WindowScanOutput
             {
                 ErrorCount = 75
             };
-            InitResultsCallback(expectedResults);
+            InitOutputCallback(expectedOutput);
 
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
                 .Build();
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
-            Assert.AreEqual(1, actualResults.Count);
-            Assert.AreEqual(75, actualResults.First().ErrorCount);
-            Assert.AreEqual(expectedPath, actualResults.First().OutputFile.A11yTest);
+            var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
+            Assert.AreEqual(1, actualOutput.WindowScanOutputs.Count);
+            Assert.AreEqual(75, actualOutput.WindowScanOutputs.First().ErrorCount);
+            Assert.AreEqual(expectedPath, actualOutput.WindowScanOutputs.First().OutputFile.A11yTest);
 
             VerifyAllMocks();
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_WithErrors_MultipleFilesNamedCorrectly()
+        public async Task ExecuteAsync_WithErrors_MultipleFilesNamedCorrectly()
         {
             SetupScanToolsMock(withOutputFileHelper: true);
             SetupTargetElementLocatorMock();
@@ -497,11 +500,11 @@ namespace Axe.Windows.AutomationTests
             SetupActionsMock();
             SetupOutputFileHelperMock();
 
-            var expectedResults = new WindowScanOutput
+            var expectedOutput = new WindowScanOutput
             {
                 ErrorCount = 75
             };
-            InitResultsCallback(expectedResults);
+            InitOutputCallback(expectedOutput);
 
             _resultsAssemblerMock.Setup(x => x.AssembleWindowScanOutputFromElement(It.IsAny<A11yElement>())).Returns(() => new WindowScanOutput() { ErrorCount = 1 });
 
@@ -511,15 +514,15 @@ namespace Axe.Windows.AutomationTests
                 .WithMultipleScanRootsEnabled()
                 .Build();
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
             var expectedPaths = new string[]
             {
                 "Test.File_1_of_3",
                 "Test.File_2_of_3",
                 "Test.File_3_of_3",
             };
-            Assert.AreEqual(1, actualResults.First().ErrorCount);
-            var fileNames = actualResults.Select(result => result.OutputFile.A11yTest).OrderBy(x => x).ToArray();
+            Assert.AreEqual(1, actualOutput.WindowScanOutputs.First().ErrorCount);
+            var fileNames = actualOutput.WindowScanOutputs.Select(result => result.OutputFile.A11yTest).OrderBy(x => x).ToArray();
             for (int i = 0; i < expectedPaths.Length; i++)
             {
                 Assert.AreEqual(expectedPaths[i], fileNames[i]);
@@ -530,7 +533,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Execute_CustomUIAPropertyConfig_RegisterCustomUIAPropertiesCalled()
+        public async Task ExecuteAsync_CustomUIAPropertyConfig_RegisterCustomUIAPropertiesCalled()
         {
             const string configPath = "test.json";
             var elements = CreateMockElementArray().ToArray()[0..1];
@@ -539,8 +542,8 @@ namespace Axe.Windows.AutomationTests
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
-            var expectedResults = new WindowScanOutput();
-            InitResultsCallback(expectedResults);
+            var expectedOutput = new WindowScanOutput();
+            InitOutputCallback(expectedOutput);
 
             _actionsMock.Setup(x => x.RegisterCustomUIAPropertiesFromConfig(configPath));
 
@@ -549,7 +552,7 @@ namespace Axe.Windows.AutomationTests
                 .WithCustomUIAConfig(configPath)
                 .Build();
 
-            var actualResults = SnapshotCommand.Execute(config, _scanToolsMock.Object);
+            var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
 
             VerifyAllMocks();
         }

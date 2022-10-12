@@ -31,7 +31,7 @@ namespace Axe.Windows.Automation
         {
             scanOptions = scanOptions ?? DefaultScanOptions;
             _scanTools.OutputFileHelper.SetScanId(scanOptions.ScanId);
-            return SnapshotCommand.ExecuteScanAsync(_config, _scanTools, cancellationToken);
+            return SnapshotCommand.ExecuteAsync(_config, _scanTools, cancellationToken);
         }
 
         public ScanOutput Scan(ScanOptions scanOptions)

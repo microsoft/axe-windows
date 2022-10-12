@@ -25,28 +25,18 @@ namespace Axe.Windows.Automation
         /// <param name="config">A set of configuration options</param>
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
+        /// <param name="cancellationToken">A cancellation token</param>
         /// <returns>A set of ScanResults objects that describes the result of the command</returns>
-        public static IReadOnlyCollection<WindowScanOutput> Execute(Config config, IScanTools scanTools)
-        {
-            ValidateScanParameters(config, scanTools);
 
-            return GetScanOutput(config, scanTools, CancellationToken.None).WindowScanOutputs;
-        }
-
-        public static Task<ScanOutput> ExecuteScanAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
-        {
-            ValidateScanParameters(config, scanTools);
-
-            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
-        }
-
-        private static void ValidateScanParameters(Config config, IScanTools scanTools)
+        public static Task<ScanOutput> ExecuteAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
         {
             if (config == null) throw new ArgumentNullException(nameof(config));
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
             if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
             if (scanTools.DpiAwareness == null) throw new ArgumentException(ErrorMessages.ScanToolsDpiAwarenessNull, nameof(scanTools));
+
+            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
         }
 
         private static ScanOutput GetScanOutput(Config config, IScanTools scanTools, CancellationToken cancellationToken)
