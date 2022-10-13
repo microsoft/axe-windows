@@ -20,7 +20,7 @@ namespace AxeWindowsCLI
         private readonly IBrowserAbstraction _browserAbstraction;
         private readonly IScanDelay _scanDelay;
 
-        private IReadOnlyCollection<ScanResults> _scanResultsCollection;
+        private IReadOnlyCollection<WindowScanOutput> _scanOutputCollection;
         private IOptions _options;
 
         public Program(string[] args,
@@ -86,14 +86,14 @@ namespace AxeWindowsCLI
 
             if (_options != null)
             {
-                IEnumerable<ScanResults> guaranteedScanResults = _scanResultsCollection ?? new List<ScanResults> { null };
+                IEnumerable<WindowScanOutput> guaranteedScanOuts = _scanOutputCollection ?? new List<WindowScanOutput> { null };
 
-                foreach (var scanResult in guaranteedScanResults)
+                foreach (var scanOut in guaranteedScanOuts)
                 {
-                    _outputGenerator.WriteOutput(_options, scanResult, caughtException);
+                    _outputGenerator.WriteOutput(_options, scanOut, caughtException);
                 }
             }
-            return ReturnValueChooser.GetReturnValue(parserError, _scanResultsCollection, caughtException);
+            return ReturnValueChooser.GetReturnValue(parserError, _scanOutputCollection, caughtException);
         }
 
         void RunWithParsedInputs(Options options)
@@ -110,7 +110,7 @@ namespace AxeWindowsCLI
             _options = OptionsEvaluator.ProcessInputs(options, _processHelper);
             _outputGenerator.WriteBanner(_options);
             _scanDelay.DelayWithCountdown(_options);
-            _scanResultsCollection = ScanRunner.RunScan(_options);
+            _scanOutputCollection = ScanRunner.RunScan(_options);
         }
 
         private static Parser CaseInsensitiveParser()

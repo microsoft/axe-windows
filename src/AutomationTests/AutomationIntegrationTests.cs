@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
+using Axe.Windows.Automation.Data;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -80,7 +81,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WildlifeManager()
         {
-            ScanResults results = Scan_Integration_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
+            WindowScanOutput results = Scan_Integration_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
             EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
         }
 
@@ -119,39 +120,7 @@ namespace Axe.Windows.AutomationTests
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        [TestMethod]
-        [Timeout(30000)]
-        public void SingleWindowScan_MultipleRootsEnabledThrows()
-        {
-            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
-            var config = Config.Builder.ForProcessId(TestProcess.Id)
-                .WithOutputDirectory(OutputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
-                .Build();
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var action = new Action(() => scanner.Scan());
-            Assert.ThrowsException<InvalidOperationException>(action);
-        }
-
-        [TestMethod]
-        [Timeout(30000)]
-        public void SingleWindowScanWithID_MultipleRootsEnabledThrows()
-        {
-            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
-            var config = Config.Builder.ForProcessId(TestProcess.Id)
-                .WithOutputDirectory(OutputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
-                .Build();
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var action = new Action(() => scanner.Scan("TestIDForThrow"));
-            Assert.ThrowsException<InvalidOperationException>(action);
-        }
-
-        private ScanResults Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        private WindowScanOutput Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);
             var builder = Config.Builder.ForProcessId(TestProcess.Id)
@@ -194,11 +163,11 @@ namespace Axe.Windows.AutomationTests
             return output.First();
         }
 
-        private IReadOnlyCollection<ScanResults> ScanWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<WindowScanOutput> ScanWithProvisionForBuildAgents(IScanner scanner)
         {
             try
             {
-                return scanner.ScanAll();
+                return scanner.Scan(null).WindowScanOutputs;
             }
             catch (AxeWindowsAutomationException e)
             {
@@ -210,7 +179,7 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(ScanResults scanResults, int processId)
+        private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(WindowScanOutput scanResults, int processId)
         {
             Assert.IsTrue(File.Exists(ValidationApp), ValidationApp + " was not found");
 

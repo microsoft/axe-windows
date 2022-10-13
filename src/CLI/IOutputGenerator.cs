@@ -9,7 +9,7 @@ namespace AxeWindowsCLI
     internal interface IOutputGenerator
     {
         void WriteBanner(IOptions options);
-        void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException);
+        void WriteOutput(IOptions options, WindowScanOutput scanResults, Exception caughtException);
         void WriteThirdPartyNoticeOutput(string pathToFile);
     }
 }

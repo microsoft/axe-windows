@@ -7,7 +7,7 @@ namespace Axe.Windows.Automation
     /// <summary>
     /// Contains information about an AxeWindows automated scan
     /// </summary>
-    public class ScanResults
+    public class WindowScanOutput
     {
         /// <summary>
         /// A <see cref="OutputFile"/> object containing paths to any output files written as

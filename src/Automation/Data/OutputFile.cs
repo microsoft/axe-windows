@@ -5,7 +5,7 @@ namespace Axe.Windows.Automation
 {
 #pragma warning disable CA1815 // Should override Equals
     /// <summary>
-    /// Represents the output file(s), if any, associated with a ScanResults object
+    /// Represents the output file(s), if any, associated with a WindowScanOutput object
     /// </summary>
     public struct OutputFile
     {

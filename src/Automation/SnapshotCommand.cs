@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Contexts;
+using Axe.Windows.Automation.Data;
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using System;
@@ -9,42 +10,67 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Class to take a snapshot (via SnapshotCommand.Execute).
+    /// Class to take a snapshot (via SnapshotCommand.Execute*).
     /// </summary>
     static class SnapshotCommand
     {
         /// <summary>
-        /// Execute the scan
+        /// Execute the scan asynchronously
         /// </summary>
         /// <param name="config">A set of configuration options</param>
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
-        /// <returns>A SnapshotCommandResult that describes the result of the command</returns>
-        public static IReadOnlyCollection<ScanResults> Execute(Config config, IScanTools scanTools)
+        /// <param name="cancellationToken">A cancellation token</param>
+        /// <returns>A ScanOutput object that describes the result of the command</returns>
+        public static Task<ScanOutput> ExecuteAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
+        {
+            ValidateScanParameters(config, scanTools);
+
+            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
+        }
+
+        /// <summary>
+        /// Execute the scan synchronously
+        /// </summary>
+        /// <param name="config">A set of configuration options</param>
+        /// <param name="scanTools">A set of tools for writing output files,
+        /// creating the expected results format, and finding the target element to scan</param>
+        /// <returns>A ScanOutput object that describes the result of the command</returns>
+        public static ScanOutput Execute(Config config, IScanTools scanTools)
+        {
+            ValidateScanParameters(config, scanTools);
+
+            return GetScanOutput(config, scanTools, CancellationToken.None);
+        }
+
+        private static void ValidateScanParameters(Config config, IScanTools scanTools)
         {
             if (config == null) throw new ArgumentNullException(nameof(config));
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
             if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
             if (scanTools.DpiAwareness == null) throw new ArgumentException(ErrorMessages.ScanToolsDpiAwarenessNull, nameof(scanTools));
+        }
 
+        private static ScanOutput GetScanOutput(Config config, IScanTools scanTools, CancellationToken cancellationToken)
+        {
             if (config.CustomUIAConfigPath != null)
                 scanTools.Actions.RegisterCustomUIAPropertiesFromConfig(config.CustomUIAConfigPath);
 
-            List<ScanResults> resultList = new List<ScanResults>();
+            List<WindowScanOutput> resultList = new List<WindowScanOutput>();
 
-            // TODO: Pass the provided CancellationToken to ScopedActionContext.CreateInstance()
-            using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
+            using (var actionContext = ScopedActionContext.CreateInstance(cancellationToken))
             {
                 var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext);
 
                 if (rootElements is null || !rootElements.Any())
                 {
-                    return resultList;
+                    return new ScanOutput(resultList);
                 }
 
                 int targetIndex = 1;
@@ -63,13 +89,13 @@ namespace Axe.Windows.Automation
                 }
             }
 
-            return resultList;
+            return new ScanOutput(resultList);
         }
 
         /// <summary>
         /// This method is our atomic scanner. When we add async support, keep it all within the scope of a single thread.
         /// </summary>
-        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<ScanResults> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement, IActionContext actionContext)
+        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<WindowScanOutput> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement, IActionContext actionContext)
         {
             var dpiAwarenessObject = scanTools.DpiAwareness.Enable();
             try
@@ -85,7 +111,7 @@ namespace Axe.Windows.Automation
             }
         }
 
-        private static ScanResults ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IActionContext actionContext)
+        private static WindowScanOutput ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IActionContext actionContext)
         {
             // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
             object dpiAwarenessObject = scanTools.DpiAwareness.Enable();
@@ -95,7 +121,7 @@ namespace Axe.Windows.Automation
                 if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
                 if (scanTools.ResultsAssembler == null) throw new ArgumentException(ErrorMessages.ScanToolsResultsAssemblerNull, nameof(scanTools));
 
-                var results = scanTools.ResultsAssembler.AssembleScanResultsFromElement(element);
+                var results = scanTools.ResultsAssembler.AssembleWindowScanOutputFromElement(element);
 
                 if (config.AreMultipleScanRootsEnabled)
                 {

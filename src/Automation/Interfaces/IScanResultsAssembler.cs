@@ -5,15 +5,15 @@ using Axe.Windows.Core.Bases;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Provides methods used to assemble a <see cref="ScanResults"/> object
+    /// Provides methods used to assemble <see cref="ScanResult"/> and <see cref="WindowScanOutput"/> objects
     /// </summary>
     internal interface IScanResultsAssembler
     {
         /// <summary>
         /// Assembles failed scans from the provided element
         /// </summary>
-        /// <param name="element">Root element from which scan results will be assembled</param>
-        /// <returns>A ScanResults object containing the relevant errors and error count</returns>
-        ScanResults AssembleScanResultsFromElement(A11yElement element);
+        /// <param name="element">Root element from which the scan output will be assembled</param>
+        /// <returns>A WindowScanOutput object containing the relevant errors and error count</returns>
+        WindowScanOutput AssembleWindowScanOutputFromElement(A11yElement element);
     }
 }

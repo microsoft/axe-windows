@@ -265,7 +265,7 @@ namespace AxeWindowsCLITests
             return patterns;
         }
 
-        private ScanResults BuildTestScanResults(int errorCount = 0, string a11yTestFile = null,
+        private WindowScanOutput BuildTestScanResults(int errorCount = 0, string a11yTestFile = null,
             int? propertyCount = null, int? patternCount = null, string frameworkIssueLink = null)
         {
             List<ScanResult> errors = new List<ScanResult>(errorCount);
@@ -287,7 +287,7 @@ namespace AxeWindowsCLITests
                 }); ;
             };
 
-            return new ScanResults
+            return new WindowScanOutput
             {
                 Errors = errors,
                 ErrorCount = errors.Count,
@@ -300,7 +300,7 @@ namespace AxeWindowsCLITests
         public void WriteOutput_ScanResultsNoErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            ScanResults scanResults = BuildTestScanResults();
+            WindowScanOutput scanResults = BuildTestScanResults();
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
@@ -312,7 +312,7 @@ namespace AxeWindowsCLITests
         public void WriteOutput_ScanResultsWithErrors_VerbosityIsQuiet_IsSilent()
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(VerbosityLevel.Quiet);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
@@ -330,7 +330,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(ErrorCountGeneralStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults();
+            WindowScanOutput scanResults = BuildTestScanResults();
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
@@ -350,7 +350,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 1, a11yTestFile: TestA11yTestFile);
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
@@ -370,7 +370,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
@@ -394,7 +394,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile);
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
 
@@ -424,7 +424,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 patternCount: 2);
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
@@ -455,7 +455,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 propertyCount: 2);
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);
@@ -494,7 +494,7 @@ namespace AxeWindowsCLITests
                 new WriteCall(OutputFileStart, WriteSource.WriteLineOneParam),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
-            ScanResults scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
+            WindowScanOutput scanResults = BuildTestScanResults(errorCount: 2, a11yTestFile: TestA11yTestFile,
                 patternCount: 2, propertyCount: 2, frameworkIssueLink: "https://docs.microsoft.com");
 
             _testSubject.WriteOutput(_optionsMock.Object, scanResults, null);

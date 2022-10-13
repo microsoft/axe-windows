@@ -23,9 +23,9 @@ namespace AxeWindowsCLI
             _writer = writer ?? throw new ArgumentNullException(nameof(writer));
         }
 
-        public void WriteOutput(IOptions options, ScanResults scanResults, Exception caughtException)
+        public void WriteOutput(IOptions options, WindowScanOutput scanOut, Exception caughtException)
         {
-            bool failedToComplete = caughtException != null || scanResults == null;
+            bool failedToComplete = caughtException != null || scanOut == null;
 
             WriteBanner(options, failedToComplete ? VerbosityLevel.Quiet : VerbosityLevel.Default);
             if (failedToComplete)
@@ -34,7 +34,7 @@ namespace AxeWindowsCLI
             }
             else
             {
-                WriteScanResults(options, scanResults);
+                WriteWindowScanOutput(options, scanOut);
             }
         }
 
@@ -113,42 +113,42 @@ namespace AxeWindowsCLI
             }
         }
 
-        private void WriteScanResults(IOptions options, ScanResults scanResults)
+        private void WriteWindowScanOutput(IOptions options, WindowScanOutput output)
         {
             if (options.VerbosityLevel == VerbosityLevel.Quiet)
             {
                 return;
             }
 
-            WriteErrorCount(scanResults);
+            WriteErrorCount(output);
 
             if (options.VerbosityLevel >= VerbosityLevel.Verbose)
             {
-                WriteVerboseResults(scanResults);
+                WriteVerboseWindowScanOutput(output);
             }
 
-            if (!string.IsNullOrEmpty(scanResults.OutputFile.A11yTest))
+            if (!string.IsNullOrEmpty(output.OutputFile.A11yTest))
             {
-                _writer.WriteLine(DisplayStrings.ScanResultsLocationFormat, scanResults.OutputFile.A11yTest);
+                _writer.WriteLine(DisplayStrings.ScanResultsLocationFormat, output.OutputFile.A11yTest);
             }
         }
 
-        private void WriteErrorCount(ScanResults scanResults)
+        private void WriteErrorCount(WindowScanOutput output)
         {
-            if (scanResults.ErrorCount == 1)
+            if (output.ErrorCount == 1)
             {
                 _writer.WriteLine(DisplayStrings.ScanResultsSingleError);
             }
             else
             {
-                _writer.WriteLine(DisplayStrings.ScanResultsMultipleErrorsFormat, scanResults.ErrorCount);
+                _writer.WriteLine(DisplayStrings.ScanResultsMultipleErrorsFormat, output.ErrorCount);
             }
         }
 
-        private void WriteVerboseResults(ScanResults scanResults)
+        private void WriteVerboseWindowScanOutput(WindowScanOutput output)
         {
             int errorCount = 0;
-            foreach (ScanResult scanResult in scanResults.Errors)
+            foreach (ScanResult scanResult in output.Errors)
             {
                 _writer.WriteLine(DisplayStrings.ScanResultDetailHeader, ++errorCount, scanResult.Rule.Description);
                 WriteFrameworkLink(scanResult);

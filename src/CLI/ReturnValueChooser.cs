@@ -16,7 +16,7 @@ namespace AxeWindowsCLI
         public const int ThirdPartyNoticesDisplayed = 3;  // Used outside this class
         public const int BadInputParameters = 255;
 
-        public static int GetReturnValue(bool parserError, IReadOnlyCollection<ScanResults> scanResults, Exception caughtException)
+        public static int GetReturnValue(bool parserError, IReadOnlyCollection<WindowScanOutput> scanResults, Exception caughtException)
         {
             if (parserError || caughtException is ParameterException)
                 return BadInputParameters;
