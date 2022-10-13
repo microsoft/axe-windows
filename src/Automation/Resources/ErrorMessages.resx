@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorDirectoryInvalid" xml:space="preserve">
+    <value>The directory "{0}" was invalid.</value>
+  </data>
+  <data name="ErrorFailToGetRootElementsOfProcess" xml:space="preserve">
+    <value>ERROR Automation017: Failed to get the root element(s) of the specified process({0}) : {1}</value>
+  </data>
+  <data name="ErrorIsNotFullPath" xml:space="preserve">
+    <value>The given path was not an absolute path.</value>
+  </data>
+  <data name="ErrorTooManyElementsToSetDataContext" xml:space="preserve">
+    <value>ERROR Automation017: Unable to set Data context (more than {0:N0} elements were found)</value>
+    <comment>Don't change error code! {0} is the maximum number of elements</comment>
+  </data>
+  <data name="ErrorUnableToSetDataContext" xml:space="preserve">
+    <value>ERROR Automation008: Unable to set Data context</value>
+    <comment>Don't change error code!</comment>
+  </data>
+  <data name="ErrorUnhandledExceptionFormat" xml:space="preserve">
+    <value>ERROR Automation003: Unhandled Exception {0}</value>
+    <comment>Don't change error code! {0} is the exception detail</comment>
+  </data>
   <data name="NoDesktopElements" xml:space="preserve">
     <value>The argument must be a non-empty IEnumerable</value>
   </data>

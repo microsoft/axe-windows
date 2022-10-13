@@ -26,14 +26,14 @@ namespace Axe.Windows.Automation
             sa.SetCandidateElement(element);
 
             if (!sa.Select())
-                throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                throw new AxeWindowsAutomationException(ErrorMessages.ErrorUnableToSetDataContext);
 
             using (ElementContext ec2 = sa.POIElementContext)
             {
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 GetDataAction.GetProcessAndUIFrameworkOfElementContext(ec2.Id, actionContext);
                 if (!CaptureAction.SetTestModeDataContext(ec2.Id, DataContextMode.Test, TreeViewMode.Control, actionContext))
-                    throw new AxeWindowsAutomationException(DisplayStrings.ErrorUnableToSetDataContext);
+                    throw new AxeWindowsAutomationException(ErrorMessages.ErrorUnableToSetDataContext);
                 long scanDurationInMilliseconds = stopwatch.ElapsedMilliseconds;
 
                 // send telemetry of scan results.
@@ -43,7 +43,7 @@ namespace Axe.Windows.Automation
                 if (dc.ElementCounter.UpperBoundExceeded)
                 {
                     throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
-                        DisplayStrings.ErrorTooManyElementsToSetDataContext,
+                        ErrorMessages.ErrorTooManyElementsToSetDataContext,
                         dc.ElementCounter.UpperBound));
                 }
 
