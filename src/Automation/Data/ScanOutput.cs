@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Axe.Windows.Automation.Data
 {
     /// <summary>
-    /// Contains information, such as ScanResults, related to a particular invocation of the ScanAsync method.
-    /// This object currently contains ScanResults.
-    /// However, additional fields may be added at a future time to add extra information without breaking existing users of the IAsyncScanner API.
+    /// Contains information, such as WindowScanOutput objects, related to a particular invocation of the IScanner interface.
+    /// This object currently contains a collection of WindowScanOutput objects.
+    /// However, additional fields may be added at a future time to add extra information without breaking existing users of the IScanner API.
     /// </summary>
     public class ScanOutput
     {

@@ -5,7 +5,7 @@ using Axe.Windows.Core.Bases;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Provides methods used to assemble a <see cref="WindowScanOutput"/> object
+    /// Provides methods used to assemble <see cref="ScanResult"/> and <see cref="WindowScanOutput"/> objects
     /// </summary>
     internal interface IScanResultsAssembler
     {

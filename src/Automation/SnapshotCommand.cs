@@ -20,14 +20,13 @@ namespace Axe.Windows.Automation
     static class SnapshotCommand
     {
         /// <summary>
-        /// Execute the scan synchronously
+        /// Execute the scan asynchronously
         /// </summary>
         /// <param name="config">A set of configuration options</param>
         /// <param name="scanTools">A set of tools for writing output files,
         /// creating the expected results format, and finding the target element to scan</param>
         /// <param name="cancellationToken">A cancellation token</param>
-        /// <returns>A set of ScanResults objects that describes the result of the command</returns>
-
+        /// <returns>A ScanOutput object that describes the result of the command</returns>
         public static Task<ScanOutput> ExecuteAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
         {
             ValidateScanParameters(config, scanTools);
@@ -35,6 +34,13 @@ namespace Axe.Windows.Automation
             return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
         }
 
+        /// <summary>
+        /// Execute the scan synchronously
+        /// </summary>
+        /// <param name="config">A set of configuration options</param>
+        /// <param name="scanTools">A set of tools for writing output files,
+        /// creating the expected results format, and finding the target element to scan</param>
+        /// <returns>A ScanOutput object that describes the result of the command</returns>
         public static ScanOutput Execute(Config config, IScanTools scanTools)
         {
             ValidateScanParameters(config, scanTools);
