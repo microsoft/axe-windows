@@ -23,7 +23,7 @@ namespace Axe.Windows.Automation
             }
             catch (Exception ex)
             {
-                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, DisplayStrings.ErrorFailToGetRootElementsOfProcess, processId, ex), ex);
+                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorFailToGetRootElementsOfProcess, processId, ex), ex);
             }
         }
 

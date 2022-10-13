@@ -61,6 +61,60 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The directory &quot;{0}&quot; was invalid..
+        /// </summary>
+        internal static string ErrorDirectoryInvalid {
+            get {
+                return ResourceManager.GetString("ErrorDirectoryInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR Automation017: Failed to get the root element(s) of the specified process({0}) : {1}.
+        /// </summary>
+        internal static string ErrorFailToGetRootElementsOfProcess {
+            get {
+                return ResourceManager.GetString("ErrorFailToGetRootElementsOfProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given path was not an absolute path..
+        /// </summary>
+        internal static string ErrorIsNotFullPath {
+            get {
+                return ResourceManager.GetString("ErrorIsNotFullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR Automation017: Unable to set Data context (more than {0:N0} elements were found).
+        /// </summary>
+        internal static string ErrorTooManyElementsToSetDataContext {
+            get {
+                return ResourceManager.GetString("ErrorTooManyElementsToSetDataContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR Automation008: Unable to set Data context.
+        /// </summary>
+        internal static string ErrorUnableToSetDataContext {
+            get {
+                return ResourceManager.GetString("ErrorUnableToSetDataContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ERROR Automation003: Unhandled Exception {0}.
+        /// </summary>
+        internal static string ErrorUnhandledExceptionFormat {
+            get {
+                return ResourceManager.GetString("ErrorUnhandledExceptionFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The argument must be a non-empty IEnumerable.
         /// </summary>
         internal static string NoDesktopElements {
