@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using Axe.Windows.Automation.Data;
 using Axe.Windows.Automation.Resources;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 namespace Axe.Windows.Automation
 {
     /// <summary>
-    /// Implementation of <see cref="IScanner"/> (recommended for new projects) and <see cref="IScanner"/>
+    /// Implementation of the <see cref="IScanner"/> interface
     /// </summary>
     class Scanner : IScanner
     {
