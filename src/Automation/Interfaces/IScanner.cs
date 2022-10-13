@@ -30,7 +30,7 @@ namespace Axe.Windows.Automation
         Task<ScanOutput> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken);
 
         /// <summary>
-        /// synchronously run AxeWindows automated tests
+        /// Synchronously run AxeWindows automated tests
         /// </summary>
         /// <param name="scanOptions">An instance of <see cref="ScanOptions"/>. If null, default options will be used.</param>
         /// <remarks>
