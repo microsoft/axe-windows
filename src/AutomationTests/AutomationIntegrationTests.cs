@@ -120,38 +120,6 @@ namespace Axe.Windows.AutomationTests
             Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
-        [TestMethod]
-        [Timeout(30000)]
-        public void SingleWindowScan_MultipleRootsEnabledThrows()
-        {
-            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
-            var config = Config.Builder.ForProcessId(TestProcess.Id)
-                .WithOutputDirectory(OutputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
-                .Build();
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var action = new Action(() => scanner.Scan(null));
-            Assert.ThrowsException<InvalidOperationException>(action);
-        }
-
-        [TestMethod]
-        [Timeout(30000)]
-        public void SingleWindowScanWithID_MultipleRootsEnabledThrows()
-        {
-            LaunchTestApp(WindowsFormsMultiWindowSamplerAppPath);
-            var config = Config.Builder.ForProcessId(TestProcess.Id)
-                .WithOutputDirectory(OutputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
-                .Build();
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var action = new Action(() => scanner.Scan(new ScanOptions("TestIDForThrow")));
-            Assert.ThrowsException<InvalidOperationException>(action);
-        }
-
         private WindowScanOutput Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);

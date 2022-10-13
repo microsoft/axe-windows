@@ -29,14 +29,20 @@ namespace Axe.Windows.Automation
 
         public Task<ScanOutput> ScanAsync(ScanOptions scanOptions, CancellationToken cancellationToken)
         {
-            scanOptions = scanOptions ?? DefaultScanOptions;
-            _scanTools.OutputFileHelper.SetScanId(scanOptions.ScanId);
+            HandleScanOptions(scanOptions);
             return SnapshotCommand.ExecuteAsync(_config, _scanTools, cancellationToken);
         }
 
         public ScanOutput Scan(ScanOptions scanOptions)
         {
-            return ScanAsync(scanOptions, CancellationToken.None).GetAwaiter().GetResult();
+            HandleScanOptions(scanOptions);
+            return SnapshotCommand.Execute(_config, _scanTools);
+        }
+
+        private void HandleScanOptions(ScanOptions scanOptions)
+        {
+            scanOptions = scanOptions ?? DefaultScanOptions;
+            _scanTools.OutputFileHelper.SetScanId(scanOptions.ScanId);
         }
     } // class
 } // namespace

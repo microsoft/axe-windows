@@ -30,13 +30,25 @@ namespace Axe.Windows.Automation
 
         public static Task<ScanOutput> ExecuteAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
         {
+            ValidateScanParameters(config, scanTools);
+
+            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
+        }
+
+        public static ScanOutput Execute(Config config, IScanTools scanTools)
+        {
+            ValidateScanParameters(config, scanTools);
+
+            return GetScanOutput(config, scanTools, CancellationToken.None);
+        }
+
+        private static void ValidateScanParameters(Config config, IScanTools scanTools)
+        {
             if (config == null) throw new ArgumentNullException(nameof(config));
             if (scanTools == null) throw new ArgumentNullException(nameof(scanTools));
             if (scanTools.TargetElementLocator == null) throw new ArgumentException(ErrorMessages.ScanToolsTargetElementLocatorNull, nameof(scanTools));
             if (scanTools.Actions == null) throw new ArgumentException(ErrorMessages.ScanToolsActionsNull, nameof(scanTools));
             if (scanTools.DpiAwareness == null) throw new ArgumentException(ErrorMessages.ScanToolsDpiAwarenessNull, nameof(scanTools));
-
-            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
         }
 
         private static ScanOutput GetScanOutput(Config config, IScanTools scanTools, CancellationToken cancellationToken)
