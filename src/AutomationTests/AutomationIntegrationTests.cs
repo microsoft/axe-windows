@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Axe.Windows.AutomationTests
 {
@@ -77,50 +78,98 @@ namespace Axe.Windows.AutomationTests
             CleanupTestOutput();
         }
 
-        [TestMethod]
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
         [Timeout(30000)]
-        public void Scan_Integration_WildlifeManager()
+        public void Scan_Integration_WildlifeManager(bool sync)
         {
-            WindowScanOutput results = Scan_Integration_Core(WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
+            WindowScanOutput results = ScanIntegrationCore(sync, WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
             EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
         }
 
-        // [TestMethod]
+        // [DataTestMethod]
+        // [DataRow(true)]
+        // [DataRow(false)]
         [Timeout(30000)]
-        public void Scan_Integration_Win32ControlSampler()
+        public void Scan_Integration_Win32ControlSampler(bool sync)
         {
-            Scan_Integration_Core(Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+            ScanIntegrationCore(sync, Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+        }
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsControlSampler(bool sync)
+        {
+            ScanIntegrationCore(sync, WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+        }
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsMultiWindowSample(bool sync)
+        {
+            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
+        }
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        [Timeout(30000)]
+        public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow(bool sync)
+        {
+            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
+        }
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        [Timeout(30000)]
+        public void Scan_Integration_WpfControlSampler(bool sync)
+        {
+            ScanIntegrationCore(sync, WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
         [TestMethod]
         [Timeout(30000)]
-        public void Scan_Integration_WindowsFormsControlSampler()
+        public void ScanAsync_WindowsFormsSampler_TaskIsCancelled_ThrowsCancellationException()
         {
-            Scan_Integration_Core(WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+            var testAppPath = WindowsFormsControlSamplerAppPath;
+            LaunchTestApp(testAppPath);
+            var builder = Config.Builder.ForProcessId(TestProcess.Id)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+            var config = builder.Build();
+
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var cancellationTokenSource = new CancellationTokenSource();
+            cancellationTokenSource.Cancel();
+
+            var task = scanner.ScanAsync(null, cancellationTokenSource.Token);
+
+            var exception = Assert.ThrowsException<AggregateException>(() => task.Result);
+            Assert.AreEqual(typeof(TaskCanceledException), exception.InnerException.GetType());
+            Assert.IsTrue(task.IsCanceled);
         }
 
-        [TestMethod]
-        [Timeout(30000)]
-        public void Scan_Integration_WindowsFormsMultiWindowSample()
+        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
-            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
+            if (sync)
+            {
+                return SyncScanIntegrationCore(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
+            }
+            else
+            {
+                return AsyncScanIntegrationCore(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
+            }
         }
 
-        [TestMethod]
-        [Timeout(30000)]
-        public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow()
-        {
-            Scan_Integration_Core(WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
-        }
-
-        [TestMethod]
-        [Timeout(30000)]
-        public void Scan_Integration_WpfControlSampler()
-        {
-            Scan_Integration_Core(WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
-        }
-
-        private WindowScanOutput Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        private WindowScanOutput SyncScanIntegrationCore(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);
             var builder = Config.Builder.ForProcessId(TestProcess.Id)
@@ -136,9 +185,34 @@ namespace Axe.Windows.AutomationTests
 
             var scanner = ScannerFactory.CreateScanner(config);
 
-            var output = ScanWithProvisionForBuildAgents(scanner);
+            var output = ScanSyncWithProvisionForBuildAgents(scanner);
 
-            // Validate for consistency
+            return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
+        }
+
+        private WindowScanOutput AsyncScanIntegrationCore(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        {
+            LaunchTestApp(testAppPath);
+            var builder = Config.Builder.ForProcessId(TestProcess.Id)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+            if (enableMultipleScanRoots)
+            {
+                builder = builder.WithMultipleScanRootsEnabled();
+            }
+
+            var config = builder.Build();
+
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            var output = ScanAsyncWithProvisionForBuildAgents(scanner);
+
+            return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
+        }
+
+        private WindowScanOutput ValidateOutput(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
+        {
             Assert.AreEqual(expectedWindowCount, output.Count);
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.Errors.Count()));
@@ -163,11 +237,27 @@ namespace Axe.Windows.AutomationTests
             return output.First();
         }
 
-        private IReadOnlyCollection<WindowScanOutput> ScanWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<WindowScanOutput> ScanSyncWithProvisionForBuildAgents(IScanner scanner)
         {
             try
             {
                 return scanner.Scan(null).WindowScanOutputs;
+            }
+            catch (AxeWindowsAutomationException e)
+            {
+                if (allowInconclusive && e.Message.Contains("Automation017"))
+                {
+                    Assert.Inconclusive("Unable to complete Integration tests");
+                }
+                throw;
+            }
+        }
+
+        private IReadOnlyCollection<WindowScanOutput> ScanAsyncWithProvisionForBuildAgents(IScanner scanner)
+        {
+            try
+            {
+                return scanner.ScanAsync(null, CancellationToken.None).Result.WindowScanOutputs;
             }
             catch (AxeWindowsAutomationException e)
             {
