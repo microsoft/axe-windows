@@ -89,8 +89,8 @@ namespace Axe.Windows.AutomationTests
         }
 
         // [DataTestMethod]
-        //[DataRow(true)]
-        //[DataRow(false)]
+        // [DataRow(true)]
+        // [DataRow(false)]
         [Timeout(30000)]
         public void Scan_Integration_Win32ControlSampler(bool sync)
         {
@@ -135,7 +135,7 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(30000)]
-        public void Scan_Throws_When_Cancelled()
+        public void ScanAsync_Throws_When_Cancelled()
         {
             var testAppPath = WindowsFormsControlSamplerAppPath;
             LaunchTestApp(testAppPath);
