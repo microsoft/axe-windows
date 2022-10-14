@@ -323,4 +323,4 @@ The new return type of `IScanner`'s methods is `ScanOutput`. This object contain
 In place of this | Do this
 ---|---
 `IScanner.Scan().ErrorCount` | `IScanner.Scan(null).WindowScanOutputs.First().ErrorCount`
-`foreach (ScanResult item in IScanner.ScanAll())` | `foreach (ScanResult item in IScanner.Scan(null).WindowScanOutputs)`
+`foreach (ScanResults item in IScanner.ScanAll())` | `foreach (WindowScanOutput item in IScanner.Scan(null).WindowScanOutputs)`
