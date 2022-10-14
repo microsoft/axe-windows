@@ -123,26 +123,30 @@ The `ScannerFactory.CreateScanner` method returns an `IScanner` object.
 
 #### IScanner
 
+##### `ScanAsync`
+The `ScanAsync` method asynchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner. This method should be `await`ed.
+
 ##### `Scan`
-The Scan runs AxeWindows automated tests using the config provided at the time of creation of the scanner.
+The `Scan` method synchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner, and blocks until the scan is complete.
 
-###### Parameters
+##### Parameters
+Methods of `IScanner` accept one parameter: an instance of `ScanOptions` containing custom settings for this scan, or `null` for default options.
 
-The `Scan` method accepts 0 or 1 parameters.
+##### Return object
+Methods of `IScanner` return a `ScanOutput` object with the following properties:
 
 **Name** | **Type** | **Description**
 ---|---|---
-scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest).
+`WindowScanOutputs` | `IReadOnlyCollection<WindowScanOutput>` | The set of `WindowScanOutput` objects produced by this scan, one per top-level application window.
 
-###### Return object
-
-The `Scan` method returns a `ScanResults` object and has the following properties:
+#### `WindowScanOutput`
+A `WindowScanOutput` object contains the results of scanning one top level window and has the following properties:
 
 **Name** | **Type** | **Description**
 ---|---|---
 ErrorCount | `int` | A count of all errors across all elements scanned.
 Errors | `IEnumerable<ScanResult>` | A collection of errors found during the scan.
-OutputFile | `OutputFile` | Represents the output file(s), if any, associated with a ScanResults object.
+OutputFile | `OutputFile` | Represents the output file(s), if any, associated with a `WindowScanOutput` object.
 
 The `OutputFile` property is a struct with the following properties:
 
@@ -178,7 +182,7 @@ Patterns | `IEnumerable<string>` | A list of names of supported patterns.
 
 #### IDPIAwareness
 
-UIA operates in physical screen coordinates, so DPI awareness _must_ be enabled while scanning. Methods on this interface will be called in pairs on each call to `IScanner.Scan` or `IScanner.ScanAll`. Each successful call to `Enable` will have a corresponding call to `Restore`.
+UIA operates in physical screen coordinates, so DPI awareness _must_ be enabled while scanning. Methods on this interface will be called in pairs on each call to `IScanner`'s methods. Each successful call to `Enable` will have a corresponding call to `Restore`.
 
 ##### `Enable`
 Enable DPI awareness for the scan.
@@ -225,6 +229,7 @@ example below):
 ```C#
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Axe.Windows.Automation;
 
     namespace AxeWindowsDemo
@@ -234,7 +239,7 @@ example below):
             /// <summary>
             /// This is a quick and easy demo of the automation code
             /// </summary>
-            static void Main(string[] args)
+            static async Task Main(string[] args)
             {
                 string testAppPath = Path.GetFullPath(@"..\myApplication.exe");
                 string outputDir = Path.GetFullPath(@".\TestOutput");
@@ -248,8 +253,8 @@ example below):
 
                 try
                 {
-                    var output = scanner.Scan();
-                    Assert.AreEqual(0, output.ErrorCount);
+                    var output = await scanner.ScanAsync(null);
+                    Assert.AreEqual(0, output.WindowScanOutputs.First().ErrorCount);
                 }
                 catch(AxeWindowsAutomationException e)
                 {
@@ -280,12 +285,25 @@ These versions embed the symbols into the assemblies and support [SourceLink](ht
 
 #### Error handling
 
-`AxeWindowsAutomationException` is thrown for all unhandled errors in Axe.Windows.Automation. If an exception was thrown from code not owned by Axe.Windows.Automation, that exception will be wrapped in the `Exception.InnerException` property.
+`AxeWindowsAutomationException` is thrown for errors in `Axe.Windows.Automation`'s logic where meaningful error reporting can be generated. In some situations, the `Exception.InnerException` property may contain a corresponding system-level exception for errors encountered by Axe.Windows.
 
-#### Fully synchronous
-Because  automated scans are stateful, they are intentionally synchronous within
-a process. If you attempt to initiate multiple scans concurrently, the first one
-to obtain the lock will execute, then another, then another. This is by design
-and is not expected to change at any future time. If you have a scenario that
-truly requires the command to execute in parallel, then you will need to create
-a solution where you can make those calls from separate processes.
+#### Migrating from Axe.Windows 1.x
+Migration to Axe.Windows 2.0 from 1.x should require minimal code changes for most projects.
+
+##### `IScanner.ScanAll` removed
+The `ScanAll` method for scanning multiple top-level windows has been removed. Use `ScanAsync` or `Scan` instead.
+
+##### Calling `IScanner.Scan`
+
+In place of this | Do this
+---|---
+`IScanner.Scan()` | `IScanner.Scan(null)`
+`IScanner.Scan("scanId")` | `IScanner.Scan(new ScanOptions(scanId: "scanId"))`
+
+##### `ScanResults` replaced with `ScanOutput`
+The new return type of `IScanner`'s methods is `ScanOutput`. This object contains a `WindowScanOutputs` field, a `IReadOnlyCollection` of `WindowScanOutput` objects. These objects contain the same fields as the previous `ScanResults` class.
+
+In place of this | Do this
+---|---
+`IScanner.Scan().ErrorCount` | `IScanner.Scan(null).WindowScanOutputs.First().ErrorCount`
+`foreach (ScanResult item in IScanner.ScanAll())` | `foreach (ScanResult item in IScanner.Scan(null).WindowScanOutputs)`
