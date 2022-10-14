@@ -261,7 +261,8 @@ namespace AxeWindowsDemo
             try
             {
                 var output = await scanner.ScanAsync(null);
-                Assert.AreEqual(0, output.WindowScanOutputs.First().ErrorCount);
+                foreach (var window in output.WindowScanOutputs)
+                    Assert.AreEqual(0, window.ErrorCount);
             }
             catch(Exception e)
             {
@@ -292,22 +293,22 @@ These versions embed the symbols into the assemblies and support [SourceLink](ht
 
 #### Error handling
 
-`AxeWindowsAutomationException` is thrown for errors in `Axe.Windows.Automation`'s logic where meaningful error reporting can be generated. In some situations, the `Exception.InnerException` property may contain a corresponding system-level exception for errors encountered by Axe.Windows.
+`AxeWindowsAutomationException` is thrown for errors in `Axe.Windows.Automation`'s logic where meaningful error reporting can be generated. In some situations, the `Exception.InnerException` property may contain a corresponding system-level exception for errors encountered by Axe.Windows. Other exceptions may be thrown by the system from calls to this library.
 
-#### Migrating from Axe.Windows 1.x
+### Migrating from Axe.Windows 1.x
 Migration from Axe.Windows 1x to Axe.Windows 2.0 should require minimal code changes for most projects.
 
-##### `IScanner.ScanAll` removed
+#### `IScanner.ScanAll` removed
 The `ScanAll` method for scanning multiple top-level windows has been removed. Use `ScanAsync` or `Scan` instead.
 
-##### Calling `IScanner.Scan`
+#### Calling `IScanner.Scan`
 
 In place of this | Do this
 ---|---
 `IScanner.Scan()` | `IScanner.Scan(null)`
 `IScanner.Scan("scanId")` | `IScanner.Scan(new ScanOptions(scanId: "scanId"))`
 
-##### `ScanResults` replaced with `ScanOutput`
+#### `ScanResults` replaced with `ScanOutput`
 The new return type of `IScanner`'s methods is `ScanOutput`. This object contains a `WindowScanOutputs` field, a `IReadOnlyCollection` of `WindowScanOutput` objects. These objects contain the same fields as the previous `ScanResults` class.
 
 In place of this | Do this
