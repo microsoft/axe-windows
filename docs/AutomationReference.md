@@ -234,43 +234,43 @@ example below):
 
 #### Example
 ```C#
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Axe.Windows.Automation;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Axe.Windows.Automation;
 
-    namespace AxeWindowsDemo
+namespace AxeWindowsDemo
+{
+    class Program
     {
-        class Program
+        /// <summary>
+        /// This is a quick and easy demo of the automation code
+        /// </summary>
+        static async Task Main(string[] args)
         {
-            /// <summary>
-            /// This is a quick and easy demo of the automation code
-            /// </summary>
-            static async Task Main(string[] args)
+            string testAppPath = Path.GetFullPath(@"..\myApplication.exe");
+            string outputDir = Path.GetFullPath(@".\TestOutput");
+            Process testProcess = Process.Start(testAppPath);
+            var config = Config.Builder.ForProcessId(testProcess.Id)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest)
+                .WithOutputDirectory(outputDir)
+                .Build();
+
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            try
             {
-                string testAppPath = Path.GetFullPath(@"..\myApplication.exe");
-                string outputDir = Path.GetFullPath(@".\TestOutput");
-                Process testProcess = Process.Start(testAppPath);
-                var config = Config.Builder.ForProcessId(testProcess.Id)
-                    .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                    .WithOutputDirectory(outputDir)
-                    .Build();
-
-                var scanner = ScannerFactory.CreateScanner(config);
-
-                try
-                {
-                    var output = await scanner.ScanAsync(null);
-                    Assert.AreEqual(0, output.WindowScanOutputs.First().ErrorCount);
-                }
-                catch(AxeWindowsAutomationException e)
-                {
-                    var errorMessage = e.toString();
-                    Assert.Fail(errorMessage);
-                }
+                var output = await scanner.ScanAsync(null);
+                Assert.AreEqual(0, output.WindowScanOutputs.First().ErrorCount);
+            }
+            catch(AxeWindowsAutomationException e)
+            {
+                var errorMessage = e.toString();
+                Assert.Fail(errorMessage);
             }
         }
     }
+}
 ```
 
 #### Debugging with symbols
