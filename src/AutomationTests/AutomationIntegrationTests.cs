@@ -84,7 +84,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WildlifeManager(bool sync)
         {
-            WindowScanOutput results = Scan_Integration_Core(sync, WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
+            WindowScanOutput results = ScanIntegrationCore(sync, WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
             EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
         }
 
@@ -94,7 +94,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_Win32ControlSampler(bool sync)
         {
-            Scan_Integration_Core(sync, Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+            ScanIntegrationCore(sync, Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
         }
 
         [DataTestMethod]
@@ -103,7 +103,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsControlSampler(bool sync)
         {
-            Scan_Integration_Core(sync, WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+            ScanIntegrationCore(sync, WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
         }
 
         [DataTestMethod]
@@ -112,7 +112,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample(bool sync)
         {
-            Scan_Integration_Core(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
+            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
         }
 
         [DataTestMethod]
@@ -121,7 +121,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow(bool sync)
         {
-            Scan_Integration_Core(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
+            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
         }
 
         [DataTestMethod]
@@ -130,12 +130,12 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WpfControlSampler(bool sync)
         {
-            Scan_Integration_Core(sync, WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+            ScanIntegrationCore(sync, WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
         }
 
         [TestMethod]
         [Timeout(30000)]
-        public void ScanAsync_Throws_When_Cancelled()
+        public void ScanAsync_WindowsFormsSampler_TaskIsCancelled_ThrowsCancellationException()
         {
             var testAppPath = WindowsFormsControlSamplerAppPath;
             LaunchTestApp(testAppPath);
@@ -157,19 +157,19 @@ namespace Axe.Windows.AutomationTests
             Assert.IsTrue(task.IsCanceled);
         }
 
-        private WindowScanOutput Scan_Integration_Core(bool sync, string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             if (sync)
             {
-                return Sync_Scan_Integration_Core(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
+                return SyncScanIntegrationCore(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
             }
             else
             {
-                return Async_Scan_Integration_Core(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
+                return AsyncScanIntegrationCore(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
             }
         }
 
-        private WindowScanOutput Sync_Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        private WindowScanOutput SyncScanIntegrationCore(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);
             var builder = Config.Builder.ForProcessId(TestProcess.Id)
@@ -187,10 +187,10 @@ namespace Axe.Windows.AutomationTests
 
             var output = ScanSyncWithProvisionForBuildAgents(scanner);
 
-            return Validate_Output(output, expectedErrorCount, expectedWindowCount);
+            return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
         }
 
-        private WindowScanOutput Async_Scan_Integration_Core(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        private WindowScanOutput AsyncScanIntegrationCore(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
         {
             LaunchTestApp(testAppPath);
             var builder = Config.Builder.ForProcessId(TestProcess.Id)
@@ -208,10 +208,10 @@ namespace Axe.Windows.AutomationTests
 
             var output = ScanAsyncWithProvisionForBuildAgents(scanner);
 
-            return Validate_Output(output, expectedErrorCount, expectedWindowCount);
+            return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
         }
 
-        private WindowScanOutput Validate_Output(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
+        private WindowScanOutput ValidateOutput(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
         {
             Assert.AreEqual(expectedWindowCount, output.Count);
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
