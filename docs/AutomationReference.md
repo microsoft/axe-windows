@@ -245,6 +245,7 @@ example below):
 ```C#
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Axe.Windows.Automation;
 
@@ -269,7 +270,7 @@ namespace AxeWindowsDemo
 
             try
             {
-                var output = await scanner.ScanAsync(null);
+                var output = await scanner.ScanAsync(null, CancellationToken.None);
                 foreach (var window in output.WindowScanOutputs)
                     Assert.AreEqual(0, window.ErrorCount);
             }
