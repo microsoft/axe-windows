@@ -305,7 +305,7 @@ These versions embed the symbols into the assemblies and support [SourceLink](ht
 `AxeWindowsAutomationException` is thrown for errors in `Axe.Windows.Automation`'s logic where meaningful error reporting can be generated. In some situations, the `Exception.InnerException` property may contain a corresponding system-level exception for errors encountered by Axe.Windows. Other exceptions may be thrown by the system from calls to this library.
 
 ### Migrating from Axe.Windows 1.x
-Migration from Axe.Windows 1x to Axe.Windows 2.0 should require minimal code changes for most projects.
+Migration from Axe.Windows 1.x to Axe.Windows 2.0 should require minimal code changes for most projects.
 
 #### `IScanner.ScanAll` removed
 The `ScanAll` method for scanning multiple top-level windows has been removed. Use `ScanAsync` or `Scan` instead.
