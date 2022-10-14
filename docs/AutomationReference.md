@@ -139,6 +139,13 @@ Methods of `IScanner` return a `ScanOutput` object with the following properties
 ---|---|---
 `WindowScanOutputs` | `IReadOnlyCollection<WindowScanOutput>` | The set of `WindowScanOutput` objects produced by this scan, one per top-level application window.
 
+#### `ScanOptions`
+The `ScanOptions` constructor accepts the following arguments:
+
+**Name** | **Type** | **Description**
+---|---|---
+scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest).
+
 #### `WindowScanOutput`
 A `WindowScanOutput` object contains the results of scanning one top level window and has the following properties:
 
