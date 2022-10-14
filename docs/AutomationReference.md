@@ -126,18 +126,20 @@ The `ScannerFactory.CreateScanner` method returns an `IScanner` object.
 ##### `ScanAsync`
 The `ScanAsync` method asynchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner. This method should be `await`ed.
 
+###### Parameters
+`IScanner.ScanAsync` accepts two parameters: an instance of `ScanOptions` containing custom settings for this scan (or `null` for default options), and a [`CancellationToken`](https://learn.microsoft.com/en-gb/dotnet/api/system.threading.cancellationtoken?view=netstandard-2.0).
+
+###### Return object
+`ScanAsync` returns a `ScanOutput` object.
+
 ##### `Scan`
 The `Scan` method synchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner, and blocks until the scan is complete.
 
-##### Parameters
-Methods of `IScanner` accept one parameter: an instance of `ScanOptions` containing custom settings for this scan, or `null` for default options.
+###### Parameters
+`IScanner.Scan` accepts one parameter: an instance of `ScanOptions` containing custom settings for this scan (or `null` for default options).
 
-##### Return object
-Methods of `IScanner` return a `ScanOutput` object with the following properties:
-
-**Name** | **Type** | **Description**
----|---|---
-`WindowScanOutputs` | `IReadOnlyCollection<WindowScanOutput>` | The set of `WindowScanOutput` objects produced by this scan, one per top-level application window.
+###### Return object
+`Scan` returns a `ScanOutput` object.
 
 #### `ScanOptions`
 The `ScanOptions` constructor accepts the following arguments:
@@ -145,6 +147,13 @@ The `ScanOptions` constructor accepts the following arguments:
 **Name** | **Type** | **Description**
 ---|---|---
 scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest).
+
+#### ScanOutput
+Methods of `IScanner` return a `ScanOutput` object with the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+`WindowScanOutputs` | `IReadOnlyCollection<WindowScanOutput>` | The set of `WindowScanOutput` objects produced by this scan, one per top-level application window.
 
 #### `WindowScanOutput`
 A `WindowScanOutput` object contains the results of scanning one top level window and has the following properties:
