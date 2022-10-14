@@ -27,11 +27,11 @@ namespace Axe.Windows.Automation
         /// creating the expected results format, and finding the target element to scan</param>
         /// <param name="cancellationToken">A cancellation token</param>
         /// <returns>A ScanOutput object that describes the result of the command</returns>
-        public static Task<ScanOutput> ExecuteAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
+        public static async Task<ScanOutput> ExecuteAsync(Config config, IScanTools scanTools, CancellationToken cancellationToken)
         {
             ValidateScanParameters(config, scanTools);
 
-            return Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken));
+            return await Task.Run<ScanOutput>(() => GetScanOutput(config, scanTools, cancellationToken)).ConfigureAwait(false);
         }
 
         /// <summary>
