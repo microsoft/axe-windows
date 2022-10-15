@@ -127,7 +127,12 @@ The `ScannerFactory.CreateScanner` method returns an `IScanner` object.
 The `ScanAsync` method asynchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner. This method should be `await`ed.
 
 ###### Parameters
-`IScanner.ScanAsync` accepts two parameters: an instance of `ScanOptions` containing custom settings for this scan (or `null` for default options), and a [`CancellationToken`](https://learn.microsoft.com/en-gb/dotnet/api/system.threading.cancellationtoken?view=netstandard-2.0).
+`IScanner.ScanAsync` accepts two parameters:
+
+**Name** | **Type** | **Description**
+---|---|---
+`scanOptions` | `ScanOptions` | An object describing custom settings for this scan. Pass `null` for default options.
+`cancellationToken` | `CancellationToken` | A [`CancellationToken`](https://learn.microsoft.com/en-gb/dotnet/api/system.threading.cancellationtoken?view=netstandard-2.0).
 
 ###### Return object
 `ScanAsync` returns a `ScanOutput` object.
@@ -136,7 +141,13 @@ The `ScanAsync` method asynchronously runs AxeWindows automated tests using the 
 The `Scan` method synchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner, and blocks until the scan is complete.
 
 ###### Parameters
-`IScanner.Scan` accepts one parameter: an instance of `ScanOptions` containing custom settings for this scan (or `null` for default options).
+`IScanner.Scan` accepts one parameter:
+###### Parameters
+`IScanner.ScanAsync` accepts two parameters:
+
+**Name** | **Type** | **Description**
+---|---|---
+`scanOptions` | `ScanOptions` | An object describing custom settings for this scan. Pass `null` for default options.
 
 ###### Return object
 `Scan` returns a `ScanOutput` object.
@@ -144,9 +155,9 @@ The `Scan` method synchronously runs AxeWindows automated tests using the config
 #### `ScanOptions`
 The `ScanOptions` constructor accepts the following arguments:
 
-**Name** | **Type** | **Description**
+**Name** | **Type** | **Description** | **Default value**
 ---|---|---
-scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest).
+scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest). | `null`
 
 #### ScanOutput
 Methods of `IScanner` return a `ScanOutput` object with the following properties:
