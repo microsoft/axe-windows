@@ -21,7 +21,7 @@ namespace Axe.Windows.AutomationTests
 
         private void AssertBuiltValues(string outputDirectory = null,
             IDPIAwareness dpiAwareness = null, OutputFileFormat? outputFileFormat = null,
-            string customUIAConfig = null, bool multipleScanRoots = false)
+            string customUIAConfig = null)
         {
             Config config = _builder.Build();
 
@@ -78,14 +78,6 @@ namespace Axe.Windows.AutomationTests
 
         [TestMethod]
         [Timeout(1000)]
-        public void Builder_WithMultipleScanRootsEnabled_SetsMultipleScanRootsEnabled()
-        {
-            _builder.WithMultipleScanRootsEnabled();
-            AssertBuiltValues(multipleScanRoots: true);
-        }
-
-        [TestMethod]
-        [Timeout(1000)]
         public void Builder_ChainingTest_AllValuesAreSet()
         {
             const string testOutputDirectory = "put tests here";
@@ -95,12 +87,11 @@ namespace Axe.Windows.AutomationTests
             Config.Builder builder = _builder
                 .WithCustomUIAConfig(testUIAConfig)
                 .WithDPIAwareness(dpiAwarenessMock.Object)
-                .WithMultipleScanRootsEnabled()
                 .WithOutputDirectory(testOutputDirectory)
                 .WithOutputFileFormat(testOutputFileFormat);
             Assert.AreSame(builder, _builder);
             AssertBuiltValues(customUIAConfig: testUIAConfig, dpiAwareness: dpiAwarenessMock.Object,
-                multipleScanRoots: true, outputDirectory: testOutputDirectory,
+                outputDirectory: testOutputDirectory,
                 outputFileFormat: testOutputFileFormat);
         }
     }

@@ -75,17 +75,14 @@ namespace Axe.Windows.Automation
 
                 int targetIndex = 1;
 
-                foreach (var rootElement in rootElements)
+                IReadOnlyList<A11yElement> rootElementList = rootElements.ToList();
+                bool multipleTopLevelWindowsExist = rootElementList.Count > 1;
+
+                foreach (var rootElement in rootElementList)
                 {
-                    ScanAndProcessResults(config, scanTools, resultList, rootElements, targetIndex, rootElement, actionContext);
+                    ScanAndProcessResults(config, scanTools, resultList, rootElements, multipleTopLevelWindowsExist, targetIndex, rootElement, actionContext);
 
                     targetIndex++;
-
-                    if (!config.AreMultipleScanRootsEnabled)
-                    {
-                        // We only want to scan the first window so just break for loop here
-                        break;
-                    }
                 }
             }
 
@@ -95,14 +92,14 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// This method is our atomic scanner. When we add async support, keep it all within the scope of a single thread.
         /// </summary>
-        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<WindowScanOutput> resultList, IEnumerable<A11yElement> rootElements, int targetIndex, A11yElement rootElement, IActionContext actionContext)
+        private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<WindowScanOutput> resultList, IEnumerable<A11yElement> rootElements, bool multipleTopLevelWindowsExist, int targetIndex, A11yElement rootElement, IActionContext actionContext)
         {
             var dpiAwarenessObject = scanTools.DpiAwareness.Enable();
             try
             {
                 resultList.Add(scanTools.Actions.Scan(rootElement, (element, elementId) =>
                 {
-                    return ProcessResults(element, elementId, config, scanTools, targetIndex, rootElements.Count(), actionContext);
+                    return ProcessResults(element, elementId, config, scanTools, multipleTopLevelWindowsExist, targetIndex, rootElements.Count(), actionContext);
                 }, actionContext));
             }
             finally
@@ -111,7 +108,7 @@ namespace Axe.Windows.Automation
             }
         }
 
-        private static WindowScanOutput ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, int targetIndex, int targetCount, IActionContext actionContext)
+        private static WindowScanOutput ProcessResults(A11yElement element, Guid elementId, Config config, IScanTools scanTools, bool multipleTopLevelWindowsExist, int targetIndex, int targetCount, IActionContext actionContext)
         {
             // We must turn on DPI awareness so we get physical, not logical, UIA element bounding rectangles
             object dpiAwarenessObject = scanTools.DpiAwareness.Enable();
@@ -123,7 +120,7 @@ namespace Axe.Windows.Automation
 
                 var results = scanTools.ResultsAssembler.AssembleWindowScanOutputFromElement(element);
 
-                if (config.AreMultipleScanRootsEnabled)
+                if (multipleTopLevelWindowsExist)
                 {
                     results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, (name) => $"{name}_{targetIndex}_of_{targetCount}", actionContext);
                 }
