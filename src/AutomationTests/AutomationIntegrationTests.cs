@@ -3,9 +3,11 @@
 using Axe.Windows.Automation;
 using Axe.Windows.Automation.Data;
 using Axe.Windows.UnitTestSharedLibrary;
+using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -68,7 +70,7 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        Process TestProcess;
+        List<Process> TestProcesses = new List<Process>();
 
         [TestCleanup]
         public void Cleanup()
@@ -84,8 +86,9 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WildlifeManager(bool sync)
         {
-            WindowScanOutput results = ScanIntegrationCore(sync, WildlifeManagerAppPath, WildlifeManagerKnownErrorCount);
-            EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, TestProcess.Id);
+            var processId = LaunchTestApp(WildlifeManagerAppPath);
+            WindowScanOutput results = ScanIntegrationCore(sync, WildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: processId);
+            EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, processId);
         }
 
         // [DataTestMethod]
@@ -137,9 +140,8 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void ScanAsync_WindowsFormsSampler_TaskIsCancelled_ThrowsCancellationException()
         {
-            var testAppPath = WindowsFormsControlSamplerAppPath;
-            LaunchTestApp(testAppPath);
-            var builder = Config.Builder.ForProcessId(TestProcess.Id)
+            var processId = LaunchTestApp(WindowsFormsControlSamplerAppPath);
+            var builder = Config.Builder.ForProcessId(processId)
                 .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
@@ -152,63 +154,116 @@ namespace Axe.Windows.AutomationTests
 
             var task = scanner.ScanAsync(null, cancellationTokenSource.Token);
 
-            var exception = Assert.ThrowsException<AggregateException>(() => task.Result);
-            Assert.AreEqual(typeof(TaskCanceledException), exception.InnerException.GetType());
-            Assert.IsTrue(task.IsCanceled);
+            ValidateTaskCancelled(task);
         }
 
-        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        [TestMethod]
+        [Timeout(30000)]
+        public async Task ScanAsync_WildlifeManager_MultipleProcesses_RunToCompletion()
         {
+            var instanceCount = 3;
+            var cancellationTokens = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource().Token).ToList();
+            var tasks = GetAsyncScanTasks(WildlifeManagerAppPath, cancellationTokens);
+            var results = await Task.WhenAll(tasks);
+
+            foreach (var result in results)
+            {
+                ValidateOutput(result.WindowScanOutputs, WildlifeManagerKnownErrorCount);
+            }
+        }
+
+        [TestMethod]
+        [Timeout(30000)]
+        public async Task ScanAsync_WildlifeManager_MultipleProcessesCancelled_ThrowsCancellationException()
+        {
+            var instanceCount = 5;
+            var cancellationTokenSources = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource()).ToList();
+            var tasks = GetAsyncScanTasks(WildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
+
+            var cancelledCount = 2;
+            var cancelledTasks = tasks.Take(cancelledCount);
+            var finishedTasks = tasks.Skip(cancelledCount);
+
+            for (int i = 0; i < cancelledCount; i++)
+            {
+                cancellationTokenSources[i].Cancel();
+                // TODO add sleeping, cancel all tokens but make sleeping such that it's too late
+            }
+
+            // Validate cancelled tasks
+            foreach (var task in cancelledTasks)
+            {
+                ValidateTaskCancelled(task);
+            }
+
+            // Validate successful tasks
+            var results = await Task.WhenAll(finishedTasks);
+            foreach (var result in results)
+            {
+                ValidateOutput(result.WindowScanOutputs, WildlifeManagerKnownErrorCount);
+            }
+        }
+
+        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1, int? processId = null)
+        {
+            if (processId == null)
+            {
+                processId = LaunchTestApp(testAppPath);
+            }
+            var builder = Config.Builder.ForProcessId((int)processId)
+                .WithOutputDirectory(OutputDir)
+                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+            if (enableMultipleScanRoots)
+            {
+                builder = builder.WithMultipleScanRootsEnabled();
+            }
+
+            var config = builder.Build();
+
+            var scanner = ScannerFactory.CreateScanner(config);
+
+            IReadOnlyCollection<WindowScanOutput> output;
             if (sync)
             {
-                return SyncScanIntegrationCore(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
+                output = ScanSyncWithProvisionForBuildAgents(scanner);
             }
             else
             {
-                return AsyncScanIntegrationCore(testAppPath, expectedErrorCount, enableMultipleScanRoots, expectedWindowCount);
+                output = ScanAsyncWithProvisionForBuildAgents(scanner);
             }
-        }
-
-        private WindowScanOutput SyncScanIntegrationCore(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
-        {
-            LaunchTestApp(testAppPath);
-            var builder = Config.Builder.ForProcessId(TestProcess.Id)
-                .WithOutputDirectory(OutputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest);
-
-            if (enableMultipleScanRoots)
-            {
-                builder = builder.WithMultipleScanRootsEnabled();
-            }
-
-            var config = builder.Build();
-
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var output = ScanSyncWithProvisionForBuildAgents(scanner);
 
             return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
         }
 
-        private WindowScanOutput AsyncScanIntegrationCore(string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1)
+        private IEnumerable<Task<ScanOutput>> GetAsyncScanTasks(string testAppPath, IEnumerable<CancellationToken> cancellationTokens)
         {
-            LaunchTestApp(testAppPath);
-            var builder = Config.Builder.ForProcessId(TestProcess.Id)
-                .WithOutputDirectory(OutputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest);
+            var taskFuncs = new List<Func<Task<ScanOutput>>>();
 
-            if (enableMultipleScanRoots)
+            // Prepare scan tasks
+            foreach (var token in cancellationTokens)
             {
-                builder = builder.WithMultipleScanRootsEnabled();
+                var processId = LaunchTestApp(testAppPath);
+                var builder = Config.Builder.ForProcessId(processId)
+                    .WithOutputDirectory(OutputDir)
+                    .WithOutputFileFormat(OutputFileFormat.A11yTest);
+
+                var config = builder.Build();
+
+                var scanner = ScannerFactory.CreateScanner(config);
+
+                taskFuncs.Add(() => scanner.ScanAsync(null, token));
             }
 
-            var config = builder.Build();
+            // Kick scan tasks off
+            var tasks = new List<Task<ScanOutput>>();
+            foreach (var func in taskFuncs)
+            {
+                tasks.Add(func());
+                Thread.Sleep(300); // TODO investigate why this is necessary
+            }
 
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var output = ScanAsyncWithProvisionForBuildAgents(scanner);
-
-            return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
+            return tasks;
         }
 
         private WindowScanOutput ValidateOutput(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
@@ -235,6 +290,13 @@ namespace Axe.Windows.AutomationTests
             }
 
             return output.First();
+        }
+
+        private void ValidateTaskCancelled(Task<ScanOutput> task)
+        {
+            var exception = Assert.ThrowsException<AggregateException>(() => task.Result);
+            Assert.AreEqual(typeof(TaskCanceledException), exception.InnerException.GetType());
+            Assert.IsTrue(task.IsCanceled);
         }
 
         private IReadOnlyCollection<WindowScanOutput> ScanSyncWithProvisionForBuildAgents(IScanner scanner)
@@ -293,19 +355,24 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private void LaunchTestApp(string testAppPath)
+        private int LaunchTestApp(string testAppPath)
         {
-            TestProcess?.Kill();
-            TestProcess = Process.Start(testAppPath);
-            TestProcess.WaitForInputIdle();
+            var process = Process.Start(testAppPath);
+            process.WaitForInputIdle();
+            TestProcesses.Add(process);
 
             Thread.Sleep(testAppDelay);
+
+            return process.Id;
         }
 
         private void StopTestApp()
         {
-            TestProcess.Kill();
-            TestProcess = null;
+            foreach (var process in TestProcesses)
+            {
+                process.Kill();
+            }
+            TestProcesses.Clear();
         }
 
         private void CleanupTestOutput()

@@ -110,7 +110,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
-                    root = UIAutomation.GetRootElement();
+                    root = UIAutomation.GetRootElement(); // throws
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, registrar);
                 }
