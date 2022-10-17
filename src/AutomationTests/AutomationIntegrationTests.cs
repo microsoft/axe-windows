@@ -115,16 +115,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample(bool sync)
         {
-            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, true, 2);
-        }
-
-        [DataTestMethod]
-        [DataRow(true)]
-        [DataRow(false)]
-        [Timeout(30000)]
-        public void Scan_Integration_WindowsFormsMultiWindowSample_SingleWindow(bool sync)
-        {
-            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount);
+            ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
         }
 
         [DataTestMethod]
@@ -204,7 +195,7 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, bool enableMultipleScanRoots = false, int expectedWindowCount = 1, int? processId = null)
+        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, int expectedWindowCount = 1, int? processId = null)
         {
             if (processId == null)
             {
@@ -213,11 +204,6 @@ namespace Axe.Windows.AutomationTests
             var builder = Config.Builder.ForProcessId((int)processId)
                 .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest);
-
-            if (enableMultipleScanRoots)
-            {
-                builder = builder.WithMultipleScanRootsEnabled();
-            }
 
             var config = builder.Build();
 

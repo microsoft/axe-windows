@@ -42,11 +42,6 @@ namespace Axe.Windows.Automation
         public string CustomUIAConfigPath { get; private set; }
 
         /// <summary>
-        /// Determines whether multiple UIA roots will be scanned or just the first one.
-        /// </summary>
-        public bool AreMultipleScanRootsEnabled { get; private set; }
-
-        /// <summary>
         /// Custom handling of DPI awareness. The default handling is to set the entire process as DPI-aware
         /// before running the scan, and to leave it in that state after the scan completes. If your process
         /// needs to be non-DPI aware, create your own implementation of IDPIAwareness that meets your needs.
@@ -125,16 +120,6 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
-            /// Enables the scanning of multiple top level UIA roots.
-            /// </summary>
-            /// <returns></returns>
-            public Builder WithMultipleScanRootsEnabled()
-            {
-                _config.AreMultipleScanRootsEnabled = true;
-                return this;
-            }
-
-            /// <summary>
             /// Build an instance of <see cref="Config"/>
             /// </summary>
             /// <returns></returns>
@@ -146,7 +131,6 @@ namespace Axe.Windows.Automation
                     OutputFileFormat = _config.OutputFileFormat,
                     OutputDirectory = _config.OutputDirectory,
                     CustomUIAConfigPath = _config.CustomUIAConfigPath,
-                    AreMultipleScanRootsEnabled = _config.AreMultipleScanRootsEnabled,
                     DPIAwareness = _config.DPIAwareness,
                 };
             }

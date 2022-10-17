@@ -64,7 +64,7 @@ namespace Axe.Windows.AutomationTests
                 .Returns(() => tempOutput);
         }
 
-        private IEnumerable<A11yElement> CreateMockElementArray()
+        private IReadOnlyList<A11yElement> CreateMockElementArray()
         {
             var elements = new List<A11yElement>();
 
@@ -237,13 +237,18 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public async Task ExecuteAsync_ActionsScanWithDpiAwarenessObject_IsCalledWithExpectedElements()
         {
+            int index = 0;
             var elements = CreateMockElementArray();
             SetupScanToolsMock(withResultsAssembler: false);
             SetupDpiAwarenessMock("This is an arbitrary object");
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
 
             _actionsMock.Setup(x => x.Scan(
-                elements.First(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
+                It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null)
+                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((element, _, __) =>
+                {
+                    Assert.AreSame(element, elements[index++]);
+                });
 
             await SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None);
 
@@ -254,12 +259,17 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public async Task ExecuteAsync_ActionsScan_IsCalledWithExpectedElements()
         {
+            int index = 0;
             var elements = CreateMockElementArray();
             SetupScanToolsMock(withResultsAssembler: false);
             SetupDpiAwarenessMock(null);
             SetupTargetElementLocatorMock(overrideElements: true, elements: elements);
             _actionsMock.Setup(x => x.Scan(
-                elements.First(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null);
+                It.IsAny<A11yElement>(), It.IsAny<ScanActionCallback<WindowScanOutput>>(), It.IsAny<IActionContext>())).Returns<WindowScanOutput>(null)
+                .Callback<A11yElement, ScanActionCallback<WindowScanOutput>, IActionContext>((element, _, __) =>
+                {
+                    Assert.AreSame(element, elements[index++]);
+                });
 
             await SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None);
 
@@ -300,7 +310,6 @@ namespace Axe.Windows.AutomationTests
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
                 .Build();
 
             var expectedWindowOutput = new WindowScanOutput();
@@ -386,7 +395,6 @@ namespace Axe.Windows.AutomationTests
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
                 .Build();
 
             var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
@@ -511,7 +519,6 @@ namespace Axe.Windows.AutomationTests
             var config = Config.Builder
                 .ForProcessId(-1)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest)
-                .WithMultipleScanRootsEnabled()
                 .Build();
 
             var actualOutput = await SnapshotCommand.ExecuteAsync(config, _scanToolsMock.Object, CancellationToken.None);
