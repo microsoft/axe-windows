@@ -90,7 +90,7 @@ namespace Axe.Windows.Automation
         }
 
         /// <summary>
-        /// This method is our atomic scanner. When we add async support, keep it all within the scope of a single thread.
+        /// This method is our atomic scanner. It needs to run within the scope of a single thread.
         /// </summary>
         private static void ScanAndProcessResults(Config config, IScanTools scanTools, List<WindowScanOutput> resultList, IEnumerable<A11yElement> rootElements, bool multipleTopLevelWindowsExist, int targetIndex, A11yElement rootElement, IActionContext actionContext)
         {
