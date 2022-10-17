@@ -228,12 +228,18 @@ jobs:
         outputfile: '$(System.DefaultWorkingDirectory)/thirdpartynotices.html'
         outputformat: html
 
+  - task: CodeQL3000Init@0
+    displayName: 'Initialize CodeQL'
+
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:
       vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: release
+
+  - task: CodeQL3000Finalize@0
+    displayName: 'Finalize CodeQL'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
     displayName: 'Run BinSkim'
