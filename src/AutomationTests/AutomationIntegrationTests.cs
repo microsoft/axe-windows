@@ -149,7 +149,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(30000)]
+        [Timeout(45000)]
         public async Task ScanAsync_WildlifeManager_MultipleProcesses_RunToCompletion()
         {
             var instanceCount = 3;
@@ -164,7 +164,7 @@ namespace Axe.Windows.AutomationTests
         }
 
         [TestMethod]
-        [Timeout(30000)]
+        [Timeout(60000)]
         public async Task ScanAsync_WildlifeManager_MultipleProcessesCancelled_ThrowsCancellationException()
         {
             var instanceCount = 5;
@@ -172,13 +172,20 @@ namespace Axe.Windows.AutomationTests
             var tasks = GetAsyncScanTasks(WildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
 
             var cancelledCount = 2;
+            // The first 2 tasks will be cancelled in ~50ms and ~550ms
             var cancelledTasks = tasks.Take(cancelledCount);
+            // The final 3 tasks will be cancelled after more than 5 seconds, so we expect them to finish before the cancellation is recognized
             var finishedTasks = tasks.Skip(cancelledCount);
 
+            var timeout = 50;
             for (int i = 0; i < cancelledCount; i++)
             {
                 cancellationTokenSources[i].Cancel();
-                // TODO add sleeping, cancel all tokens but make sleeping such that it's too late
+                if (timeout < 10000) // Don't sleep for more than 10 seconds, by then all the scans should be done anyways 
+                {
+                    Thread.Sleep(timeout);
+                    timeout *= 10;
+                }
             }
 
             // Validate cancelled tasks
@@ -246,7 +253,7 @@ namespace Axe.Windows.AutomationTests
             foreach (var func in taskFuncs)
             {
                 tasks.Add(func());
-                Thread.Sleep(300); // TODO investigate why this is necessary
+                Thread.Sleep(300); // TODO investigate why this is necessary (without this UIAutomation.GetRootElement() throws)
             }
 
             return tasks;
