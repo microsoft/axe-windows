@@ -243,7 +243,7 @@ namespace Axe.Windows.AutomationTests
             {
                 return scanner.Scan(null).WindowScanOutputs;
             }
-            catch (AxeWindowsAutomationException)
+            catch (Exception)
             {
                 if (allowInconclusive)
                 {
