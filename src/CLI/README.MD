@@ -16,33 +16,29 @@ You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool get
 If you run the tool without parameters, you'll be presented with the help screen. An example follows:
 
 ```
-AxeWindowsCLI 1.1.8
+AxeWindowsCLI 2.0.0
 Copyright c 2020
 
-  --processid                      Process Id
+  --processid                Process Id
 
-  --processname                    Process Name
+  --processname              Process Name
 
-  --outputdirectory                Output directory
+  --outputdirectory          Output directory
 
-  --scanid                         Scan ID
+  --scanid                   Scan ID
 
-  --verbosity                      Verbosity level (Quiet/Default/Verbose)
+  --verbosity                Verbosity level (Quiet/Default/Verbose)
 
-  --showthirdpartynotices          Display Third Party Notices (opens file in
-                                   browser without executing scan). If
-                                   specified, all other options will be ignored.
+  --showthirdpartynotices    Display Third Party Notices (opens file in browser
+                             without executing scan). If specified, all other
+                             options will be ignored.
 
-  --delayinseconds                 How many seconds to delay before triggering
-                                   the scan. Valid range is 0 to 60 seconds,
-                                   with a default of 0.
+  --delayinseconds           How many seconds to delay before triggering the
+                             scan. Valid range is 0 to 60 seconds, with a
+                             default of 0.
 
-  --customuia                      The path to a configuration file specifying
-                                   custom UI Automation attributes
-
-  --aremultiplescanrootsenabled    Determines if multiple top-level windows of
-                                   the target process should be scanned (true)
-                                   or just the first one (false).
+  --customuia                The path to a configuration file specifying custom
+                             UI Automation attributes
 ```
 
 To scan an application, you need to specify the application's process via either the `--processId` or `--processName` parameters
@@ -59,10 +55,9 @@ verbosity|Identifies the level of detail you want in the output. Valid values ar
 showThirdPartyNotices|If specified, displays the third party notices for components used by AxeWindowsCLI. This information is also available in the `thirdpartynotices.html` file that is installed with AxeWindowsCLI.
 delayInSeconds|Optionally inserts a delay before triggering the scan. This allows transient controls (menus, drop-down-lists, etc.) to be scanned.
 customUia|Optionally provides a path to a [custom UIA configuration file](../../docs/CustomUIA.md). By default, only system-defined UIA properties will be included in the scan.
-areMultipleScanRootsEnabled|This has no effect for applications with a single top-level window. For applications with multiple top-level windows, the default is to scan just one window, with no programmatic way to predict which window will be chosen. Settings this flag to `true` will cause _all_ top-level windows to be scanned. An `a11ytest` file will be generated for each top-level window, even if no errors are found.
 
 ### Scan results
-A summary of scan results will be displayed after the scan is run. In addition, an A11yTest file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io
+A summary of scan results will be displayed after the scan is run. In addition, an `.a11ytest` file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io. If you scan an application with multiple top-level windows, an `.a11ytest` file will be generated for _each_ top-level window, even if no errors are detected.
 
 A detailed description of scan results will also be displayed if you specify verbose output (see the `verbosity` parameter).
 

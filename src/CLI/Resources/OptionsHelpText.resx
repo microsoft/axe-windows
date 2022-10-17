@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AreMultipleScanRootsEnabled" xml:space="preserve">
-    <value>Determines if multiple top-level windows of the target process should be scanned (true) or just the first one (false).</value>
-  </data>
   <data name="CustomUia" xml:space="preserve">
     <value>The path to a configuration file specifying custom UI Automation attributes</value>
   </data>
