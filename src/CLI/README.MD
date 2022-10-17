@@ -57,7 +57,7 @@ delayInSeconds|Optionally inserts a delay before triggering the scan. This allow
 customUia|Optionally provides a path to a [custom UIA configuration file](../../docs/CustomUIA.md). By default, only system-defined UIA properties will be included in the scan.
 
 ### Scan results
-A summary of scan results will be displayed after the scan is run. In addition, an A11yTest file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io
+A summary of scan results will be displayed after the scan is run. In addition, an `.a11ytest` file will be generated if 1 or more errors were detected. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io. If you scan an application with multiple top-level windows, an `.a11ytest` file will be generated for _each_ top-level window, even if no errors are detected.
 
 A detailed description of scan results will also be displayed if you specify verbose output (see the `verbosity` parameter).
 
