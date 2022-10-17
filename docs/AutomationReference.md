@@ -142,8 +142,6 @@ The `Scan` method synchronously runs AxeWindows automated tests using the config
 
 ###### Parameters
 `IScanner.Scan` accepts one parameter:
-###### Parameters
-`IScanner.ScanAsync` accepts two parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
@@ -156,7 +154,7 @@ The `Scan` method synchronously runs AxeWindows automated tests using the config
 The `ScanOptions` constructor accepts the following arguments:
 
 **Name** | **Type** | **Description** | **Default value**
----|---|---
+---|---|---|---
 scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest). | `null`
 
 #### ScanOutput
@@ -250,7 +248,7 @@ example below):
 -   Prerequisite: Your project *must* be able to use .NET Standard 2.0 libraries.
 -   If you’re using NuGet, add the appropriate feed to your project.
 -   Add **using Axe.Windows.Automation;** to your code.
--   Follow the steps in [How To Run An Automated Scan](#how-to-run-an-automated-scan).
+-   Invoke Axe.Windows similar to the [example](#example) below.
 
 #### Example
 ```C#
@@ -316,6 +314,8 @@ These versions embed the symbols into the assemblies and support [SourceLink](ht
 
 `AxeWindowsAutomationException` is thrown for errors in `Axe.Windows.Automation`'s logic where meaningful error reporting can be generated. In some situations, the `Exception.InnerException` property may contain a corresponding system-level exception for errors encountered by Axe.Windows. Other exceptions may be thrown by the system from calls to this library.
 
+If a `CancellationToken` is provided to the library which is later cancelled, the original task will throw an `AggregateException` containing a `TaskCancelledException`.
+
 ### Migrating from Axe.Windows 1.x
 Migration from Axe.Windows 1.x to Axe.Windows 2.0 should require minimal code changes for most projects.
 
@@ -330,7 +330,7 @@ In place of this | Do this
 `IScanner.Scan("scanId")` | `IScanner.Scan(new ScanOptions(scanId: "scanId"))`
 
 #### `ScanResults` replaced with `ScanOutput`
-The new return type of `IScanner`'s methods is `ScanOutput`. This object contains a `WindowScanOutputs` field, a `IReadOnlyCollection` of `WindowScanOutput` objects. These objects contain the same fields as the previous `ScanResults` class.
+The new return type of `IScanner`'s methods is [`ScanOutput`](#scanoutput). This object contains a `WindowScanOutputs` field, a `IReadOnlyCollection` of `WindowScanOutput` objects. These objects contain the same fields as the previous `ScanResults` class.
 
 In place of this | Do this
 ---|---
