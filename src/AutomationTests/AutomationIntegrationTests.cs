@@ -224,9 +224,9 @@ namespace Axe.Windows.AutomationTests
             {
                 return scanner.Scan(null).WindowScanOutputs;
             }
-            catch (AxeWindowsAutomationException e)
+            catch (Exception)
             {
-                if (allowInconclusive && e.Message.Contains("Automation017"))
+                if (allowInconclusive)
                 {
                     Assert.Inconclusive("Unable to complete Integration tests");
                 }
@@ -240,9 +240,9 @@ namespace Axe.Windows.AutomationTests
             {
                 return scanner.ScanAsync(null, CancellationToken.None).Result.WindowScanOutputs;
             }
-            catch (AxeWindowsAutomationException e)
+            catch (Exception)
             {
-                if (allowInconclusive && e.Message.Contains("Automation017"))
+                if (allowInconclusive)
                 {
                     Assert.Inconclusive("Unable to complete Integration tests");
                 }
