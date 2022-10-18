@@ -15,7 +15,7 @@ The `ForProcessId` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an [`AxeWindowsAutomationException`](#error-handling).
+processId | `int` | The process Id of the application to test. If the value is invalid, the automation session will throw an [`AxeWindowsAutomationException`](#axewindowsautomationexception).
 
 ###### Return object
 
@@ -107,7 +107,7 @@ The `Build` method returns an instance of `Config` with any modifications made t
 #### ScannerFactory
 
 ##### `CreateScanner`
-Create an object that implements `IScanner` using an instance of `Config`.
+Create an object that implements [`IScanner`](#iscanner) using an instance of `Config`.
 
 ###### Parameters
 
@@ -115,11 +115,11 @@ The `ScannerFactory.CreateScanner` method accepts the following parameters:
 
 **Name** | **Type** | **Description**
 ---|---|---
-config | `Config` | The configuration used by the returned `IScanner` object.
+config | `Config` | The configuration used by the returned [`IScanner`](#iscanner) object.
 
 ###### Return object
 
-The `ScannerFactory.CreateScanner` method returns an `IScanner` object.
+The `ScannerFactory.CreateScanner` method returns an [`IScanner`](#iscanner) object.
 
 #### IScanner
 
@@ -131,11 +131,11 @@ The `ScanAsync` method asynchronously runs AxeWindows automated tests using the 
 
 **Name** | **Type** | **Description**
 ---|---|---
-`scanOptions` | `ScanOptions` | An object describing custom settings for this scan. Pass `null` for default options.
-`cancellationToken` | `CancellationToken` | A [`CancellationToken`](https://learn.microsoft.com/en-gb/dotnet/api/system.threading.cancellationtoken?view=netstandard-2.0).
+`scanOptions` | [`ScanOptions`](#scanoptions) | An object describing custom settings for this scan. Pass `null` for default options.
+`cancellationToken` | [`CancellationToken`](https://learn.microsoft.com/en-gb/dotnet/api/system.threading.cancellationtoken?view=netstandard-2.0) | A cancellation token.
 
 ###### Return object
-`ScanAsync` returns a `ScanOutput` object.
+`ScanAsync` returns a [`ScanOutput`](#scanoutput) object.
 
 ##### `Scan`
 The `Scan` method synchronously runs AxeWindows automated tests using the config provided at the time of creation of the scanner, and blocks until the scan is complete.
@@ -145,10 +145,10 @@ The `Scan` method synchronously runs AxeWindows automated tests using the config
 
 **Name** | **Type** | **Description**
 ---|---|---
-`scanOptions` | `ScanOptions` | An object describing custom settings for this scan. Pass `null` for default options.
+`scanOptions` | [`ScanOptions`](#scanoptions) | An object describing custom settings for this scan. Pass `null` for default options.
 
 ###### Return object
-`Scan` returns a `ScanOutput` object.
+`Scan` returns a [`ScanOutput`](#scanoutput) object.
 
 #### `ScanOptions`
 The `ScanOptions` constructor accepts the following arguments:
@@ -162,7 +162,7 @@ Methods of `IScanner` return a `ScanOutput` object with the following properties
 
 **Name** | **Type** | **Description**
 ---|---|---
-`WindowScanOutputs` | `IReadOnlyCollection<WindowScanOutput>` | The set of `WindowScanOutput` objects produced by this scan, one per top-level application window.
+`WindowScanOutputs` | `IReadOnlyCollection<WindowScanOutput>` | The set of [`WindowScanOutput`](#windowscanoutput) objects produced by this scan, one per top-level application window.
 
 #### `WindowScanOutput`
 A `WindowScanOutput` object contains the results of scanning one top level window and has the following properties:
@@ -172,13 +172,6 @@ A `WindowScanOutput` object contains the results of scanning one top level windo
 ErrorCount | `int` | A count of all errors across all elements scanned.
 Errors | `IEnumerable<ScanResult>` | A collection of errors found during the scan.
 OutputFile | `OutputFile` | Represents the output file(s), if any, associated with a `WindowScanOutput` object.
-
-The `OutputFile` property is a struct with the following properties:
-
-**Name** | **Type** | **Description**
----|---|---
-A11yTest | `string` | The path to the A11yTest file that was generated (or null if no file was generated).
-Sarif | `string` | The path to the Sarif file that was generated (or null if no file was generated).
 
 The `Errors` property contains `ScanResult` objects which are the result of a single rule test on a single element and have the following properties:
 
@@ -204,6 +197,13 @@ Condition | `string` | A description of the conditions under which a rule will b
 ---|---|---
 Properties | `Dictionary<string, string>` | A string to string dictionary where the key is a UI Automation property name and the value is the corresponding UI Automation property value.
 Patterns | `IEnumerable<string>` | A list of names of supported patterns.
+
+The `OutputFile` property is a struct with the following properties:
+
+**Name** | **Type** | **Description**
+---|---|---
+A11yTest | `string` | The path to the A11yTest file that was generated (or null if no file was generated).
+Sarif | `string` | The path to the Sarif file that was generated (or null if no file was generated).
 
 #### IDPIAwareness
 
@@ -311,9 +311,10 @@ These versions embed the symbols into the assemblies and support [SourceLink](ht
 3. Run and debug as usual.
 
 #### Error handling
-
+##### AxeWindowsAutomationException
 `AxeWindowsAutomationException` is thrown for errors in `Axe.Windows.Automation`'s logic where meaningful error reporting can be generated. In some situations, the `Exception.InnerException` property may contain a corresponding system-level exception for errors encountered by Axe.Windows. Other exceptions may be thrown by the system from calls to this library.
 
+##### Cancellation
 If a `CancellationToken` is provided to the library which is later cancelled, the original task will throw an `AggregateException` containing a `TaskCancelledException`.
 
 ### Migrating from Axe.Windows 1.x
@@ -330,7 +331,7 @@ In place of this | Do this
 `IScanner.Scan("scanId")` | `IScanner.Scan(new ScanOptions(scanId: "scanId"))`
 
 #### `ScanResults` replaced with `ScanOutput`
-The new return type of `IScanner`'s methods is [`ScanOutput`](#scanoutput). This object contains a `WindowScanOutputs` field, a `IReadOnlyCollection` of `WindowScanOutput` objects. These objects contain the same fields as the previous `ScanResults` class.
+The new return type of `IScanner`'s methods is [`ScanOutput`](#scanoutput). This object contains a `WindowScanOutputs` field, a `IReadOnlyCollection` of [`WindowScanOutput`](#windowscanoutput) objects. These objects contain the same fields as the previous `ScanResults` class.
 
 In place of this | Do this
 ---|---
