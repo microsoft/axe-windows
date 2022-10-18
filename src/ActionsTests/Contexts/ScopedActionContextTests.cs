@@ -48,7 +48,7 @@ namespace Axe.Windows.ActionsTests.Contexts
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContext_IsNotDefaultTreeWalkerDataContext()
+        public void DesktopDataContext_IsNotDefaultDesktopDataContext()
         {
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
@@ -59,7 +59,7 @@ namespace Axe.Windows.ActionsTests.Contexts
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContextRegistrar_IsSameAsRegistrar()
+        public void DesktopDataContextRegistrar_IsSameAsRegistrar()
         {
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
@@ -69,7 +69,7 @@ namespace Axe.Windows.ActionsTests.Contexts
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContextCancellationToken_CancelSource_CancelsToken()
+        public void DesktopDataContextCancellationToken_CancelSource_CancelsToken()
         {
             var source = new CancellationTokenSource();
 

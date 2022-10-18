@@ -16,11 +16,11 @@ namespace Axe.Windows.Actions.Contexts
     {
         private bool disposedValue;
 
-        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, DesktopDataContext treeWalkerDataContext)
+        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, DesktopDataContext desktopDataContext)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             SelectAction = selectAction ?? throw new ArgumentNullException(nameof(selectAction));
-            DesktopDataContext = treeWalkerDataContext ?? throw new ArgumentNullException(nameof(treeWalkerDataContext));
+            DesktopDataContext = desktopDataContext ?? throw new ArgumentNullException(nameof(desktopDataContext));
         }
 
         public DataManager DataManager { get; }

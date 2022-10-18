@@ -41,11 +41,11 @@ namespace Axe.Windows.ActionsTests.Contexts
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContext_IsDefaultTreeWalkerDataContext()
+        public void DesktopDataContext_IsDefaultDesktopDataContext()
         {
-            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().DesktopDataContext;
-            Assert.IsNotNull(treeWalkerDataContext);
-            Assert.AreSame(DesktopDataContext.DefaultContext, treeWalkerDataContext);
+            var desktopDataContext = DefaultActionContext.GetDefaultInstance().DesktopDataContext;
+            Assert.IsNotNull(desktopDataContext);
+            Assert.AreSame(DesktopDataContext.DefaultContext, desktopDataContext);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Axe.Windows.ActionsTests.Contexts
             var dataManager = DefaultActionContext.GetDefaultInstance().DataManager;
             var selectAction = DefaultActionContext.GetDefaultInstance().SelectAction;
             var registrar = DefaultActionContext.GetDefaultInstance().Registrar;
-            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().DesktopDataContext;
+            var desktopDataContext = DefaultActionContext.GetDefaultInstance().DesktopDataContext;
 
             DefaultActionContext.GetDefaultInstance().Dispose();
 
@@ -64,7 +64,7 @@ namespace Axe.Windows.ActionsTests.Contexts
             Assert.AreSame(dataManager, DefaultActionContext.GetDefaultInstance().DataManager);
             Assert.AreSame(selectAction, DefaultActionContext.GetDefaultInstance().SelectAction);
             Assert.AreSame(registrar, DefaultActionContext.GetDefaultInstance().Registrar);
-            Assert.AreSame(treeWalkerDataContext, DefaultActionContext.GetDefaultInstance().DesktopDataContext);
+            Assert.AreSame(desktopDataContext, DefaultActionContext.GetDefaultInstance().DesktopDataContext);
         }
     }
 }

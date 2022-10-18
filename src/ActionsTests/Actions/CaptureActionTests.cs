@@ -28,6 +28,7 @@ namespace Axe.Windows.ActionsTests.Actions
         int irrelevantMaxElements;
         ElementDataContext mockDataContext;
         TreeViewMode mockTreeViewMode;
+        DesktopDataContext mockDesktopDataContext;
 
         [TestInitialize]
         public void ResetMocks()
@@ -48,12 +49,12 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataManager.AddElementContext(mockElementContext);
 
             Registrar registrar = new Registrar();
-            DesktopDataContext treeWalkerDataContext = new DesktopDataContext(registrar, /*TODO*/ null, CancellationToken.None);
+            mockDesktopDataContext = new DesktopDataContext(registrar, /*TODO*/ null, CancellationToken.None);
 
             mockActionContext = new Mock<IActionContext>(MockBehavior.Strict);
             mockActionContext.Setup(m => m.DataManager).Returns(mockDataManager);
             mockActionContext.Setup(m => m.Registrar).Returns(registrar);
-            mockActionContext.Setup(m => m.DesktopDataContext).Returns(treeWalkerDataContext);
+            mockActionContext.Setup(m => m.DesktopDataContext).Returns(mockDesktopDataContext);
         }
 
         [TestMethod]
@@ -119,7 +120,7 @@ namespace Axe.Windows.ActionsTests.Actions
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Live, result.Mode);
                 Assert.AreEqual(mockTopMostElement, result.RootElment);
-                mockTreeWalkerForLive.Verify(w => w.GetTreeHierarchy(mockElement, treeViewMode, /* TODO */ null));
+                mockTreeWalkerForLive.Verify(w => w.GetTreeHierarchy(mockElement, treeViewMode, mockDesktopDataContext));
                 Assert.AreEqual(2, result.Elements.Count);
                 Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
                 Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);
