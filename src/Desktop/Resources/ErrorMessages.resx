@@ -123,6 +123,10 @@
   <data name="InvalidColor" xml:space="preserve">
     <value>Color components are values between 0 and 255</value>
   </data>
+  <data name="InvalidContext" xml:space="preserve">
+    <value>The dataContext passed in does not match this A11yAutomation</value>
+    <comment>Do not localize</comment>
+  </data>
   <data name="PatternNoLongerValid" xml:space="preserve">
     <value>The pattern may no longer be valid</value>
     <comment>Pattern may not be valid any more.</comment>

@@ -260,9 +260,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         internal A11yElement GetAppElement(A11yElement e, DesktopDataContext dataContext)
         {
-            if (!ReferenceEquals(dataContext.A11yAutomation, this)) throw new ArgumentException("Called on wrong context", nameof(dataContext));
+            EnsureContextConsistency(dataContext);
 
-            // TODOL Check for consistency
             var walker = GetTreeWalker(TreeViewMode.Control);
             var tree = new DesktopElementAncestry(TreeViewMode.Control, e, false, dataContext);
             Marshal.ReleaseComObject(walker);
@@ -431,7 +430,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
             if (!ReferenceEquals(dataContext.A11yAutomation, this))
             {
-                throw new ArgumentException("TODO: Resource string about consistency", nameof(dataContext));
+                throw new ArgumentException(Resources.ErrorMessages.InvalidContext, nameof(dataContext));
             }
         }
     }
