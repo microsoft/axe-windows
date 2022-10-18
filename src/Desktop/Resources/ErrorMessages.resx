@@ -125,7 +125,6 @@
   </data>
   <data name="InvalidContext" xml:space="preserve">
     <value>The dataContext passed in does not match this A11yAutomation</value>
-    <comment>Do not localize</comment>
   </data>
   <data name="PatternNoLongerValid" xml:space="preserve">
     <value>The pattern may no longer be valid</value>
