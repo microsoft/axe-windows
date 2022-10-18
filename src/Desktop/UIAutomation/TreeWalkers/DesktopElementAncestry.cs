@@ -74,7 +74,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 if (this.Last.IsRootElement() == false)
                 {
                     this.Last.Children.Clear();
-                    this.NextId = PopulateSiblingTreeNodes(this.Last, e);
+                    this.NextId = PopulateSiblingTreeNodes(this.Last, e, dataContext);
                 }
                 else
                 {
@@ -133,7 +133,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="parentNode"></param>
         /// <param name="poiNode"></param>
         /// <param name="startId"></param>
-        private int PopulateSiblingTreeNodes(A11yElement parentNode, A11yElement poiNode)
+        private int PopulateSiblingTreeNodes(A11yElement parentNode, A11yElement poiNode, DesktopDataContext dataContext)
         {
             int childId = 1;
 
@@ -159,7 +159,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 #pragma warning disable CA2000 // Use recommended dispose patterns
                     var childNode = new DesktopElement(child, true, false);
 #pragma warning restore CA2000 // Use recommended dispose patterns
-                    childNode.PopulateMinimumPropertiesForSelection();
+                    childNode.PopulateMinimumPropertiesForSelection(dataContext);
 
                     if (childNode.IsSameUIElement(poiNode) == false)
                     {

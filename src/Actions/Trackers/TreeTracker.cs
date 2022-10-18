@@ -130,7 +130,7 @@ namespace Axe.Windows.Actions.Trackers
             var desktopElement = new DesktopElement(element, true, false);
 #pragma warning restore CA2000
 
-            desktopElement.PopulateMinimumPropertiesForSelection();
+            desktopElement.PopulateMinimumPropertiesForSelection(ActionContext.DesktopDataContext);
             if (desktopElement.IsRootElement() == false)
             {
                 this.SelectAction?.SetCandidateElement(desktopElement);

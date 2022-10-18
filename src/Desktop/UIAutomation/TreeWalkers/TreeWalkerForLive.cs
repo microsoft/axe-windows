@@ -87,7 +87,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             // populate descendant Elements first in parallel
             this.Elements.AsParallel().ForAll(el =>
             {
-                el.PopulateMinimumPropertiesForSelection();
+                el.PopulateMinimumPropertiesForSelection(dataContext);
             });
 
             // Add ancestry into Elements list.

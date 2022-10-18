@@ -39,9 +39,13 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// it would make Ux and Runtime separation easier since all communication is done via Actions.
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateAllPropertiesWithLiveData(this A11yElement element, DesktopDataContext dataContext = null) // TODO DHT Check default here!
+        public static void PopulateAllPropertiesWithLiveData(this A11yElement element)
         {
-            dataContext = dataContext ?? DesktopDataContext.DefaultContext; // TODO DHT: Review!
+            element.PopulateAllPropertiesWithLiveData(DesktopDataContext.DefaultContext);
+        }
+
+        internal static void PopulateAllPropertiesWithLiveData(this A11yElement element, DesktopDataContext dataContext)
+        {
             if (element == null) throw new ArgumentNullException(nameof(element));
 
             element.Clear();
@@ -60,9 +64,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// - BoundingRectangle
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateMinimumPropertiesForSelection(this A11yElement element, DesktopDataContext dataContext = null) // TODO DHT: Remove default?
+        internal static void PopulateMinimumPropertiesForSelection(this A11yElement element, DesktopDataContext dataContext)
         {
-            dataContext = dataContext ?? DesktopDataContext.DefaultContext; // TODO DHT: Review!
             if (element == null) throw new ArgumentNullException(nameof(element));
 
             element.PopulateWithIndicatedProperties(MiniumProperties, dataContext);
@@ -144,7 +147,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 Marshal.ReleaseComObject(cache);
 
                 var ne = new DesktopElement(uia, true, false);
-                ne.PopulateMinimumPropertiesForSelection();
+                ne.PopulateMinimumPropertiesForSelection(dataContext);
 
                 return ne;
             }

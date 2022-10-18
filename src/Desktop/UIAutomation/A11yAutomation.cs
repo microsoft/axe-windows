@@ -336,7 +336,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
         /// <returns></returns>
-        public DesktopElement ElementFromPoint(int xPos, int yPos)
+        internal DesktopElement ElementFromPoint(int xPos, int yPos, DesktopDataContext dataContext)
         {
             try
             {
@@ -347,7 +347,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
                     var e = new DesktopElement(uia, true, false);
 #pragma warning restore CA2000
-                    e.PopulateMinimumPropertiesForSelection();
+                    e.PopulateMinimumPropertiesForSelection(dataContext);
 
                     return e;
                 }
@@ -373,11 +373,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="yPos"></param>
         /// <param name="treeViewMode">current TreeViewMode</param>
         /// <returns></returns>
-        public A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode)
+        public A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
         {
             try
             {
-                A11yElement element = ElementFromPoint(xPos, yPos);
+                A11yElement element = ElementFromPoint(xPos, yPos, dataContext);
 
                 if (element == null)
                     return null;
