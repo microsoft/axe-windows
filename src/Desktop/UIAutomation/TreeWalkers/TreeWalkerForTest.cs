@@ -71,7 +71,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             //Set parent of Root explicitly for testing.
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, registrar: dataContext.Registrar);
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, false, dataContext);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
             _elementCounter.TryAdd(ancestry.Items.Count);
@@ -82,7 +82,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             ListHelper.DisposeAllItemsAndClearList(this.SelectedElement.Children);
             this.SelectedElement.UniqueId = 0;
 
-            PopulateChildrenTreeNode(this.SelectedElement, ancestry.Last, ancestry.NextId);
+            PopulateChildrenTreeNode(this.SelectedElement, ancestry.Last, ancestry.NextId, dataContext);
 
             // do population of ancestors all together with children
             var list = new List<A11yElement>(this.Elements);
@@ -126,14 +126,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="rootNode"></param>
         /// <param name="parentNode"></param>
         /// <param name="startChildId"></param>
-        private int PopulateChildrenTreeNode(A11yElement rootNode, A11yElement parentNode, int startChildId)
+        private int PopulateChildrenTreeNode(A11yElement rootNode, A11yElement parentNode, int startChildId, TreeWalkerDataContext dataContext)
         {
             this.Elements.Add(rootNode);
 
             rootNode.Parent = parentNode;
             rootNode.TreeWalkerMode = this.WalkerMode; // set tree walker mode.
 
-            IUIAutomationTreeWalker walker = A11yAutomation.GetTreeWalker(this.WalkerMode);
+            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(this.WalkerMode);
             IUIAutomationElement child = (IUIAutomationElement)rootNode.PlatformObject;
 
             if (child != null)
@@ -161,7 +161,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     rootNode.Children.Add(childNode);
                     childNode.Parent = rootNode;
                     childNode.UniqueId = startChildId++;
-                    startChildId = PopulateChildrenTreeNode(childNode, rootNode, startChildId);
+                    startChildId = PopulateChildrenTreeNode(childNode, rootNode, startChildId, dataContext);
                     try
                     {
                         child = walker.GetNextSiblingElement(child);

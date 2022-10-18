@@ -1,9 +1,10 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.UIAutomation;
 using System;
 using System.Drawing;
 
@@ -19,6 +20,11 @@ namespace Axe.Windows.Actions.Trackers
         internal int ProcessId;
 
         internal bool IsStarted;
+
+        /// <summary>
+        /// The ActionContext that owns this object
+        /// </summary>
+        protected IActionContext ActionContext { get; }
 
         /// <summary>
         /// keep track the Selected element RuntimeId
@@ -37,9 +43,10 @@ namespace Axe.Windows.Actions.Trackers
         /// Constructor
         /// </summary>
         /// <param name="action"></param>
-        protected BaseTracker(Action<A11yElement> action)
+        protected BaseTracker(Action<A11yElement> action, IActionContext actionContext)
         {
             this.SetElement = action;
+            ActionContext = actionContext ?? throw new ArgumentNullException(nameof(actionContext));
         }
 
 #pragma warning disable CA1716 // Identifiers should not match keywords
@@ -70,7 +77,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (e != null && Scope == SelectionScope.App)
             {
-                var el = A11yAutomation.GetAppElement(e);
+                var el = ActionContext.TreeWalkerDataContext.A11yAutomation.GetAppElement(e, ActionContext.TreeWalkerDataContext);
 
                 // if the original selection is Top most element of the app, it should not be released.
                 if (e != el)

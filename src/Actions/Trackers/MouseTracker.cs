@@ -1,8 +1,9 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
-using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Win32;
 using System;
 using System.Drawing;
@@ -64,7 +65,7 @@ namespace Axe.Windows.Actions.Trackers
         /// constructor
         /// </summary>
         /// <param name="action"></param>
-        public MouseTracker(Action<A11yElement> action) : base(action)
+        public MouseTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
             // set up mouse Timer
             this.timerMouse = new System.Timers.Timer(DefaultTimerInterval); // default but it will be set by config immediately.
@@ -113,7 +114,7 @@ namespace Axe.Windows.Actions.Trackers
 
                     if (LastMousePoint.Equals(p) && !this.POIPoint.Equals(p))
                     {
-                        var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode));
+                        var element = GetElementBasedOnScope(ActionContext.TreeWalkerDataContext.A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode));
                         if (!SelectElementIfItIsEligible(element))
                         {
                             element?.Dispose();

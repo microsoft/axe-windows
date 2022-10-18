@@ -1,5 +1,7 @@
-// Copyright (c) Microsoft. All rights reserved.
-// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information
+
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Types;
@@ -22,7 +24,7 @@ namespace Axe.Windows.Actions.Trackers
         /// Constructor
         /// </summary>
         /// <param name="action"></param>
-        public FocusTracker(Action<A11yElement> action) : base(action)
+        public FocusTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
             this.EventHandler = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
         }

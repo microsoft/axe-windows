@@ -258,11 +258,15 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// it is trace back to the top most ancestor with same process Id.
         /// </summary>
         /// <param name="e">A11yElement</param>
+        /// <param name="dataContext">This MUST be the context that contains thia A11yAutomation object</param>
         /// <returns></returns>
-        public A11yElement GetAppElement(A11yElement e)
+        internal A11yElement GetAppElement(A11yElement e, TreeWalkerDataContext dataContext)
         {
+            if (!ReferenceEquals(dataContext.A11yAutomation, this)) throw new ArgumentException("Called on wrong context", nameof(dataContext));
+
+            // TODOL Check for consistency
             var walker = GetTreeWalker(TreeViewMode.Control);
-            var tree = new DesktopElementAncestry(TreeViewMode.Control, e);
+            var tree = new DesktopElementAncestry(TreeViewMode.Control, e, false, dataContext);
             Marshal.ReleaseComObject(walker);
             A11yElement app = tree.First;
 
@@ -419,7 +423,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElement from Desktop
         /// </summary>
         /// <returns></returns>
-        public DesktopElement ElementFromDesktop()
+        public  DesktopElement ElementFromDesktop()
         {
             return new DesktopElement(_uia.GetRootElement());
         }

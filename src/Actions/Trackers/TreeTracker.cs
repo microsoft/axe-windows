@@ -1,5 +1,7 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Exceptions;
@@ -25,7 +27,7 @@ namespace Axe.Windows.Actions.Trackers
         private readonly object _movementLock = new object();
 
         public TreeTracker(Action<A11yElement> action, SelectAction selectAction)
-            : base(action)
+            : base(action, DefaultActionContext.GetDefaultInstance())
         {
             this.SelectAction = selectAction;
         }
@@ -147,7 +149,7 @@ namespace Axe.Windows.Actions.Trackers
             var currentElement = GetCurrentElement();
             if (currentElement == null) return null;
 
-            var treeWalker = A11yAutomation.GetTreeWalker(this.TreeViewMode);
+            var treeWalker = ActionContext.TreeWalkerDataContext.A11yAutomation.GetTreeWalker(this.TreeViewMode);
 
             var nextElement = getNextElement?.Invoke(treeWalker, currentElement);
 

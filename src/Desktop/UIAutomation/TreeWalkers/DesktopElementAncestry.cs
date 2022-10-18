@@ -52,15 +52,20 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="walker"></param>
         /// <param name="e"></param>
-        public DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem = false, Registrar registrar = null)
+        public DesktopElementAncestry(TreeViewMode mode, A11yElement e)
+            : this (mode, e, false, TreeWalkerDataContext.DefaultContext)
+        {
+        }
+
+        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem, TreeWalkerDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            this.TreeWalker = A11yAutomation.GetTreeWalker(mode);
+            this.TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
             this.SetMembers = setMem;
-            SetParent(e, -1, registrar: registrar);
+            SetParent(e, -1, registrar: dataContext.Registrar);
 
             if (Items.Count != 0)
             {
