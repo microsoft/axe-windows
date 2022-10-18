@@ -65,7 +65,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
             this.SetMembers = setMem;
-            SetParent(e, -1, registrar: dataContext.Registrar);
+            SetParent(e, -1, dataContext);
 
             if (Items.Count != 0)
             {
@@ -90,7 +90,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="e"></param>
         /// <param name="uniqueId"></param>
-        private void SetParent(A11yElement e, int uniqueId, Registrar registrar)
+        private void SetParent(A11yElement e, int uniqueId, TreeWalkerDataContext dataContext)
         {
             if (e == null || e.PlatformObject == null || e.IsRootElement()) return;
 
@@ -101,7 +101,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
                 var parent = new DesktopElement(puia, true, SetMembers);
-                parent.PopulateMinimumPropertiesForSelection(registrar);
+                parent.PopulateMinimumPropertiesForSelection(dataContext);
 
                 // we need to avoid infinite loop of self reference as parent.
                 // it is a probably a bug in UIA or the target app.
@@ -113,7 +113,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     this.Items.Add(parent);
                     parent.UniqueId = uniqueId;
 
-                    SetParent(parent, uniqueId - 1, registrar);
+                    SetParent(parent, uniqueId - 1, dataContext);
                 }
 #pragma warning restore CA2000
             }

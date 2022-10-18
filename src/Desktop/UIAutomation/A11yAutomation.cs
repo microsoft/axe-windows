@@ -114,8 +114,10 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pid"></param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, Registrar registrar)
+        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, TreeWalkerDataContext dataContext)
         {
+            EnsureContextConsistency(dataContext);
+
             IUIAutomationElement root = null;
             IEnumerable<DesktopElement> elements = null;
             IList<IUIAutomationElement> matchingElements;
@@ -128,7 +130,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 {
                     root = _uia.GetRootElement();
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
-                    elements = ElementsFromUIAElements(matchingElements, registrar);
+                    elements = ElementsFromUIAElements(matchingElements, dataContext);
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -154,15 +156,16 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="uia"></param>
         /// <returns></returns>
-        private static DesktopElement ElementFromUIAElement(IUIAutomationElement uia, Registrar registrar)
+        private DesktopElement ElementFromUIAElement(IUIAutomationElement uia, TreeWalkerDataContext dataContext)
         {
+            EnsureContextConsistency(dataContext);
             if (uia != null)
             {
                 if (!DesktopElement.IsFromCurrentProcess(uia))
                 {
                     var el = new DesktopElement(uia, true, false);
 
-                    el.PopulateMinimumPropertiesForSelection(registrar);
+                    el.PopulateMinimumPropertiesForSelection(dataContext);
 
                     return el;
                 }
@@ -180,8 +183,10 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="uia"></param>
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
-        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, Registrar registrar)
+        private IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, TreeWalkerDataContext dataContext)
         {
+            EnsureContextConsistency(dataContext);
+
             if (elementList == null) throw new ArgumentNullException(nameof(elementList));
 
             // Return an empty IEnumerable<DesktopElement> instead of null from ElementsFromUIAElements so that downstream calls to Linq extensions on the IEnumerable don't throw null reference exceptions.
@@ -195,7 +200,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
             foreach (var uiaElement in elementList)
             {
-                var e = ElementFromUIAElement(uiaElement, registrar);
+                var e = ElementFromUIAElement(uiaElement, dataContext);
                 if (e == null) continue;
 
                 elements.Add(e);
@@ -426,6 +431,15 @@ namespace Axe.Windows.Desktop.UIAutomation
         public  DesktopElement ElementFromDesktop()
         {
             return new DesktopElement(_uia.GetRootElement());
+        }
+
+        private void EnsureContextConsistency(TreeWalkerDataContext dataContext)
+        {
+            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
+            if (!ReferenceEquals(dataContext.A11yAutomation, this))
+            {
+                throw new ArgumentException("TODO: Resource string about consistency", nameof(dataContext));
+            }
         }
     }
 }

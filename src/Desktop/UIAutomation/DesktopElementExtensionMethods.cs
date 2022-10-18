@@ -4,7 +4,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// it would make Ux and Runtime separation easier since all communication is done via Actions.
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateAllPropertiesWithLiveData(this A11yElement element, Registrar registrar = null)
+        public static void PopulateAllPropertiesWithLiveData(this A11yElement element, TreeWalkerDataContext dataContext = null) // TODO Check default here!
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
 
@@ -48,7 +48,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
             if (element.IsSafeToRefresh())
             {
-                element.PopulatePropertiesAndPatternsFromCache(registrar);
+                element.PopulatePropertiesAndPatternsFromCache(dataContext);
                 element.PopulatePlatformProperties();
             }
         }
@@ -60,11 +60,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// - BoundingRectangle
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateMinimumPropertiesForSelection(this A11yElement element, Registrar registrar = null)
+        public static void PopulateMinimumPropertiesForSelection(this A11yElement element, TreeWalkerDataContext dataContext = null) // TODO
         {
             if (element == null) throw new ArgumentNullException(nameof(element));
 
-            element.PopulateWithIndicatedProperties(MiniumProperties, registrar);
+            element.PopulateWithIndicatedProperties(MiniumProperties, dataContext);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="element"></param>
         /// <param name="list"></param>
-        private static void PopulateWithIndicatedProperties(this A11yElement element, List<int> list, Registrar registrar)
+        private static void PopulateWithIndicatedProperties(this A11yElement element, List<int> list, TreeWalkerDataContext dataContext)
         {
             element.Clear();
             if (element.IsSafeToRefresh())
@@ -105,7 +105,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 A11yAutomation.UIAutomationObject.PollForPotentialSupportedProperties((IUIAutomationElement)element.PlatformObject, out int[] ppids, out string[] ppns);
 
                 // build a cache based on the lists
-                var cache = DesktopElementHelper.BuildCacheRequest(list, null, registrar);
+                var cache = DesktopElementHelper.BuildCacheRequest(list, null, dataContext);
 
                 // buildupdate cached element
                 var uia = ((IUIAutomationElement)element.PlatformObject).BuildUpdatedCache(cache);
@@ -128,14 +128,16 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="e"></param>
         /// <returns>if element is not live, don't allow clone</returns>
-        public static A11yElement CloneForSelection(this A11yElement e)
+        public static A11yElement CloneForSelection(this A11yElement e, TreeWalkerDataContext dataContext)
         {
+            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
+
             if (e == null) return null;
             if (e.PlatformObject == null) return null;
 
             try
             {
-                var cache = DesktopElementHelper.BuildCacheRequest(MiniumProperties, null);
+                var cache = DesktopElementHelper.BuildCacheRequest(MiniumProperties, null, dataContext);
 
                 var uia = ((IUIAutomationElement)e.PlatformObject).BuildUpdatedCache(cache);
                 Marshal.ReleaseComObject(cache);
@@ -236,7 +238,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// the update is done via caching to improve performance.
         /// </summary>
         /// <param name="useProperties">default is false to refresh it from UIElement directly</param>
-        private static void PopulatePropertiesAndPatternsFromCache(this A11yElement element, Registrar registrar)
+        private static void PopulatePropertiesAndPatternsFromCache(this A11yElement element, TreeWalkerDataContext dataContext)
         {
             try
             {
@@ -270,7 +272,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                               select pt.Item1).ToList();
 
                 // build a cache based on the lists
-                var cache = DesktopElementHelper.BuildCacheRequest(pplist, ptlist, registrar);
+                var cache = DesktopElementHelper.BuildCacheRequest(pplist, ptlist, dataContext);
 
                 // buildupdate cached element
                 var uia = ((IUIAutomationElement)element.PlatformObject).BuildUpdatedCache(cache);

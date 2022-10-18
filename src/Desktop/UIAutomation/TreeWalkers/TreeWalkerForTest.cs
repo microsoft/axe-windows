@@ -92,14 +92,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             // populate Elements first
-            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(dataContext.Registrar));
+            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(dataContext));
 
             // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence.
             var nuel = this.Elements.Where(e => e.Properties == null);
 
             if (nuel.Any())
             {
-                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(dataContext.Registrar));
+                nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(dataContext));
             }
 
             // run tests

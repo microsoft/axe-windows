@@ -218,7 +218,12 @@ namespace Axe.Windows.Actions
         /// <param name="eId"></param>
         public void SetCandidateElement(Guid ecId, int eId)
         {
-            var el = DataManager.GetA11yElement(ecId, eId).CloneForSelection();
+            SetCandidateElement(ecId, eId, DefaultActionContext.GetDefaultInstance());
+        }
+
+        internal void SetCandidateElement(Guid ecId, int eId, IActionContext actionContext)
+        {
+            var el = DataManager.GetA11yElement(ecId, eId).CloneForSelection(actionContext.TreeWalkerDataContext);
 
             SetCandidateElement(el);
         }

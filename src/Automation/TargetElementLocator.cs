@@ -18,7 +18,7 @@ namespace Axe.Windows.Automation
         {
             try
             {
-                var desktopElements = actionContext.TreeWalkerDataContext.A11yAutomation.ElementsFromProcessId(processId, actionContext.Registrar);
+                var desktopElements = actionContext.TreeWalkerDataContext.A11yAutomation.ElementsFromProcessId(processId, actionContext.TreeWalkerDataContext);
                 return GetA11YElementsFromDesktopElements(desktopElements);
             }
             catch (Exception ex)
