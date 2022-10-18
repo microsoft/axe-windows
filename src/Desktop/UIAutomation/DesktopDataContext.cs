@@ -4,14 +4,14 @@
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using System.Threading;
 
-namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
+namespace Axe.Windows.Desktop.UIAutomation
 {
     /// <summary>
     /// Data context for refreshing tree data for test
     /// </summary>
-    public class TreeWalkerDataContext
+    public class DesktopDataContext
     {
-        public static readonly TreeWalkerDataContext DefaultContext = new TreeWalkerDataContext(Registrar.GetDefaultInstance(), A11yAutomation.GetDefaultInstance(), CancellationToken.None);
+        public static readonly DesktopDataContext DefaultContext = new DesktopDataContext(Registrar.GetDefaultInstance(), A11yAutomation.GetDefaultInstance(), CancellationToken.None);
 
         public Registrar Registrar { get; }
 
@@ -19,7 +19,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
         public CancellationToken CancellationToken { get; }
 
-        public TreeWalkerDataContext(Registrar registrar, A11yAutomation a11yAutomation, CancellationToken cancellationToken)
+        public DesktopDataContext(Registrar registrar, A11yAutomation a11yAutomation, CancellationToken cancellationToken)
         {
             Registrar = registrar;
             A11yAutomation = a11yAutomation;

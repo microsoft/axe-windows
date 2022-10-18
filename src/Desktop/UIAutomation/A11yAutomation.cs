@@ -110,7 +110,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pid"></param>
         /// <param name="dataContext">The context we're workiing with</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, TreeWalkerDataContext dataContext)
+        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
             EnsureContextConsistency(dataContext);
 
@@ -150,7 +150,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Get DesktopElement from UIAElement interface.
         /// </summary>
-        private DesktopElement ElementFromUIAElement(IUIAutomationElement uia, TreeWalkerDataContext dataContext)
+        private DesktopElement ElementFromUIAElement(IUIAutomationElement uia, DesktopDataContext dataContext)
         {
             EnsureContextConsistency(dataContext);
             if (uia != null)
@@ -176,7 +176,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements from UIAElements.
         /// </summary>
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
-        private IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, TreeWalkerDataContext dataContext)
+        private IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, DesktopDataContext dataContext)
         {
             EnsureContextConsistency(dataContext);
 
@@ -258,7 +258,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="e">A11yElement</param>
         /// <param name="dataContext">This MUST be the context that contains thia A11yAutomation object</param>
         /// <returns></returns>
-        internal A11yElement GetAppElement(A11yElement e, TreeWalkerDataContext dataContext)
+        internal A11yElement GetAppElement(A11yElement e, DesktopDataContext dataContext)
         {
             if (!ReferenceEquals(dataContext.A11yAutomation, this)) throw new ArgumentException("Called on wrong context", nameof(dataContext));
 
@@ -426,7 +426,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             return new DesktopElement(UIAutomation.GetRootElement());
         }
 
-        private void EnsureContextConsistency(TreeWalkerDataContext dataContext)
+        private void EnsureContextConsistency(DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
             if (!ReferenceEquals(dataContext.A11yAutomation, this))

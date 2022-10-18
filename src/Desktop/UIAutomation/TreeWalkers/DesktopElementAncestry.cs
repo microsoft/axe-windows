@@ -53,11 +53,11 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="walker"></param>
         /// <param name="e"></param>
         public DesktopElementAncestry(TreeViewMode mode, A11yElement e)
-            : this (mode, e, false, TreeWalkerDataContext.DefaultContext)
+            : this (mode, e, false, DesktopDataContext.DefaultContext)
         {
         }
 
-        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem, TreeWalkerDataContext dataContext)
+        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem, DesktopDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -90,7 +90,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="e"></param>
         /// <param name="uniqueId"></param>
-        private void SetParent(A11yElement e, int uniqueId, TreeWalkerDataContext dataContext)
+        private void SetParent(A11yElement e, int uniqueId, DesktopDataContext dataContext)
         {
             if (e == null || e.PlatformObject == null || e.IsRootElement()) return;
 

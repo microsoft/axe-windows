@@ -223,7 +223,7 @@ namespace Axe.Windows.Actions
 
         internal void SetCandidateElement(Guid ecId, int eId, IActionContext actionContext)
         {
-            var el = DataManager.GetA11yElement(ecId, eId).CloneForSelection(actionContext.TreeWalkerDataContext);
+            var el = DataManager.GetA11yElement(ecId, eId).CloneForSelection(actionContext.DesktopDataContext);
 
             SetCandidateElement(el);
         }

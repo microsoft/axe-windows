@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement RootElement { get; }
-        void GetTreeHierarchy(A11yElement e, TreeViewMode mode, TreeWalkerDataContext dataContext);
+        void GetTreeHierarchy(A11yElement e, TreeViewMode mode, DesktopDataContext dataContext);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="e"></param>
         /// <param name="mode"></param>
         /// <param name="dataContext"></param>
-        public void GetTreeHierarchy(A11yElement e, TreeViewMode mode, TreeWalkerDataContext dataContext)
+        public void GetTreeHierarchy(A11yElement e, TreeViewMode mode, DesktopDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -103,7 +103,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Populate tree by retrieving all children at once.
         /// </summary>
         /// <param name="rootNode"></param>
-        private void PopulateChildrenTreeNode(A11yElement rootNode, int startId, TreeWalkerDataContext dataContext)
+        private void PopulateChildrenTreeNode(A11yElement rootNode, int startId, DesktopDataContext dataContext)
         {
             int childId = startId;
 

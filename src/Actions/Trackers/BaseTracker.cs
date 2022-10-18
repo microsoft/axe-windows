@@ -77,7 +77,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (e != null && Scope == SelectionScope.App)
             {
-                var el = ActionContext.TreeWalkerDataContext.A11yAutomation.GetAppElement(e, ActionContext.TreeWalkerDataContext);
+                var el = ActionContext.DesktopDataContext.A11yAutomation.GetAppElement(e, ActionContext.DesktopDataContext);
 
                 // if the original selection is Top most element of the app, it should not be released.
                 if (e != el)

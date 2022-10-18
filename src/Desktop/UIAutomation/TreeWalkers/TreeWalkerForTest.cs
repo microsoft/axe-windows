@@ -20,7 +20,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement TopMostElement { get; }
-        void RefreshTreeData(TreeViewMode mode, TreeWalkerDataContext dataContext);
+        void RefreshTreeData(TreeViewMode mode, DesktopDataContext dataContext);
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Refresh tree node data with all children at once.
         /// <param name="mode">indicate the mode</param>
         /// </summary>
-        public void RefreshTreeData(TreeViewMode mode, TreeWalkerDataContext dataContext)
+        public void RefreshTreeData(TreeViewMode mode, DesktopDataContext dataContext)
         {
             dataContext.CancellationToken.ThrowIfCancellationRequested();
 
@@ -126,7 +126,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="rootNode"></param>
         /// <param name="parentNode"></param>
         /// <param name="startChildId"></param>
-        private int PopulateChildrenTreeNode(A11yElement rootNode, A11yElement parentNode, int startChildId, TreeWalkerDataContext dataContext)
+        private int PopulateChildrenTreeNode(A11yElement rootNode, A11yElement parentNode, int startChildId, DesktopDataContext dataContext)
         {
             this.Elements.Add(rootNode);
 

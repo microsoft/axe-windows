@@ -95,7 +95,7 @@ namespace Axe.Windows.Actions
         {
             var e = actionContext.DataManager.GetA11yElement(ecId, eId);
 
-            e?.PopulateAllPropertiesWithLiveData(actionContext.TreeWalkerDataContext);
+            e?.PopulateAllPropertiesWithLiveData(actionContext.DesktopDataContext);
 
             return e;
         }

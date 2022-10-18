@@ -72,7 +72,7 @@ namespace Axe.Windows.Actions
             dc.TreeMode = mode;
             dc.Mode = DataContextMode.Live;
             var ltw = NewTreeWalkerForLive();
-            ltw.GetTreeHierarchy(dc.Element, mode, actionContext.TreeWalkerDataContext);
+            ltw.GetTreeHierarchy(dc.Element, mode, actionContext.DesktopDataContext);
             dc.RootElment = ltw.RootElement;
             dc.Elements = ltw.Elements.ToDictionary(i => i.UniqueId);
             ltw.Elements.Clear();
@@ -131,7 +131,7 @@ namespace Axe.Windows.Actions
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm, actionContext.TreeWalkerDataContext);
+                    stw.RefreshTreeData(tm, actionContext.DesktopDataContext);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;

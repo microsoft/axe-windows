@@ -3,7 +3,6 @@
 
 using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 using System.Threading;
 
@@ -17,20 +16,20 @@ namespace Axe.Windows.Actions.Contexts
     {
         private bool disposedValue;
 
-        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, TreeWalkerDataContext treeWalkerDataContext)
+        private ScopedActionContext(DataManager dataManager, SelectAction selectAction, DesktopDataContext treeWalkerDataContext)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
             SelectAction = selectAction ?? throw new ArgumentNullException(nameof(selectAction));
-            TreeWalkerDataContext = treeWalkerDataContext ?? throw new ArgumentNullException(nameof(treeWalkerDataContext));
+            DesktopDataContext = treeWalkerDataContext ?? throw new ArgumentNullException(nameof(treeWalkerDataContext));
         }
 
         public DataManager DataManager { get; }
 
         public SelectAction SelectAction { get; }
 
-        public Registrar Registrar => TreeWalkerDataContext.Registrar;
+        public Registrar Registrar => DesktopDataContext.Registrar;
 
-        public TreeWalkerDataContext TreeWalkerDataContext { get; }
+        public DesktopDataContext DesktopDataContext { get; }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -65,7 +64,7 @@ namespace Axe.Windows.Actions.Contexts
             return new ScopedActionContext(
                 dataManager,
                 SelectAction.CreateInstance(dataManager),
-                new TreeWalkerDataContext(new Registrar(), A11yAutomation.CreateInstance(), cancellationToken));
+                new DesktopDataContext(new Registrar(), A11yAutomation.CreateInstance(), cancellationToken));
         }
     }
 }

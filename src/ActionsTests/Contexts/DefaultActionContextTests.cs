@@ -3,8 +3,8 @@
 
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Axe.Windows.ActionsTests.Contexts
@@ -43,9 +43,9 @@ namespace Axe.Windows.ActionsTests.Contexts
         [Timeout(1000)]
         public void TreeWalkerDataContext_IsDefaultTreeWalkerDataContext()
         {
-            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().TreeWalkerDataContext;
+            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().DesktopDataContext;
             Assert.IsNotNull(treeWalkerDataContext);
-            Assert.AreSame(TreeWalkerDataContext.DefaultContext, treeWalkerDataContext);
+            Assert.AreSame(DesktopDataContext.DefaultContext, treeWalkerDataContext);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace Axe.Windows.ActionsTests.Contexts
             var dataManager = DefaultActionContext.GetDefaultInstance().DataManager;
             var selectAction = DefaultActionContext.GetDefaultInstance().SelectAction;
             var registrar = DefaultActionContext.GetDefaultInstance().Registrar;
-            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().TreeWalkerDataContext;
+            var treeWalkerDataContext = DefaultActionContext.GetDefaultInstance().DesktopDataContext;
 
             DefaultActionContext.GetDefaultInstance().Dispose();
 
@@ -64,7 +64,7 @@ namespace Axe.Windows.ActionsTests.Contexts
             Assert.AreSame(dataManager, DefaultActionContext.GetDefaultInstance().DataManager);
             Assert.AreSame(selectAction, DefaultActionContext.GetDefaultInstance().SelectAction);
             Assert.AreSame(registrar, DefaultActionContext.GetDefaultInstance().Registrar);
-            Assert.AreSame(treeWalkerDataContext, DefaultActionContext.GetDefaultInstance().TreeWalkerDataContext);
+            Assert.AreSame(treeWalkerDataContext, DefaultActionContext.GetDefaultInstance().DesktopDataContext);
         }
     }
 }

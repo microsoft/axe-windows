@@ -4,7 +4,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
@@ -40,8 +39,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// it would make Ux and Runtime separation easier since all communication is done via Actions.
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateAllPropertiesWithLiveData(this A11yElement element, TreeWalkerDataContext dataContext = null) // TODO Check default here!
+        public static void PopulateAllPropertiesWithLiveData(this A11yElement element, DesktopDataContext dataContext = null) // TODO DHT Check default here!
         {
+            dataContext = dataContext ?? DesktopDataContext.DefaultContext; // TODO DHT: Review!
             if (element == null) throw new ArgumentNullException(nameof(element));
 
             element.Clear();
@@ -60,8 +60,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// - BoundingRectangle
         /// </summary>
         /// <param name="element"></param>
-        public static void PopulateMinimumPropertiesForSelection(this A11yElement element, TreeWalkerDataContext dataContext = null) // TODO
+        public static void PopulateMinimumPropertiesForSelection(this A11yElement element, DesktopDataContext dataContext = null) // TODO DHT: Remove default?
         {
+            dataContext = dataContext ?? DesktopDataContext.DefaultContext; // TODO DHT: Review!
             if (element == null) throw new ArgumentNullException(nameof(element));
 
             element.PopulateWithIndicatedProperties(MiniumProperties, dataContext);
@@ -97,7 +98,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="element"></param>
         /// <param name="list"></param>
-        private static void PopulateWithIndicatedProperties(this A11yElement element, List<int> list, TreeWalkerDataContext dataContext)
+        private static void PopulateWithIndicatedProperties(this A11yElement element, List<int> list, DesktopDataContext dataContext)
         {
             element.Clear();
             if (element.IsSafeToRefresh())
@@ -128,7 +129,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="e"></param>
         /// <returns>if element is not live, don't allow clone</returns>
-        public static A11yElement CloneForSelection(this A11yElement e, TreeWalkerDataContext dataContext)
+        public static A11yElement CloneForSelection(this A11yElement e, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
@@ -238,7 +239,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// the update is done via caching to improve performance.
         /// </summary>
         /// <param name="useProperties">default is false to refresh it from UIElement directly</param>
-        private static void PopulatePropertiesAndPatternsFromCache(this A11yElement element, TreeWalkerDataContext dataContext)
+        private static void PopulatePropertiesAndPatternsFromCache(this A11yElement element, DesktopDataContext dataContext)
         {
             try
             {
@@ -519,7 +520,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Requesting the clickable point property in Edge can cause a crash,
         /// so the clickable point property is not initially populated by <see cref="DesktopElementExtensionMethods.PopulatePropertiesAndPatternsFromCache(A11yElement)"/>.
         /// </remarks>
-        private static void InitClickablePointProperty(this A11yElement a11yElement, IUIAutomationElement uiaElement, TreeWalkerDataContext dataContext)
+        private static void InitClickablePointProperty(this A11yElement a11yElement, IUIAutomationElement uiaElement, DesktopDataContext dataContext)
         {
             if (a11yElement.IsEdgeElement()) return;
 

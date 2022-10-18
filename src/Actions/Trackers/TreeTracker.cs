@@ -149,7 +149,7 @@ namespace Axe.Windows.Actions.Trackers
             var currentElement = GetCurrentElement();
             if (currentElement == null) return null;
 
-            var treeWalker = ActionContext.TreeWalkerDataContext.A11yAutomation.GetTreeWalker(this.TreeViewMode);
+            var treeWalker = ActionContext.DesktopDataContext.A11yAutomation.GetTreeWalker(this.TreeViewMode);
 
             var nextElement = getNextElement?.Invoke(treeWalker, currentElement);
 
