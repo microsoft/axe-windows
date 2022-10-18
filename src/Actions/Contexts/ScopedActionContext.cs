@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
@@ -64,7 +65,7 @@ namespace Axe.Windows.Actions.Contexts
             return new ScopedActionContext(
                 dataManager,
                 SelectAction.CreateInstance(dataManager),
-                new TreeWalkerDataContext(new Registrar(), cancellationToken));
+                new TreeWalkerDataContext(new Registrar(), A11yAutomation.CreateInstance(), cancellationToken));
         }
     }
 }

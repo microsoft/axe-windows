@@ -11,15 +11,18 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     /// </summary>
     public class TreeWalkerDataContext
     {
-        public static readonly TreeWalkerDataContext DefaultContext = new TreeWalkerDataContext(Registrar.GetDefaultInstance(), CancellationToken.None);
+        public static readonly TreeWalkerDataContext DefaultContext = new TreeWalkerDataContext(Registrar.GetDefaultInstance(), A11yAutomation.GetDefaultInstance(), CancellationToken.None);
 
         public Registrar Registrar { get; }
 
+        public A11yAutomation A11yAutomation { get; }
+
         public CancellationToken CancellationToken { get; }
 
-        public TreeWalkerDataContext(Registrar registrar, CancellationToken cancellationToken)
+        public TreeWalkerDataContext(Registrar registrar, A11yAutomation a11yAutomation, CancellationToken cancellationToken)
         {
             Registrar = registrar;
+            A11yAutomation = a11yAutomation;
             CancellationToken = cancellationToken;
         }
     }

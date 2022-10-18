@@ -47,7 +47,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataManager.AddElementContext(mockElementContext);
 
             Registrar registrar = new Registrar();
-            TreeWalkerDataContext treeWalkerDataContext = new TreeWalkerDataContext(registrar, CancellationToken.None);
+            TreeWalkerDataContext treeWalkerDataContext = new TreeWalkerDataContext(registrar, /*TODO*/ null, CancellationToken.None);
 
             mockActionContext = new Mock<IActionContext>(MockBehavior.Strict);
             mockActionContext.Setup(m => m.DataManager).Returns(mockDataManager);

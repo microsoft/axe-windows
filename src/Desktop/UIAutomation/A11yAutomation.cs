@@ -20,9 +20,25 @@ namespace Axe.Windows.Desktop.UIAutomation
     /// <summary>
     /// Wrapper for CUIAutomation COM object
     /// </summary>
-    public static class A11yAutomation
+    public class A11yAutomation
     {
         static readonly IUIAutomation UIAutomation = GetUIAutomationInterface();
+
+        static readonly Lazy<A11yAutomation> Lazy = new Lazy<A11yAutomation>(() => CreateInstance());
+
+        internal static A11yAutomation GetDefaultInstance() => Lazy.Value;
+
+        internal static A11yAutomation CreateInstance()
+        {
+            return new A11yAutomation();
+        }
+
+        public long TempProperty { get; }
+
+        public A11yAutomation()
+        {
+            TempProperty = DateTime.UtcNow.Ticks;
+        }
 
         private static IUIAutomation GetUIAutomationInterface()
         {
