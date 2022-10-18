@@ -150,10 +150,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Get DesktopElement from UIAElement interface.
         /// </summary>
-        private DesktopElement ElementFromUIAElement(IUIAutomationElement uia, DesktopDataContext dataContext)
+        private static DesktopElement ElementFromUIAElement(IUIAutomationElement uia, DesktopDataContext dataContext)
         {
-            EnsureContextConsistency(dataContext);
-
             if (uia != null)
             {
                 if (!DesktopElement.IsFromCurrentProcess(uia))
