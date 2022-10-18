@@ -36,11 +36,6 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         public TreeViewMode TreeWalkerMode { get; }
 
         /// <summary>
-        /// Parent elements' SetMembers value
-        /// </summary>
-        bool SetMembers { get; set; }
-
-        /// <summary>
         /// Id for next element
         /// it will be used in Tree Walker.
         /// </summary>
@@ -53,18 +48,17 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="walker"></param>
         /// <param name="e"></param>
         public DesktopElementAncestry(TreeViewMode mode, A11yElement e)
-            : this (mode, e, false, DesktopDataContext.DefaultContext)
+            : this (mode, e, DesktopDataContext.DefaultContext)
         {
         }
 
-        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem, DesktopDataContext dataContext)
+        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, DesktopDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             this.TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
-            this.SetMembers = setMem;
             SetParent(e, -1, dataContext);
 
             if (Items.Count != 0)
@@ -100,7 +94,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 if (puia == null) return;
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-                var parent = new DesktopElement(puia, true, SetMembers);
+                var parent = new DesktopElement(puia, true, false);
                 parent.PopulateMinimumPropertiesForSelection(dataContext);
 
                 // we need to avoid infinite loop of self reference as parent.

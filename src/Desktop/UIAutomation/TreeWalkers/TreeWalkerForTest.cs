@@ -71,7 +71,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             }
 
             //Set parent of Root explicitly for testing.
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, false, dataContext);
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, dataContext);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
             _elementCounter.TryAdd(ancestry.Items.Count);

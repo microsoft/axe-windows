@@ -242,7 +242,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             EnsureContextConsistency(dataContext);
 
             var walker = GetTreeWalker(TreeViewMode.Control);
-            var tree = new DesktopElementAncestry(TreeViewMode.Control, e, false, dataContext);
+            var tree = new DesktopElementAncestry(TreeViewMode.Control, e, dataContext);
             Marshal.ReleaseComObject(walker);
             A11yElement app = tree.First;
 
