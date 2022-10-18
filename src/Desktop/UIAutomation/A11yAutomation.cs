@@ -153,6 +153,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         private DesktopElement ElementFromUIAElement(IUIAutomationElement uia, DesktopDataContext dataContext)
         {
             EnsureContextConsistency(dataContext);
+
             if (uia != null)
             {
                 if (!DesktopElement.IsFromCurrentProcess(uia))
@@ -200,26 +201,6 @@ namespace Axe.Windows.Desktop.UIAutomation
             } // for each element
 
             return elements;
-        }
-
-        /// <summary>
-        /// Get the top level IUIAutomationElement from Windows handle
-        /// </summary>
-        /// <param name="hWnd"></param>
-        /// <returns></returns>
-        public IUIAutomationElement UIAElementFromHandle(IntPtr hWnd)
-        {
-            try
-            {
-                return UIAutomation.ElementFromHandle(hWnd);
-            }
-#pragma warning disable CA1031 // Do not catch general exception types
-            catch (Exception e)
-            {
-                e.ReportException();
-                return null;
-            }
-#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -335,9 +316,12 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
+        /// <param name="dataContext">The current data context</param>
         /// <returns></returns>
         internal DesktopElement ElementFromPoint(int xPos, int yPos, DesktopDataContext dataContext)
         {
+            EnsureContextConsistency(dataContext);
+
             try
             {
                 var uia = UIAutomation.ElementFromPoint(new tagPOINT() { x = xPos, y = yPos });
@@ -372,9 +356,12 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
         /// <param name="treeViewMode">current TreeViewMode</param>
+        /// <param name="dataContext">The current data context</param>
         /// <returns></returns>
         public A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
         {
+            EnsureContextConsistency(dataContext);
+
             try
             {
                 A11yElement element = ElementFromPoint(xPos, yPos, dataContext);
@@ -404,25 +391,6 @@ namespace Axe.Windows.Desktop.UIAutomation
 #pragma warning restore CA1031 // Do not catch general exception types
 
             return null;
-        }
-
-        /// <summary>
-        /// Get Property programmatic Name from UIA service.
-        /// </summary>
-        /// <param name="pid"></param>
-        /// <returns></returns>
-        public string GetPropertyProgrammaticName(int pid)
-        {
-            return UIAutomation.GetPropertyProgrammaticName(pid);
-        }
-
-        /// <summary>
-        /// Get DesktopElement from Desktop
-        /// </summary>
-        /// <returns></returns>
-        public  DesktopElement ElementFromDesktop()
-        {
-            return new DesktopElement(UIAutomation.GetRootElement());
         }
 
         private void EnsureContextConsistency(DesktopDataContext dataContext)
