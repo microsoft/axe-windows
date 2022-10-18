@@ -52,12 +52,11 @@ namespace Axe.Windows.Actions.Contexts
             GC.SuppressFinalize(this);
         }
 
-        // Override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
-        ~ScopedActionContext()
-        {
-            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
-            Dispose(false);
-        }
+        // TODO: override a finalizer only if Dispose(bool disposing) above has code to free unmanaged resources.
+        // ~ScopedActionContext() {
+        //   // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+        //   Dispose(false);
+        // }
 
         internal static IActionContext CreateInstance(CancellationToken cancellationToken)
         {
