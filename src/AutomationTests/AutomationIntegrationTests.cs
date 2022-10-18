@@ -253,7 +253,6 @@ namespace Axe.Windows.AutomationTests
             foreach (var func in taskFuncs)
             {
                 tasks.Add(func());
-                Thread.Sleep(300); // TODO investigate why this is necessary (without this UIAutomation.GetRootElement() throws)
             }
 
             return tasks;
