@@ -102,7 +102,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             element.Clear();
             if (element.IsSafeToRefresh())
             {
-                A11yAutomation.UIAutomationObject.PollForPotentialSupportedProperties((IUIAutomationElement)element.PlatformObject, out int[] ppids, out string[] ppns);
+                dataContext.A11yAutomation.UIAutomation.PollForPotentialSupportedProperties((IUIAutomationElement)element.PlatformObject, out int[] ppids, out string[] ppns);
 
                 // build a cache based on the lists
                 var cache = DesktopElementHelper.BuildCacheRequest(list, null, dataContext);
@@ -243,7 +243,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             try
             {
                 // Get the list of properties to retrieve
-                A11yAutomation.UIAutomationObject.PollForPotentialSupportedProperties((IUIAutomationElement)element.PlatformObject, out int[] ppids, out string[] ppns);
+                dataContext.A11yAutomation.UIAutomation.PollForPotentialSupportedProperties((IUIAutomationElement)element.PlatformObject, out int[] ppids, out string[] ppns);
 
                 var ppl = new List<Tuple<int, string>>();
 
@@ -258,7 +258,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     }
                 }
 
-                A11yAutomation.UIAutomationObject.PollForPotentialSupportedPatterns((IUIAutomationElement)element.PlatformObject, out int[] ptids, out string[] ptns);
+                dataContext.A11yAutomation.UIAutomation.PollForPotentialSupportedPatterns((IUIAutomationElement)element.PlatformObject, out int[] ptids, out string[] ptns);
                 var ptl = new List<Tuple<int, string>>();
 
                 for (int i = 0; i < ptids.Length; i++)
@@ -287,7 +287,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 element.UpdateGlimpse();
 
-                element.InitClickablePointProperty(uia);
+                element.InitClickablePointProperty(uia, dataContext);
 
                 // retrieve patterns from cache
                 var ptlst = from pt in ptl
@@ -519,7 +519,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Requesting the clickable point property in Edge can cause a crash,
         /// so the clickable point property is not initially populated by <see cref="DesktopElementExtensionMethods.PopulatePropertiesAndPatternsFromCache(A11yElement)"/>.
         /// </remarks>
-        private static void InitClickablePointProperty(this A11yElement a11yElement, IUIAutomationElement uiaElement)
+        private static void InitClickablePointProperty(this A11yElement a11yElement, IUIAutomationElement uiaElement, TreeWalkerDataContext dataContext)
         {
             if (a11yElement.IsEdgeElement()) return;
 
@@ -528,7 +528,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             double[] clickablePoint = uiaElement.GetCurrentPropertyValue(id);
             if (clickablePoint == null) return;
 
-            string name = A11yAutomation.UIAutomationObject.GetPropertyProgrammaticName(id);
+            string name = dataContext.A11yAutomation.UIAutomation.GetPropertyProgrammaticName(id);
 
             var prop = new A11yProperty
             {

@@ -4,7 +4,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
@@ -22,17 +21,18 @@ namespace Axe.Windows.Desktop.UIAutomation
     /// </summary>
     public class A11yAutomation
     {
-        static readonly IUIAutomation UIAutomation = GetUIAutomationInterface();
+        static readonly Lazy<A11yAutomation> DefaultInstanceLazy = new Lazy<A11yAutomation>(() => CreateInstance());
 
-        static readonly Lazy<A11yAutomation> Lazy = new Lazy<A11yAutomation>(() => CreateInstance());
+        internal static A11yAutomation GetDefaultInstance() => DefaultInstanceLazy.Value;
 
-        internal static A11yAutomation GetDefaultInstance() => Lazy.Value;
+        /// <summary>
+        /// The IUIAutomation object currently in use in this instance
+        /// </summary>
+        internal IUIAutomation UIAutomation { get; }
 
-        private readonly IUIAutomation _uia;
-
-        internal A11yAutomation(IUIAutomation uia)
+        private A11yAutomation(IUIAutomation uiAutomation)
         {
-            _uia = uia;
+            UIAutomation = uiAutomation;
         }
 
         internal static A11yAutomation CreateInstance()
@@ -46,11 +46,6 @@ namespace Axe.Windows.Desktop.UIAutomation
                 ? new CUIAutomation() as IUIAutomation
                 : new CUIAutomation8() as IUIAutomation;
         }
-
-        /// <summary>
-        /// The IUIAutomation object currently in use.
-        /// </summary>
-        public static IUIAutomation UIAutomationObject => UIAutomation;
 
         private static bool FindProcessMatchingChildren(IUIAutomationElement parent, IUIAutomationTreeWalker walker, int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements)
         {
@@ -113,6 +108,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements based on Process Id.
         /// </summary>
         /// <param name="pid"></param>
+        /// <param name="dataContext">The context we're workiing with</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
         public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, TreeWalkerDataContext dataContext)
         {
@@ -128,7 +124,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
-                    root = _uia.GetRootElement();
+                    root = UIAutomation.GetRootElement();
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, dataContext);
                 }
@@ -154,8 +150,6 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Get DesktopElement from UIAElement interface.
         /// </summary>
-        /// <param name="uia"></param>
-        /// <returns></returns>
         private DesktopElement ElementFromUIAElement(IUIAutomationElement uia, TreeWalkerDataContext dataContext)
         {
             EnsureContextConsistency(dataContext);
@@ -181,7 +175,6 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Get DesktopElements from UIAElements.
         /// </summary>
-        /// <param name="uia"></param>
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
         private IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, TreeWalkerDataContext dataContext)
         {
@@ -218,7 +211,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             try
             {
-                return _uia.ElementFromHandle(hWnd);
+                return UIAutomation.ElementFromHandle(hWnd);
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
@@ -237,7 +230,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             try
             {
-                var uia = _uia.GetFocusedElement();
+                var uia = UIAutomation.GetFocusedElement();
 
                 if (!DesktopElement.IsFromCurrentProcess(uia))
                 {
@@ -325,13 +318,13 @@ namespace Axe.Windows.Desktop.UIAutomation
             switch (mode)
             {
                 case TreeViewMode.Content:
-                    walker = _uia.ContentViewWalker;
+                    walker = UIAutomation.ContentViewWalker;
                     break;
                 case TreeViewMode.Control:
-                    walker = _uia.ControlViewWalker;
+                    walker = UIAutomation.ControlViewWalker;
                     break;
                 case TreeViewMode.Raw:
-                    walker = _uia.RawViewWalker;
+                    walker = UIAutomation.RawViewWalker;
                     break;
             }
 
@@ -348,7 +341,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             try
             {
-                var uia = _uia.ElementFromPoint(new tagPOINT() { x = xPos, y = yPos });
+                var uia = UIAutomation.ElementFromPoint(new tagPOINT() { x = xPos, y = yPos });
 
                 if (!DesktopElement.IsFromCurrentProcess(uia))
                 {
@@ -421,7 +414,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         public string GetPropertyProgrammaticName(int pid)
         {
-            return _uia.GetPropertyProgrammaticName(pid);
+            return UIAutomation.GetPropertyProgrammaticName(pid);
         }
 
         /// <summary>
@@ -430,7 +423,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <returns></returns>
         public  DesktopElement ElementFromDesktop()
         {
-            return new DesktopElement(_uia.GetRootElement());
+            return new DesktopElement(UIAutomation.GetRootElement());
         }
 
         private void EnsureContextConsistency(TreeWalkerDataContext dataContext)
