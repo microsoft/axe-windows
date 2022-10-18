@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -672,7 +673,7 @@ namespace Axe.Windows.Core.Misc
                 case TreeViewMode.Raw:
                     return RuleId.TypicalTreeStructureRaw;
                 default:
-                    throw new InvalidEnumArgumentException(Invariant($"No rule id exists for the given view mode {viewMode}"));
+                    throw new InvalidEnumArgumentException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.NoRuleIdExists, viewMode));
             }
         }
 

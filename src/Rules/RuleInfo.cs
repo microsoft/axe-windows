@@ -1,8 +1,9 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Rules.Resources;
 using System;
-
+using System.Globalization;
 using static System.FormattableString;
 
 namespace Axe.Windows.Rules
@@ -69,10 +70,7 @@ namespace Axe.Windows.Rules
         /// </summary>
         public override string ToString()
         {
-            return Invariant($@"ID:   {this.ID}
-Description:    {this.Description}
-HowToFix:    {this.HowToFix}
-Condition:  {this.Condition}");
+            return string.Format(CultureInfo.CurrentCulture, Descriptions.SummaryFormat, this.ID, this.Description, this.HowToFix, this.Condition);
         }
     } // class
 } // namespace

@@ -126,6 +126,10 @@
   <data name="ErrorIsNotFullPath" xml:space="preserve">
     <value>The given path was not an absolute path.</value>
   </data>
+  <data name="ErrorKeyNotFound" xml:space="preserve">
+    <value>{0} not found in {1} dictionary.</value>
+    <comment>{0} is key name, {1} is dictionary name</comment>
+  </data>
   <data name="ErrorTooManyElementsToSetDataContext" xml:space="preserve">
     <value>Unable to set Data context (more than {0:N0} elements were found)</value>
     <comment>{0} is the maximum number of elements</comment>

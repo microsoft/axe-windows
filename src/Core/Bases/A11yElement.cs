@@ -1,14 +1,16 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Core.Resources;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -417,7 +419,7 @@ namespace Axe.Windows.Core.Bases
         {
             var property = this.PlatformProperties?.ById(propertyId);
             if (property == null) return default;
-            if (!(property.Value is T)) throw new AxeWindowsException(Invariant($"Expected property.Value, which is type {property.Value.GetType().Name}, to be type {typeof(T).Name}"));
+            if (!(property.Value is T)) throw new AxeWindowsException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.PropertyValueTypeUnexpected, property.Value.GetType().Name, typeof(T).Name));
 
             return property.Value;
         }

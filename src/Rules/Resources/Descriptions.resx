@@ -414,4 +414,11 @@
   <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
     <value>The non-Chromium version of Microsoft Edge has been deprecated.</value>
   </data>
+  <data name="SummaryFormat" xml:space="preserve">
+    <value>ID:   {0}
+Description:    {1}
+HowToFix:    {2}
+Condition:  {3}</value>
+    <comment>{0} is id, {1} is description, {2} is how to fix, and {3} is condition</comment>
+  </data>
 </root>

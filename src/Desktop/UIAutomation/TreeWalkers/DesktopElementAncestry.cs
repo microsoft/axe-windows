@@ -3,10 +3,12 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.Resources;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using UIAutomationClient;
@@ -145,7 +147,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 {
                     ex.ReportException();
                     child = null;
-                    System.Diagnostics.Trace.WriteLine("Tree walker exception: " + ex);
+                    System.Diagnostics.Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ErrorMessages.TreeWalkerException, ex));
                 }
 #pragma warning restore CA1031 // Do not catch general exception types
 
@@ -179,7 +181,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     {
                         ex.ReportException();
                         child = null;
-                        System.Diagnostics.Trace.WriteLine("Tree walker exception: " + ex);
+                        System.Diagnostics.Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ErrorMessages.TreeWalkerException, ex));
                     }
 #pragma warning restore CA1031 // Do not catch general exception types
                 }

@@ -2,9 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace Axe.Windows.Core.CustomObjects
@@ -65,7 +67,7 @@ namespace Axe.Windows.Core.CustomObjects
                         Type = CustomUIAPropertyType.Enum;
                         break;
                     default:
-                        throw new ArgumentException($"'${value}' is not a supported type", nameof(value));
+                        throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.NotSupportedType, value), nameof(value));
                 }
                 _configType = value;
             }
@@ -81,9 +83,9 @@ namespace Axe.Windows.Core.CustomObjects
         public void Validate()
         {
             if (Values == null && Type == CustomUIAPropertyType.Enum)
-                throw new InvalidDataException("Values required for enumeration types.");
+                throw new InvalidDataException(ErrorMessages.ValuesRequired);
             if (Values != null && Type != CustomUIAPropertyType.Enum)
-                throw new InvalidDataException("Values cannot be defined for non-enumeration types.");
+                throw new InvalidDataException(ErrorMessages.ValuesCannotBeDefined);
         }
     }
 }

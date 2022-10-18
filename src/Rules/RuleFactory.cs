@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Rules.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Axe.Windows.Rules
             return ruleTypes.ToDictionary(t =>
             {
                 var info = (RuleInfo)t.GetCustomAttribute(typeof(RuleInfo));
-                if (info == null) throw new InvalidOperationException("All rules are expected to have the RuleInfo attribute with the ID property set.");
+                if (info == null) throw new InvalidOperationException(ErrorMessages.RuleInfoAttributeExpected);
 
                 return info.ID;
             });

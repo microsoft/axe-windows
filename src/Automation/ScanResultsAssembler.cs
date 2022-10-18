@@ -1,10 +1,12 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Rules;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 using static System.FormattableString;
@@ -66,7 +68,7 @@ namespace Axe.Windows.Automation
         private static ScanResult MakeScanResult(ElementInfo elementInfo, RuleResult res)
         {
             if (!Rules.Rules.All.TryGetValue(res.Rule, out RuleInfo rule))
-                throw new KeyNotFoundException(Invariant($"{res.Rule} not found in {nameof(Rules)} dictionary."));
+                throw new KeyNotFoundException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorKeyNotFound, res.Rule, nameof(Rules)));
 
             return new ScanResult()
             {

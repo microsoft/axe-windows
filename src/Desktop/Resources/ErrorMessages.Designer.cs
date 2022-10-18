@@ -70,6 +70,24 @@ namespace Axe.Windows.Desktop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High Confidence threshold must be &lt; 1.0.
+        /// </summary>
+        internal static string HighConfidenceLargerThan1 {
+            get {
+                return ResourceManager.GetString("HighConfidenceLargerThan1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High Confidence threshold must be larger than Mid confidence threshold.
+        /// </summary>
+        internal static string HighConfidenceLargerThanMid {
+            get {
+                return ResourceManager.GetString("HighConfidenceLargerThanMid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Color components are values between 0 and 255.
         /// </summary>
         internal static string InvalidColor {
@@ -79,11 +97,47 @@ namespace Axe.Windows.Desktop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Low Confidence threshold must be &gt; 0.0.
+        /// </summary>
+        internal static string LowConfidenceGreaterThan0 {
+            get {
+                return ResourceManager.GetString("LowConfidenceGreaterThan0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mid Confidence threshold must be larger than Low confidence threshold.
+        /// </summary>
+        internal static string MidConfidenceLargerThanLow {
+            get {
+                return ResourceManager.GetString("MidConfidenceLargerThanLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The pattern may no longer be valid.
         /// </summary>
         internal static string PatternNoLongerValid {
             get {
                 return ResourceManager.GetString("PatternNoLongerValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree walker exception: {0}.
+        /// </summary>
+        internal static string TreeWalkerException {
+            get {
+                return ResourceManager.GetString("TreeWalkerException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unset or unknown type.
+        /// </summary>
+        internal static string UnsetOrUnknownType {
+            get {
+                return ResourceManager.GetString("UnsetOrUnknownType", resourceCulture);
             }
         }
     }

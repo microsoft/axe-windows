@@ -61,6 +61,24 @@ namespace Axe.Windows.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No rule id exists for the given view mode {0}.
+        /// </summary>
+        internal static string NoRuleIdExists {
+            get {
+                return ResourceManager.GetString("NoRuleIdExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; is not a supported type.
+        /// </summary>
+        internal static string NotSupportedType {
+            get {
+                return ResourceManager.GetString("NotSupportedType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This parameter must be less than int.MaxValue.
         /// </summary>
         internal static string ParameterMustBeLessThanIntMaxValue {
@@ -97,6 +115,15 @@ namespace Axe.Windows.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expected property.Value, which is type {0}, to be type {1}.
+        /// </summary>
+        internal static string PropertyValueTypeUnexpected {
+            get {
+                return ResourceManager.GetString("PropertyValueTypeUnexpected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to locate the target element in the file..
         /// </summary>
         internal static string UnableToLocateTargetElementInFile {
@@ -120,6 +147,24 @@ namespace Axe.Windows.Core.Resources {
         internal static string ValueCannotBeNull {
             get {
                 return ResourceManager.GetString("ValueCannotBeNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Values cannot be defined for non-enumeration types..
+        /// </summary>
+        internal static string ValuesCannotBeDefined {
+            get {
+                return ResourceManager.GetString("ValuesCannotBeDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Values required for enumeration types..
+        /// </summary>
+        internal static string ValuesRequired {
+            get {
+                return ResourceManager.GetString("ValuesRequired", resourceCulture);
             }
         }
     }
