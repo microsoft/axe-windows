@@ -49,7 +49,7 @@ namespace Axe.Windows.ActionsTests.Actions
             mockDataManager.AddElementContext(mockElementContext);
 
             Registrar registrar = new Registrar();
-            mockDesktopDataContext = new DesktopDataContext(registrar, /*TODO*/ null, CancellationToken.None);
+            mockDesktopDataContext = new DesktopDataContext(registrar, A11yAutomation.CreateInstance(), CancellationToken.None);
 
             mockActionContext = new Mock<IActionContext>(MockBehavior.Strict);
             mockActionContext.Setup(m => m.DataManager).Returns(mockDataManager);
