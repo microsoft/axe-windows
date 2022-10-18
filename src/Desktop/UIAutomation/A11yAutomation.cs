@@ -28,16 +28,16 @@ namespace Axe.Windows.Desktop.UIAutomation
 
         internal static A11yAutomation GetDefaultInstance() => Lazy.Value;
 
-        internal static A11yAutomation CreateInstance()
+        private readonly IUIAutomation _uia;
+
+        internal A11yAutomation(IUIAutomation uia)
         {
-            return new A11yAutomation();
+            _uia = uia;
         }
 
-        public long TempProperty { get; }
-
-        public A11yAutomation()
+        internal static A11yAutomation CreateInstance()
         {
-            TempProperty = DateTime.UtcNow.Ticks;
+            return new A11yAutomation(GetUIAutomationInterface());
         }
 
         private static IUIAutomation GetUIAutomationInterface()
@@ -69,7 +69,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             return matchingElements.Any();
         }
 
-        private static IList<IUIAutomationElement> FindProcessMatchingChildrenOrGrandchildren(IUIAutomationElement root, int pid)
+        private IList<IUIAutomationElement> FindProcessMatchingChildrenOrGrandchildren(IUIAutomationElement root, int pid)
         {
             IUIAutomationTreeWalker walker = GetTreeWalker(TreeViewMode.Control);
             List<IUIAutomationElement> matchingElements = new List<IUIAutomationElement>();
@@ -114,7 +114,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pid"></param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, Registrar registrar)
+        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, Registrar registrar)
         {
             IUIAutomationElement root = null;
             IEnumerable<DesktopElement> elements = null;
@@ -126,7 +126,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
-                    root = UIAutomation.GetRootElement();
+                    root = _uia.GetRootElement();
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, registrar);
                 }
@@ -209,11 +209,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="hWnd"></param>
         /// <returns></returns>
-        public static IUIAutomationElement UIAElementFromHandle(IntPtr hWnd)
+        public IUIAutomationElement UIAElementFromHandle(IntPtr hWnd)
         {
             try
             {
-                return UIAutomation.ElementFromHandle(hWnd);
+                return _uia.ElementFromHandle(hWnd);
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
@@ -228,11 +228,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get the focused Element
         /// </summary>
         /// <returns></returns>
-        public static DesktopElement GetFocusedElement()
+        public DesktopElement GetFocusedElement()
         {
             try
             {
-                var uia = UIAutomation.GetFocusedElement();
+                var uia = _uia.GetFocusedElement();
 
                 if (!DesktopElement.IsFromCurrentProcess(uia))
                 {
@@ -259,7 +259,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="e">A11yElement</param>
         /// <returns></returns>
-        public static A11yElement GetAppElement(A11yElement e)
+        public A11yElement GetAppElement(A11yElement e)
         {
             var walker = GetTreeWalker(TreeViewMode.Control);
             var tree = new DesktopElementAncestry(TreeViewMode.Control, e);
@@ -292,7 +292,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="element">A11yElement</param>
         /// <param name="treeViewMode">mode to normalize to</param>
         /// <returns></returns>
-        public static A11yElement GetNormalizedElement(A11yElement element, TreeViewMode treeViewMode)
+        public A11yElement GetNormalizedElement(A11yElement element, TreeViewMode treeViewMode)
         {
             if (element == null)
                 throw new ArgumentNullException(nameof(element));
@@ -309,22 +309,20 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="mode">TreeViewMode to get walker</param>
         /// <returns></returns>
-        public static IUIAutomationTreeWalker GetTreeWalker(TreeViewMode mode)
+        public IUIAutomationTreeWalker GetTreeWalker(TreeViewMode mode)
         {
             IUIAutomationTreeWalker walker = null;
-
-            var uia = A11yAutomation.UIAutomationObject;
 
             switch (mode)
             {
                 case TreeViewMode.Content:
-                    walker = uia.ContentViewWalker;
+                    walker = _uia.ContentViewWalker;
                     break;
                 case TreeViewMode.Control:
-                    walker = uia.ControlViewWalker;
+                    walker = _uia.ControlViewWalker;
                     break;
                 case TreeViewMode.Raw:
-                    walker = uia.RawViewWalker;
+                    walker = _uia.RawViewWalker;
                     break;
             }
 
@@ -337,11 +335,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
         /// <returns></returns>
-        public static DesktopElement ElementFromPoint(int xPos, int yPos)
+        public DesktopElement ElementFromPoint(int xPos, int yPos)
         {
             try
             {
-                var uia = UIAutomation.ElementFromPoint(new tagPOINT() { x = xPos, y = yPos });
+                var uia = _uia.ElementFromPoint(new tagPOINT() { x = xPos, y = yPos });
 
                 if (!DesktopElement.IsFromCurrentProcess(uia))
                 {
@@ -374,7 +372,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="yPos"></param>
         /// <param name="treeViewMode">current TreeViewMode</param>
         /// <returns></returns>
-        public static A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode)
+        public A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode)
         {
             try
             {
@@ -412,18 +410,18 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pid"></param>
         /// <returns></returns>
-        public static string GetPropertyProgrammaticName(int pid)
+        public string GetPropertyProgrammaticName(int pid)
         {
-            return UIAutomation.GetPropertyProgrammaticName(pid);
+            return _uia.GetPropertyProgrammaticName(pid);
         }
 
         /// <summary>
         /// Get DesktopElement from Desktop
         /// </summary>
         /// <returns></returns>
-        public static DesktopElement ElementFromDesktop()
+        public DesktopElement ElementFromDesktop()
         {
-            return new DesktopElement(UIAutomation.GetRootElement());
+            return new DesktopElement(_uia.GetRootElement());
         }
     }
 }
