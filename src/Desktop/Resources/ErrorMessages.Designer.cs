@@ -104,6 +104,14 @@ namespace Axe.Windows.Desktop.Resources {
                 return ResourceManager.GetString("LowConfidenceGreaterThan0", resourceCulture);
             }
         }
+
+        ///   Looks up a localized string similar to The dataContext passed in does not match this A11yAutomation.
+        /// </summary>
+        internal static string InvalidContext {
+            get {
+                return ResourceManager.GetString("InvalidContext", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Mid Confidence threshold must be larger than Low confidence threshold.

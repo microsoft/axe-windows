@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Attributes;
@@ -56,7 +56,7 @@ namespace Axe.Windows.Actions
             if (NeedNewDataContext(ec.DataContext, DataContextMode.Live, mode) || force)
             {
                 var dc = new ElementDataContext(ec.Element, MaxElements);
-                PopulateDataContextForLiveMode(dc, mode);
+                PopulateDataContextForLiveMode(dc, mode, actionContext);
 
                 ec.DataContext = dc;
             }
@@ -67,12 +67,12 @@ namespace Axe.Windows.Actions
         /// </summary>
         /// <param name="dc"></param>
         /// <param name="mode"></param>
-        static void PopulateDataContextForLiveMode(ElementDataContext dc, TreeViewMode mode)
+        static void PopulateDataContextForLiveMode(ElementDataContext dc, TreeViewMode mode, IActionContext actionContext)
         {
             dc.TreeMode = mode;
             dc.Mode = DataContextMode.Live;
             var ltw = NewTreeWalkerForLive();
-            ltw.GetTreeHierarchy(dc.Element, mode);
+            ltw.GetTreeHierarchy(dc.Element, mode, actionContext.DesktopDataContext);
             dc.RootElment = ltw.RootElement;
             dc.Elements = ltw.Elements.ToDictionary(i => i.UniqueId);
             ltw.Elements.Clear();
@@ -131,7 +131,7 @@ namespace Axe.Windows.Actions
             {
                 case DataContextMode.Test:
                     var stw = NewTreeWalkerForTest(dc.Element, dc.ElementCounter);
-                    stw.RefreshTreeData(tm, actionContext.TreeWalkerDataContext);
+                    stw.RefreshTreeData(tm, actionContext.DesktopDataContext);
                     dc.Elements = stw.Elements.ToDictionary(l => l.UniqueId);
                     dc.RootElment = stw.TopMostElement;
                     break;
