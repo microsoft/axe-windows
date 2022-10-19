@@ -70,7 +70,7 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation017: Failed to get the root element(s) of the specified process({0}) : {1}.
+        ///   Looks up a localized string similar to Failed to get the root element(s) of the specified process({0}) : {1}.
         /// </summary>
         internal static string ErrorFailToGetRootElementsOfProcess {
             get {
@@ -88,7 +88,7 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation017: Unable to set Data context (more than {0:N0} elements were found).
+        ///   Looks up a localized string similar to Unable to set Data context (more than {0:N0} elements were found).
         /// </summary>
         internal static string ErrorTooManyElementsToSetDataContext {
             get {
@@ -97,7 +97,7 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation008: Unable to set Data context.
+        ///   Looks up a localized string similar to Unable to set Data context.
         /// </summary>
         internal static string ErrorUnableToSetDataContext {
             get {
@@ -106,7 +106,7 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ERROR Automation003: Unhandled Exception {0}.
+        ///   Looks up a localized string similar to Unhandled Exception {0}.
         /// </summary>
         internal static string ErrorUnhandledExceptionFormat {
             get {

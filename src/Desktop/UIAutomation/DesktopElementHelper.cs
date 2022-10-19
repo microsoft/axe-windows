@@ -18,9 +18,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="pps">Property ids</param>
         /// <param name="pts">Pattern ids</param>
-        public static IUIAutomationCacheRequest BuildCacheRequest(IEnumerable<int> pps, IEnumerable<int> pts, Registrar registrar = null)
+        public static IUIAutomationCacheRequest BuildCacheRequest(IEnumerable<int> pps, IEnumerable<int> pts, DesktopDataContext dataContext)
         {
-            return GetPropertiesCache(A11yAutomation.UIAutomationObject, pps, pts, registrar);
+            return GetPropertiesCache(dataContext.A11yAutomation.UIAutomation, pps, pts, dataContext.Registrar);
         }
 
         /// <summary>

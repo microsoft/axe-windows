@@ -36,11 +36,6 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         public TreeViewMode TreeWalkerMode { get; }
 
         /// <summary>
-        /// Parent elements' SetMembers value
-        /// </summary>
-        bool SetMembers { get; set; }
-
-        /// <summary>
         /// Id for next element
         /// it will be used in Tree Walker.
         /// </summary>
@@ -52,15 +47,19 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="walker"></param>
         /// <param name="e"></param>
-        public DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMem = false, Registrar registrar = null)
+        public DesktopElementAncestry(TreeViewMode mode, A11yElement e)
+            : this (mode, e, DesktopDataContext.DefaultContext)
+        {
+        }
+
+        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, DesktopDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            this.TreeWalker = A11yAutomation.GetTreeWalker(mode);
+            this.TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
-            this.SetMembers = setMem;
-            SetParent(e, -1, registrar: registrar);
+            SetParent(e, -1, dataContext);
 
             if (Items.Count != 0)
             {
@@ -69,7 +68,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 if (this.Last.IsRootElement() == false)
                 {
                     this.Last.Children.Clear();
-                    this.NextId = PopulateSiblingTreeNodes(this.Last, e);
+                    this.NextId = PopulateSiblingTreeNodes(this.Last, e, dataContext);
                 }
                 else
                 {
@@ -85,7 +84,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="e"></param>
         /// <param name="uniqueId"></param>
-        private void SetParent(A11yElement e, int uniqueId, Registrar registrar)
+        private void SetParent(A11yElement e, int uniqueId, DesktopDataContext dataContext)
         {
             if (e == null || e.PlatformObject == null || e.IsRootElement()) return;
 
@@ -95,8 +94,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 if (puia == null) return;
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-                var parent = new DesktopElement(puia, true, SetMembers);
-                parent.PopulateMinimumPropertiesForSelection(registrar);
+                var parent = new DesktopElement(puia, true, false);
+                parent.PopulateMinimumPropertiesForSelection(dataContext);
 
                 // we need to avoid infinite loop of self reference as parent.
                 // it is a probably a bug in UIA or the target app.
@@ -108,7 +107,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     this.Items.Add(parent);
                     parent.UniqueId = uniqueId;
 
-                    SetParent(parent, uniqueId - 1, registrar);
+                    SetParent(parent, uniqueId - 1, dataContext);
                 }
 #pragma warning restore CA2000
             }
@@ -128,7 +127,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="parentNode"></param>
         /// <param name="poiNode"></param>
         /// <param name="startId"></param>
-        private int PopulateSiblingTreeNodes(A11yElement parentNode, A11yElement poiNode)
+        private int PopulateSiblingTreeNodes(A11yElement parentNode, A11yElement poiNode, DesktopDataContext dataContext)
         {
             int childId = 1;
 
@@ -154,7 +153,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 #pragma warning disable CA2000 // Use recommended dispose patterns
                     var childNode = new DesktopElement(child, true, false);
 #pragma warning restore CA2000 // Use recommended dispose patterns
-                    childNode.PopulateMinimumPropertiesForSelection();
+                    childNode.PopulateMinimumPropertiesForSelection(dataContext);
 
                     if (childNode.IsSameUIElement(poiNode) == false)
                     {
