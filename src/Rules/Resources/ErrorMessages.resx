@@ -119,54 +119,54 @@
   </resheader>
   <data name="ElementHelpTextNullOrWhiteSpace" xml:space="preserve">
     <value>The element's HelpText property must not be null or white space</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ElementLocalizedControlTypeNullOrWhiteSpace" xml:space="preserve">
     <value>The element's LocalizedControlType property must not be null or white space</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ElementNameNullOrWhiteSpace" xml:space="preserve">
     <value>The element's Name property must not be null or white space</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ElementParentNull" xml:space="preserve">
     <value>The element's Parent property must not be null</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ExpectedEnumType" xml:space="preserve">
     <value>Expected T to be an enumeration type</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ExpectedValidAncestor" xml:space="preserve">
     <value>Expected to find a valid ancestor element</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ExpectedValidConditionContext" xml:space="preserve">
     <value>Expected Condition.Context to be valid</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="IntParameterEqualsZero" xml:space="preserve">
     <value>The given int parameter must not be zero</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="IntParameterLessThanZero" xml:space="preserve">
     <value>Int parameter must not be less than zero</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="NoControlTypeEntryFound" xml:space="preserve">
     <value>No control type entry was found in dictionary. Key value = {0}</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="NoElementFound" xml:space="preserve">
     <value>Based on the Rule.Condition match, there should have been at least one element found in the PassesTest method of {0}</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="NoLocalizedControlTypeStringFound" xml:space="preserve">
     <value>Could not find potential LocalizedControlType string(s) for the given control type</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="StringNullOrWhiteSpace" xml:space="preserve">
     <value>Expected the given string not to be null and not to be white space</value>
-    <comment>The text of an internal error that should not be translated.</comment>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
 </root>

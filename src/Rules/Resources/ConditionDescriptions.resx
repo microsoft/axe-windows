@@ -119,15 +119,15 @@
   </resheader>
   <data name="AllChildren" xml:space="preserve">
     <value>AllChildren({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="And" xml:space="preserve">
     <value>{0} and {1}</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="AnyChild" xml:space="preserve">
     <value>AnyChild({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="BoundingRectangleCompletelyObscuresContainer" xml:space="preserve">
     <value>BoundingRectangle completely obscures container</value>
@@ -135,27 +135,31 @@
   </data>
   <data name="ChildrenExist" xml:space="preserve">
     <value>children exist</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="ChildCount" xml:space="preserve">
     <value>CountChildren({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="CustomLandmark" xml:space="preserve">
     <value>custom landmark</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="DescendantCount" xml:space="preserve">
     <value>DescendantCount({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="False" xml:space="preserve">
     <value>False</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="FormLandmark" xml:space="preserve">
     <value>form landmark</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="HeadingLevel" xml:space="preserve">
     <value>heading level</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="IsContentElement" xml:space="preserve">
     <value>IsContentElement</value>
@@ -167,29 +171,32 @@
   </data>
   <data name="MainLandmark" xml:space="preserve">
     <value>main landmark</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="NavigationLandmark" xml:space="preserve">
     <value>navigation landmark</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="NewLine" xml:space="preserve">
     <value>{0}
 </value>
+    <comment>Do not translate: a whitespace character.</comment>
   </data>
   <data name="NoChild" xml:space="preserve">
     <value>NoChild({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="NoChildrenExist" xml:space="preserve">
     <value>no children exist</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="Not" xml:space="preserve">
     <value>not({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="Or" xml:space="preserve">
     <value>{0} or {1}</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="Orientation" xml:space="preserve">
     <value>Orientation</value>
@@ -197,50 +204,55 @@
   </data>
   <data name="Parentheses" xml:space="preserve">
     <value>({0})</value>
-    <comment>Delimiting round brackets that should not be translated.</comment>
+    <comment>Do not translate: delimiting round brackets.</comment>
   </data>
   <data name="SearchLandmark" xml:space="preserve">
     <value>search landmark</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="True" xml:space="preserve">
     <value>True</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="TreeItemChildrenExist" xml:space="preserve">
     <value>treeitem children exist </value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="SiblingCount" xml:space="preserve">
     <value>CountSiblings({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="ExactlyOne" xml:space="preserve">
     <value>ExactlyOne({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="All" xml:space="preserve">
     <value>AllOf({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="Any" xml:space="preserve">
     <value>AnyOf({0})</value>
-    <comment>The description of a relationship between multiple elements.</comment>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="IntPropertyNotSet" xml:space="preserve">
     <value>[IntProperty not set]</value>
+    <comment>Do not translate: an internal error message.</comment>
   </data>
   <data name="MatchesRegEx" xml:space="preserve">
     <value>{0} matches regular expression "{1}"</value>
-    <comment>{0} = string property, {1} = regular expression</comment>
+    <comment>A description of an accessibility property.</comment>
   </data>
   <data name="MatchesRegExWithOptions" xml:space="preserve">
     <value>{0} matches regular expression "{1}" with options {2}</value>
-    <comment>{0} = string property, {1} = regular expression, {2} = options</comment>
+    <comment>A description of an accessibility property.</comment>
   </data>
   <data name="NativeWindowHandle" xml:space="preserve">
     <value>NativeWindowHandle</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="StringPropertyNotSet" xml:space="preserve">
     <value>[StringProperty not set]</value>
+    <comment>Do not translate: an internal error message.</comment>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -256,12 +268,15 @@
   </data>
   <data name="IncludesPrivateUnicodeCharacters" xml:space="preserve">
     <value>{0}.IncludesPrivateUnicodeCharacters</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="ClickablePointOnScreen" xml:space="preserve">
     <value>ClickablePointOnScreen</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>ClickablePointOffScreen</value>
+    <comment>Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
   </data>
   <data name="IsDialog" xml:space="preserve">
     <value>IsDialog</value>

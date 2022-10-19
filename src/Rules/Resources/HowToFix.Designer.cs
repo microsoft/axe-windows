@@ -218,7 +218,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default which app developers can&apos;t easily fix..
+        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can&apos;t easily fix..
         /// </summary>
         internal static string ComboBoxShouldNotSupportScrollPattern {
             get {

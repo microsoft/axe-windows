@@ -130,7 +130,7 @@
     <comment>The description of a problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
-    <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default which app developers can't easily fix.</value>
+    <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.</value>
     <comment>The description of a problem with an element currently under inspection. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ControlShouldNotSupportValuePattern" xml:space="preserve">
@@ -269,7 +269,7 @@
  · IsReadOnly: TRUE</value>
     <comment>Brief guidance on how to fix an accessibility problem. The terms "RangeValue", "Minimum", "Maximum", and "IsReadOnly" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
-    <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
+  <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
     <value>Implement the edit control's RangeValue pattern with a null LargeChange property.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The terms "RangeValue" and "LargeChange" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>

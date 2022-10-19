@@ -122,7 +122,7 @@
     <comment>The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
-    <value>A button element should only support one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. </value>
+    <value>A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. </value>
     <comment>The description of an accessibility problem with an element currently under inspection. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="SiblingUniqueAndNotFocusable" xml:space="preserve">
@@ -130,7 +130,7 @@
     <comment>The description of an accessibility problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
-    <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default which app developers can't easily fix.</value>
+    <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.</value>
     <comment>The description of an accessibility problem with an element currently under inspection. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ControlShouldNotSupportValuePattern" xml:space="preserve">
@@ -206,11 +206,11 @@
     <comment>The description of an accessibility problem with an element currently under inspection. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameEmptyButElementNotKeyboardFocusable" xml:space="preserve">
-    <value>The UI Automation Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name.</value>
+    <value>The Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name.</value>
     <comment>The description of an accessibility problem with an element currently under inspection. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
-    <value>The UI Automation Name property of the given element may be null or empty if the element has no siblings of the same type.</value>
+    <value>The Name property of the given element may be null or empty if the element has no siblings of the same type.</value>
     <comment>The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
@@ -222,11 +222,11 @@
     <comment>The description of an accessibility problem with an element currently under inspection. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="NameOnOptionalType" xml:space="preserve">
-    <value>The UI Automation Name property for the given element type is optional.</value>
+    <value>The Name property for the given element type is optional.</value>
     <comment>The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
-    <value>An interactive element with a valid UI Automation Name property is usually expected to have a valid BoundingRectangle that is not null and has area.</value>
+    <value>An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area.</value>
     <comment>The description of an accessibility problem with an element currently under inspection. The terms "Name" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="Structure" xml:space="preserve">
@@ -505,7 +505,7 @@
     <comment>The description of an accessibility problem with an element currently under inspection. The term "IsOffScreen" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
-    <value>The framework used to build this application does not support UI Automation.</value>
+    <value>The framework used to build this application does not support.</value>
     <comment>The description of an accessibility problem with an application currently under inspection.</comment>
   </data>
   <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">

@@ -160,7 +160,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button element should only support one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. .
+        ///   Looks up a localized string similar to A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. .
         /// </summary>
         internal static string ButtonWithSplitButtonParentPattern {
             get {
@@ -196,7 +196,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default which app developers can&apos;t easily fix..
+        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can&apos;t easily fix..
         /// </summary>
         internal static string ComboBoxShouldNotSupportScrollPattern {
             get {
@@ -394,7 +394,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The framework used to build this application does not support UI Automation..
+        ///   Looks up a localized string similar to The framework used to build this application does not support..
         /// </summary>
         internal static string FrameworkDoesNotSupportUIAutomation {
             get {
@@ -736,7 +736,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property for the given element is empty, but the element isn&apos;t focusable. Please consider whether or not the element should have a name..
+        ///   Looks up a localized string similar to The Name property for the given element is empty, but the element isn&apos;t focusable. Please consider whether or not the element should have a name..
         /// </summary>
         internal static string NameEmptyButElementNotKeyboardFocusable {
             get {
@@ -772,7 +772,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property of the given element may be null or empty if the element has no siblings of the same type..
+        ///   Looks up a localized string similar to The Name property of the given element may be null or empty if the element has no siblings of the same type..
         /// </summary>
         internal static string NameNoSiblingsOfSameType {
             get {
@@ -826,7 +826,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property for the given element type is optional..
+        ///   Looks up a localized string similar to The Name property for the given element type is optional..
         /// </summary>
         internal static string NameOnOptionalType {
             get {
@@ -844,7 +844,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An interactive element with a valid UI Automation Name property is usually expected to have a valid BoundingRectangle that is not null and has area..
+        ///   Looks up a localized string similar to An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area..
         /// </summary>
         internal static string NameWithValidBoundingRectangle {
             get {
