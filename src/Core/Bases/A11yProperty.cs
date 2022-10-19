@@ -7,7 +7,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Win32;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Globalization;
 
 namespace Axe.Windows.Core.Bases
@@ -47,8 +47,7 @@ namespace Axe.Windows.Core.Bases
             }
         }
 
-        // TODO: This does not yet support different custom properties in concurrent scans
-        static readonly Dictionary<int, ITypeConverter> TypeConverterMap = new Dictionary<int, ITypeConverter>();
+        static readonly ConcurrentDictionary<int, ITypeConverter> TypeConverterMap = new ConcurrentDictionary<int, ITypeConverter>();
 
         /// <summary>
         /// Constructor with normal case
