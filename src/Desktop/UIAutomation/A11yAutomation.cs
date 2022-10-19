@@ -112,7 +112,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pid"></param>
         /// <param name="dataContext">The data context</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        internal IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
+        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
