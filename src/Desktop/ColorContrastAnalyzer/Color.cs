@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.Resources;
 using System;
 using System.Globalization;
@@ -142,7 +143,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "DequeColor({0}, {1}, {2})", Red, Green, Blue);
+            return "DequeColor({0}, {1}, {2})".WithParameters(Red, Green, Blue);
         }
     }
 

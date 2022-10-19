@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Resources;
 using Newtonsoft.Json;
 using System;
@@ -67,7 +68,7 @@ namespace Axe.Windows.Core.CustomObjects
                         Type = CustomUIAPropertyType.Enum;
                         break;
                     default:
-                        throw new ArgumentException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.NotSupportedType, value), nameof(value));
+                        throw new ArgumentException(ExtensionMethods.WithParameters(ErrorMessages.NotSupportedType, value), nameof(value));
                 }
                 _configType = value;
             }

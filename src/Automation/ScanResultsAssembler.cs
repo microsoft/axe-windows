@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Results;
 using Axe.Windows.Rules;
 using System;
@@ -68,7 +69,7 @@ namespace Axe.Windows.Automation
         private static ScanResult MakeScanResult(ElementInfo elementInfo, RuleResult res)
         {
             if (!Rules.Rules.All.TryGetValue(res.Rule, out RuleInfo rule))
-                throw new KeyNotFoundException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorKeyNotFound, res.Rule, nameof(Rules)));
+                throw new KeyNotFoundException(ErrorMessages.ErrorKeyNotFound.WithParameters(res.Rule, nameof(Rules)));
 
             return new ScanResult()
             {

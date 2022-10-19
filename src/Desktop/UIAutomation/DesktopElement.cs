@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
@@ -127,7 +128,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
         private static string GetHeaderOfLabelBy(IUIAutomationElement e)
         {
-            return string.Format(CultureInfo.InvariantCulture, "{1} \"{0}\"", GetPropertyValue(e, PropertyType.UIA_NamePropertyId), GetPropertyValue(e, PropertyType.UIA_LocalizedControlTypePropertyId));
+            return ExtensionMethods.WithParameters("{1} \"{0}\"", GetPropertyValue(e, PropertyType.UIA_NamePropertyId), GetPropertyValue(e, PropertyType.UIA_LocalizedControlTypePropertyId));
         }
         #endregion
 

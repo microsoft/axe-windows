@@ -3,6 +3,7 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Exceptions;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
@@ -51,7 +52,7 @@ namespace Axe.Windows.Rules.Library
                 & Name.Is(e.Name)
                 & LocalizedControlType.Is(e.LocalizedControlType));
             var count = siblings.GetValue(e);
-            if (count < 1) throw new AxeWindowsException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.NoElementFound, this.Info.ID));
+            if (count < 1) throw new AxeWindowsException(ErrorMessages.NoElementFound.WithParameters(this.Info.ID));
 
             return count == 1;
         }

@@ -4,6 +4,7 @@
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Axe.Windows.Automation
             }
             catch (Exception ex)
             {
-                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorFailToGetRootElementsOfProcess, processId, ex), ex);
+                throw new AxeWindowsAutomationException(ErrorMessages.ErrorFailToGetRootElementsOfProcess.WithParameters(processId, ex), ex);
             }
         }
 

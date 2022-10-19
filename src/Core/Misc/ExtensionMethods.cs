@@ -673,7 +673,7 @@ namespace Axe.Windows.Core.Misc
                 case TreeViewMode.Raw:
                     return RuleId.TypicalTreeStructureRaw;
                 default:
-                    throw new InvalidEnumArgumentException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.NoRuleIdExists, viewMode));
+                    throw new InvalidEnumArgumentException(ErrorMessages.NoRuleIdExists.WithParameters(viewMode));
             }
         }
 
@@ -692,6 +692,11 @@ namespace Axe.Windows.Core.Misc
             var a = field.GetCustomAttribute(typeof(T));
 
             return a != null;
+        }
+
+        public static string WithParameters(this string formatString, params object[] args)
+        {
+            return string.Format(CultureInfo.InvariantCulture, formatString, args);
         }
     }
 }

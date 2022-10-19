@@ -146,7 +146,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 {
                     ex.ReportException();
                     child = null;
-                    System.Diagnostics.Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ErrorMessages.TreeWalkerException, ex));
+                    System.Diagnostics.Trace.WriteLine(ErrorMessages.TreeWalkerException.WithParameters(ex));
                 }
 #pragma warning restore CA1031 // Do not catch general exception types
 
@@ -180,7 +180,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     {
                         ex.ReportException();
                         child = null;
-                        System.Diagnostics.Trace.WriteLine(string.Format(CultureInfo.InvariantCulture, ErrorMessages.TreeWalkerException, ex));
+                        System.Diagnostics.Trace.WriteLine(ErrorMessages.TreeWalkerException.WithParameters(ex));
                     }
 #pragma warning restore CA1031 // Do not catch general exception types
                 }

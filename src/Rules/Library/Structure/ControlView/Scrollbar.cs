@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
@@ -15,8 +16,8 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewScrollbarStructure()
         {
-            this.Info.Description = string.Format(CultureInfo.InvariantCulture, Descriptions.Structure, ControlView.ScrollbarStructure);
-            this.Info.HowToFix = string.Format(CultureInfo.InvariantCulture, HowToFix.Structure, ControlView.ScrollbarStructure);
+            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.ScrollbarStructure);
+            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ScrollbarStructure);
             this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
             this.Info.ErrorCode = EvaluationCode.NeedsReview;
         }

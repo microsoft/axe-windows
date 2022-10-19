@@ -419,7 +419,7 @@ namespace Axe.Windows.Core.Bases
         {
             var property = this.PlatformProperties?.ById(propertyId);
             if (property == null) return default;
-            if (!(property.Value is T)) throw new AxeWindowsException(String.Format(CultureInfo.InvariantCulture, ErrorMessages.PropertyValueTypeUnexpected, property.Value.GetType().Name, typeof(T).Name));
+            if (!(property.Value is T)) throw new AxeWindowsException(ExtensionMethods.WithParameters(ErrorMessages.PropertyValueTypeUnexpected, property.Value.GetType().Name, typeof(T).Name));
 
             return property.Value;
         }

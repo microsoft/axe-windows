@@ -1,7 +1,8 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Exceptions;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.Resources;
 using System;
 using System.Globalization;
@@ -72,7 +73,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static ValueCondition<int> SiblingCount(Condition c)
         {
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.ChildCount, c);
+            var description = ConditionDescriptions.ChildCount.WithParameters(c);
             return new ValueCondition<int>(e => SiblingCount(c, e), description);
         }
 
@@ -170,7 +171,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
 
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AnyChild, c);
+            var description = ConditionDescriptions.AnyChild.WithParameters(c);
 
             return AnyChildInternal(c)[description];
         }
@@ -205,7 +206,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
 
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.NoChild, c);
+            var description = ConditionDescriptions.NoChild.WithParameters(c);
 
             return (~AnyChildInternal(c))[description];
         }
@@ -214,7 +215,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
 
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.AllChildren, c);
+            var description = ConditionDescriptions.AllChildren.WithParameters(c);
 
             // we must check for the existence of children because MatchAnyChild will return false if there are no children
             // and the not operator (~) below will cause this function to return true erroneously when no children exist.
@@ -223,7 +224,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static ValueCondition<int> ChildCount(Condition c)
         {
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.ChildCount, c);
+            var description = ConditionDescriptions.ChildCount.WithParameters(c);
             return new ValueCondition<int>(e => ChildCount(c, e), description);
         }
 
@@ -287,7 +288,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public static ValueCondition<int> DescendantCount(Condition c)
         {
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.DescendantCount, c);
+            var description = ConditionDescriptions.DescendantCount.WithParameters(c);
             return new ValueCondition<int>(e => DescendantCount(c, e), description);
         }
 
@@ -325,7 +326,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition ExactlyOne(params Condition[] conditions)
         {
             var paramsString = ParameterizeConditionStrings(conditions);
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.ExactlyOne, paramsString);
+            var description = ConditionDescriptions.ExactlyOne.WithParameters(paramsString);
 
             return Condition.Create(e => MatchExactlyOne(e, conditions), description);
         }
@@ -349,7 +350,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition Any(params Condition[] conditions)
         {
             var paramsString = ParameterizeConditionStrings(conditions);
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.Any, paramsString);
+            var description = ConditionDescriptions.Any.WithParameters(paramsString);
 
             return Condition.Create(e => MatchAny(e, conditions), description);
         }
@@ -367,7 +368,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition All(params Condition[] conditions)
         {
             var paramsString = ParameterizeConditionStrings(conditions);
-            var description = string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.All, paramsString);
+            var description = ConditionDescriptions.All.WithParameters(paramsString);
 
             return Condition.Create(e => MatchAll(e, conditions), description);
         }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using System;
 using System.Globalization;
 
@@ -28,7 +29,7 @@ namespace Axe.Windows.Rules
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, this.Decoration, this.Sub);
+            return this.Decoration.WithParameters(this.Sub);
         }
     } // class
 } // namespace
