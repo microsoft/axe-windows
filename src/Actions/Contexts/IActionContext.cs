@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 
 namespace Axe.Windows.Actions.Contexts
@@ -30,8 +30,8 @@ namespace Axe.Windows.Actions.Contexts
         Registrar Registrar { get; }
 
         /// <summary>
-        /// The <see cref="TreeWalkerDataContext"/> object to keep TreeWalker in the proper context
+        /// The <see cref="DesktopDataContext"/> object to keep Desktop in the proper context
         /// </summary>
-        TreeWalkerDataContext TreeWalkerDataContext { get; }
+        DesktopDataContext DesktopDataContext { get; }
     }
 }

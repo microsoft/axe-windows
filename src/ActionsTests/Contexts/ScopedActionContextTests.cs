@@ -3,8 +3,8 @@
 
 using Axe.Windows.Actions;
 using Axe.Windows.Actions.Contexts;
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
 
@@ -48,36 +48,36 @@ namespace Axe.Windows.ActionsTests.Contexts
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContext_IsNotDefaultTreeWalkerDataContext()
+        public void DesktopDataContext_IsNotDefaultDesktopDataContext()
         {
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
-                Assert.IsNotNull(actionContext.TreeWalkerDataContext);
-                Assert.AreNotSame(actionContext.TreeWalkerDataContext, TreeWalkerDataContext.DefaultContext);
+                Assert.IsNotNull(actionContext.DesktopDataContext);
+                Assert.AreNotSame(actionContext.DesktopDataContext, DesktopDataContext.DefaultContext);
             }
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContextRegistrar_IsSameAsRegistrar()
+        public void DesktopDataContextRegistrar_IsSameAsRegistrar()
         {
             using (var actionContext = ScopedActionContext.CreateInstance(CancellationToken.None))
             {
-                Assert.AreSame(actionContext.TreeWalkerDataContext.Registrar, actionContext.Registrar);
+                Assert.AreSame(actionContext.DesktopDataContext.Registrar, actionContext.Registrar);
             }
         }
 
         [TestMethod]
         [Timeout(1000)]
-        public void TreeWalkerDataContextCancellationToken_CancelSource_CancelsToken()
+        public void DesktopDataContextCancellationToken_CancelSource_CancelsToken()
         {
             var source = new CancellationTokenSource();
 
             using (var actionContext = ScopedActionContext.CreateInstance(source.Token))
             {
-                Assert.IsFalse(actionContext.TreeWalkerDataContext.CancellationToken.IsCancellationRequested);
+                Assert.IsFalse(actionContext.DesktopDataContext.CancellationToken.IsCancellationRequested);
                 source.Cancel();
-                Assert.IsTrue(actionContext.TreeWalkerDataContext.CancellationToken.IsCancellationRequested);
+                Assert.IsTrue(actionContext.DesktopDataContext.CancellationToken.IsCancellationRequested);
             }
         }
 
@@ -93,7 +93,7 @@ namespace Axe.Windows.ActionsTests.Contexts
                     AssertAreDifferentObjectsOfType<DataManager>(actionContext1.DataManager, actionContext2.DataManager);
                     AssertAreDifferentObjectsOfType<SelectAction>(actionContext1.SelectAction, actionContext2.SelectAction);
                     AssertAreDifferentObjectsOfType<Registrar>(actionContext1.Registrar, actionContext2.Registrar);
-                    AssertAreDifferentObjectsOfType<TreeWalkerDataContext>(actionContext1.TreeWalkerDataContext, actionContext2.TreeWalkerDataContext);
+                    AssertAreDifferentObjectsOfType<DesktopDataContext>(actionContext1.DesktopDataContext, actionContext2.DesktopDataContext);
                 }
             }
         }

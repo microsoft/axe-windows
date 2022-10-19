@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Desktop.UIAutomation.CustomObjects;
-using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 
 namespace Axe.Windows.Actions.Contexts
@@ -19,9 +19,9 @@ namespace Axe.Windows.Actions.Contexts
 
         public SelectAction SelectAction => SelectAction.GetDefaultInstance();
 
-        public Registrar Registrar => TreeWalkerDataContext.Registrar;
+        public Registrar Registrar => DesktopDataContext.Registrar;
         
-        public TreeWalkerDataContext TreeWalkerDataContext => TreeWalkerDataContext.DefaultContext;
+        public DesktopDataContext DesktopDataContext => DesktopDataContext.DefaultContext;
 
         protected virtual void Dispose(bool disposing)
         {

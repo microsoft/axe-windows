@@ -79,6 +79,15 @@ namespace Axe.Windows.Desktop.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The dataContext passed in does not match this A11yAutomation.
+        /// </summary>
+        internal static string InvalidContext {
+            get {
+                return ResourceManager.GetString("InvalidContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The pattern may no longer be valid.
         /// </summary>
         internal static string PatternNoLongerValid {

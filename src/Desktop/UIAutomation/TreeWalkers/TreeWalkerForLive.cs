@@ -16,7 +16,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
     {
         IList<A11yElement> Elements { get; }
         A11yElement RootElement { get; }
-        void GetTreeHierarchy(A11yElement e, TreeViewMode mode);
+        void GetTreeHierarchy(A11yElement e, TreeViewMode mode, DesktopDataContext dataContext);
     }
 
     /// <summary>
@@ -58,8 +58,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         /// <param name="e"></param>
         /// <param name="mode"></param>
-        /// <param name="showAncestry"></param>
-        public void GetTreeHierarchy(A11yElement e, TreeViewMode mode)
+        /// <param name="dataContext"></param>
+        public void GetTreeHierarchy(A11yElement e, TreeViewMode mode, DesktopDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
@@ -68,7 +68,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             //Set parent of Root explicitly for testing.
             A11yElement parent = null;
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, e);
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, e, dataContext);
             parent = ancestry.Last;
 
             this.RootElement = ancestry.First;
@@ -82,12 +82,12 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             e.UniqueId = 0; // it is the selected element which should be id 0.
             this.Elements.Add(e);
 
-            PopulateChildrenTreeNode(e, ancestry.NextId);
+            PopulateChildrenTreeNode(e, ancestry.NextId, dataContext);
 
             // populate descendant Elements first in parallel
             this.Elements.AsParallel().ForAll(el =>
             {
-                el.PopulateMinimumPropertiesForSelection();
+                el.PopulateMinimumPropertiesForSelection(dataContext);
             });
 
             // Add ancestry into Elements list.
@@ -103,11 +103,11 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// Populate tree by retrieving all children at once.
         /// </summary>
         /// <param name="rootNode"></param>
-        private void PopulateChildrenTreeNode(A11yElement rootNode, int startId)
+        private void PopulateChildrenTreeNode(A11yElement rootNode, int startId, DesktopDataContext dataContext)
         {
             int childId = startId;
 
-            IUIAutomationTreeWalker walker = A11yAutomation.GetTreeWalker(this.WalkerMode);
+            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(this.WalkerMode);
             IUIAutomationElement child = (IUIAutomationElement)rootNode.PlatformObject;
 
             if (child != null)

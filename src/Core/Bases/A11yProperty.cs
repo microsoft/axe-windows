@@ -47,6 +47,7 @@ namespace Axe.Windows.Core.Bases
             }
         }
 
+        // TODO: This does not yet support different custom properties in concurrent scans
         static readonly Dictionary<int, ITypeConverter> TypeConverterMap = new Dictionary<int, ITypeConverter>();
 
         /// <summary>
