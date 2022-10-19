@@ -20,5 +20,37 @@ namespace Axe.Windows.DesktopTests.UIAutomation
             Assert.IsNotNull(registrar);
             Assert.AreSame(Registrar.GetDefaultInstance(), registrar);
         }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void DefaultContext_A11yAutomation_IsDefaultRegistrar()
+        {
+            var a11yAutomation = DesktopDataContext.DefaultContext.A11yAutomation;
+
+            Assert.IsNotNull(a11yAutomation);
+            Assert.AreSame(A11yAutomation.GetDefaultInstance(), a11yAutomation);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void DefaultContext_CancellationToken_IsCancellationTokenNone()
+        {
+            var cancellationToken = DesktopDataContext.DefaultContext.CancellationToken;
+
+            Assert.AreEqual(CancellationToken.None, cancellationToken);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void CancellationToken_CancelSource_CancelsToken()
+        {
+            var source = new CancellationTokenSource();
+
+            DesktopDataContext dataContext = new DesktopDataContext(null, null, source.Token);
+
+            Assert.IsFalse(dataContext.CancellationToken.IsCancellationRequested);
+            source.Cancel();
+            Assert.IsTrue(dataContext.CancellationToken.IsCancellationRequested);
+        }
     }
 }
