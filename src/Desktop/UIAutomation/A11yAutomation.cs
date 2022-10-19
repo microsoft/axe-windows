@@ -112,7 +112,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pid"></param>
         /// <param name="dataContext">The data context</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
@@ -132,7 +132,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     {
                         root = dataContext.A11yAutomation.UIAutomation.GetRootElement();
                     }
-                    matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
+                    matchingElements = dataContext.A11yAutomation.FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, dataContext);
                 }
             }
