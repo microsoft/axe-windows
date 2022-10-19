@@ -119,27 +119,34 @@
   </resheader>
   <data name="AllChildren" xml:space="preserve">
     <value>AllChildren({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="And" xml:space="preserve">
     <value>{0} and {1}</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="AnyChild" xml:space="preserve">
     <value>AnyChild({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="BoundingRectangleCompletelyObscuresContainer" xml:space="preserve">
     <value>BoundingRectangle completely obscures container</value>
+    <comment>The name of a rule used by the automated accessibility scanner.</comment>
   </data>
   <data name="ChildrenExist" xml:space="preserve">
     <value>children exist</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="ChildCount" xml:space="preserve">
     <value>CountChildren({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="CustomLandmark" xml:space="preserve">
     <value>custom landmark</value>
   </data>
   <data name="DescendantCount" xml:space="preserve">
     <value>DescendantCount({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="False" xml:space="preserve">
     <value>False</value>
@@ -152,9 +159,11 @@
   </data>
   <data name="IsContentElement" xml:space="preserve">
     <value>IsContentElement</value>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
   <data name="IsControlElement" xml:space="preserve">
     <value>IsControlElement</value>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
   <data name="MainLandmark" xml:space="preserve">
     <value>main landmark</value>
@@ -168,21 +177,27 @@
   </data>
   <data name="NoChild" xml:space="preserve">
     <value>NoChild({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="NoChildrenExist" xml:space="preserve">
     <value>no children exist</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="Not" xml:space="preserve">
     <value>not({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="Or" xml:space="preserve">
     <value>{0} or {1}</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="Orientation" xml:space="preserve">
     <value>Orientation</value>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
   <data name="Parentheses" xml:space="preserve">
     <value>({0})</value>
+    <comment>Delimiting round brackets that should not be translated.</comment>
   </data>
   <data name="SearchLandmark" xml:space="preserve">
     <value>search landmark</value>
@@ -192,18 +207,23 @@
   </data>
   <data name="TreeItemChildrenExist" xml:space="preserve">
     <value>treeitem children exist </value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="SiblingCount" xml:space="preserve">
     <value>CountSiblings({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="ExactlyOne" xml:space="preserve">
     <value>ExactlyOne({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="All" xml:space="preserve">
     <value>AllOf({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="Any" xml:space="preserve">
     <value>AnyOf({0})</value>
+    <comment>The description of a relationship between multiple elements.</comment>
   </data>
   <data name="IntPropertyNotSet" xml:space="preserve">
     <value>[IntProperty not set]</value>
@@ -224,14 +244,15 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
-    <comment>Name</comment>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
   <data name="LocalizedControlType" xml:space="preserve">
     <value>LocalizedControlType</value>
-    <comment>LocalizedControlType</comment>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
   <data name="HelpText" xml:space="preserve">
     <value>HelpText</value>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
   <data name="IncludesPrivateUnicodeCharacters" xml:space="preserve">
     <value>{0}.IncludesPrivateUnicodeCharacters</value>
@@ -244,5 +265,6 @@
   </data>
   <data name="IsDialog" xml:space="preserve">
     <value>IsDialog</value>
+    <comment>The name of a UI Automation property that should not be translated.</comment>
   </data>
 </root>

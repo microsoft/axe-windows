@@ -135,7 +135,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button may have invoke and expandcollapse patterns together. but it is not recommended. if possible, please have only one of them. .
+        ///   Looks up a localized string similar to A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them. .
         /// </summary>
         internal static string ButtonInvokeAndExpandCollapsePatterns {
             get {
@@ -180,7 +180,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button element should only support the one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. .
+        ///   Looks up a localized string similar to A button element should only support one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. .
         /// </summary>
         internal static string ButtonWithSplitButtonParentPattern {
             get {
@@ -218,7 +218,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes support the scroll pattern by default, which app developers can&apos;t easily fix..
+        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default which app developers can&apos;t easily fix..
         /// </summary>
         internal static string ComboBoxShouldNotSupportScrollPattern {
             get {
@@ -523,7 +523,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property may be false when the given element supports the text pattern and is the descendant of an element that also supports the text pattern. Please consider if the given element should or should not be focusable..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable..
         /// </summary>
         internal static string IsKeyboardFocusableDescendantTextPattern {
             get {
@@ -568,7 +568,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by AT users..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by assistive technology users..
         /// </summary>
         internal static string IsKeyboardFocusableOnEmptyContainer {
             get {
@@ -595,7 +595,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property should be true for an element that supports the text pattern, is not a descendant of an element that supports the text pattern, and which supports text selection..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection..
         /// </summary>
         internal static string IsKeyboardFocusableTopLevelTextPattern {
             get {
@@ -613,7 +613,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The ItemType property for the given element has no content, and the element has a child image. Please consider including an item type so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the item type may not be necessary..
+        ///   Looks up a localized string similar to The ItemType property for the given element has no content, and the element has a child image. Please consider including an ItemType so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the ItemType may not be necessary..
         /// </summary>
         internal static string ItemTypeRecommended {
             get {
@@ -741,7 +741,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The localized control type should be reasonable based on ControlTypeId..
+        ///   Looks up a localized string similar to The LocalizedControlType should be reasonable based on the element&apos;s ControlTypeId..
         /// </summary>
         internal static string LocalizedControlTypeReasonable {
             get {
@@ -820,7 +820,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UIAutomation Name property for the given element is empty, but the element isn&apos;t focusable. Please consider whether or not the element should have a name..
+        ///   Looks up a localized string similar to The UI Automation Name property for the given element is empty, but the element isn&apos;t focusable. Please consider whether or not the element should have a name..
         /// </summary>
         internal static string NameEmptyButElementNotKeyboardFocusable {
             get {
@@ -907,7 +907,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property of a custom control may be empty if the parent is a wpf dataitem..
+        ///   Looks up a localized string similar to The UI Automation Name property of a custom control may be empty if the parent is a WPF dataitem..
         /// </summary>
         internal static string NameOnCustomWithParentWPFDataItem {
             get {
@@ -936,7 +936,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An interactive element with a valid UI Automation Name property is usually expected to have a valid bounding rectangle that is not null and has area..
+        ///   Looks up a localized string similar to An interactive element with a valid UI Automation Name property is usually expected to have a valid BoundingRectangle that is not null and has area..
         /// </summary>
         internal static string NameWithValidBoundingRectangle {
             get {
