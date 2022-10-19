@@ -110,7 +110,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements based on Process Id.
         /// </summary>
         /// <param name="pid"></param>
-        /// <param name="dataContext">The context we're workiing with</param>
+        /// <param name="dataContext">This MUST be the context that contains this A11yAutomation object</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
         public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
@@ -233,7 +233,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// it is trace back to the top most ancestor with same process Id.
         /// </summary>
         /// <param name="e">A11yElement</param>
-        /// <param name="dataContext">This MUST be the context that contains thia A11yAutomation object</param>
+        /// <param name="dataContext">This MUST be the context that contains this A11yAutomation object</param>
         /// <returns></returns>
         internal A11yElement GetAppElement(A11yElement e, DesktopDataContext dataContext)
         {
@@ -314,10 +314,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="yPos"></param>
         /// <param name="dataContext">The current data context</param>
         /// <returns></returns>
-        internal DesktopElement ElementFromPoint(int xPos, int yPos, DesktopDataContext dataContext)
+        private DesktopElement ElementFromPoint(int xPos, int yPos, DesktopDataContext dataContext)
         {
-            EnsureContextConsistency(dataContext);
-
             try
             {
                 var uia = UIAutomation.ElementFromPoint(new tagPOINT() { x = xPos, y = yPos });
@@ -352,7 +350,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
         /// <param name="treeViewMode">current TreeViewMode</param>
-        /// <param name="dataContext">The current data context</param>
+        /// <param name="dataContext">This MUST be the context that contains this A11yAutomation object</param>
         /// <returns></returns>
         public A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
         {
