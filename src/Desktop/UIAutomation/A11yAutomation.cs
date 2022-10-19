@@ -112,7 +112,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="pid"></param>
         /// <param name="dataContext">The data context</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
+        internal IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
@@ -241,7 +241,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="element">A11yElement</param>
         /// <param name="treeViewMode">mode to normalize to</param>
         /// <returns></returns>
-        public A11yElement GetNormalizedElement(A11yElement element, TreeViewMode treeViewMode)
+        internal A11yElement GetNormalizedElement(A11yElement element, TreeViewMode treeViewMode)
         {
             if (element == null)
                 throw new ArgumentNullException(nameof(element));
@@ -258,7 +258,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         /// <param name="mode">TreeViewMode to get walker</param>
         /// <returns></returns>
-        public IUIAutomationTreeWalker GetTreeWalker(TreeViewMode mode)
+        internal IUIAutomationTreeWalker GetTreeWalker(TreeViewMode mode)
         {
             IUIAutomationTreeWalker walker = null;
 
