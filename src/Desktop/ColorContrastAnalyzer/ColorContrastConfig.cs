@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Desktop.Resources;
 using System;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
@@ -52,19 +53,19 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             if (HighConfidenceThreshold <= MidConfidenceThreshold)
             {
-                throw new ArgumentException("High Confidence threshold must be larger than Mid confidence threshold");
+                throw new ArgumentException(ErrorMessages.HighConfidenceLargerThanMid);
             }
             if (MidConfidenceThreshold <= LowConfidenceThreshold)
             {
-                throw new ArgumentException("Mid Confidence threshold must be larger than Low confidence threshold");
+                throw new ArgumentException(ErrorMessages.MidConfidenceLargerThanLow);
             }
             if (HighConfidenceThreshold >= 1.0)
             {
-                throw new ArgumentException("High Confidence threshold must be < 1.0");
+                throw new ArgumentException(ErrorMessages.HighConfidenceLargerThan1);
             }
             if (lowConfidenceThreshold <= 0.0)
             {
-                throw new ArgumentException("Low Confidence threshold must be > 0.0");
+                throw new ArgumentException(ErrorMessages.LowConfidenceGreaterThan0);
             }
         }
     }

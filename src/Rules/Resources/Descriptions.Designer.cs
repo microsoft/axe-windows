@@ -950,5 +950,17 @@ namespace Axe.Windows.Rules.Resources {
                 return ResourceManager.GetString("Structure", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID:   {0}
+        ///Description:    {1}
+        ///HowToFix:    {2}
+        ///Condition:  {3}.
+        /// </summary>
+        internal static string SummaryFormat {
+            get {
+                return ResourceManager.GetString("SummaryFormat", resourceCulture);
+            }
+        }
     }
 }

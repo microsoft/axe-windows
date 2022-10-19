@@ -8,6 +8,7 @@ using Axe.Windows.Actions.Misc;
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.Settings;
 using System;
 using System.Diagnostics;
@@ -42,9 +43,7 @@ namespace Axe.Windows.Automation
 
                 if (dc.ElementCounter.UpperBoundExceeded)
                 {
-                    throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture,
-                        ErrorMessages.ErrorTooManyElementsToSetDataContext,
-                        dc.ElementCounter.UpperBound));
+                    throw new AxeWindowsAutomationException(ErrorMessages.ErrorTooManyElementsToSetDataContext.WithParameters(dc.ElementCounter.UpperBound));
                 }
 
                 return scanCallback(ec2.Element, ec2.Id);

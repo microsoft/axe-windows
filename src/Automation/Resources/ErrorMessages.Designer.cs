@@ -88,6 +88,15 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} not found in {1} dictionary..
+        /// </summary>
+        internal static string ErrorKeyNotFound {
+            get {
+                return ResourceManager.GetString("ErrorKeyNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to set Data context (more than {0:N0} elements were found).
         /// </summary>
         internal static string ErrorTooManyElementsToSetDataContext {

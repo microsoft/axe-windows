@@ -1,7 +1,10 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Exceptions;
+using Axe.Windows.Core.Misc;
+using Axe.Windows.Rules.Resources;
+using System.Globalization;
 
 namespace Axe.Windows.Rules
 {
@@ -30,7 +33,7 @@ namespace Axe.Windows.Rules
         private void InitRuleInfo()
         {
             var info = GetRuleInfoFromAttributes();
-            if (info == null) throw new AxeWindowsException($"expected {this.GetType().Name} to have the RuleInfo attribute set");
+            if (info == null) throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(this.GetType().Name));
 
             info.Condition = this.Condition?.ToString();
 

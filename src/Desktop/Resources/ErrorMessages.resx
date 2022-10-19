@@ -120,8 +120,20 @@
   <data name="DequeOpaqueColors" xml:space="preserve">
     <value>DequeColors can only be instantiated with fully opaque (Alpha = 255) colors. The DequeColor Blend method can help you if you know the background color</value>
   </data>
+  <data name="HighConfidenceLargerThan1" xml:space="preserve">
+    <value>High Confidence threshold must be &lt; 1.0</value>
+  </data>
+  <data name="HighConfidenceLargerThanMid" xml:space="preserve">
+    <value>High Confidence threshold must be larger than Mid confidence threshold</value>
+  </data>
   <data name="InvalidColor" xml:space="preserve">
     <value>Color components are values between 0 and 255</value>
+  </data>
+  <data name="LowConfidenceGreaterThan0" xml:space="preserve">
+    <value>Low Confidence threshold must be &gt; 0.0</value>
+  </data>
+  <data name="MidConfidenceLargerThanLow" xml:space="preserve">
+    <value>Mid Confidence threshold must be larger than Low confidence threshold</value>
   </data>
   <data name="InvalidContext" xml:space="preserve">
     <value>The dataContext passed in does not match this A11yAutomation</value>
@@ -129,5 +141,12 @@
   <data name="PatternNoLongerValid" xml:space="preserve">
     <value>The pattern may no longer be valid</value>
     <comment>Pattern may not be valid any more.</comment>
+  </data>
+  <data name="TreeWalkerException" xml:space="preserve">
+    <value>Tree walker exception: {0}</value>
+    <comment>{0} is exception message</comment>
+  </data>
+  <data name="UnsetOrUnknownType" xml:space="preserve">
+    <value>Unset or unknown type</value>
   </data>
 </root>

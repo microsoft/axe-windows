@@ -138,4 +138,22 @@
   <data name="ValueCannotBeEmptyOrWhiteSpace" xml:space="preserve">
     <value>Value cannot be empty or white space</value>
   </data>
+  <data name="PropertyValueTypeUnexpected" xml:space="preserve">
+    <value>Expected property.Value, which is type {0}, to be type {1}</value>
+    <comment>{0} is actual type, {1} is expected type</comment>
+  </data>
+  <data name="NoRuleIdExists" xml:space="preserve">
+    <value>No rule id exists for the given view mode {0}</value>
+    <comment>{0} is view mode</comment>
+  </data>
+  <data name="NotSupportedType" xml:space="preserve">
+    <value>'{0}' is not a supported type</value>
+    <comment>{0} is type</comment>
+  </data>
+  <data name="ValuesCannotBeDefined" xml:space="preserve">
+    <value>Values cannot be defined for non-enumeration types.</value>
+  </data>
+  <data name="ValuesRequired" xml:space="preserve">
+    <value>Values required for enumeration types.</value>
+  </data>
 </root>

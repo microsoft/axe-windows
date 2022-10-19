@@ -5,6 +5,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.CustomObjects;
 using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Desktop.Resources;
 using Interop.UIAutomationCore;
 using System;
 using System.Collections.Generic;
@@ -93,7 +94,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                 case CustomUIAPropertyType.Point: return UIAutomationType.UIAutomationType_Point;
                 case CustomUIAPropertyType.Element: return UIAutomationType.UIAutomationType_Element;
                 case CustomUIAPropertyType.Enum: return UIAutomationType.UIAutomationType_Int;
-                default: throw new ArgumentException("Unset or unknown type", nameof(type));
+                default: throw new ArgumentException(ErrorMessages.UnsetOrUnknownType, nameof(type));
             }
         }
 
@@ -108,7 +109,7 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
                 case CustomUIAPropertyType.Point: return new PointTypeConverter();
                 case CustomUIAPropertyType.Element: return new ElementTypeConverter();
                 case CustomUIAPropertyType.Enum: return new EnumTypeConverter(prop.Values);
-                default: throw new ArgumentException($"Unset or unknown type {prop.ConfigType}", nameof(prop));
+                default: throw new ArgumentException(ErrorMessages.UnsetOrUnknownType, nameof(prop));
             }
         }
     }

@@ -144,6 +144,10 @@
   <data name="IntParameterLessThanZero" xml:space="preserve">
     <value>Int parameter must not be less than zero</value>
   </data>
+  <data name="MissingRuleInforAttribute" xml:space="preserve">
+    <value>expected {0} to have the RuleInfo attribute set</value>
+    <comment>{0} is type name</comment>
+  </data>
   <data name="NoControlTypeEntryFound" xml:space="preserve">
     <value>No control type entry was found in dictionary. Key value = {0}</value>
     <comment>{0} is the numeric key</comment>
@@ -153,6 +157,13 @@
   </data>
   <data name="NoLocalizedControlTypeStringFound" xml:space="preserve">
     <value>Could not find potential LocalizedControlType string(s) for the given control type</value>
+  </data>
+  <data name="NoRuleMatchingId" xml:space="preserve">
+    <value>No rule matching the ID '{0}' was found.</value>
+    <comment>{0} is rule id</comment>
+  </data>
+  <data name="RuleInfoAttributeExpected" xml:space="preserve">
+    <value>All rules are expected to have the RuleInfo attribute with the ID property set.</value>
   </data>
   <data name="StringNullOrWhiteSpace" xml:space="preserve">
     <value>Expected the given string not to be null and not to be white space</value>

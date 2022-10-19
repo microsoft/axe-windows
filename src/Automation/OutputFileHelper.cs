@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation.Resources;
 using Axe.Windows.Core.Exceptions;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.SystemAbstractions;
 using System;
 using System.Globalization;
@@ -62,7 +63,7 @@ namespace Axe.Windows.Automation
             }
             catch (Exception ex)
             {
-                throw new AxeWindowsAutomationException(string.Format(CultureInfo.InvariantCulture, ErrorMessages.ErrorDirectoryInvalid, path), ex);
+                throw new AxeWindowsAutomationException(ErrorMessages.ErrorDirectoryInvalid.WithParameters(path), ex);
             }
         }
 

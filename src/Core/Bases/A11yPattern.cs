@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Misc;
@@ -144,7 +144,7 @@ namespace Axe.Windows.Core.Bases
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0}: {1}", this.Name, this.Properties.FirstOrDefault()?.Value);
+            return ExtensionMethods.WithParameters("{0}: {1}", Name, Properties.FirstOrDefault()?.Value);
         }
 
         #region IDisposable Support

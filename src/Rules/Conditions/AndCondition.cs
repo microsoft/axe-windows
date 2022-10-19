@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.Resources;
 using System;
 using System.Globalization;
@@ -26,7 +27,7 @@ namespace Axe.Windows.Rules
 
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, ConditionDescriptions.And, this.A.ToString(), this.B.ToString());
+            return ConditionDescriptions.And.WithParameters(this.A.ToString(), this.B.ToString());
         }
     } // class
 } // namespace

@@ -142,6 +142,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to expected {0} to have the RuleInfo attribute set.
+        /// </summary>
+        internal static string MissingRuleInforAttribute {
+            get {
+                return ResourceManager.GetString("MissingRuleInforAttribute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No control type entry was found in dictionary. Key value = {0}.
         /// </summary>
         internal static string NoControlTypeEntryFound {
@@ -165,6 +174,24 @@ namespace Axe.Windows.Rules.Resources {
         internal static string NoLocalizedControlTypeStringFound {
             get {
                 return ResourceManager.GetString("NoLocalizedControlTypeStringFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No rule matching the ID &apos;{0}&apos; was found..
+        /// </summary>
+        internal static string NoRuleMatchingId {
+            get {
+                return ResourceManager.GetString("NoRuleMatchingId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All rules are expected to have the RuleInfo attribute with the ID property set..
+        /// </summary>
+        internal static string RuleInfoAttributeExpected {
+            get {
+                return ResourceManager.GetString("RuleInfoAttributeExpected", resourceCulture);
             }
         }
         
