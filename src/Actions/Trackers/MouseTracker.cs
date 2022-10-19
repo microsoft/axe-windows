@@ -4,6 +4,7 @@
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.Win32;
 using System;
 using System.Drawing;
@@ -114,7 +115,7 @@ namespace Axe.Windows.Actions.Trackers
 
                     if (LastMousePoint.Equals(p) && !this.POIPoint.Equals(p))
                     {
-                        var element = GetElementBasedOnScope(ActionContext.DesktopDataContext.A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode, ActionContext.DesktopDataContext));
+                        var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode, ActionContext.DesktopDataContext));
                         if (!SelectElementIfItIsEligible(element))
                         {
                             element?.Dispose();

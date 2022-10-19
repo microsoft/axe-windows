@@ -110,11 +110,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements based on Process Id.
         /// </summary>
         /// <param name="pid"></param>
-        /// <param name="dataContext">This MUST be the context that contains this A11yAutomation object</param>
+        /// <param name="dataContext">The data context</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
         public IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
-            EnsureContextConsistency(dataContext);
+            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
             IUIAutomationElement root = null;
             IEnumerable<DesktopElement> elements = null;
@@ -130,7 +130,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     // exists inside UIAutomation.GetRootElement, and this works around the problem.
                     lock (LockObject)
                     {
-                        root = UIAutomation.GetRootElement();
+                        root = dataContext.A11yAutomation.UIAutomation.GetRootElement();
                     }
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, dataContext);
@@ -200,46 +200,17 @@ namespace Axe.Windows.Desktop.UIAutomation
         }
 
         /// <summary>
-        /// Get the focused Element
-        /// </summary>
-        /// <returns></returns>
-        public DesktopElement GetFocusedElement()
-        {
-            try
-            {
-                var uia = UIAutomation.GetFocusedElement();
-
-                if (!DesktopElement.IsFromCurrentProcess(uia))
-                {
-                    return new DesktopElement(uia, true);
-                }
-                else
-                {
-                    Marshal.ReleaseComObject(uia);
-                }
-            }
-#pragma warning disable CA1031 // Do not catch general exception types
-            catch (Exception e)
-            {
-                e.ReportException();
-            }
-#pragma warning restore CA1031 // Do not catch general exception types
-
-            return null;
-        }
-
-        /// <summary>
         /// Get an App element from uia
         /// it is trace back to the top most ancestor with same process Id.
         /// </summary>
         /// <param name="e">A11yElement</param>
-        /// <param name="dataContext">This MUST be the context that contains this A11yAutomation object</param>
+        /// <param name="dataContext">The data context</param>
         /// <returns></returns>
-        internal A11yElement GetAppElement(A11yElement e, DesktopDataContext dataContext)
+        internal static A11yElement GetAppElement(A11yElement e, DesktopDataContext dataContext)
         {
-            EnsureContextConsistency(dataContext);
+            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
-            var walker = GetTreeWalker(TreeViewMode.Control);
+            var walker = dataContext.A11yAutomation.GetTreeWalker(TreeViewMode.Control);
             var tree = new DesktopElementAncestry(TreeViewMode.Control, e, dataContext);
             Marshal.ReleaseComObject(walker);
             A11yElement app = tree.First;
@@ -350,15 +321,17 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="xPos"></param>
         /// <param name="yPos"></param>
         /// <param name="treeViewMode">current TreeViewMode</param>
-        /// <param name="dataContext">This MUST be the context that contains this A11yAutomation object</param>
+        /// <param name="dataContext">The data context</param>
         /// <returns></returns>
-        public A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
+        public static A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
         {
-            EnsureContextConsistency(dataContext);
+            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
+
+            A11yAutomation a11yAutomation = dataContext.A11yAutomation;
 
             try
             {
-                A11yElement element = ElementFromPoint(xPos, yPos, dataContext);
+                A11yElement element = a11yAutomation.ElementFromPoint(xPos, yPos, dataContext);
 
                 if (element == null)
                     return null;
@@ -374,7 +347,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
                 using (element)
                 {
-                    return GetNormalizedElement(element, treeViewMode);
+                    return a11yAutomation.GetNormalizedElement(element, treeViewMode);
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -385,15 +358,6 @@ namespace Axe.Windows.Desktop.UIAutomation
 #pragma warning restore CA1031 // Do not catch general exception types
 
             return null;
-        }
-
-        private void EnsureContextConsistency(DesktopDataContext dataContext)
-        {
-            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
-            if (!ReferenceEquals(dataContext.A11yAutomation, this))
-            {
-                throw new ArgumentException(Resources.ErrorMessages.InvalidContext, nameof(dataContext));
-            }
         }
     }
 }
