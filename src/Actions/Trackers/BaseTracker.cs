@@ -5,6 +5,7 @@ using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Desktop.UIAutomation;
 using System;
 using System.Drawing;
 
@@ -77,7 +78,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (e != null && Scope == SelectionScope.App)
             {
-                var el = ActionContext.DesktopDataContext.A11yAutomation.GetAppElement(e, ActionContext.DesktopDataContext);
+                var el = A11yAutomation.GetAppElement(e, ActionContext.DesktopDataContext);
 
                 // if the original selection is Top most element of the app, it should not be released.
                 if (e != el)

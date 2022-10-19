@@ -19,8 +19,8 @@ namespace Axe.Windows.Automation
         {
             try
             {
-                var desktopElements = actionContext.DesktopDataContext.A11yAutomation.ElementsFromProcessId(processId, actionContext.DesktopDataContext);
-                return GetA11YElementsFromDesktopElements(desktopElements);
+                var desktopElements = A11yAutomation.ElementsFromProcessId(processId, actionContext.DesktopDataContext);
+                return GetA11yElementsFromDesktopElements(desktopElements);
             }
             catch (Exception ex)
             {
@@ -28,7 +28,7 @@ namespace Axe.Windows.Automation
             }
         }
 
-        private static IEnumerable<A11yElement> GetA11YElementsFromDesktopElements(IEnumerable<DesktopElement> desktopElements)
+        private static IEnumerable<A11yElement> GetA11yElementsFromDesktopElements(IEnumerable<DesktopElement> desktopElements)
         {
             if (desktopElements == null || !desktopElements.Any()) throw new ArgumentException(ErrorMessages.NoDesktopElements, nameof(desktopElements));
 
