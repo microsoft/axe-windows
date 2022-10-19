@@ -269,7 +269,7 @@
  · IsReadOnly: TRUE</value>
     <comment>Brief guidance on how to fix an accessibility problem. The terms "RangeValue", "Minimum", "Maximum", and "IsReadOnly" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
-    <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
+  <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
     <value>Implement the edit control's RangeValue pattern with a null LargeChange property.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The terms "RangeValue" and "LargeChange" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
