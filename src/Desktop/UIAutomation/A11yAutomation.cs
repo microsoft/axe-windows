@@ -175,10 +175,8 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements from UIAElements.
         /// </summary>
         /// <returns>An IEnumerable of <see cref="DesktopElement"/></returns>
-        private IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, DesktopDataContext dataContext)
+        private static IEnumerable<DesktopElement> ElementsFromUIAElements(IList<IUIAutomationElement> elementList, DesktopDataContext dataContext)
         {
-            EnsureContextConsistency(dataContext);
-
             if (elementList == null) throw new ArgumentNullException(nameof(elementList));
 
             // Return an empty IEnumerable<DesktopElement> instead of null from ElementsFromUIAElements so that downstream calls to Linq extensions on the IEnumerable don't throw null reference exceptions.
