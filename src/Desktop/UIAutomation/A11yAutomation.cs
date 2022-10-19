@@ -23,6 +23,8 @@ namespace Axe.Windows.Desktop.UIAutomation
     {
         static readonly Lazy<A11yAutomation> DefaultInstanceLazy = new Lazy<A11yAutomation>(() => CreateInstance());
 
+        static readonly object LockObject = new object();
+
         internal static A11yAutomation GetDefaultInstance() => DefaultInstanceLazy.Value;
 
         /// <summary>
@@ -124,18 +126,16 @@ namespace Axe.Windows.Desktop.UIAutomation
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
-                    root = UIAutomation.GetRootElement();
+                    // This lock should not be needed, but E2E tests hvae revealed that a problem
+                    // exists inside UIAutomation.GetRootElement, and this works around the problem.
+                    lock (LockObject)
+                    {
+                        root = UIAutomation.GetRootElement();
+                    }
                     matchingElements = FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, dataContext);
                 }
             }
-#pragma warning disable CA1031 // Do not catch general exception types
-            catch (Exception ex)
-            {
-                // report and let it return null
-                ex.ReportException();
-            }
-#pragma warning restore CA1031 // Do not catch general exception types
             finally
             {
                 if (root != null)
