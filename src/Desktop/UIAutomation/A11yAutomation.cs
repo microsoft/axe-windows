@@ -323,7 +323,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="treeViewMode">current TreeViewMode</param>
         /// <param name="dataContext">The data context</param>
         /// <returns></returns>
-        public static A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
+        internal static A11yElement NormalizedElementFromPoint(int xPos, int yPos, TreeViewMode treeViewMode, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
