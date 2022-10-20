@@ -245,4 +245,7 @@
   <data name="IsDialog" xml:space="preserve">
     <value>IsDialog</value>
   </data>
+  <data name="LocalizedLandmarkType" xml:space="preserve">
+    <value>LocalizedLandmarkType</value>
+  </data>
 </root>

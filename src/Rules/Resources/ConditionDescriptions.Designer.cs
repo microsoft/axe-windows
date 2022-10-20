@@ -268,6 +268,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LocalizedLandmarkType.
+        /// </summary>
+        internal static string LocalizedLandmarkType {
+            get {
+                return ResourceManager.GetString("LocalizedLandmarkType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to main landmark.
         /// </summary>
         internal static string MainLandmark {

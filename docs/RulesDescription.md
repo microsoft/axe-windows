@@ -95,7 +95,7 @@ LandmarkContentInfoIsTopLevel | Error | An element with LocalizedLandmarkType "c
 LandmarkMainIsTopLevel | Error | An element with LocalizedLandmarkType "main" must not descend from another landmark. | WCAG 1.3.1 InfoAndRelationships
 LandmarkNoDuplicateBanner | Error | A page must not have multiple elements with LocalizedLandmarkType "banner." | WCAG 1.3.1 InfoAndRelationships
 LandmarkNoDuplicateContentInfo | Error | A page must not have multiple elements with LocalizedLandmarkType "contentinfo." | WCAG 1.3.1 InfoAndRelationships
-LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters | Error | The [StringProperty not set] property must not contain any characters in the private Unicode range. | WCAG 1.3.1 InfoAndRelationships
+LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters | Error | The LocalizedControlType property must not contain any characters in the private Unicode range. | WCAG 1.3.1 InfoAndRelationships
 LocalizedLandmarkTypeIsReasonableLength | Error | The LocalizedLandmarkType property must not be longer than 64 characters. | WCAG 1.3.1 InfoAndRelationships
 LocalizedLandmarkTypeNotCustom | Error | The LandmarkType and LocalizedLandmarkType must not both be set to "custom." | WCAG 1.3.1 InfoAndRelationships
 LocalizedLandmarkTypeNotEmpty | Error | An element with LandmarkType set must not have an empty LocalizedLandmarkType. | WCAG 1.3.1 InfoAndRelationships
