@@ -30,7 +30,7 @@ jobs:
   - task: MicroBuildLocalizationPlugin@1
     inputs:
       languages: ${{ parameters.LocLanguages }}
-      feedSource: '$(SigningPluginFeedSource)'
+      feedSource: '$(MicrobuildPluginFeedSource)'
     displayName: Install MicroBuild Localization plugin
 
   - task: NuGetCommand@2
@@ -212,7 +212,7 @@ jobs:
     inputs:
       signType: real
       esrpSigning: true
-      feedSource: '$(SigningPluginFeedSource)'
+      feedSource: '$(MicrobuildPluginFeedSource)'
     condition: and(succeeded(), ne(variables['SignType'], ''))
 
   - task: NuGetToolInstaller@1
