@@ -1,9 +1,10 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+using Axe.Windows.Core.Resources;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
-using static System.FormattableString;
 
 namespace Axe.Windows.Core.Types
 {
@@ -103,7 +104,7 @@ namespace Axe.Windows.Core.Types
                 return this.Dic[id];
             }
 
-            return Invariant($"Unknown ({id})");
+            return string.Format(CultureInfo.CurrentCulture, DisplayStrings.UnknownFormat, id);
         }
 
         /// <summary>

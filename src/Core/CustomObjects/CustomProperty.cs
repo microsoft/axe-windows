@@ -7,7 +7,6 @@ using Axe.Windows.Core.Resources;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 
 namespace Axe.Windows.Core.CustomObjects

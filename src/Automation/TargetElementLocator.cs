@@ -24,7 +24,7 @@ namespace Axe.Windows.Automation
             }
             catch (Exception ex)
             {
-                throw new AxeWindowsAutomationException(ErrorMessages.ErrorFailToGetRootElementsOfProcess.WithParameters(processId, ex), ex);
+                throw new AxeWindowsAutomationException(ErrorMessages.ErrorFailToGetRootElementsOfProcess.WithParameters(processId), ex);
             }
         }
 
