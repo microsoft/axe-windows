@@ -211,7 +211,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
             var walker = dataContext.A11yAutomation.GetTreeWalker(TreeViewMode.Control);
-            var tree = new DesktopElementAncestry(TreeViewMode.Control, e, dataContext);
+            var tree = new DesktopElementAncestry(TreeViewMode.Control, e, false, dataContext);
             Marshal.ReleaseComObject(walker);
             A11yElement app = tree.First;
 

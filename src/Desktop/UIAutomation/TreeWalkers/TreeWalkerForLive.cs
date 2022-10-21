@@ -70,7 +70,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             //Set parent of Root explicitly for testing.
             A11yElement parent = null;
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, e, dataContext);
+            var ancestry = new DesktopElementAncestry(this.WalkerMode, e, false, dataContext);
             parent = ancestry.Last;
 
             this.RootElement = ancestry.First;
