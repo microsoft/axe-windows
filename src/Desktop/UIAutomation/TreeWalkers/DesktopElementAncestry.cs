@@ -38,29 +38,33 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         public TreeViewMode TreeWalkerMode { get; }
 
         /// <summary>
+        /// Parent elements' SetMembers value
+        /// </summary>
+        private bool SetMembers { get; }
+
+        /// <summary>
         /// Id for next element
         /// it will be used in Tree Walker.
         /// </summary>
         public int NextId { get; }
 
         /// <summary>
-        /// Constructor DesktopElementAncestry
-        /// Get Ancestry Tree elements up to Desktop(at best)
+        /// Constructor for DesktopElementAncestry, currently used only by AIWin
+        /// Get Ancestry Tree elements up to Desktop (ideally)
         /// </summary>
-        /// <param name="walker"></param>
-        /// <param name="e"></param>
-        public DesktopElementAncestry(TreeViewMode mode, A11yElement e)
-            : this (mode, e, DesktopDataContext.DefaultContext)
+        public DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMembers)
+            : this(mode, e, setMembers, DesktopDataContext.DefaultContext)
         {
         }
 
-        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, DesktopDataContext dataContext)
+        internal DesktopElementAncestry(TreeViewMode mode, A11yElement e, bool setMembers, DesktopDataContext dataContext)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             this.TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
             this.TreeWalkerMode = mode;
             this.Items = new List<A11yElement>();
+            this.SetMembers = setMembers;
             SetParent(e, -1, dataContext);
 
             if (Items.Count != 0)
@@ -96,7 +100,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 if (puia == null) return;
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-                var parent = new DesktopElement(puia, true, false);
+                var parent = new DesktopElement(puia, true, SetMembers);
                 parent.PopulateMinimumPropertiesForSelection(dataContext);
 
                 // we need to avoid infinite loop of self reference as parent.
