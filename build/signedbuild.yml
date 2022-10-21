@@ -27,12 +27,6 @@ jobs:
     inputs:
       versionSpec: '5.x'
 
-  - task: MicroBuildLocalizationPlugin@1
-    inputs:
-      languages: ${{ parameters.LocLanguages }}
-      feedSource: '$(MicrobuildPluginFeedSource)'
-    displayName: Install MicroBuild Localization plugin
-
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
 
@@ -219,6 +213,12 @@ jobs:
     displayName: 'Use NuGet 5.x'
     inputs:
       versionSpec: '5.x'
+
+  - task: MicroBuildLocalizationPlugin@1
+    inputs:
+      languages: ${{ parameters.LocLanguages }}
+      feedSource: '$(MicrobuildPluginFeedSource)'
+    displayName: Install MicroBuild Localization plugin
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
