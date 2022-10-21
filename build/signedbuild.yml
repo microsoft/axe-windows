@@ -30,6 +30,7 @@ jobs:
   - task: MicroBuildLocalizationPlugin@1
     inputs:
       languages: ${{ parameters.LocLanguages }}
+      feedSource: '$(SigningPluginFeedSource)'
     displayName: Install MicroBuild Localization plugin
 
   - task: NuGetCommand@2
