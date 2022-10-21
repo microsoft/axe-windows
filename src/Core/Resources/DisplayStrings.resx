@@ -117,52 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrorDirectoryInvalid" xml:space="preserve">
-    <value>The directory "{0}" was invalid.</value>
+  <data name="BoundingRectangleFormat" xml:space="preserve">
+    <value>[l={0},t={1},w={2},h={3}]</value>
   </data>
-  <data name="ErrorFailToGetRootElementsOfProcess" xml:space="preserve">
-    <value>Failed to get the root element(s) of the specified process({0})</value>
+  <data name="HorizontalOrientation" xml:space="preserve">
+    <value>Horizontal(1)</value>
   </data>
-  <data name="ErrorIsNotFullPath" xml:space="preserve">
-    <value>The given path was not an absolute path.</value>
+  <data name="LeftTopRightBottomFormat" xml:space="preserve">
+    <value>[l={0},t={1},r={2},b={3}]</value>
   </data>
-  <data name="ErrorKeyNotFound" xml:space="preserve">
-    <value>{0} not found in {1} dictionary.</value>
-    <comment>{0} is key name, {1} is dictionary name</comment>
+  <data name="NoneOrientation" xml:space="preserve">
+    <value>None(0)</value>
   </data>
-  <data name="ErrorTooManyElementsToSetDataContext" xml:space="preserve">
-    <value>Unable to set Data context (more than {0:N0} elements were found)</value>
-    <comment>{0} is the maximum number of elements</comment>
+  <data name="PointFormat" xml:space="preserve">
+    <value>[x={0},y={1}]</value>
   </data>
-  <data name="ErrorUnableToSetDataContext" xml:space="preserve">
-    <value>Unable to set Data context</value>
+  <data name="UnknownFormat" xml:space="preserve">
+    <value>Unknown ({0})</value>
   </data>
-  <data name="ErrorUnhandledExceptionFormat" xml:space="preserve">
-    <value>Unhandled Exception {0}</value>
-    <comment>{0} is the exception detail</comment>
-  </data>
-  <data name="NoDesktopElements" xml:space="preserve">
-    <value>The argument must be a non-empty IEnumerable</value>
-  </data>
-  <data name="ScanToolsActionsNull" xml:space="preserve">
-    <value>The Actions property of the given ScanTools object should not be null</value>
-  </data>
-  <data name="ScanToolsDpiAwarenessNull" xml:space="preserve">
-    <value>The DpiAwareness property of the given ScanTools object should not be null</value>
-  </data>
-  <data name="ScanToolsOutputFileHelperNull" xml:space="preserve">
-    <value>The OutputFileHelper property of the given ScanTools object should not be null</value>
-  </data>
-  <data name="ScanToolsResultsAssemblerNull" xml:space="preserve">
-    <value>The ResultsAssembler property of the given ScanTools object should not be null</value>
-  </data>
-  <data name="ScanToolsTargetElementLocatorNull" xml:space="preserve">
-    <value>The TargetElementLocator property of the given ScanTools object should not be null</value>
-  </data>
-  <data name="StringNullOrWhiteSpace" xml:space="preserve">
-    <value>The given string must not be null or white space</value>
-  </data>
-  <data name="VariableNull" xml:space="preserve">
-    <value>Expected the variable '{0}' not to be null</value>
+  <data name="VerticalOrientation" xml:space="preserve">
+    <value>Vertical(2)</value>
   </data>
 </root>

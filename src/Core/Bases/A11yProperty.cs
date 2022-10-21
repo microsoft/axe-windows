@@ -3,6 +3,7 @@
 
 using Axe.Windows.Core.CustomObjects.Converters;
 using Axe.Windows.Core.Misc;
+using Axe.Windows.Core.Resources;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Win32;
 using Newtonsoft.Json;
@@ -97,13 +98,13 @@ namespace Axe.Windows.Core.Bases
                         switch ((int)this.Value)
                         {
                             case 0: //OrientationType_None
-                                txt = "None(0)";
+                                txt = DisplayStrings.NoneOrientation;
                                 break;
                             case 1: //OrientationType_Horizontal
-                                txt = "Horizontal(1)";
+                                txt = DisplayStrings.HorizontalOrientation;
                                 break;
                             case 2: // OrientationType_Vertical
-                                txt = "Vertical(2)";
+                                txt = DisplayStrings.VerticalOrientation;
                                 break;
                         }
                         break;
@@ -158,7 +159,7 @@ namespace Axe.Windows.Core.Bases
             if ((double)arr[2] < 0 || (double)arr[3] < 0)
             {
                 // the 3rd and 4th values in array are negative value, we need to show value in different format like l,t,w,h
-                text = ExtensionMethods.WithParameters("[l={0},t={1},w={2},h={3}]", arr[0], arr[1], arr[2], arr[3]);
+                text = ExtensionMethods.WithParameters(DisplayStrings.BoundingRectangleFormat, arr[0], arr[1], arr[2], arr[3]);
             }
             else
             {

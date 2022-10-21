@@ -70,7 +70,7 @@ namespace Axe.Windows.Automation.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to get the root element(s) of the specified process({0}) : {1}.
+        ///   Looks up a localized string similar to Failed to get the root element(s) of the specified process({0}).
         /// </summary>
         internal static string ErrorFailToGetRootElementsOfProcess {
             get {

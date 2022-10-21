@@ -1,8 +1,10 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Core.Resources;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Axe.Windows.Core.CustomObjects.Converters
 {
@@ -19,7 +21,7 @@ namespace Axe.Windows.Core.CustomObjects.Converters
             int raw = (int)value;
             if (_values.TryGetValue(raw, out string friendlyName))
                 return $"{friendlyName} ({raw})";
-            return $"Unknown ({raw})";
+            return String.Format(CultureInfo.CurrentCulture, DisplayStrings.UnknownFormat, raw);
         }
     }
 }
