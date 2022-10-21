@@ -50,9 +50,9 @@
   </ItemGroup>
 
   <ItemGroup>
-  <FilesToLocalize Include="$(OutDir)\Axe.Windows.Core.dll">
-    <TranslationFile>$(MSBuildThisFileDirectory)..\loc\lcl\{Lang}\Axe.Windows.Core.lcl</TranslationFile>
-  </FilesToLocalize>
-</ItemGroup>
+    <FilesToLocalize Include="$(OutDir)\$(AssemblyName).dll">
+      <TranslationFile>$(MSBuildThisFileDirectory)..\loc\lcl\{Lang}\$(AssemblyName).lcl</TranslationFile>
+    </FilesToLocalize>
+  </ItemGroup>
 
 </Project>
