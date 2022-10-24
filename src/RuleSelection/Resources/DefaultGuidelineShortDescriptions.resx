@@ -119,20 +119,26 @@
   </resheader>
   <data name="AvailableActions" xml:space="preserve">
     <value>Section 508 502.3.10</value>
+    <comment>Do not translate: the name of an accessibility standard.</comment>
   </data>
   <data name="InfoAndRelationships" xml:space="preserve">
     <value>WCAG 1.3.1</value>
+    <comment>Do not translate: the name of an accessibility standard.</comment>
   </data>
   <data name="Keyboard" xml:space="preserve">
     <value>WCAG 2.1.1</value>
+    <comment>Do not translate: the name of an accessibility standard.</comment>
   </data>
   <data name="NameRoleValue" xml:space="preserve">
     <value>WCAG 4.1.2</value>
+    <comment>Do not translate: the name of an accessibility standard.</comment>
   </data>
   <data name="None" xml:space="preserve">
     <value>None</value>
+    <comment>Indicates that no accessibility standard applies to this problem.</comment>
   </data>
   <data name="ObjectInformation" xml:space="preserve">
     <value>Section 508 502.3.1</value>
+    <comment>Do not translate: the name of an accessibility standard.</comment>
   </data>
 </root>

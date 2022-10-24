@@ -119,17 +119,22 @@
   </resheader>
   <data name="AvailableActions" xml:space="preserve">
     <value>https://www.access-board.gov/ict/#502-interoperability-assistive-technology</value>
+    <comment>Do not translate: a URL to a web page.</comment>
   </data>
   <data name="InfoAndRelationships" xml:space="preserve">
     <value>https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html</value>
+    <comment>Do not translate: a URL to a web page.</comment>
   </data>
   <data name="Keyboard" xml:space="preserve">
     <value>https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html</value>
+    <comment>Do not translate: a URL to a web page.</comment>
   </data>
   <data name="NameRoleValue" xml:space="preserve">
     <value>https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html</value>
+    <comment>Do not translate: a URL to a web page.</comment>
   </data>
   <data name="ObjectInformation" xml:space="preserve">
     <value>https://www.access-board.gov/ict/#502-interoperability-assistive-technology</value>
+    <comment>Do not translate: a URL to a web page.</comment>
   </data>
 </root>
