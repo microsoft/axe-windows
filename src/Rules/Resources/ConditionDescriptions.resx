@@ -163,11 +163,11 @@
   </data>
   <data name="IsContentElement" xml:space="preserve">
     <value>IsContentElement</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
   <data name="IsControlElement" xml:space="preserve">
     <value>IsControlElement</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
   <data name="MainLandmark" xml:space="preserve">
     <value>main landmark</value>
@@ -200,7 +200,7 @@
   </data>
   <data name="Orientation" xml:space="preserve">
     <value>Orientation</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
   <data name="Parentheses" xml:space="preserve">
     <value>({0})</value>
@@ -256,15 +256,15 @@
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
   <data name="LocalizedControlType" xml:space="preserve">
     <value>LocalizedControlType</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
   <data name="HelpText" xml:space="preserve">
     <value>HelpText</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
   <data name="IncludesPrivateUnicodeCharacters" xml:space="preserve">
     <value>{0}.IncludesPrivateUnicodeCharacters</value>
@@ -280,6 +280,6 @@
   </data>
   <data name="IsDialog" xml:space="preserve">
     <value>IsDialog</value>
-    <comment>The name of a UI Automation property that should not be translated.</comment>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
 </root>
