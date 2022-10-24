@@ -119,5 +119,6 @@
   </resheader>
   <data name="RunResultRuleInfoNull" xml:space="preserve">
     <value>Expected the RuleInfo property of the given RunResult not to be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
 </root>
