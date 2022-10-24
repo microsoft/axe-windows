@@ -15,8 +15,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-using static System.FormattableString;
-
 namespace Axe.Windows.Core.Bases
 {
     /// <summary>

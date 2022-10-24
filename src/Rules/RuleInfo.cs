@@ -4,7 +4,6 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.Resources;
 using System;
 using System.Globalization;
-using static System.FormattableString;
 
 namespace Axe.Windows.Rules
 {

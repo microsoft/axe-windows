@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -8,7 +8,6 @@ using Axe.Windows.Rules.PropertyConditions;
 using System.Diagnostics;
 using System.Drawing;
 using UIAutomationClient;
-using static System.FormattableString;
 
 namespace Axe.Windows.Rules.Extensions
 {
@@ -50,7 +49,6 @@ namespace Axe.Windows.Rules.Extensions
                 var stopwatch = Stopwatch.StartNew();
                 bool retVal = c.Matches(e);
                 var ms = stopwatch.ElapsedTicks / (float)10000;
-                Debug.WriteLine(Invariant($"{ms} ms {message}"));
                 return retVal;
             });
         }

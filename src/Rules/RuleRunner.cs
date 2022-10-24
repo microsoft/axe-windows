@@ -9,8 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
-using System.Threading.Tasks;
-using static System.FormattableString;
 
 namespace Axe.Windows.Rules
 {
