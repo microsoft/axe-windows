@@ -44,6 +44,9 @@
         <DropSignedFile Include="$(TargetPath)" />
         <DropSignedFile Include="$(TargetDir)\localize\**\$(AssemblyName).resources.dll" />
       </ItemGroup>
+      <SignFilesDependsOn Include="GatherLocalizedOutputsForSigning">
+        <InProject>false</InProject>
+      </SignFilesDependsOn>
     </When>
   </Choose>
 
