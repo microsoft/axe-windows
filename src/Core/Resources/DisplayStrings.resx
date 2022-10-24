@@ -119,7 +119,7 @@
   </resheader>
   <data name="BoundingRectangleFormat" xml:space="preserve">
     <value>[l={0},t={1},w={2},h={3}]</value>
-    <comment>Do not translate: the coordinate specification of a bounding rectangle for an accessibility element.</comment>
+    <comment>The coordinate specification of a bounding rectangle for an accessibility element. l refers to the left position, t to the top position, w to the width, and h to the height. When translating, please keep these descriptions to one or two characters for display purposes.</comment>
   </data>
   <data name="HorizontalOrientation" xml:space="preserve">
     <value>Horizontal(1)</value>
@@ -127,7 +127,7 @@
   </data>
   <data name="LeftTopRightBottomFormat" xml:space="preserve">
     <value>[l={0},t={1},r={2},b={3}]</value>
-    <comment>Do not translate: the coordinate specification of the position of an accessibility element.</comment>
+    <comment>The coordinate specification of the position of an accessibility element. l refers to the left position, t to the top position, r to the right position, and b to the bottom position. When translating, please keep these descriptions to one or two characters for display purposes.</comment>
   </data>
   <data name="NoneOrientation" xml:space="preserve">
     <value>None(0)</value>
