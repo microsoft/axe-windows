@@ -119,50 +119,62 @@
   </resheader>
   <data name="ErrorDirectoryInvalid" xml:space="preserve">
     <value>The directory "{0}" was invalid.</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ErrorFailToGetRootElementsOfProcess" xml:space="preserve">
     <value>Failed to get the root element(s) of the specified process({0})</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ErrorIsNotFullPath" xml:space="preserve">
     <value>The given path was not an absolute path.</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ErrorKeyNotFound" xml:space="preserve">
     <value>{0} not found in {1} dictionary.</value>
-    <comment>{0} is key name, {1} is dictionary name</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is key name, {1} is dictionary name</comment>
   </data>
   <data name="ErrorTooManyElementsToSetDataContext" xml:space="preserve">
     <value>Unable to set Data context (more than {0:N0} elements were found)</value>
-    <comment>{0} is the maximum number of elements</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is the maximum number of elements</comment>
   </data>
   <data name="ErrorUnableToSetDataContext" xml:space="preserve">
     <value>Unable to set Data context</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ErrorUnhandledExceptionFormat" xml:space="preserve">
     <value>Unhandled Exception {0}</value>
-    <comment>{0} is the exception detail</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is the exception detail</comment>
   </data>
   <data name="NoDesktopElements" xml:space="preserve">
     <value>The argument must be a non-empty IEnumerable</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ScanToolsActionsNull" xml:space="preserve">
     <value>The Actions property of the given ScanTools object should not be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ScanToolsDpiAwarenessNull" xml:space="preserve">
     <value>The DpiAwareness property of the given ScanTools object should not be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ScanToolsOutputFileHelperNull" xml:space="preserve">
     <value>The OutputFileHelper property of the given ScanTools object should not be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ScanToolsResultsAssemblerNull" xml:space="preserve">
     <value>The ResultsAssembler property of the given ScanTools object should not be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ScanToolsTargetElementLocatorNull" xml:space="preserve">
     <value>The TargetElementLocator property of the given ScanTools object should not be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="StringNullOrWhiteSpace" xml:space="preserve">
     <value>The given string must not be null or white space</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="VariableNull" xml:space="preserve">
     <value>Expected the variable '{0}' not to be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
 </root>
