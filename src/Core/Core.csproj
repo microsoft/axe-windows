@@ -58,4 +58,10 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <FilesToLocalize Include="$(OutDir)\$(AssemblyName).dll">
+      <TranslationFile>$(MSBuildThisFileDirectory)..\loc\lcl\{Lang}\$(AssemblyName).lcl</TranslationFile>
+    </FilesToLocalize>
+  </ItemGroup>
+
 </Project>
