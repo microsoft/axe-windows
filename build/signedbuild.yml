@@ -1,6 +1,11 @@
 name: $(date:yyyy-MM-dd)$(rev:.rr)
 trigger: none
 pr: none
+parameters:
+- name: LocLanguages
+  displayName: Localization Languages
+  type: string
+  default: VS
 variables:
   BuildPlatform: 'x86'
   CreateAxeWindowsNugetPackage: 'true'
@@ -201,13 +206,19 @@ jobs:
     inputs:
       signType: real
       esrpSigning: true
-      feedSource: '$(SigningPluginFeedSource)'
+      feedSource: '$(MicrobuildPluginFeedSource)'
     condition: and(succeeded(), ne(variables['SignType'], ''))
 
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet 5.x'
     inputs:
       versionSpec: '5.x'
+
+  - task: MicroBuildLocalizationPlugin@1
+    inputs:
+      languages: ${{ parameters.LocLanguages }}
+      feedSource: '$(MicrobuildPluginFeedSource)'
+    displayName: Install MicroBuild Localization plugin
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
