@@ -119,41 +119,50 @@
   </resheader>
   <data name="ParameterMustBeLessThanIntMaxValue" xml:space="preserve">
     <value>This parameter must be less than int.MaxValue</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ParameterMustBePositive" xml:space="preserve">
     <value>This parameter must be positive</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ParameterMustNotBeNegative" xml:space="preserve">
     <value>This parameter must not be negative</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="PropertyAlreadySet" xml:space="preserve">
     <value>The given property was already set.</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="UnableToLocateTargetElementInFile" xml:space="preserve">
     <value>Unable to locate the target element in the file.</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ValueCannotBeNull" xml:space="preserve">
     <value>Value cannot be null</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ValueCannotBeEmptyOrWhiteSpace" xml:space="preserve">
     <value>Value cannot be empty or white space</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="PropertyValueTypeUnexpected" xml:space="preserve">
     <value>Expected property.Value, which is type {0}, to be type {1}</value>
-    <comment>{0} is actual type, {1} is expected type</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is actual type, {1} is expected type</comment>
   </data>
   <data name="NoRuleIdExists" xml:space="preserve">
     <value>No rule id exists for the given view mode {0}</value>
-    <comment>{0} is view mode</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is view mode</comment>
   </data>
   <data name="NotSupportedType" xml:space="preserve">
     <value>'{0}' is not a supported type</value>
-    <comment>{0} is type</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is type</comment>
   </data>
   <data name="ValuesCannotBeDefined" xml:space="preserve">
     <value>Values cannot be defined for non-enumeration types.</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
   <data name="ValuesRequired" xml:space="preserve">
     <value>Values required for enumeration types.</value>
+    <comment>Do not translate: the text of an internal error.</comment>
   </data>
 </root>
