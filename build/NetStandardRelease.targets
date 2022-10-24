@@ -42,6 +42,7 @@
     <When Condition=" '$(DropSignedFile)' == '' ">
       <ItemGroup>
         <DropSignedFile Include="$(TargetPath)" />
+        <DropSignedFile Include="$(TargetDir)\localize\**\$(AssemblyName).resources.dll" Condition="Exists('$(TargetDir)\localize')" />
       </ItemGroup>
     </When>
   </Choose>
