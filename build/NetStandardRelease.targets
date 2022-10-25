@@ -41,8 +41,7 @@
   <Choose>
     <When Condition=" '$(DropSignedFile)' == '' ">
       <ItemGroup>
-        <!-- TODO include file.resources.dll in signing -->
-        <DropSignedFile Include="$(TargetPath)" /> 
+        <DropSignedFile Include="$(TargetPath)" />
       </ItemGroup>
     </When>
   </Choose>

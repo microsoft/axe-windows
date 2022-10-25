@@ -119,23 +119,30 @@
   </resheader>
   <data name="BoundingRectangleFormat" xml:space="preserve">
     <value>[l={0},t={1},w={2},h={3}]</value>
+    <comment>The coordinate specification of a bounding rectangle for an accessibility element. l refers to the left position, t to the top position, w to the width, and h to the height. When translating, please keep these descriptions to one or two characters for display purposes.</comment>
   </data>
   <data name="HorizontalOrientation" xml:space="preserve">
     <value>Horizontal(1)</value>
+    <comment>A description of the visual orientation of an accessibility element.</comment>
   </data>
   <data name="LeftTopRightBottomFormat" xml:space="preserve">
     <value>[l={0},t={1},r={2},b={3}]</value>
+    <comment>The coordinate specification of the position of an accessibility element. l refers to the left position, t to the top position, r to the right position, and b to the bottom position. When translating, please keep these descriptions to one or two characters for display purposes.</comment>
   </data>
   <data name="NoneOrientation" xml:space="preserve">
     <value>None(0)</value>
+    <comment>A description of the visual orientation of an accessibility element.</comment>
   </data>
   <data name="PointFormat" xml:space="preserve">
     <value>[x={0},y={1}]</value>
+    <comment>Do not translate: the coordinate specification of the position of an accessibility element.</comment>
   </data>
   <data name="UnknownFormat" xml:space="preserve">
     <value>Unknown ({0})</value>
+    <comment>The description of data obtained from an accessibility element that the accessibility scanner does not know how to interpret.</comment>
   </data>
   <data name="VerticalOrientation" xml:space="preserve">
     <value>Vertical(2)</value>
+    <comment>A description of the visual orientation of an accessibility element.</comment>
   </data>
 </root>
