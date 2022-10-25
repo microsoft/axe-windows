@@ -31,6 +31,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition CorrectDataFormat = Condition.Create(HasCorrectDataFormat);
         public static Condition NotCorrectDataFormat = ~CorrectDataFormat;
         public static Condition CompletelyObscuresContainer = Condition.Create(ElementCompletelyObscuresContainer, ConditionDescriptions.BoundingRectangleCompletelyObscuresContainer);
+        public static Condition NotTelerikSparklineItemstatusContext = Condition.Create(ElementItemStatusContainsTelerikSparklineContext);
 
         private static bool IsBoundingRectangleNull(IA11yElement e)
         {
@@ -73,6 +74,12 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (container == null) throw new InvalidProgramException(ErrorMessages.ExpectedValidAncestor);
 
             return e.BoundingRectangle.CompletelyObscures(container.BoundingRectangle);
+        }
+        private static bool ElementItemStatusContainsTelerikSparklineContext(IA11yElement e)
+        {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
+            return e.Framework == "WPF" && e.ItemStatus?.Contains("<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />") == true;
         }
     } // class
 } // namespace

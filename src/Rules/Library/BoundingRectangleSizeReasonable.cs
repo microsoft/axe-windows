@@ -26,10 +26,6 @@ namespace Axe.Windows.Rules.Library
 
         public override bool PassesTest(IA11yElement e)
         {
-            if (e?.ItemStatus?.Contains("<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />") == true)
-            {
-                return true;
-            }
             return BoundingRectangle.Valid.Matches(e);
         }
 
@@ -40,7 +36,8 @@ namespace Axe.Windows.Rules.Library
             return IsNotOffScreen
                 & BoundingRectangle.NotNull
                 & BoundingRectangle.CorrectDataFormat
-                & ~ignoreableText;
+                & ~ignoreableText
+                & ~BoundingRectangle.NotTelerikSparklineItemstatusContext;
         }
     } // class
 } // namespace
