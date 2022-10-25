@@ -37,7 +37,7 @@ namespace Axe.Windows.Rules.Library
                 & BoundingRectangle.NotNull
                 & BoundingRectangle.CorrectDataFormat
                 & ~ignoreableText
-                & ~BoundingRectangle.NotTelerikSparklineItemstatusContext;
+                & ~BoundingRectangle.TelerikSparklineItemstatusContext;
         }
     } // class
 } // namespace

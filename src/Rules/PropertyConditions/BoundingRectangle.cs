@@ -31,7 +31,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition CorrectDataFormat = Condition.Create(HasCorrectDataFormat);
         public static Condition NotCorrectDataFormat = ~CorrectDataFormat;
         public static Condition CompletelyObscuresContainer = Condition.Create(ElementCompletelyObscuresContainer, ConditionDescriptions.BoundingRectangleCompletelyObscuresContainer);
-        public static Condition NotTelerikSparklineItemstatusContext = Condition.Create(ElementItemStatusContainsTelerikSparklineContext);
+        public static Condition TelerikSparklineItemstatusContext = Condition.Create(ElementItemStatusContainsTelerikSparklineContext);
 
         private static bool IsBoundingRectangleNull(IA11yElement e)
         {

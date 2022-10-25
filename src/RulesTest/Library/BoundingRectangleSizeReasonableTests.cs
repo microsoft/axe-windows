@@ -38,9 +38,10 @@ namespace Axe.Windows.RulesTests.Library
         {
             using (var e = new MockA11yElement())
             {
+                e.Framework = "WPF";
                 e.ItemStatus = "<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />";
                 e.BoundingRectangle = Rectangle.Empty;
-                Assert.IsTrue(Rule.PassesTest(e));
+                Assert.IsFalse(Rule.Condition.Matches(e));
             } // using
         }
 
