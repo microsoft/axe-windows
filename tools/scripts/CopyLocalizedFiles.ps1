@@ -52,7 +52,7 @@ function CopyResourceAssemblies([string]$srcDir, [string]$targetDir){
     Write-Verbose "exiting CopyResourceAssemblies"
 }
 
-function CopyAssembliesInMappedDirectories([string]$srcDir, [string]$targetDir, [hashtable] $folderMap){
+function CopyAssembliesInMappedDirectories([string]$srcDir, [string]$targetDir, [hashtable]$folderMap){
     Write-Verbose "entering CopyAssembliesInMappedDirectories"
     Write-Verbose "  srcDir = $srcDir"
     Write-Verbose "  targetDir = $targetDir"
@@ -69,9 +69,6 @@ function CopyAssembliesInMappedDirectories([string]$srcDir, [string]$targetDir, 
 
     Write-Verbose "exiting CopyAssembliesInMappedDirectories"
 }
-
-Write-Verbose "SrcDir = $SrcDir"
-Write-Verbose "TargetDir = $TargetDir"
 
 # ENU is not in this map because it's the fallback language of the assemblies
 $FolderMap = @{
