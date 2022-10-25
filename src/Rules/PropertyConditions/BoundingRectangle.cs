@@ -75,11 +75,12 @@ namespace Axe.Windows.Rules.PropertyConditions
 
             return e.BoundingRectangle.CompletelyObscures(container.BoundingRectangle);
         }
+
         private static bool ElementItemStatusContainsTelerikSparklineContext(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return e.Framework == "WPF" && e.ItemStatus?.Contains("<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />") == true;
+            return e.ItemStatus?.Contains("<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />") == true;
         }
     } // class
 } // namespace

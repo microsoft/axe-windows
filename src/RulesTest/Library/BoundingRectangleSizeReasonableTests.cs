@@ -32,9 +32,9 @@ namespace Axe.Windows.RulesTests.Library
                 Assert.IsFalse(Rule.PassesTest(e));
             } // using
         }
-        
+
         [TestMethod]
-        public void TestBoundingRectangleSizeReasonableTelerikSparklineColumnPass()
+        public void TestBoundingRectangleSizeReasonableTelerikSparklineColumnWPFPass()
         {
             using (var e = new MockA11yElement())
             {
@@ -42,6 +42,18 @@ namespace Axe.Windows.RulesTests.Library
                 e.ItemStatus = "<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />";
                 e.BoundingRectangle = Rectangle.Empty;
                 Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
+        
+        [TestMethod]
+        public void TestBoundingRectangleSizeReasonableTelerikSparklineColumnUWPFail()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = "UWP";
+                e.ItemStatus = "<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />";
+                e.BoundingRectangle = Rectangle.Empty;
+                Assert.IsTrue(Rule.Condition.Matches(e));
             } // using
         }
 

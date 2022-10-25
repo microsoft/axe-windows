@@ -9,6 +9,7 @@ using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
+using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -37,7 +38,7 @@ namespace Axe.Windows.Rules.Library
                 & BoundingRectangle.NotNull
                 & BoundingRectangle.CorrectDataFormat
                 & ~ignoreableText
-                & ~BoundingRectangle.TelerikSparklineItemstatusContext;
+                & ~(WPF & BoundingRectangle.TelerikSparklineItemstatusContext);
         }
     } // class
 } // namespace
