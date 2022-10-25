@@ -56,7 +56,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Condition=" '$(CreateAxeWindowsNugetPackage)' == 'true' " Name="Pack" AfterTargets="Build">
+  <Target Condition=" '$(MicroBuild_NuPkgSigningEnabled)' == 'true' " Name="CopyLocalizedFiles" AfterTargets="Build">
+    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\CopyLocalizedFiles.ps1 -SrcDir $(SolutionDir)src\Core\bin\$(ConfigurationName)\netStandard2.0\localize -TargetDir $(TargetDir) " />
+    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\CopyLocalizedFiles.ps1 -SrcDir $(SolutionDir)src\Rules\bin\$(ConfigurationName)\netStandard2.0\localize -TargetDir $(TargetDir) " />
+    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\CopyLocalizedFiles.ps1 -SrcDir $(SolutionDir)src\RuleSelection\bin\$(ConfigurationName)\netStandard2.0\localize -TargetDir $(TargetDir) " />
+  </Target>
+  <Target Condition=" '$(CreateAxeWindowsNugetPackage)' == 'true' " Name="Pack" AfterTargets="Build" DependsOnTargets="CopyLocalizedFiles">
     <Exec Command="nuget.exe pack -properties Configuration=$(Configuration);VersionString=&quot;$(SemVerNumber)$(SemVerSuffix)&quot; Axe.Windows.nuspec -OutputDirectory bin\$(Configuration)\NuGet\$(SemVerNumber)$(SemVerSuffix) -NonInteractive" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
