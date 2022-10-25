@@ -50,7 +50,6 @@ jobs:
       vsVersion: 17.0
       platform: '$(BuildPlatform)'
       configuration: release
-      msbuildArgs: '-bl'
 
   - task: ms.build-release-task.custom-build-release-task.wpf-static-analysis@0
     displayName: 'WPF Static Analysis'
@@ -189,10 +188,10 @@ jobs:
       ArtifactName: 'Compliance'
 
 - job: SignedRelease
-  dependsOn: 
-  - ComplianceRelease
-  - ComplianceDebug
-  condition: and(succeeded(), succeeded())
+  # dependsOn: 
+  # - ComplianceRelease
+  # - ComplianceDebug
+  # condition: and(succeeded(), succeeded())
   pool: MSEngSS-MicroBuild2022-1ES
   variables:
     PublicRelease: 'true'
