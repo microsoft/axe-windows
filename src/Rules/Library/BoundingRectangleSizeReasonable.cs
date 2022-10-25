@@ -26,7 +26,7 @@ namespace Axe.Windows.Rules.Library
 
         public override bool PassesTest(IA11yElement e)
         {
-            if(e.ItemStatus.Contains("<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />"))
+            if (e?.ItemStatus?.Contains("<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />") == true)
             {
                 return true;
             }
