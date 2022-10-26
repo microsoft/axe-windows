@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -9,6 +9,7 @@ using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
+using static Axe.Windows.Rules.PropertyConditions.Framework;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -36,7 +37,8 @@ namespace Axe.Windows.Rules.Library
             return IsNotOffScreen
                 & BoundingRectangle.NotNull
                 & BoundingRectangle.CorrectDataFormat
-                & ~ignoreableText;
+                & ~ignoreableText
+                & ~(WPF & BoundingRectangle.TelerikSparklineItemstatusContext);
         }
     } // class
 } // namespace

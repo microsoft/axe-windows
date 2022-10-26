@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -30,6 +30,30 @@ namespace Axe.Windows.RulesTests.Library
             {
                 e.BoundingRectangle = Rectangle.Empty;
                 Assert.IsFalse(Rule.PassesTest(e));
+            } // using
+        }
+
+        [TestMethod]
+        public void TestBoundingRectangleSizeReasonableTelerikSparklineColumnWPFPass()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = "WPF";
+                e.ItemStatus = "<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />";
+                e.BoundingRectangle = Rectangle.Empty;
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            } // using
+        }
+        
+        [TestMethod]
+        public void TestBoundingRectangleSizeReasonableTelerikSparklineColumnUWPFail()
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.Framework = "UWP";
+                e.ItemStatus = "<Property Name=\"DataContext\" Value=\"Telerik.Windows.Controls.Sparklines.SparklineColumnDataPoint\" />";
+                e.BoundingRectangle = Rectangle.Empty;
+                Assert.IsTrue(Rule.Condition.Matches(e));
             } // using
         }
 
