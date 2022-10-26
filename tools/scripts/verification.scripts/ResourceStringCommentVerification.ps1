@@ -49,7 +49,8 @@ function Get-ResourceContent($fileContent){
 
             # There should be a comment directly after the resource value
             if ($resourceStrings[$j + 1] -NotMatch "<comment>") {
-                $resourceName = $resourceStrings[$i] #TODO get only resource name here
+                $match = $resourceStrings[$i] -Match "<data name=`"(?<content>[^;]+)`" xml:space=`"preserve`""
+                $resourceName = $matches["content"]
                 $FailedStrings += "$resourceName ($path)" 
             }
         }

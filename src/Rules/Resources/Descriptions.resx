@@ -327,6 +327,7 @@
   </data>
   <data name="ChildrenNotAllowedInContentView" xml:space="preserve">
     <value>A separator must not have any children with IsContentElement set to TRUE.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="SelectionPatternSelectionRequired" xml:space="preserve">
     <value>An element of the given ControlType must have the IsSelectionRequired property set to TRUE.</value>
