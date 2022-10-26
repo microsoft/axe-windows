@@ -35,6 +35,13 @@ jobs:
       filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
       arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
 
+  - task: PowerShell@2
+    displayName: 'Resource String Translator Comment Check'
+    inputs:
+      targetType: "filePath"
+      filePath: tools\scripts\verification.scripts\ResourceStringCommentVerification.ps1
+      arguments: '-target  $(Build.Repository.LocalPath)'
+
   - task: VSBuild@1
     displayName: 'Build Solution **\*.sln'
     inputs:

@@ -284,5 +284,6 @@
   </data>
   <data name="LocalizedLandmarkType" xml:space="preserve">
     <value>LocalizedLandmarkType</value>
+    <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
 </root>
