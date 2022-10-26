@@ -18,7 +18,7 @@ param(
 $NewLine=([Environment]::NewLine)
 $FailedStrings = @()
 # Exclude the projects that are not yet 
-$excludeList="(Actions|Automation|CLI|Desktop)"
+$excludeList="(Actions|Automation|CLI|Desktop|tools)"
 
 function Get-FileText($pathToFile){
    return Get-Content $pathToFile -Raw -Encoding UTF8
