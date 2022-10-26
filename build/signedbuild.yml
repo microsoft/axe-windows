@@ -251,16 +251,16 @@ jobs:
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\CI\\bin\\Release\\**\\*.dll;\
-                      src\\Actions\\bin\\Release\\*.dll;\
-                      src\\Automation\\bin\\Release\\*.dll;\
-                      src\\Core\\bin\\Release\\**\\*.dll;\
-                      src\\Desktop\\bin\\Release\\*.dll;\
-                      src\\Rules\\bin\\Release\\**\\*.dll;\
-                      src\\RuleSelection\\bin\\Release\\**\\*.dll;\
-                      src\\SystemAbstractions\\bin\\Release\\*.dll;\
-                      src\\Telemetry\\bin\\Release\\*.dll;\
-                      src\\Win32\\bin\\Release\\*.dll;"
+      AnalyzeTarget: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\Release\\**\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\Release\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\Release\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\Release\\**\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\Release\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\Release\\**\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\Release\\**\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\Release\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\Release\\*.dll;\
+                      $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\Release\\*.dll;"
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
     displayName: 'Create Security Analysis Report (BinSkim)'
