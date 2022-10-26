@@ -61,8 +61,8 @@ function Get-ResourceContent($fileContent){
 
 echo "$NewLine"
 if($FailedStrings.Count -gt 0){
-    $message = "The following resources do not have comments $NewLine" + ($FailedStrings -join $NewLine) + "$NewLine"
+    $message = "The following resources do not have translator comments $NewLine" + ($FailedStrings -join $NewLine) + "$NewLine"
     throw ($message)
 } else {
-    echo "All string resources have comments"
+    echo "All string resources have translator comments"
 }

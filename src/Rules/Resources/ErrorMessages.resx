@@ -155,7 +155,7 @@
   </data>
   <data name="MissingRuleInforAttribute" xml:space="preserve">
     <value>expected {0} to have the RuleInfo attribute set</value>
-    <comment>Do not translate: the text of an internal error. {0} is type name</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is type name</comment>
   </data>
   <data name="NoControlTypeEntryFound" xml:space="preserve">
     <value>No control type entry was found in dictionary. Key value = {0}</value>
@@ -171,7 +171,7 @@
   </data>
   <data name="NoRuleMatchingId" xml:space="preserve">
     <value>No rule matching the ID '{0}' was found.</value>
-    <comment>Do not translate: the text of an internal error. {0} is rule id</comment>
+    <comment>Do not translate: the text of an internal error. Developers: {0} is rule id</comment>
   </data>
   <data name="RuleInfoAttributeExpected" xml:space="preserve">
     <value>All rules are expected to have the RuleInfo attribute with the ID property set.</value>

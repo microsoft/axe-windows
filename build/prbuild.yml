@@ -36,7 +36,7 @@ jobs:
       arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
 
   - task: PowerShell@2
-    displayName: 'Resource String Comment Check'
+    displayName: 'Resource String Translator Comment Check'
     inputs:
       targetType: "filePath"
       filePath: tools\scripts\verification.scripts\ResourceStringCommentVerification.ps1
