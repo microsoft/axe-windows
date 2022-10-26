@@ -251,12 +251,13 @@ jobs:
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "src\\Actions\\bin\\Release\\*.dll;\
+      AnalyzeTarget: "src\\CI\\bin\\Release\\**\\*.dll;\
+                      src\\Actions\\bin\\Release\\*.dll;\
                       src\\Automation\\bin\\Release\\*.dll;\
-                      src\\Core\\bin\\Release\\*.dll;\
+                      src\\Core\\bin\\Release\\**\\*.dll;\
                       src\\Desktop\\bin\\Release\\*.dll;\
-                      src\\Rules\\bin\\Release\\*.dll;\
-                      src\\RuleSelection\\bin\\Release\\*.dll;\
+                      src\\Rules\\bin\\Release\\**\\*.dll;\
+                      src\\RuleSelection\\bin\\Release\\**\\*.dll;\
                       src\\SystemAbstractions\\bin\\Release\\*.dll;\
                       src\\Telemetry\\bin\\Release\\*.dll;\
                       src\\Win32\\bin\\Release\\*.dll;"
