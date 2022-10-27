@@ -3,16 +3,16 @@
 
 <#
 .SYNOPSIS
-Copies MicroBuild-generated localized files from SrcDir to their .NET equivalents in TargetDir.
+Copies MicroBuild-generated localized files from a solution to their .NET equivalents in TargetDir.
 
 .PARAMETER SrcDir
-The base directory where the MicroBuild localized files are located.
+The directory of the .sln file. Localized projects will be auto-discovered
 
 .PARAMETER TargetDir
 The base directory where the localized files shoudld be copied. Locale folders will be create as children of this driectory.
 
 .Example Usage
-.\CopyLocalizedFiles.ps1 -SrcDir c:\myrepo\src\Core\bin\release\netstandard\localize -TargetDir c:\myrepo\src\CI\bin\release
+.\CopyLocalizedFiles.ps1 -SrcDir c:\myrepo\src -TargetDir c:\myrepo\src\CI\bin\release
 #>
 
 param(
@@ -42,18 +42,18 @@ function EnsureDirectoryExists([string]$targetDir){
     Write-Verbose "exiting EnsureDirectoryExists"
 }
 
-function CopyResourceAssemblies([string]$srcDir, [string]$targetDir){
-    Write-Verbose "entering CopyResourceAssemblies"
+function CopyResourceAssembliesForProjectLanguage([string]$srcDir, [string]$targetDir){
+    Write-Verbose "entering CopyResourceAssembliesForProjectLanguage"
     Write-Verbose "  srcDir = $srcDir"
     Write-Verbose "  targetDir = $targetDir"
 
     $path = Join-Path $srcDir '*'
     Copy-Item -Path $path -Destination $targetDir -Filter '*.resources.dll'
-    Write-Verbose "exiting CopyResourceAssemblies"
+    Write-Verbose "exiting CopyResourceAssembliesForProjectLanguage"
 }
 
-function CopyAssembliesInMappedDirectories([string]$srcDir, [string]$targetDir, [hashtable]$folderMap){
-    Write-Verbose "entering CopyAssembliesInMappedDirectories"
+function CopyResourceAssembliesForProject([string]$srcDir, [string]$targetDir, [hashtable]$folderMap){
+    Write-Verbose "entering CopyResourceAssembliesForProject"
     Write-Verbose "  srcDir = $srcDir"
     Write-Verbose "  targetDir = $targetDir"
 
@@ -63,11 +63,26 @@ function CopyAssembliesInMappedDirectories([string]$srcDir, [string]$targetDir, 
 
         Write-Verbose "Copying $localizedSrcDir to $localizedTargetDir"
         EnsureDirectoryExists $localizedTargetDir
-        CopyResourceAssemblies $localizedSrcDir $localizedTargetDir
-        Write-Verbose "------ end of loop ---------"
+        CopyResourceAssembliesForProjectLanguage $localizedSrcDir $localizedTargetDir
+        Write-Verbose "------ end of language ---------"
     })
 
-    Write-Verbose "exiting CopyAssembliesInMappedDirectories"
+    Write-Verbose "exiting CopyResourceAssembliesForProject"
+}
+
+function CopyResourceAssembliesForSolution([string]$srcDir, [string]$targetDir, [hashtable]$folderMap){
+    Write-Verbose "entering CopyResourceAssembliesForSolution"
+    Write-Verbose "  srcDir = $srcDir"
+    Write-Verbose "  targetDir = $targetDir"
+
+    Get-ChildItem -Path $srcDir -Directory |ForEach-Object {
+        $localizedFilesFolder = Join-Path $_.FullName 'bin\Release\netstandard2.0\localize'
+        if (Test-Path -Path $localizedFilesFolder) {
+            CopyResourceAssembliesForProject $localizedFilesFolder $targetDir $folderMap
+        }
+    }
+
+    Write-Verbose "exiting CopyResourceAssembliesForSolution"
 }
 
 # ENU is not in this map because it's the fallback language of the assemblies
@@ -87,6 +102,6 @@ $FolderMap = @{
     'TRK' = 'tr'
 }
 
-CopyAssembliesInMappedDirectories $SrcDir $TargetDir $FolderMap
+CopyResourceAssembliesForSolution $SrcDir $TargetDir $FolderMap
 
 exit 0
