@@ -3,16 +3,16 @@
 
 <#
 .SYNOPSIS
-Copies MicroBuild-generated localized files from SrcDir to their .NET equivalents in TargetDir.
+Copies MicroBuild-generated localized files from a solution to their .NET equivalents in TargetDir.
 
 .PARAMETER SrcDir
-The base directory where the MicroBuild localized files are located.
+The directory of the .sln file. Localized projects will be auto-discovered
 
 .PARAMETER TargetDir
 The base directory where the localized files shoudld be copied. Locale folders will be create as children of this driectory.
 
 .Example Usage
-.\CopyLocalizedFiles.ps1 -SrcDir c:\myrepo\src\Core\bin\release\netstandard\localize -TargetDir c:\myrepo\src\CI\bin\release
+.\CopyLocalizedFiles.ps1 -SrcDir c:\myrepo\src -TargetDir c:\myrepo\src\CI\bin\release
 #>
 
 param(
