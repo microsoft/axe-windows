@@ -117,7 +117,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The BoundingRectangle property is not valid, but the element is off-screen..
+        ///   Looks up a localized string similar to Consider removing the BoundingRectangle property when the element is off-screen..
         /// </summary>
         internal static string BoundingRectangleNotValidButOffScreen {
             get {
@@ -218,7 +218,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can&apos;t easily fix..
+        ///   Looks up a localized string similar to Modify the combo box such that is does not support the Scroll pattern..
         /// </summary>
         internal static string ComboBoxShouldNotSupportScrollPattern {
             get {
@@ -257,7 +257,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An element of the given type should not support the Value pattern..
+        ///   Looks up a localized string similar to Modify the element to not support the Value pattern..
         /// </summary>
         internal static string ControlShouldNotSupportValuePattern {
             get {
@@ -266,7 +266,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An element of the given type should not support the Window pattern..
+        ///   Looks up a localized string similar to Modify the element to not support the Window pattern..
         /// </summary>
         internal static string ControlShouldNotSupportWindowPattern {
             get {
@@ -523,7 +523,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable..
+        ///   Looks up a localized string similar to Consider setting the IsKeyboardFocusable property to be false..
         /// </summary>
         internal static string IsKeyboardFocusableDescendantTextPattern {
             get {
@@ -559,7 +559,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children..
+        ///   Looks up a localized string similar to Consider making this element focusable instead of its children..
         /// </summary>
         internal static string IsKeyboardFocusableForListItemShouldBeTrue {
             get {
@@ -820,7 +820,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property for the given element is empty, but the element isn&apos;t focusable. Please consider whether or not the element should have a name..
+        ///   Looks up a localized string similar to Consider setting the UI Automation Name property for the given element..
         /// </summary>
         internal static string NameEmptyButElementNotKeyboardFocusable {
             get {
@@ -862,7 +862,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property of the given element may be null or empty if the element has no siblings of the same type..
+        ///   Looks up a localized string similar to Consider setting the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type..
         /// </summary>
         internal static string NameNoSiblingsOfSameType {
             get {
@@ -898,7 +898,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property for the given element is null, but the element isn&apos;t focusable. Please consider whether or not the element should have a name..
+        ///   Looks up a localized string similar to Consider setting the UI Automation Name property for the given element..
         /// </summary>
         internal static string NameNullButElementNotKeyboardFocusable {
             get {
@@ -907,7 +907,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property of a custom control may be empty if the parent is a WPF dataitem..
+        ///   Looks up a localized string similar to Consider setting the UI Automation Name property of this custom control to be empty..
         /// </summary>
         internal static string NameOnCustomWithParentWPFDataItem {
             get {
@@ -916,7 +916,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The UI Automation Name property for the given element type is optional..
+        ///   Looks up a localized string similar to Consider removing the UI Automation Name property for this element..
         /// </summary>
         internal static string NameOnOptionalType {
             get {
@@ -936,7 +936,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An interactive element with a valid UI Automation Name property is usually expected to have a valid BoundingRectangle that is not null and has area..
+        ///   Looks up a localized string similar to Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area)..
         /// </summary>
         internal static string NameWithValidBoundingRectangle {
             get {
@@ -1044,7 +1044,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given element is expected to have the following structure: {0}..
+        ///   Looks up a localized string similar to Set the element to conform to the following structure: {0}..
         /// </summary>
         internal static string Structure {
             get {
