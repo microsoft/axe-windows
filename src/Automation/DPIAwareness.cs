@@ -7,7 +7,7 @@ namespace Axe.Windows.Automation
     {
         public object Enable()
         {
-            Win32.NativeMethods.SetProcessDPIAware();
+            global::Windows.Win32.PInvoke.SetProcessDPIAware();
             return null;
         }
 

@@ -1,0 +1,7 @@
+﻿GetCursorPos
+GetWindowLong
+HIGHCONTRASTW
+S_OK
+SetProcessDPIAware
+SystemParametersInfoW
+VariantClear

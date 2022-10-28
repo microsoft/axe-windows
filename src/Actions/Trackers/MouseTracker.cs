@@ -111,7 +111,11 @@ namespace Axe.Windows.Actions.Trackers
             {
                 if (this.timerMouse != null && this.IsStarted)
                 {
-                    NativeMethods.GetCursorPos(out Point p);
+                    Point p;
+                    unsafe
+                    {
+                        global::Windows.Win32.PInvoke.GetCursorPos(&p);
+                    }
 
                     if (LastMousePoint.Equals(p) && !this.POIPoint.Equals(p))
                     {

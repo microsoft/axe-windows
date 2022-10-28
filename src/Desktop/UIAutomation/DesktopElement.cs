@@ -89,7 +89,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 isCP = pId == CurrentPId;
 
 #pragma warning disable CA1806 // Do not ignore method results
-                NativeMethods.VariantClear(ref pId);
+                global::Windows.Win32.PInvoke.VariantClear(ref pId);
 #pragma warning restore CA1806 // Do not ignore method results
             }
 

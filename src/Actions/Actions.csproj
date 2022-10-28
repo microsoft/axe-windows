@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Axe.Windows.Actions</AssemblyName>
     <RootNamespace>Axe.Windows.Actions</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <Import Project="..\..\build\NetStandardRelease.targets" />

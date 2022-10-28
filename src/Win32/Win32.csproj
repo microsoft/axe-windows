@@ -4,6 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Axe.Windows.Win32</AssemblyName>
     <RootNamespace>Axe.Windows.Win32</RootNamespace>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.2.63-beta">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Roslyn.Diagnostics.Analyzers" Version="3.3.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

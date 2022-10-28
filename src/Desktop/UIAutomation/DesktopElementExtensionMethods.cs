@@ -5,7 +5,6 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Telemetry;
-using Axe.Windows.Win32;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -14,6 +13,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using UIAutomationClient;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace Axe.Windows.Desktop.UIAutomation
 {
@@ -217,7 +218,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         private static void AddWindowsExtendedStyleIntoPlatformProperties(this A11yElement element, IntPtr handle)
         {
-            var val = Win32.NativeMethods.GetWindowLong(handle, Win32.Win32Constants.GWL_EXSTYLE);
+            var val = global::Windows.Win32.PInvoke.GetWindowLong((HWND)handle, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE);
             if (val != 0)
             {
                 element.PlatformProperties.Add(PlatformPropertyType.Platform_WindowsExtendedStylePropertyId, new A11yProperty(PlatformPropertyType.Platform_WindowsExtendedStylePropertyId, val));
@@ -229,7 +230,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// </summary>
         private static void AddWindowsStyleIntoPlatformProperties(this A11yElement element, IntPtr handle)
         {
-            var val = Win32.NativeMethods.GetWindowLong(handle, Win32.Win32Constants.GWL_STYLE);
+            var val = global::Windows.Win32.PInvoke.GetWindowLong((HWND)handle, WINDOW_LONG_PTR_INDEX.GWL_STYLE);
             if (val != 0)
             {
                 element.PlatformProperties.Add(PlatformPropertyType.Platform_WindowsStylePropertyId, new A11yProperty(PlatformPropertyType.Platform_WindowsStylePropertyId, val));
@@ -438,13 +439,13 @@ namespace Axe.Windows.Desktop.UIAutomation
                     var tmp = variant;
                     variant = GetGlimpseOfUIAElement(variant);
 #pragma warning disable CA1806 // Do not ignore method results
-                    NativeMethods.VariantClear(ref tmp);
+                    global::Windows.Win32.PInvoke.VariantClear(ref tmp);
                 }
                 else if (variant is IUIAutomationElementArray)
                 {
                     var tmp = variant;
                     variant = GetGlimpsesOfUIAElements(variant);
-                    NativeMethods.VariantClear(ref tmp);
+                    global::Windows.Win32.PInvoke.VariantClear(ref tmp);
                 }
                 else if (Marshal.IsComObject(variant))
                 {
@@ -457,7 +458,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                      * Also, I have not seen IsComObject return true when the type was not __ComObject.
                      * Therefore, we are treating __ComObject as a failure and returning null.
                      */
-                    NativeMethods.VariantClear(ref variant);
+                    global::Windows.Win32.PInvoke.VariantClear(ref variant);
 #pragma warning restore CA1806 // Do not ignore method results
                     return null;
                 }
@@ -478,8 +479,8 @@ namespace Axe.Windows.Desktop.UIAutomation
             var lct = GetPropertyValue(e, PropertyType.UIA_LocalizedControlTypePropertyId);
             sb.AppendFormat("{1} \"{0}\"", name, lct);
 #pragma warning disable CA1806 // Do not ignore method results
-            NativeMethods.VariantClear(ref name);
-            NativeMethods.VariantClear(ref lct);
+            global::Windows.Win32.PInvoke.VariantClear(ref name);
+            global::Windows.Win32.PInvoke.VariantClear(ref lct);
 #pragma warning restore CA1806 // Do not ignore method results
             return sb.ToString();
         }

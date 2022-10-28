@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
 using System.Globalization;
+using System.Security.Cryptography;
 
 namespace Axe.Windows.Core.Bases
 {
@@ -186,7 +187,7 @@ namespace Axe.Windows.Core.Bases
                     this.Name = null;
                     if (this.Value != null)
                     {
-                        if (NativeMethods.VariantClear(ref this.Value) == Win32Constants.S_OK)
+                        if (global::Windows.Win32.PInvoke.VariantClear(ref this.Value) == global::Windows.Win32.Foundation.HRESULT.S_OK)
                         {
                             this.Value = null;
                         }
