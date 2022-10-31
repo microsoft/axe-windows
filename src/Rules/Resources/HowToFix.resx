@@ -178,7 +178,7 @@
     <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
-    <value>Consider setting the IsKeyboardFocusable property to be false.</value>
+    <value>Set the IsKeyboardFocusable property to be false.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
@@ -206,23 +206,23 @@
     <comment>The description of a problem with an element currently under inspection. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameEmptyButElementNotKeyboardFocusable" xml:space="preserve">
-    <value>Consider setting the UI Automation Name property for the given element.</value>
+    <value>Set the UI Automation Name property for the given element.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
-    <value>Consider setting the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.</value>
+    <value>Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
-    <value>Consider setting the UI Automation Name property for the given element.</value>
+    <value>Set the UI Automation Name property for the given element.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameOnCustomWithParentWPFDataItem" xml:space="preserve">
-    <value>Consider setting the UI Automation Name property of this custom control to be empty.</value>
+    <value>Set the UI Automation Name property of this custom control to be empty.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="NameOnOptionalType" xml:space="preserve">
-    <value>Consider removing the UI Automation Name property for this element.</value>
+    <value>Remove the UI Automation Name property for this element.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
