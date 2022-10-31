@@ -130,7 +130,7 @@
     <comment>The description of a problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
-    <value>Modify the combo box such that is does not support the Scroll pattern.</value>
+    <value>Modify the combo box to not support the Scroll pattern.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ControlShouldNotSupportValuePattern" xml:space="preserve">
