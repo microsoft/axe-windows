@@ -177,7 +177,7 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
-    <value>Insure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.</value>
+    <value>Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
