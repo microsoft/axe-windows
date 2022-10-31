@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoundingRectangleNotValidButOffScreen" xml:space="preserve">
-    <value>Consider removing the BoundingRectangle property when the element is off-screen.</value>
+    <value>Remove the BoundingRectangle property when the element is off-screen.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
@@ -166,7 +166,7 @@
     <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "IsEnabled" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
-    <value>Consider making this element focusable instead of its children.</value>
+    <value>Make this element focusable instead of its children.</value>
     <comment>Brief guidance on how to fix an accessibility problem.</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
