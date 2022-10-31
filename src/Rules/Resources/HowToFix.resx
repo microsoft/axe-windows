@@ -165,7 +165,7 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
-    <value>If this element is still reachable via the keyboard even when it is disabled (unavailable), set the IsKeyboardFocusable UI Automation property to true.</value>
+    <value>If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
