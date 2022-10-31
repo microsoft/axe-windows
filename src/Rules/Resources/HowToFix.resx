@@ -122,12 +122,15 @@
     <comment>The description of a problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
-    <value>A button element should only support one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. </value>
-    <comment>The description of a problem with an element currently under inspection. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Modify the button to support exactly one of the following patterns:
+ · Support the Invoke pattern if the button performs a command at the request of the user.
+ · Support the Toggle pattern if the button can cycle through a series of up to three states.
+ · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="SiblingUniqueAndNotFocusable" xml:space="preserve">
-    <value>The given element has siblings with the same Name and LocalizedControlType.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Verify that each element has a meaningful UI Automation Name property.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
     <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.</value>
@@ -142,68 +145,68 @@
     <comment>The description of a problem with an element currently under inspection. The term "Window" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="HelpTextNotEqualToName" xml:space="preserve">
-    <value>The HelpText property of an element must not be the same as the element's Name property.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "HelpText" and "Name" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Write meaningful text for the element's UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as "type here to search".</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "HelpText" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsContentElementFalseOptional" xml:space="preserve">
-    <value>The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the IsContentElement UI Automation property to false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsContentElementTrueOptional" xml:space="preserve">
-    <value>The recommended value of the IsContentElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as content.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the IsContentElement UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsControlElementTrueOptional" xml:space="preserve">
-    <value>The recommended value of the IsControlElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as a control. Note that almost all controls are required to have the IsControl Property set to true.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the IsControlElement UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for the given element should be true based on its control type.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
-    <value>The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "IsEnabled" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
     <value>The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children.</value>
     <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "IsOffscreen" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable.</value>
     <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
-    <value>The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by assistive technology users.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableTopLevelTextPattern" xml:space="preserve">
-    <value>The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ItemStatusExists" xml:space="preserve">
-    <value>The ItemStatus property for the given element should exist.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "ItemStatus" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Add a meaningful ItemStatus UI Automation property to this element.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "ItemStatus" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="LocalizedControlTypeReasonable" xml:space="preserve">
-    <value>The LocalizedControlType should be reasonable based on the element's ControlTypeId.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "LocalizedControlType" and "ControlTypeId" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Set a meaningful LocalizedControlType UI Automation property for this element.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ItemTypeRecommended" xml:space="preserve">
-    <value>The ItemType property for the given element has no content, and the element has a child image. Please consider including an ItemType so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the ItemType may not be necessary.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>If necessary, set the ItemType UI Automation property for this element.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameEmptyButElementNotKeyboardFocusable" xml:space="preserve">
     <value>The UI Automation Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name.</value>
@@ -238,8 +241,10 @@
     <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "IsSelectionRequired" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="ButtonInvokeAndExpandCollapsePatterns" xml:space="preserve">
-    <value>A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them. </value>
-    <comment>The description of a problem with an element currently under inspection. The terms "Invoke" and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Modify the button to support exactly one of the following patterns:
+ · Support the Invoke pattern if the button performs a command at the request of the user.
+ · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="ButtonShouldHavePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:

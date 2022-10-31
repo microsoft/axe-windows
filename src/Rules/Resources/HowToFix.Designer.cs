@@ -135,7 +135,9 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them. .
+        ///   Looks up a localized string similar to Modify the button to support exactly one of the following patterns:
+        /// · Support the Invoke pattern if the button performs a command at the request of the user.
+        /// · Support the ExpandCollapse pattern if the button shows or hides additional content..
         /// </summary>
         internal static string ButtonInvokeAndExpandCollapsePatterns {
             get {
@@ -180,7 +182,10 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button element should only support one of Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. .
+        ///   Looks up a localized string similar to Modify the button to support exactly one of the following patterns:
+        /// · Support the Invoke pattern if the button performs a command at the request of the user.
+        /// · Support the Toggle pattern if the button can cycle through a series of up to three states.
+        /// · Support the ExpandCollapse pattern if the button shows or hides additional content..
         /// </summary>
         internal static string ButtonWithSplitButtonParentPattern {
             get {
@@ -447,7 +452,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The HelpText property of an element must not be the same as the element&apos;s Name property..
+        ///   Looks up a localized string similar to Write meaningful text for the element&apos;s UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as &quot;type here to search&quot;..
         /// </summary>
         internal static string HelpTextNotEqualToName {
             get {
@@ -465,7 +470,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content..
+        ///   Looks up a localized string similar to If this element does not contain data that is presented to the user (such as items in a list box or a button in a modal dialog box), set the IsContentElement UI Automation property to false..
         /// </summary>
         internal static string IsContentElementFalseOptional {
             get {
@@ -485,7 +490,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The recommended value of the IsContentElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as content..
+        ///   Looks up a localized string similar to If this element contains data that is presented to the user (such as items in a list box or a button in a modal dialog box), set the IsContentElement UI Automation property to true..
         /// </summary>
         internal static string IsContentElementTrueOptional {
             get {
@@ -505,7 +510,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The recommended value of the IsControlElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as a control. Note that almost all controls are required to have the IsControl Property set to true..
+        ///   Looks up a localized string similar to If this element represents an interactive UI control, set the IsControlElement UI Automation property to true..
         /// </summary>
         internal static string IsControlElementTrueOptional {
             get {
@@ -532,7 +537,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable..
+        ///   Looks up a localized string similar to If this element is still reachable via the keyboard even when it is disabled (dimmed), set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableFalseButDisabled {
             get {
@@ -541,7 +546,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable..
+        ///   Looks up a localized string similar to If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableFalseButOffscreen {
             get {
@@ -550,7 +555,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns..
+        ///   Looks up a localized string similar to Insure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableForCustomShouldBeTrue {
             get {
@@ -568,7 +573,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by assistive technology users..
+        ///   Looks up a localized string similar to If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableOnEmptyContainer {
             get {
@@ -577,7 +582,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element is expected to be false because of the element&apos;s control type..
+        ///   Looks up a localized string similar to Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType..
         /// </summary>
         internal static string IsKeyboardFocusableShouldBeFalse {
             get {
@@ -586,7 +591,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element should be true based on its control type..
+        ///   Looks up a localized string similar to If this element represents a control that is reachable via the keyboard, set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableShouldBeTrue {
             get {
@@ -595,7 +600,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection..
+        ///   Looks up a localized string similar to Set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableTopLevelTextPattern {
             get {
@@ -604,7 +609,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The ItemStatus property for the given element should exist..
+        ///   Looks up a localized string similar to Add a meaningful ItemStatus UI Automation property to this element..
         /// </summary>
         internal static string ItemStatusExists {
             get {
@@ -613,7 +618,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The ItemType property for the given element has no content, and the element has a child image. Please consider including an ItemType so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the ItemType may not be necessary..
+        ///   Looks up a localized string similar to If necessary, set the ItemType UI Automation property for this element..
         /// </summary>
         internal static string ItemTypeRecommended {
             get {
@@ -741,7 +746,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The LocalizedControlType should be reasonable based on the element&apos;s ControlTypeId..
+        ///   Looks up a localized string similar to Set a meaningful LocalizedControlType UI Automation property for this element..
         /// </summary>
         internal static string LocalizedControlTypeReasonable {
             get {
@@ -1024,7 +1029,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given element has siblings with the same Name and LocalizedControlType..
+        ///   Looks up a localized string similar to Verify that each element has a meaningful UI Automation Name property..
         /// </summary>
         internal static string SiblingUniqueAndNotFocusable {
             get {
