@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoundingRectangleNotValidButOffScreen" xml:space="preserve">
-    <value>The BoundingRectangle property is not valid, but the element is off-screen.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Remove the BoundingRectangle property when the element is off-screen.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
@@ -133,16 +133,16 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
-    <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Modify the combo box to not support the Scroll pattern.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ControlShouldNotSupportValuePattern" xml:space="preserve">
-    <value>An element of the given type should not support the Value pattern.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Value" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Modify the element to not support the Value pattern.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Value" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="ControlShouldNotSupportWindowPattern" xml:space="preserve">
-    <value>An element of the given type should not support the Window pattern.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Window" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Modify the element to not support the Window pattern.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Window" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="HelpTextNotEqualToName" xml:space="preserve">
     <value>Write meaningful text for the element's UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as "type here to search".</value>
@@ -169,8 +169,8 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Make this element focusable instead of its children.</value>
+    <comment>Brief guidance on how to fix an accessibility problem.</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.</value>
@@ -181,8 +181,8 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
-    <value>The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Set the IsKeyboardFocusable property to be false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
     <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
@@ -209,32 +209,32 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameEmptyButElementNotKeyboardFocusable" xml:space="preserve">
-    <value>The UI Automation Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the UI Automation Name property for the given element.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
-    <value>The UI Automation Name property of the given element may be null or empty if the element has no siblings of the same type.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
-    <value>The UI Automation Name property for the given element is null, but the element isn't focusable. Please consider whether or not the element should have a name.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Set the UI Automation Name property for the given element.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameOnCustomWithParentWPFDataItem" xml:space="preserve">
-    <value>The UI Automation Name property of a custom control may be empty if the parent is a WPF dataitem.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Set the UI Automation Name property of this custom control to be empty.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="NameOnOptionalType" xml:space="preserve">
-    <value>The UI Automation Name property for the given element type is optional.</value>
-    <comment>The description of a problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>Remove the UI Automation Name property for this element.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
-    <value>An interactive element with a valid UI Automation Name property is usually expected to have a valid BoundingRectangle that is not null and has area.</value>
-    <comment>The description of a problem with an element currently under inspection. The terms "Name" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords).</comment>
+    <value>Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "Name" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="Structure" xml:space="preserve">
-    <value>The given element is expected to have the following structure: {0}.</value>
-    <comment>The description of a problem with an element currently under inspection.</comment>
+    <value>Set the element to conform to the following structure: {0}.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. Developers: {0} is the element structure.</comment>
   </data>
   <data name="SelectionPatternSelectionRequired" xml:space="preserve">
     <value>Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.</value>
