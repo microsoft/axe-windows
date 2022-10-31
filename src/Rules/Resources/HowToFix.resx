@@ -149,23 +149,23 @@
     <comment>Brief guidance on how to fix an accessibility problem. The term "HelpText" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsContentElementFalseOptional" xml:space="preserve">
-    <value>If this element does not contain data that is presented to the user (such as items in a list box or a button in a modal dialog box), set the IsContentElement UI Automation property to false.</value>
+    <value>Set the IsContentElement UI Automation property to false.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsContentElementTrueOptional" xml:space="preserve">
-    <value>If this element contains data that is presented to the user (such as items in a list box or a button in a modal dialog box), set the IsContentElement UI Automation property to true.</value>
+    <value>Set the IsContentElement UI Automation property to true.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsControlElementTrueOptional" xml:space="preserve">
-    <value>If this element represents an interactive UI control, set the IsControlElement UI Automation property to true.</value>
+    <value>Set the IsControlElement UI Automation property to true.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
-    <value>If this element represents a control that is reachable via the keyboard, set the IsKeyboardFocusable UI Automation property to true.</value>
+    <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
-    <value>If this element is still reachable via the keyboard even when it is disabled (dimmed), set the IsKeyboardFocusable UI Automation property to true.</value>
+    <value>If this element is still reachable via the keyboard even when it is disabled (unavailable), set the IsKeyboardFocusable UI Automation property to true.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
@@ -185,8 +185,8 @@
     <comment>The description of a problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
-    <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.</value>
