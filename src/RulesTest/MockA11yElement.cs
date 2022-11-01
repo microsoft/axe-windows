@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -20,14 +20,14 @@ namespace Axe.Windows.RulesTests
 
         private void SetProperty(int id, dynamic value)
         {
-            if (this.Properties.ContainsKey(id))
+            if (Properties.ContainsKey(id))
             {
-                this.Properties[id].Value = value;
+                Properties[id].Value = value;
                 return;
             }
 
             var property = new A11yProperty { Id = id, Value = value };
-            this.Properties[id] = property;
+            Properties[id] = property;
         }
 
         public new string Name
