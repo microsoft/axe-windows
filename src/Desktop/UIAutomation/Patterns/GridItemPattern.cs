@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -27,10 +27,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "Column", Value = this.Pattern.CurrentColumn });
-            this.Properties.Add(new A11yPatternProperty() { Name = "ColumnSpan", Value = this.Pattern.CurrentColumnSpan });
-            this.Properties.Add(new A11yPatternProperty() { Name = "Row", Value = this.Pattern.CurrentRow });
-            this.Properties.Add(new A11yPatternProperty() { Name = "RowSpan", Value = this.Pattern.CurrentRowSpan });
+            Properties.Add(new A11yPatternProperty() { Name = "Column", Value = Pattern.CurrentColumn });
+            Properties.Add(new A11yPatternProperty() { Name = "ColumnSpan", Value = Pattern.CurrentColumnSpan });
+            Properties.Add(new A11yPatternProperty() { Name = "Row", Value = Pattern.CurrentRow });
+            Properties.Add(new A11yPatternProperty() { Name = "RowSpan", Value = Pattern.CurrentRowSpan });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -38,7 +38,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public DesktopElement GetContainingGrid()
         {
-            var e = new DesktopElement(this.Pattern.CurrentContainingGrid);
+            var e = new DesktopElement(Pattern.CurrentContainingGrid);
 
             if (e.Properties != null && e.Properties.Count != 0)
             {
@@ -54,7 +54,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

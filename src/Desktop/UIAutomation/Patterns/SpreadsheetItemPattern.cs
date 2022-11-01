@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -28,20 +28,20 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "Formula", Value = this.Pattern.CurrentFormula });
+            Properties.Add(new A11yPatternProperty() { Name = "Formula", Value = Pattern.CurrentFormula });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetAnnotationObjects()
         {
-            return this.Pattern.GetCurrentAnnotationObjects()?.ToListOfDesktopElements();
+            return Pattern.GetCurrentAnnotationObjects()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public IList<string> GetAnnotationTypes()
         {
-            var array = this.Pattern.GetCurrentAnnotationTypes();
+            var array = Pattern.GetCurrentAnnotationTypes();
             List<string> list = new List<string>();
 
             if (array.Length > 0)
@@ -60,7 +60,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

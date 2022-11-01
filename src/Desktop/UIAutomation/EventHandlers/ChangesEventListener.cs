@@ -41,23 +41,23 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public override void Init()
         {
-            IUIAutomation4 uia4 = this.IUIAutomation4;
+            IUIAutomation4 uia4 = IUIAutomation4;
             if (uia4 != null)
             {
-                uia4.AddChangesEventHandler(this.Element, this.Scope, ref ChangeTypes[0], ChangeTypes.Length, null, this);
-                this.IsHooked = true;
+                uia4.AddChangesEventHandler(Element, Scope, ref ChangeTypes[0], ChangeTypes.Length, null, this);
+                IsHooked = true;
             }
         }
 
         public void HandleChangesEvent(IUIAutomationElement sender, ref UiaChangeInfo uiaChanges, int changesCount)
         {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-            var m = EventMessage.GetInstance(this.EventId, sender);
+            var m = EventMessage.GetInstance(EventId, sender);
 #pragma warning restore CA2000
 
             if (m != null)
             {
-                this.ListenEventMessage(m);
+                ListenEventMessage(m);
             }
         }
 
@@ -67,12 +67,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    if (this.IsHooked)
+                    if (IsHooked)
                     {
-                        IUIAutomation4 uia4 = this.IUIAutomation4;
+                        IUIAutomation4 uia4 = IUIAutomation4;
                         if (uia4 != null)
                         {
-                            uia4.RemoveChangesEventHandler(this.Element, this);
+                            uia4.RemoveChangesEventHandler(Element, this);
                         }
                     }
                 }

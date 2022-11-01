@@ -61,28 +61,28 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            this.TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
-            this.TreeWalkerMode = mode;
-            this.Items = new List<A11yElement>();
-            this.SetMembers = setMembers;
+            TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
+            TreeWalkerMode = mode;
+            Items = new List<A11yElement>();
+            SetMembers = setMembers;
             SetParent(e, -1, dataContext);
 
             if (Items.Count != 0)
             {
-                this.First = Items.Last();
-                this.Last = Items.First();
-                if (this.Last.IsRootElement() == false)
+                First = Items.Last();
+                Last = Items.First();
+                if (Last.IsRootElement() == false)
                 {
-                    this.Last.Children.Clear();
-                    this.NextId = PopulateSiblingTreeNodes(this.Last, e, dataContext);
+                    Last.Children.Clear();
+                    NextId = PopulateSiblingTreeNodes(Last, e, dataContext);
                 }
                 else
                 {
-                    this.NextId = 1;
+                    NextId = 1;
                 }
             }
 
-            Marshal.ReleaseComObject(this.TreeWalker);
+            Marshal.ReleaseComObject(TreeWalker);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             try
             {
-                var puia = this.TreeWalker.GetParentElement((IUIAutomationElement)e.PlatformObject);
+                var puia = TreeWalker.GetParentElement((IUIAutomationElement)e.PlatformObject);
                 if (puia == null) return;
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
@@ -110,7 +110,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     parent.IsAncestorOfSelected = true;
                     parent.Children.Add(e);
                     e.Parent = parent;
-                    this.Items.Add(parent);
+                    Items.Add(parent);
                     parent.UniqueId = uniqueId;
 
                     SetParent(parent, uniqueId - 1, dataContext);
@@ -137,7 +137,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             int childId = 1;
 
-            IUIAutomationTreeWalker walker = this.TreeWalker;
+            IUIAutomationTreeWalker walker = TreeWalker;
             if ((IUIAutomationElement)parentNode.PlatformObject != null)
             {
                 IUIAutomationElement child;
@@ -165,8 +165,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     {
                         childNode.UniqueId = childId++;
                         childNode.Parent = parentNode;
-                        childNode.TreeWalkerMode = this.TreeWalkerMode;
-                        this.Items.Add(childNode);
+                        childNode.TreeWalkerMode = TreeWalkerMode;
+                        Items.Add(childNode);
                     }
                     else
                     {

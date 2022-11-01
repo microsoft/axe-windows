@@ -52,7 +52,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="showAncestry"></param>
         public TreeWalkerForLive()
         {
-            this.Elements = new List<A11yElement>();
+            Elements = new List<A11yElement>();
         }
 
         /// <summary>
@@ -66,28 +66,28 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var begin = DateTime.Now;
-            this.WalkerMode = mode;
+            WalkerMode = mode;
 
             //Set parent of Root explicitly for testing.
             A11yElement parent = null;
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, e, false, dataContext);
+            var ancestry = new DesktopElementAncestry(WalkerMode, e, false, dataContext);
             parent = ancestry.Last;
 
-            this.RootElement = ancestry.First;
+            RootElement = ancestry.First;
 
             // clear children
             ListHelper.DisposeAllItemsAndClearList(e.Children);
 
             // populate selected element relationship and add it to list.
             e.Parent = ancestry.Last;
-            e.TreeWalkerMode = this.WalkerMode; // set tree walker mode.
+            e.TreeWalkerMode = WalkerMode; // set tree walker mode.
             e.UniqueId = 0; // it is the selected element which should be id 0.
-            this.Elements.Add(e);
+            Elements.Add(e);
 
             PopulateChildrenTreeNode(e, ancestry.NextId, dataContext);
 
             // populate descendant Elements first in parallel
-            this.Elements.AsParallel().ForAll(el =>
+            Elements.AsParallel().ForAll(el =>
             {
                 el.PopulateMinimumPropertiesForSelection(dataContext);
             });
@@ -95,10 +95,10 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             // Add ancestry into Elements list.
             foreach (var item in ancestry.Items)
             {
-                this.Elements.Add(item);
+                Elements.Add(item);
             }
 
-            this.LastWalkTime = DateTime.Now - begin;
+            LastWalkTime = DateTime.Now - begin;
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             int childId = startId;
 
-            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(this.WalkerMode);
+            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(WalkerMode);
             IUIAutomationElement child = (IUIAutomationElement)rootNode.PlatformObject;
 
             if (child != null)
@@ -140,9 +140,9 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     rootNode.Children.Add(childNode);
 
                     childNode.Parent = rootNode;
-                    childNode.TreeWalkerMode = this.WalkerMode;
+                    childNode.TreeWalkerMode = WalkerMode;
 
-                    this.Elements.Add(childNode);
+                    Elements.Add(childNode);
                     try
                     {
                         child = walker.GetNextSiblingElement(child);

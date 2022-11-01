@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -18,21 +18,21 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         public DockPattern(A11yElement e, IUIAutomationDockPattern p) : base(e, PatternType.UIA_DockPatternId)
         {
-            this.Pattern = p;
+            Pattern = p;
             PopulateProperties();
         }
 
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "DockPosition", Value = this.Pattern.CurrentDockPosition });
+            Properties.Add(new A11yPatternProperty() { Name = "DockPosition", Value = Pattern.CurrentDockPosition });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void SetDockPosition(DockPosition dockPos)
         {
-            this.Pattern.SetDockPosition(dockPos);
+            Pattern.SetDockPosition(dockPos);
         }
 
         protected override void Dispose(bool disposing)
@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -25,15 +25,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "ColumnCount", Value = this.Pattern.CurrentColumnCount });
-            this.Properties.Add(new A11yPatternProperty() { Name = "RowCount", Value = this.Pattern.CurrentRowCount });
+            Properties.Add(new A11yPatternProperty() { Name = "ColumnCount", Value = Pattern.CurrentColumnCount });
+            Properties.Add(new A11yPatternProperty() { Name = "RowCount", Value = Pattern.CurrentRowCount });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public DesktopElement GetItem(int row, int column)
         {
-            var uiae = this.Pattern.GetItem(row, column);
+            var uiae = Pattern.GetItem(row, column);
 
             return uiae != null ? new DesktopElement(uiae) : null;
         }
@@ -43,7 +43,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

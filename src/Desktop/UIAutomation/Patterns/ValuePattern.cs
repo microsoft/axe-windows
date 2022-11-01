@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -26,10 +26,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(this.Pattern.CurrentIsReadOnly) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(Pattern.CurrentIsReadOnly) });
             try
             {
-                this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
+                Properties.Add(new A11yPatternProperty() { Name = "Value", Value = Pattern.CurrentValue });
             }
             catch (InvalidOperationException e)
             {
@@ -43,7 +43,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void SetValue(string val)
         {
-            this.Pattern.SetValue(val);
+            Pattern.SetValue(val);
         }
 
         protected override void Dispose(bool disposing)
@@ -51,7 +51,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

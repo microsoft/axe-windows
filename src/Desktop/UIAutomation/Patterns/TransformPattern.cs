@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -24,34 +24,34 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             PopulateProperties();
 
             // Get UI Actionability based on Properties than methods.
-            this.IsUIActionable = this.Properties.Any(pp => pp.Value == true);
+            IsUIActionable = Properties.Any(pp => pp.Value == true);
         }
 
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(this.Pattern.CurrentCanMove) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(this.Pattern.CurrentCanResize) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(this.Pattern.CurrentCanRotate) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(Pattern.CurrentCanMove) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(Pattern.CurrentCanResize) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(Pattern.CurrentCanRotate) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public void Move(double x, double y)
         {
-            this.Pattern.Move(x, y);
+            Pattern.Move(x, y);
         }
 
         [PatternMethod]
         public void Resize(double width, double height)
         {
-            this.Pattern.Resize(width, height);
+            Pattern.Resize(width, height);
         }
 
         [PatternMethod]
         public void Rotate(double degree)
         {
-            this.Pattern.Rotate(degree);
+            Pattern.Rotate(degree);
         }
 
         protected override void Dispose(bool disposing)
@@ -59,7 +59,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);
