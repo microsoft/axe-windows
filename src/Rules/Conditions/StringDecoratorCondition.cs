@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using System;
-using System.Globalization;
 
 namespace Axe.Windows.Rules
 {

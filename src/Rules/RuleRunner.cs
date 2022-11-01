@@ -7,7 +7,6 @@ using Axe.Windows.Rules.Resources;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading;
 
 namespace Axe.Windows.Rules

@@ -8,7 +8,6 @@ using Axe.Windows.Rules.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 

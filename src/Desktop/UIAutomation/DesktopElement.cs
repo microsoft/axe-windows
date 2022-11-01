@@ -7,7 +7,6 @@ using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using UIAutomationClient;
 

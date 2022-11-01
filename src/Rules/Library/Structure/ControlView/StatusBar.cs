@@ -6,7 +6,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
