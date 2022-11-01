@@ -19,11 +19,11 @@ namespace Axe.Windows.Rules.Library
 
         public FrameworkDoesNotSupportUIAutomation()
         {
-            this.Info.Description = Descriptions.FrameworkDoesNotSupportUIAutomation;
-            this.Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-FrameworkDoesNotSupportUIAutomation";
+            Info.Description = Descriptions.FrameworkDoesNotSupportUIAutomation;
+            Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-FrameworkDoesNotSupportUIAutomation";
         }
 
         public override bool PassesTest(IA11yElement e)

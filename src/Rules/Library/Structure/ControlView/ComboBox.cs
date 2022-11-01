@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewComboBoxStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.ComboBoxStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ComboBoxStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.ComboBoxStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ComboBoxStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

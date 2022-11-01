@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportScrollItemPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportScrollItemPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportScrollItemPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportScrollItemPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportScrollItemPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

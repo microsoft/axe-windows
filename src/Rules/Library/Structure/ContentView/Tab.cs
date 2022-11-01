@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewTabStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.TabStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.TabStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.TabStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.TabStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

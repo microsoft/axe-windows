@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewSliderStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.SliderStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SliderStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.SliderStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SliderStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameWithValidBoundingRectangle()
         {
-            this.Info.Description = Descriptions.NameWithValidBoundingRectangle;
-            this.Info.HowToFix = HowToFix.NameWithValidBoundingRectangle;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.NameWithValidBoundingRectangle;
+            Info.HowToFix = HowToFix.NameWithValidBoundingRectangle;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

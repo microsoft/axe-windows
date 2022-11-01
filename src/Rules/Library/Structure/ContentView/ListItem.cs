@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewListItemStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.ListItemStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.ListItemStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.ListItemStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.ListItemStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

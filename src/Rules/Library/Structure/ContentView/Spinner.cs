@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewSpinnerStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.SpinnerStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.SpinnerStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.SpinnerStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.SpinnerStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

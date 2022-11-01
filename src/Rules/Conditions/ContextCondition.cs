@@ -19,16 +19,16 @@ namespace Axe.Windows.Rules
 
         public ContextCondition(Condition sub, ContextDelegate initialize, ContextDelegate finalize)
         {
-            this.Sub = sub ?? throw new ArgumentNullException(nameof(sub));
-            this.Initialize = initialize ?? throw new ArgumentNullException(nameof(initialize));
-            this.Finalize = finalize ?? throw new ArgumentNullException(nameof(finalize));
+            Sub = sub ?? throw new ArgumentNullException(nameof(sub));
+            Initialize = initialize ?? throw new ArgumentNullException(nameof(initialize));
+            Finalize = finalize ?? throw new ArgumentNullException(nameof(finalize));
         }
 
         public override bool Matches(IA11yElement e)
         {
             // Ensure the context is initialized
             Condition.InitContext();
-            this.Initialize(e);
+            Initialize(e);
 
             bool retVal = false;
 
@@ -38,18 +38,18 @@ namespace Axe.Windows.Rules
             }
             catch (Exception)
             {
-                this.Finalize(e);
+                Finalize(e);
                 throw;
             }
 
-            this.Finalize(e);
+            Finalize(e);
 
             return retVal;
         }
 
         public override string ToString()
         {
-            return this.Sub?.ToString();
+            return Sub?.ToString();
         }
     } // class
 } // namespace

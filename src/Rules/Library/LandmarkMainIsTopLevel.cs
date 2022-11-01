@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public LandmarkMainIsTopLevel()
         {
-            this.Info.Description = Descriptions.LandmarkMainIsTopLevel;
-            this.Info.HowToFix = HowToFix.LandmarkMainIsTopLevel;
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LandmarkMainIsTopLevel;
+            Info.HowToFix = HowToFix.LandmarkMainIsTopLevel;
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewListStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.ListStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ListStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.ListStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ListStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

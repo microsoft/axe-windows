@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewSemanticZoomStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.SemanticZoomStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SemanticZoomStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.SemanticZoomStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SemanticZoomStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

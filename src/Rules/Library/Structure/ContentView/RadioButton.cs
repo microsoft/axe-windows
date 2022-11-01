@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewRadioButtonStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.RadioButtonStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.RadioButtonStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.RadioButtonStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.RadioButtonStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

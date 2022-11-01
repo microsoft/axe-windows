@@ -17,10 +17,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportTextPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportTextPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportTextPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportTextPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportTextPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -18,10 +18,10 @@ namespace Axe.Windows.Rules.Library
         public NameIsReasonableLength()
         {
             Info.Description = Descriptions.NameReasonableLength;
-            this.Info.HowToFix = HowToFix.NameReasonableLength;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.HowToFix = HowToFix.NameReasonableLength;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

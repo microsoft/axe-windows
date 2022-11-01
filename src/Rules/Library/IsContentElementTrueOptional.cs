@@ -16,11 +16,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsContentElementTrueOptional()
         {
-            this.Info.Description = Descriptions.IsContentElementTrueOptional;
-            this.Info.HowToFix = HowToFix.IsContentElementTrueOptional;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsContentElementPropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.IsContentElementTrueOptional;
+            Info.HowToFix = HowToFix.IsContentElementTrueOptional;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsContentElementPropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

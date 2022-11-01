@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewSeparatorStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.SeparatorStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SeparatorStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.SeparatorStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SeparatorStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

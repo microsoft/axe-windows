@@ -11,7 +11,7 @@ namespace Axe.Windows.Rules
 
         private void Init(Condition a)
         {
-            this.A = a ?? throw new ArgumentNullException(nameof(a));
+            A = a ?? throw new ArgumentNullException(nameof(a));
         }
 
         public static RecursiveCondition operator %(RecursiveCondition r, Condition c)
@@ -25,7 +25,7 @@ namespace Axe.Windows.Rules
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (A == null) return false;
 
-            return this.A.Matches(e);
+            return A.Matches(e);
         }
 
         public override string ToString()

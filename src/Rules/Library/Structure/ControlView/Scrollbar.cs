@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewScrollbarStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.ScrollbarStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ScrollbarStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.ScrollbarStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ScrollbarStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

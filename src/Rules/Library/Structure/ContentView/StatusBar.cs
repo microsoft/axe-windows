@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewStatusBarStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.StatusBarStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.StatusBarStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.StatusBarStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.StatusBarStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

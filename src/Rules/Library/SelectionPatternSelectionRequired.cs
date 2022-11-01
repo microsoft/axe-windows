@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public SelectionPatternSelectionRequired()
         {
-            this.Info.Description = Descriptions.SelectionPatternSelectionRequired;
-            this.Info.HowToFix = HowToFix.SelectionPatternSelectionRequired;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.SelectionPatternSelectionRequired;
+            Info.HowToFix = HowToFix.SelectionPatternSelectionRequired;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

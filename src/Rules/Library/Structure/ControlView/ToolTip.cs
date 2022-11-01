@@ -16,10 +16,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewToolTipStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.ToolTipStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ToolTipStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.ToolTipStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ToolTipStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

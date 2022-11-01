@@ -13,10 +13,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ButtonInvokeAndExpandCollapsePatterns()
         {
-            this.Info.Description = Descriptions.ButtonInvokeAndExpandCollapsePatterns;
-            this.Info.HowToFix = HowToFix.ButtonInvokeAndExpandCollapsePatterns;
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.ButtonInvokeAndExpandCollapsePatterns;
+            Info.HowToFix = HowToFix.ButtonInvokeAndExpandCollapsePatterns;
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)
