@@ -23,7 +23,7 @@ namespace Axe.Windows.Core.Types
         {
             _namePattern = np;
 
-            this.Dic = new Dictionary<int, string>();
+            Dic = new Dictionary<int, string>();
 
             PopulateDictionary();
         }
@@ -33,7 +33,7 @@ namespace Axe.Windows.Core.Types
         /// </summary>
         private void PopulateDictionary()
         {
-            var fields = this.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy);
+            var fields = GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy);
 
             foreach (var f in fields)
             {
@@ -50,7 +50,7 @@ namespace Axe.Windows.Core.Types
         private void AddFieldToDictionary(FieldInfo field)
         {
             int id = (int)field.GetValue(field);
-            this.Dic.Add(id, GetNameInProperFormat(field.Name, id));
+            Dic.Add(id, GetNameInProperFormat(field.Name, id));
         }
 
         /// <summary>
@@ -81,11 +81,11 @@ namespace Axe.Windows.Core.Types
         {
             var list = new List<KeyValuePair<int, string>>();
 
-            foreach (var k in this.Dic.Keys)
+            foreach (var k in Dic.Keys)
             {
                 if (IsPartOfKeyValuePairList(k))
                 {
-                    list.Add(new KeyValuePair<int, string>(k, this.Dic[k]));
+                    list.Add(new KeyValuePair<int, string>(k, Dic[k]));
                 }
             }
 
@@ -99,9 +99,9 @@ namespace Axe.Windows.Core.Types
         /// <returns></returns>
         public string GetNameById(int id)
         {
-            if (this.Dic.ContainsKey(id))
+            if (Dic.ContainsKey(id))
             {
-                return this.Dic[id];
+                return Dic[id];
             }
 
             return string.Format(CultureInfo.CurrentCulture, DisplayStrings.UnknownFormat, id);
@@ -124,7 +124,7 @@ namespace Axe.Windows.Core.Types
         /// <returns></returns>
         public bool Exists(int id)
         {
-            return this.Dic.ContainsKey(id);
+            return Dic.ContainsKey(id);
         }
 
         /// <summary>

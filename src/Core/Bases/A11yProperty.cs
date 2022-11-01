@@ -44,7 +44,7 @@ namespace Axe.Windows.Core.Bases
         {
             get
             {
-                return this.ToString();
+                return ToString();
             }
         }
 
@@ -57,7 +57,7 @@ namespace Axe.Windows.Core.Bases
         /// <param name="element"></param>
         public A11yProperty(int id, dynamic value, string name = null) : this(id, name)
         {
-            this.Value = value;
+            Value = value;
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace Axe.Windows.Core.Bases
         /// <param name="name">if null, it is get name from PropertyTypes by id</param>
         private A11yProperty(int id, string name)
         {
-            this.Id = id;
-            this.Name = name ?? PropertyType.GetInstance().GetNameById(id);
+            Id = id;
+            Name = name ?? PropertyType.GetInstance().GetNameById(id);
         }
 
         /// <summary>
@@ -80,22 +80,22 @@ namespace Axe.Windows.Core.Bases
         {
             string txt = null;
 
-            if (this.Value != null)
+            if (Value != null)
             {
-                switch (this.Id)
+                switch (Id)
                 {
                     case PropertyType.UIA_RuntimeIdPropertyId:
                         txt = this.ConvertIntArrayToString();
                         break;
                     case PropertyType.UIA_ControlTypePropertyId:
-                        txt = this.Value != null ? ControlType.GetInstance().GetNameById(this.Value) : "";
+                        txt = Value != null ? ControlType.GetInstance().GetNameById(Value) : "";
                         break;
                     case PropertyType.UIA_BoundingRectanglePropertyId:
                         // if bounding rectangle is [0,0,0,0], treat it as non-exist. same behavior as Inspect
                         txt = GetBoundingRectangleText();
                         break;
                     case PropertyType.UIA_OrientationPropertyId:
-                        switch ((int)this.Value)
+                        switch ((int)Value)
                         {
                             case 0: //OrientationType_None
                                 txt = DisplayStrings.NoneOrientation;
@@ -113,33 +113,33 @@ namespace Axe.Windows.Core.Bases
                     case PropertyType.UIA_SizeOfSetPropertyId:
                         /// these properties are 1 based.
                         /// if value is smaller than 1, it should be ignored.
-                        if (this.Value != null && this.Value > 0)
+                        if (Value != null && Value > 0)
                         {
-                            txt = this.Value?.ToString();
+                            txt = Value?.ToString();
                         }
                         break;
                     case PropertyType.UIA_HeadingLevelPropertyId:
-                        txt = HeadingLevelType.GetInstance().GetNameById(this.Value);
+                        txt = HeadingLevelType.GetInstance().GetNameById(Value);
                         break;
                     case PropertyType.UIA_LandmarkTypePropertyId:
-                        txt = this.Value != 0 ? LandmarkType.GetInstance().GetNameById(this.Value) : null; // 0 is default value.
+                        txt = Value != 0 ? LandmarkType.GetInstance().GetNameById(Value) : null; // 0 is default value.
                         break;
                     default:
                         if (TypeConverterMap.TryGetValue(Id, out ITypeConverter converter))
                         {
                             txt = converter.Render(Value);
                         }
-                        else if (this.Value is Int32[])
+                        else if (Value is Int32[])
                         {
-                            txt = ((Int32[])this.Value).ConvertInt32ArrayToString();
+                            txt = ((Int32[])Value).ConvertInt32ArrayToString();
                         }
-                        else if (this.Value is Double[])
+                        else if (Value is Double[])
                         {
-                            txt = ((Double[])this.Value).ConvertDoubleArrayToString();
+                            txt = ((Double[])Value).ConvertDoubleArrayToString();
                         }
                         else
                         {
-                            txt = this.Value?.ToString();
+                            txt = Value?.ToString();
                         }
                         break;
                 }
@@ -153,7 +153,7 @@ namespace Axe.Windows.Core.Bases
         /// <returns></returns>
         private string GetBoundingRectangleText()
         {
-            var arr = this.Value;
+            var arr = Value;
 
             string text;
             if ((double)arr[2] < 0 || (double)arr[3] < 0)
@@ -183,12 +183,12 @@ namespace Axe.Windows.Core.Bases
             {
                 if (disposing)
                 {
-                    this.Name = null;
-                    if (this.Value != null)
+                    Name = null;
+                    if (Value != null)
                     {
-                        if (NativeMethods.VariantClear(ref this.Value) == Win32Constants.S_OK)
+                        if (NativeMethods.VariantClear(ref Value) == Win32Constants.S_OK)
                         {
-                            this.Value = null;
+                            Value = null;
                         }
                     }
                 }

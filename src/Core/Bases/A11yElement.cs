@@ -350,7 +350,7 @@ namespace Axe.Windows.Core.Bases
             // assignment required
             value = default;
 
-            var property = this.GetPropertySafely(propertyId);
+            var property = GetPropertySafely(propertyId);
             if (property == null) return false;
 
             dynamic temp = ConvertValueIfNecessary(propertyId, property.Value);
@@ -401,7 +401,7 @@ namespace Axe.Windows.Core.Bases
         /// <returns>an <see cref="IA11yPattern"/> object for the specified pattern if it exists; otherwise, null.</returns>
         public IA11yPattern GetPattern(int patternId)
         {
-            var pattern = this.Patterns?.FirstOrDefault(p => p.Id == patternId);
+            var pattern = Patterns?.FirstOrDefault(p => p.Id == patternId);
             if (pattern == null) return null;
 
             return pattern;
@@ -415,7 +415,7 @@ namespace Axe.Windows.Core.Bases
         /// <returns>the value of the specified property if it exists; otherwise, the default value for the given type</returns>
         public T GetPlatformPropertyValue<T>(int propertyId)
         {
-            var property = this.PlatformProperties?.ById(propertyId);
+            var property = PlatformProperties?.ById(propertyId);
             if (property == null) return default;
             if (!(property.Value is T)) throw new AxeWindowsException(ExtensionMethods.WithParameters(ErrorMessages.PropertyValueTypeUnexpected, property.Value.GetType().Name, typeof(T).Name));
 
@@ -475,7 +475,7 @@ namespace Axe.Windows.Core.Bases
                 if (_ProcessName != null)
                     return _ProcessName;
 
-                var name = Utility.GetProcessName(this.ProcessId);
+                var name = Utility.GetProcessName(ProcessId);
 
                 _ProcessName = name ?? "";
 
@@ -489,8 +489,8 @@ namespace Axe.Windows.Core.Bases
         /// <returns>an <see cref="IA11yElement"/> object for the child if it exists</returns>
         public IA11yElement GetFirstChild()
         {
-            if (this.Children == null) return null;
-            if (!this.Children.Any()) return null;
+            if (Children == null) return null;
+            if (!Children.Any()) return null;
 
             return Children[0];
         }
@@ -504,7 +504,7 @@ namespace Axe.Windows.Core.Bases
         {
             if (condition == null) throw new ArgumentNullException(nameof(condition));
 
-            Queue<A11yElement> children = new Queue<A11yElement>(this.Children);
+            Queue<A11yElement> children = new Queue<A11yElement>(Children);
             while (children.Count > 0)
             {
                 var currentChild = children.Dequeue();
@@ -531,9 +531,9 @@ namespace Axe.Windows.Core.Bases
         {
             get
             {
-                if (this.ScanResults != null)
+                if (ScanResults != null)
                 {
-                    return this.ScanResults.Status;
+                    return ScanResults.Status;
                 }
 
                 return ScanStatus.NoResult;
@@ -586,9 +586,9 @@ namespace Axe.Windows.Core.Bases
         {
             get
             {
-                if (this.Children == null) yield break;
+                if (Children == null) yield break;
 
-                foreach (var child in this.Children)
+                foreach (var child in Children)
                     yield return child;
             }
         }
@@ -609,7 +609,7 @@ namespace Axe.Windows.Core.Bases
         {
             get
             {
-                return this.Parent;
+                return Parent;
             }
         }
 
@@ -643,9 +643,9 @@ namespace Axe.Windows.Core.Bases
         /// <returns></returns>
         protected A11yProperty GetPropertySafely(int id)
         {
-            if (this.Properties == null) return null;
+            if (Properties == null) return null;
 
-            return this.Properties.TryGetValue(id, out A11yProperty property)
+            return Properties.TryGetValue(id, out A11yProperty property)
                 ? property : null;
         }
 
@@ -748,28 +748,28 @@ namespace Axe.Windows.Core.Bases
                         {
                             ptn.Dispose();
                         }
-                        this.Patterns.Clear();
-                        this.Patterns = null;
+                        Patterns.Clear();
+                        Patterns = null;
                     }
 
                     if (Properties != null)
                     {
-                        foreach (var pp in this.Properties.Values)
+                        foreach (var pp in Properties.Values)
                         {
                             pp.Dispose();
                         }
-                        this.Properties.Clear();
-                        this.Properties = null;
+                        Properties.Clear();
+                        Properties = null;
                     }
 
-                    this.PlatformProperties?.Clear();
-                    this.PlatformProperties = null;
-                    this.Children?.Clear();
-                    this.Children = null;
-                    this.Parent = null;
-                    this.ScanResults = null;
-                    this.PlatformObject = null;
-                    this.Glimpse = null;
+                    PlatformProperties?.Clear();
+                    PlatformProperties = null;
+                    Children?.Clear();
+                    Children = null;
+                    Parent = null;
+                    ScanResults = null;
+                    PlatformObject = null;
+                    Glimpse = null;
                 }
 
                 DisposedValue = true;

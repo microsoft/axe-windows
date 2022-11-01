@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -24,7 +24,7 @@ namespace Axe.Windows.Core.Results
             {
                 ScanStatus status = ScanStatus.NoResult;
 
-                if (this.Items != null)
+                if (Items != null)
                 {
                     var tss = from i in Items
                               select i.Status;
@@ -79,11 +79,11 @@ namespace Axe.Windows.Core.Results
         /// <param name="status"></param>
         public ScanResult(string description, string source, string frameworkIssueLink, IA11yElement e, int propertyId = 0)
         {
-            this.Description = description;
-            this.Source = source;
-            this.FrameworkIssueLink = frameworkIssueLink;
-            this.MetaInfo = propertyId != 0 ? new ScanMetaInfo(e, propertyId) : new ScanMetaInfo(e);
-            this.Items = new List<RuleResult>();
+            Description = description;
+            Source = source;
+            FrameworkIssueLink = frameworkIssueLink;
+            MetaInfo = propertyId != 0 ? new ScanMetaInfo(e, propertyId) : new ScanMetaInfo(e);
+            Items = new List<RuleResult>();
         }
 
         /// <summary>
@@ -103,9 +103,9 @@ namespace Axe.Windows.Core.Results
         /// <returns></returns>
         public RuleResult GetRuleResultInstance(RuleId id, string desc)
         {
-            var rr = new RuleResult(id, desc, this.Source, this.HelpUrl, this.FrameworkIssueLink, this.MetaInfo.Clone());
+            var rr = new RuleResult(id, desc, Source, HelpUrl, FrameworkIssueLink, MetaInfo.Clone());
 
-            this.Items.Add(rr);
+            Items.Add(rr);
 
             return rr;
         }
