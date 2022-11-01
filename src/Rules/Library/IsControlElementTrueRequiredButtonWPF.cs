@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -20,7 +20,7 @@ namespace Axe.Windows.Rules.Library
             this.Info.Standard = A11yCriteriaId.ObjectInformation;
             this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
             this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-IsControlElementTrueRequiredButtonWPF";
+            this.Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214420";
         }
 
         public override bool PassesTest(IA11yElement e)
