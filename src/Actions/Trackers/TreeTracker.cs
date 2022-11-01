@@ -29,7 +29,7 @@ namespace Axe.Windows.Actions.Trackers
         public TreeTracker(Action<A11yElement> action, SelectAction selectAction)
             : base(action, DefaultActionContext.GetDefaultInstance())
         {
-            this.SelectAction = selectAction;
+            SelectAction = selectAction;
         }
 
         public override void Start()
@@ -42,7 +42,7 @@ namespace Axe.Windows.Actions.Trackers
 
         public void MoveToParent()
         {
-            MoveTo(this.GetParent);
+            MoveTo(GetParent);
         }
 
         private IUIAutomationElement GetParent(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
@@ -54,7 +54,7 @@ namespace Axe.Windows.Actions.Trackers
 
         public void MoveToFirstChild()
         {
-            MoveTo(this.GetFirstChild);
+            MoveTo(GetFirstChild);
         }
 
         private IUIAutomationElement GetFirstChild(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
@@ -66,7 +66,7 @@ namespace Axe.Windows.Actions.Trackers
 
         public void MoveToLastChild()
         {
-            MoveTo(this.GetLastChild);
+            MoveTo(GetLastChild);
         }
 
         private IUIAutomationElement GetLastChild(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
@@ -78,7 +78,7 @@ namespace Axe.Windows.Actions.Trackers
 
         public void MoveToNextSibling()
         {
-            MoveTo(this.GetNextSibling);
+            MoveTo(GetNextSibling);
         }
 
         private IUIAutomationElement GetNextSibling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
@@ -90,7 +90,7 @@ namespace Axe.Windows.Actions.Trackers
 
         public void MoveToPreviousSibling()
         {
-            MoveTo(this.GetPreviousSibling);
+            MoveTo(GetPreviousSibling);
         }
 
         private IUIAutomationElement GetPreviousSibling(IUIAutomationTreeWalker treeWalker, IUIAutomationElement element)
@@ -133,8 +133,8 @@ namespace Axe.Windows.Actions.Trackers
             desktopElement.PopulateMinimumPropertiesForSelection(ActionContext.DesktopDataContext);
             if (desktopElement.IsRootElement() == false)
             {
-                this.SelectAction?.SetCandidateElement(desktopElement);
-                this.SelectAction?.Select();
+                SelectAction?.SetCandidateElement(desktopElement);
+                SelectAction?.Select();
             }
             else
             {
@@ -149,7 +149,7 @@ namespace Axe.Windows.Actions.Trackers
             var currentElement = GetCurrentElement();
             if (currentElement == null) return null;
 
-            var treeWalker = ActionContext.DesktopDataContext.A11yAutomation.GetTreeWalker(this.TreeViewMode);
+            var treeWalker = ActionContext.DesktopDataContext.A11yAutomation.GetTreeWalker(TreeViewMode);
 
             var nextElement = getNextElement?.Invoke(treeWalker, currentElement);
 
@@ -178,7 +178,7 @@ namespace Axe.Windows.Actions.Trackers
 
         private IUIAutomationElement GetCurrentElement()
         {
-            return this.SelectAction?.POIElementContext?.Element?.PlatformObject as IUIAutomationElement;
+            return SelectAction?.POIElementContext?.Element?.PlatformObject as IUIAutomationElement;
         }
 
         protected override void Dispose(bool disposing)
