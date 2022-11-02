@@ -12,12 +12,12 @@ namespace Axe.Windows.Rules
 
         public DelegateCondition(MatchesDelegate matches)
         {
-            this._Matches = matches ?? throw new ArgumentNullException(nameof(matches));
+            _Matches = matches ?? throw new ArgumentNullException(nameof(matches));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return this._Matches(element);
+            return _Matches(element);
         }
 
         public override string ToString()

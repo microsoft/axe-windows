@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldNotSupportValuePattern()
         {
-            this.Info.Description = Descriptions.ControlShouldNotSupportValuePattern;
-            this.Info.HowToFix = HowToFix.ControlShouldNotSupportValuePattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.ControlShouldNotSupportValuePattern;
+            Info.HowToFix = HowToFix.ControlShouldNotSupportValuePattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

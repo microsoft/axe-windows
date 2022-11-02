@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedLandmarkTypeNotCustom()
         {
-            this.Info.Description = Descriptions.LocalizedLandmarkTypeNotCustom;
-            this.Info.HowToFix = HowToFix.LocalizedLandmarkTypeNotCustom;
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LocalizedLandmarkTypeNotCustom;
+            Info.HowToFix = HowToFix.LocalizedLandmarkTypeNotCustom;
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

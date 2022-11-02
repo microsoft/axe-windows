@@ -16,11 +16,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameIsInformative()
         {
-            this.Info.Description = Descriptions.NameIsInformative;
-            this.Info.HowToFix = HowToFix.NameIsInformative;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.NameIsInformative;
+            Info.HowToFix = HowToFix.NameIsInformative;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

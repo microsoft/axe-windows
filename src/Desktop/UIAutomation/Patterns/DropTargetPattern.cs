@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -32,13 +32,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "DropTargetEffect", Value = this.Pattern.CurrentDropTargetEffect });
-            var array = this.Pattern.CurrentDropTargetEffects;
+            Properties.Add(new A11yPatternProperty() { Name = "DropTargetEffect", Value = Pattern.CurrentDropTargetEffect });
+            var array = Pattern.CurrentDropTargetEffects;
             if (array.Length != 0)
             {
                 for (int i = 0; i < array.Length; i++)
                 {
-                    this.Properties.Add(new A11yPatternProperty() { Name = Invariant($"DropTargetEffects[{i}]"), Value = array.GetValue(i)?.ToString() });
+                    Properties.Add(new A11yPatternProperty() { Name = Invariant($"DropTargetEffects[{i}]"), Value = array.GetValue(i)?.ToString() });
                 }
             }
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
@@ -49,7 +49,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

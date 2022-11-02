@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportExpandCollapsePattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportExpandCollapsePattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportExpandCollapsePattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportExpandCollapsePattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportExpandCollapsePattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

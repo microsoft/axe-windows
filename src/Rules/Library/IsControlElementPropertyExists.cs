@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsControlElementPropertyExists()
         {
-            this.Info.Description = Descriptions.IsControlElementPropertyExists;
-            this.Info.HowToFix = HowToFix.IsControlElementPropertyExists;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.IsControlElementPropertyExists;
+            Info.HowToFix = HowToFix.IsControlElementPropertyExists;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

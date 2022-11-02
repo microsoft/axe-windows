@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public SplitButtonInvokeAndTogglePatterns()
         {
-            this.Info.Description = Descriptions.SplitButtonInvokeAndTogglePatterns;
-            this.Info.HowToFix = HowToFix.SplitButtonInvokeAndTogglePatterns;
-            this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.SplitButtonInvokeAndTogglePatterns;
+            Info.HowToFix = HowToFix.SplitButtonInvokeAndTogglePatterns;
+            Info.Standard = A11yCriteriaId.NameRoleValue;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

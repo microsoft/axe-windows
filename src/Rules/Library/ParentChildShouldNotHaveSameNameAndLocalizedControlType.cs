@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public ParentChildShouldNotHaveSameNameAndLocalizedControlType()
         {
-            this.Info.Description = Descriptions.ParentChildShouldNotHaveSameNameAndLocalizedControlType;
-            this.Info.HowToFix = HowToFix.ParentChildShouldNotHaveSameNameAndLocalizedControlType;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ParentChildShouldNotHaveSameNameAndLocalizedControlType;
+            Info.HowToFix = HowToFix.ParentChildShouldNotHaveSameNameAndLocalizedControlType;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Desktop.Types;
 using System.Collections.Generic;
@@ -22,11 +22,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public override void Init()
         {
-            IUIAutomation6 uia6 = this.IUIAutomation6;
+            IUIAutomation6 uia6 = IUIAutomation6;
             if (uia6 != null)
             {
-                uia6.AddActiveTextPositionChangedEventHandler(this.Element, this.Scope, null, this);
-                this.IsHooked = true;
+                uia6.AddActiveTextPositionChangedEventHandler(Element, Scope, null, this);
+                IsHooked = true;
             }
         }
 
@@ -35,7 +35,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             if (range == null) return;
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-            var m = EventMessage.GetInstance(this.EventId, sender);
+            var m = EventMessage.GetInstance(EventId, sender);
 #pragma warning restore CA2000
 
             if (m != null)
@@ -47,7 +47,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     new KeyValuePair<string, dynamic>("Text", range.GetText(maxTextLengthToInclude))
                 };
 
-                this.ListenEventMessage(m);
+                ListenEventMessage(m);
             }
         }
 
@@ -57,12 +57,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    if (this.IsHooked)
+                    if (IsHooked)
                     {
-                        IUIAutomation6 uia6 = this.IUIAutomation6;
+                        IUIAutomation6 uia6 = IUIAutomation6;
                         if (uia6 != null)
                         {
-                            uia6.RemoveActiveTextPositionChangedEventHandler(this.Element, this);
+                            uia6.RemoveActiveTextPositionChangedEventHandler(Element, this);
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Misc;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace Axe.Windows.Core.Results
             {
                 ScanStatus status = ScanStatus.NoResult;
 
-                if (this.Items != null)
+                if (Items != null)
                 {
                     var tss = from i in Items
                               select i.Status;
@@ -50,7 +50,7 @@ namespace Axe.Windows.Core.Results
         {
             lock (_itemsLock)
             {
-                this.Items.Add(report);
+                Items.Add(report);
             }
         }
 
@@ -60,7 +60,7 @@ namespace Axe.Windows.Core.Results
         /// <param name="desc"></param>
         public ScanResults()
         {
-            this.Items = new List<ScanResult>();
+            Items = new List<ScanResult>();
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Axe.Windows.Core.Results
         /// </summary>
         internal void Clear()
         {
-            this.Items.Clear();
+            Items.Clear();
         }
     }
 }

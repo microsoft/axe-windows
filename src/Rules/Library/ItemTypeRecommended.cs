@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public ItemTypeRecommended()
         {
-            this.Info.Description = Descriptions.ItemTypeRecommended;
-            this.Info.HowToFix = HowToFix.ItemTypeRecommended;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_ItemTypePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.ItemTypeRecommended;
+            Info.HowToFix = HowToFix.ItemTypeRecommended;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_ItemTypePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

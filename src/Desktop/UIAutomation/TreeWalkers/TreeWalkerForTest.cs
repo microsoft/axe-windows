@@ -52,8 +52,8 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         public TreeWalkerForTest(A11yElement element, BoundedCounter elementCounter)
         {
             _elementCounter = elementCounter;
-            this.SelectedElement = element;
-            this.Elements = new List<A11yElement>();
+            SelectedElement = element;
+            Elements = new List<A11yElement>();
         }
 
         /// <summary>
@@ -64,38 +64,38 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             dataContext.CancellationToken.ThrowIfCancellationRequested();
 
-            this.WalkerMode = mode;
-            if (this.Elements.Count != 0)
+            WalkerMode = mode;
+            if (Elements.Count != 0)
             {
-                this.Elements.Clear();
+                Elements.Clear();
             }
 
             //Set parent of Root explicitly for testing.
-            var ancestry = new DesktopElementAncestry(this.WalkerMode, this.SelectedElement, false, dataContext);
+            var ancestry = new DesktopElementAncestry(WalkerMode, SelectedElement, false, dataContext);
 
             // Pre-count the ancestors in our bounded count, so that our count is accurate
             _elementCounter.TryAdd(ancestry.Items.Count);
 
-            this.TopMostElement = ancestry.First;
+            TopMostElement = ancestry.First;
 
             // clear children
-            ListHelper.DisposeAllItemsAndClearList(this.SelectedElement.Children);
-            this.SelectedElement.UniqueId = 0;
+            ListHelper.DisposeAllItemsAndClearList(SelectedElement.Children);
+            SelectedElement.UniqueId = 0;
 
-            PopulateChildrenTreeNode(this.SelectedElement, ancestry.Last, ancestry.NextId, dataContext);
+            PopulateChildrenTreeNode(SelectedElement, ancestry.Last, ancestry.NextId, dataContext);
 
             // do population of ancestors all together with children
-            var list = new List<A11yElement>(this.Elements);
+            var list = new List<A11yElement>(Elements);
             foreach (var item in ancestry.Items)
             {
-                this.Elements.Add(item);
+                Elements.Add(item);
             }
 
             // populate Elements first
-            this.Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(dataContext));
+            Elements.AsParallel().ForAll(e => e.PopulateAllPropertiesWithLiveData(dataContext));
 
             // check whether there is any elements which couldn't be updated in parallel, if so, update it in sequence.
-            var nuel = this.Elements.Where(e => e.Properties == null);
+            var nuel = Elements.Where(e => e.Properties == null);
 
             if (nuel.Any())
             {
@@ -128,12 +128,12 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <param name="startChildId"></param>
         private int PopulateChildrenTreeNode(A11yElement rootNode, A11yElement parentNode, int startChildId, DesktopDataContext dataContext)
         {
-            this.Elements.Add(rootNode);
+            Elements.Add(rootNode);
 
             rootNode.Parent = parentNode;
-            rootNode.TreeWalkerMode = this.WalkerMode; // set tree walker mode.
+            rootNode.TreeWalkerMode = WalkerMode; // set tree walker mode.
 
-            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(this.WalkerMode);
+            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(WalkerMode);
             IUIAutomationElement child = (IUIAutomationElement)rootNode.PlatformObject;
 
             if (child != null)

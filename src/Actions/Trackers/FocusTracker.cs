@@ -26,7 +26,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="action"></param>
         public FocusTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
-            this.EventHandler = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
+            EventHandler = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
         }
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         public override void Stop()
         {
-            if (this.EventHandler != null && IsStarted)
+            if (EventHandler != null && IsStarted)
             {
-                this.EventHandler.UnregisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId);
-                this.IsStarted = false;
+                EventHandler.UnregisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId);
+                IsStarted = false;
             }
             base.Stop();
         }
@@ -49,7 +49,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == false)
             {
-                this.EventHandler?.RegisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId, this.onFocusChangedEventForSelectingElement);
+                EventHandler?.RegisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId, onFocusChangedEventForSelectingElement);
                 IsStarted = true;
             }
         }
@@ -82,10 +82,10 @@ namespace Axe.Windows.Actions.Trackers
 
         protected override void Dispose(bool disposing)
         {
-            if (this.EventHandler != null)
+            if (EventHandler != null)
             {
-                this.EventHandler.Dispose();
-                this.EventHandler = null;
+                EventHandler.Dispose();
+                EventHandler = null;
             }
             base.Dispose(disposing);
         }

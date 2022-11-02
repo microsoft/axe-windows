@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsControlElementTrueRequired()
         {
-            this.Info.Description = Descriptions.IsControlElementTrueRequired;
-            this.Info.HowToFix = HowToFix.IsControlElementTrueRequired;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.IsControlElementTrueRequired;
+            Info.HowToFix = HowToFix.IsControlElementTrueRequired;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

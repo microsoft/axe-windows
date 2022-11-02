@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -21,11 +21,11 @@ namespace Axe.Windows.Rules.Library
 
         public BoundingRectangleContainedInParent()
         {
-            this.Info.Description = Descriptions.BoundingRectangleContainedInParent;
-            this.Info.HowToFix = HowToFix.BoundingRectangleContainedInParent;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.BoundingRectangleContainedInParent;
+            Info.HowToFix = HowToFix.BoundingRectangleContainedInParent;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

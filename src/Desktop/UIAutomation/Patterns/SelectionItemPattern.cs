@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -30,32 +30,32 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsSelected", Value = Convert.ToBoolean(this.Pattern.CurrentIsSelected) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsSelected", Value = Convert.ToBoolean(Pattern.CurrentIsSelected) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void AddToSelect()
         {
-            this.Pattern.AddToSelection();
+            Pattern.AddToSelection();
         }
 
         [PatternMethod(IsUIAction = true)]
         public void RemoveFromSelection()
         {
-            this.Pattern.RemoveFromSelection();
+            Pattern.RemoveFromSelection();
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Select()
         {
-            this.Pattern.Select();
+            Pattern.Select();
         }
 
         [PatternMethod]
         public DesktopElement SelectionContainer()
         {
-            return new DesktopElement(this.Pattern.CurrentSelectionContainer);
+            return new DesktopElement(Pattern.CurrentSelectionContainer);
         }
 
         protected override void Dispose(bool disposing)
@@ -63,7 +63,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

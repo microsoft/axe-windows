@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public EditSupportsIncorrectRangeValuePattern()
         {
-            this.Info.Description = Descriptions.EditSupportsIncorrectRangeValuePattern;
-            this.Info.HowToFix = HowToFix.EditSupportsIncorrectRangeValuePattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.EditSupportsIncorrectRangeValuePattern;
+            Info.HowToFix = HowToFix.EditSupportsIncorrectRangeValuePattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

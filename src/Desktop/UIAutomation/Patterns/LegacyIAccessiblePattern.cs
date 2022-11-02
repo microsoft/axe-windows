@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -30,15 +30,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             try
             {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-                this.Properties.Add(new A11yPatternProperty() { Name = "ChildId", Value = this.Pattern.CurrentChildId });
-                this.Properties.Add(new A11yPatternProperty() { Name = "DefaultAction", Value = this.Pattern.CurrentDefaultAction });
-                this.Properties.Add(new A11yPatternProperty() { Name = "Description", Value = this.Pattern.CurrentDescription });
-                this.Properties.Add(new A11yPatternProperty() { Name = "Help", Value = this.Pattern.CurrentHelp });
-                this.Properties.Add(new A11yPatternProperty() { Name = "KeyboardShorcut", Value = this.Pattern.CurrentKeyboardShortcut });
-                this.Properties.Add(new A11yPatternProperty() { Name = "Name", Value = this.Pattern.CurrentName });
-                this.Properties.Add(new A11yPatternProperty() { Name = "Role", Value = this.Pattern.CurrentRole });
-                this.Properties.Add(new A11yPatternProperty() { Name = "State", Value = this.Pattern.CurrentState });
-                this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
+                Properties.Add(new A11yPatternProperty() { Name = "ChildId", Value = Pattern.CurrentChildId });
+                Properties.Add(new A11yPatternProperty() { Name = "DefaultAction", Value = Pattern.CurrentDefaultAction });
+                Properties.Add(new A11yPatternProperty() { Name = "Description", Value = Pattern.CurrentDescription });
+                Properties.Add(new A11yPatternProperty() { Name = "Help", Value = Pattern.CurrentHelp });
+                Properties.Add(new A11yPatternProperty() { Name = "KeyboardShorcut", Value = Pattern.CurrentKeyboardShortcut });
+                Properties.Add(new A11yPatternProperty() { Name = "Name", Value = Pattern.CurrentName });
+                Properties.Add(new A11yPatternProperty() { Name = "Role", Value = Pattern.CurrentRole });
+                Properties.Add(new A11yPatternProperty() { Name = "State", Value = Pattern.CurrentState });
+                Properties.Add(new A11yPatternProperty() { Name = "Value", Value = Pattern.CurrentValue });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -52,31 +52,31 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public IList<DesktopElement> GetSelection()
         {
-            return this.Pattern.GetCurrentSelection().ToListOfDesktopElements();
+            return Pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public void DoDefaultAction()
         {
-            this.Pattern.DoDefaultAction();
+            Pattern.DoDefaultAction();
         }
 
         [PatternMethod]
         public IAccessible GetIAccessible()
         {
-            return this.Pattern.GetIAccessible();
+            return Pattern.GetIAccessible();
         }
 
         [PatternMethod]
         public void Select(int flagSelect)
         {
-            this.Pattern.Select(flagSelect);
+            Pattern.Select(flagSelect);
         }
 
         [PatternMethod]
         public void SetValue(string value)
         {
-            this.Pattern.SetValue(value);
+            Pattern.SetValue(value);
         }
 
         protected override void Dispose(bool disposing)
@@ -84,7 +84,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

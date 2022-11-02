@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters()
         {
-            this.Info.Description = string.Format(CultureInfo.CurrentCulture, Descriptions.PropertyExcludesPrivateUnicodeCharacters, LocalizedLandmarkType.PropertyDescription);
-            this.Info.HowToFix = string.Format(CultureInfo.CurrentCulture, HowToFix.PropertyExcludesPrivateUnicodeCharacters, LocalizedLandmarkType.PropertyDescription);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = string.Format(CultureInfo.CurrentCulture, Descriptions.PropertyExcludesPrivateUnicodeCharacters, LocalizedLandmarkType.PropertyDescription);
+            Info.HowToFix = string.Format(CultureInfo.CurrentCulture, HowToFix.PropertyExcludesPrivateUnicodeCharacters, LocalizedLandmarkType.PropertyDescription);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

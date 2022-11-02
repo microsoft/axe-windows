@@ -17,11 +17,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameIsEmptyButElementIsNotKeyboardFocusable()
         {
-            this.Info.Description = Descriptions.NameEmptyButElementNotKeyboardFocusable;
-            this.Info.HowToFix = HowToFix.NameEmptyButElementNotKeyboardFocusable;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.NameEmptyButElementNotKeyboardFocusable;
+            Info.HowToFix = HowToFix.NameEmptyButElementNotKeyboardFocusable;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

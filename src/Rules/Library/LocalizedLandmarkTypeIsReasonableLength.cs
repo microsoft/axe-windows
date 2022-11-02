@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
 
         public LocalizedLandmarkTypeIsReasonableLength()
         {
-            this.Info.Description = Descriptions.LocalizedLandmarkTypeIsReasonableLength;
-            this.Info.HowToFix = HowToFix.LocalizedLandmarkTypeIsReasonableLength;
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LocalizedLandmarkTypeIsReasonableLength;
+            Info.HowToFix = HowToFix.LocalizedLandmarkTypeIsReasonableLength;
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

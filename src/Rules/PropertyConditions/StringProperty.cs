@@ -50,19 +50,19 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             GetStringPropertyValue = valueGetter;
             PropertyDescription = propertyDescription;
-            this.Null = CreateNullCondition();
-            this.Empty = CreateEmptyCondition();
-            this.NotNull = ~Null;
-            this.NotEmpty = ~Empty;
-            this.NullOrEmpty = Null | Empty;
-            this.NotNullOrEmpty = NotNull & NotEmpty;
-            this.WhiteSpace = CreateWhitespaceCondition();
-            this.NotWhiteSpace = ~WhiteSpace;
-            this.NullOrWhiteSpace = NullOrEmpty | WhiteSpace;
-            this.NotNullOrWhiteSpace = ~NullOrWhiteSpace;
-            this.IncludesPrivateUnicodeCharacters = CreateIncludesPrivateUnicodeCharactersCondition();
-            this.ExcludesPrivateUnicodeCharacters = ~IncludesPrivateUnicodeCharacters;
-            this.Length = CreateLengthCondition();
+            Null = CreateNullCondition();
+            Empty = CreateEmptyCondition();
+            NotNull = ~Null;
+            NotEmpty = ~Empty;
+            NullOrEmpty = Null | Empty;
+            NotNullOrEmpty = NotNull & NotEmpty;
+            WhiteSpace = CreateWhitespaceCondition();
+            NotWhiteSpace = ~WhiteSpace;
+            NullOrWhiteSpace = NullOrEmpty | WhiteSpace;
+            NotNullOrWhiteSpace = ~NullOrWhiteSpace;
+            IncludesPrivateUnicodeCharacters = CreateIncludesPrivateUnicodeCharactersCondition();
+            ExcludesPrivateUnicodeCharacters = ~IncludesPrivateUnicodeCharacters;
+            Length = CreateLengthCondition();
         }
 
         private Condition CreateNullCondition()
@@ -136,7 +136,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (that == null) throw new ArgumentNullException(nameof(that));
 
-            return Condition.Create(e => this.IsEqualTo(e, that));
+            return Condition.Create(e => IsEqualTo(e, that));
         }
 
         public Condition IsNotEqualTo(StringProperty that)
@@ -149,7 +149,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (that == null) throw new ArgumentNullException(nameof(that));
 
-            string s1 = this.GetStringPropertyValue(e);
+            string s1 = GetStringPropertyValue(e);
             if (string.IsNullOrWhiteSpace(s1)) return false;
 
             string s2 = that.GetStringPropertyValue(e);

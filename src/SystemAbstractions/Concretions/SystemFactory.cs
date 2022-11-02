@@ -5,7 +5,7 @@ namespace Axe.Windows.SystemAbstractions
 {
     public class SystemFactory : ISystemFactory
     {
-        private readonly static ISystemFactory SystemFactoryInstance = new SystemFactory();
+        private static readonly ISystemFactory SystemFactoryInstance = new SystemFactory();
 
         private SystemFactory()
         { }

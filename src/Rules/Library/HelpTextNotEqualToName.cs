@@ -13,10 +13,10 @@ namespace Axe.Windows.Rules.Library
     {
         public HelpTextNotEqualToName()
         {
-            this.Info.Description = Descriptions.HelpTextNotEqualToName;
-            this.Info.HowToFix = HowToFix.HelpTextNotEqualToName;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.HelpTextNotEqualToName;
+            Info.HowToFix = HowToFix.HelpTextNotEqualToName;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

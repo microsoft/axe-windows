@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -26,14 +26,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public TextRange GetActiveComposition()
         {
-            var tr = this.Pattern.GetActiveComposition();
+            var tr = Pattern.GetActiveComposition();
             return tr != null ? new TextRange(tr, null) : null;
         }
 
         [PatternMethod]
         public TextRange GetConversionTarget()
         {
-            var tr = this.Pattern.GetConversionTarget();
+            var tr = Pattern.GetConversionTarget();
             return tr != null ? new TextRange(tr, null) : null;
         }
 
@@ -42,7 +42,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

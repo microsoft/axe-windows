@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportSetInfoWPF()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportSetInfo;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportSetInfo;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ControlShouldSupportSetInfoWPF";
+            Info.Description = Descriptions.ControlShouldSupportSetInfo;
+            Info.HowToFix = HowToFix.ControlShouldSupportSetInfo;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ControlShouldSupportSetInfoWPF";
         }
 
         public override bool PassesTest(IA11yElement e)

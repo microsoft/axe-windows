@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportSelectionPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportSelectionPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportSelectionPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportSelectionPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportSelectionPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

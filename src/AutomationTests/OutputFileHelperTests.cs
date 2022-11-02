@@ -17,8 +17,10 @@ namespace Axe.Windows.AutomationTests
         private static readonly ISystemDateTime InertDateTime = new Mock<ISystemDateTime>(MockBehavior.Strict).Object;
         private static readonly ISystemEnvironment InertEnvironment = new Mock<ISystemEnvironment>(MockBehavior.Strict).Object;
 
+        // There's no way this test should take 15 seconds, but it often gets flagged as timing out in the pipeline. This is
+        // probably just initialization time, but if increasing the timeout reduces pipeline noise, then it's a good change
         [TestMethod]
-        [Timeout(1000)]
+        [Timeout(15000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void OutputFileHelperCtor_NullSystem_ThrowsException()
         {
