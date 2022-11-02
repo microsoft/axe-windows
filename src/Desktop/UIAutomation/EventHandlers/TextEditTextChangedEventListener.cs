@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Desktop.Types;
 using System.Collections.Generic;
@@ -24,14 +24,14 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public override void Init()
         {
-            IUIAutomation4 uia4 = this.IUIAutomation4;
+            IUIAutomation4 uia4 = IUIAutomation4;
             if (uia4 != null)
             {
-                uia4.AddTextEditTextChangedEventHandler(this.Element, this.Scope, TextEditChangeType.TextEditChangeType_AutoComplete, null, this);
-                uia4.AddTextEditTextChangedEventHandler(this.Element, this.Scope, TextEditChangeType.TextEditChangeType_AutoCorrect, null, this);
-                uia4.AddTextEditTextChangedEventHandler(this.Element, this.Scope, TextEditChangeType.TextEditChangeType_Composition, null, this);
-                uia4.AddTextEditTextChangedEventHandler(this.Element, this.Scope, TextEditChangeType.TextEditChangeType_CompositionFinalized, null, this);
-                this.IsHooked = true;
+                uia4.AddTextEditTextChangedEventHandler(Element, Scope, TextEditChangeType.TextEditChangeType_AutoComplete, null, this);
+                uia4.AddTextEditTextChangedEventHandler(Element, Scope, TextEditChangeType.TextEditChangeType_AutoCorrect, null, this);
+                uia4.AddTextEditTextChangedEventHandler(Element, Scope, TextEditChangeType.TextEditChangeType_Composition, null, this);
+                uia4.AddTextEditTextChangedEventHandler(Element, Scope, TextEditChangeType.TextEditChangeType_CompositionFinalized, null, this);
+                IsHooked = true;
             }
         }
 
@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 #pragma warning restore CA1725 // Parameter names should match base declaration
         {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-            var m = EventMessage.GetInstance(this.EventId, sender);
+            var m = EventMessage.GetInstance(EventId, sender);
 
             if (m != null)
             {
@@ -57,7 +57,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     }
                 }
 
-                this.ListenEventMessage(m);
+                ListenEventMessage(m);
             }
 #pragma warning restore CA2000
         }
@@ -68,12 +68,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    if (this.IsHooked)
+                    if (IsHooked)
                     {
-                        IUIAutomation4 uia4 = this.IUIAutomation4;
+                        IUIAutomation4 uia4 = IUIAutomation4;
                         if (uia4 != null)
                         {
-                            uia4.RemoveTextEditTextChangedEventHandler(this.Element, this);
+                            uia4.RemoveTextEditTextChangedEventHandler(Element, this);
                         }
                     }
                 }

@@ -25,9 +25,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public FocusChangedEventListener(IUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
         {
-            this.UIAutomation = uia ?? throw new ArgumentNullException(nameof(uia));
-            this.ListenEventMessage = peDelegate;
-            this.UIAutomation.AddFocusChangedEventHandler(null, this);
+            UIAutomation = uia ?? throw new ArgumentNullException(nameof(uia));
+            ListenEventMessage = peDelegate;
+            UIAutomation.AddFocusChangedEventHandler(null, this);
             IsHooked = true;
         }
 
@@ -53,12 +53,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         {
             if (!disposedValue)
             {
-                if (IsHooked && this.UIAutomation != null)
+                if (IsHooked && UIAutomation != null)
                 {
                     try
                     {
-                        this.UIAutomation.RemoveFocusChangedEventHandler(this);
-                        this.UIAutomation = null;
+                        UIAutomation.RemoveFocusChangedEventHandler(this);
+                        UIAutomation = null;
                     }
                     catch (ThreadAbortException)
                     {

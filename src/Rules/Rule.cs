@@ -4,7 +4,6 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.Resources;
-using System.Globalization;
 
 namespace Axe.Windows.Rules
 {
@@ -24,7 +23,7 @@ namespace Axe.Windows.Rules
         {
             // keep these two calls in the following order or the RuleInfo.Condition string won't get populated
 #pragma warning disable CA2214
-            this.Condition = CreateCondition();
+            Condition = CreateCondition();
 #pragma warning restore CA2214
 
             InitRuleInfo();
@@ -33,16 +32,16 @@ namespace Axe.Windows.Rules
         private void InitRuleInfo()
         {
             var info = GetRuleInfoFromAttributes();
-            if (info == null) throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(this.GetType().Name));
+            if (info == null) throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(GetType().Name));
 
-            info.Condition = this.Condition?.ToString();
+            info.Condition = Condition?.ToString();
 
-            this.Info = info;
+            Info = info;
         }
 
         private RuleInfo GetRuleInfoFromAttributes()
         {
-            var type = this.GetType();
+            var type = GetType();
 
             foreach (var a in type.GetCustomAttributes(true))
             {

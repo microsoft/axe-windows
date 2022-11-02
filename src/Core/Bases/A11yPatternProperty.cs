@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Misc;
 using System;
-using System.Globalization;
 
 namespace Axe.Windows.Core.Bases
 {
@@ -19,12 +18,12 @@ namespace Axe.Windows.Core.Bases
         {
             get
             {
-                if (this.Value is string)
+                if (Value is string)
                 {
-                    return ExtensionMethods.WithParameters("{0} = \"{1}\"", this.Name, this.Value);
+                    return ExtensionMethods.WithParameters("{0} = \"{1}\"", Name, Value);
                 }
 
-                return ExtensionMethods.WithParameters("{0} = {1}", this.Name, this.Value);
+                return ExtensionMethods.WithParameters("{0} = {1}", Name, Value);
             }
         }
 
@@ -37,8 +36,8 @@ namespace Axe.Windows.Core.Bases
             {
                 if (disposing)
                 {
-                    this.Name = null;
-                    this.Value = null;
+                    Name = null;
+                    Value = null;
                 }
 
                 disposedValue = true;

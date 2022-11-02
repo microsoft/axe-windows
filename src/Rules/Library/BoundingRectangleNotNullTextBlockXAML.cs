@@ -14,12 +14,12 @@ namespace Axe.Windows.Rules.Library
     {
         public BoundingRectangleNotNullTextBlockXAML()
         {
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = Axe.Windows.Core.Types.PropertyType.UIA_BoundingRectanglePropertyId;
-            this.Info.Description = Descriptions.BoundingRectangleNotNull;
-            this.Info.HowToFix = HowToFix.BoundingRectangleNotNull;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-BoundingRectangleNotNullTextBlockXAML";
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = Axe.Windows.Core.Types.PropertyType.UIA_BoundingRectanglePropertyId;
+            Info.Description = Descriptions.BoundingRectangleNotNull;
+            Info.HowToFix = HowToFix.BoundingRectangleNotNull;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-BoundingRectangleNotNullTextBlockXAML";
         }
 
         public override bool PassesTest(IA11yElement e)

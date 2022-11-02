@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -27,20 +27,20 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "RowOrColumnMajor", Value = this.Pattern.CurrentRowOrColumnMajor });
+            Properties.Add(new A11yPatternProperty() { Name = "RowOrColumnMajor", Value = Pattern.CurrentRowOrColumnMajor });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetColumnHeaders()
         {
-            return this.Pattern.GetCurrentColumnHeaders()?.ToListOfDesktopElements();
+            return Pattern.GetCurrentColumnHeaders()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetRowHeaders()
         {
-            return this.Pattern.GetCurrentRowHeaders()?.ToListOfDesktopElements();
+            return Pattern.GetCurrentRowHeaders()?.ToListOfDesktopElements();
         }
 
         protected override void Dispose(bool disposing)
@@ -48,7 +48,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

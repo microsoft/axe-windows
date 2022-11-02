@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.HelpLinks;
@@ -76,13 +76,13 @@ namespace Axe.Windows.Core.Results
         /// <param name="frameworkIssueLink"></param>
         internal RuleResult(RuleId id, string desc, string source, HelpUrl url, string frameworkIssueLink, ScanMetaInfo meta)
         {
-            this.Rule = id;
-            this.Description = desc;
-            this.Source = source;
-            this.Messages = new List<string>();
-            this.MetaInfo = meta;
-            this.HelpUrl = url;
-            this.FrameworkIssueLink = frameworkIssueLink;
+            Rule = id;
+            Description = desc;
+            Source = source;
+            Messages = new List<string>();
+            MetaInfo = meta;
+            HelpUrl = url;
+            FrameworkIssueLink = frameworkIssueLink;
         }
 
         /// <summary>
@@ -98,9 +98,9 @@ namespace Axe.Windows.Core.Results
         /// <param name="message"></param>
         public void SetStatus(ScanStatus status, string message)
         {
-            if (this.Status < status)
+            if (Status < status)
             {
-                this.Status = status;
+                Status = status;
             }
             AddMessage(message);
         }
@@ -113,7 +113,7 @@ namespace Axe.Windows.Core.Results
         {
             if (!string.IsNullOrEmpty(message))
             {
-                this.Messages.Add(message);
+                Messages.Add(message);
             }
         }
     }

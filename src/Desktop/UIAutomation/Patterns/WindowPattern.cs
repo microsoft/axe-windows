@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -28,19 +28,19 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanMaximize", Value = Convert.ToBoolean(this.Pattern.CurrentCanMaximize) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanMinimize", Value = Convert.ToBoolean(this.Pattern.CurrentCanMinimize) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsModal", Value = Convert.ToBoolean(this.Pattern.CurrentIsModal) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsTopmost", Value = Convert.ToBoolean(this.Pattern.CurrentIsTopmost) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "WindowInteractionState", Value = this.Pattern.CurrentWindowInteractionState });
-            this.Properties.Add(new A11yPatternProperty() { Name = "WindowVisualState", Value = this.Pattern.CurrentWindowVisualState });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMaximize", Value = Convert.ToBoolean(Pattern.CurrentCanMaximize) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMinimize", Value = Convert.ToBoolean(Pattern.CurrentCanMinimize) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsModal", Value = Convert.ToBoolean(Pattern.CurrentIsModal) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsTopmost", Value = Convert.ToBoolean(Pattern.CurrentIsTopmost) });
+            Properties.Add(new A11yPatternProperty() { Name = "WindowInteractionState", Value = Pattern.CurrentWindowInteractionState });
+            Properties.Add(new A11yPatternProperty() { Name = "WindowVisualState", Value = Pattern.CurrentWindowVisualState });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public void SetWindowVisualState(WindowVisualState state)
         {
-            this.Pattern.SetWindowVisualState(state);
+            Pattern.SetWindowVisualState(state);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void WaitForInputIdle(int ms)
         {
-            this.Pattern.WaitForInputIdle(ms);
+            Pattern.WaitForInputIdle(ms);
         }
 
         protected override void Dispose(bool disposing)
@@ -58,7 +58,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

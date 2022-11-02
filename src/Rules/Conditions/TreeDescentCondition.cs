@@ -17,23 +17,23 @@ namespace Axe.Windows.Rules
 
         public TreeDescentCondition(Condition parentCondition, Condition childCondition)
         {
-            this.ParentCondition = parentCondition ?? throw new ArgumentNullException(nameof(parentCondition));
-            this.ChildCondition = childCondition ?? throw new ArgumentNullException(nameof(childCondition));
+            ParentCondition = parentCondition ?? throw new ArgumentNullException(nameof(parentCondition));
+            ChildCondition = childCondition ?? throw new ArgumentNullException(nameof(childCondition));
         }
 
         public override bool Matches(IA11yElement e)
         {
-            if (!this.ParentCondition.Matches(e))
+            if (!ParentCondition.Matches(e))
                 return false;
 
             var child = e?.GetFirstChild();
 
-            return this.ChildCondition.Matches(child);
+            return ChildCondition.Matches(child);
         }
 
         public override string ToString()
         {
-            return Invariant($"{this.ParentCondition} / {this.ChildCondition}");
+            return Invariant($"{ParentCondition} / {ChildCondition}");
         }
     } // class
 } // namespace

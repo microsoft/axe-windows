@@ -13,11 +13,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameIsNotWhiteSpace()
         {
-            this.Info.Description = Descriptions.NameNotWhiteSpace;
-            this.Info.HowToFix = HowToFix.NameNotWhiteSpace;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.NameNotWhiteSpace;
+            Info.HowToFix = HowToFix.NameNotWhiteSpace;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

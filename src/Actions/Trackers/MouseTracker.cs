@@ -29,14 +29,14 @@ namespace Axe.Windows.Actions.Trackers
         {
             get
             {
-                return this.timerMouse.Interval;
+                return timerMouse.Interval;
             }
 
             set
             {
-                if (this.timerMouse != null)
+                if (timerMouse != null)
                 {
-                    this.timerMouse.Interval = value;
+                    timerMouse.Interval = value;
                 }
             }
         }
@@ -69,9 +69,9 @@ namespace Axe.Windows.Actions.Trackers
         public MouseTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
             // set up mouse Timer
-            this.timerMouse = new System.Timers.Timer(DefaultTimerInterval); // default but it will be set by config immediately.
-            this.timerMouse.Elapsed += new ElapsedEventHandler(this.ontimerMouseElapsedEvent);
-            this.timerMouse.AutoReset = false;// disable autoreset to do reset in timer handler
+            timerMouse = new System.Timers.Timer(DefaultTimerInterval); // default but it will be set by config immediately.
+            timerMouse.Elapsed += new ElapsedEventHandler(ontimerMouseElapsedEvent);
+            timerMouse.AutoReset = false;// disable autoreset to do reset in timer handler
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == true)
             {
-                this.timerMouse?.Stop();
+                timerMouse?.Stop();
                 IsStarted = false;
             }
 
@@ -95,7 +95,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == false)
             {
-                this.timerMouse?.Start();
+                timerMouse?.Start();
                 IsStarted = true;
             }
         }
@@ -109,13 +109,13 @@ namespace Axe.Windows.Actions.Trackers
         {
             lock (_elementSetterLock)
             {
-                if (this.timerMouse != null && this.IsStarted)
+                if (timerMouse != null && IsStarted)
                 {
                     NativeMethods.GetCursorPos(out Point p);
 
-                    if (LastMousePoint.Equals(p) && !this.POIPoint.Equals(p))
+                    if (LastMousePoint.Equals(p) && !POIPoint.Equals(p))
                     {
-                        var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, this.TreeViewMode, ActionContext.DesktopDataContext));
+                        var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, TreeViewMode, ActionContext.DesktopDataContext));
                         if (!SelectElementIfItIsEligible(element))
                         {
                             element?.Dispose();
@@ -125,7 +125,7 @@ namespace Axe.Windows.Actions.Trackers
 
                     LastMousePoint = p;
 
-                    this.timerMouse?.Start(); // make sure that it is enabled.
+                    timerMouse?.Start(); // make sure that it is enabled.
                 }
             }
         }
@@ -137,8 +137,8 @@ namespace Axe.Windows.Actions.Trackers
         {
             base.Clear();
             // clean up all points to make sure to start from scratch
-            this.POIPoint = Point.Empty;
-            this.LastMousePoint = Point.Empty;
+            POIPoint = Point.Empty;
+            LastMousePoint = Point.Empty;
         }
 
         /// <summary>
@@ -147,11 +147,11 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (this.timerMouse != null)
+            if (timerMouse != null)
             {
-                this.timerMouse.Stop();
-                this.timerMouse.Dispose();
-                this.timerMouse = null;
+                timerMouse.Stop();
+                timerMouse.Dispose();
+                timerMouse = null;
             }
 
             base.Dispose(disposing);

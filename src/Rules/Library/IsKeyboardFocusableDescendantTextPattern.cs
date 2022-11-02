@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsKeyboardFocusableDescendantTextPattern()
         {
-            this.Info.Description = Descriptions.IsKeyboardFocusableDescendantTextPattern;
-            this.Info.HowToFix = HowToFix.IsKeyboardFocusableDescendantTextPattern;
-            this.Info.Standard = A11yCriteriaId.Keyboard;
-            this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.IsKeyboardFocusableDescendantTextPattern;
+            Info.HowToFix = HowToFix.IsKeyboardFocusableDescendantTextPattern;
+            Info.Standard = A11yCriteriaId.Keyboard;
+            Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

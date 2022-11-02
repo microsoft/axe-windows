@@ -6,7 +6,6 @@ using Axe.Windows.Core.Types;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -66,12 +65,12 @@ namespace Axe.Windows.Core.Bases
         /// <param name="name"></param>
         public A11yPattern(A11yElement e, int id, string name)
         {
-            this.Element = e;
-            this.Id = id;
-            this.Name = name;
-            this.IsUIActionable = this.IsUIActionablePatternByPatternMethodType();
-            this.Properties = new List<A11yPatternProperty>();
-            this.Methods = GetListOfPatternMethods();
+            Element = e;
+            Id = id;
+            Name = name;
+            IsUIActionable = this.IsUIActionablePatternByPatternMethodType();
+            Properties = new List<A11yPatternProperty>();
+            Methods = GetListOfPatternMethods();
         }
 
         /// <summary>
@@ -80,7 +79,7 @@ namespace Axe.Windows.Core.Bases
         /// <returns>if there is no method with "PatternmethodAttribute", return null</returns>
         private List<MethodInfo> GetListOfPatternMethods()
         {
-            return (from m in this.GetType().GetMethods()
+            return (from m in GetType().GetMethods()
                     let a = m.GetCustomAttribute(typeof(PatternMethodAttribute))
                     where a != null
                     select m).ToList();
@@ -93,9 +92,9 @@ namespace Axe.Windows.Core.Bases
 
         public T GetValue<T>(string propertyName)
         {
-            if (this.Properties == null) return default(T);
+            if (Properties == null) return default(T);
 
-            var item = this.Properties.ToList().Find(p => p.Name == propertyName);
+            var item = Properties.ToList().Find(p => p.Name == propertyName);
             if (item == null) return default(T);
 
             if (item.Value is T)
@@ -156,10 +155,10 @@ namespace Axe.Windows.Core.Bases
             {
                 if (disposing)
                 {
-                    ListHelper.DisposeAllItemsAndClearList(this.Properties);
-                    this.Properties = null;
-                    this.Name = null;
-                    this.Element = null;
+                    ListHelper.DisposeAllItemsAndClearList(Properties);
+                    Properties = null;
+                    Name = null;
+                    Element = null;
                 }
 
                 disposedValue = true;

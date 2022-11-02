@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = CreateElementExpectedToMatchCondition();
 
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(Rule.Condition.Matches(e));
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace Axe.Windows.RulesTests.Library
                 Except(custom))
             {
                 e.ControlTypeId = ct;
-                Assert.IsFalse(this.Rule.Condition.Matches(e));
+                Assert.IsFalse(Rule.Condition.Matches(e));
             }
         }
 
@@ -48,7 +48,7 @@ namespace Axe.Windows.RulesTests.Library
             var e = CreateElementExpectedToMatchCondition();
             e.IsKeyboardFocusable = false;
 
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         [TestMethod]
@@ -57,7 +57,7 @@ namespace Axe.Windows.RulesTests.Library
             var e = CreateElementExpectedToMatchCondition();
             e.LocalizedControlType = string.Empty;
 
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         [TestMethod]
@@ -66,7 +66,7 @@ namespace Axe.Windows.RulesTests.Library
             var e = CreateElementExpectedToMatchCondition();
             e.LocalizedControlType = null;
 
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace Axe.Windows.RulesTests.Library
             e.ClassName = "DataGridDetailsPresenter";
             e.Parent = parent;
 
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         [TestMethod]
@@ -89,7 +89,7 @@ namespace Axe.Windows.RulesTests.Library
             e.ClassName = "DataGridCell";
             e.Framework = Core.Enums.FrameworkId.WPF;
 
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         [TestMethod]

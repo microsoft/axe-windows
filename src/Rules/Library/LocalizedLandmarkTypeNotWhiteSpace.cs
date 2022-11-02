@@ -13,10 +13,10 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedLandmarkTypeNotWhiteSpace()
         {
-            this.Info.Description = Descriptions.LocalizedLandmarkTypeNotWhiteSpace;
-            this.Info.HowToFix = HowToFix.LocalizedLandmarkTypeNotWhiteSpace;
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LocalizedLandmarkTypeNotWhiteSpace;
+            Info.HowToFix = HowToFix.LocalizedLandmarkTypeNotWhiteSpace;
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

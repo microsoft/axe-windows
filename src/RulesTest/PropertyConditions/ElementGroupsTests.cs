@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,8 +16,8 @@ namespace Axe.Windows.RulesTests.PropertyConditions
 
         public ElementGroupsTests()
         {
-            this.AllowSameNameAndControlTypeTypes = new int[] { AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
-            this.DisallowSameNameAndControlTypeTypes = ControlType.All.Difference(AllowSameNameAndControlTypeTypes);
+            AllowSameNameAndControlTypeTypes = new int[] { AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
+            DisallowSameNameAndControlTypeTypes = ControlType.All.Difference(AllowSameNameAndControlTypeTypes);
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             var e = new MockA11yElement();
 
-            foreach (var t in this.AllowSameNameAndControlTypeTypes)
+            foreach (var t in AllowSameNameAndControlTypeTypes)
             {
                 e.ControlTypeId = t;
                 Assert.IsTrue(ElementGroups.AllowSameNameAndControlType.Matches(e));
@@ -37,7 +37,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             var e = new MockA11yElement();
 
-            foreach (var t in this.DisallowSameNameAndControlTypeTypes)
+            foreach (var t in DisallowSameNameAndControlTypeTypes)
             {
                 e.ControlTypeId = t;
                 Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
@@ -49,7 +49,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             var e = new MockA11yElement();
 
-            e.ControlTypeId = this.DisallowSameNameAndControlTypeTypes.First();
+            e.ControlTypeId = DisallowSameNameAndControlTypeTypes.First();
 
             var tenChars = "1234567890";
             for (int i = 0; i < 5; ++i)

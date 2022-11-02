@@ -37,8 +37,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         private EventMessage(int id, IUIAutomationElement sender)
         {
             TimeStamp = DateTime.Now.ToString("HH:mm:ss.fff", CultureInfo.InvariantCulture);
-            this.EventId = id;
-            this.Element = sender != null ? new DesktopElement(sender) : null;
+            EventId = id;
+            Element = sender != null ? new DesktopElement(sender) : null;
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    this.Element?.Dispose();
-                    this.Element = null;
+                    Element?.Dispose();
+                    Element = null;
                 }
 
                 disposedValue = true;

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -21,7 +21,7 @@ namespace Axe.Windows.RulesTests.Library
 
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_AppBarControlTypeId;
 
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace Axe.Windows.RulesTests.Library
 
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ExpandCollapsePatternId));
 
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(Rule.Condition.Matches(e));
             Assert.IsTrue(Rule.PassesTest(e));
         }
 
@@ -54,7 +54,7 @@ namespace Axe.Windows.RulesTests.Library
 
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_InvokePatternId));
 
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(Rule.Condition.Matches(e));
             Assert.IsTrue(Rule.PassesTest(e));
         }
 
@@ -71,7 +71,7 @@ namespace Axe.Windows.RulesTests.Library
 
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_TogglePatternId));
 
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(Rule.Condition.Matches(e));
             Assert.IsTrue(Rule.PassesTest(e));
         }
 
@@ -89,7 +89,7 @@ namespace Axe.Windows.RulesTests.Library
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_ExpandCollapsePatternId));
             e.Patterns.Add(new Core.Bases.A11yPattern(e, PatternType.UIA_TogglePatternId));
 
-            Assert.IsTrue(this.Rule.Condition.Matches(e));
+            Assert.IsTrue(Rule.Condition.Matches(e));
             Assert.IsFalse(Rule.PassesTest(e));
         }
     }

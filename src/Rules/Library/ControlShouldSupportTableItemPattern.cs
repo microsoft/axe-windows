@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportTableItemPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportTableItemPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportTableItemPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportTableItemPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportTableItemPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

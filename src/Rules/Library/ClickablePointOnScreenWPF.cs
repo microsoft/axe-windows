@@ -16,12 +16,12 @@ namespace Axe.Windows.Rules.Library
     {
         public ClickablePointOnScreenWPF()
         {
-            this.Info.Description = Descriptions.ClickablePointOnScreen;
-            this.Info.HowToFix = HowToFix.ClickablePointOnScreen;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ClickablePointOnScreenListViewWPF";
+            Info.Description = Descriptions.ClickablePointOnScreen;
+            Info.HowToFix = HowToFix.ClickablePointOnScreen;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ClickablePointOnScreenListViewWPF";
         }
 
         public override bool PassesTest(IA11yElement e)

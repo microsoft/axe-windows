@@ -6,7 +6,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -15,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewCalendarStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.CalendarStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.CalendarStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.CalendarStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.CalendarStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -5,7 +5,7 @@ namespace Axe.Windows.SystemAbstractions
 {
     internal class MicrosoftFactory : IMicrosoftFactory
     {
-        private readonly static IMicrosoftFactory MicrosoftFactoryInstance = new MicrosoftFactory();
+        private static readonly IMicrosoftFactory MicrosoftFactoryInstance = new MicrosoftFactory();
 
         private MicrosoftFactory()
         { }

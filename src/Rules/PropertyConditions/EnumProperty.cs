@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Rules.Resources;
@@ -17,9 +17,9 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (!typeof(T).IsEnum) throw new InvalidOperationException(ErrorMessages.ExpectedEnumType);
 
-            this.PropertyID = propertyID;
-            this.Exists = CreatePropertyExistsCondition<int>(propertyID);
-            this.DoesNotExist = ~Exists;
+            PropertyID = propertyID;
+            Exists = CreatePropertyExistsCondition<int>(propertyID);
+            DoesNotExist = ~Exists;
         }
 
         private T GetPropertyValue(IA11yElement e)
@@ -34,7 +34,7 @@ namespace Axe.Windows.Rules.PropertyConditions
              * on a rule which may not care about the given enum value at all.
              */
 
-            if (!e.TryGetPropertyValue(this.PropertyID, out int i)) return default(T);
+            if (!e.TryGetPropertyValue(PropertyID, out int i)) return default(T);
             if (!Enum.IsDefined(typeof(T), i)) return default(T);
 
             return (T)Enum.ToObject(typeof(T), i);

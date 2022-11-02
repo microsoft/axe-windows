@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
@@ -39,20 +39,20 @@ namespace Axe.Windows.Actions.Contexts
         /// <param name="element"></param>
         public ElementContext(A11yElement element)
         {
-            this.Element = element ?? throw new ArgumentNullException(nameof(element));
+            Element = element ?? throw new ArgumentNullException(nameof(element));
 
-            if (this.Element.PlatformObject == null)
+            if (Element.PlatformObject == null)
             {
-                this.SelectType = SelectType.Loaded;
-                this.ProcessName = "Unknown";
+                SelectType = SelectType.Loaded;
+                ProcessName = "Unknown";
             }
             else
             {
-                this.SelectType = SelectType.Live;
-                this.ProcessName = this.Element.GetProcessName();
+                SelectType = SelectType.Live;
+                ProcessName = Element.GetProcessName();
             }
 
-            this.Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         // Backing object for DataContext - is disposed via DataContext property
@@ -85,14 +85,14 @@ namespace Axe.Windows.Actions.Contexts
             {
                 if (disposing)
                 {
-                    this.ProcessName = null;
-                    if (this.DataContext != null)
+                    ProcessName = null;
+                    if (DataContext != null)
                     {
-                        this.DataContext = null;
+                        DataContext = null;
                     }
                     else
                     {
-                        this.Element.Dispose();
+                        Element.Dispose();
                     }
                 }
                 disposedValue = true;
