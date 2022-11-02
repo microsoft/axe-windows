@@ -141,10 +141,6 @@
     <value>Value cannot be null</value>
     <comment>Do not translate: the text of an internal error.</comment>
   </data>
-  <data name="ValueCannotBeEmptyOrWhiteSpace" xml:space="preserve">
-    <value>Value cannot be empty or white space</value>
-    <comment>Do not translate: the text of an internal error.</comment>
-  </data>
   <data name="PropertyValueTypeUnexpected" xml:space="preserve">
     <value>Expected property.Value, which is type {0}, to be type {1}</value>
     <comment>Do not translate: the text of an internal error. Developers: {0} is actual type, {1} is expected type</comment>
