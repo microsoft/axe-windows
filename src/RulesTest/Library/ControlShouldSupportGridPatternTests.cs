@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -39,7 +39,7 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void CheckPropertyIdIsSet()
         {
-            Assert.AreEqual(PropertyType.UIA_IsGridPatternAvailablePropertyId, this.Rule.Info.PropertyID);
+            Assert.AreEqual(PropertyType.UIA_IsGridPatternAvailablePropertyId, Rule.Info.PropertyID);
         }
     } // class
 } // namespace
