@@ -1,0 +1,2768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LCX SchemaVersion="6.0" Name="D:\a\_work\1\s\src\Rules\bin\Release\netstandard2.0\Axe.Windows.Rules.dll" PsrId="211" SrcCul="en-US" xmlns="http://schemas.microsoft.com/locstudio/2006/6/lcx" TgtCul="zh-CN">
+  <OwnedComments>
+    <Cmt Name="Dev" />
+    <Cmt Name="LcxAdmin" />
+    <Cmt Name="RCCX" />
+  </OwnedComments>
+  <Item ItemId=";Axe.Windows.Rules.Resources.ConditionDescriptions.resources" ItemType="0" PsrId="211" Leaf="false">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" Path=" \ ;Managed Resources \ 0 \ 0" />
+    <Item ItemId=";Strings" ItemType="0" PsrId="211" Leaf="false">
+      <Disp Icon="Str" Disp="true" LocTbl="false" />
+      <Item ItemId=";All" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[AllOf({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";AllChildren" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[AllChildren({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";And" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} and {1}]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Any" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[AnyOf({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";AnyChild" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[AnyChild({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleCompletelyObscuresContainer" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[BoundingRectangle completely obscures container]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The name of a condition used by the automated accessibility scanner. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ChildCount" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[CountChildren({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ChildrenExist" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[children exist]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ClickablePointOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ClickablePointOffScreen]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ClickablePointOnScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ClickablePointOnScreen]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";CustomLandmark" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[custom landmark]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";DescendantCount" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[DescendantCount({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ExactlyOne" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ExactlyOne({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";False" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[False]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";FormLandmark" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[form landmark]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HeadingLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[heading level]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HelpText" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[HelpText]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IncludesPrivateUnicodeCharacters" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0}.IncludesPrivateUnicodeCharacters]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IntPropertyNotSet" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[[IntProperty not set]5D;]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: an internal error message.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElement" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[IsContentElement]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElement" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[IsControlElement]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsDialog" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[IsDialog]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[LocalizedControlType]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[LocalizedLandmarkType]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";MainLandmark" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[main landmark]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";MatchesRegEx" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} matches regular expression "{1}"]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[A description of an accessibility property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";MatchesRegExWithOptions" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} matches regular expression "{1}" with options {2}]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[A description of an accessibility property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Name" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Name]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NativeWindowHandle" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[NativeWindowHandle]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NavigationLandmark" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[navigation landmark]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NewLine" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0}]D;]A;]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a whitespace character.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NoChild" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[NoChild({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NoChildrenExist" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[no children exist]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Not" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[not({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Or" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0} or {1}]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Orientation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Orientation]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the name of a UI Automation property.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Parentheses" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: delimiting round brackets.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SearchLandmark" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[search landmark]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SiblingCount" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[CountSiblings({0})]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";StringPropertyNotSet" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[[StringProperty not set]5D;]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: an internal error message.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";TreeItemChildrenExist" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[treeitem children exist ]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";True" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[True]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: a token used by the Axe.Windows domain-specific language for accessibility descriptions.]]></Cmt>
+        </Cmts>
+      </Item>
+    </Item>
+  </Item>
+  <Item ItemId=";Axe.Windows.Rules.Resources.Descriptions.resources" ItemType="0" PsrId="211" Leaf="false">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" Path=" \ ;Managed Resources \ 0 \ 0" />
+    <Item ItemId=";Strings" ItemType="0" PsrId="211" Leaf="false">
+      <Disp Icon="Str" Disp="true" LocTbl="false" />
+      <Item ItemId=";BoundingRectangleCompletelyObscuresContainer" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element's BoundingRectangle must not obscure its container element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleContainedInParent" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element's BoundingRectangle must be contained within its parent element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleDataFormatCorrect" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The BoundingRectangle property must return a valid rectangle.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleNotAllZeros" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The BoundingRectangle property must not be defined as [0,0,0,0]5D;]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An on-screen element must not have a null BoundingRectangle property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleNotValidButOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The BoundingRectangle property is not valid, but the element is off-screen.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleSizeReasonable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The BoundingRectangle property must represent an area of at least 25 pixels.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonInvokeAndExpandCollapsePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them. ]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Invoke" and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonInvokeAndTogglePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A button must not support both the Invoke and Toggle patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Invoke" and "Toggle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonShouldHavePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A button must support one of these patterns: Invoke, Toggle, or ExpandCollapse.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonToggleAndExpandCollapsePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A button must not support both the Toggle and ExpandCollapse patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Toggle" and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ClickablePointOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element's IsOffScreen property must be true when its clickable point is off-screen.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsOffScreen" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ClickablePointOnScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element's IsOffScreen property must be false when its clickable point is on-screen.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsOffScreen" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ComboBoxShouldNotSupportScrollPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportInvokePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must not support the Invoke pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Invoke" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportScrollPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must not support the Scroll pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Scroll" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportTogglePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must not support the Toggle pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Toggle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportValuePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given type should not support the Value pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Value" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportWindowPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given type should not support the Window pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Window" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportExpandCollapsePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the ExpandCollapse pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportGridItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element whose parent supports the Grid pattern must support the GridItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Grid" and "GridItem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportGridPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the Grid pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Grid" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportInvokePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the Invoke pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Invoke" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportScrollItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element whose parent supports the Scroll pattern must support the ScrollItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Scroll" and "ScrollItem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSelectionItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the SelectionItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "SelectionItem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSelectionPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the Selection pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Selection" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSetInfo" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The element's ControlType requires valid values for SizeOfSet and PositionInSet.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType", "SizeOfSet", and "PositionInSet" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSpreadsheetItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element whose parent supports the Spreadsheet pattern must support the SpreadsheetItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Spreadsheet" and "SpreadsheetItem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTableItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element whose parent supports the Table pattern must support the TableItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Table" and "TableItem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTablePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the Table pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Table" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTextPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the Text pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Table" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTogglePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must support the Toggle pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "Toggle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTransformPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element that can be resized must support the Transform pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Transform" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";EdgeBrowserHasBeenDeprecated" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The non-Chromium version of Microsoft Edge has been deprecated.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";EditSupportsIncorrectRangeValuePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The RangeValue pattern of an edit control must have a null LargeChange property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "RangeValue" and "LargeChange" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an application currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HeadingLevelDescendsWhenNested" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element's HeadingLevel must be greater than or equal to that of its ancestors.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HelpTextNotEqualToName" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The HelpText property of an element must not be the same as the element's Name property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "HelpText" and "Name" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HyperlinkNameShouldBeUnique" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Links with different purposes and destinations should have different names.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElementFalseOptional" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The given ControlType must have a non-null IsContentElement property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "IsContentElement" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElementTrueOptional" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The recommended value of the IsContentElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The given ControlType must have a non-null IsControlElement property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "IsControlElement" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElementTrueOptional" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The recommended value of the IsControlElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as a control. Note that almost all controls are required to have the IsControl Property set to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "IsControlElement" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableDescendantTextPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableFalseButDisabled" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "IsEnabled" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableFalseButOffscreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "IsOffscreen" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableForListItemShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableOnEmptyContainer" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by assistive technology users.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableTopLevelTextPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ItemStatusExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The ItemStatus property for the given element should exist.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "ItemStatus" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ItemTypeRecommended" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The ItemType property for the given element has no content, and the element has a child image. Please consider including an ItemType so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the ItemType may not be necessary.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkBannerIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element with LocalizedLandmarkType "banner" must not descend from another landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkComplementaryIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element with LocalizedLandmarkType "complementary" must not descend from another landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkContentInfoIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element with LocalizedLandmarkType "contentinfo" must not descend from another landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkMainIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element with LocalizedLandmarkType "main" must not descend from another landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkNoDuplicateBanner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A page must not have multiple elements with LocalizedLandmarkType "banner".]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkNoDuplicateContentInfo" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A page must not have multiple elements with LocalizedLandmarkType "contentinfo".]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ListItemSiblingsUnique" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property of sibling list items should be unique.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The ControlType and LocalizedControlType must not both be set to "custom."]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "LocalizedControlType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LocalizedControlType property must not be an empty string.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LocalizedControlType property must not be null.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LocalizedControlType property must not contain only white space.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeReasonable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LocalizedControlType should be reasonable based on the element's ControlTypeId.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "LocalizedControlType" and "ControlTypeId" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeIsReasonableLength" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LocalizedLandmarkType property must not be longer than 64 characters.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LandmarkType and LocalizedLandmarkType must not both be set to "custom".]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "LandmarkType" and "LocalizedLandmarkType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element with LandmarkType set must not have an empty LocalizedLandmarkType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "LandmarkType" and "LocalizedLandmarkType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element with LandmarkType set must not have a null LocalizedLandmarkType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "LandmarkType" and "LocalizedLandmarkType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The LocalizedLandmarkType property must not contain only white space.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedLandmarkType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameEmptyButElementNotKeyboardFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameExcludesControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property must not include the element's control type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameExcludesLocalizedControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name must not include the same text as the LocalizedControlType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Name" and "LocalizedControlType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property of an element should not contain class names like 'Microsoft.*.*' or 'Windows.*.*' as these are not usually informative.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNoSiblingsOfSameType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property of the given element may be null or empty if the element has no siblings of the same type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property of a focusable element must not be an empty string.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property of a focusable element must not be null.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNullButElementNotKeyboardFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property for the given element is null, but the element isn't focusable. Please consider whether or not the element should have a name.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameOnOptionalType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property for the given element type is optional.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameReasonableLength" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The Name property must not be longer than 512 characters.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameWithValidBoundingRectangle" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Name" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";OrientationPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Controls that can be horizontal or vertical must support the Orientation property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "Orientation" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ParentChildShouldNotHaveSameNameAndLocalizedControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element must not have the same Name and LocalizedControlType as its parent.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Name" and "LocalizedControlType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ProgressBarRangeValue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The RangeValue pattern of a progress bar must have specific Minimum, Maximum, and IsReadOnly values.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "RangeValue", "Minimum", "Maximum", and "IsReadOnly" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";PropertyExcludesPrivateUnicodeCharacters" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The {0} property must not contain any characters in the private Unicode range.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SelectionItemPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element whose parent supports single selection must not have selected siblings.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "ControlType" and "IsSelectionRequired" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SelectionPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[An element of the given ControlType must not support multiple selection.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "ControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SiblingUniqueAndFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Focusable sibling elements must not have the same Name and LocalizedControlType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SiblingUniqueAndNotFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The given element has siblings with the same Name and LocalizedControlType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SplitButtonInvokeAndTogglePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[A split button must support exactly one of the Invoke or Toggle patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection. The terms "Invoke" and "Toggle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Structure" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The given element is expected to have the following structure: {0}.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The description of an accessibility problem with an element currently under inspection.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SummaryFormat" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[ID:   {0}]D;]A;Description:    {1}]D;]A;HowToFix:    {2}]D;]A;Condition:  {3}]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[{0} is id, {1} is description, {2} is how to fix, and {3} is condition]]></Cmt>
+        </Cmts>
+      </Item>
+    </Item>
+  </Item>
+  <Item ItemId=";Axe.Windows.Rules.Resources.ErrorMessages.resources" ItemType="0" PsrId="211" Leaf="false">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" Path=" \ ;Managed Resources \ 0 \ 0" />
+    <Item ItemId=";Strings" ItemType="0" PsrId="211" Leaf="false">
+      <Disp Icon="Str" Disp="true" LocTbl="false" />
+      <Item ItemId=";ElementHelpTextNullOrWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The element's HelpText property must not be null or white space]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ElementLocalizedControlTypeNullOrWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The element's LocalizedControlType property must not be null or white space]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ElementNameNullOrWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The element's Name property must not be null or white space]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ElementParentNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The element's Parent property must not be null]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ExpectedEnumType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Expected T to be an enumeration type]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ExpectedValidAncestor" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Expected to find a valid ancestor element]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ExpectedValidConditionContext" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Expected Condition.Context to be valid]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IntParameterEqualsZero" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The given int parameter must not be zero]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IntParameterLessThanZero" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Int parameter must not be less than zero]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";MissingRuleInforAttribute" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[expected {0} to have the RuleInfo attribute set]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error. Developers: {0} is type name]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NoControlTypeEntryFound" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No control type entry was found in dictionary. Key value = {0}]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NoElementFound" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Based on the Rule.Condition match, there should have been at least one element found in the PassesTest method of {0}]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NoLocalizedControlTypeStringFound" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Could not find potential LocalizedControlType string(s) for the given control type]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NoRuleMatchingId" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[No rule matching the ID '{0}' was found.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error. Developers: {0} is rule id]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";RuleInfoAttributeExpected" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[All rules are expected to have the RuleInfo attribute with the ID property set.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";StringNullOrWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Expected the given string not to be null and not to be white space]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Do not translate: the text of an internal error.]]></Cmt>
+        </Cmts>
+      </Item>
+    </Item>
+  </Item>
+  <Item ItemId=";Axe.Windows.Rules.Resources.HowToFix.resources" ItemType="0" PsrId="211" Leaf="false">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" Path=" \ ;Managed Resources \ 0 \ 0" />
+    <Item ItemId=";Strings" ItemType="0" PsrId="211" Leaf="false">
+      <Disp Icon="Str" Disp="true" LocTbl="false" />
+      <Item ItemId=";BoundingRectangleCompletelyObscuresContainer" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify one or both bounding rectangles to ensure that the bounding rectangle of the container element is not completely obscured.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleContainedInParent" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify one or both bounding rectangles to ensure that the element's bounding rectangle is contained within the bounding rectangle of its parent.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleDataFormatCorrect" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Make sure the BoundingRectangle property returns data in the expected format:]D;]A; 1. Specify the rectangle as an array with a type of double and a size of 4.]D;]A; 2. Specify the rectangle's position and size (in pixels) by providing array values in the following order:]D;]A;    a. Top edge]D;]A;    b. Left edge]D;]A;    c. Width]D;]A;    d. Height]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleNotAllZeros" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Specify the rectangle's position and size (in pixels) by providing array values in the following order:]D;]A; 1. Top edge]D;]A; 2. Left edge]D;]A; 3. Width]D;]A; 4. Height]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "IsOffscreen" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleNotValidButOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Remove the BoundingRectangle property when the element is off-screen.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";BoundingRectangleSizeReasonable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the BoundingRectangle property so that its width and height define an area of at least 25 pixels.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonInvokeAndExpandCollapsePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonInvokeAndTogglePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonShouldHavePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonToggleAndExpandCollapsePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ClickablePointOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If the element's ClickablePoint property is correct, set the element's IsOffScreen property to true.]D;]A;If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ClickablePoint" and "IsOffscreen" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ClickablePointOnScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If the element's ClickablePoint property is correct, set the element's IsOffScreen property to false.]D;]A;If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ClickablePoint" and "IsOffscreen" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ComboBoxShouldNotSupportScrollPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the combo box to not support the Scroll pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Scroll" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportInvokePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Modify the element to support only its allowed patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportScrollPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Modify the element to support only its allowed patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportTogglePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Modify the element to support only its allowed patterns.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportValuePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the element to not support the Value pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Value" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldNotSupportWindowPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the element to not support the Window pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Window" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportExpandCollapsePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the ExpandCollapse pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportGridItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the element (or one of its children) to support the GridItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "GridItem" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportGridPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the Grid pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Grid" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportInvokePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the Invoke pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Invoke" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportScrollItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the element (or one of its children) to support the ScrollItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ScrollItem" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSelectionItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the SelectionItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "SelectionItem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSelectionPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the Selection pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Selection" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSetInfo" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide valid values for the SizeOfSet and PositionInSet properties.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "SizeOfSet" and "PositionInSet" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportSpreadsheetItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the element (or one of its children) to support the SpreadsheetItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "SpreadsheetItem" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTableItemPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the element (or one of its children) to support the TableItem pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "TableItem" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTablePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the Table pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Table" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTextPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the Text pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Text" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTogglePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. If the current ControlType is correct, modify the element to support the Toggle pattern.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Toggle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ControlShouldSupportTransformPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Transform" and "TransformPattern_CanResize" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";EdgeBrowserHasBeenDeprecated" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[The non-Chromium version of Edge has reached its end of life and should not be used for current product development. Please migrate your application to a supported browser.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";EditSupportsIncorrectRangeValuePattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Implement the edit control's RangeValue pattern with a null LargeChange property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "RangeValue" and "LargeChange" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Switch your application to a framework that supports UI Automation.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HeadingLevelDescendsWhenNested" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the heading levels and/or nesting structure of the element and/or its ancestors.]D;]A;For example, if an element has a level-5 heading, its descendants can have only level-5 or level-6 headings.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HelpTextNotEqualToName" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Write meaningful text for the element's UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as "type here to search".]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "HelpText" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HyperlinkNameShouldBeUnique" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If the sibling hyperlink with the same Name navigates to a different destination, change the Name of either hyperlink.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElementFalseOptional" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsContentElement UI Automation property to false.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsContentElementTrueOptional" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsContentElement UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElementTrueOptional" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsControlElement UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableDescendantTextPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsKeyboardFocusable property to be false.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableFalseButDisabled" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableFalseButOffscreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableForListItemShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Make this element focusable instead of its children.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableOnEmptyContainer" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";IsKeyboardFocusableTopLevelTextPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to true.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ItemStatusExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Add a meaningful ItemStatus UI Automation property to this element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ItemStatus" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ItemTypeRecommended" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[If necessary, set the ItemType UI Automation property for this element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ItemType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkBannerIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the banner element so it does not descend from any other landmark.]D;]A;      Exception: If a page has nested document or application roles, each nested document or application may have one banner landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkComplementaryIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the complementary landmark so it does not descend from any other landmark.]D;]A;      Exception: If a page has nested document or application roles, each nested document or application may have one complementary landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkContentInfoIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the contentinfo landmark so it does not descend from any other landmark.]D;]A;      Exception: If a page has nested document or application roles, each nested document or application may have one contentinfo landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkMainIsTopLevel" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the main landmark so it does not descend from any other landmark.]D;]A;      Exception: If a page has nested document or application roles, each nested document or application may have one main landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkNoDuplicateBanner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Use the banner landmark only once per page.]D;]A;      Exception: If a page has nested document or application roles, each nested document or application may have a banner landmark.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LandmarkNoDuplicateContentInfo" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Use the contentinfo landmark only once per page.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ListItemSiblingsUnique" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide unique names for sibling list items.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotCustomWPFGridCell" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[{0}]D;]A;    ]D;]A;If your application targets a version of .NET Framework before 4.7.1, but is running on a system where .NET version 4.7.1 or higher is installed, you may be able to address this issue by taking advantage of accessibility enhancements in .NET 4.7.1. To do this, you will need to enable accessibility switches as described on the following page: https://docs.microsoft.com/en-us/dotnet/framework/whats-new/whats-new-in-accessibility#accessibility-switches]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. If you know it, replace en-us in the URL with the IETF language code of the target language (es-es for Spanish, de-de for German, etc.), but otherwise do not localize the URL.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a string for the LocalizedControlType property that concisely describes the control's type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a string for the LocalizedControlType property that concisely describes the control's type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a string for the LocalizedControlType property that concisely describes the control's type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedControlTypeReasonable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set a meaningful LocalizedControlType UI Automation property for this element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeIsReasonableLength" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that contains at most 64 characters.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; · Use "navigation" for an area containing links for page or site navigation.]D;]A; · Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a LocalizedLandmarkType property for the element.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; · Use "navigation" for an area containing links for page or site navigation.]D;]A; · Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";LocalizedLandmarkTypeNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; · Use "navigation" for an area containing links for page or site navigation.]D;]A; · Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameEmptyButElementNotKeyboardFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the UI Automation Name property for the given element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameExcludesControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the control type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameExcludesLocalizedControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the same text as the element's LocalizedControlType property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "name" and "LocalizedControlType" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNoSiblingsOfSameType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property that concisely identifies the element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property that concisely identifies the element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property that concisely identifies the element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameNullButElementNotKeyboardFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the UI Automation Name property for the given element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the UI Automation Name property of this custom control to be empty.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameOnOptionalType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Remove the UI Automation Name property for this element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameReasonableLength" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Contains at most 512 characters.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";NameWithValidBoundingRectangle" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Name" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";OrientationPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide an Orientation property for the element.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Orientation" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ParentChildShouldNotHaveSameNameAndLocalizedControlType" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide unique names for controls that have a parent/child relationship and the same ControlType property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ProgressBarRangeValue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "RangeValue", "Minimum", "Maximum", and "IsReadOnly" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";PropertyExcludesPrivateUnicodeCharacters" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the {0} property, removing all characters in the range U+E000 to U+F8FF and replace them with meaningful, standard text content.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SelectionItemPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "CanSelectMultiple" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "IsSelectionRequired" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SelectionPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "ControlType", "Selection", and "CanSelectMultiple" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SiblingUniqueAndFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Provide unique names for sibling controls that have the same ControlType property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SiblingUniqueAndNotFocusable" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Verify that each element has a meaningful UI Automation Name property.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SplitButtonInvokeAndTogglePatterns" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Modify the split button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. The terms "Invoke" and "Toggle" should not be translated (i.e. they should be treated as loanwords).]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Structure" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Set the element to conform to the following structure: {0}.]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[Brief guidance on how to fix an accessibility problem. Developers: {0} is the element structure.]]></Cmt>
+        </Cmts>
+      </Item>
+    </Item>
+  </Item>
+  <Item ItemId=";Axe.Windows.Rules.Resources.LocalizedControlTypeNames.resources" ItemType="0" PsrId="211" Leaf="false">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" Path=" \ ;Managed Resources \ 0 \ 0" />
+    <Item ItemId=";Strings" ItemType="0" PsrId="211" Leaf="false">
+      <Disp Icon="Str" Disp="true" LocTbl="false" />
+      <Item ItemId=";AppBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[app bar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Button" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[button]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Calendar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[calendar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";CheckBox" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[check box]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ComboBox" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[combo box]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Custom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[custom]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";DataGrid" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[data grid,datagrid]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";DataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[data item]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Document" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[document]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Edit" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[edit]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Group" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[group]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Header" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[header]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";HeaderItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[header item]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Hyperlink" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[hyperlink,link]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Image" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[image]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";List" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[list,list view]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ListItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[list item]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Menu" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[menu]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";MenuBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[menu bar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";MenuItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[menu item]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Pane" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[pane]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ProgressBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[progress bar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";RadioButton" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[radio button]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ScrollBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[scroll bar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SemanticZoom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[semantic zoom,semanticzoom]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Separator" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[separator]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Slider" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[slider]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Spinner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[spinner]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";SplitButton" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[split button]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";StatusBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[status bar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Tab" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[tab]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";TabItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[tab item]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Table" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[table]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Text" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[text]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Thumb" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[thumb]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";TitleBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[title bar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ToolBar" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[toolbar]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";ToolTip" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[tooltip]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Tree" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[tree]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";TreeItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[tree item]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+      <Item ItemId=";Window" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[window]]></Val>
+        </Str>
+        <Disp Icon="Str" />
+        <Cmts>
+          <Cmt Name="RCCX"><![CDATA[The localized type (role) of a UI Automation control, as provided by the system. If you know it, the localized name used by the UI Automation accessibility framework in the target language should be used.]]></Cmt>
+        </Cmts>
+      </Item>
+    </Item>
+  </Item>
+  <Item ItemId=";Managed Resources" ItemType="0" PsrId="211" Leaf="true">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" />
+  </Item>
+  <Item ItemId=";Version" ItemType="0" PsrId="211" Leaf="false">
+    <Disp Icon="Ver" Disp="true" LocTbl="false" Path=" \ ;Version \ 8 \ 0" />
+    <Item ItemId=";FileDescription" ItemType="0" PsrId="211" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Axe.Windows.Rules]]></Val>
+      </Str>
+      <Disp Icon="Str" />
+    </Item>
+    <Item ItemId=";InternalName" ItemType="0" PsrId="211" Leaf="true">
+      <Str Cat="Text" DevLk="true">
+        <Val><![CDATA[Axe.Windows.Rules.dll]]></Val>
+      </Str>
+      <Disp Icon="Str" />
+    </Item>
+    <Item ItemId=";LegalCopyright" ItemType="0" PsrId="211" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Copyright © 2020]]></Val>
+      </Str>
+      <Disp Icon="Str" />
+    </Item>
+    <Item ItemId=";OriginalFilename" ItemType="0" PsrId="211" Leaf="true">
+      <Str Cat="Text" DevLk="true">
+        <Val><![CDATA[Axe.Windows.Rules.dll]]></Val>
+      </Str>
+      <Disp Icon="Str" />
+    </Item>
+    <Item ItemId=";ProductName" ItemType="0" PsrId="211" Leaf="true">
+      <Str Cat="Text">
+        <Val><![CDATA[Axe.Windows.Rules]]></Val>
+      </Str>
+      <Disp Icon="Str" />
+    </Item>
+  </Item>
+  <Item ItemId=";Version" ItemType="8" PsrId="211" Leaf="true">
+    <Disp Icon="Expand" Expand="true" Disp="true" LocTbl="false" />
+  </Item>
+</LCX>
