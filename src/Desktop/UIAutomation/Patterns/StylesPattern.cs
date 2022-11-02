@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -24,13 +24,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "ExtendedProperties", Value = this.Pattern.CurrentExtendedProperties });
-            this.Properties.Add(new A11yPatternProperty() { Name = "FillColor ", Value = this.Pattern.CurrentFillColor });
-            this.Properties.Add(new A11yPatternProperty() { Name = "FillPatternColor ", Value = this.Pattern.CurrentFillPatternColor });
-            this.Properties.Add(new A11yPatternProperty() { Name = "FillPatternStyle ", Value = this.Pattern.CurrentFillPatternStyle });
-            this.Properties.Add(new A11yPatternProperty() { Name = "Shape ", Value = this.Pattern.CurrentShape });
-            this.Properties.Add(new A11yPatternProperty() { Name = "StyleId ", Value = this.Pattern.CurrentStyleId });
-            this.Properties.Add(new A11yPatternProperty() { Name = "StyleName ", Value = this.Pattern.CurrentStyleName });
+            Properties.Add(new A11yPatternProperty() { Name = "ExtendedProperties", Value = Pattern.CurrentExtendedProperties });
+            Properties.Add(new A11yPatternProperty() { Name = "FillColor ", Value = Pattern.CurrentFillColor });
+            Properties.Add(new A11yPatternProperty() { Name = "FillPatternColor ", Value = Pattern.CurrentFillPatternColor });
+            Properties.Add(new A11yPatternProperty() { Name = "FillPatternStyle ", Value = Pattern.CurrentFillPatternStyle });
+            Properties.Add(new A11yPatternProperty() { Name = "Shape ", Value = Pattern.CurrentShape });
+            Properties.Add(new A11yPatternProperty() { Name = "StyleId ", Value = Pattern.CurrentStyleId });
+            Properties.Add(new A11yPatternProperty() { Name = "StyleName ", Value = Pattern.CurrentStyleName });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -39,7 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

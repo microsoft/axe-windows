@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Desktop.Utility;
@@ -30,49 +30,49 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         public TextRange(IUIAutomationTextRange tr, TextPattern tp)
         {
             UIATextRange = tr;
-            this.TextPattern = tp;
+            TextPattern = tp;
         }
 
         [PatternMethod]
         public void Select()
         {
-            this.UIATextRange.Select();
+            UIATextRange.Select();
         }
 
         [PatternMethod]
         public void AddToSelection()
         {
-            this.UIATextRange.AddToSelection();
+            UIATextRange.AddToSelection();
         }
 
         [PatternMethod]
         public void RemoveFromSelection()
         {
-            this.UIATextRange.RemoveFromSelection();
+            UIATextRange.RemoveFromSelection();
         }
 
         [PatternMethod]
         public void ScrollIntoView(bool alignToTop)
         {
-            this.UIATextRange.ScrollIntoView(alignToTop ? 1 : 0);
+            UIATextRange.ScrollIntoView(alignToTop ? 1 : 0);
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetChildren()
         {
-            return this.UIATextRange.GetChildren()?.ToListOfDesktopElements();
+            return UIATextRange.GetChildren()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public DesktopElement GetEnclosingElement()
         {
-            return new DesktopElement(this.UIATextRange.GetEnclosingElement());
+            return new DesktopElement(UIATextRange.GetEnclosingElement());
         }
 
         [PatternMethod]
         public int Move(TextUnit unit, int count)
         {
-            return this.UIATextRange.Move(unit, count);
+            return UIATextRange.Move(unit, count);
         }
 
         [PatternMethod]
@@ -80,25 +80,25 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (tr == null) throw new ArgumentNullException(nameof(tr));
 
-            this.UIATextRange.MoveEndpointByRange(srcEndPoint, tr.UIATextRange, targetEndPoint);
+            UIATextRange.MoveEndpointByRange(srcEndPoint, tr.UIATextRange, targetEndPoint);
         }
 
         [PatternMethod]
         public int MoveEndpointByUnit(TextPatternRangeEndpoint endpoint, TextUnit unit, int count)
         {
-            return this.UIATextRange.MoveEndpointByUnit(endpoint, unit, count);
+            return UIATextRange.MoveEndpointByUnit(endpoint, unit, count);
         }
 
         [PatternMethod]
         public void ExpandToEnclosingUnit(TextUnit tu)
         {
-            this.UIATextRange.ExpandToEnclosingUnit(tu);
+            UIATextRange.ExpandToEnclosingUnit(tu);
         }
 
         [PatternMethod]
         public TextRange Clone()
         {
-            return new TextRange(this.UIATextRange.Clone(), this.TextPattern);
+            return new TextRange(UIATextRange.Clone(), TextPattern);
         }
 
         [PatternMethod]
@@ -106,7 +106,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (tr == null) throw new ArgumentNullException(nameof(tr));
 
-            return Convert.ToBoolean(this.UIATextRange.Compare(tr.UIATextRange));
+            return Convert.ToBoolean(UIATextRange.Compare(tr.UIATextRange));
         }
 
         [PatternMethod]
@@ -114,21 +114,21 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (tr == null) throw new ArgumentNullException(nameof(tr));
 
-            return this.UIATextRange.CompareEndpoints(srcEndPoint, tr.UIATextRange, targetEndPoint);
+            return UIATextRange.CompareEndpoints(srcEndPoint, tr.UIATextRange, targetEndPoint);
         }
 
         [PatternMethod]
         public TextRange FindAttribute(int attr, object val, bool backward)
         {
-            var uiatr = this.UIATextRange.FindAttribute(attr, val, backward ? 1 : 0);
-            return uiatr != null ? new TextRange(uiatr, this.TextPattern) : null;
+            var uiatr = UIATextRange.FindAttribute(attr, val, backward ? 1 : 0);
+            return uiatr != null ? new TextRange(uiatr, TextPattern) : null;
         }
 
         [PatternMethod]
         public TextRange FindText(string text, bool backward, bool ignoreCase)
         {
-            var uiatr = this.UIATextRange.FindText(text, backward ? 1 : 0, ignoreCase ? 1 : 0);
-            return uiatr != null ? new TextRange(uiatr, this.TextPattern) : null;
+            var uiatr = UIATextRange.FindText(text, backward ? 1 : 0, ignoreCase ? 1 : 0);
+            return uiatr != null ? new TextRange(uiatr, TextPattern) : null;
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             try
             {
-                return this.UIATextRange.GetAttributeValue(attr);
+                return UIATextRange.GetAttributeValue(attr);
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception e)
@@ -159,7 +159,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             List<Rectangle> list = new List<Rectangle>();
 
-            var arr = this.UIATextRange.GetBoundingRectangles();
+            var arr = UIATextRange.GetBoundingRectangles();
             for (int i = 0; i < arr.Length; i += 4)
             {
                 list.Add(new Rectangle(Convert.ToInt32((double)arr.GetValue(i)), Convert.ToInt32((double)arr.GetValue(i + 1)), Convert.ToInt32((double)arr.GetValue(i + 2)), Convert.ToInt32((double)arr.GetValue(i + 3))));
@@ -171,7 +171,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public string GetText(int max)
         {
-            return this.UIATextRange.GetText(max);
+            return UIATextRange.GetText(max);
         }
 
         #region IDisposable Support
@@ -181,7 +181,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (!disposedValue)
             {
-                if (this.UIATextRange != null)
+                if (UIATextRange != null)
                 {
                     Marshal.ReleaseComObject(UIATextRange);
                     UIATextRange = null;

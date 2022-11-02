@@ -11,9 +11,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public Pixel(Color color, int row, int column)
         {
-            this.Row = row;
-            this.Column = column;
-            this.Color = color;
+            Row = row;
+            Column = column;
+            Color = color;
         }
     }
 }

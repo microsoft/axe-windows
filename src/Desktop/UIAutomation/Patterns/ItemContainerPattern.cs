@@ -26,7 +26,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         public DesktopElement FindItemByProperty(int propertyId, object value)
         {
             // null specifies finding the first matching item
-            return new DesktopElement(this.Pattern.FindItemByProperty(null, propertyId, value));
+            return new DesktopElement(Pattern.FindItemByProperty(null, propertyId, value));
         }
 
         protected override void Dispose(bool disposing)
@@ -34,7 +34,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

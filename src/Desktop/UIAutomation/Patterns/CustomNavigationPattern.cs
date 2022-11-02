@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -19,7 +19,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         public CustomNavigationPattern(A11yElement e, IUIAutomationCustomNavigationPattern p) : base(e, PatternType.UIA_CustomNavigationPatternId)
         {
-            this.Pattern = p;
+            Pattern = p;
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod(IsUIAction = true)]
         public void Navigate(NavigateDirection direction)
         {
-            this.Pattern.Navigate(direction);
+            Pattern.Navigate(direction);
         }
 
         protected override void Dispose(bool disposing)
@@ -37,7 +37,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

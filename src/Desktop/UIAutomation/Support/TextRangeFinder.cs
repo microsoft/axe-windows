@@ -20,42 +20,42 @@ namespace Axe.Windows.Desktop.UIAutomation.Support
         /// <param name="range">Original range</param>
         public TextRangeFinder(TextRange range)
         {
-            this.OriginalRange = range;
+            OriginalRange = range;
         }
 
         public TextRange Find(int id, dynamic value, bool backward)
         {
             using (var range = GetRangeForFind(backward))
             {
-                this.FoundRange = range.FindAttribute(id, value, backward);
+                FoundRange = range.FindAttribute(id, value, backward);
             } // using
 
-            return this.FoundRange;
+            return FoundRange;
         }
 
         public TextRange FindText(string value, bool backward, bool ignorecase)
         {
             using (var range = GetRangeForFind(backward))
             {
-                this.FoundRange = range.FindText(value, backward, ignorecase);
+                FoundRange = range.FindText(value, backward, ignorecase);
             } // using
 
-            return this.FoundRange;
+            return FoundRange;
         }
 
         private TextRange GetRangeForFind(bool backward)
         {
-            var range = this.OriginalRange.Clone();
+            var range = OriginalRange.Clone();
 
-            if (this.FoundRange != null)
+            if (FoundRange != null)
             {
                 if (backward == true)
                 {
-                    range.MoveEndpointByRange(UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_End, this.FoundRange, UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_Start);
+                    range.MoveEndpointByRange(UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_End, FoundRange, UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_Start);
                 }
                 else
                 {
-                    range.MoveEndpointByRange(UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_Start, this.FoundRange, UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_End);
+                    range.MoveEndpointByRange(UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_Start, FoundRange, UIAutomationClient.TextPatternRangeEndpoint.TextPatternRangeEndpoint_End);
                 }
             }
 

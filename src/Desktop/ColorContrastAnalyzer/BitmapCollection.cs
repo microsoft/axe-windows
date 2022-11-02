@@ -5,27 +5,27 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public class BitmapCollection : ImageCollection
     {
-        private readonly System.Drawing.Bitmap bitmap;
+        private readonly System.Drawing.Bitmap _bitmap;
 
         public BitmapCollection(System.Drawing.Bitmap bitmap, IColorContrastConfig colorContrastConfig)
             : base(colorContrastConfig)
         {
-            this.bitmap = bitmap;
+            _bitmap = bitmap;
         }
 
         public override int NumColumns()
         {
-            return bitmap.Width;
+            return _bitmap.Width;
         }
 
         public override int NumRows()
         {
-            return bitmap.Height;
+            return _bitmap.Height;
         }
 
         public override Color GetColor(int row, int column)
         {
-            System.Drawing.Color color = bitmap.GetPixel(column, row);
+            System.Drawing.Color color = _bitmap.GetPixel(column, row);
 
             return new Color(color);
         }

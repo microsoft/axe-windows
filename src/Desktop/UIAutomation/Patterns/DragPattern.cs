@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -31,7 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             Pattern = p;
 
             // though member method is not action specific, this pattern means for UI action.
-            this.IsUIActionable = true;
+            IsUIActionable = true;
 
             PopulateProperties();
         }
@@ -39,9 +39,9 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "DropEffect", Value = this.Pattern.CurrentDropEffect });
-            this.Properties.Add(new A11yPatternProperty() { Name = "DropEffects", Value = GetDropEffectsString(this.Pattern.CurrentDropEffects) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsGrabbed", Value = Convert.ToBoolean(this.Pattern.CurrentIsGrabbed) });
+            Properties.Add(new A11yPatternProperty() { Name = "DropEffect", Value = Pattern.CurrentDropEffect });
+            Properties.Add(new A11yPatternProperty() { Name = "DropEffects", Value = GetDropEffectsString(Pattern.CurrentDropEffects) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsGrabbed", Value = Convert.ToBoolean(Pattern.CurrentIsGrabbed) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -66,7 +66,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public IList<DesktopElement> GetGrabbedItems()
         {
-            return this.Pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();
+            return Pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();
         }
 
         protected override void Dispose(bool disposing)
@@ -74,7 +74,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

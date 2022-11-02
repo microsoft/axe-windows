@@ -77,13 +77,13 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         private void ProcessMessageQueue()
         {
-            this.UIAutomation = new CUIAutomation();
+            UIAutomation = new CUIAutomation();
 
             // CUIAutomation8 was introduced in Windows 8, so don't try it on Windows 7.
             // Reference: https://msdn.microsoft.com/en-us/library/windows/desktop/hh448746(v=vs.85).aspx?f=255&MSPPError=-2147217396
             if (!Win32Helper.IsWindows7())
             {
-                this.UIAutomation8 = new CUIAutomation8();
+                UIAutomation8 = new CUIAutomation8();
             }
 
             _autoEventInit.Set();
@@ -186,12 +186,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             HandleUIAutomationEventMessage listener = null;
             try
             {
-                foreach (var e in this.EventListeners.Values)
+                foreach (var e in EventListeners.Values)
                 {
                     listener = e.ListenEventMessage;
                     e.Dispose();
                 }
-                this.EventListeners.Clear();
+                EventListeners.Clear();
                 if (listener != null)
                 {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
@@ -229,67 +229,67 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 switch (msgData.EventId)
                 {
                     case EventType.UIA_AutomationFocusChangedEventId:
-                        if (this.EventListenerFocusChanged != null)
+                        if (EventListenerFocusChanged != null)
                         {
-                            listener = this.EventListenerFocusChanged.ListenEventMessage;
-                            this.EventListenerFocusChanged.Dispose();
-                            this.EventListenerFocusChanged = null;
+                            listener = EventListenerFocusChanged.ListenEventMessage;
+                            EventListenerFocusChanged.Dispose();
+                            EventListenerFocusChanged = null;
                         }
                         break;
                     case EventType.UIA_StructureChangedEventId:
-                        if (this.EventListenerStructureChanged != null)
+                        if (EventListenerStructureChanged != null)
                         {
-                            listener = this.EventListenerStructureChanged.ListenEventMessage;
-                            this.EventListenerStructureChanged.Dispose();
-                            this.EventListenerStructureChanged = null;
+                            listener = EventListenerStructureChanged.ListenEventMessage;
+                            EventListenerStructureChanged.Dispose();
+                            EventListenerStructureChanged = null;
                         }
                         break;
                     case EventType.UIA_AutomationPropertyChangedEventId:
-                        if (this.EventListenerPropertyChanged != null)
+                        if (EventListenerPropertyChanged != null)
                         {
-                            listener = this.EventListenerPropertyChanged.ListenEventMessage;
-                            this.EventListenerPropertyChanged.Dispose();
-                            this.EventListenerPropertyChanged = null;
+                            listener = EventListenerPropertyChanged.ListenEventMessage;
+                            EventListenerPropertyChanged.Dispose();
+                            EventListenerPropertyChanged = null;
                         }
                         break;
                     case EventType.UIA_TextEdit_TextChangedEventId:
-                        if (this.EventListenerTextEditTextChanged != null)
+                        if (EventListenerTextEditTextChanged != null)
                         {
-                            listener = this.EventListenerTextEditTextChanged.ListenEventMessage;
-                            this.EventListenerTextEditTextChanged.Dispose();
-                            this.EventListenerTextEditTextChanged = null;
+                            listener = EventListenerTextEditTextChanged.ListenEventMessage;
+                            EventListenerTextEditTextChanged.Dispose();
+                            EventListenerTextEditTextChanged = null;
                         }
                         break;
                     case EventType.UIA_ChangesEventId:
-                        if (this.EventListenerChanges != null)
+                        if (EventListenerChanges != null)
                         {
-                            listener = this.EventListenerChanges.ListenEventMessage;
-                            this.EventListenerChanges.Dispose();
-                            this.EventListenerChanges = null;
+                            listener = EventListenerChanges.ListenEventMessage;
+                            EventListenerChanges.Dispose();
+                            EventListenerChanges = null;
                         }
                         break;
                     case EventType.UIA_NotificationEventId:
-                        if (this.EventListenerNotification != null)
+                        if (EventListenerNotification != null)
                         {
-                            listener = this.EventListenerNotification.ListenEventMessage;
-                            this.EventListenerNotification.Dispose();
-                            this.EventListenerNotification = null;
+                            listener = EventListenerNotification.ListenEventMessage;
+                            EventListenerNotification.Dispose();
+                            EventListenerNotification = null;
                         }
                         break;
                     case EventType.UIA_ActiveTextPositionChangedEventId:
-                        if (this.EventListenerActiveTextPositionChanged != null)
+                        if (EventListenerActiveTextPositionChanged != null)
                         {
-                            listener = this.EventListenerActiveTextPositionChanged.ListenEventMessage;
-                            this.EventListenerActiveTextPositionChanged.Dispose();
-                            this.EventListenerActiveTextPositionChanged = null;
+                            listener = EventListenerActiveTextPositionChanged.ListenEventMessage;
+                            EventListenerActiveTextPositionChanged.Dispose();
+                            EventListenerActiveTextPositionChanged = null;
                         }
                         break;
                     default:
-                        if (this.EventListeners.ContainsKey(msgData.EventId))
+                        if (EventListeners.ContainsKey(msgData.EventId))
                         {
-                            var l = this.EventListeners[msgData.EventId];
+                            var l = EventListeners[msgData.EventId];
                             listener = l.ListenEventMessage;
-                            this.EventListeners.Remove(msgData.EventId);
+                            EventListeners.Remove(msgData.EventId);
                             l.Dispose();
                         }
                         break;
@@ -349,42 +349,42 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 switch (msgData.EventId)
                 {
                     case EventType.UIA_AutomationFocusChangedEventId:
-                        if (this.EventListenerFocusChanged == null)
+                        if (EventListenerFocusChanged == null)
                         {
                             var uia = (IUIAutomation)UIAutomation8 ?? UIAutomation;
-                            this.EventListenerFocusChanged = new FocusChangedEventListener(uia, msgData.Listener);
+                            EventListenerFocusChanged = new FocusChangedEventListener(uia, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_StructureChangedEventId:
-                        if (this.EventListenerStructureChanged == null)
+                        if (EventListenerStructureChanged == null)
                         {
-                            this.EventListenerStructureChanged = new StructureChangedEventListener(this.UIAutomation, this.RootElement.PlatformObject, this.Scope, msgData.Listener);
+                            EventListenerStructureChanged = new StructureChangedEventListener(UIAutomation, RootElement.PlatformObject, Scope, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_AutomationPropertyChangedEventId:
-                        if (this.EventListenerPropertyChanged == null)
+                        if (EventListenerPropertyChanged == null)
                         {
-                            this.EventListenerPropertyChanged = new PropertyChangedEventListener(this.UIAutomation, this.RootElement.PlatformObject, this.Scope, msgData.Listener, msgData.Properties);
+                            EventListenerPropertyChanged = new PropertyChangedEventListener(UIAutomation, RootElement.PlatformObject, Scope, msgData.Listener, msgData.Properties);
                         }
                         break;
                     case EventType.UIA_TextEdit_TextChangedEventId:
-                        if (this.EventListenerTextEditTextChanged == null)
+                        if (EventListenerTextEditTextChanged == null)
                         {
-                            this.EventListenerTextEditTextChanged = new TextEditTextChangedEventListener(this.UIAutomation8, this.RootElement.PlatformObject, this.Scope, msgData.Listener);
+                            EventListenerTextEditTextChanged = new TextEditTextChangedEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_ChangesEventId:
-                        if (this.EventListenerChanges == null)
+                        if (EventListenerChanges == null)
                         {
-                            this.EventListenerChanges = new ChangesEventListener(this.UIAutomation8, this.RootElement.PlatformObject, this.Scope, msgData.Listener);
+                            EventListenerChanges = new ChangesEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_NotificationEventId:
                         if (win32Helper.IsWindowsRS3OrLater())
                         {
-                            if (this.EventListenerNotification == null)
+                            if (EventListenerNotification == null)
                             {
-                                this.EventListenerNotification = new NotificationEventListener(this.UIAutomation8, this.RootElement.PlatformObject, this.Scope, msgData.Listener);
+                                EventListenerNotification = new NotificationEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
                             }
                         }
                         else
@@ -406,9 +406,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     case EventType.UIA_ActiveTextPositionChangedEventId:
                         if (win32Helper.IsWindowsRS5OrLater())
                         {
-                            if (this.EventListenerNotification == null)
+                            if (EventListenerNotification == null)
                             {
-                                this.EventListenerActiveTextPositionChanged = new ActiveTextPositionChangedEventListener(this.UIAutomation8, this.RootElement.PlatformObject, this.Scope, msgData.Listener);
+                                EventListenerActiveTextPositionChanged = new ActiveTextPositionChangedEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
                             }
                         }
                         else
@@ -428,9 +428,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                         break;
                     default:
-                        if (this.EventListeners.ContainsKey(msgData.EventId) == false)
+                        if (EventListeners.ContainsKey(msgData.EventId) == false)
                         {
-                            this.EventListeners.Add(msgData.EventId, new EventListener(this.UIAutomation, this.RootElement.PlatformObject, this.Scope, msgData.EventId, msgData.Listener));
+                            EventListeners.Add(msgData.EventId, new EventListener(UIAutomation, RootElement.PlatformObject, Scope, msgData.EventId, msgData.Listener));
                         }
                         break;
                 }
@@ -448,7 +448,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 msgData.Listener(m);
                 if (msgData.EventId == EventType.UIA_AutomationFocusChangedEventId)
                 {
-                    this.EventListenerFocusChanged.ReadyToListen = true;
+                    EventListenerFocusChanged.ReadyToListen = true;
                 }
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -482,11 +482,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 #pragma warning restore CA2000
 
             _autoEventFinish.WaitOne(TimeSpan.FromSeconds(ThreadExitGracePeriod));
-            if (this._threadBackground.IsAlive)
+            if (_threadBackground.IsAlive)
             {
                 try
                 {
-                    this._threadBackground.Abort();
+                    _threadBackground.Abort();
                 }
                 catch (PlatformNotSupportedException)
                 { }  // nothing we can do. Just continue
@@ -520,9 +520,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <param name="scope"></param>
         public EventListenerFactory(A11yElement rootElement, ListenScope scope)
         {
-            this.RootElement = rootElement;
-            this.Scope = GetUIAScope(scope);
-            this.EventListeners = new Dictionary<int, EventListener>();
+            RootElement = rootElement;
+            Scope = GetUIAScope(scope);
+            EventListeners = new Dictionary<int, EventListener>();
             //Start worker thread
             StartWorkerThread();
         }
@@ -677,7 +677,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public EventListenerFactoryMessage()
         {
-            this._autoEventProcessed = new AutoResetEvent(false);
+            _autoEventProcessed = new AutoResetEvent(false);
         }
 
         /// <summary>
@@ -687,7 +687,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <param name="milliseconds"></param>
         public void WaitForProcessed(int milliseconds)
         {
-            this._autoEventProcessed.WaitOne(milliseconds);
+            _autoEventProcessed.WaitOne(milliseconds);
         }
 
         /// <summary>
@@ -695,7 +695,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         internal void Processed()
         {
-            this._autoEventProcessed.Set();
+            _autoEventProcessed.Set();
         }
 
         #region IDisposable Support
@@ -707,8 +707,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    this._autoEventProcessed.Dispose();
-                    this._autoEventProcessed = null;
+                    _autoEventProcessed.Dispose();
+                    _autoEventProcessed = null;
                 }
 
                 disposedValue = true;

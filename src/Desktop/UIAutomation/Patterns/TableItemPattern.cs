@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -25,13 +25,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public IList<DesktopElement> GetColumnHeaderItems()
         {
-            return this.Pattern.GetCurrentColumnHeaderItems()?.ToListOfDesktopElements();
+            return Pattern.GetCurrentColumnHeaderItems()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetRowHeaderItems()
         {
-            return this.Pattern.GetCurrentRowHeaderItems()?.ToListOfDesktopElements();
+            return Pattern.GetCurrentRowHeaderItems()?.ToListOfDesktopElements();
         }
 
         protected override void Dispose(bool disposing)
@@ -39,7 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);
