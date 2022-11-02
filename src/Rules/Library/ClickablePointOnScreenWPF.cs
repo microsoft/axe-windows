@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -21,7 +21,7 @@ namespace Axe.Windows.Rules.Library
             Info.Standard = A11yCriteriaId.ObjectInformation;
             Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
             Info.ErrorCode = EvaluationCode.Error;
-            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ClickablePointOnScreenListViewWPF";
+            Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214600";
         }
 
         public override bool PassesTest(IA11yElement e)
