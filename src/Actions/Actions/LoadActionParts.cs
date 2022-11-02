@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -41,10 +41,10 @@ namespace Axe.Windows.Actions
         /// <param name="settings">Metadata about the snapshot</param>
         public LoadActionParts(A11yElement el, Bitmap bmp, Bitmap synthesizedBmp, SnapshotMetaInfo settings)
         {
-            this.Element = el;
-            this.Bmp = bmp;
-            this.SynthesizedBmp = synthesizedBmp;
-            this.MetaInfo = settings;
+            Element = el;
+            Bmp = bmp;
+            SynthesizedBmp = synthesizedBmp;
+            MetaInfo = settings;
         }
     }
 }
