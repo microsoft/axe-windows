@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportInvokePattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportInvokePattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportInvokePattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportInvokePattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportInvokePattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

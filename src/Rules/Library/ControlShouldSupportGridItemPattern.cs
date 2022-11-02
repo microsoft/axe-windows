@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportGridItemPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportGridItemPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportGridItemPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportGridItemPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportGridItemPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

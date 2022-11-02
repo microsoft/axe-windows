@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Types;
@@ -15,9 +15,9 @@ namespace Axe.Windows.RulesTests.Library
         protected LandmarkIsTopLevelTests(object rule, int landmarkType, string localizedLandmarkType)
         {
             // we must pass in an object because the IRule type is not exposed publicly and it causes a compiler error
-            this.Rule = (Axe.Windows.Rules.IRule)rule;
-            this.LandmarkType = landmarkType;
-            this.LocalizedLandmarkType = localizedLandmarkType;
+            Rule = (Axe.Windows.Rules.IRule)rule;
+            LandmarkType = landmarkType;
+            LocalizedLandmarkType = localizedLandmarkType;
         }
 
         [TestMethod]
@@ -25,8 +25,8 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = new MockA11yElement();
             var parent = new MockA11yElement();
-            e.LandmarkType = this.LandmarkType;
-            e.LocalizedLandmarkType = this.LocalizedLandmarkType;
+            e.LandmarkType = LandmarkType;
+            e.LocalizedLandmarkType = LocalizedLandmarkType;
             e.Parent = parent;
 
             Assert.IsTrue(Rule.PassesTest(e));
@@ -37,11 +37,11 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = new MockA11yElement();
             var parent = new MockA11yElement();
-            e.LandmarkType = this.LandmarkType;
-            e.LocalizedLandmarkType = this.LocalizedLandmarkType;
+            e.LandmarkType = LandmarkType;
+            e.LocalizedLandmarkType = LocalizedLandmarkType;
             e.Parent = parent;
-            parent.LandmarkType = this.LandmarkType;
-            parent.LocalizedLandmarkType = this.LocalizedLandmarkType;
+            parent.LandmarkType = LandmarkType;
+            parent.LocalizedLandmarkType = LocalizedLandmarkType;
 
             Assert.IsFalse(Rule.PassesTest(e));
         }

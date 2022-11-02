@@ -37,9 +37,9 @@ namespace Axe.Windows.Actions
         /// <param name="listener"></param>
         private ListenAction(ListenScope listenScope, ElementContext ec, HandleUIAutomationEventMessage listener)
         {
-            this.Id = Guid.NewGuid();
-            this.EventListener = new EventListenerFactory(ec.Element, listenScope);
-            this.ExternalListener = listener;
+            Id = Guid.NewGuid();
+            EventListener = new EventListenerFactory(ec.Element, listenScope);
+            ExternalListener = listener;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void Start(IEnumerable<int> eventIDs, IEnumerable<int> propertyIDs)
         {
-            this.IsRunning = true;
+            IsRunning = true;
 
             InitIndividualEventListeners(eventIDs);
             InitPropertyChangeListener(propertyIDs);
@@ -61,7 +61,7 @@ namespace Axe.Windows.Actions
             if (propertyIds == null) return;
             if (!propertyIds.Any()) return;
 
-            this.EventListener.RegisterAutomationEventListener(EventType.UIA_AutomationPropertyChangedEventId, this.onEventFired, propertyIds.ToArray());
+            EventListener.RegisterAutomationEventListener(EventType.UIA_AutomationPropertyChangedEventId, onEventFired, propertyIds.ToArray());
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Axe.Windows.Actions
 
             foreach (var id in eventIds)
             {
-                this.EventListener.RegisterAutomationEventListener(id, this.onEventFired);
+                EventListener.RegisterAutomationEventListener(id, onEventFired);
             }
         }
 
@@ -83,7 +83,7 @@ namespace Axe.Windows.Actions
         public void Stop()
         {
             IsRunning = false;
-            this.EventListener.UnregisterAllAutomationEventListners();
+            EventListener.UnregisterAllAutomationEventListners();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Axe.Windows.Actions
         {
             if (IsRunning)
             {
-                this.ExternalListener?.Invoke(message);
+                ExternalListener?.Invoke(message);
             }
         }
 
@@ -163,8 +163,8 @@ namespace Axe.Windows.Actions
             {
                 if (disposing)
                 {
-                    this.EventListener.Dispose();
-                    this.EventListener = null;
+                    EventListener.Dispose();
+                    EventListener = null;
                 }
 
                 disposedValue = true;

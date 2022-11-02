@@ -17,11 +17,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsKeyboardFocusableTopLevelTextPattern()
         {
-            this.Info.Description = Descriptions.IsKeyboardFocusableTopLevelTextPattern;
-            this.Info.HowToFix = HowToFix.IsKeyboardFocusableTopLevelTextPattern;
-            this.Info.Standard = A11yCriteriaId.Keyboard;
-            this.Info.PropertyID = Axe.Windows.Core.Types.PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.IsKeyboardFocusableTopLevelTextPattern;
+            Info.HowToFix = HowToFix.IsKeyboardFocusableTopLevelTextPattern;
+            Info.Standard = A11yCriteriaId.Keyboard;
+            Info.PropertyID = Axe.Windows.Core.Types.PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

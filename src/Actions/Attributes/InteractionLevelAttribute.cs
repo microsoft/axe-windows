@@ -27,7 +27,7 @@ namespace Axe.Windows.Actions.Attributes
         /// <param name="interactionLevel"></param>
         public InteractionLevelAttribute(UxInteractionLevel interactionLevel) : base()
         {
-            this._interactionLevel = interactionLevel;
+            _interactionLevel = interactionLevel;
         }
     }
 }

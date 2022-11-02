@@ -7,7 +7,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
@@ -37,10 +36,10 @@ namespace Axe.Windows.Rules.Library
 
         public SiblingUniqueAndFocusable()
         {
-            this.Info.Description = Descriptions.SiblingUniqueAndFocusable;
-            this.Info.HowToFix = HowToFix.SiblingUniqueAndFocusable;
-            this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.SiblingUniqueAndFocusable;
+            Info.HowToFix = HowToFix.SiblingUniqueAndFocusable;
+            Info.Standard = A11yCriteriaId.NameRoleValue;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)
@@ -52,7 +51,7 @@ namespace Axe.Windows.Rules.Library
                 & Name.Is(e.Name)
                 & LocalizedControlType.Is(e.LocalizedControlType));
             var count = siblings.GetValue(e);
-            if (count < 1) throw new AxeWindowsException(ErrorMessages.NoElementFound.WithParameters(this.Info.ID));
+            if (count < 1) throw new AxeWindowsException(ErrorMessages.NoElementFound.WithParameters(Info.ID));
 
             return count == 1;
         }

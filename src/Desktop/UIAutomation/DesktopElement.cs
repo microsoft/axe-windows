@@ -7,7 +7,6 @@ using Axe.Windows.Telemetry;
 using Axe.Windows.Win32;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Runtime.InteropServices;
 using UIAutomationClient;
 
@@ -34,7 +33,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <param name="setMembers">default is true. if it is true, sets properties and patterns at construction</param>
         public DesktopElement(IUIAutomationElement element, bool keepElement = true, bool setMembers = true)
         {
-            this.PlatformObject = element;
+            PlatformObject = element;
 
             if (setMembers)
             {
@@ -43,10 +42,10 @@ namespace Axe.Windows.Desktop.UIAutomation
 
             if (keepElement == false)
             {
-                this.PlatformObject = null;
+                PlatformObject = null;
             }
 
-            this.Children = new List<A11yElement>();
+            Children = new List<A11yElement>();
         }
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace Axe.Windows.Desktop.UIAutomation
 
         public override string ToString()
         {
-            return this.Glimpse;
+            return Glimpse;
         }
 
         #region Static methods for validation
@@ -140,11 +139,11 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             try
             {
-                if (this.PlatformObject != null)
+                if (PlatformObject != null)
                 {
                     // to make sure for release.
-                    Marshal.ReleaseComObject(this.PlatformObject);
-                    this.PlatformObject = null;
+                    Marshal.ReleaseComObject(PlatformObject);
+                    PlatformObject = null;
                 }
                 base.Dispose(disposing);
             }

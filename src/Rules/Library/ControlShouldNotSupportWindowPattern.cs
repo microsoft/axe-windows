@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldNotSupportWindowPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldNotSupportWindowPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldNotSupportWindowPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.ControlShouldNotSupportWindowPattern;
+            Info.HowToFix = HowToFix.ControlShouldNotSupportWindowPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

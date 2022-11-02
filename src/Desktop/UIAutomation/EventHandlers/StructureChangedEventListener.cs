@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.Types;
@@ -20,11 +20,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public override void Init()
         {
-            IUIAutomation uia = this.IUIAutomation;
+            IUIAutomation uia = IUIAutomation;
             if (uia != null)
             {
-                uia.AddStructureChangedEventHandler(this.Element, this.Scope, null, this);
-                this.IsHooked = true;
+                uia.AddStructureChangedEventHandler(Element, Scope, null, this);
+                IsHooked = true;
             }
         }
 
@@ -41,7 +41,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     new KeyValuePair<string, dynamic>("StructureChangeType", changeType),
                     new KeyValuePair<string, dynamic>("Runtime Id", runtimeId.ConvertInt32ArrayToString()),
                 };
-                this.ListenEventMessage(m);
+                ListenEventMessage(m);
             }
         }
 
@@ -51,12 +51,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    if (this.IsHooked)
+                    if (IsHooked)
                     {
-                        IUIAutomation uia = this.IUIAutomation;
+                        IUIAutomation uia = IUIAutomation;
                         if (uia != null)
                         {
-                            uia.RemoveStructureChangedEventHandler(this.Element, this);
+                            uia.RemoveStructureChangedEventHandler(Element, this);
                         }
                     }
                 }

@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ChildrenNotAllowedInContentView()
         {
-            this.Info.Description = Descriptions.ChildrenNotAllowedInContentView;
-            this.Info.HowToFix = HowToFix.ChildrenNotAllowedInContentView;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ChildrenNotAllowedInContentView;
+            Info.HowToFix = HowToFix.ChildrenNotAllowedInContentView;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

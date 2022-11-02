@@ -52,9 +52,9 @@ namespace Axe.Windows.Actions
         /// <param name="ec"></param>
         internal void AddElementContext(ElementContext ec)
         {
-            if (ec != null && this.ElementContexts.ContainsKey(ec.Id) == false)
+            if (ec != null && ElementContexts.ContainsKey(ec.Id) == false)
             {
-                this.ElementContexts.Add(ec.Id, ec);
+                ElementContexts.Add(ec.Id, ec);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         internal ElementContext GetElementContext(Guid ecId)
         {
-            return this.ElementContexts.ContainsKey(ecId) ? this.ElementContexts[ecId] : null;
+            return ElementContexts.ContainsKey(ecId) ? ElementContexts[ecId] : null;
         }
 
         /// <summary>
@@ -76,9 +76,9 @@ namespace Axe.Windows.Actions
         {
             if (ElementContexts.ContainsKey(ecId))
             {
-                var ec = this.ElementContexts[ecId];
+                var ec = ElementContexts[ecId];
 
-                this.ElementContexts.Remove(ecId);
+                ElementContexts.Remove(ecId);
                 ec.Dispose();
             }
         }
@@ -91,9 +91,9 @@ namespace Axe.Windows.Actions
         internal void RemoveDataContext(Guid ecId, bool keepMainElement = true)
         {
             // check whether key exists. if not, just silently ignore.
-            if (this.ElementContexts.ContainsKey(ecId))
+            if (ElementContexts.ContainsKey(ecId))
             {
-                var ec = this.ElementContexts[ecId];
+                var ec = ElementContexts[ecId];
                 if (ec.DataContext != null)
                 {
                     if (keepMainElement)
@@ -116,7 +116,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public A11yElement GetA11yElement(Guid ecId, int eId)
         {
-            if (this.ElementContexts.ContainsKey(ecId))
+            if (ElementContexts.ContainsKey(ecId))
             {
                 var ec = ElementContexts[ecId];
                 if (eId == 0)

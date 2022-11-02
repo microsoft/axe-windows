@@ -46,7 +46,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="action"></param>
         protected BaseTracker(Action<A11yElement> action, IActionContext actionContext)
         {
-            this.SetElement = action;
+            SetElement = action;
             ActionContext = actionContext ?? throw new ArgumentNullException(nameof(actionContext));
         }
 
@@ -58,8 +58,8 @@ namespace Axe.Windows.Actions.Trackers
 #pragma warning restore CA1716 // Identifiers should not match keywords
         {
             // clean up selection
-            this.SelectedElementRuntimeId = null;
-            this.SelectedBoundingRectangle = null;
+            SelectedElementRuntimeId = null;
+            SelectedBoundingRectangle = null;
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         public virtual void Clear()
         {
-            this.SelectedElementRuntimeId = null;
-            this.SelectedBoundingRectangle = null;
+            SelectedElementRuntimeId = null;
+            SelectedBoundingRectangle = null;
         }
 
         #region IDisposable Support

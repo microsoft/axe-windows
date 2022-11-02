@@ -7,7 +7,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using static Axe.Windows.Rules.PropertyConditions.BoolProperties;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
@@ -20,10 +19,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ListItemSiblingsUnique()
         {
-            this.Info.Description = Descriptions.ListItemSiblingsUnique;
-            this.Info.HowToFix = HowToFix.ListItemSiblingsUnique;
-            this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.ListItemSiblingsUnique;
+            Info.HowToFix = HowToFix.ListItemSiblingsUnique;
+            Info.Standard = A11yCriteriaId.NameRoleValue;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)
@@ -36,7 +35,7 @@ namespace Axe.Windows.Rules.Library
                 & Name.Is(e.Name)
                 & LocalizedControlType.Is(e.LocalizedControlType));
             var count = siblings.GetValue(e);
-            if (count < 1) throw new AxeWindowsException(ErrorMessages.NoElementFound.WithParameters(this.Info.ID));
+            if (count < 1) throw new AxeWindowsException(ErrorMessages.NoElementFound.WithParameters(Info.ID));
 
             return count == 1;
         }

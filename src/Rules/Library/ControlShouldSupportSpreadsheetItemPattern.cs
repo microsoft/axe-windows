@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportSpreadsheetItemPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportSpreadsheetItemPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportSpreadsheetItemPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportSpreadsheetItemPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportSpreadsheetItemPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

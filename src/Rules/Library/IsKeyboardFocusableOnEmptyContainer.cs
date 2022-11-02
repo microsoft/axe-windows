@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsKeyboardFocusableOnEmptyContainer()
         {
-            this.Info.Description = Descriptions.IsKeyboardFocusableOnEmptyContainer;
-            this.Info.HowToFix = HowToFix.IsKeyboardFocusableOnEmptyContainer;
-            this.Info.Standard = A11yCriteriaId.Keyboard;
-            this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.IsKeyboardFocusableOnEmptyContainer;
+            Info.HowToFix = HowToFix.IsKeyboardFocusableOnEmptyContainer;
+            Info.Standard = A11yCriteriaId.Keyboard;
+            Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

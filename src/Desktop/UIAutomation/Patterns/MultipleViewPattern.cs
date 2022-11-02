@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -27,8 +27,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "CurrentView", Value = this.Pattern.CurrentCurrentView });
-            var array = this.Pattern.GetCurrentSupportedViews();
+            Properties.Add(new A11yPatternProperty() { Name = "CurrentView", Value = Pattern.CurrentCurrentView });
+            var array = Pattern.GetCurrentSupportedViews();
             if (array.Length > 0)
             {
                 for (int i = 0; i < array.Length; i++)
@@ -43,7 +43,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void SetCurrentView(int view)
         {
-            this.Pattern.SetCurrentView(view);
+            Pattern.SetCurrentView(view);
         }
 
         protected override void Dispose(bool disposing)
@@ -51,7 +51,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

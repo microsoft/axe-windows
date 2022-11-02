@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using System;
 using UIAutomationClient;
@@ -33,7 +33,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         protected EventListenerBase(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
         {
-            this.UIAutomation8 = uia8;
+            UIAutomation8 = uia8;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         protected EventListenerBase(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
         {
-            this.UIAutomation = uia;
+            UIAutomation = uia;
         }
 
         /// <summary>
@@ -50,10 +50,10 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         protected EventListenerBase(IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
         {
-            this.EventId = eventId;
-            this.Element = element;
-            this.ListenEventMessage = peDelegate;
-            this.Scope = scope;
+            EventId = eventId;
+            Element = element;
+            ListenEventMessage = peDelegate;
+            Scope = scope;
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    if (disposing && this.IsHooked)
+                    if (disposing && IsHooked)
                     {
                         UIAutomation = null;
                         UIAutomation8 = null;

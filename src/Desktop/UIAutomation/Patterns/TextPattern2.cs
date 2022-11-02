@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -23,7 +23,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public TextRange GetCaretRange(out int isActive)
         {
-            return new TextRange(this.Pattern.GetCaretRange(out isActive), null);
+            return new TextRange(Pattern.GetCaretRange(out isActive), null);
         }
 
         [PatternMethod]
@@ -31,7 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return new TextRange(this.Pattern.RangeFromAnnotation(e.PlatformObject), null);
+            return new TextRange(Pattern.RangeFromAnnotation(e.PlatformObject), null);
         }
 
         protected override void Dispose(bool disposing)
@@ -39,7 +39,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

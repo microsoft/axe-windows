@@ -18,11 +18,11 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedControlTypeIsNotCustom()
         {
-            this.Info.Description = Descriptions.LocalizedControlTypeNotCustom;
-            this.Info.HowToFix = HowToFix.LocalizedControlTypeNotCustom;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LocalizedControlTypeNotCustom;
+            Info.HowToFix = HowToFix.LocalizedControlTypeNotCustom;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

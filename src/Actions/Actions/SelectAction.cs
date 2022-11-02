@@ -46,12 +46,12 @@ namespace Axe.Windows.Actions
         {
             get
             {
-                return this.MouseTracker.IntervalMouseSelector;
+                return MouseTracker.IntervalMouseSelector;
             }
 
             set
             {
-                this.MouseTracker.IntervalMouseSelector = value;
+                MouseTracker.IntervalMouseSelector = value;
             }
         } // default for the case
 
@@ -113,8 +113,8 @@ namespace Axe.Windows.Actions
 
             set
             {
-                this.FocusTracker.Scope = value;
-                this.MouseTracker.Scope = value;
+                FocusTracker.Scope = value;
+                MouseTracker.Scope = value;
             }
         }
 
@@ -124,9 +124,9 @@ namespace Axe.Windows.Actions
         private SelectAction(DataManager dataManager)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
-            this.FocusTracker = new FocusTracker(SetCandidateElement);
-            this.MouseTracker = new MouseTracker(SetCandidateElement);
-            this.TreeTracker = new TreeTracker(this.SetCandidateElement, this);
+            FocusTracker = new FocusTracker(SetCandidateElement);
+            MouseTracker = new MouseTracker(SetCandidateElement);
+            TreeTracker = new TreeTracker(SetCandidateElement, this);
         }
 
         /// <summary>
@@ -134,10 +134,10 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void Stop()
         {
-            if (!this.IsPaused)
+            if (!IsPaused)
             {
-                this.FocusTracker?.Stop();
-                this.MouseTracker?.Stop();
+                FocusTracker?.Stop();
+                MouseTracker?.Stop();
             }
         }
 
@@ -146,16 +146,16 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void Start()
         {
-            if (!this.IsPaused)
+            if (!IsPaused)
             {
-                if (this.IsFocusSelectOn)
+                if (IsFocusSelectOn)
                 {
-                    this.FocusTracker?.Start();
+                    FocusTracker?.Start();
                 }
 
-                if (this.IsMouseSelectOn)
+                if (IsMouseSelectOn)
                 {
-                    this.MouseTracker?.Start();
+                    MouseTracker?.Start();
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace Axe.Windows.Actions
         public void PauseUIATreeTracker()
         {
             Stop();
-            this.UIATreeState = UIATreeState.Paused;
+            UIATreeState = UIATreeState.Paused;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void ResumeUIATreeTracker()
         {
-            this.UIATreeState = UIATreeState.Resumed;
+            UIATreeState = UIATreeState.Resumed;
             Start();
         }
 
@@ -191,8 +191,8 @@ namespace Axe.Windows.Actions
                 {
                     if (el.IsRootElement() == false)
                     {
-                        this.CandidateEC?.Dispose();
-                        this.CandidateEC = new ElementContext(el);
+                        CandidateEC?.Dispose();
+                        CandidateEC = new ElementContext(el);
                     }
                     else
                     {
@@ -297,7 +297,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void ClearSelectedContext()
         {
-            if (!this.IsPaused)
+            if (!IsPaused)
             {
                 lock (_elementContextLock)
                 {
@@ -305,8 +305,8 @@ namespace Axe.Windows.Actions
                     CandidateEC?.Dispose();
                     CandidateEC = null;
 
-                    this.MouseTracker.Clear();
-                    this.FocusTracker.Clear();
+                    MouseTracker.Clear();
+                    FocusTracker.Clear();
                 }
             }
         }
@@ -331,25 +331,25 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public bool HasPOIElement()
         {
-            return this.POIElementContext != null;
+            return POIElementContext != null;
         }
 
         public TreeViewMode TreeViewMode
         {
             get
             {
-                return (this.TreeTracker != null)
-                    ? this.TreeTracker.TreeViewMode
+                return (TreeTracker != null)
+                    ? TreeTracker.TreeViewMode
                     : TreeViewMode.Raw;
             }
 
             set
             {
-                if (this.MouseTracker != null)
-                    this.MouseTracker.TreeViewMode = value;
+                if (MouseTracker != null)
+                    MouseTracker.TreeViewMode = value;
 
-                if (this.TreeTracker != null)
-                    this.TreeTracker.TreeViewMode = value;
+                if (TreeTracker != null)
+                    TreeTracker.TreeViewMode = value;
             }
         }
 
@@ -402,26 +402,26 @@ namespace Axe.Windows.Actions
             {
                 if (disposing)
                 {
-                    if (this.POIElementContext != null)
+                    if (POIElementContext != null)
                     {
-                        this.POIElementContext.Dispose();
-                        this.POIElementContext = null;
+                        POIElementContext.Dispose();
+                        POIElementContext = null;
                     }
-                    if (this.CandidateEC != null)
+                    if (CandidateEC != null)
                     {
-                        this.CandidateEC.Dispose();
-                        this.CandidateEC = null;
+                        CandidateEC.Dispose();
+                        CandidateEC = null;
                     }
-                    if (this.MouseTracker != null)
+                    if (MouseTracker != null)
                     {
-                        this.MouseTracker.Dispose();
-                        this.MouseTracker = null;
+                        MouseTracker.Dispose();
+                        MouseTracker = null;
                     }
-                    if (this.FocusTracker != null)
+                    if (FocusTracker != null)
                     {
-                        this.FocusTracker.Stop();
-                        this.FocusTracker.Dispose();
-                        this.FocusTracker = null;
+                        FocusTracker.Stop();
+                        FocusTracker.Dispose();
+                        FocusTracker = null;
                     }
                 }
 

@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public OrientationPropertyExists()
         {
-            this.Info.Description = Descriptions.OrientationPropertyExists;
-            this.Info.HowToFix = HowToFix.OrientationPropertyExists;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_OrientationPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.OrientationPropertyExists;
+            Info.HowToFix = HowToFix.OrientationPropertyExists;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_OrientationPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

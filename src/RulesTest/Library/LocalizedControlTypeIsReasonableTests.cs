@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static Axe.Windows.RulesTests.ControlType;
@@ -35,7 +35,7 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = new MockA11yElement();
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_CustomControlTypeId;
-            Assert.IsFalse(this.Rule.Condition.Matches(e));
+            Assert.IsFalse(Rule.Condition.Matches(e));
         }
 
         [TestMethod]

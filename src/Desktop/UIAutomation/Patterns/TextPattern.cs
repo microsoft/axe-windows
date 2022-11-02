@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -39,26 +39,26 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "SupportedTextSelection", Value = this.Pattern.SupportedTextSelection });
+            Properties.Add(new A11yPatternProperty() { Name = "SupportedTextSelection", Value = Pattern.SupportedTextSelection });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public TextRange DocumentRange()
         {
-            return new TextRange(this.Pattern.DocumentRange, this);
+            return new TextRange(Pattern.DocumentRange, this);
         }
 
         [PatternMethod]
         public IList<TextRange> GetSelection()
         {
-            return ToListOfTextRanges(this.Pattern.GetSelection());
+            return ToListOfTextRanges(Pattern.GetSelection());
         }
 
         [PatternMethod]
         public IList<TextRange> GetVisibleRanges()
         {
-            return ToListOfTextRanges(this.Pattern.GetVisibleRanges());
+            return ToListOfTextRanges(Pattern.GetVisibleRanges());
         }
 
         [PatternMethod]
@@ -66,13 +66,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (child == null) throw new ArgumentNullException(nameof(child));
 
-            return new TextRange(this.Pattern.RangeFromChild(child.PlatformObject), this);
+            return new TextRange(Pattern.RangeFromChild(child.PlatformObject), this);
         }
 
         [PatternMethod]
         public TextRange RangeFromPoint(tagPOINT pt)
         {
-            return new TextRange(this.Pattern.RangeFromPoint(pt), this);
+            return new TextRange(Pattern.RangeFromPoint(pt), this);
         }
 
         List<TextRange> ToListOfTextRanges(IUIAutomationTextRangeArray array)
@@ -95,7 +95,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

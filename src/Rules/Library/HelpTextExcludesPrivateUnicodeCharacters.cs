@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public HelpTextExcludesPrivateUnicodeCharacters()
         {
-            this.Info.Description = string.Format(CultureInfo.CurrentCulture, Descriptions.PropertyExcludesPrivateUnicodeCharacters, HelpText.PropertyDescription);
-            this.Info.HowToFix = string.Format(CultureInfo.CurrentCulture, HowToFix.PropertyExcludesPrivateUnicodeCharacters, HelpText.PropertyDescription);
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_HelpTextPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = string.Format(CultureInfo.CurrentCulture, Descriptions.PropertyExcludesPrivateUnicodeCharacters, HelpText.PropertyDescription);
+            Info.HowToFix = string.Format(CultureInfo.CurrentCulture, HowToFix.PropertyExcludesPrivateUnicodeCharacters, HelpText.PropertyDescription);
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_HelpTextPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

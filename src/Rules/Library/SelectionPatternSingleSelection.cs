@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public SelectionPatternSingleSelection()
         {
-            this.Info.Description = Descriptions.SelectionPatternSingleSelection;
-            this.Info.HowToFix = HowToFix.SelectionPatternSingleSelection;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.SelectionPatternSingleSelection;
+            Info.HowToFix = HowToFix.SelectionPatternSingleSelection;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -5,7 +5,6 @@ using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using System.Linq;
 
 namespace Axe.Windows.Rules.PropertyConditions

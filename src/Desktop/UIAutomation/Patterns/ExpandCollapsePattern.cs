@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -34,20 +34,20 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "ExpandCollapseState", Value = this.Pattern.CurrentExpandCollapseState });
+            Properties.Add(new A11yPatternProperty() { Name = "ExpandCollapseState", Value = Pattern.CurrentExpandCollapseState });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Expand()
         {
-            this.Pattern.Expand();
+            Pattern.Expand();
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Collapse()
         {
-            this.Pattern.Collapse();
+            Pattern.Collapse();
         }
 
         protected override void Dispose(bool disposing)
@@ -55,7 +55,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

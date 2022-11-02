@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ComboBoxShouldNotSupportScrollPattern()
         {
-            this.Info.Description = Descriptions.ComboBoxShouldNotSupportScrollPattern;
-            this.Info.HowToFix = HowToFix.ComboBoxShouldNotSupportScrollPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.ComboBoxShouldNotSupportScrollPattern;
+            Info.HowToFix = HowToFix.ComboBoxShouldNotSupportScrollPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

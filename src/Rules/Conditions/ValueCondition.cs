@@ -21,8 +21,8 @@ namespace Axe.Windows.Rules
 
         public ValueCondition(GetterDelegate getter, string description)
         {
-            this.GetValue = getter ?? throw new ArgumentNullException(nameof(getter));
-            this.Description = description ?? throw new ArgumentNullException(nameof(description));
+            GetValue = getter ?? throw new ArgumentNullException(nameof(getter));
+            Description = description ?? throw new ArgumentNullException(nameof(description));
         }
 
         public override bool Matches(IA11yElement element)

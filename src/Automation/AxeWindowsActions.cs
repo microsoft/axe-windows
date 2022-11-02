@@ -12,7 +12,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.Settings;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 
 namespace Axe.Windows.Automation
 {

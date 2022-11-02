@@ -25,7 +25,7 @@ namespace Axe.Windows.Rules
 
         public RuleProvider(IRuleFactory ruleFactory)
         {
-            this.RuleFactory = ruleFactory ?? throw new ArgumentNullException(nameof(ruleFactory));
+            RuleFactory = ruleFactory ?? throw new ArgumentNullException(nameof(ruleFactory));
         }
 
         private void InitAllRules()
@@ -51,7 +51,7 @@ namespace Axe.Windows.Rules
 
         public IRule GetRule(RuleId id)
         {
-            return AllRules.GetOrAdd(id, key => this.RuleFactory.CreateRule(key));
+            return AllRules.GetOrAdd(id, key => RuleFactory.CreateRule(key));
         }
 
         public IEnumerable<IRule> All
