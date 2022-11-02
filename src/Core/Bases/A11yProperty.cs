@@ -9,7 +9,6 @@ using Axe.Windows.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Concurrent;
-using System.Globalization;
 
 namespace Axe.Windows.Core.Bases
 {
