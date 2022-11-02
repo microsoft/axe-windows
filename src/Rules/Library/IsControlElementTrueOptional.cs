@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsControlElementTrueOptional()
         {
-            this.Info.Description = Descriptions.IsControlElementTrueOptional;
-            this.Info.HowToFix = HowToFix.IsControlElementTrueOptional;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.IsControlElementTrueOptional;
+            Info.HowToFix = HowToFix.IsControlElementTrueOptional;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

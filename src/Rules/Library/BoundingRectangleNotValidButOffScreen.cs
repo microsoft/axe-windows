@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public BoundingRectangleNotValidButOffScreen()
         {
-            this.Info.Description = Descriptions.BoundingRectangleNotValidButOffScreen;
-            this.Info.HowToFix = HowToFix.BoundingRectangleNotValidButOffScreen;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.BoundingRectangleNotValidButOffScreen;
+            Info.HowToFix = HowToFix.BoundingRectangleNotValidButOffScreen;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

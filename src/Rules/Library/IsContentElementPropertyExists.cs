@@ -16,11 +16,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsContentElementPropertyExists()
         {
-            this.Info.Description = Descriptions.IsContentElementPropertyExists;
-            this.Info.HowToFix = HowToFix.IsContentElementPropertyExists;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsContentElementPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.IsContentElementPropertyExists;
+            Info.HowToFix = HowToFix.IsContentElementPropertyExists;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsContentElementPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

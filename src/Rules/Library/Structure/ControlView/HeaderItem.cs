@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewHeaderItemStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.HeaderItemStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.HeaderItemStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.HeaderItemStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.HeaderItemStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

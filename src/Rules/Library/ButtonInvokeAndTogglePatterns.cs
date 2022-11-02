@@ -13,10 +13,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ButtonInvokeAndTogglePatterns()
         {
-            this.Info.Description = Descriptions.ButtonInvokeAndTogglePatterns;
-            this.Info.HowToFix = HowToFix.ButtonInvokeAndTogglePatterns;
-            this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ButtonInvokeAndTogglePatterns;
+            Info.HowToFix = HowToFix.ButtonInvokeAndTogglePatterns;
+            Info.Standard = A11yCriteriaId.NameRoleValue;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

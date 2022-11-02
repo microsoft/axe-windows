@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewProgressBarStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.ProgressBarStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.ProgressBarStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.ProgressBarStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.ProgressBarStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

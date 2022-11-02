@@ -13,17 +13,17 @@ namespace Axe.Windows.Rules
 
         public NotCondition(Condition a)
         {
-            this.A = a ?? throw new ArgumentNullException(nameof(a));
+            A = a ?? throw new ArgumentNullException(nameof(a));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return !this.A.Matches(element);
+            return !A.Matches(element);
         }
 
         public override string ToString()
         {
-            return ConditionDescriptions.Not.WithParameters(this.A.ToString());
+            return ConditionDescriptions.Not.WithParameters(A.ToString());
         }
     } // class
 } // namespace

@@ -14,19 +14,19 @@ namespace Axe.Windows.Rules
 
         public AndCondition(Condition a, Condition b)
         {
-            this.A = a ?? throw new ArgumentNullException(nameof(a));
-            this.B = b ?? throw new ArgumentNullException(nameof(b));
+            A = a ?? throw new ArgumentNullException(nameof(a));
+            B = b ?? throw new ArgumentNullException(nameof(b));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return this.A.Matches(element)
-                && this.B.Matches(element);
+            return A.Matches(element)
+                && B.Matches(element);
         }
 
         public override string ToString()
         {
-            return ConditionDescriptions.And.WithParameters(this.A.ToString(), this.B.ToString());
+            return ConditionDescriptions.And.WithParameters(A.ToString(), B.ToString());
         }
     } // class
 } // namespace

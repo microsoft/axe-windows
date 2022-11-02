@@ -16,11 +16,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameIsNotNull()
         {
-            this.Info.Description = Descriptions.NameNotNull;
-            this.Info.HowToFix = HowToFix.NameNotNull;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.NameNotNull;
+            Info.HowToFix = HowToFix.NameNotNull;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

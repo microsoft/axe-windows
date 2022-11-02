@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewEditStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.EditStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.EditStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.EditStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.EditStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

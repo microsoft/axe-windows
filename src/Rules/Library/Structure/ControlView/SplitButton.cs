@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewSplitButtonStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.SplitButtonStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SplitButtonStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.SplitButtonStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.SplitButtonStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

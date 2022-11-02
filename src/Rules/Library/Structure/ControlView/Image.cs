@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlViewImageStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ControlView.ImageStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ImageStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ControlView.ImageStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ControlView.ImageStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

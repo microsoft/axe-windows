@@ -12,11 +12,11 @@ namespace Axe.Windows.Rules.Library
     {
         public EdgeBrowserHasBeenDeprecated()
         {
-            this.Info.Description = Descriptions.EdgeBrowserHasBeenDeprecated;
-            this.Info.HowToFix = HowToFix.EdgeBrowserHasBeenDeprecated;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-EdgeBrowserHasBeenDeprecated";
+            Info.Description = Descriptions.EdgeBrowserHasBeenDeprecated;
+            Info.HowToFix = HowToFix.EdgeBrowserHasBeenDeprecated;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-EdgeBrowserHasBeenDeprecated";
         }
 
         public override bool PassesTest(IA11yElement e)

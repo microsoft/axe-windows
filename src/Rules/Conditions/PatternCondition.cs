@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -18,22 +18,22 @@ namespace Axe.Windows.Rules
         {
             if (patternID == 0) throw new ArgumentNullException(nameof(patternID));
 
-            this.PatternID = patternID;
-            this.Validate = validate;
+            PatternID = patternID;
+            Validate = validate;
         }
 
         public override bool Matches(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var pattern = e.GetPattern(this.PatternID);
+            var pattern = e.GetPattern(PatternID);
 
-            return pattern != null && (this.Validate == null || Validate(e));
+            return pattern != null && (Validate == null || Validate(e));
         }
 
         public override string ToString()
         {
-            var patternName = PatternType.GetInstance().GetNameById(this.PatternID);
+            var patternName = PatternType.GetInstance().GetNameById(PatternID);
             return $"has {patternName} pattern";
         }
     } // class

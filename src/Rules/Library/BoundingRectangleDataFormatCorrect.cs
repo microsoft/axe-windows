@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public BoundingRectangleDataFormatCorrect()
         {
-            this.Info.Description = Descriptions.BoundingRectangleDataFormatCorrect;
-            this.Info.HowToFix = HowToFix.BoundingRectangleDataFormatCorrect;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.BoundingRectangleDataFormatCorrect;
+            Info.HowToFix = HowToFix.BoundingRectangleDataFormatCorrect;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

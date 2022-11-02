@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportTogglePattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportTogglePattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportTogglePattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportTogglePattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportTogglePattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

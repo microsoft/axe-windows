@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedControlTypeIsReasonable()
         {
-            this.Info.Description = Descriptions.LocalizedControlTypeReasonable;
-            this.Info.HowToFix = HowToFix.LocalizedControlTypeReasonable;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.LocalizedControlTypeReasonable;
+            Info.HowToFix = HowToFix.LocalizedControlTypeReasonable;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)
