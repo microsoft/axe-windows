@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -30,34 +30,34 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanSelectMultiple", Value = Convert.ToBoolean(this.Pattern.CurrentCanSelectMultiple) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsSelectionRequired", Value = Convert.ToBoolean(this.Pattern.CurrentIsSelectionRequired) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CurrentItemCount", Value = this.Pattern.CurrentItemCount });
+            Properties.Add(new A11yPatternProperty() { Name = "CanSelectMultiple", Value = Convert.ToBoolean(Pattern.CurrentCanSelectMultiple) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsSelectionRequired", Value = Convert.ToBoolean(Pattern.CurrentIsSelectionRequired) });
+            Properties.Add(new A11yPatternProperty() { Name = "CurrentItemCount", Value = Pattern.CurrentItemCount });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetSelection()
         {
-            return this.Pattern.GetCurrentSelection().ToListOfDesktopElements();
+            return Pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public DesktopElement LastSelectedItem()
         {
-            return new DesktopElement(this.Pattern.CurrentLastSelectedItem);
+            return new DesktopElement(Pattern.CurrentLastSelectedItem);
         }
 
         [PatternMethod]
         public DesktopElement CurrentSelectedItem()
         {
-            return new DesktopElement(this.Pattern.CurrentCurrentSelectedItem);
+            return new DesktopElement(Pattern.CurrentCurrentSelectedItem);
         }
 
         [PatternMethod]
         public DesktopElement FirstSelectedItem()
         {
-            return new DesktopElement(this.Pattern.CurrentFirstSelectedItem);
+            return new DesktopElement(Pattern.CurrentFirstSelectedItem);
         }
 
         protected override void Dispose(bool disposing)
@@ -65,7 +65,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedControlTypeIsNotWhiteSpace()
         {
-            this.Info.Description = Descriptions.LocalizedControlTypeNotWhiteSpace;
-            this.Info.HowToFix = HowToFix.LocalizedControlTypeNotWhiteSpace;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LocalizedControlTypeNotWhiteSpace;
+            Info.HowToFix = HowToFix.LocalizedControlTypeNotWhiteSpace;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

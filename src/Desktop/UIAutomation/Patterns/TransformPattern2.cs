@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -26,26 +26,26 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(this.Pattern.CurrentCanMove) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(this.Pattern.CurrentCanResize) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(this.Pattern.CurrentCanRotate) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanZoom", Value = Convert.ToBoolean(this.Pattern.CurrentCanZoom) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanZoomLevel", Value = Convert.ToBoolean(this.Pattern.CurrentZoomLevel) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanZoomMaximum", Value = Convert.ToBoolean(this.Pattern.CurrentZoomMaximum) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "CanZoomMinimum", Value = Convert.ToBoolean(this.Pattern.CurrentZoomMinimum) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(Pattern.CurrentCanMove) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(Pattern.CurrentCanResize) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(Pattern.CurrentCanRotate) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoom", Value = Convert.ToBoolean(Pattern.CurrentCanZoom) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoomLevel", Value = Convert.ToBoolean(Pattern.CurrentZoomLevel) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoomMaximum", Value = Convert.ToBoolean(Pattern.CurrentZoomMaximum) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoomMinimum", Value = Convert.ToBoolean(Pattern.CurrentZoomMinimum) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Zoom(double zoomValue)
         {
-            this.Pattern.Zoom(zoomValue);
+            Pattern.Zoom(zoomValue);
         }
 
         [PatternMethod(IsUIAction = true)]
         public void ZoomByUnit(ZoomUnit zu)
         {
-            this.Pattern.ZoomByUnit(zu);
+            Pattern.ZoomByUnit(zu);
         }
 
         protected override void Dispose(bool disposing)
@@ -53,7 +53,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

@@ -69,7 +69,7 @@ namespace Axe.Windows.Rules
         /// </summary>
         public override string ToString()
         {
-            return string.Format(CultureInfo.CurrentCulture, Descriptions.SummaryFormat, this.ID, this.Description, this.HowToFix, this.Condition);
+            return string.Format(CultureInfo.CurrentCulture, Descriptions.SummaryFormat, ID, Description, HowToFix, Condition);
         }
     } // class
 } // namespace

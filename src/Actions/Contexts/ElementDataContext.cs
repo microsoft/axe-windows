@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Actions.Enums;
 using Axe.Windows.Core.Bases;
@@ -69,7 +69,7 @@ namespace Axe.Windows.Actions.Contexts
         /// </summary>
         internal ElementDataContext(A11yElement e, int maxElements)
         {
-            this.Element = e;
+            Element = e;
             ElementCounter = new BoundedCounter(maxElements);
         }
 
@@ -82,16 +82,16 @@ namespace Axe.Windows.Actions.Contexts
             {
                 if (disposing)
                 {
-                    this.Screenshot?.Dispose();
-                    this.Screenshot = null;
-                    this.Element = null;
-                    if (this.Elements != null)
+                    Screenshot?.Dispose();
+                    Screenshot = null;
+                    Element = null;
+                    if (Elements != null)
                     {
-                        if (this.Mode == DataContextMode.Live)
+                        if (Mode == DataContextMode.Live)
                         {
                             // IUIAutomation can become non-responsive if Dispose is called in parallel.
                             // Explicitly Dispose the Element Values here to avoid this.
-                            foreach (var e in this.Elements.Values)
+                            foreach (var e in Elements.Values)
                             {
                                 e.Dispose();
                             }
@@ -100,10 +100,10 @@ namespace Axe.Windows.Actions.Contexts
                         {
                             // so far when it gets into test, it works OK.
                             // it will keep the same perf when switch back to Live from Test.
-                            this.Elements.Values.AsParallel().ForAll(e => e.Dispose());
+                            Elements.Values.AsParallel().ForAll(e => e.Dispose());
                         }
 
-                        this.Elements.Clear();
+                        Elements.Clear();
                     }
                 }
 

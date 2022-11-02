@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public LocalizedControlTypeIsNotNull()
         {
-            this.Info.Description = Descriptions.LocalizedControlTypeNotNull;
-            this.Info.HowToFix = HowToFix.LocalizedControlTypeNotNull;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LocalizedControlTypeNotNull;
+            Info.HowToFix = HowToFix.LocalizedControlTypeNotNull;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_LocalizedControlTypePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

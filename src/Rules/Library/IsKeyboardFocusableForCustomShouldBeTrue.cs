@@ -16,11 +16,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsKeyboardFocusableForCustomShouldBeTrue()
         {
-            this.Info.Description = Descriptions.IsKeyboardFocusableForCustomShouldBeTrue;
-            this.Info.HowToFix = HowToFix.IsKeyboardFocusableForCustomShouldBeTrue;
-            this.Info.Standard = A11yCriteriaId.Keyboard;
-            this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.IsKeyboardFocusableForCustomShouldBeTrue;
+            Info.HowToFix = HowToFix.IsKeyboardFocusableForCustomShouldBeTrue;
+            Info.Standard = A11yCriteriaId.Keyboard;
+            Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

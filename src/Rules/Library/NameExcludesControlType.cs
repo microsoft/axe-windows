@@ -8,7 +8,6 @@ using Axe.Windows.Rules.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
@@ -19,11 +18,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameExcludesControlType()
         {
-            this.Info.Description = Descriptions.NameExcludesControlType;
-            this.Info.HowToFix = HowToFix.NameExcludesControlType;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.NameExcludesControlType;
+            Info.HowToFix = HowToFix.NameExcludesControlType;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportTextPatternEditWinform()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportTextPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportTextPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214162";
+            Info.Description = Descriptions.ControlShouldSupportTextPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportTextPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214162";
         }
 
         public override bool PassesTest(IA11yElement e)

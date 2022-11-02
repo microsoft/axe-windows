@@ -15,11 +15,11 @@ namespace Axe.Windows.Rules.Library
     {
         public ClickablePointOffScreen()
         {
-            this.Info.Description = Descriptions.ClickablePointOffScreen;
-            this.Info.HowToFix = HowToFix.ClickablePointOffScreen;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.ClickablePointOffScreen;
+            Info.HowToFix = HowToFix.ClickablePointOffScreen;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

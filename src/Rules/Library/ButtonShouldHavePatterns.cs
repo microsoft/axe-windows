@@ -14,10 +14,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ButtonShouldHavePatterns()
         {
-            this.Info.Description = Descriptions.ButtonShouldHavePatterns;
-            this.Info.HowToFix = HowToFix.ButtonShouldHavePatterns;
-            this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ButtonShouldHavePatterns;
+            Info.HowToFix = HowToFix.ButtonShouldHavePatterns;
+            Info.Standard = A11yCriteriaId.NameRoleValue;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public NameOnOptionalType()
         {
-            this.Info.Description = Descriptions.NameOnOptionalType;
-            this.Info.HowToFix = HowToFix.NameOnOptionalType;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_NamePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.NameOnOptionalType;
+            Info.HowToFix = HowToFix.NameOnOptionalType;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_NamePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

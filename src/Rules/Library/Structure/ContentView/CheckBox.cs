@@ -6,7 +6,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System;
-using System.Globalization;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 
 namespace Axe.Windows.Rules.Library
@@ -16,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ContentViewCheckBoxStructure()
         {
-            this.Info.Description = Descriptions.Structure.WithParameters(ContentView.CheckBoxStructure);
-            this.Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.CheckBoxStructure);
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.Structure.WithParameters(ContentView.CheckBoxStructure);
+            Info.HowToFix = HowToFix.Structure.WithParameters(ContentView.CheckBoxStructure);
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

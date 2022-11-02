@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public ControlShouldSupportTransformPattern()
         {
-            this.Info.Description = Descriptions.ControlShouldSupportTransformPattern;
-            this.Info.HowToFix = HowToFix.ControlShouldSupportTransformPattern;
-            this.Info.Standard = A11yCriteriaId.AvailableActions;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.ControlShouldSupportTransformPattern;
+            Info.HowToFix = HowToFix.ControlShouldSupportTransformPattern;
+            Info.Standard = A11yCriteriaId.AvailableActions;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

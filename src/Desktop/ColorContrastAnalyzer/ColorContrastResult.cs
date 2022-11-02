@@ -19,7 +19,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public ColorContrastResult()
         {
-            this.confidence = Confidence.None;
+            confidence = Confidence.None;
         }
 
         internal ColorContrastResult Add(ColorPair newColorPair)
@@ -54,7 +54,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             }
             else
             {
-                this.confidence = Confidence.High;
+                confidence = Confidence.High;
             }
 
             alternatives.Add(newColorPair);
@@ -64,6 +64,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public ColorPair MostLikelyColorPair => mostContrastingPair;
 
-        public Confidence Confidence => this.confidence;
+        public Confidence Confidence => confidence;
     }
 }

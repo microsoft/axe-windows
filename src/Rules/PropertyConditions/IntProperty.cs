@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Rules.Extensions;
 using Axe.Windows.Rules.Resources;
@@ -27,8 +27,8 @@ namespace Axe.Windows.Rules.PropertyConditions
         public IntProperty(int propertyID, string propertyDescription)
             : base(e => e.GetPropertyValueOrDefault<int>(propertyID), propertyDescription)
         {
-            this.Exists = CreatePropertyExistsCondition<int>(propertyID);
-            this.DoesNotExist = ~Exists;
+            Exists = CreatePropertyExistsCondition<int>(propertyID);
+            DoesNotExist = ~Exists;
         }
     } // class
 } // namespace

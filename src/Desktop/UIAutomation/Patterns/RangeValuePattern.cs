@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Attributes;
 using Axe.Windows.Core.Bases;
@@ -26,26 +26,26 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            this.Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(this.Pattern.CurrentIsReadOnly) });
-            this.Properties.Add(new A11yPatternProperty() { Name = "LargeChange", Value = this.Pattern.CurrentLargeChange });
-            this.Properties.Add(new A11yPatternProperty() { Name = "Maximum", Value = this.Pattern.CurrentMaximum });
-            this.Properties.Add(new A11yPatternProperty() { Name = "Minimum", Value = this.Pattern.CurrentMinimum });
-            this.Properties.Add(new A11yPatternProperty() { Name = "SmallChange", Value = this.Pattern.CurrentSmallChange });
-            this.Properties.Add(new A11yPatternProperty() { Name = "Value", Value = this.Pattern.CurrentValue });
+            Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(Pattern.CurrentIsReadOnly) });
+            Properties.Add(new A11yPatternProperty() { Name = "LargeChange", Value = Pattern.CurrentLargeChange });
+            Properties.Add(new A11yPatternProperty() { Name = "Maximum", Value = Pattern.CurrentMaximum });
+            Properties.Add(new A11yPatternProperty() { Name = "Minimum", Value = Pattern.CurrentMinimum });
+            Properties.Add(new A11yPatternProperty() { Name = "SmallChange", Value = Pattern.CurrentSmallChange });
+            Properties.Add(new A11yPatternProperty() { Name = "Value", Value = Pattern.CurrentValue });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void SetValue(double val)
         {
-            this.Pattern.SetValue(val);
+            Pattern.SetValue(val);
         }
         protected override void Dispose(bool disposing)
         {
             if (Pattern != null)
             {
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                this.Pattern = null;
+                Pattern = null;
             }
 
             base.Dispose(disposing);

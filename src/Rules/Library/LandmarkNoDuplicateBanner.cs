@@ -15,10 +15,10 @@ namespace Axe.Windows.Rules.Library
     {
         public LandmarkNoDuplicateBanner()
         {
-            this.Info.Description = Descriptions.LandmarkNoDuplicateBanner;
-            this.Info.HowToFix = HowToFix.LandmarkNoDuplicateBanner;
-            this.Info.Standard = A11yCriteriaId.InfoAndRelationships;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.LandmarkNoDuplicateBanner;
+            Info.HowToFix = HowToFix.LandmarkNoDuplicateBanner;
+            Info.Standard = A11yCriteriaId.InfoAndRelationships;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

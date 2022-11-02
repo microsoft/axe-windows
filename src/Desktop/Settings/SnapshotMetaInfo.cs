@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -54,15 +54,15 @@ namespace Axe.Windows.Desktop.Settings
         /// <param name="screlementId">the ID of an element which was used to grab the screenshot</param>
         public SnapshotMetaInfo(A11yFileMode mode, string ruleVersion, int? selected, int screlementId)
         {
-            this.Mode = mode;
-            this.RuleVersion = ruleVersion;
-            this.Version = Core.Misc.PackageInfo.InformationalVersion;
+            Mode = mode;
+            RuleVersion = ruleVersion;
+            Version = Core.Misc.PackageInfo.InformationalVersion;
 
             if (selected.HasValue)
             {
-                this.SelectedItems = new List<int> { selected.Value };
+                SelectedItems = new List<int> { selected.Value };
             }
-            this.ScreenshotElementId = screlementId;
+            ScreenshotElementId = screlementId;
         }
 
         /// <summary>

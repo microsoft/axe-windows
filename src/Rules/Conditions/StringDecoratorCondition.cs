@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Misc;
 using System;
-using System.Globalization;
 
 namespace Axe.Windows.Rules
 {
@@ -18,18 +17,18 @@ namespace Axe.Windows.Rules
 
         public StringDecoratorCondition(Condition c, string decoration)
         {
-            this.Sub = c ?? throw new ArgumentNullException(nameof(c));
-            this.Decoration = decoration ?? throw new ArgumentNullException(nameof(decoration));
+            Sub = c ?? throw new ArgumentNullException(nameof(c));
+            Decoration = decoration ?? throw new ArgumentNullException(nameof(decoration));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return this.Sub.Matches(element);
+            return Sub.Matches(element);
         }
 
         public override string ToString()
         {
-            return this.Decoration.WithParameters(this.Sub);
+            return Decoration.WithParameters(Sub);
         }
     } // class
 } // namespace

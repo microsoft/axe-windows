@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public BoundingRectangleNotAllZeros()
         {
-            this.Info.Description = Descriptions.BoundingRectangleNotAllZeros;
-            this.Info.HowToFix = HowToFix.BoundingRectangleNotAllZeros;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
+            Info.Description = Descriptions.BoundingRectangleNotAllZeros;
+            Info.HowToFix = HowToFix.BoundingRectangleNotAllZeros;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_BoundingRectanglePropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
         }
 
         public override bool PassesTest(IA11yElement e)

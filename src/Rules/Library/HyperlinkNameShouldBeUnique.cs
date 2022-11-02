@@ -19,10 +19,10 @@ namespace Axe.Windows.Rules.Library
 
         public HyperlinkNameShouldBeUnique()
         {
-            this.Info.Description = Descriptions.HyperlinkNameShouldBeUnique;
-            this.Info.HowToFix = HowToFix.HyperlinkNameShouldBeUnique;
-            this.Info.Standard = A11yCriteriaId.NameRoleValue;
-            this.Info.ErrorCode = EvaluationCode.Warning;
+            Info.Description = Descriptions.HyperlinkNameShouldBeUnique;
+            Info.HowToFix = HowToFix.HyperlinkNameShouldBeUnique;
+            Info.Standard = A11yCriteriaId.NameRoleValue;
+            Info.ErrorCode = EvaluationCode.Warning;
         }
 
         public override bool PassesTest(IA11yElement e)

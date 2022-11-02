@@ -3,7 +3,6 @@
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.Resources;
 using System;
-using System.Globalization;
 
 namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
@@ -125,7 +124,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         public override bool Equals(Object obj)
         {
             //Check for null and compare run-time types.
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
             {
                 return false;
             }

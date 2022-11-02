@@ -8,7 +8,6 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.UIAutomation;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace Axe.Windows.Automation

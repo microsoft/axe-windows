@@ -15,12 +15,12 @@ namespace Axe.Windows.Rules.Library
     {
         public IsControlElementTrueRequiredTextInEditXAML()
         {
-            this.Info.Description = Descriptions.IsControlElementTrueRequired;
-            this.Info.HowToFix = HowToFix.IsControlElementTrueRequired;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
-            this.Info.ErrorCode = EvaluationCode.Error;
-            this.Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214418";
+            Info.Description = Descriptions.IsControlElementTrueRequired;
+            Info.HowToFix = HowToFix.IsControlElementTrueRequired;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
+            Info.ErrorCode = EvaluationCode.Error;
+            Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214418";
         }
 
         public override bool PassesTest(IA11yElement e)

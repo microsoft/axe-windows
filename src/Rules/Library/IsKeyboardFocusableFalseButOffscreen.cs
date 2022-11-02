@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public IsKeyboardFocusableFalseButOffscreen()
         {
-            this.Info.Description = Descriptions.IsKeyboardFocusableFalseButOffscreen;
-            this.Info.HowToFix = HowToFix.IsKeyboardFocusableFalseButOffscreen;
-            this.Info.Standard = A11yCriteriaId.Keyboard;
-            this.Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.IsKeyboardFocusableFalseButOffscreen;
+            Info.HowToFix = HowToFix.IsKeyboardFocusableFalseButOffscreen;
+            Info.Standard = A11yCriteriaId.Keyboard;
+            Info.PropertyID = PropertyType.UIA_IsKeyboardFocusablePropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)

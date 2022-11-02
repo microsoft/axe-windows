@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Desktop.Types;
 using System.Collections.Generic;
@@ -22,11 +22,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         public override void Init()
         {
-            IUIAutomation5 uia5 = this.IUIAutomation5;
+            IUIAutomation5 uia5 = IUIAutomation5;
             if (uia5 != null)
             {
-                uia5.AddNotificationEventHandler(this.Element, this.Scope, null, this);
-                this.IsHooked = true;
+                uia5.AddNotificationEventHandler(Element, Scope, null, this);
+                IsHooked = true;
             }
         }
 
@@ -35,7 +35,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 #pragma warning restore CA1725 // Parameter names should match base declaration
         {
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
-            var m = EventMessage.GetInstance(this.EventId, sender);
+            var m = EventMessage.GetInstance(EventId, sender);
 #pragma warning restore CA2000
 
             if (m != null)
@@ -47,7 +47,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     new KeyValuePair<string, dynamic>("Display", displayString),
                     new KeyValuePair<string, dynamic>("ActivityId", activityId),
                 };
-                this.ListenEventMessage(m);
+                ListenEventMessage(m);
             }
         }
 
@@ -57,12 +57,12 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             {
                 if (disposing)
                 {
-                    if (this.IsHooked)
+                    if (IsHooked)
                     {
-                        IUIAutomation5 uia5 = this.IUIAutomation5;
+                        IUIAutomation5 uia5 = IUIAutomation5;
                         if (uia5 != null)
                         {
-                            uia5.RemoveNotificationEventHandler(this.Element, this);
+                            uia5.RemoveNotificationEventHandler(Element, this);
                         }
                     }
                 }

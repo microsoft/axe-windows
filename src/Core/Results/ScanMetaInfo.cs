@@ -31,7 +31,7 @@ namespace Axe.Windows.Core.Results
         /// <param name="propertyid"></param>
         public ScanMetaInfo(IA11yElement e, int propertyid) : this(e)
         {
-            this.PropertyId = propertyid;
+            PropertyId = propertyid;
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace Axe.Windows.Core.Results
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            this.UIFramework = e.GetUIFramework();
-            this.ControlType = Types.ControlType.GetInstance().GetNameById(e.ControlTypeId).Split('(')[0];
-            this.PropertyId = 0;
+            UIFramework = e.GetUIFramework();
+            ControlType = Types.ControlType.GetInstance().GetNameById(e.ControlTypeId).Split('(')[0];
+            PropertyId = 0;
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Axe.Windows.Core.Results
         {
             if (PropertyId == 0)
             {
-                this.PropertyId = id;
+                PropertyId = id;
             }
             else
             {
@@ -84,9 +84,9 @@ namespace Axe.Windows.Core.Results
         {
             var mi = new ScanMetaInfo
             {
-                ControlType = this.ControlType,
-                PropertyId = this.PropertyId,
-                UIFramework = this.UIFramework
+                ControlType = ControlType,
+                PropertyId = PropertyId,
+                UIFramework = UIFramework
             };
 
             return mi;

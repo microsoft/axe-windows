@@ -14,11 +14,11 @@ namespace Axe.Windows.Rules.Library
     {
         public ItemStatusExists()
         {
-            this.Info.Description = Descriptions.ItemStatusExists;
-            this.Info.HowToFix = HowToFix.ItemStatusExists;
-            this.Info.Standard = A11yCriteriaId.ObjectInformation;
-            this.Info.PropertyID = PropertyType.UIA_ItemStatusPropertyId;
-            this.Info.ErrorCode = EvaluationCode.NeedsReview;
+            Info.Description = Descriptions.ItemStatusExists;
+            Info.HowToFix = HowToFix.ItemStatusExists;
+            Info.Standard = A11yCriteriaId.ObjectInformation;
+            Info.PropertyID = PropertyType.UIA_ItemStatusPropertyId;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)
