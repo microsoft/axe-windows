@@ -133,15 +133,6 @@ namespace Axe.Windows.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Value cannot be empty or white space.
-        /// </summary>
-        internal static string ValueCannotBeEmptyOrWhiteSpace {
-            get {
-                return ResourceManager.GetString("ValueCannotBeEmptyOrWhiteSpace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Value cannot be null.
         /// </summary>
         internal static string ValueCannotBeNull {

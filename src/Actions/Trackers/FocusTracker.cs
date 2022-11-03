@@ -49,7 +49,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == false)
             {
-                EventHandler?.RegisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId, onFocusChangedEventForSelectingElement);
+                EventHandler?.RegisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId, OnFocusChangedEventForSelectingElement);
                 IsStarted = true;
             }
         }
@@ -59,7 +59,7 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         /// <param name="message"></param>
 
-        private void onFocusChangedEventForSelectingElement(EventMessage message)
+        private void OnFocusChangedEventForSelectingElement(EventMessage message)
         {
             // only when focus is chosen for highlight
             if (message.EventId == EventType.UIA_AutomationFocusChangedEventId)

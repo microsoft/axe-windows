@@ -23,7 +23,7 @@ namespace Axe.Windows.Rules.Library
             Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;
             Info.Standard = A11yCriteriaId.ObjectInformation;
             Info.ErrorCode = EvaluationCode.Error;
-            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-FrameworkDoesNotSupportUIAutomation";
+            Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214160";
         }
 
         public override bool PassesTest(IA11yElement e)

@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules.Library
             Info.HowToFix = HowToFix.ControlShouldSupportTextPattern;
             Info.Standard = A11yCriteriaId.AvailableActions;
             Info.ErrorCode = EvaluationCode.Error;
-            Info.FrameworkIssueLink = "https://aka.ms/FrameworkIssue-ControlShouldSupportTextPatternEditWinForm";
+            Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214162";
         }
 
         public override bool PassesTest(IA11yElement e)
