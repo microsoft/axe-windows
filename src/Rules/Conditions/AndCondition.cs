@@ -9,24 +9,24 @@ namespace Axe.Windows.Rules
 {
     class AndCondition : Condition
     {
-        private readonly Condition A;
-        private readonly Condition B;
+        private readonly Condition _a;
+        private readonly Condition _b;
 
         public AndCondition(Condition a, Condition b)
         {
-            A = a ?? throw new ArgumentNullException(nameof(a));
-            B = b ?? throw new ArgumentNullException(nameof(b));
+            _a = a ?? throw new ArgumentNullException(nameof(a));
+            _b = b ?? throw new ArgumentNullException(nameof(b));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return A.Matches(element)
-                && B.Matches(element);
+            return _a.Matches(element)
+                && _b.Matches(element);
         }
 
         public override string ToString()
         {
-            return ConditionDescriptions.And.WithParameters(A.ToString(), B.ToString());
+            return ConditionDescriptions.And.WithParameters(_a.ToString(), _b.ToString());
         }
     } // class
 } // namespace

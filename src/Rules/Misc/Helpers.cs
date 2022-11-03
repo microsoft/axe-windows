@@ -8,8 +8,8 @@ namespace Axe.Windows.Rules.Misc
 {
     static class Helpers
     {
-        private static readonly Lazy<IUIAutomationElement> _desktop = new Lazy<IUIAutomationElement>(GetDesktopElement);
-        public static IUIAutomationElement Desktop => _desktop.Value;
+        private static readonly Lazy<IUIAutomationElement> DesktopLazy = new Lazy<IUIAutomationElement>(GetDesktopElement);
+        public static IUIAutomationElement Desktop => DesktopLazy.Value;
 
         private static IUIAutomationElement GetDesktopElement()
         {

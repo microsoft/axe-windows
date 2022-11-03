@@ -9,21 +9,21 @@ namespace Axe.Windows.Rules
 {
     class NotCondition : Condition
     {
-        private readonly Condition A;
+        private readonly Condition _a;
 
         public NotCondition(Condition a)
         {
-            A = a ?? throw new ArgumentNullException(nameof(a));
+            _a = a ?? throw new ArgumentNullException(nameof(a));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return !A.Matches(element);
+            return !_a.Matches(element);
         }
 
         public override string ToString()
         {
-            return ConditionDescriptions.Not.WithParameters(A.ToString());
+            return ConditionDescriptions.Not.WithParameters(_a.ToString());
         }
     } // class
 } // namespace

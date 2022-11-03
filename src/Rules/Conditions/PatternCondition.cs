@@ -8,7 +8,7 @@ namespace Axe.Windows.Rules
 {
     class PatternCondition : Condition
     {
-        private readonly int PatternID;
+        private readonly int _patternID;
 
         private ValidateProperty Validate { get; set; }
 
@@ -18,7 +18,7 @@ namespace Axe.Windows.Rules
         {
             if (patternID == 0) throw new ArgumentNullException(nameof(patternID));
 
-            PatternID = patternID;
+            _patternID = patternID;
             Validate = validate;
         }
 
@@ -26,14 +26,14 @@ namespace Axe.Windows.Rules
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            var pattern = e.GetPattern(PatternID);
+            var pattern = e.GetPattern(_patternID);
 
             return pattern != null && (Validate == null || Validate(e));
         }
 
         public override string ToString()
         {
-            var patternName = PatternType.GetInstance().GetNameById(PatternID);
+            var patternName = PatternType.GetInstance().GetNameById(_patternID);
             return $"has {patternName} pattern";
         }
     } // class

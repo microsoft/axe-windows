@@ -8,16 +8,16 @@ namespace Axe.Windows.Rules
     class DelegateCondition : Condition
     {
         public delegate bool MatchesDelegate(IA11yElement element);
-        private readonly MatchesDelegate _Matches;
+        private readonly MatchesDelegate _matches;
 
         public DelegateCondition(MatchesDelegate matches)
         {
-            _Matches = matches ?? throw new ArgumentNullException(nameof(matches));
+            _matches = matches ?? throw new ArgumentNullException(nameof(matches));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return _Matches(element);
+            return _matches(element);
         }
 
         public override string ToString()

@@ -12,8 +12,8 @@ namespace Axe.Windows.Rules
     class RuleFactory : IRuleFactory
     {
         private static readonly IReadOnlyDictionary<RuleId, Type> RuleTypes = CreateRuleTypes();
-        private static readonly Lazy<IEnumerable<RuleId>> _RuleIds = new Lazy<IEnumerable<RuleId>>(() => RuleTypes.Keys);
-        public static IEnumerable<RuleId> RuleIds => _RuleIds.Value;
+        private static readonly Lazy<IEnumerable<RuleId>> RuleIdsLazy = new Lazy<IEnumerable<RuleId>>(() => RuleTypes.Keys);
+        public static IEnumerable<RuleId> RuleIds => RuleIdsLazy.Value;
 
         private static IReadOnlyDictionary<RuleId, Type> CreateRuleTypes()
         {

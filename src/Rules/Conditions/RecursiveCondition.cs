@@ -7,11 +7,11 @@ namespace Axe.Windows.Rules
 {
     class RecursiveCondition : Condition
     {
-        private Condition A;
+        private Condition _a;
 
         private void Init(Condition a)
         {
-            A = a ?? throw new ArgumentNullException(nameof(a));
+            _a = a ?? throw new ArgumentNullException(nameof(a));
         }
 
         public static RecursiveCondition operator %(RecursiveCondition r, Condition c)
@@ -23,9 +23,9 @@ namespace Axe.Windows.Rules
         public override bool Matches(IA11yElement e)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (A == null) return false;
+            if (_a == null) return false;
 
-            return A.Matches(e);
+            return _a.Matches(e);
         }
 
         public override string ToString()
