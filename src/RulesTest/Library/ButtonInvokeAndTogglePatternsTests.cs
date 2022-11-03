@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ButtonInvokeAndTogglePatternsTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ButtonInvokeAndTogglePatterns();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ButtonInvokeAndTogglePatterns();
 
         /// <summary>
         /// Rule not applicable

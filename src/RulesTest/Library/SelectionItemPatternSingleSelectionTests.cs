@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -12,7 +12,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class SelectionItemPatternSingleSelectionTests
     {
-        private readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SelectionItemPatternSingleSelection();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SelectionItemPatternSingleSelection();
 
         private static Mock<IA11yElement> CreateMockElement(IA11yElement parent, int controlType, bool isSelected)
         {

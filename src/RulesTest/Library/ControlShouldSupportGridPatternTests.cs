@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ControlShouldSupportGridPatternTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportGridPattern();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportGridPattern();
 
         [TestMethod]
         public void HasGridPattern_Pass()

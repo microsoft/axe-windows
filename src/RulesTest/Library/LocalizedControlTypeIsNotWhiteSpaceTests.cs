@@ -7,7 +7,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class LocalizedControlTypeIsNotWhiteSpaceTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotWhiteSpace();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotWhiteSpace();
 
         [TestMethod]
         public void TestLocalizedControlTypeNull()

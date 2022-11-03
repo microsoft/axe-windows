@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ButtonToggleAndExpandCollapsePatternsTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ButtonToggleAndExpandCollapsePatterns();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ButtonToggleAndExpandCollapsePatterns();
 
         /// <summary>
         /// Rule not applicable
