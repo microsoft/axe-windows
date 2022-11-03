@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,7 +11,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class IsControlElementTrueRequiredTests
     {
-        private readonly Rectangle ValidRectangle = new Rectangle(100, 200, 300, 400); // Arbitrary values
+        private static readonly Rectangle ValidRectangle = new Rectangle(100, 200, 300, 400); // Arbitrary values
         private const int NonRequiredControlType = Axe.Windows.Core.Types.ControlType.UIA_PaneControlTypeId;
         private const int GenericRequiredControlType = Axe.Windows.Core.Types.ControlType.UIA_ComboBoxControlTypeId;
         private const int TextType = Axe.Windows.Core.Types.ControlType.UIA_TextControlTypeId;

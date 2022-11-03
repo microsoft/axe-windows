@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
@@ -13,13 +13,13 @@ namespace Axe.Windows.RulesTests.PropertyConditions
     [TestClass]
     public class NameTests
     {
-        private readonly IEnumerable<int> RequiredTypes = null;
-        private readonly IEnumerable<int> OptionalTypes = null;
-        private readonly IEnumerable<int> ExcludedTypes = null;
+        private readonly IEnumerable<int> _requiredTypes = null;
+        private readonly IEnumerable<int> _optionalTypes = null;
+        private readonly IEnumerable<int> _excludedTypes = null;
 
         public NameTests()
         {
-            RequiredTypes = new List<int>
+            _requiredTypes = new List<int>
             {
                 Calendar, CheckBox, ComboBox,
                 DataGrid, DataItem, Document,
@@ -32,18 +32,18 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 ToolTip, Tree, TreeItem, Window
             };
 
-            OptionalTypes = new List<int> { Group, Pane };
+            _optionalTypes = new List<int> { Group, Pane };
 
             int[] specialTests =
             {
                 Button, Custom, Header, Image, StatusBar, Text
             };
 
-            var temp = new List<int>(RequiredTypes);
-            temp.AddRange(OptionalTypes);
+            var temp = new List<int>(_requiredTypes);
+            temp.AddRange(_optionalTypes);
             temp.AddRange(specialTests);
 
-            ExcludedTypes = ControlType.All.Difference(temp);
+            _excludedTypes = ControlType.All.Difference(temp);
         }
 
         [TestMethod]
@@ -51,7 +51,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                foreach (var controlType in RequiredTypes)
+                foreach (var controlType in _requiredTypes)
                 {
                     e.ControlTypeId = controlType;
                     Assert.IsTrue(Misc.NameRequired.Matches(e));
@@ -64,7 +64,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                foreach (var controlType in OptionalTypes)
+                foreach (var controlType in _optionalTypes)
                 {
                     e.ControlTypeId = controlType;
                     Assert.IsTrue(Misc.NameOptional.Matches(e));
@@ -77,7 +77,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                foreach (var controlType in ExcludedTypes)
+                foreach (var controlType in _excludedTypes)
                 {
                     e.ControlTypeId = controlType;
                     Assert.IsFalse(Misc.NameRequired.Matches(e));

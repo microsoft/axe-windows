@@ -9,14 +9,14 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     public class PropertyChangedEventListener : EventListenerBase, IUIAutomationPropertyChangedEventHandler
     {
-        readonly int[] propertyArray;
+        readonly int[] _propertyArray;
 
         /// <summary>
         /// Create an event handler and register it.
         /// </summary>
         public PropertyChangedEventListener(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, HandleUIAutomationEventMessage peDelegate, int[] properties) : base(uia, element, scope, EventType.UIA_AutomationPropertyChangedEventId, peDelegate)
         {
-            propertyArray = properties;
+            _propertyArray = properties;
             Init();
         }
 
@@ -25,7 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
             IUIAutomation uia = IUIAutomation;
             if (uia != null)
             {
-                uia.AddPropertyChangedEventHandler(Element, Scope, null, this, propertyArray);
+                uia.AddPropertyChangedEventHandler(Element, Scope, null, this, _propertyArray);
                 IsHooked = true;
             }
         }

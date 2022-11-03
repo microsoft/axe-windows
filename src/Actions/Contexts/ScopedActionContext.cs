@@ -14,7 +14,7 @@ namespace Axe.Windows.Actions.Contexts
     /// </summary>
     internal class ScopedActionContext : IActionContext
     {
-        private bool disposedValue;
+        private bool _disposedValue;
 
         private ScopedActionContext(DataManager dataManager, SelectAction selectAction, DesktopDataContext desktopDataContext)
         {
@@ -33,7 +33,7 @@ namespace Axe.Windows.Actions.Contexts
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -41,7 +41,7 @@ namespace Axe.Windows.Actions.Contexts
                     SelectAction.Dispose();
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

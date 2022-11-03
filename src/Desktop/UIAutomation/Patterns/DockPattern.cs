@@ -14,33 +14,33 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class DockPattern : A11yPattern
     {
-        IUIAutomationDockPattern Pattern;
+        IUIAutomationDockPattern _pattern;
 
         public DockPattern(A11yElement e, IUIAutomationDockPattern p) : base(e, PatternType.UIA_DockPatternId)
         {
-            Pattern = p;
+            _pattern = p;
             PopulateProperties();
         }
 
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "DockPosition", Value = Pattern.CurrentDockPosition });
+            Properties.Add(new A11yPatternProperty() { Name = "DockPosition", Value = _pattern.CurrentDockPosition });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void SetDockPosition(DockPosition dockPos)
         {
-            Pattern.SetDockPosition(dockPos);
+            _pattern.SetDockPosition(dockPos);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -7,7 +7,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameIsNotWhiteSpaceTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotWhiteSpace();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotWhiteSpace();
 
         [TestMethod]
         public void TestNameNull()

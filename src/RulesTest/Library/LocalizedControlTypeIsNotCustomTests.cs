@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class LocalizedControlTypeIsNotCustomTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotCustom();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotCustom();
 
         private MockA11yElement CreateElementExpectedToMatchCondition()
         {

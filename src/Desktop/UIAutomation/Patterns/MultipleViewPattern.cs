@@ -15,11 +15,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class MultipleViewPattern : A11yPattern
     {
-        IUIAutomationMultipleViewPattern Pattern;
+        IUIAutomationMultipleViewPattern _pattern;
 
         public MultipleViewPattern(A11yElement e, IUIAutomationMultipleViewPattern p) : base(e, PatternType.UIA_MultipleViewPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -27,14 +27,14 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "CurrentView", Value = Pattern.CurrentCurrentView });
-            var array = Pattern.GetCurrentSupportedViews();
+            Properties.Add(new A11yPatternProperty() { Name = "CurrentView", Value = _pattern.CurrentCurrentView });
+            var array = _pattern.GetCurrentSupportedViews();
             if (array.Length > 0)
             {
                 for (int i = 0; i < array.Length; i++)
                 {
                     var view = (int)array.GetValue(i);
-                    Properties.Add(new A11yPatternProperty() { Name = Invariant($"SupportedViews[{i}]"), Value = Invariant($"{view}: {Pattern.GetViewName(view)}") });
+                    Properties.Add(new A11yPatternProperty() { Name = Invariant($"SupportedViews[{i}]"), Value = Invariant($"{view}: {_pattern.GetViewName(view)}") });
                 }
             }
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
@@ -43,15 +43,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void SetCurrentView(int view)
         {
-            Pattern.SetCurrentView(view);
+            _pattern.SetCurrentView(view);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

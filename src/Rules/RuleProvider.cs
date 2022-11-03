@@ -18,40 +18,40 @@ namespace Axe.Windows.Rules
     /// </summary>
     class RuleProvider : IRuleProvider
     {
-        private readonly IRuleFactory RuleFactory;
-        private readonly ConcurrentDictionary<RuleId, IRule> AllRules = new ConcurrentDictionary<RuleId, IRule>();
-        private readonly Object AllRulesLock = new Object();
-        private bool AreAllRulesInitialized;
+        private readonly IRuleFactory _ruleFactory;
+        private readonly ConcurrentDictionary<RuleId, IRule> _allRules = new ConcurrentDictionary<RuleId, IRule>();
+        private readonly Object _allRulesLock = new Object();
+        private bool _areAllRulesInitialized;
 
         public RuleProvider(IRuleFactory ruleFactory)
         {
-            RuleFactory = ruleFactory ?? throw new ArgumentNullException(nameof(ruleFactory));
+            _ruleFactory = ruleFactory ?? throw new ArgumentNullException(nameof(ruleFactory));
         }
 
         private void InitAllRules()
         {
-            if (AreAllRulesInitialized) return;
+            if (_areAllRulesInitialized) return;
 
             /* the lock is an optimization of the ConcurrentDictionary
              * So that if multiple threads simultaneously run all rules
              * the ConcurrentDictionary won't end up creating extra objects that will never be used
              * and only be fodder for the garbage collector.
              * */
-            lock (AllRulesLock)
+            lock (_allRulesLock)
             {
-                if (AreAllRulesInitialized) return;
+                if (_areAllRulesInitialized) return;
 
                 // Calling GetRule ensures that the rule is created.
                 foreach (var k in Axe.Windows.Rules.RuleFactory.RuleIds)
                     GetRule(k);
 
-                AreAllRulesInitialized = true;
+                _areAllRulesInitialized = true;
             } // lock
         }
 
         public IRule GetRule(RuleId id)
         {
-            return AllRules.GetOrAdd(id, key => RuleFactory.CreateRule(key));
+            return _allRules.GetOrAdd(id, key => _ruleFactory.CreateRule(key));
         }
 
         public IEnumerable<IRule> All
@@ -60,7 +60,7 @@ namespace Axe.Windows.Rules
             {
                 InitAllRules();
 
-                return AllRules.Values;
+                return _allRules.Values;
             }
         }
     } // class

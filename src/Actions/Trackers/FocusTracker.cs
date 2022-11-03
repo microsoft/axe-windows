@@ -18,7 +18,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <summary>
         /// Event Handler
         /// </summary>
-        EventListenerFactory EventHandler;
+        EventListenerFactory _eventListenerFactory;
 
         /// <summary>
         /// Constructor
@@ -26,7 +26,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="action"></param>
         public FocusTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
-            EventHandler = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
+            _eventListenerFactory = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         public override void Stop()
         {
-            if (EventHandler != null && IsStarted)
+            if (_eventListenerFactory != null && IsStarted)
             {
-                EventHandler.UnregisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId);
+                _eventListenerFactory.UnregisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId);
                 IsStarted = false;
             }
             base.Stop();
@@ -49,7 +49,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == false)
             {
-                EventHandler?.RegisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId, OnFocusChangedEventForSelectingElement);
+                _eventListenerFactory?.RegisterAutomationEventListener(EventType.UIA_AutomationFocusChangedEventId, OnFocusChangedEventForSelectingElement);
                 IsStarted = true;
             }
         }
@@ -82,10 +82,10 @@ namespace Axe.Windows.Actions.Trackers
 
         protected override void Dispose(bool disposing)
         {
-            if (EventHandler != null)
+            if (_eventListenerFactory != null)
             {
-                EventHandler.Dispose();
-                EventHandler = null;
+                _eventListenerFactory.Dispose();
+                _eventListenerFactory = null;
             }
             base.Dispose(disposing);
         }

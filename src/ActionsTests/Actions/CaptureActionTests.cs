@@ -21,54 +21,54 @@ namespace Axe.Windows.ActionsTests.Actions
     [TestClass]
     public class CaptureActionTests
     {
-        Mock<IActionContext> mockActionContext;
-        DataManager mockDataManager;
-        A11yElement mockElement;
-        ElementContext mockElementContext;
-        int irrelevantMaxElements;
-        ElementDataContext mockDataContext;
-        TreeViewMode mockTreeViewMode;
-        DesktopDataContext mockDesktopDataContext;
+        Mock<IActionContext> _mockActionContext;
+        DataManager _mockDataManager;
+        A11yElement _mockElement;
+        ElementContext _mockElementContext;
+        int _irrelevantMaxElements;
+        ElementDataContext _mockDataContext;
+        TreeViewMode _mockTreeViewMode;
+        DesktopDataContext _mockDesktopDataContext;
 
         [TestInitialize]
         public void ResetMocks()
         {
-            mockDataManager = new DataManager();
-            mockElement = new A11yElement
+            _mockDataManager = new DataManager();
+            _mockElement = new A11yElement
             {
                 UniqueId = 0
             };
-            mockElementContext = new ElementContext(mockElement);
-            irrelevantMaxElements = 10;
-            mockDataContext = new ElementDataContext(mockElement, irrelevantMaxElements);
-            mockTreeViewMode = (TreeViewMode)(-1);
+            _mockElementContext = new ElementContext(_mockElement);
+            _irrelevantMaxElements = 10;
+            _mockDataContext = new ElementDataContext(_mockElement, _irrelevantMaxElements);
+            _mockTreeViewMode = (TreeViewMode)(-1);
 
-            mockElementContext.DataContext = mockDataContext;
-            mockDataContext.TreeMode = mockTreeViewMode;
-            mockDataContext.Mode = DataContextMode.Live;
-            mockDataManager.AddElementContext(mockElementContext);
+            _mockElementContext.DataContext = _mockDataContext;
+            _mockDataContext.TreeMode = _mockTreeViewMode;
+            _mockDataContext.Mode = DataContextMode.Live;
+            _mockDataManager.AddElementContext(_mockElementContext);
 
             Registrar registrar = new Registrar();
-            mockDesktopDataContext = new DesktopDataContext(registrar, A11yAutomation.CreateInstance(), CancellationToken.None);
+            _mockDesktopDataContext = new DesktopDataContext(registrar, A11yAutomation.CreateInstance(), CancellationToken.None);
 
-            mockActionContext = new Mock<IActionContext>(MockBehavior.Strict);
-            mockActionContext.Setup(m => m.DataManager).Returns(mockDataManager);
-            mockActionContext.Setup(m => m.Registrar).Returns(registrar);
-            mockActionContext.Setup(m => m.DesktopDataContext).Returns(mockDesktopDataContext);
+            _mockActionContext = new Mock<IActionContext>(MockBehavior.Strict);
+            _mockActionContext.Setup(m => m.DataManager).Returns(_mockDataManager);
+            _mockActionContext.Setup(m => m.Registrar).Returns(registrar);
+            _mockActionContext.Setup(m => m.DesktopDataContext).Returns(_mockDesktopDataContext);
         }
 
         [TestMethod]
         [Timeout(1000)]
         public void SetLiveModeDataContext_NoopsIfElementAlreadyHasComparableDataContext()
         {
-            mockDataContext.Mode = DataContextMode.Live;
+            _mockDataContext.Mode = DataContextMode.Live;
 
             using (new CaptureActionTestHookOverrides(null, null))
             {
-                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, mockTreeViewMode, mockActionContext.Object, force: false);
+                CaptureAction.SetLiveModeDataContext(_mockElementContext.Id, _mockTreeViewMode, _mockActionContext.Object, force: false);
             }
 
-            Assert.AreSame(mockDataContext, mockElementContext.DataContext);
+            Assert.AreSame(_mockDataContext, _mockElementContext.DataContext);
         }
 
         [DataTestMethod]
@@ -88,9 +88,9 @@ namespace Axe.Windows.ActionsTests.Actions
             TreeViewMode originalDataContextTreeViewMode)
         {
             // Arrange
-            if (startWithNullDataContext) { mockElementContext.DataContext = null; }
-            mockDataContext.Mode = originalDataContextMode;
-            mockDataContext.TreeMode = originalDataContextTreeViewMode;
+            if (startWithNullDataContext) { _mockElementContext.DataContext = null; }
+            _mockDataContext.Mode = originalDataContextMode;
+            _mockDataContext.TreeMode = originalDataContextTreeViewMode;
             TreeViewMode treeViewMode = TreeViewMode.Raw;
 
             var mockTreeWalkerForLive = new Mock<ITreeWalkerForLive>();
@@ -109,18 +109,18 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides(() => mockTreeWalkerForLive.Object, null))
             {
                 // Act
-                CaptureAction.SetLiveModeDataContext(mockElementContext.Id, treeViewMode, mockActionContext.Object, force);
+                CaptureAction.SetLiveModeDataContext(_mockElementContext.Id, treeViewMode, _mockActionContext.Object, force);
 
                 // Assert
-                Assert.IsNotNull(mockElementContext.DataContext);
-                Assert.AreNotSame(mockDataContext, mockElementContext.DataContext);
-                var result = mockElementContext.DataContext;
-                Assert.AreSame(mockElement, result.Element);
+                Assert.IsNotNull(_mockElementContext.DataContext);
+                Assert.AreNotSame(_mockDataContext, _mockElementContext.DataContext);
+                var result = _mockElementContext.DataContext;
+                Assert.AreSame(_mockElement, result.Element);
                 Assert.AreEqual(20000, result.ElementCounter.UpperBound);
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Live, result.Mode);
                 Assert.AreEqual(mockTopMostElement, result.RootElment);
-                mockTreeWalkerForLive.Verify(w => w.GetTreeHierarchy(mockElement, treeViewMode, mockDesktopDataContext));
+                mockTreeWalkerForLive.Verify(w => w.GetTreeHierarchy(_mockElement, treeViewMode, _mockDesktopDataContext));
                 Assert.AreEqual(2, result.Elements.Count);
                 Assert.AreSame(mockElementsItem1, result.Elements[mockElementsItem1.UniqueId]);
                 Assert.AreSame(mockElementsItem2, result.Elements[mockElementsItem2.UniqueId]);
@@ -138,15 +138,15 @@ namespace Axe.Windows.ActionsTests.Actions
         [Timeout(1000)]
         public void SetTestModeDataContext_NoopsIfElementDoesNotNeedTestContextUpdate(DataContextMode originalMode, TreeViewMode originalTreeMode, DataContextMode newlySetMode, TreeViewMode newlySetTreeMode)
         {
-            mockDataContext.Mode = originalMode;
-            mockDataContext.TreeMode = originalTreeMode;
+            _mockDataContext.Mode = originalMode;
+            _mockDataContext.TreeMode = originalTreeMode;
 
             using (new CaptureActionTestHookOverrides(null, null))
             {
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, newlySetMode, newlySetTreeMode, mockActionContext.Object, force: false);
+                bool retVal = CaptureAction.SetTestModeDataContext(_mockElementContext.Id, newlySetMode, newlySetTreeMode, _mockActionContext.Object, force: false);
 
                 Assert.IsFalse(retVal);
-                Assert.AreSame(mockDataContext, mockElementContext.DataContext);
+                Assert.AreSame(_mockDataContext, _mockElementContext.DataContext);
             }
         }
 
@@ -167,9 +167,9 @@ namespace Axe.Windows.ActionsTests.Actions
             TreeViewMode originalDataContextTreeViewMode)
         {
             // Arrange
-            if (startWithNullDataContext) { mockElementContext.DataContext = null; }
-            mockDataContext.Mode = originalDataContextMode;
-            mockDataContext.TreeMode = originalDataContextTreeViewMode;
+            if (startWithNullDataContext) { _mockElementContext.DataContext = null; }
+            _mockDataContext.Mode = originalDataContextMode;
+            _mockDataContext.TreeMode = originalDataContextTreeViewMode;
             TreeViewMode treeViewMode = TreeViewMode.Raw;
 
             var mockTreeWalkerForTest = new Mock<ITreeWalkerForTest>();
@@ -188,13 +188,13 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides(null, (_1, _2) => mockTreeWalkerForTest.Object))
             {
                 // Act
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Test, treeViewMode, mockActionContext.Object, force);
+                bool retVal = CaptureAction.SetTestModeDataContext(_mockElementContext.Id, DataContextMode.Test, treeViewMode, _mockActionContext.Object, force);
                 // Assert
                 Assert.IsTrue(retVal);
-                Assert.IsNotNull(mockElementContext.DataContext);
-                Assert.AreNotSame(mockDataContext, mockElementContext.DataContext);
-                var result = mockElementContext.DataContext;
-                Assert.AreSame(mockElement, result.Element);
+                Assert.IsNotNull(_mockElementContext.DataContext);
+                Assert.AreNotSame(_mockDataContext, _mockElementContext.DataContext);
+                var result = _mockElementContext.DataContext;
+                Assert.AreSame(_mockElement, result.Element);
                 Assert.AreEqual(20000, result.ElementCounter.UpperBound);
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Test, result.Mode);
@@ -221,12 +221,12 @@ namespace Axe.Windows.ActionsTests.Actions
             TreeViewMode originalDataContextTreeViewMode)
         {
             // Arrange
-            if (startWithNullDataContext) { mockElementContext.DataContext = null; }
-            mockDataContext.Mode = originalDataContextMode;
-            mockDataContext.TreeMode = originalDataContextTreeViewMode;
+            if (startWithNullDataContext) { _mockElementContext.DataContext = null; }
+            _mockDataContext.Mode = originalDataContextMode;
+            _mockDataContext.TreeMode = originalDataContextTreeViewMode;
             TreeViewMode treeViewMode = TreeViewMode.Raw;
 
-            var mockOriginAncestor = mockElement;
+            var mockOriginAncestor = _mockElement;
             mockOriginAncestor.UniqueId = 1;
             var mockChild1 = new A11yElement
             {
@@ -246,14 +246,14 @@ namespace Axe.Windows.ActionsTests.Actions
             using (new CaptureActionTestHookOverrides(null, null))
             {
                 // Act
-                bool retVal = CaptureAction.SetTestModeDataContext(mockElementContext.Id, DataContextMode.Load, treeViewMode, mockActionContext.Object, force);
+                bool retVal = CaptureAction.SetTestModeDataContext(_mockElementContext.Id, DataContextMode.Load, treeViewMode, _mockActionContext.Object, force);
 
                 // Assert
                 Assert.IsTrue(retVal);
-                Assert.IsNotNull(mockElementContext.DataContext);
-                Assert.AreNotSame(mockDataContext, mockElementContext.DataContext);
-                var result = mockElementContext.DataContext;
-                Assert.AreSame(mockElement, result.Element);
+                Assert.IsNotNull(_mockElementContext.DataContext);
+                Assert.AreNotSame(_mockDataContext, _mockElementContext.DataContext);
+                var result = _mockElementContext.DataContext;
+                Assert.AreSame(_mockElement, result.Element);
                 Assert.AreEqual(20000, result.ElementCounter.UpperBound);
                 Assert.AreEqual(treeViewMode, result.TreeMode);
                 Assert.AreEqual(DataContextMode.Load, result.Mode);

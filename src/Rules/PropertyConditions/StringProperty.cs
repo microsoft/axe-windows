@@ -24,7 +24,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public Condition IncludesPrivateUnicodeCharacters;
         public Condition ExcludesPrivateUnicodeCharacters;
         public ValueCondition<int> Length;
-        private readonly Func<IA11yElement, string> GetStringPropertyValue;
+        private readonly Func<IA11yElement, string> _getStringPropertyValue;
 
         /// <summary>
         /// Represents a string property of an element such as "Name", "LocalizedControlType", etc.
@@ -48,7 +48,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         /// </param>
         public StringProperty(Func<IA11yElement, string> valueGetter, string propertyDescription)
         {
-            GetStringPropertyValue = valueGetter;
+            _getStringPropertyValue = valueGetter;
             PropertyDescription = propertyDescription;
             Null = CreateNullCondition();
             Empty = CreateEmptyCondition();
@@ -67,25 +67,25 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         private Condition CreateNullCondition()
         {
-            var condition = Condition.Create(e => GetStringPropertyValue(e) == null);
+            var condition = Condition.Create(e => _getStringPropertyValue(e) == null);
             return condition;
         }
 
         private Condition CreateEmptyCondition()
         {
-            var condition = Condition.Create(e => GetStringPropertyValue(e)?.Length <= 0);
+            var condition = Condition.Create(e => _getStringPropertyValue(e)?.Length <= 0);
             return condition;
         }
 
         private Condition CreateWhitespaceCondition()
         {
-            var condition = Condition.Create(e => GetStringPropertyValue(e)?.Trim().Length <= 0);
+            var condition = Condition.Create(e => _getStringPropertyValue(e)?.Trim().Length <= 0);
             return condition;
         }
 
         private Condition CreateIncludesPrivateUnicodeCharactersCondition()
         {
-            return Condition.Create(e => StringIncludesPrivateUnicodeCharacters(GetStringPropertyValue(e)),
+            return Condition.Create(e => StringIncludesPrivateUnicodeCharacters(_getStringPropertyValue(e)),
                 string.Format(CultureInfo.CurrentCulture, ConditionDescriptions.IncludesPrivateUnicodeCharacters, PropertyDescription));
         }
 
@@ -115,7 +115,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             {
                 if (e == null) return 0;
 
-                string s = GetStringPropertyValue(e);
+                string s = _getStringPropertyValue(e);
                 if (s == null) return 0;
 
                 return s.Length;
@@ -124,12 +124,12 @@ namespace Axe.Windows.Rules.PropertyConditions
 
         public Condition Is(string s)
         {
-            return Condition.Create(e => GetStringPropertyValue(e) == s);
+            return Condition.Create(e => _getStringPropertyValue(e) == s);
         }
 
         public Condition IsNoCase(string s)
         {
-            return Condition.Create(e => string.Equals(GetStringPropertyValue(e), s, StringComparison.OrdinalIgnoreCase));
+            return Condition.Create(e => string.Equals(_getStringPropertyValue(e), s, StringComparison.OrdinalIgnoreCase));
         }
 
         public Condition IsEqualTo(StringProperty that)
@@ -149,10 +149,10 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (e == null) throw new ArgumentNullException(nameof(e));
             if (that == null) throw new ArgumentNullException(nameof(that));
 
-            string s1 = GetStringPropertyValue(e);
+            string s1 = _getStringPropertyValue(e);
             if (string.IsNullOrWhiteSpace(s1)) return false;
 
-            string s2 = that.GetStringPropertyValue(e);
+            string s2 = that._getStringPropertyValue(e);
             if (string.IsNullOrWhiteSpace(s2)) return false;
 
             return string.Equals(s1, s2, StringComparison.OrdinalIgnoreCase);
@@ -162,7 +162,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             return Condition.Create(e =>
             {
-                var propertyValue = GetStringPropertyValue(e);
+                var propertyValue = _getStringPropertyValue(e);
                 if (propertyValue == null) return false;
 
                 Regex r = new Regex(s);
@@ -175,7 +175,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             return Condition.Create(e =>
             {
-                var propertyValue = GetStringPropertyValue(e);
+                var propertyValue = _getStringPropertyValue(e);
                 if (propertyValue == null) return false;
 
                 Regex r = new Regex(s, options);

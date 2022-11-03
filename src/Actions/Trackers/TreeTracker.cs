@@ -21,15 +21,15 @@ namespace Axe.Windows.Actions.Trackers
     /// </summary>
     public class TreeTracker : BaseTracker
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "SelectAction")]
-        readonly SelectAction SelectAction = null;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_selectAction")]
+        readonly SelectAction _selectAction;
         internal TreeViewMode TreeViewMode { get; set; } = TreeViewMode.Raw;
         private readonly object _movementLock = new object();
 
         public TreeTracker(Action<A11yElement> action, SelectAction selectAction)
             : base(action, DefaultActionContext.GetDefaultInstance())
         {
-            SelectAction = selectAction;
+            _selectAction = selectAction;
         }
 
         public override void Start()
@@ -133,8 +133,8 @@ namespace Axe.Windows.Actions.Trackers
             desktopElement.PopulateMinimumPropertiesForSelection(ActionContext.DesktopDataContext);
             if (desktopElement.IsRootElement() == false)
             {
-                SelectAction?.SetCandidateElement(desktopElement);
-                SelectAction?.Select();
+                _selectAction?.SetCandidateElement(desktopElement);
+                _selectAction?.Select();
             }
             else
             {
@@ -178,7 +178,7 @@ namespace Axe.Windows.Actions.Trackers
 
         private IUIAutomationElement GetCurrentElement()
         {
-            return SelectAction?.POIElementContext?.Element?.PlatformObject as IUIAutomationElement;
+            return _selectAction?.POIElementContext?.Element?.PlatformObject as IUIAutomationElement;
         }
 
         protected override void Dispose(bool disposing)

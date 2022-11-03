@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Types;
 using System.Text;
@@ -22,7 +22,7 @@ namespace Axe.Windows.Desktop.Styles
         public const int HorizontalTextAlignment_Justified = 3;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-        private static HorizontalTextAlignment sInstance;
+        private static HorizontalTextAlignment TheInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
@@ -32,12 +32,12 @@ namespace Axe.Windows.Desktop.Styles
         /// <returns></returns>
         public static HorizontalTextAlignment GetInstance()
         {
-            if (sInstance == null)
+            if (TheInstance == null)
             {
-                sInstance = new HorizontalTextAlignment();
+                TheInstance = new HorizontalTextAlignment();
             }
 
-            return sInstance;
+            return TheInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
 

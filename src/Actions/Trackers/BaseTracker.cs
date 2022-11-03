@@ -30,10 +30,10 @@ namespace Axe.Windows.Actions.Trackers
         /// <summary>
         /// keep track the Selected element RuntimeId
         /// </summary>
-        private string SelectedElementRuntimeId;
-        private Rectangle? SelectedBoundingRectangle;
-        private int SelectedControlTypeId;
-        private string SelectedName;
+        private string _selectedElementRuntimeId;
+        private Rectangle? _selectedBoundingRectangle;
+        private int _selectedControlTypeId;
+        private string _selectedName;
 
         /// <summary>
         /// Set the scope of selection
@@ -58,8 +58,8 @@ namespace Axe.Windows.Actions.Trackers
 #pragma warning restore CA1716 // Identifiers should not match keywords
         {
             // clean up selection
-            SelectedElementRuntimeId = null;
-            SelectedBoundingRectangle = null;
+            _selectedElementRuntimeId = null;
+            _selectedBoundingRectangle = null;
         }
 
         /// <summary>
@@ -100,12 +100,12 @@ namespace Axe.Windows.Actions.Trackers
         protected bool SelectElementIfItIsEligible(A11yElement element)
         {
             if (element != null && !element.IsRootElement()
-                && !element.IsSameUIElement(SelectedElementRuntimeId, SelectedBoundingRectangle, SelectedControlTypeId, SelectedName))
+                && !element.IsSameUIElement(_selectedElementRuntimeId, _selectedBoundingRectangle, _selectedControlTypeId, _selectedName))
             {
-                SelectedElementRuntimeId = element.RuntimeId;
-                SelectedBoundingRectangle = element.BoundingRectangle;
-                SelectedControlTypeId = element.ControlTypeId;
-                SelectedName = element.Name;
+                _selectedElementRuntimeId = element.RuntimeId;
+                _selectedBoundingRectangle = element.BoundingRectangle;
+                _selectedControlTypeId = element.ControlTypeId;
+                _selectedName = element.Name;
                 SetElement?.Invoke(element);
                 return true;
             }
@@ -117,22 +117,22 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         public virtual void Clear()
         {
-            SelectedElementRuntimeId = null;
-            SelectedBoundingRectangle = null;
+            _selectedElementRuntimeId = null;
+            _selectedBoundingRectangle = null;
         }
 
         #region IDisposable Support
-        bool disposedValue; // To detect redundant calls
+        bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

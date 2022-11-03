@@ -21,13 +21,13 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// </summary>
         public bool ReadyToListen { get; set; }
 
-        private IUIAutomation UIAutomation;
+        private IUIAutomation _uia;
 
         public FocusChangedEventListener(IUIAutomation uia, HandleUIAutomationEventMessage peDelegate)
         {
-            UIAutomation = uia ?? throw new ArgumentNullException(nameof(uia));
+            _uia = uia ?? throw new ArgumentNullException(nameof(uia));
             ListenEventMessage = peDelegate;
-            UIAutomation.AddFocusChangedEventHandler(null, this);
+            _uia.AddFocusChangedEventHandler(null, this);
             IsHooked = true;
         }
 
@@ -47,18 +47,18 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
-                if (IsHooked && UIAutomation != null)
+                if (IsHooked && _uia != null)
                 {
                     try
                     {
-                        UIAutomation.RemoveFocusChangedEventHandler(this);
-                        UIAutomation = null;
+                        _uia.RemoveFocusChangedEventHandler(this);
+                        _uia = null;
                     }
                     catch (ThreadAbortException)
                     {
@@ -66,7 +66,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     }
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

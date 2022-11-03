@@ -7,19 +7,19 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     internal class ColorContrastResult : IColorContrastResult
     {
-        private readonly List<ColorPair> alternatives = new List<ColorPair>();
+        private readonly List<ColorPair> _alternatives = new List<ColorPair>();
 
-        private ColorPair mostContrastingPair;
+        private ColorPair _mostContrastingPair;
 
-        private Confidence confidence;
+        private Confidence _confidence;
 
-        private int numDifferentBackgroundColors;
+        private int _numDifferentBackgroundColors;
 
-        private int numVisiblyDifferentTextColors;
+        private int _numVisiblyDifferentTextColors;
 
         public ColorContrastResult()
         {
-            confidence = Confidence.None;
+            _confidence = Confidence.None;
         }
 
         internal ColorContrastResult Add(ColorPair newColorPair)
@@ -29,41 +29,41 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             var newBackgroundColor = newColorPair.backgroundColor;
 #endif
 
-            if (mostContrastingPair == null ||
-                mostContrastingPair.ColorContrast() < newColorPair.ColorContrast())
+            if (_mostContrastingPair == null ||
+                _mostContrastingPair.ColorContrast() < newColorPair.ColorContrast())
             {
-                mostContrastingPair = newColorPair;
+                _mostContrastingPair = newColorPair;
             }
 
-            foreach (var alternativePair in alternatives)
+            foreach (var alternativePair in _alternatives)
             {
                 if (!alternativePair.IsVisiblySimilarTo(newColorPair))
                 {
-                    numDifferentBackgroundColors++;
-                    numVisiblyDifferentTextColors++;
+                    _numDifferentBackgroundColors++;
+                    _numVisiblyDifferentTextColors++;
                 }
             }
 
-            if (numDifferentBackgroundColors > 3 || numVisiblyDifferentTextColors > 3)
+            if (_numDifferentBackgroundColors > 3 || _numVisiblyDifferentTextColors > 3)
             {
-                confidence = Confidence.Low;
+                _confidence = Confidence.Low;
             }
-            else if (numDifferentBackgroundColors > 1 || numVisiblyDifferentTextColors > 1)
+            else if (_numDifferentBackgroundColors > 1 || _numVisiblyDifferentTextColors > 1)
             {
-                confidence = Confidence.Mid;
+                _confidence = Confidence.Mid;
             }
             else
             {
-                confidence = Confidence.High;
+                _confidence = Confidence.High;
             }
 
-            alternatives.Add(newColorPair);
+            _alternatives.Add(newColorPair);
 
             return this;
         }
 
-        public ColorPair MostLikelyColorPair => mostContrastingPair;
+        public ColorPair MostLikelyColorPair => _mostContrastingPair;
 
-        public Confidence Confidence => confidence;
+        public Confidence Confidence => _confidence;
     }
 }
