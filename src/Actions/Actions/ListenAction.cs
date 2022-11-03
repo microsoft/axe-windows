@@ -61,7 +61,7 @@ namespace Axe.Windows.Actions
             if (propertyIds == null) return;
             if (!propertyIds.Any()) return;
 
-            EventListener.RegisterAutomationEventListener(EventType.UIA_AutomationPropertyChangedEventId, onEventFired, propertyIds.ToArray());
+            EventListener.RegisterAutomationEventListener(EventType.UIA_AutomationPropertyChangedEventId, OnEventFired, propertyIds.ToArray());
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Axe.Windows.Actions
 
             foreach (var id in eventIds)
             {
-                EventListener.RegisterAutomationEventListener(id, onEventFired);
+                EventListener.RegisterAutomationEventListener(id, OnEventFired);
             }
         }
 
@@ -91,7 +91,7 @@ namespace Axe.Windows.Actions
         /// need to be thread safe to add element in EventLogs
         /// </summary>
         /// <param name="message"></param>
-        private void onEventFired(EventMessage message)
+        private void OnEventFired(EventMessage message)
         {
             if (IsRunning)
             {
