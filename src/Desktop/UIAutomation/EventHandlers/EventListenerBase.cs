@@ -19,13 +19,13 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public HandleUIAutomationEventMessage ListenEventMessage { get; private set; }
         public TreeScope Scope { get; private set; }
         public bool IsHooked { get; protected set; }
-        private CUIAutomation UIAutomation;
-        private CUIAutomation8 UIAutomation8;
+        private CUIAutomation _uiAutomation;
+        private CUIAutomation8 _uiAutomation8;
 
-        protected IUIAutomation IUIAutomation => UIAutomation as IUIAutomation;
-        protected IUIAutomation4 IUIAutomation4 => UIAutomation8 as IUIAutomation4;
-        protected IUIAutomation5 IUIAutomation5 => UIAutomation8 as IUIAutomation5;
-        protected IUIAutomation6 IUIAutomation6 => UIAutomation8 as IUIAutomation6;
+        protected IUIAutomation IUIAutomation => _uiAutomation as IUIAutomation;
+        protected IUIAutomation4 IUIAutomation4 => _uiAutomation8 as IUIAutomation4;
+        protected IUIAutomation5 IUIAutomation5 => _uiAutomation8 as IUIAutomation5;
+        protected IUIAutomation6 IUIAutomation6 => _uiAutomation8 as IUIAutomation6;
 
         /// <summary>
         /// Constructor to create an event handler (with CUIAutomation8) and register it.
@@ -33,7 +33,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         protected EventListenerBase(CUIAutomation8 uia8, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
         {
-            UIAutomation8 = uia8;
+            _uiAutomation8 = uia8;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         protected EventListenerBase(CUIAutomation uia, IUIAutomationElement element, TreeScope scope, int eventId, HandleUIAutomationEventMessage peDelegate)
             : this(element, scope, eventId, peDelegate)
         {
-            UIAutomation = uia;
+            _uiAutomation = uia;
         }
 
         /// <summary>
@@ -75,8 +75,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                 {
                     if (disposing && IsHooked)
                     {
-                        UIAutomation = null;
-                        UIAutomation8 = null;
+                        _uiAutomation = null;
+                        _uiAutomation8 = null;
                     }
                 }
 

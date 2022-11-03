@@ -13,28 +13,28 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ItemContainerPattern : A11yPattern
     {
-        IUIAutomationItemContainerPattern Pattern;
+        IUIAutomationItemContainerPattern _pattern;
 
         public ItemContainerPattern(A11yElement e, IUIAutomationItemContainerPattern p) : base(e, PatternType.UIA_ItemContainerPatternId)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public DesktopElement FindItemByProperty(int propertyId, object value)
         {
             // null specifies finding the first matching item
-            return new DesktopElement(Pattern.FindItemByProperty(null, propertyId, value));
+            return new DesktopElement(_pattern.FindItemByProperty(null, propertyId, value));
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

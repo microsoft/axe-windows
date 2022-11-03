@@ -16,11 +16,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Window_WindowOpenedEventId)]
     public class WindowPattern : A11yPattern
     {
-        IUIAutomationWindowPattern Pattern;
+        IUIAutomationWindowPattern _pattern;
 
         public WindowPattern(A11yElement e, IUIAutomationWindowPattern p) : base(e, PatternType.UIA_WindowPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -28,19 +28,19 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "CanMaximize", Value = Convert.ToBoolean(Pattern.CurrentCanMaximize) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanMinimize", Value = Convert.ToBoolean(Pattern.CurrentCanMinimize) });
-            Properties.Add(new A11yPatternProperty() { Name = "IsModal", Value = Convert.ToBoolean(Pattern.CurrentIsModal) });
-            Properties.Add(new A11yPatternProperty() { Name = "IsTopmost", Value = Convert.ToBoolean(Pattern.CurrentIsTopmost) });
-            Properties.Add(new A11yPatternProperty() { Name = "WindowInteractionState", Value = Pattern.CurrentWindowInteractionState });
-            Properties.Add(new A11yPatternProperty() { Name = "WindowVisualState", Value = Pattern.CurrentWindowVisualState });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMaximize", Value = Convert.ToBoolean(_pattern.CurrentCanMaximize) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMinimize", Value = Convert.ToBoolean(_pattern.CurrentCanMinimize) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsModal", Value = Convert.ToBoolean(_pattern.CurrentIsModal) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsTopmost", Value = Convert.ToBoolean(_pattern.CurrentIsTopmost) });
+            Properties.Add(new A11yPatternProperty() { Name = "WindowInteractionState", Value = _pattern.CurrentWindowInteractionState });
+            Properties.Add(new A11yPatternProperty() { Name = "WindowVisualState", Value = _pattern.CurrentWindowVisualState });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public void SetWindowVisualState(WindowVisualState state)
         {
-            Pattern.SetWindowVisualState(state);
+            _pattern.SetWindowVisualState(state);
         }
 
         /// <summary>
@@ -50,15 +50,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void WaitForInputIdle(int ms)
         {
-            Pattern.WaitForInputIdle(ms);
+            _pattern.WaitForInputIdle(ms);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -16,11 +16,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class SpreadsheetItemPattern : A11yPattern
     {
-        IUIAutomationSpreadsheetItemPattern Pattern;
+        IUIAutomationSpreadsheetItemPattern _pattern;
 
         public SpreadsheetItemPattern(A11yElement e, IUIAutomationSpreadsheetItemPattern p) : base(e, PatternType.UIA_SpreadsheetItemPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -28,20 +28,20 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "Formula", Value = Pattern.CurrentFormula });
+            Properties.Add(new A11yPatternProperty() { Name = "Formula", Value = _pattern.CurrentFormula });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetAnnotationObjects()
         {
-            return Pattern.GetCurrentAnnotationObjects()?.ToListOfDesktopElements();
+            return _pattern.GetCurrentAnnotationObjects()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public IList<string> GetAnnotationTypes()
         {
-            var array = Pattern.GetCurrentAnnotationTypes();
+            var array = _pattern.GetCurrentAnnotationTypes();
             List<string> list = new List<string>();
 
             if (array.Length > 0)
@@ -57,10 +57,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

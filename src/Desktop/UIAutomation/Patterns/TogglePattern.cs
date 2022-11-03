@@ -13,33 +13,33 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TogglePattern : A11yPattern
     {
-        IUIAutomationTogglePattern Pattern;
+        IUIAutomationTogglePattern _pattern;
 
         public TogglePattern(A11yElement e, IUIAutomationTogglePattern p) : base(e, PatternType.UIA_TogglePatternId)
         {
-            Pattern = p;
+            _pattern = p;
             PopulateProperties();
         }
 
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "ToggleState", Value = Pattern.CurrentToggleState });
+            Properties.Add(new A11yPatternProperty() { Name = "ToggleState", Value = _pattern.CurrentToggleState });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Toggle()
         {
-            Pattern.Toggle();
+            _pattern.Toggle();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

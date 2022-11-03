@@ -12,25 +12,25 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class VirtualizedItemPattern : A11yPattern
     {
-        IUIAutomationVirtualizedItemPattern Pattern;
+        IUIAutomationVirtualizedItemPattern _pattern;
 
         public VirtualizedItemPattern(A11yElement e, IUIAutomationVirtualizedItemPattern p) : base(e, PatternType.UIA_VirtualizedItemPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public void Realize()
         {
-            Pattern.Realize();
+            _pattern.Realize();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

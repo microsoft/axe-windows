@@ -13,11 +13,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ScrollItemPattern : A11yPattern
     {
-        IUIAutomationScrollItemPattern Pattern;
+        IUIAutomationScrollItemPattern _pattern;
 
         public ScrollItemPattern(A11yElement e, IUIAutomationScrollItemPattern p) : base(e, PatternType.UIA_ScrollItemPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         /// <summary>
@@ -26,15 +26,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void ScrollIntoView()
         {
-            Pattern.ScrollIntoView();
+            _pattern.ScrollIntoView();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

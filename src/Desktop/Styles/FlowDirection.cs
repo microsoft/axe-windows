@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Types;
 using System.Text;
@@ -21,7 +21,7 @@ namespace Axe.Windows.Desktop.Styles
         public const int FlowDirections_Vertical = 3;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-        private static FlowDirection sInstance;
+        private static FlowDirection TheInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
@@ -31,12 +31,12 @@ namespace Axe.Windows.Desktop.Styles
         /// <returns></returns>
         public static FlowDirection GetInstance()
         {
-            if (sInstance == null)
+            if (TheInstance == null)
             {
-                sInstance = new FlowDirection();
+                TheInstance = new FlowDirection();
             }
 
-            return sInstance;
+            return TheInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
 

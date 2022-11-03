@@ -13,11 +13,11 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         private readonly IColorContrastConfig _colorContrastConfig;
 
-        private readonly Dictionary<Color, ColorContrastTransition> openTransitions = new Dictionary<Color, ColorContrastTransition>();
+        private readonly Dictionary<Color, ColorContrastTransition> _openTransitions = new Dictionary<Color, ColorContrastTransition>();
 
-        private readonly CountMap<Color> countExactColors = new CountMap<Color>();
+        private readonly CountMap<Color> _countExactColors = new CountMap<Color>();
 
-        private readonly CountMap<ColorPair> countExactPairs = new CountMap<ColorPair>();
+        private readonly CountMap<ColorPair> _countExactPairs = new CountMap<ColorPair>();
 
         internal ColorContrastRunner(IColorContrastConfig colorContrastConfig)
         {
@@ -26,11 +26,11 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal void OnPixel(Color color, Color previousColor)
         {
-            countExactColors.Increment(color);
+            _countExactColors.Increment(color);
 
             var newlyClosedTransitions = new List<ColorContrastTransition>();
 
-            foreach (var transition in openTransitions.Values)
+            foreach (var transition in _openTransitions.Values)
             {
                 transition.AddColor(color);
 
@@ -40,7 +40,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
                     if (transition.IsPotentialForegroundBackgroundPair())
                     {
-                        countExactPairs.Increment(new ColorPair(
+                        _countExactPairs.Increment(new ColorPair(
                             transition.StartingColor,
                             transition.MostContrastingColor
                         ));
@@ -50,20 +50,20 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             foreach (ColorContrastTransition transition in newlyClosedTransitions)
             {
-                openTransitions.Remove(transition.StartingColor);
+                _openTransitions.Remove(transition.StartingColor);
             }
 
             if (previousColor != null && !color.Equals(previousColor))
             {
-                openTransitions[previousColor] = new ColorContrastTransition(previousColor, _colorContrastConfig);
+                _openTransitions[previousColor] = new ColorContrastTransition(previousColor, _colorContrastConfig);
             }
         }
 
         internal void OnRowBegin()
         {
-            openTransitions.Clear();
-            countExactPairs.Clear();
-            countExactColors.Clear();
+            _openTransitions.Clear();
+            _countExactPairs.Clear();
+            _countExactColors.Clear();
         }
 
         // Returns true when entries have lead to a confident conclusion about Text and Background color.
@@ -74,9 +74,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             CountMap<ColorPair> pairsWithSimilarTextColor = new CountMap<ColorPair>();
 
-            foreach (var exactPairOuter in countExactPairs)
+            foreach (var exactPairOuter in _countExactPairs)
             {
-                foreach (var exactPairInner in countExactPairs)
+                foreach (var exactPairInner in _countExactPairs)
                 {
                     if (exactPairOuter.Key.backgroundColor.Equals(exactPairInner.Key.backgroundColor))
                     {
@@ -114,9 +114,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 result.Add(colorPair);
             }
 
-            countExactColors.Clear();
+            _countExactColors.Clear();
 
-            openTransitions.Clear();
+            _openTransitions.Clear();
 
             return result;
         }

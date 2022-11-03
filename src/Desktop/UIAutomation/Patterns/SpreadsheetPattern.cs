@@ -13,25 +13,25 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class SpreadsheetPattern : A11yPattern
     {
-        IUIAutomationSpreadsheetPattern Pattern;
+        IUIAutomationSpreadsheetPattern _pattern;
 
         public SpreadsheetPattern(A11yElement e, IUIAutomationSpreadsheetPattern p) : base(e, PatternType.UIA_SpreadsheetPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public DesktopElement GetItemByName(string name)
         {
-            return new DesktopElement(Pattern.GetItemByName(name));
+            return new DesktopElement(_pattern.GetItemByName(name));
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);
