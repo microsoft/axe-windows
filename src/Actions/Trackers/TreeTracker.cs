@@ -113,7 +113,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             lock (_movementLock)
             {
-                _MoveTo(getElementMethod);
+                MoveToWithoutLock(getElementMethod);
             }
         }
 
@@ -121,7 +121,7 @@ namespace Axe.Windows.Actions.Trackers
         /// Do not call this function directly. Instead, call MoveTo().
         /// </summary>
         /// <param name="getElementMethod"></param>
-        private void _MoveTo(GetElementDelegate getElementMethod)
+        private void MoveToWithoutLock(GetElementDelegate getElementMethod)
         {
             var element = GetNearbyElement(getElementMethod);
             if (element == null) throw new TreeNavigationFailedException();
