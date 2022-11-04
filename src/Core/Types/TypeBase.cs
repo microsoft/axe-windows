@@ -14,7 +14,7 @@ namespace Axe.Windows.Core.Types
     public abstract class TypeBase
     {
         const string DefaultNamePattern = "UIA_";
-        protected Dictionary<int, string> Dic { get; private set; }
+        protected Dictionary<int, string> Dic { get; }
         private readonly string _namePattern;
 
         protected TypeBase() : this(DefaultNamePattern) { }

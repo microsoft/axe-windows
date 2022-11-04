@@ -9,9 +9,9 @@ namespace Axe.Windows.Desktop.Utility
 {
     public class ProcessItem
     {
-        public IntPtr HWnd { get; private set; }
-        public int ProcessID { get; private set; }
-        public string MainWindowTitle { get; private set; }
+        public IntPtr HWnd { get; }
+        public int ProcessID { get; }
+        public string MainWindowTitle { get; }
 
         public ProcessItem(Process p)
         {

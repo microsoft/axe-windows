@@ -25,9 +25,9 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public NotificationEventListener EventListenerNotification { get; private set; }
         public TextEditTextChangedEventListener EventListenerTextEditTextChanged { get; private set; }
         public ActiveTextPositionChangedEventListener EventListenerActiveTextPositionChanged { get; private set; }
-        public Dictionary<int, EventListener> EventListeners { get; private set; }
+        public Dictionary<int, EventListener> EventListeners { get; }
 
-        public TreeScope Scope { get; private set; }
+        public TreeScope Scope { get; }
         public CUIAutomation UIAutomation { get; private set; }
         public CUIAutomation8 UIAutomation8 { get; private set; }
 

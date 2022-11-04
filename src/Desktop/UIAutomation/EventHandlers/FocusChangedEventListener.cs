@@ -9,7 +9,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
     public class FocusChangedEventListener : IDisposable, IUIAutomationFocusChangedEventHandler
     {
-        public HandleUIAutomationEventMessage ListenEventMessage { get; private set; }
+        public HandleUIAutomationEventMessage ListenEventMessage { get; }
 
         /// <summary>
         /// indicate whether event handler is hooked or not.

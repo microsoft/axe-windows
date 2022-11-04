@@ -13,6 +13,6 @@ namespace Axe.Windows.Rules
     /// </summary>
     class ConditionContext
     {
-        public Stack<IA11yElement> ReferenceElements { get; private set; } = new Stack<IA11yElement>();
+        public Stack<IA11yElement> ReferenceElements { get; } = new Stack<IA11yElement>();
     } // class
 } // namespace

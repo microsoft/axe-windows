@@ -65,7 +65,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public bool IsMouseSelectOn { get; set; }
 
-        public TreeTracker TreeTracker { get; private set; }
+        public TreeTracker TreeTracker { get; }
 
         // Backing object for POIElementContext - is disposed via POIElementContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]

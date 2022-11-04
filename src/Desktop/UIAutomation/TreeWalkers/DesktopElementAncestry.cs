@@ -22,14 +22,14 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <summary>
         /// Oldest in Ancestry
         /// </summary>
-        public A11yElement First { get; private set; }
+        public A11yElement First { get; }
 
         /// <summary>
         /// Last in Ancestry
         /// </summary>
-        public A11yElement Last { get; private set; }
+        public A11yElement Last { get; }
 
-        public IList<A11yElement> Items { get; private set; }
+        public IList<A11yElement> Items { get; }
 
         private readonly IUIAutomationTreeWalker TreeWalker;
 

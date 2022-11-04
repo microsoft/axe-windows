@@ -29,7 +29,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// <summary>
         /// List to keep all elements in tree walking(Ancestors, self and children)
         /// </summary>
-        public IList<A11yElement> Elements { get; private set; }
+        public IList<A11yElement> Elements { get; }
 
         /// <summary>
         /// Top root node in whole hierarchy

@@ -13,11 +13,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
     public abstract class EventListenerBase : IDisposable
     {
-        public int EventId { get; private set; }
-        public IUIAutomationElement Element { get; private set; }
+        public int EventId { get; }
+        public IUIAutomationElement Element { get; }
 
-        public HandleUIAutomationEventMessage ListenEventMessage { get; private set; }
-        public TreeScope Scope { get; private set; }
+        public HandleUIAutomationEventMessage ListenEventMessage { get; }
+        public TreeScope Scope { get; }
         public bool IsHooked { get; protected set; }
         private CUIAutomation UIAutomation;
         private CUIAutomation8 UIAutomation8;

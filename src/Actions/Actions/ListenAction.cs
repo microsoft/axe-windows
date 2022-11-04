@@ -23,9 +23,9 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// External event listener. it should be called if it is not null.
         /// </summary>
-        public HandleUIAutomationEventMessage ExternalListener { get; private set; }
+        public HandleUIAutomationEventMessage ExternalListener { get; }
 
-        public Guid Id { get; private set; }
+        public Guid Id { get; }
 
         bool IsRunning;
 

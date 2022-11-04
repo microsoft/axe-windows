@@ -17,7 +17,7 @@ namespace Axe.Windows.Rules
     abstract class Rule : IRule
     {
         public RuleInfo Info { get; private set; }
-        public Condition Condition { get; private set; }
+        public Condition Condition { get; }
 
         protected Rule()
         {

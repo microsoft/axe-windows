@@ -21,12 +21,12 @@ namespace Axe.Windows.Actions.Contexts
         /// <summary>
         /// Element information
         /// </summary>
-        public A11yElement Element { get; private set; }
+        public A11yElement Element { get; }
 
         /// <summary>
         /// Indicate the Select Type (Live or Loaded)
         /// </summary>
-        public SelectType SelectType { get; private set; }
+        public SelectType SelectType { get; }
 
         /// <summary>
         /// Element Context Id

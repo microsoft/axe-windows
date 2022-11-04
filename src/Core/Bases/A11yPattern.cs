@@ -49,7 +49,7 @@ namespace Axe.Windows.Core.Bases
         /// Pattern method list
         /// </summary>
         [JsonIgnore]
-        public IList<MethodInfo> Methods { get; private set; }
+        public IList<MethodInfo> Methods { get; }
 
         /// <summary>
         /// Constructor

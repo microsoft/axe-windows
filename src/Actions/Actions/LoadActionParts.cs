@@ -15,12 +15,12 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Stored element
         /// </summary>
-        public A11yElement Element { get; private set; }
+        public A11yElement Element { get; }
 
         /// <summary>
         /// Stored screenshot
         /// </summary>
-        public Bitmap Bmp { get; private set; }
+        public Bitmap Bmp { get; }
 
         /// <summary>
         /// Synthesized screenshot
@@ -30,7 +30,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Metadata
         /// </summary>
-        public SnapshotMetaInfo MetaInfo { get; private set; }
+        public SnapshotMetaInfo MetaInfo { get; }
 
         /// <summary>
         /// Constructor

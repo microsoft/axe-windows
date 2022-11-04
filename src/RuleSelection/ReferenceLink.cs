@@ -8,8 +8,8 @@ namespace Axe.Windows.RuleSelection
 {
     class ReferenceLink : IReferenceLink
     {
-        public string ShortDescription { get; private set; }
-        public Uri Uri { get; private set; }
+        public string ShortDescription { get; }
+        public Uri Uri { get; }
 
         public ReferenceLink(string shortDescription, string url)
         {
