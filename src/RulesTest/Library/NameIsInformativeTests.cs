@@ -7,7 +7,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameIsInformativeTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsInformative();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsInformative();
 
         private static MockA11yElement CreateMatchingElement()
         {

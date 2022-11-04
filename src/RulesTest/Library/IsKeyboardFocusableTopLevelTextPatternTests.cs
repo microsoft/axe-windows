@@ -9,7 +9,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class IsKeyboardFocusableTopLevelTextPatternTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.IsKeyboardFocusableTopLevelTextPattern();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.IsKeyboardFocusableTopLevelTextPattern();
 
         [TestMethod]
         public void ConditionMismatch_XAMLTextControlWithTextPattern_ReturnFalse()

@@ -9,7 +9,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class BoundingRectangleSizeReasonableTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleSizeReasonable();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleSizeReasonable();
 
         [TestMethod]
         public void TestBoundingRectangleSizeReasonablePass()

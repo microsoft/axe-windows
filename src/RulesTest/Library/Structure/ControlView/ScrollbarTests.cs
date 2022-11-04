@@ -11,7 +11,7 @@ namespace Axe.Windows.RulesTests.Library.Structure.ControlView
     [TestClass]
     public class ScrollbarTests
     {
-        private static Rules.IRule Rule = new Rules.Library.ControlViewScrollbarStructure();
+        private static readonly Rules.IRule Rule = new Rules.Library.ControlViewScrollbarStructure();
 
         [TestMethod]
         [Timeout(1000)]

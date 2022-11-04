@@ -18,7 +18,7 @@ namespace Axe.Windows.RulesTests.Library
         private const int ButtonType = Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId;
         private const int EditType = Axe.Windows.Core.Types.ControlType.UIA_EditControlTypeId;
 
-        private static Rules.IRule Rule = new Rules.Library.IsControlElementTrueRequired();
+        private static readonly Rules.IRule Rule = new Rules.Library.IsControlElementTrueRequired();
         private Mock<IA11yElement> _elementMock;
         private Mock<IA11yElement> _parentMock;
 

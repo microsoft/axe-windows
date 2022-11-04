@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class IsKeyboardFocusableShouldBeTrueTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.IsKeyboardFocusableShouldBeTrue();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.IsKeyboardFocusableShouldBeTrue();
 
         [TestMethod]
         public void TestIsKeyboardFocusableShouldBeTruePass()

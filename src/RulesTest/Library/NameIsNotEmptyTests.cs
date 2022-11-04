@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class NameIsNotEmptyTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotEmpty();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotEmpty();
 
         [TestMethod]
         public void TestNameEmpty()

@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameExcludesPrivateUnicodeCharactersTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameExcludesPrivateUnicodeCharacters();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameExcludesPrivateUnicodeCharacters();
 
         [TestMethod]
         public void NameExcludesPrivateUnicodeCharacters_Pass()

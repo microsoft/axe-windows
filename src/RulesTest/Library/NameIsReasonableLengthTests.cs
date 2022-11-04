@@ -9,7 +9,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameIsReasonableLengthTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsReasonableLength();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsReasonableLength();
 
         [TestMethod]
         public void TestNameIsReasonableLengthTrue()

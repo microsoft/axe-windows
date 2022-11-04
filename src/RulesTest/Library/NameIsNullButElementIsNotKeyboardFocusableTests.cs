@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameIsNullButElementIsNotKeyboardFocusableTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNullButElementIsNotKeyboardFocusable();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNullButElementIsNotKeyboardFocusable();
 
         [TestMethod]
         public void TestNameIsNullButElementIsNotKeyboardFocusablePass()

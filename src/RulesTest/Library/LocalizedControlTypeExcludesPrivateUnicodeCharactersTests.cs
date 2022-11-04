@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class LocalizedControlTypeExcludesPrivateUnicodeCharactersTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeExcludesPrivateUnicodeCharacters();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeExcludesPrivateUnicodeCharacters();
 
         [TestMethod]
         public void LocalizedControlTypeExcludesPrivateUnicodeCharacters_Pass()

@@ -11,7 +11,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class SelectionPatternSelectionRequiredTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SelectionPatternSelectionRequired();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SelectionPatternSelectionRequired();
 
         [TestMethod]
         public void TabControlWithSelectionPatternButNotEdgeFramework_Applicable()

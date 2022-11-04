@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class SiblingUniqueAndNotFocusableTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SiblingUniqueAndNotFocusable();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SiblingUniqueAndNotFocusable();
 
         [TestMethod]
         public void TestTypeMismatchPass()

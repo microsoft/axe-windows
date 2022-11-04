@@ -9,7 +9,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameExcludesControlTypeTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameExcludesControlType();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameExcludesControlType();
 
         [TestMethod]
         public void NameExcludesControlType_Pass()
