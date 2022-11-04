@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.UnitTestSharedLibrary;
@@ -18,13 +18,13 @@ namespace Axe.Windows.CoreTests.Bases
         [TestMethod()]
         public void ToStringTest()
         {
-            A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yPatternTest.hier");
+            A11yElement element = Utility.LoadA11yElementsFromJSON("Resources/A11yPatternTest.hier");
 
-            Assert.AreEqual("SelectionPattern: False", ke.Patterns[0].ToString());
-            Assert.AreEqual("ScrollPattern: False", ke.Patterns[1].ToString());
-            Assert.AreEqual("ExpandCollapsePattern: 0", ke.Patterns[2].ToString());
-            Assert.AreEqual("ItemContainerPattern: ", ke.Patterns[3].ToString());
-            Assert.AreEqual("SynchronizedInputPattern: ", ke.Patterns[4].ToString());
+            Assert.AreEqual("SelectionPattern: False", element.Patterns[0].ToString());
+            Assert.AreEqual("ScrollPattern: False", element.Patterns[1].ToString());
+            Assert.AreEqual("ExpandCollapsePattern: 0", element.Patterns[2].ToString());
+            Assert.AreEqual("ItemContainerPattern: ", element.Patterns[3].ToString());
+            Assert.AreEqual("SynchronizedInputPattern: ", element.Patterns[4].ToString());
         }
     }
 }
