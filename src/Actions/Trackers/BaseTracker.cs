@@ -18,8 +18,6 @@ namespace Axe.Windows.Actions.Trackers
     {
         internal Action<A11yElement> SetElement;
 
-        internal int ProcessId;
-
         internal bool IsStarted;
 
         /// <summary>

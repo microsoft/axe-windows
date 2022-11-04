@@ -9,7 +9,6 @@ using Moq;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-
     public class FrameworkDoesNotSupportUIAutomationTests
     {
         private static readonly Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation();

@@ -7,7 +7,6 @@ using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
-
     public class StructureChangedEventListener : EventListenerBase, IUIAutomationStructureChangedEventHandler
     {
         /// <summary>

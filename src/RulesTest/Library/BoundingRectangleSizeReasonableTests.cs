@@ -44,7 +44,7 @@ namespace Axe.Windows.RulesTests.Library
                 Assert.IsFalse(Rule.Condition.Matches(e));
             } // using
         }
-        
+
         [TestMethod]
         public void TestBoundingRectangleSizeReasonableTelerikSparklineColumnUWPFail()
         {

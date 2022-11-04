@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.UnitTestSharedLibrary;
@@ -14,7 +14,6 @@ namespace Axe.Windows.CoreTests.Bases
     [TestClass()]
     public class A11yElementTests
     {
-
         [TestMethod()]
         [Timeout(2000)]
         public void FindDescendent_SimpleCondition_ReturnsChild()

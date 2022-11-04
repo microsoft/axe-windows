@@ -108,7 +108,6 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(verified, _actualWriteCalls.Count);
         }
 
-
         private void AddWriteCall(string format, WriteSource source)
         {
             _actualWriteCalls.Add(new WriteCall(format, source));

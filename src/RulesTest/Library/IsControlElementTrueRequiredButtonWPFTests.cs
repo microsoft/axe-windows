@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -16,7 +16,6 @@ namespace Axe.Windows.RulesTests.Library
         private const int GenericRequiredControlType = Axe.Windows.Core.Types.ControlType.UIA_ComboBoxControlTypeId;
         private const int TextType = Axe.Windows.Core.Types.ControlType.UIA_TextControlTypeId;
         private const int ButtonType = Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId;
-        private const int EditType = Axe.Windows.Core.Types.ControlType.UIA_EditControlTypeId;
 
         private static Rules.IRule Rule = new Rules.Library.IsControlElementTrueRequiredButtonWPF();
         private Mock<IA11yElement> _elementMock;

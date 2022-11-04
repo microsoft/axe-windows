@@ -3,11 +3,9 @@
 using Axe.Windows.Automation;
 using Axe.Windows.Automation.Data;
 using Axe.Windows.UnitTestSharedLibrary;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -27,8 +25,6 @@ namespace Axe.Windows.AutomationTests
         const int WindowsFormsControlSamplerKnownErrorCount = 6;
         const int WpfControlSamplerKnownErrorCount = 7;
         const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 12;
-        const int WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount = 6;
-
         readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
         readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
@@ -70,7 +66,7 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        List<Process> TestProcesses = new List<Process>();
+        readonly List<Process> TestProcesses = new List<Process>();
 
         [TestCleanup]
         public void Cleanup()

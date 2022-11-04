@@ -11,7 +11,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
      */
     public class Color
     {
-
         /**
          * The luminance difference that will determine whether two colors are the same.
          * This helps deal with Anti-Aliasing in determining transitions for detecting text.
