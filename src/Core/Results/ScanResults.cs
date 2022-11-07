@@ -18,7 +18,7 @@ namespace Axe.Windows.Core.Results
         /// <summary>
         /// Items with ScanResult
         /// </summary>
-        public IList<ScanResult> Items { get; private set; }
+        public IList<ScanResult> Items { get; }
 
         /// <summary>
         /// Aggregated status

@@ -63,7 +63,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         protected override void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!DisposedValue)
             {
                 if (disposing)
                 {

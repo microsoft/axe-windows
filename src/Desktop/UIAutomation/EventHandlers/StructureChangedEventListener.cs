@@ -7,7 +7,6 @@ using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 {
-
     public class StructureChangedEventListener : EventListenerBase, IUIAutomationStructureChangedEventHandler
     {
         /// <summary>
@@ -47,7 +46,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
         protected override void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!DisposedValue)
             {
                 if (disposing)
                 {

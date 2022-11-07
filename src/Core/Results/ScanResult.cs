@@ -92,7 +92,6 @@ namespace Axe.Windows.Core.Results
         /// </summary>
         public ScanResult()
         {
-
         }
 
         /// <summary>

@@ -4,14 +4,12 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
-using Axe.Windows.Desktop.UIAutomation.CustomObjects;
 using Axe.Windows.RuleSelection;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
@@ -36,11 +34,11 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         public IList<A11yElement> Elements { get; }
 
-        public TimeSpan LastWalkTime { get; private set; }
+        public TimeSpan LastWalkTime { get; }
 
         public TreeViewMode WalkerMode { get; private set; }
 
-        public A11yElement SelectedElement { get; private set; }
+        public A11yElement SelectedElement { get; }
 
         public A11yElement TopMostElement { get; private set; }
 

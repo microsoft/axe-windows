@@ -20,7 +20,7 @@ namespace Axe.Windows.Actions.Contexts
         public SelectAction SelectAction => SelectAction.GetDefaultInstance();
 
         public Registrar Registrar => DesktopDataContext.Registrar;
-        
+
         public DesktopDataContext DesktopDataContext => DesktopDataContext.DefaultContext;
 
         protected virtual void Dispose(bool disposing)

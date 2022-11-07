@@ -25,7 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         /// <summary>
         /// TextPattern which this Range was from
         /// </summary>
-        public TextPattern TextPattern { get; private set; }
+        public TextPattern TextPattern { get; }
 
         public TextRange(IUIAutomationTextRange tr, TextPattern tp)
         {

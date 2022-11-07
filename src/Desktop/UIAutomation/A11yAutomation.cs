@@ -98,7 +98,7 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             foreach (var list in elementLists)
             {
-                foreach(var element in list)
+                foreach (var element in list)
                 {
                     Marshal.ReleaseComObject(element);
                 }

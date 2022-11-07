@@ -1,13 +1,11 @@
-﻿// Copyright (c) Microsoft. All rights reserved.
+// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Automation;
 using Axe.Windows.Automation.Data;
 using Axe.Windows.UnitTestSharedLibrary;
-using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -27,7 +25,6 @@ namespace Axe.Windows.AutomationTests
         const int WindowsFormsControlSamplerKnownErrorCount = 6;
         const int WpfControlSamplerKnownErrorCount = 7;
         const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 12;
-        const int WindowsFormsMultiWindowSamplerSingleWindowAllErrorCount = 6;
 
         readonly string _wildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string _win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
@@ -70,7 +67,7 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        List<Process> _testProcesses = new List<Process>();
+        readonly List<Process> _testProcesses = new List<Process>();
 
         [TestCleanup]
         public void Cleanup()

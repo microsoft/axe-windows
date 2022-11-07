@@ -5,9 +5,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public class Pixel
     {
-        public int Row { get; private set; }
-        public int Column { get; private set; }
-        public Color Color { get; private set; }
+        public int Row { get; }
+        public int Column { get; }
+        public Color Color { get; }
 
         public Pixel(Color color, int row, int column)
         {

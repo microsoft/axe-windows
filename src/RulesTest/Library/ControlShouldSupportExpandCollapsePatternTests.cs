@@ -109,7 +109,6 @@ namespace Axe.Windows.RulesTests.Library
             Assert.IsTrue(Rule.PassesTest(e));
         }
 
-
         /// <summary>
         /// Condition should match since SplitButton is child of a Pane
         /// and ExpandCollapse is supported. so scan succeeds

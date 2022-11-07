@@ -43,7 +43,6 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
             if (_size > _colorContrastConfig.MaxTextThickness || (_size > 1 && StartingColor.Equals(color)))
             {
-
                 if (StartingColor.Equals(color))
                 {
                     IsConnecting = true;

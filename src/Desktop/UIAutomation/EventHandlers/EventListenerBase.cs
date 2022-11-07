@@ -13,11 +13,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
 
     public abstract class EventListenerBase : IDisposable
     {
-        public int EventId { get; private set; }
-        public IUIAutomationElement Element { get; private set; }
+        public int EventId { get; }
+        public IUIAutomationElement Element { get; }
 
-        public HandleUIAutomationEventMessage ListenEventMessage { get; private set; }
-        public TreeScope Scope { get; private set; }
+        public HandleUIAutomationEventMessage ListenEventMessage { get; }
+        public TreeScope Scope { get; }
         public bool IsHooked { get; protected set; }
         private CUIAutomation _uiAutomation;
         private CUIAutomation8 _uiAutomation8;
@@ -65,11 +65,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        protected bool disposedValue { get; private set; } // To detect redundant calls
+        protected bool DisposedValue { get; private set; } // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!DisposedValue)
             {
                 if (disposing)
                 {
@@ -80,7 +80,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     }
                 }
 
-                disposedValue = true;
+                DisposedValue = true;
             }
         }
 

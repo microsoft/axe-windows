@@ -229,7 +229,7 @@ namespace Axe.Windows.Actions
                 {
                     // We need an immutable copy of the ecId values for cleanup
                     var ecIdList = _elementContexts.Keys.ToList();
-                    foreach(Guid ecId in ecIdList)
+                    foreach (Guid ecId in ecIdList)
                     {
                         RemoveDataContext(ecId, false);
                     }
