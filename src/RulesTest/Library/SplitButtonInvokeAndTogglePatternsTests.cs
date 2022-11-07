@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class SplitButtonInvokeAndTogglePatternsTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SplitButtonInvokeAndTogglePatterns();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SplitButtonInvokeAndTogglePatterns();
 
         /// <summary>
         /// A splitbutton with both of Invoke and Toggle Patterns. error.

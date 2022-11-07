@@ -11,7 +11,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ControlShouldSupportTextPatternEditWinformTests
     {
-        private readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTextPatternEditWinform();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTextPatternEditWinform();
 
         [TestMethod]
         public void FrameworkIssueLink_IsNotNull()

@@ -8,16 +8,16 @@ namespace Axe.Windows.RulesTests.Library
 {
     public class LandmarkIsTopLevelTests
     {
-        private readonly Axe.Windows.Rules.IRule Rule = null;
-        private readonly int LandmarkType = 0;
-        private readonly string LocalizedLandmarkType = null;
+        private readonly Axe.Windows.Rules.IRule _rule = null;
+        private readonly int _landmarkType = 0;
+        private readonly string _localizedLandmarkType = null;
 
         protected LandmarkIsTopLevelTests(object rule, int landmarkType, string localizedLandmarkType)
         {
             // we must pass in an object because the IRule type is not exposed publicly and it causes a compiler error
-            Rule = (Axe.Windows.Rules.IRule)rule;
-            LandmarkType = landmarkType;
-            LocalizedLandmarkType = localizedLandmarkType;
+            _rule = (Axe.Windows.Rules.IRule)rule;
+            _landmarkType = landmarkType;
+            _localizedLandmarkType = localizedLandmarkType;
         }
 
         [TestMethod]
@@ -25,11 +25,11 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = new MockA11yElement();
             var parent = new MockA11yElement();
-            e.LandmarkType = LandmarkType;
-            e.LocalizedLandmarkType = LocalizedLandmarkType;
+            e.LandmarkType = _landmarkType;
+            e.LocalizedLandmarkType = _localizedLandmarkType;
             e.Parent = parent;
 
-            Assert.IsTrue(Rule.PassesTest(e));
+            Assert.IsTrue(_rule.PassesTest(e));
         }
 
         [TestMethod]
@@ -37,13 +37,13 @@ namespace Axe.Windows.RulesTests.Library
         {
             var e = new MockA11yElement();
             var parent = new MockA11yElement();
-            e.LandmarkType = LandmarkType;
-            e.LocalizedLandmarkType = LocalizedLandmarkType;
+            e.LandmarkType = _landmarkType;
+            e.LocalizedLandmarkType = _localizedLandmarkType;
             e.Parent = parent;
-            parent.LandmarkType = LandmarkType;
-            parent.LocalizedLandmarkType = LocalizedLandmarkType;
+            parent.LandmarkType = _landmarkType;
+            parent.LocalizedLandmarkType = _localizedLandmarkType;
 
-            Assert.IsFalse(Rule.PassesTest(e));
+            Assert.IsFalse(_rule.PassesTest(e));
         }
     } // class
 

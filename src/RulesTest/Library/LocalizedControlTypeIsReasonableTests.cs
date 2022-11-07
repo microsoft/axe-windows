@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class LocalizedControlTypeIsReasonableTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsReasonable();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsReasonable();
 
         [TestMethod]
         public void TestControlTypeIdIsAppBarAndLocalizedControlTypeIsAppBar()

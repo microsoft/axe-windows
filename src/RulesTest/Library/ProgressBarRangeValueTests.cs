@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -11,21 +11,21 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ProgressBarRangeValueTests
     {
-        private readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ProgressBarRangeValue();
-        private Mock<IA11yElement> elementMock = null;
-        private Mock<IA11yPattern> patternMock = null;
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ProgressBarRangeValue();
+        private Mock<IA11yElement> _elementMock = null;
+        private Mock<IA11yPattern> _patternMock = null;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            patternMock = new Mock<IA11yPattern>(MockBehavior.Strict);
-            elementMock = new Mock<IA11yElement>(MockBehavior.Strict);
-            elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns(patternMock.Object);
+            _patternMock = new Mock<IA11yPattern>(MockBehavior.Strict);
+            _elementMock = new Mock<IA11yElement>(MockBehavior.Strict);
+            _elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns(_patternMock.Object);
         }
 
         private void AddPatternValue<T>(string name, T value)
         {
-            patternMock.Setup(p => p.GetValue<T>(name)).Returns(value);
+            _patternMock.Setup(p => p.GetValue<T>(name)).Returns(value);
         }
 
         [TestMethod]
@@ -35,10 +35,10 @@ namespace Axe.Windows.RulesTests.Library
             AddPatternValue("Minimum", 0);
             AddPatternValue("Maximum", 1);
 
-            Assert.IsTrue(Rule.PassesTest(elementMock.Object));
+            Assert.IsTrue(Rule.PassesTest(_elementMock.Object));
 
-            patternMock.Verify();
-            elementMock.Verify();
+            _patternMock.Verify();
+            _elementMock.Verify();
         }
 
         [TestMethod]
@@ -48,10 +48,10 @@ namespace Axe.Windows.RulesTests.Library
             AddPatternValue("Minimum", 1);
             AddPatternValue("Maximum", 1);
 
-            Assert.IsFalse(Rule.PassesTest(elementMock.Object));
+            Assert.IsFalse(Rule.PassesTest(_elementMock.Object));
 
-            patternMock.Verify();
-            elementMock.Verify();
+            _patternMock.Verify();
+            _elementMock.Verify();
         }
 
         [TestMethod]
@@ -61,10 +61,10 @@ namespace Axe.Windows.RulesTests.Library
             AddPatternValue("Minimum", 1);
             AddPatternValue("Maximum", 0);
 
-            Assert.IsFalse(Rule.PassesTest(elementMock.Object));
+            Assert.IsFalse(Rule.PassesTest(_elementMock.Object));
 
-            patternMock.Verify();
-            elementMock.Verify();
+            _patternMock.Verify();
+            _elementMock.Verify();
         }
 
         [TestMethod]
@@ -74,10 +74,10 @@ namespace Axe.Windows.RulesTests.Library
             AddPatternValue("Minimum", 0);
             AddPatternValue("Maximum", 1);
 
-            Assert.IsFalse(Rule.PassesTest(elementMock.Object));
+            Assert.IsFalse(Rule.PassesTest(_elementMock.Object));
 
-            patternMock.Verify();
-            elementMock.Verify();
+            _patternMock.Verify();
+            _elementMock.Verify();
         }
 
         [TestMethod]
@@ -90,13 +90,13 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void ProgressBarRangeValue_NullPattern_ThrowsException()
         {
-            elementMock.Reset();
-            elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns<IA11yPattern>(null);
+            _elementMock.Reset();
+            _elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns<IA11yPattern>(null);
 
-            var ex = Assert.ThrowsException<ArgumentNullException>(() => Rule.PassesTest(elementMock.Object));
+            var ex = Assert.ThrowsException<ArgumentNullException>(() => Rule.PassesTest(_elementMock.Object));
             Assert.AreEqual("pattern", ex.ParamName);
 
-            elementMock.Verify();
+            _elementMock.Verify();
         }
 
         [TestMethod]
@@ -115,24 +115,24 @@ namespace Axe.Windows.RulesTests.Library
 
         private void TestControlTypeMatchesCondition(int controlType, bool expectedResult)
         {
-            elementMock.Setup(e => e.ControlTypeId).Returns(controlType);
+            _elementMock.Setup(e => e.ControlTypeId).Returns(controlType);
 
-            Assert.AreEqual(expectedResult, Rule.Condition.Matches(elementMock.Object));
+            Assert.AreEqual(expectedResult, Rule.Condition.Matches(_elementMock.Object));
 
-            elementMock.Verify();
-            patternMock.Verify();
+            _elementMock.Verify();
+            _patternMock.Verify();
         }
 
         [TestMethod]
         public void ProgressBarRangeValue_NoRangeValuePattern_NoMatch()
         {
-            elementMock.Reset();
-            elementMock.Setup(e => e.ControlTypeId).Returns(ControlType.ProgressBar);
-            elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns<IA11yPattern>(null);
+            _elementMock.Reset();
+            _elementMock.Setup(e => e.ControlTypeId).Returns(ControlType.ProgressBar);
+            _elementMock.Setup(e => e.GetPattern(PatternType.UIA_RangeValuePatternId)).Returns<IA11yPattern>(null);
 
-            Assert.IsFalse(Rule.Condition.Matches(elementMock.Object));
+            Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
 
-            elementMock.Verify();
+            _elementMock.Verify();
         }
     } // class
 } // namespace
