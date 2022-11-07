@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class HyperlinkNameShouldBeUniqueTests
     {
-        private static Rules.IRule Rule = new Axe.Windows.Rules.Library.HyperlinkNameShouldBeUnique();
+        private static readonly Rules.IRule Rule = new Axe.Windows.Rules.Library.HyperlinkNameShouldBeUnique();
 
         [TestMethod]
         public void TestNameMismatchPass()

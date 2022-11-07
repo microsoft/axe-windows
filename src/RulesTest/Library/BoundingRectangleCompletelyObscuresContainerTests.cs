@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
@@ -11,13 +11,13 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class BoundingRectangleCompletelyObscuresContainerTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleCompletelyObscuresContainer();
-        private static Rectangle TestRect = new Rectangle(300, 300, 400, 400);
-        private static Rectangle ValidRect = new Rectangle(TestRect.Left - BoundingRectangle.OverlapMargin,
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleCompletelyObscuresContainer();
+        private static readonly Rectangle TestRect = new Rectangle(300, 300, 400, 400);
+        private static readonly Rectangle ValidRect = new Rectangle(TestRect.Left - BoundingRectangle.OverlapMargin,
             TestRect.Top - BoundingRectangle.OverlapMargin,
             TestRect.Size.Width + (BoundingRectangle.OverlapMargin * 2),
             TestRect.Size.Height + (BoundingRectangle.OverlapMargin * 2));
-        private static Rectangle ErrorRect = new Rectangle(ValidRect.Left - 1,
+        private static readonly Rectangle ErrorRect = new Rectangle(ValidRect.Left - 1,
             ValidRect.Top - 1,
             ValidRect.Size.Width + 2,
             ValidRect.Size.Height + 2);

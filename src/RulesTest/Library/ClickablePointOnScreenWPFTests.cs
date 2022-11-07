@@ -11,8 +11,8 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ClickablePointOnScreenWPFTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOnScreenWPF();
-        private Mock<IA11yElement> _mockElement = new Mock<IA11yElement>(MockBehavior.Strict);
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOnScreenWPF();
+        private readonly Mock<IA11yElement> _mockElement = new Mock<IA11yElement>(MockBehavior.Strict);
         private delegate void TryGetDelegate(int propertyId, out Point value);
 
         [TestCleanup]

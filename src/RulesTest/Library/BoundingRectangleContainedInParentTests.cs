@@ -15,7 +15,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class BoundingRectangleContainedInParentTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleContainedInParent();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleContainedInParent();
         const int Margin = BoundingRectangle.OverlapMargin;
 
         [TestMethod]

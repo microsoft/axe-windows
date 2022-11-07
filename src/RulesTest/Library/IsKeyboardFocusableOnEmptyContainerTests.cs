@@ -7,7 +7,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class IsKeyboardFocusableOnEmptyContainerTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.IsKeyboardFocusableOnEmptyContainer();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.IsKeyboardFocusableOnEmptyContainer();
 
         [TestMethod]
         public void ConditionMatch_ListControl_ReturnTrue()

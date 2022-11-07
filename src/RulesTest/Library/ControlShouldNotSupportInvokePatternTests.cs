@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class ControlShouldNotSupportInvokePatternTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldNotSupportInvokePattern();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldNotSupportInvokePattern();
 
         private static readonly int[] ApplicableControlTypes =
         {

@@ -11,8 +11,8 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ClickablePointOffScreenTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOffScreen();
-        private Mock<IA11yElement> _mockElement = new Mock<IA11yElement>(MockBehavior.Strict);
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOffScreen();
+        private readonly Mock<IA11yElement> _mockElement = new Mock<IA11yElement>(MockBehavior.Strict);
         private delegate void TryGetDelegate(int propertyId, out Point value);
 
         [TestCleanup]

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class BoundingRectangleNotNullTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleNotNull();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.BoundingRectangleNotNull();
 
         [TestMethod]
         public void TestBoundingRectangleNotNullPass()

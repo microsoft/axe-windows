@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class LocalizedControlTypeIsNotNullTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotNull();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotNull();
 
         [TestMethod]
         public void IsKeyboardFocusableTrue_LocalizedControlTypeNull_ScanError()

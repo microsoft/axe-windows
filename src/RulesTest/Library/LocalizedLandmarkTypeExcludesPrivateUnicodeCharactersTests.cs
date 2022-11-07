@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class LocalizedLandmarkTypeExcludesPrivateUnicodeCharactersTests
     {
-        private static Rules.IRule Rule = new Rules.Library.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters();
+        private static readonly Rules.IRule Rule = new Rules.Library.LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters();
 
         [TestMethod]
         public void LocalizedLandmarkTypeExcludesPrivateUnicodeCharacters_Pass()

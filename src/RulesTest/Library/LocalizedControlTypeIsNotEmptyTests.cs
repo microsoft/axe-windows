@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class LocalizedControlTypeIsNotEmptyTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotEmpty();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotEmpty();
 
         [TestMethod]
         public void ConditionMismatch_IsKeyboardFocusableFalse_ReturnFalse()

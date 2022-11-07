@@ -4,4 +4,3 @@
 #################################################################
 [*.{cs}]
 dotnet_style_object_initializer = false
-dotnet_style_readonly_field	 = false

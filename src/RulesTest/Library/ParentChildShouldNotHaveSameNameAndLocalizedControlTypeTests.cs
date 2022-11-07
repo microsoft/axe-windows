@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class ParentChildShouldNotHaveSameNameAndLocalizedControlTypeTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ParentChildShouldNotHaveSameNameAndLocalizedControlType();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ParentChildShouldNotHaveSameNameAndLocalizedControlType();
 
         [TestMethod]
         public void ElementIsNotKeyboardFocusable_RuleNotApplicable()

@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestCategory("Axe.Windows.Rules")]
     public class NameIsNotNullTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotNull();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotNull();
 
         [TestMethod]
         public void TestNameNull()

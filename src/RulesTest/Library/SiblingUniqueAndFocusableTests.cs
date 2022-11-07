@@ -9,7 +9,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class SiblingUniqueAndFocusableTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SiblingUniqueAndFocusable();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.SiblingUniqueAndFocusable();
 
         private static MockA11yElement CreateParentWithMatchingChildren()
         {

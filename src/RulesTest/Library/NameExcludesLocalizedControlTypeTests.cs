@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class NameExcludesLocalizedControlTypeTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameExcludesLocalizedControlType();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameExcludesLocalizedControlType();
 
         [TestMethod]
         public void NameExcludesLocalizedControlType_Pass()

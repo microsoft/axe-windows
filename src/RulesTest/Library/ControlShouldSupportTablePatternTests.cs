@@ -10,7 +10,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ControlShouldSupportTablePatternTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTablePattern();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportTablePattern();
 
         [TestMethod]
         public void HasTablePattern_Pass()

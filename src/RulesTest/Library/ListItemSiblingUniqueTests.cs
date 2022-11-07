@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ListItemSiblingUniqueTests
     {
-        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ListItemSiblingsUnique();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ListItemSiblingsUnique();
 
         [TestMethod]
         public void ElementsMatch_Warning()
