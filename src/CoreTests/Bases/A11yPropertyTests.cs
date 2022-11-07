@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -22,25 +22,25 @@ namespace Axe.Windows.CoreTests.Bases
         [TestMethod()]
         public void ToStringTest()
         {
-            A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yPropertyTest.hier");
+            A11yElement element = Utility.LoadA11yElementsFromJSON("Resources/A11yPropertyTest.hier");
             string kpVal;
 
-            kpVal = ke.Properties[PropertyType.UIA_ControlTypePropertyId].ToString();
+            kpVal = element.Properties[PropertyType.UIA_ControlTypePropertyId].ToString();
             Assert.AreEqual("Text(50020)", kpVal);
 
-            kpVal = ke.Properties[PropertyType.UIA_RuntimeIdPropertyId].ToString();
+            kpVal = element.Properties[PropertyType.UIA_RuntimeIdPropertyId].ToString();
             Assert.AreEqual("[7,1F48,24D4850]", kpVal);
 
-            kpVal = ke.Properties[PropertyType.UIA_BoundingRectanglePropertyId].ToString();
+            kpVal = element.Properties[PropertyType.UIA_BoundingRectanglePropertyId].ToString();
             Assert.AreEqual("[l=1285,t=91,r=1368,b=116]", kpVal);
 
-            kpVal = ke.Properties[PropertyType.UIA_OrientationPropertyId].ToString();
+            kpVal = element.Properties[PropertyType.UIA_OrientationPropertyId].ToString();
             Assert.AreEqual("None(0)", kpVal);
 
-            kpVal = ke.Properties[PropertyType.UIA_LabeledByPropertyId].ToString();
+            kpVal = element.Properties[PropertyType.UIA_LabeledByPropertyId].ToString();
             Assert.AreEqual("Test", kpVal);
 
-            kpVal = ke.Properties[PropertyType.UIA_HasKeyboardFocusPropertyId].ToString();
+            kpVal = element.Properties[PropertyType.UIA_HasKeyboardFocusPropertyId].ToString();
             Assert.AreEqual("False", kpVal);
         }
 
