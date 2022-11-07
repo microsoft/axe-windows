@@ -22,8 +22,8 @@ namespace Axe.Windows.CoreTests.Misc
         [TestMethod()]
         public void GetStatusCounts()
         {
-            A11yElement ke = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/Taskbar.snapshot");
-            foreach (var item in ke.ScanResults.Items)
+            A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/Taskbar.snapshot");
+            foreach (var item in element.ScanResults.Items)
             {
                 item.Items = new System.Collections.Generic.List<RuleResult>();
                 RuleResult r = new RuleResult
@@ -32,11 +32,11 @@ namespace Axe.Windows.CoreTests.Misc
                 };
                 item.Items.Add(r);
             };
-            foreach (var c in ke.Children)
+            foreach (var c in element.Children)
             {
                 Utility.PopulateChildrenTests(c);
             };
-            var statuses = (from child in ke.Children
+            var statuses = (from child in element.Children
                             select child.TestStatus);
             int[] statusCounts = statuses.GetStatusCounts();
             Assert.AreEqual(3, statusCounts[(int)ScanStatus.Fail]);
