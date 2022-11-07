@@ -16,11 +16,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class LegacyIAccessiblePattern : A11yPattern
     {
-        IUIAutomationLegacyIAccessiblePattern Pattern;
+        IUIAutomationLegacyIAccessiblePattern _pattern;
 
         public LegacyIAccessiblePattern(A11yElement e, IUIAutomationLegacyIAccessiblePattern p) : base(e, PatternType.UIA_LegacyIAccessiblePatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -30,15 +30,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             try
             {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-                Properties.Add(new A11yPatternProperty() { Name = "ChildId", Value = Pattern.CurrentChildId });
-                Properties.Add(new A11yPatternProperty() { Name = "DefaultAction", Value = Pattern.CurrentDefaultAction });
-                Properties.Add(new A11yPatternProperty() { Name = "Description", Value = Pattern.CurrentDescription });
-                Properties.Add(new A11yPatternProperty() { Name = "Help", Value = Pattern.CurrentHelp });
-                Properties.Add(new A11yPatternProperty() { Name = "KeyboardShorcut", Value = Pattern.CurrentKeyboardShortcut });
-                Properties.Add(new A11yPatternProperty() { Name = "Name", Value = Pattern.CurrentName });
-                Properties.Add(new A11yPatternProperty() { Name = "Role", Value = Pattern.CurrentRole });
-                Properties.Add(new A11yPatternProperty() { Name = "State", Value = Pattern.CurrentState });
-                Properties.Add(new A11yPatternProperty() { Name = "Value", Value = Pattern.CurrentValue });
+                Properties.Add(new A11yPatternProperty() { Name = "ChildId", Value = _pattern.CurrentChildId });
+                Properties.Add(new A11yPatternProperty() { Name = "DefaultAction", Value = _pattern.CurrentDefaultAction });
+                Properties.Add(new A11yPatternProperty() { Name = "Description", Value = _pattern.CurrentDescription });
+                Properties.Add(new A11yPatternProperty() { Name = "Help", Value = _pattern.CurrentHelp });
+                Properties.Add(new A11yPatternProperty() { Name = "KeyboardShorcut", Value = _pattern.CurrentKeyboardShortcut });
+                Properties.Add(new A11yPatternProperty() { Name = "Name", Value = _pattern.CurrentName });
+                Properties.Add(new A11yPatternProperty() { Name = "Role", Value = _pattern.CurrentRole });
+                Properties.Add(new A11yPatternProperty() { Name = "State", Value = _pattern.CurrentState });
+                Properties.Add(new A11yPatternProperty() { Name = "Value", Value = _pattern.CurrentValue });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
             }
 #pragma warning disable CA1031 // Do not catch general exception types
@@ -52,39 +52,39 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public IList<DesktopElement> GetSelection()
         {
-            return Pattern.GetCurrentSelection().ToListOfDesktopElements();
+            return _pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public void DoDefaultAction()
         {
-            Pattern.DoDefaultAction();
+            _pattern.DoDefaultAction();
         }
 
         [PatternMethod]
         public IAccessible GetIAccessible()
         {
-            return Pattern.GetIAccessible();
+            return _pattern.GetIAccessible();
         }
 
         [PatternMethod]
         public void Select(int flagSelect)
         {
-            Pattern.Select(flagSelect);
+            _pattern.Select(flagSelect);
         }
 
         [PatternMethod]
         public void SetValue(string value)
         {
-            Pattern.SetValue(value);
+            _pattern.SetValue(value);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

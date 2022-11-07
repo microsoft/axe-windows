@@ -14,11 +14,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TransformPattern2 : A11yPattern
     {
-        IUIAutomationTransformPattern2 Pattern;
+        IUIAutomationTransformPattern2 _pattern;
 
         public TransformPattern2(A11yElement e, IUIAutomationTransformPattern2 p) : base(e, PatternType.UIA_TransformPattern2Id)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -26,34 +26,34 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(Pattern.CurrentCanMove) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(Pattern.CurrentCanResize) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(Pattern.CurrentCanRotate) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanZoom", Value = Convert.ToBoolean(Pattern.CurrentCanZoom) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanZoomLevel", Value = Convert.ToBoolean(Pattern.CurrentZoomLevel) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanZoomMaximum", Value = Convert.ToBoolean(Pattern.CurrentZoomMaximum) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanZoomMinimum", Value = Convert.ToBoolean(Pattern.CurrentZoomMinimum) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(_pattern.CurrentCanMove) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(_pattern.CurrentCanResize) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(_pattern.CurrentCanRotate) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoom", Value = Convert.ToBoolean(_pattern.CurrentCanZoom) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoomLevel", Value = Convert.ToBoolean(_pattern.CurrentZoomLevel) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoomMaximum", Value = Convert.ToBoolean(_pattern.CurrentZoomMaximum) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanZoomMinimum", Value = Convert.ToBoolean(_pattern.CurrentZoomMinimum) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Zoom(double zoomValue)
         {
-            Pattern.Zoom(zoomValue);
+            _pattern.Zoom(zoomValue);
         }
 
         [PatternMethod(IsUIAction = true)]
         public void ZoomByUnit(ZoomUnit zu)
         {
-            Pattern.ZoomByUnit(zu);
+            _pattern.ZoomByUnit(zu);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

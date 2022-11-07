@@ -27,7 +27,7 @@ namespace Axe.Windows.Actions
 
         public Guid Id { get; }
 
-        bool IsRunning;
+        bool _isRunning;
 
         /// <summary>
         /// Constructor
@@ -47,7 +47,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void Start(IEnumerable<int> eventIDs, IEnumerable<int> propertyIDs)
         {
-            IsRunning = true;
+            _isRunning = true;
 
             InitIndividualEventListeners(eventIDs);
             InitPropertyChangeListener(propertyIDs);
@@ -82,7 +82,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void Stop()
         {
-            IsRunning = false;
+            _isRunning = false;
             EventListener.UnregisterAllAutomationEventListners();
         }
 
@@ -93,7 +93,7 @@ namespace Axe.Windows.Actions
         /// <param name="message"></param>
         private void OnEventFired(EventMessage message)
         {
-            if (IsRunning)
+            if (_isRunning)
             {
                 ExternalListener?.Invoke(message);
             }
@@ -103,7 +103,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// Dictionary of all live listenAction instances
         /// </summary>
-        static readonly Dictionary<Guid, ListenAction> sListenActions = new Dictionary<Guid, ListenAction>();
+        static readonly Dictionary<Guid, ListenAction> AllListenActions = new Dictionary<Guid, ListenAction>();
 
         /// <summary>
         /// Create new Instance of ListenAction in the default DataManager instance. This does not support
@@ -118,7 +118,7 @@ namespace Axe.Windows.Actions
             var ec = DataManager.GetDefaultInstance().GetElementContext(ecId);
             var la = new ListenAction(listenScope, ec, listener);
 
-            sListenActions.Add(la.Id, la);
+            AllListenActions.Add(la.Id, la);
 
             return la.Id;
         }
@@ -130,7 +130,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static ListenAction GetInstance(Guid laId)
         {
-            return sListenActions[laId];
+            return AllListenActions[laId];
         }
 
         /// <summary>
@@ -139,9 +139,9 @@ namespace Axe.Windows.Actions
         /// <param name="laId"></param>
         public static void ReleaseInstance(Guid laId)
         {
-            var la = sListenActions[laId];
+            var la = AllListenActions[laId];
             la.Dispose();
-            sListenActions.Remove(laId);
+            AllListenActions.Remove(laId);
         }
 
         /// <summary>
@@ -149,17 +149,17 @@ namespace Axe.Windows.Actions
         /// </summary>
         public static void ReleaseAll()
         {
-            sListenActions.Values.AsParallel().ForAll(la => la.Dispose());
-            sListenActions.Clear();
+            AllListenActions.Values.AsParallel().ForAll(la => la.Dispose());
+            AllListenActions.Clear();
         }
         #endregion
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -167,7 +167,7 @@ namespace Axe.Windows.Actions
                     EventListener = null;
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

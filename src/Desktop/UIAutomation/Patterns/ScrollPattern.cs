@@ -14,11 +14,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ScrollPattern : A11yPattern
     {
-        IUIAutomationScrollPattern Pattern;
+        IUIAutomationScrollPattern _pattern;
 
         public ScrollPattern(A11yElement e, IUIAutomationScrollPattern p) : base(e, PatternType.UIA_ScrollPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -26,12 +26,12 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "HorizontallyScrollable", Value = Convert.ToBoolean(Pattern.CurrentHorizontallyScrollable) });
-            Properties.Add(new A11yPatternProperty() { Name = "HorizontalScrollPercent", Value = Pattern.CurrentHorizontalScrollPercent });
-            Properties.Add(new A11yPatternProperty() { Name = "HorizontalViewSize", Value = Pattern.CurrentHorizontalViewSize });
-            Properties.Add(new A11yPatternProperty() { Name = "VerticallyScrollable", Value = Convert.ToBoolean(Pattern.CurrentVerticallyScrollable) });
-            Properties.Add(new A11yPatternProperty() { Name = "VerticalScrollPercent", Value = Pattern.CurrentVerticalScrollPercent });
-            Properties.Add(new A11yPatternProperty() { Name = "VerticalViewSize", Value = Pattern.CurrentVerticalViewSize });
+            Properties.Add(new A11yPatternProperty() { Name = "HorizontallyScrollable", Value = Convert.ToBoolean(_pattern.CurrentHorizontallyScrollable) });
+            Properties.Add(new A11yPatternProperty() { Name = "HorizontalScrollPercent", Value = _pattern.CurrentHorizontalScrollPercent });
+            Properties.Add(new A11yPatternProperty() { Name = "HorizontalViewSize", Value = _pattern.CurrentHorizontalViewSize });
+            Properties.Add(new A11yPatternProperty() { Name = "VerticallyScrollable", Value = Convert.ToBoolean(_pattern.CurrentVerticallyScrollable) });
+            Properties.Add(new A11yPatternProperty() { Name = "VerticalScrollPercent", Value = _pattern.CurrentVerticalScrollPercent });
+            Properties.Add(new A11yPatternProperty() { Name = "VerticalViewSize", Value = _pattern.CurrentVerticalViewSize });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -39,15 +39,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void Scroll(ScrollAmount ha, ScrollAmount va)
         {
-            Pattern.Scroll(ha, va);
+            _pattern.Scroll(ha, va);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

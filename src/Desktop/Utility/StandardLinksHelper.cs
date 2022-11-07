@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Results;
 using Axe.Windows.Core.Types;
@@ -17,7 +17,7 @@ namespace Axe.Windows.Desktop.Utility
         /// <summary>
         /// Dictionary of stored links
         /// </summary>
-        private readonly IReadOnlyDictionary<string, string> StoredLinks;
+        private readonly IReadOnlyDictionary<string, string> _storedLinks;
 
         /// <summary>
         /// Constructor
@@ -26,7 +26,7 @@ namespace Axe.Windows.Desktop.Utility
         {
             // get the path of dictionary file.
             var json = File.ReadAllText(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "links.json"));
-            StoredLinks = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+            _storedLinks = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Axe.Windows.Desktop.Utility
         {
             if (mi == null) throw new ArgumentNullException(nameof(mi));
 
-            return StoredLinks.ContainsKey($"{mi.UIFramework}-{mi.ControlType}-{PropertyType.GetInstance().GetNameById(mi.PropertyId)}");
+            return _storedLinks.ContainsKey($"{mi.UIFramework}-{mi.ControlType}-{PropertyType.GetInstance().GetNameById(mi.PropertyId)}");
         }
 
 #pragma warning disable CA1055 // Uri return values should not be strings
@@ -52,14 +52,14 @@ namespace Axe.Windows.Desktop.Utility
         {
             if (mi == null) throw new ArgumentNullException(nameof(mi));
 
-            return StoredLinks[$"{mi.UIFramework}-{mi.ControlType}-{PropertyType.GetInstance().GetNameById(mi.PropertyId)}"];
+            return _storedLinks[$"{mi.UIFramework}-{mi.ControlType}-{PropertyType.GetInstance().GetNameById(mi.PropertyId)}"];
         }
 
         #region static members
         /// <summary>
         /// Default link helper
         /// </summary>
-        static StandardLinksHelper sDefaultInstance;
+        static StandardLinksHelper DefaultInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
@@ -68,12 +68,12 @@ namespace Axe.Windows.Desktop.Utility
         /// <returns></returns>
         public static StandardLinksHelper GetDefaultInstance()
         {
-            if (sDefaultInstance == null)
+            if (DefaultInstance == null)
             {
-                sDefaultInstance = new StandardLinksHelper();
+                DefaultInstance = new StandardLinksHelper();
             }
 
-            return sDefaultInstance;
+            return DefaultInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
         #endregion

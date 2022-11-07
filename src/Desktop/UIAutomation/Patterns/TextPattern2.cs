@@ -13,17 +13,17 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TextPattern2 : A11yPattern
     {
-        IUIAutomationTextPattern2 Pattern;
+        IUIAutomationTextPattern2 _pattern;
 
         public TextPattern2(A11yElement e, IUIAutomationTextPattern2 p) : base(e, PatternType.UIA_TextPattern2Id)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public TextRange GetCaretRange(out int isActive)
         {
-            return new TextRange(Pattern.GetCaretRange(out isActive), null);
+            return new TextRange(_pattern.GetCaretRange(out isActive), null);
         }
 
         [PatternMethod]
@@ -31,15 +31,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            return new TextRange(Pattern.RangeFromAnnotation(e.PlatformObject), null);
+            return new TextRange(_pattern.RangeFromAnnotation(e.PlatformObject), null);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -56,23 +56,23 @@ namespace Axe.Windows.UnitTestSharedLibrary
         ///     pass if the control is a button (any predicate would work)
         ///     and returns number that should pass
         /// </summary>
-        /// <param name="ke"></param>
+        /// <param name="element"></param>
         /// <returns></returns>
-        public static void PopulateChildrenTests(A11yElement ke)
+        public static void PopulateChildrenTests(A11yElement element)
         {
-            if (ke == null) throw new ArgumentNullException(nameof(ke));
+            if (element == null) throw new ArgumentNullException(nameof(element));
 
-            foreach (var item in ke.ScanResults.Items)
+            foreach (var item in element.ScanResults.Items)
             {
                 item.Items = new List<RuleResult>
                 {
                     new RuleResult
                     {
-                        Status = ke.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail
+                        Status = element.ControlTypeId == Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId ? ScanStatus.Pass : ScanStatus.Fail
                     }
                 };
             };
-            foreach (var c in ke.Children)
+            foreach (var c in element.Children)
             {
                 PopulateChildrenTests(c);
             };

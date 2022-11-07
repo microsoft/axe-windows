@@ -10,7 +10,7 @@ namespace Axe.Windows.DesktopTests.Types
     [TestClass]
     public class TextAttributeTemplateTests
     {
-        private static readonly int[] _ignoreIds = new int[] {
+        private static readonly int[] IgnoreIds = new int[] {
             TextAttributeType.UIA_AnnotationObjectsAttributeId,
             TextAttributeType.UIA_LinkAttributeId,
         };
@@ -23,7 +23,7 @@ namespace Axe.Windows.DesktopTests.Types
 
             foreach (var id in ids)
             {
-                if (_ignoreIds.Contains(id)) continue;
+                if (IgnoreIds.Contains(id)) continue;
 
                 Assert.IsTrue(templateList.Any(data => data.Item1 == id), $"{TextAttributeType.GetInstance().GetNameById(id)} was not found in the TextAttribute template");
             }

@@ -13,31 +13,31 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TextChildPattern : A11yPattern
     {
-        IUIAutomationTextChildPattern Pattern;
+        IUIAutomationTextChildPattern _pattern;
 
         public TextChildPattern(A11yElement e, IUIAutomationTextChildPattern p) : base(e, PatternType.UIA_TextChildPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public DesktopElement TextContainer()
         {
-            return new DesktopElement(Pattern.TextContainer, true, true);
+            return new DesktopElement(_pattern.TextContainer, true, true);
         }
 
         [PatternMethod]
         public TextRange TextRange()
         {
-            return new TextRange(Pattern.TextRange, null);
+            return new TextRange(_pattern.TextRange, null);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

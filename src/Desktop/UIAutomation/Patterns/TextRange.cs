@@ -175,18 +175,18 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         }
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (UIATextRange != null)
                 {
                     Marshal.ReleaseComObject(UIATextRange);
                     UIATextRange = null;
                 }
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

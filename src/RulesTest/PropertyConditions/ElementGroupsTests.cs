@@ -11,13 +11,13 @@ namespace Axe.Windows.RulesTests.PropertyConditions
     [TestClass]
     public class ElementGroupsTests
     {
-        private readonly int[] AllowSameNameAndControlTypeTypes = null;
-        private readonly IEnumerable<int> DisallowSameNameAndControlTypeTypes = null;
+        private readonly int[] _allowSameNameAndControlTypeTypes = null;
+        private readonly IEnumerable<int> _disallowSameNameAndControlTypeTypes = null;
 
         public ElementGroupsTests()
         {
-            AllowSameNameAndControlTypeTypes = new int[] { AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
-            DisallowSameNameAndControlTypeTypes = ControlType.All.Difference(AllowSameNameAndControlTypeTypes);
+            _allowSameNameAndControlTypeTypes = new int[] { AppBar, Custom, Header, MenuBar, SemanticZoom, StatusBar, TitleBar, Text };
+            _disallowSameNameAndControlTypeTypes = ControlType.All.Difference(_allowSameNameAndControlTypeTypes);
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             var e = new MockA11yElement();
 
-            foreach (var t in AllowSameNameAndControlTypeTypes)
+            foreach (var t in _allowSameNameAndControlTypeTypes)
             {
                 e.ControlTypeId = t;
                 Assert.IsTrue(ElementGroups.AllowSameNameAndControlType.Matches(e));
@@ -37,7 +37,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             var e = new MockA11yElement();
 
-            foreach (var t in DisallowSameNameAndControlTypeTypes)
+            foreach (var t in _disallowSameNameAndControlTypeTypes)
             {
                 e.ControlTypeId = t;
                 Assert.IsFalse(ElementGroups.AllowSameNameAndControlType.Matches(e));
@@ -49,7 +49,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             var e = new MockA11yElement();
 
-            e.ControlTypeId = DisallowSameNameAndControlTypeTypes.First();
+            e.ControlTypeId = _disallowSameNameAndControlTypeTypes.First();
 
             var tenChars = "1234567890";
             for (int i = 0; i < 5; ++i)

@@ -15,11 +15,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class GridItemPattern : A11yPattern
     {
-        IUIAutomationGridItemPattern Pattern;
+        IUIAutomationGridItemPattern _pattern;
 
         public GridItemPattern(A11yElement e, IUIAutomationGridItemPattern p) : base(e, PatternType.UIA_GridItemPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -27,10 +27,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "Column", Value = Pattern.CurrentColumn });
-            Properties.Add(new A11yPatternProperty() { Name = "ColumnSpan", Value = Pattern.CurrentColumnSpan });
-            Properties.Add(new A11yPatternProperty() { Name = "Row", Value = Pattern.CurrentRow });
-            Properties.Add(new A11yPatternProperty() { Name = "RowSpan", Value = Pattern.CurrentRowSpan });
+            Properties.Add(new A11yPatternProperty() { Name = "Column", Value = _pattern.CurrentColumn });
+            Properties.Add(new A11yPatternProperty() { Name = "ColumnSpan", Value = _pattern.CurrentColumnSpan });
+            Properties.Add(new A11yPatternProperty() { Name = "Row", Value = _pattern.CurrentRow });
+            Properties.Add(new A11yPatternProperty() { Name = "RowSpan", Value = _pattern.CurrentRowSpan });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -38,7 +38,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public DesktopElement GetContainingGrid()
         {
-            var e = new DesktopElement(Pattern.CurrentContainingGrid);
+            var e = new DesktopElement(_pattern.CurrentContainingGrid);
 
             if (e.Properties != null && e.Properties.Count != 0)
             {
@@ -51,10 +51,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

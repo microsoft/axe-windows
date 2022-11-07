@@ -25,12 +25,12 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// UIATree state
         /// </summary>
-        UIATreeState UIATreeState = UIATreeState.Resumed;
+        UIATreeState _uiaTreeState = UIATreeState.Resumed;
 
         /// <summary>
         /// Selector by Focus
         /// </summary>
-        FocusTracker FocusTracker;
+        FocusTracker _focusTracker;
 
         /// <summary>
         /// On/Off Focus Select
@@ -46,19 +46,19 @@ namespace Axe.Windows.Actions
         {
             get
             {
-                return MouseTracker.IntervalMouseSelector;
+                return _mouseTracker.IntervalMouseSelector;
             }
 
             set
             {
-                MouseTracker.IntervalMouseSelector = value;
+                _mouseTracker.IntervalMouseSelector = value;
             }
         } // default for the case
 
         /// <summary>
         /// Selector by Mouse Hover
         /// </summary>
-        MouseTracker MouseTracker;
+        MouseTracker _mouseTracker;
 
         /// <summary>
         /// On/Off Mouse Select
@@ -69,7 +69,7 @@ namespace Axe.Windows.Actions
 
         // Backing object for POIElementContext - is disposed via POIElementContext property
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2213:DisposableFieldsShouldBeDisposed", MessageId = "_POIElementContext")]
-        ElementContext _POIElementContext = null;
+        ElementContext _polElementContext = null;
         private readonly object _elementContextLock = new object();
 
         /// <summary>
@@ -79,19 +79,19 @@ namespace Axe.Windows.Actions
         {
             get
             {
-                return _POIElementContext;
+                return _polElementContext;
             }
 
             private set
             {
                 var dma = DataManager;
-                if (_POIElementContext != null)
+                if (_polElementContext != null)
                 {
-                    dma.RemoveElementContext(_POIElementContext.Id);
-                    _POIElementContext.Dispose();
+                    dma.RemoveElementContext(_polElementContext.Id);
+                    _polElementContext.Dispose();
                 }
 
-                _POIElementContext = value;
+                _polElementContext = value;
                 dma.AddElementContext(value);
             }
         }
@@ -99,7 +99,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// context which is not selected yet. but sent by tracker
         /// </summary>
-        ElementContext CandidateEC;
+        ElementContext _candidateEC;
 
         /// <summary>
         /// Set the scope of Selection
@@ -108,13 +108,13 @@ namespace Axe.Windows.Actions
         {
             get
             {
-                return MouseTracker.Scope;
+                return _mouseTracker.Scope;
             }
 
             set
             {
-                FocusTracker.Scope = value;
-                MouseTracker.Scope = value;
+                _focusTracker.Scope = value;
+                _mouseTracker.Scope = value;
             }
         }
 
@@ -124,8 +124,8 @@ namespace Axe.Windows.Actions
         private SelectAction(DataManager dataManager)
         {
             DataManager = dataManager ?? throw new ArgumentNullException(nameof(dataManager));
-            FocusTracker = new FocusTracker(SetCandidateElement);
-            MouseTracker = new MouseTracker(SetCandidateElement);
+            _focusTracker = new FocusTracker(SetCandidateElement);
+            _mouseTracker = new MouseTracker(SetCandidateElement);
             TreeTracker = new TreeTracker(SetCandidateElement, this);
         }
 
@@ -136,8 +136,8 @@ namespace Axe.Windows.Actions
         {
             if (!IsPaused)
             {
-                FocusTracker?.Stop();
-                MouseTracker?.Stop();
+                _focusTracker?.Stop();
+                _mouseTracker?.Stop();
             }
         }
 
@@ -150,12 +150,12 @@ namespace Axe.Windows.Actions
             {
                 if (IsFocusSelectOn)
                 {
-                    FocusTracker?.Start();
+                    _focusTracker?.Start();
                 }
 
                 if (IsMouseSelectOn)
                 {
-                    MouseTracker?.Start();
+                    _mouseTracker?.Start();
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace Axe.Windows.Actions
         public void PauseUIATreeTracker()
         {
             Stop();
-            UIATreeState = UIATreeState.Paused;
+            _uiaTreeState = UIATreeState.Paused;
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public void ResumeUIATreeTracker()
         {
-            UIATreeState = UIATreeState.Resumed;
+            _uiaTreeState = UIATreeState.Resumed;
             Start();
         }
 
@@ -191,8 +191,8 @@ namespace Axe.Windows.Actions
                 {
                     if (el.IsRootElement() == false)
                     {
-                        CandidateEC?.Dispose();
-                        CandidateEC = new ElementContext(el);
+                        _candidateEC?.Dispose();
+                        _candidateEC = new ElementContext(el);
                     }
                     else
                     {
@@ -207,7 +207,7 @@ namespace Axe.Windows.Actions
         /// </summary>
         public bool IsPaused
         {
-            get => UIATreeState == UIATreeState.Paused;
+            get => _uiaTreeState == UIATreeState.Paused;
         }
 
         /// <summary>
@@ -236,10 +236,10 @@ namespace Axe.Windows.Actions
         {
             lock (_elementContextLock)
             {
-                if (CandidateEC != null && (POIElementContext == null || POIElementContext.Element.IsSameUIElement(CandidateEC.Element) == false))
+                if (_candidateEC != null && (POIElementContext == null || POIElementContext.Element.IsSameUIElement(_candidateEC.Element) == false))
                 {
-                    POIElementContext = CandidateEC;
-                    CandidateEC = null;
+                    POIElementContext = _candidateEC;
+                    _candidateEC = null;
 
                     return true;
                 }
@@ -286,8 +286,8 @@ namespace Axe.Windows.Actions
             lock (_elementContextLock)
             {
                 POIElementContext?.Dispose();
-                CandidateEC?.Dispose();
-                CandidateEC = null;
+                _candidateEC?.Dispose();
+                _candidateEC = null;
                 POIElementContext = ec;
             }
         }
@@ -302,11 +302,11 @@ namespace Axe.Windows.Actions
                 lock (_elementContextLock)
                 {
                     POIElementContext = null;
-                    CandidateEC?.Dispose();
-                    CandidateEC = null;
+                    _candidateEC?.Dispose();
+                    _candidateEC = null;
 
-                    MouseTracker.Clear();
-                    FocusTracker.Clear();
+                    _mouseTracker.Clear();
+                    _focusTracker.Clear();
                 }
             }
         }
@@ -345,8 +345,8 @@ namespace Axe.Windows.Actions
 
             set
             {
-                if (MouseTracker != null)
-                    MouseTracker.TreeViewMode = value;
+                if (_mouseTracker != null)
+                    _mouseTracker.TreeViewMode = value;
 
                 if (TreeTracker != null)
                     TreeTracker.TreeViewMode = value;
@@ -357,7 +357,7 @@ namespace Axe.Windows.Actions
         /// <summary>
         /// default instance
         /// </summary>
-        private static SelectAction sDefaultInstance;
+        private static SelectAction DefaultInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
@@ -366,12 +366,12 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public static SelectAction GetDefaultInstance()
         {
-            if (sDefaultInstance == null)
+            if (DefaultInstance == null)
             {
-                sDefaultInstance = new SelectAction(DataManager.GetDefaultInstance());
+                DefaultInstance = new SelectAction(DataManager.GetDefaultInstance());
             }
 
-            return sDefaultInstance;
+            return DefaultInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
 
@@ -385,20 +385,20 @@ namespace Axe.Windows.Actions
         /// </summary>
         public static void ClearDefaultInstance()
         {
-            if (sDefaultInstance != null)
+            if (DefaultInstance != null)
             {
-                sDefaultInstance.Dispose();
-                sDefaultInstance = null;
+                DefaultInstance.Dispose();
+                DefaultInstance = null;
             }
         }
         #endregion
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -407,25 +407,25 @@ namespace Axe.Windows.Actions
                         POIElementContext.Dispose();
                         POIElementContext = null;
                     }
-                    if (CandidateEC != null)
+                    if (_candidateEC != null)
                     {
-                        CandidateEC.Dispose();
-                        CandidateEC = null;
+                        _candidateEC.Dispose();
+                        _candidateEC = null;
                     }
-                    if (MouseTracker != null)
+                    if (_mouseTracker != null)
                     {
-                        MouseTracker.Dispose();
-                        MouseTracker = null;
+                        _mouseTracker.Dispose();
+                        _mouseTracker = null;
                     }
-                    if (FocusTracker != null)
+                    if (_focusTracker != null)
                     {
-                        FocusTracker.Stop();
-                        FocusTracker.Dispose();
-                        FocusTracker = null;
+                        _focusTracker.Stop();
+                        _focusTracker.Dispose();
+                        _focusTracker = null;
                     }
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

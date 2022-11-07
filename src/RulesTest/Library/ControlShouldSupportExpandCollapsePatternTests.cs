@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ControlShouldSupportExpandCollapsePatternTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportExpandCollapsePattern();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportExpandCollapsePattern();
 
         /// <summary>
         /// Condition should not match since TreeItem doesn't have any childTreeItem

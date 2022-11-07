@@ -18,11 +18,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Selection_InvalidatedEventId)]
     public class SelectionPattern2 : A11yPattern
     {
-        IUIAutomationSelectionPattern2 Pattern;
+        IUIAutomationSelectionPattern2 _pattern;
 
         public SelectionPattern2(A11yElement e, IUIAutomationSelectionPattern2 p) : base(e, PatternType.UIA_SelectionPattern2Id)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -30,42 +30,42 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "CanSelectMultiple", Value = Convert.ToBoolean(Pattern.CurrentCanSelectMultiple) });
-            Properties.Add(new A11yPatternProperty() { Name = "IsSelectionRequired", Value = Convert.ToBoolean(Pattern.CurrentIsSelectionRequired) });
-            Properties.Add(new A11yPatternProperty() { Name = "CurrentItemCount", Value = Pattern.CurrentItemCount });
+            Properties.Add(new A11yPatternProperty() { Name = "CanSelectMultiple", Value = Convert.ToBoolean(_pattern.CurrentCanSelectMultiple) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsSelectionRequired", Value = Convert.ToBoolean(_pattern.CurrentIsSelectionRequired) });
+            Properties.Add(new A11yPatternProperty() { Name = "CurrentItemCount", Value = _pattern.CurrentItemCount });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetSelection()
         {
-            return Pattern.GetCurrentSelection().ToListOfDesktopElements();
+            return _pattern.GetCurrentSelection().ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public DesktopElement LastSelectedItem()
         {
-            return new DesktopElement(Pattern.CurrentLastSelectedItem);
+            return new DesktopElement(_pattern.CurrentLastSelectedItem);
         }
 
         [PatternMethod]
         public DesktopElement CurrentSelectedItem()
         {
-            return new DesktopElement(Pattern.CurrentCurrentSelectedItem);
+            return new DesktopElement(_pattern.CurrentCurrentSelectedItem);
         }
 
         [PatternMethod]
         public DesktopElement FirstSelectedItem()
         {
-            return new DesktopElement(Pattern.CurrentFirstSelectedItem);
+            return new DesktopElement(_pattern.CurrentFirstSelectedItem);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

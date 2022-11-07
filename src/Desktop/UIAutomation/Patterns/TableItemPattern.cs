@@ -15,31 +15,31 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TableItemPattern : A11yPattern
     {
-        IUIAutomationTableItemPattern Pattern;
+        IUIAutomationTableItemPattern _pattern;
 
         public TableItemPattern(A11yElement e, IUIAutomationTableItemPattern p) : base(e, PatternType.UIA_TableItemPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetColumnHeaderItems()
         {
-            return Pattern.GetCurrentColumnHeaderItems()?.ToListOfDesktopElements();
+            return _pattern.GetCurrentColumnHeaderItems()?.ToListOfDesktopElements();
         }
 
         [PatternMethod]
         public IList<DesktopElement> GetRowHeaderItems()
         {
-            return Pattern.GetCurrentRowHeaderItems()?.ToListOfDesktopElements();
+            return _pattern.GetCurrentRowHeaderItems()?.ToListOfDesktopElements();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

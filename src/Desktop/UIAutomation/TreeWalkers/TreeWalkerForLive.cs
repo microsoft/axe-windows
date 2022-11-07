@@ -36,7 +36,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         /// </summary>
         public A11yElement RootElement { get; private set; }
 
-        TreeViewMode WalkerMode;
+        TreeViewMode _walkerMode;
 
         /// <summary>
         /// Last walk time span
@@ -65,11 +65,11 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
             if (e == null) throw new ArgumentNullException(nameof(e));
 
             var begin = DateTime.Now;
-            WalkerMode = mode;
+            _walkerMode = mode;
 
             //Set parent of Root explicitly for testing.
             A11yElement parent = null;
-            var ancestry = new DesktopElementAncestry(WalkerMode, e, false, dataContext);
+            var ancestry = new DesktopElementAncestry(_walkerMode, e, false, dataContext);
             parent = ancestry.Last;
 
             RootElement = ancestry.First;
@@ -79,7 +79,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             // populate selected element relationship and add it to list.
             e.Parent = ancestry.Last;
-            e.TreeWalkerMode = WalkerMode; // set tree walker mode.
+            e.TreeWalkerMode = _walkerMode; // set tree walker mode.
             e.UniqueId = 0; // it is the selected element which should be id 0.
             Elements.Add(e);
 
@@ -108,7 +108,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             int childId = startId;
 
-            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(WalkerMode);
+            IUIAutomationTreeWalker walker = dataContext.A11yAutomation.GetTreeWalker(_walkerMode);
             IUIAutomationElement child = (IUIAutomationElement)rootNode.PlatformObject;
 
             if (child != null)
@@ -139,7 +139,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                     rootNode.Children.Add(childNode);
 
                     childNode.Parent = rootNode;
-                    childNode.TreeWalkerMode = WalkerMode;
+                    childNode.TreeWalkerMode = _walkerMode;
 
                     Elements.Add(childNode);
                     try

@@ -21,14 +21,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          * These two booleans help us track that, without having to store all the colors
          * in a list.
          */
-        private Boolean isMountainShaped = true;
-        private Boolean isIncreasingInContrast = true;
+        private Boolean _isMountainShaped = true;
+        private Boolean _isIncreasingInContrast = true;
 
         /**
          * It is useful to track the size of a transition. Especially for debugging purposes,
          * though if performance is an issue, closing large transitions can help significantly.
          */
-        private int size = 1;
+        private int _size = 1;
 
         internal ColorContrastTransition(Color color, IColorContrastConfig colorContrastConfig)
         {
@@ -39,9 +39,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal void AddColor(Color color)
         {
-            size++;
+            _size++;
 
-            if (size > _colorContrastConfig.MaxTextThickness || (size > 1 && StartingColor.Equals(color)))
+            if (_size > _colorContrastConfig.MaxTextThickness || (_size > 1 && StartingColor.Equals(color)))
             {
                 if (StartingColor.Equals(color))
                 {
@@ -57,14 +57,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             {
                 MostContrastingColor = color;
 
-                if (!isIncreasingInContrast)
+                if (!_isIncreasingInContrast)
                 {
-                    isMountainShaped = false;
+                    _isMountainShaped = false;
                 }
             }
             else
             {
-                isIncreasingInContrast = false;
+                _isIncreasingInContrast = false;
             }
         }
 
@@ -86,7 +86,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         internal Boolean IsConsequential()
         {
-            return IsConnecting && size > 2 && isMountainShaped;
+            return IsConnecting && _size > 2 && _isMountainShaped;
         }
 
         public override string ToString()

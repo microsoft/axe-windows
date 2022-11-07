@@ -17,7 +17,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_AutomationPropertyChangedEventId)]
     public class ExpandCollapsePattern : A11yPattern
     {
-        IUIAutomationExpandCollapsePattern Pattern;
+        IUIAutomationExpandCollapsePattern _pattern;
 
         public ExpandCollapsePattern(A11yElement e, IUIAutomationExpandCollapsePattern p) : base(e, PatternType.UIA_ExpandCollapsePatternId)
         {
@@ -25,7 +25,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             // from telemetry
             ExcludingExceptionWrapper.ExecuteWithExcludedExceptionConversion(typeof(COMException), () =>
             {
-                Pattern = p;
+                _pattern = p;
 
                 PopulateProperties();
             });
@@ -34,28 +34,28 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "ExpandCollapseState", Value = Pattern.CurrentExpandCollapseState });
+            Properties.Add(new A11yPatternProperty() { Name = "ExpandCollapseState", Value = _pattern.CurrentExpandCollapseState });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Expand()
         {
-            Pattern.Expand();
+            _pattern.Expand();
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Collapse()
         {
-            Pattern.Collapse();
+            _pattern.Collapse();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

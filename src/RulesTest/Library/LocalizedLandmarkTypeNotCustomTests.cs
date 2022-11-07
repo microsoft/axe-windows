@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class LocalizedLandmarkTypeNotCustomTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedLandmarkTypeNotCustom();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedLandmarkTypeNotCustom();
 
         [TestMethod]
         public void LocalizedLandmarkTypeNotCustom_Pass()

@@ -14,11 +14,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class RangeValuePattern : A11yPattern
     {
-        IUIAutomationRangeValuePattern Pattern;
+        IUIAutomationRangeValuePattern _pattern;
 
         public RangeValuePattern(A11yElement e, IUIAutomationRangeValuePattern p) : base(e, PatternType.UIA_RangeValuePatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -26,26 +26,26 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(Pattern.CurrentIsReadOnly) });
-            Properties.Add(new A11yPatternProperty() { Name = "LargeChange", Value = Pattern.CurrentLargeChange });
-            Properties.Add(new A11yPatternProperty() { Name = "Maximum", Value = Pattern.CurrentMaximum });
-            Properties.Add(new A11yPatternProperty() { Name = "Minimum", Value = Pattern.CurrentMinimum });
-            Properties.Add(new A11yPatternProperty() { Name = "SmallChange", Value = Pattern.CurrentSmallChange });
-            Properties.Add(new A11yPatternProperty() { Name = "Value", Value = Pattern.CurrentValue });
+            Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(_pattern.CurrentIsReadOnly) });
+            Properties.Add(new A11yPatternProperty() { Name = "LargeChange", Value = _pattern.CurrentLargeChange });
+            Properties.Add(new A11yPatternProperty() { Name = "Maximum", Value = _pattern.CurrentMaximum });
+            Properties.Add(new A11yPatternProperty() { Name = "Minimum", Value = _pattern.CurrentMinimum });
+            Properties.Add(new A11yPatternProperty() { Name = "SmallChange", Value = _pattern.CurrentSmallChange });
+            Properties.Add(new A11yPatternProperty() { Name = "Value", Value = _pattern.CurrentValue });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod(IsUIAction = true)]
         public void SetValue(double val)
         {
-            Pattern.SetValue(val);
+            _pattern.SetValue(val);
         }
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -26,7 +26,7 @@ namespace Axe.Windows.CoreTests.Bases
             {
                 Children = new List<A11yElement> { child }
             };
-            var result = parent.FindDescendant(ke => ke.UniqueId == 0);
+            var result = parent.FindDescendant(element => element.UniqueId == 0);
             Assert.AreEqual(result, child);
         }
 
@@ -42,7 +42,7 @@ namespace Axe.Windows.CoreTests.Bases
             {
                 Children = new List<A11yElement> { child },
             };
-            var result = parent.FindDescendant(ke => ke.UniqueId == 0);
+            var result = parent.FindDescendant(element => element.UniqueId == 0);
             Assert.IsNull(result);
         }
 
@@ -68,7 +68,7 @@ namespace Axe.Windows.CoreTests.Bases
                     }
                 }
             };
-            var result = parent.FindDescendant(ke => ke.UniqueId == 0);
+            var result = parent.FindDescendant(element => element.UniqueId == 0);
             Assert.AreEqual(result, grandChild);
         }
 
@@ -91,7 +91,7 @@ namespace Axe.Windows.CoreTests.Bases
             {
                 Children = new List<A11yElement> { child }
             };
-            var result = parent.FindDescendant(ke => ke.UniqueId == 0);
+            var result = parent.FindDescendant(element => element.UniqueId == 0);
             Assert.IsNull(result);
         }
 
@@ -101,13 +101,13 @@ namespace Axe.Windows.CoreTests.Bases
         [TestMethod()]
         public void GetPropertySafelyTest()
         {
-            A11yElement ke = Utility.LoadA11yElementsFromJSON("Resources/A11yElementTest.hier");
+            A11yElement element = Utility.LoadA11yElementsFromJSON("Resources/A11yElementTest.hier");
 
-            Assert.AreEqual("Text Editor", ke.Name);
-            ///Assert.AreEqual(ControlTypes.UIA_EditControlTypeId, ke.ControlTypeId);
-            Assert.AreEqual("edit", ke.LocalizedControlType);
-            Assert.AreEqual("[7,436C,50B051]", ke.RuntimeId);
-            Assert.AreEqual(17260, ke.ProcessId);
+            Assert.AreEqual("Text Editor", element.Name);
+            ///Assert.AreEqual(ControlTypes.UIA_EditControlTypeId, element.ControlTypeId);
+            Assert.AreEqual("edit", element.LocalizedControlType);
+            Assert.AreEqual("[7,436C,50B051]", element.RuntimeId);
+            Assert.AreEqual(17260, element.ProcessId);
 
             Assert.AreEqual(new Rectangle()
             {
@@ -115,11 +115,11 @@ namespace Axe.Windows.CoreTests.Bases
                 Y = 203,
                 Width = 1380,
                 Height = 1009
-            }, ke.BoundingRectangle);
+            }, element.BoundingRectangle);
 
-            Assert.IsTrue(ke.IsContentElement);
-            Assert.IsTrue(ke.IsControlElement);
-            Assert.IsTrue(ke.IsKeyboardFocusable);
+            Assert.IsTrue(element.IsContentElement);
+            Assert.IsTrue(element.IsControlElement);
+            Assert.IsTrue(element.IsKeyboardFocusable);
         }
     }
 }

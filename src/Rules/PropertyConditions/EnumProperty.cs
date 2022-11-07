@@ -9,7 +9,7 @@ namespace Axe.Windows.Rules.PropertyConditions
 {
     class EnumProperty<T> where T : IConvertible
     {
-        private readonly int PropertyID;
+        private readonly int _propertyID;
         public readonly Condition Exists;
         public readonly Condition DoesNotExist;
 
@@ -17,7 +17,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (!typeof(T).IsEnum) throw new InvalidOperationException(ErrorMessages.ExpectedEnumType);
 
-            PropertyID = propertyID;
+            _propertyID = propertyID;
             Exists = CreatePropertyExistsCondition<int>(propertyID);
             DoesNotExist = ~Exists;
         }
@@ -34,7 +34,7 @@ namespace Axe.Windows.Rules.PropertyConditions
              * on a rule which may not care about the given enum value at all.
              */
 
-            if (!e.TryGetPropertyValue(PropertyID, out int i)) return default(T);
+            if (!e.TryGetPropertyValue(_propertyID, out int i)) return default(T);
             if (!Enum.IsDefined(typeof(T), i)) return default(T);
 
             return (T)Enum.ToObject(typeof(T), i);

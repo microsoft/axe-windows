@@ -15,11 +15,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class AnnotationPattern : A11yPattern
     {
-        IUIAutomationAnnotationPattern Pattern;
+        IUIAutomationAnnotationPattern _pattern;
 
         public AnnotationPattern(A11yElement e, IUIAutomationAnnotationPattern p) : base(e, PatternType.UIA_AnnotationPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -27,10 +27,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "AnnotationTypeId", Value = Pattern.CurrentAnnotationTypeId });
-            Properties.Add(new A11yPatternProperty() { Name = "AnnotationTypeName", Value = Pattern.CurrentAnnotationTypeName });
-            Properties.Add(new A11yPatternProperty() { Name = "Author", Value = Pattern.CurrentAuthor });
-            Properties.Add(new A11yPatternProperty() { Name = "DateTime", Value = Pattern.CurrentDateTime });
+            Properties.Add(new A11yPatternProperty() { Name = "AnnotationTypeId", Value = _pattern.CurrentAnnotationTypeId });
+            Properties.Add(new A11yPatternProperty() { Name = "AnnotationTypeName", Value = _pattern.CurrentAnnotationTypeName });
+            Properties.Add(new A11yPatternProperty() { Name = "Author", Value = _pattern.CurrentAuthor });
+            Properties.Add(new A11yPatternProperty() { Name = "DateTime", Value = _pattern.CurrentDateTime });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -38,16 +38,16 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public DesktopElement GetTarget()
         {
-            return new DesktopElement(Pattern.CurrentTarget);
+            return new DesktopElement(_pattern.CurrentTarget);
         }
 #pragma warning restore CA1024 // Use properties where appropriate
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

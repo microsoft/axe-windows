@@ -14,11 +14,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ValuePattern : A11yPattern
     {
-        IUIAutomationValuePattern Pattern;
+        IUIAutomationValuePattern _pattern;
 
         public ValuePattern(A11yElement e, IUIAutomationValuePattern p) : base(e, PatternType.UIA_ValuePatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -26,10 +26,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(Pattern.CurrentIsReadOnly) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsReadOnly", Value = Convert.ToBoolean(_pattern.CurrentIsReadOnly) });
             try
             {
-                Properties.Add(new A11yPatternProperty() { Name = "Value", Value = Pattern.CurrentValue });
+                Properties.Add(new A11yPatternProperty() { Name = "Value", Value = _pattern.CurrentValue });
             }
             catch (InvalidOperationException e)
             {
@@ -43,15 +43,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public void SetValue(string val)
         {
-            Pattern.SetValue(val);
+            _pattern.SetValue(val);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

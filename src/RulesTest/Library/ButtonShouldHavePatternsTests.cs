@@ -8,7 +8,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ButtonShouldHavePatternsTests
     {
-        private Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ButtonShouldHavePatterns();
+        private static Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ButtonShouldHavePatterns();
 
         /// <summary>
         /// Error

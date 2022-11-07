@@ -14,25 +14,25 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class ObjectModelPattern : A11yPattern
     {
-        IUIAutomationObjectModelPattern Pattern;
+        IUIAutomationObjectModelPattern _pattern;
 
         public ObjectModelPattern(A11yElement e, IUIAutomationObjectModelPattern p) : base(e, PatternType.UIA_ObjectModelPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public dynamic GetUnderlyingObjectModel()
         {
-            return Pattern.GetUnderlyingObjectModel();
+            return _pattern.GetUnderlyingObjectModel();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

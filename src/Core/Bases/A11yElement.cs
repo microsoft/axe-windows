@@ -22,7 +22,7 @@ namespace Axe.Windows.Core.Bases
     /// </summary>
     public class A11yElement : ICoreA11yElement, IDisposable
     {
-        private string _ProcessName;
+        private string _processName;
 
         /// <summary>
         /// The label or primary text identifier for the element
@@ -471,14 +471,14 @@ namespace Axe.Windows.Core.Bases
         {
             get
             {
-                if (_ProcessName != null)
-                    return _ProcessName;
+                if (_processName != null)
+                    return _processName;
 
                 var name = Utility.GetProcessName(ProcessId);
 
-                _ProcessName = name ?? "";
+                _processName = name ?? "";
 
-                return _ProcessName;
+                return _processName;
             }
         }
 
@@ -720,7 +720,7 @@ namespace Axe.Windows.Core.Bases
         /// <param name="e">The element to update</param>
         private static void ClearProcessName(A11yElement e)
         {
-            e._ProcessName = string.Empty;
+            e._processName = string.Empty;
 
             if (e.Children == null || e.Children.Count == 0)
                 return;

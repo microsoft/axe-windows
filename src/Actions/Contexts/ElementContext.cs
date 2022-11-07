@@ -77,11 +77,11 @@ namespace Axe.Windows.Actions.Contexts
         }
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -95,7 +95,7 @@ namespace Axe.Windows.Actions.Contexts
                         Element.Dispose();
                     }
                 }
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

@@ -35,24 +35,24 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         const double W3C_LUMINANCE_GREEN_COMPONENT_MULTIPLIER = 0.7152;
         const double W3C_LUMINANCE_BLUE_COMPONENT_MULTIPLIER = 0.0722;
 
-        private readonly int Red;
-        private readonly int Green;
-        private readonly int Blue;
+        private readonly int _red;
+        private readonly int _green;
+        private readonly int _blue;
 
         /// <summary>
         /// Gets this Color as System.Drawing.Color
         /// </summary>
-        public System.Drawing.Color DrawingColor => System.Drawing.Color.FromArgb(Red, Green, Blue);
+        public System.Drawing.Color DrawingColor => System.Drawing.Color.FromArgb(_red, _green, _blue);
 
         public Color(int red, int green, int blue)
         {
-            if (red >= 0 && red <= 255) Red = red;
+            if (red >= 0 && red <= 255) _red = red;
             else throw new DequeColorException(ErrorMessages.InvalidColor);
 
-            if (green >= 0 && green <= 255) Green = green;
+            if (green >= 0 && green <= 255) _green = green;
             else throw new DequeColorException(ErrorMessages.InvalidColor);
 
-            if (blue >= 0 && blue <= 255) Blue = blue;
+            if (blue >= 0 && blue <= 255) _blue = blue;
             else throw new DequeColorException(ErrorMessages.InvalidColor);
         }
 
@@ -100,9 +100,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         {
             // The Magic Numbers are from the W3C Calculation, and I don't know what they represent.
             // Seemed more clear to present it the same way it was presented there.
-            double redComponent = LuminanceComponent(Red) * W3C_LUMINANCE_RED_COMPONENT_MULTIPLIER;
-            double greenComponent = LuminanceComponent(Green) * W3C_LUMINANCE_GREEN_COMPONENT_MULTIPLIER;
-            double blueComponent = LuminanceComponent(Blue) * W3C_LUMINANCE_BLUE_COMPONENT_MULTIPLIER;
+            double redComponent = LuminanceComponent(_red) * W3C_LUMINANCE_RED_COMPONENT_MULTIPLIER;
+            double greenComponent = LuminanceComponent(_green) * W3C_LUMINANCE_GREEN_COMPONENT_MULTIPLIER;
+            double blueComponent = LuminanceComponent(_blue) * W3C_LUMINANCE_BLUE_COMPONENT_MULTIPLIER;
 
             return redComponent + greenComponent + blueComponent;
         }
@@ -130,7 +130,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             else
             {
                 Color p = (Color)obj;
-                return (Red == p.Red) && (Blue == p.Blue) && (Green == p.Green);
+                return (_red == p._red) && (_blue == p._blue) && (_green == p._green);
             }
         }
 
@@ -141,7 +141,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 
         public override string ToString()
         {
-            return "DequeColor({0}, {1}, {2})".WithParameters(Red, Green, Blue);
+            return "DequeColor({0}, {1}, {2})".WithParameters(_red, _green, _blue);
         }
     }
 
