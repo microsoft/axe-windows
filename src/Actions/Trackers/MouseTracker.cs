@@ -29,14 +29,14 @@ namespace Axe.Windows.Actions.Trackers
         {
             get
             {
-                return timerMouse.Interval;
+                return _mouseTimer.Interval;
             }
 
             set
             {
-                if (timerMouse != null)
+                if (_mouseTimer != null)
                 {
-                    timerMouse.Interval = value;
+                    _mouseTimer.Interval = value;
                 }
             }
         }
@@ -49,17 +49,17 @@ namespace Axe.Windows.Actions.Trackers
         /// <summary>
         /// Mouse position of POI (point of interest)
         /// </summary>
-        Point POIPoint = Point.Empty;
+        Point _poiPoint = Point.Empty;
 
         /// <summary>
         /// Mouse Point from last timer tick
         /// </summary>
-        Point LastMousePoint = Point.Empty;
+        Point _lastMousePoint = Point.Empty;
 
         /// <summary>
         /// Mouse timer
         /// </summary>
-        Timer timerMouse;
+        Timer _mouseTimer;
         private readonly object _elementSetterLock = new object();
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace Axe.Windows.Actions.Trackers
         public MouseTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
             // set up mouse Timer
-            timerMouse = new System.Timers.Timer(DefaultTimerInterval); // default but it will be set by config immediately.
-            timerMouse.Elapsed += new ElapsedEventHandler(OnTimerMouseElapsedEvent);
-            timerMouse.AutoReset = false;// disable autoreset to do reset in timer handler
+            _mouseTimer = new System.Timers.Timer(DefaultTimerInterval); // default but it will be set by config immediately.
+            _mouseTimer.Elapsed += new ElapsedEventHandler(OnTimerMouseElapsedEvent);
+            _mouseTimer.AutoReset = false;// disable autoreset to do reset in timer handler
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == true)
             {
-                timerMouse?.Stop();
+                _mouseTimer?.Stop();
                 IsStarted = false;
             }
 
@@ -95,7 +95,7 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (IsStarted == false)
             {
-                timerMouse?.Start();
+                _mouseTimer?.Start();
                 IsStarted = true;
             }
         }
@@ -109,23 +109,23 @@ namespace Axe.Windows.Actions.Trackers
         {
             lock (_elementSetterLock)
             {
-                if (timerMouse != null && IsStarted)
+                if (_mouseTimer != null && IsStarted)
                 {
                     NativeMethods.GetCursorPos(out Point p);
 
-                    if (LastMousePoint.Equals(p) && !POIPoint.Equals(p))
+                    if (_lastMousePoint.Equals(p) && !_poiPoint.Equals(p))
                     {
                         var element = GetElementBasedOnScope(A11yAutomation.NormalizedElementFromPoint(p.X, p.Y, TreeViewMode, ActionContext.DesktopDataContext));
                         if (!SelectElementIfItIsEligible(element))
                         {
                             element?.Dispose();
                         }
-                        POIPoint = p;
+                        _poiPoint = p;
                     }
 
-                    LastMousePoint = p;
+                    _lastMousePoint = p;
 
-                    timerMouse?.Start(); // make sure that it is enabled.
+                    _mouseTimer?.Start(); // make sure that it is enabled.
                 }
             }
         }
@@ -137,8 +137,8 @@ namespace Axe.Windows.Actions.Trackers
         {
             base.Clear();
             // clean up all points to make sure to start from scratch
-            POIPoint = Point.Empty;
-            LastMousePoint = Point.Empty;
+            _poiPoint = Point.Empty;
+            _lastMousePoint = Point.Empty;
         }
 
         /// <summary>
@@ -147,11 +147,11 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
-            if (timerMouse != null)
+            if (_mouseTimer != null)
             {
-                timerMouse.Stop();
-                timerMouse.Dispose();
-                timerMouse = null;
+                _mouseTimer.Stop();
+                _mouseTimer.Dispose();
+                _mouseTimer = null;
             }
 
             base.Dispose(disposing);

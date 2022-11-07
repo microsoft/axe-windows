@@ -32,7 +32,7 @@ namespace Axe.Windows.Actions
         /// ElementContext dictionary
         /// keep the record of all element context added by AddElementContext
         /// </summary>
-        readonly Dictionary<Guid, ElementContext> ElementContexts = new Dictionary<Guid, ElementContext>();
+        readonly Dictionary<Guid, ElementContext> _elementContexts = new Dictionary<Guid, ElementContext>();
 
         /// <summary>
         /// Get A11yPattern from an indicated element/elementcontext
@@ -52,9 +52,9 @@ namespace Axe.Windows.Actions
         /// <param name="ec"></param>
         internal void AddElementContext(ElementContext ec)
         {
-            if (ec != null && ElementContexts.ContainsKey(ec.Id) == false)
+            if (ec != null && _elementContexts.ContainsKey(ec.Id) == false)
             {
-                ElementContexts.Add(ec.Id, ec);
+                _elementContexts.Add(ec.Id, ec);
             }
         }
 
@@ -65,7 +65,7 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         internal ElementContext GetElementContext(Guid ecId)
         {
-            return ElementContexts.ContainsKey(ecId) ? ElementContexts[ecId] : null;
+            return _elementContexts.ContainsKey(ecId) ? _elementContexts[ecId] : null;
         }
 
         /// <summary>
@@ -74,11 +74,11 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">ElementContext Id</param>
         internal void RemoveElementContext(Guid ecId)
         {
-            if (ElementContexts.ContainsKey(ecId))
+            if (_elementContexts.ContainsKey(ecId))
             {
-                var ec = ElementContexts[ecId];
+                var ec = _elementContexts[ecId];
 
-                ElementContexts.Remove(ecId);
+                _elementContexts.Remove(ecId);
                 ec.Dispose();
             }
         }
@@ -91,9 +91,9 @@ namespace Axe.Windows.Actions
         internal void RemoveDataContext(Guid ecId, bool keepMainElement = true)
         {
             // check whether key exists. if not, just silently ignore.
-            if (ElementContexts.ContainsKey(ecId))
+            if (_elementContexts.ContainsKey(ecId))
             {
-                var ec = ElementContexts[ecId];
+                var ec = _elementContexts[ecId];
                 if (ec.DataContext != null)
                 {
                     if (keepMainElement)
@@ -116,16 +116,16 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public A11yElement GetA11yElement(Guid ecId, int eId)
         {
-            if (ElementContexts.ContainsKey(ecId))
+            if (_elementContexts.ContainsKey(ecId))
             {
-                var ec = ElementContexts[ecId];
+                var ec = _elementContexts[ecId];
                 if (eId == 0)
                 {
                     return ec.Element;
                 }
                 else
                 {
-                    var es = ElementContexts[ecId].DataContext.Elements;
+                    var es = _elementContexts[ecId].DataContext.Elements;
                     if (es.ContainsKey(eId))
                     {
                         return es[eId];
@@ -219,25 +219,25 @@ namespace Axe.Windows.Actions
         #endregion
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
                     // We need an immutable copy of the ecId values for cleanup
-                    var ecIdList = ElementContexts.Keys.ToList();
+                    var ecIdList = _elementContexts.Keys.ToList();
                     foreach(Guid ecId in ecIdList)
                     {
                         RemoveDataContext(ecId, false);
                     }
 
-                    ElementContexts.Clear();
+                    _elementContexts.Clear();
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 
