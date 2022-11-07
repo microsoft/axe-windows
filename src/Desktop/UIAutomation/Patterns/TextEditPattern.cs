@@ -16,33 +16,33 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_TextEdit_ConversionTargetChangedEventId)]
     public class TextEditPattern : A11yPattern
     {
-        IUIAutomationTextEditPattern Pattern;
+        IUIAutomationTextEditPattern _pattern;
 
         public TextEditPattern(A11yElement e, IUIAutomationTextEditPattern p) : base(e, PatternType.UIA_TextEditPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public TextRange GetActiveComposition()
         {
-            var tr = Pattern.GetActiveComposition();
+            var tr = _pattern.GetActiveComposition();
             return tr != null ? new TextRange(tr, null) : null;
         }
 
         [PatternMethod]
         public TextRange GetConversionTarget()
         {
-            var tr = Pattern.GetConversionTarget();
+            var tr = _pattern.GetConversionTarget();
             return tr != null ? new TextRange(tr, null) : null;
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -24,11 +24,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Drag_DragCompleteEventId)]
     public class DragPattern : A11yPattern
     {
-        IUIAutomationDragPattern Pattern;
+        IUIAutomationDragPattern _pattern;
 
         public DragPattern(A11yElement e, IUIAutomationDragPattern p) : base(e, PatternType.UIA_DragPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             // though member method is not action specific, this pattern means for UI action.
             IsUIActionable = true;
@@ -39,9 +39,9 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "DropEffect", Value = Pattern.CurrentDropEffect });
-            Properties.Add(new A11yPatternProperty() { Name = "DropEffects", Value = GetDropEffectsString(Pattern.CurrentDropEffects) });
-            Properties.Add(new A11yPatternProperty() { Name = "IsGrabbed", Value = Convert.ToBoolean(Pattern.CurrentIsGrabbed) });
+            Properties.Add(new A11yPatternProperty() { Name = "DropEffect", Value = _pattern.CurrentDropEffect });
+            Properties.Add(new A11yPatternProperty() { Name = "DropEffects", Value = GetDropEffectsString(_pattern.CurrentDropEffects) });
+            Properties.Add(new A11yPatternProperty() { Name = "IsGrabbed", Value = Convert.ToBoolean(_pattern.CurrentIsGrabbed) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
@@ -66,15 +66,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod]
         public IList<DesktopElement> GetGrabbedItems()
         {
-            return Pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();
+            return _pattern.GetCurrentGrabbedItems()?.ToListOfDesktopElements();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

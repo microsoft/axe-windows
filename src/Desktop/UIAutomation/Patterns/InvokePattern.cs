@@ -13,26 +13,26 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class InvokePattern : A11yPattern
     {
-        IUIAutomationInvokePattern Pattern;
+        IUIAutomationInvokePattern _pattern;
 
         public InvokePattern(A11yElement e, IUIAutomationInvokePattern p) : base(e, PatternType.UIA_InvokePatternId)
         {
-            Pattern = p;
+            _pattern = p;
             IsUIActionable = true;
         }
 
         [PatternMethod(IsUIAction = true)]
         public void Invoke()
         {
-            Pattern.Invoke();
+            _pattern.Invoke();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

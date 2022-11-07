@@ -17,7 +17,7 @@ namespace Axe.Windows.Desktop.UIAutomation
     /// </summary>
     public class DesktopElement : A11yElement
     {
-        private static readonly List<int> _excludedPropertyIds = new List<int>()
+        private static readonly List<int> ExcludedPropertyIds = new List<int>()
         {
             // do not remove the following since it causes an issue with Edge when this value is there.
             // The clickable point is retrieved later once it can be determined the element does not belong to Edge
@@ -61,7 +61,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             return id == 0
                    || name.EndsWith("PatternAvailable", System.StringComparison.Ordinal)
                    || name.EndsWith("Pattern2Available", System.StringComparison.Ordinal)
-                   || _excludedPropertyIds.Contains(id);
+                   || ExcludedPropertyIds.Contains(id);
         }
 
         public override string ToString()

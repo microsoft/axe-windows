@@ -15,11 +15,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     class CustomNavigationPattern : A11yPattern
     {
-        IUIAutomationCustomNavigationPattern Pattern;
+        IUIAutomationCustomNavigationPattern _pattern;
 
         public CustomNavigationPattern(A11yElement e, IUIAutomationCustomNavigationPattern p) : base(e, PatternType.UIA_CustomNavigationPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         /// <summary>
@@ -29,15 +29,15 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         [PatternMethod(IsUIAction = true)]
         public void Navigate(NavigateDirection direction)
         {
-            Pattern.Navigate(direction);
+            _pattern.Navigate(direction);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -20,11 +20,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_DropTarget_DroppedEventId)]
     public class DropTargetPattern : A11yPattern
     {
-        IUIAutomationDropTargetPattern Pattern;
+        IUIAutomationDropTargetPattern _pattern;
 
         public DropTargetPattern(A11yElement e, IUIAutomationDropTargetPattern p) : base(e, PatternType.UIA_DropTargetPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -32,8 +32,8 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "DropTargetEffect", Value = Pattern.CurrentDropTargetEffect });
-            var array = Pattern.CurrentDropTargetEffects;
+            Properties.Add(new A11yPatternProperty() { Name = "DropTargetEffect", Value = _pattern.CurrentDropTargetEffect });
+            var array = _pattern.CurrentDropTargetEffects;
             if (array.Length != 0)
             {
                 for (int i = 0; i < array.Length; i++)
@@ -46,10 +46,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

@@ -18,7 +18,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_Text_TextSelectionChangedEventId)]
     public class TextPattern : A11yPattern
     {
-        IUIAutomationTextPattern Pattern;
+        IUIAutomationTextPattern _pattern;
 
         public TextPattern(A11yElement e, IUIAutomationTextPattern p) : base(e, PatternType.UIA_TextPatternId)
         {
@@ -26,7 +26,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             // from telemetry
             ExcludingExceptionWrapper.ExecuteWithExcludedExceptionConversion(typeof(NotImplementedException), () =>
             {
-                Pattern = p;
+                _pattern = p;
 
                 PopulateProperties();
 
@@ -39,26 +39,26 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "SupportedTextSelection", Value = Pattern.SupportedTextSelection });
+            Properties.Add(new A11yPatternProperty() { Name = "SupportedTextSelection", Value = _pattern.SupportedTextSelection });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public TextRange DocumentRange()
         {
-            return new TextRange(Pattern.DocumentRange, this);
+            return new TextRange(_pattern.DocumentRange, this);
         }
 
         [PatternMethod]
         public IList<TextRange> GetSelection()
         {
-            return ToListOfTextRanges(Pattern.GetSelection());
+            return ToListOfTextRanges(_pattern.GetSelection());
         }
 
         [PatternMethod]
         public IList<TextRange> GetVisibleRanges()
         {
-            return ToListOfTextRanges(Pattern.GetVisibleRanges());
+            return ToListOfTextRanges(_pattern.GetVisibleRanges());
         }
 
         [PatternMethod]
@@ -66,13 +66,13 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         {
             if (child == null) throw new ArgumentNullException(nameof(child));
 
-            return new TextRange(Pattern.RangeFromChild(child.PlatformObject), this);
+            return new TextRange(_pattern.RangeFromChild(child.PlatformObject), this);
         }
 
         [PatternMethod]
         public TextRange RangeFromPoint(tagPOINT pt)
         {
-            return new TextRange(Pattern.RangeFromPoint(pt), this);
+            return new TextRange(_pattern.RangeFromPoint(pt), this);
         }
 
         List<TextRange> ToListOfTextRanges(IUIAutomationTextRangeArray array)
@@ -92,10 +92,10 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

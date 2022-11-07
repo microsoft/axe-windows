@@ -13,11 +13,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class GridPattern : A11yPattern
     {
-        IUIAutomationGridPattern Pattern;
+        IUIAutomationGridPattern _pattern;
 
         public GridPattern(A11yElement e, IUIAutomationGridPattern p) : base(e, PatternType.UIA_GridPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
         }
@@ -25,25 +25,25 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "ColumnCount", Value = Pattern.CurrentColumnCount });
-            Properties.Add(new A11yPatternProperty() { Name = "RowCount", Value = Pattern.CurrentRowCount });
+            Properties.Add(new A11yPatternProperty() { Name = "ColumnCount", Value = _pattern.CurrentColumnCount });
+            Properties.Add(new A11yPatternProperty() { Name = "RowCount", Value = _pattern.CurrentRowCount });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public DesktopElement GetItem(int row, int column)
         {
-            var uiae = Pattern.GetItem(row, column);
+            var uiae = _pattern.GetItem(row, column);
 
             return uiae != null ? new DesktopElement(uiae) : null;
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

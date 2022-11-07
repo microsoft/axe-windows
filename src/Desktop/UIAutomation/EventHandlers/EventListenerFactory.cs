@@ -31,7 +31,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         public CUIAutomation UIAutomation { get; private set; }
         public CUIAutomation8 UIAutomation8 { get; private set; }
 
-        private readonly A11yElement RootElement;
+        private readonly A11yElement _rootElement;
 
         const int ThreadExitGracePeriod = 2; // 2 seconds
 
@@ -358,25 +358,25 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     case EventType.UIA_StructureChangedEventId:
                         if (EventListenerStructureChanged == null)
                         {
-                            EventListenerStructureChanged = new StructureChangedEventListener(UIAutomation, RootElement.PlatformObject, Scope, msgData.Listener);
+                            EventListenerStructureChanged = new StructureChangedEventListener(UIAutomation, _rootElement.PlatformObject, Scope, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_AutomationPropertyChangedEventId:
                         if (EventListenerPropertyChanged == null)
                         {
-                            EventListenerPropertyChanged = new PropertyChangedEventListener(UIAutomation, RootElement.PlatformObject, Scope, msgData.Listener, msgData.Properties);
+                            EventListenerPropertyChanged = new PropertyChangedEventListener(UIAutomation, _rootElement.PlatformObject, Scope, msgData.Listener, msgData.Properties);
                         }
                         break;
                     case EventType.UIA_TextEdit_TextChangedEventId:
                         if (EventListenerTextEditTextChanged == null)
                         {
-                            EventListenerTextEditTextChanged = new TextEditTextChangedEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
+                            EventListenerTextEditTextChanged = new TextEditTextChangedEventListener(UIAutomation8, _rootElement.PlatformObject, Scope, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_ChangesEventId:
                         if (EventListenerChanges == null)
                         {
-                            EventListenerChanges = new ChangesEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
+                            EventListenerChanges = new ChangesEventListener(UIAutomation8, _rootElement.PlatformObject, Scope, msgData.Listener);
                         }
                         break;
                     case EventType.UIA_NotificationEventId:
@@ -384,7 +384,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         {
                             if (EventListenerNotification == null)
                             {
-                                EventListenerNotification = new NotificationEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
+                                EventListenerNotification = new NotificationEventListener(UIAutomation8, _rootElement.PlatformObject, Scope, msgData.Listener);
                             }
                         }
                         else
@@ -408,7 +408,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         {
                             if (EventListenerNotification == null)
                             {
-                                EventListenerActiveTextPositionChanged = new ActiveTextPositionChangedEventListener(UIAutomation8, RootElement.PlatformObject, Scope, msgData.Listener);
+                                EventListenerActiveTextPositionChanged = new ActiveTextPositionChangedEventListener(UIAutomation8, _rootElement.PlatformObject, Scope, msgData.Listener);
                             }
                         }
                         else
@@ -430,7 +430,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     default:
                         if (EventListeners.ContainsKey(msgData.EventId) == false)
                         {
-                            EventListeners.Add(msgData.EventId, new EventListener(UIAutomation, RootElement.PlatformObject, Scope, msgData.EventId, msgData.Listener));
+                            EventListeners.Add(msgData.EventId, new EventListener(UIAutomation, _rootElement.PlatformObject, Scope, msgData.EventId, msgData.Listener));
                         }
                         break;
                 }
@@ -520,7 +520,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         /// <param name="scope"></param>
         public EventListenerFactory(A11yElement rootElement, ListenScope scope)
         {
-            RootElement = rootElement;
+            _rootElement = rootElement;
             Scope = GetUIAScope(scope);
             EventListeners = new Dictionary<int, EventListener>();
             //Start worker thread
@@ -603,11 +603,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -630,7 +630,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     }
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 
@@ -699,11 +699,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        private bool disposedValue; // To detect redundant calls
+        private bool _disposedValue; // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
@@ -711,7 +711,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     _autoEventProcessed = null;
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 

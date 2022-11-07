@@ -15,11 +15,11 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     /// </summary>
     public class TransformPattern : A11yPattern
     {
-        IUIAutomationTransformPattern Pattern;
+        IUIAutomationTransformPattern _pattern;
 
         public TransformPattern(A11yElement e, IUIAutomationTransformPattern p) : base(e, PatternType.UIA_TransformPatternId)
         {
-            Pattern = p;
+            _pattern = p;
 
             PopulateProperties();
 
@@ -30,36 +30,36 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
         private void PopulateProperties()
         {
 #pragma warning disable CA2000 // Properties are disposed in A11yPattern.Dispose()
-            Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(Pattern.CurrentCanMove) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(Pattern.CurrentCanResize) });
-            Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(Pattern.CurrentCanRotate) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanMove", Value = Convert.ToBoolean(_pattern.CurrentCanMove) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanResize", Value = Convert.ToBoolean(_pattern.CurrentCanResize) });
+            Properties.Add(new A11yPatternProperty() { Name = "CanRotate", Value = Convert.ToBoolean(_pattern.CurrentCanRotate) });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()
         }
 
         [PatternMethod]
         public void Move(double x, double y)
         {
-            Pattern.Move(x, y);
+            _pattern.Move(x, y);
         }
 
         [PatternMethod]
         public void Resize(double width, double height)
         {
-            Pattern.Resize(width, height);
+            _pattern.Resize(width, height);
         }
 
         [PatternMethod]
         public void Rotate(double degree)
         {
-            Pattern.Rotate(degree);
+            _pattern.Rotate(degree);
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);

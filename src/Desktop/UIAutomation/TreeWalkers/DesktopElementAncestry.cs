@@ -32,7 +32,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
         public IList<A11yElement> Items { get; private set; }
 
-        private readonly IUIAutomationTreeWalker TreeWalker;
+        private readonly IUIAutomationTreeWalker _treeWalker;
 
         public TreeViewMode TreeWalkerMode { get; }
 
@@ -60,7 +60,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
 
-            TreeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
+            _treeWalker = dataContext.A11yAutomation.GetTreeWalker(mode);
             TreeWalkerMode = mode;
             Items = new List<A11yElement>();
             SetMembers = setMembers;
@@ -81,7 +81,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 }
             }
 
-            Marshal.ReleaseComObject(TreeWalker);
+            Marshal.ReleaseComObject(_treeWalker);
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
 
             try
             {
-                var puia = TreeWalker.GetParentElement((IUIAutomationElement)e.PlatformObject);
+                var puia = _treeWalker.GetParentElement((IUIAutomationElement)e.PlatformObject);
                 if (puia == null) return;
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
@@ -136,7 +136,7 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
         {
             int childId = 1;
 
-            IUIAutomationTreeWalker walker = TreeWalker;
+            IUIAutomationTreeWalker walker = _treeWalker;
             if ((IUIAutomationElement)parentNode.PlatformObject != null)
             {
                 IUIAutomationElement child;

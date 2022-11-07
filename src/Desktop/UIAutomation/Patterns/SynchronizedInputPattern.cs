@@ -15,31 +15,31 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
     [PatternEvent(Id = EventType.UIA_InputReachedTargetEventId)]
     public class SynchronizedInputPattern : A11yPattern
     {
-        IUIAutomationSynchronizedInputPattern Pattern;
+        IUIAutomationSynchronizedInputPattern _pattern;
 
         public SynchronizedInputPattern(A11yElement e, IUIAutomationSynchronizedInputPattern p) : base(e, PatternType.UIA_SynchronizedInputPatternId)
         {
-            Pattern = p;
+            _pattern = p;
         }
 
         [PatternMethod]
         public void StartListening(SynchronizedInputType inputType)
         {
-            Pattern.StartListening(inputType);
+            _pattern.StartListening(inputType);
         }
 
         [PatternMethod]
         public void Cancel()
         {
-            Pattern.Cancel();
+            _pattern.Cancel();
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (Pattern != null)
+            if (_pattern != null)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(Pattern);
-                Pattern = null;
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(_pattern);
+                _pattern = null;
             }
 
             base.Dispose(disposing);
