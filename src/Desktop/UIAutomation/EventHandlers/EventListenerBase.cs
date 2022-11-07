@@ -65,11 +65,11 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
         }
 
         #region IDisposable Support
-        protected bool disposedValue { get; private set; } // To detect redundant calls
+        protected bool DisposedValue { get; private set; } // To detect redundant calls
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!DisposedValue)
             {
                 if (disposing)
                 {
@@ -80,7 +80,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     }
                 }
 
-                disposedValue = true;
+                DisposedValue = true;
             }
         }
 
