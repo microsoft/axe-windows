@@ -12,23 +12,23 @@ namespace Axe.Windows.Rules
     /// </summary>
     class StringDecoratorCondition : Condition
     {
-        private readonly Condition Sub;
-        private readonly string Decoration;
+        private readonly Condition _sub;
+        private readonly string _decoration;
 
         public StringDecoratorCondition(Condition c, string decoration)
         {
-            Sub = c ?? throw new ArgumentNullException(nameof(c));
-            Decoration = decoration ?? throw new ArgumentNullException(nameof(decoration));
+            _sub = c ?? throw new ArgumentNullException(nameof(c));
+            _decoration = decoration ?? throw new ArgumentNullException(nameof(decoration));
         }
 
         public override bool Matches(IA11yElement element)
         {
-            return Sub.Matches(element);
+            return _sub.Matches(element);
         }
 
         public override string ToString()
         {
-            return Decoration.WithParameters(Sub);
+            return _decoration.WithParameters(_sub);
         }
     } // class
 } // namespace

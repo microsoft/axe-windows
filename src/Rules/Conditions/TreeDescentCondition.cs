@@ -12,28 +12,28 @@ namespace Axe.Windows.Rules
     /// </summary>
     class TreeDescentCondition : Condition
     {
-        private readonly Condition ParentCondition;
-        private readonly Condition ChildCondition;
+        private readonly Condition _parentCondition;
+        private readonly Condition _childCondition;
 
         public TreeDescentCondition(Condition parentCondition, Condition childCondition)
         {
-            ParentCondition = parentCondition ?? throw new ArgumentNullException(nameof(parentCondition));
-            ChildCondition = childCondition ?? throw new ArgumentNullException(nameof(childCondition));
+            _parentCondition = parentCondition ?? throw new ArgumentNullException(nameof(parentCondition));
+            _childCondition = childCondition ?? throw new ArgumentNullException(nameof(childCondition));
         }
 
         public override bool Matches(IA11yElement e)
         {
-            if (!ParentCondition.Matches(e))
+            if (!_parentCondition.Matches(e))
                 return false;
 
             var child = e?.GetFirstChild();
 
-            return ChildCondition.Matches(child);
+            return _childCondition.Matches(child);
         }
 
         public override string ToString()
         {
-            return Invariant($"{ParentCondition} / {ChildCondition}");
+            return Invariant($"{_parentCondition} / {_childCondition}");
         }
     } // class
 } // namespace

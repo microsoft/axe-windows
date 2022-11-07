@@ -13,43 +13,43 @@ namespace Axe.Windows.Rules
     class ContextCondition : Condition
     {
         public delegate void ContextDelegate(IA11yElement element);
-        private readonly ContextDelegate Initialize;
-        private readonly ContextDelegate Finalize;
-        private readonly Condition Sub;
+        private readonly ContextDelegate _initialize;
+        private readonly ContextDelegate _finalize;
+        private readonly Condition _sub;
 
         public ContextCondition(Condition sub, ContextDelegate initialize, ContextDelegate finalize)
         {
-            Sub = sub ?? throw new ArgumentNullException(nameof(sub));
-            Initialize = initialize ?? throw new ArgumentNullException(nameof(initialize));
-            Finalize = finalize ?? throw new ArgumentNullException(nameof(finalize));
+            _sub = sub ?? throw new ArgumentNullException(nameof(sub));
+            _initialize = initialize ?? throw new ArgumentNullException(nameof(initialize));
+            _finalize = finalize ?? throw new ArgumentNullException(nameof(finalize));
         }
 
         public override bool Matches(IA11yElement e)
         {
             // Ensure the context is initialized
             Condition.InitContext();
-            Initialize(e);
+            _initialize(e);
 
             bool retVal = false;
 
             try
             {
-                retVal = Sub.Matches(e);
+                retVal = _sub.Matches(e);
             }
             catch (Exception)
             {
-                Finalize(e);
+                _finalize(e);
                 throw;
             }
 
-            Finalize(e);
+            _finalize(e);
 
             return retVal;
         }
 
         public override string ToString()
         {
-            return Sub?.ToString();
+            return _sub?.ToString();
         }
     } // class
 } // namespace
