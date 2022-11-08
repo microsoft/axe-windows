@@ -79,9 +79,9 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             {
                 foreach (var exactPairInner in _countExactPairs)
                 {
-                    if (exactPairOuter.Key.backgroundColor.Equals(exactPairInner.Key.backgroundColor))
+                    if (exactPairOuter.Key.BackgroundColor.Equals(exactPairInner.Key.BackgroundColor))
                     {
-                        if (exactPairOuter.Key.foregroundColor.IsSimilarColor(exactPairInner.Key.foregroundColor))
+                        if (exactPairOuter.Key.ForegroundColor.IsSimilarColor(exactPairInner.Key.ForegroundColor))
                         {
                             pairsWithSimilarTextColor.Increment(exactPairOuter.Key, exactPairInner.Value);
                         }
