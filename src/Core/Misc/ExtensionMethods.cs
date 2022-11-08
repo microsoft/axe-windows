@@ -601,7 +601,7 @@ namespace Axe.Windows.Core.Misc
 
         public static string ToLeftTopRightBottomString(this Rectangle r)
         {
-            return String.Format(CultureInfo.CurrentCulture, DisplayStrings.LeftTopRightBottomFormat, r.Left, r.Top, r.Right, r.Bottom);
+            return string.Format(CultureInfo.CurrentCulture, DisplayStrings.LeftTopRightBottomFormat, r.Left, r.Top, r.Right, r.Bottom);
         }
 
         /// <summary>
