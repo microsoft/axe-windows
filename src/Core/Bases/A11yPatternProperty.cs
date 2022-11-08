@@ -15,11 +15,13 @@ namespace Axe.Windows.Core.Bases
 
         public dynamic Value { get; set; }
 
+        public bool OmitQuotesFromString { get; set; }
+
         public string NodeValue
         {
             get
             {
-                if (Value is string)
+                if (Value is string && !OmitQuotesFromString)
                 {
                     return ExtensionMethods.WithParameters("{0} = \"{1}\"", Name, Value);
                 }
