@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using static Axe.Windows.Rules.PropertyConditions.Framework;
 using static Axe.Windows.Rules.PropertyConditions.Relationships;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
