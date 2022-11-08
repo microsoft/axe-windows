@@ -7,23 +7,23 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public class ColorPair
     {
-        internal readonly Color backgroundColor;
-        internal readonly Color foregroundColor;
+        internal Color BackgroundColor { get; }
+        internal Color ForegroundColor { get; }
 
-        public ColorPair(Color potentialBackgroundColor, Color potentialForegroundColor)
+        public ColorPair(Color backgroundColor, Color foregroundColor)
         {
-            backgroundColor = potentialBackgroundColor;
-            foregroundColor = potentialForegroundColor;
+            BackgroundColor = backgroundColor;
+            ForegroundColor = foregroundColor;
         }
 
         public Color DarkerColor
         {
             get
             {
-                double contrast1 = Color.WHITE.Contrast(backgroundColor);
-                double contrast2 = Color.WHITE.Contrast(foregroundColor);
+                double contrast1 = Color.WHITE.Contrast(BackgroundColor);
+                double contrast2 = Color.WHITE.Contrast(ForegroundColor);
 
-                return contrast1 < contrast2 ? foregroundColor : backgroundColor;
+                return contrast1 < contrast2 ? ForegroundColor : BackgroundColor;
             }
         }
 
@@ -31,10 +31,10 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         {
             get
             {
-                double contrast1 = Color.WHITE.Contrast(backgroundColor);
-                double contrast2 = Color.WHITE.Contrast(foregroundColor);
+                double contrast1 = Color.WHITE.Contrast(BackgroundColor);
+                double contrast2 = Color.WHITE.Contrast(ForegroundColor);
 
-                return contrast1 < contrast2 ? backgroundColor : foregroundColor;
+                return contrast1 < contrast2 ? BackgroundColor : ForegroundColor;
             }
         }
 

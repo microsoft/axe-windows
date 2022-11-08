@@ -18,7 +18,7 @@ namespace Axe.Windows.Actions.Trackers
     {
         internal Action<A11yElement> SetElement;
 
-        internal bool IsStarted;
+        protected bool IsStarted { get; set; }
 
         /// <summary>
         /// The ActionContext that owns this object
