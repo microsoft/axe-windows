@@ -9,8 +9,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
     {
         private readonly IColorContrastConfig _colorContrastConfig;
 
-        internal Boolean IsClosed { get; private set; }
-        internal Boolean IsConnecting { get; private set; }
+        internal bool IsClosed { get; private set; }
+        internal bool IsConnecting { get; private set; }
 
         internal readonly Color StartingColor;
 
@@ -22,8 +22,8 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
          * These two booleans help us track that, without having to store all the colors
          * in a list.
          */
-        private Boolean _isMountainShaped = true;
-        private Boolean _isIncreasingInContrast = true;
+        private bool _isMountainShaped = true;
+        private bool _isIncreasingInContrast = true;
 
         /**
          * It is useful to track the size of a transition. Especially for debugging purposes,
@@ -72,7 +72,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * True if the transition may be a transition involving text.
          */
-        public Boolean IsPotentialForegroundBackgroundPair()
+        public bool IsPotentialForegroundBackgroundPair()
         {
             return IsConsequential() && !ToColorPair().AreVisuallySimilarColors();
         }
@@ -85,7 +85,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
             return new ColorPair(StartingColor, MostContrastingColor);
         }
 
-        internal Boolean IsConsequential()
+        internal bool IsConsequential()
         {
             return IsConnecting && _size > 2 && _isMountainShaped;
         }
