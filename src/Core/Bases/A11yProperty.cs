@@ -131,13 +131,13 @@ namespace Axe.Windows.Core.Bases
                         {
                             txt = converter.Render(Value);
                         }
-                        else if (Value is Int32[])
+                        else if (Value is int[])
                         {
-                            txt = ((Int32[])Value).ConvertInt32ArrayToString();
+                            txt = ((int[])Value).ConvertInt32ArrayToString();
                         }
-                        else if (Value is Double[])
+                        else if (Value is double[])
                         {
-                            txt = ((Double[])Value).ConvertDoubleArrayToString();
+                            txt = ((double[])Value).ConvertDoubleArrayToString();
                         }
                         else
                         {

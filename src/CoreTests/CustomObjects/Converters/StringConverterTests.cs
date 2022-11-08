@@ -25,7 +25,7 @@ namespace Axe.Windows.CoreTests.CustomObjects.Converters
         [TestMethod, Timeout(1000)]
         public void EmptyRenderTest()
         {
-            Assert.AreEqual(String.Empty, new StringTypeConverter().Render(String.Empty));
+            Assert.AreEqual(string.Empty, new StringTypeConverter().Render(string.Empty));
         }
     }
 }
