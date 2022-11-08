@@ -54,7 +54,7 @@ namespace Axe.Windows.CoreTests.CustomObjects
         {
             try
             {
-                Config.ReadFromText(String.Empty);
+                Config.ReadFromText(string.Empty);
                 Assert.Fail("Failed to throw exception.");
             }
             catch (Exception) { }
