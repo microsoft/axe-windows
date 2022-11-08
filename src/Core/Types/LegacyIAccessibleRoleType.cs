@@ -99,7 +99,7 @@ namespace Axe.Windows.Core.Types
 #pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
-        /// private constructor since it would be singleton model
+        /// private constructor since this uses a singleton model
         /// </summary>
         private LegacyIAccessibleRoleType() : base("ROLE_SYSTEM_") { }
 
