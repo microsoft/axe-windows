@@ -139,7 +139,7 @@ namespace Axe.Windows.Core.Misc
             return sb.ToString();
         }
 
-        public static string ConvertDoubleArrayToString(Double[] array)
+        public static string ConvertDoubleArrayToString(double[] array)
         {
             if (array != null && array.Length != 0)
             {
@@ -165,7 +165,7 @@ namespace Axe.Windows.Core.Misc
 
         public static string ConvertDoubleArrayToString(this Array array)
         {
-            return ConvertDoubleArrayToString((Double[])array);
+            return ConvertDoubleArrayToString((double[])array);
         }
 
         public static string ConvertInt32ArrayToString(int[] array)

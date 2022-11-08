@@ -132,9 +132,9 @@ namespace Axe.Windows.Core.Bases
                         {
                             txt = ((int[])Value).ConvertInt32ArrayToString();
                         }
-                        else if (Value is Double[])
+                        else if (Value is double[])
                         {
-                            txt = ((Double[])Value).ConvertDoubleArrayToString();
+                            txt = ((double[])Value).ConvertDoubleArrayToString();
                         }
                         else
                         {
