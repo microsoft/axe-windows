@@ -93,7 +93,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static string ConvertIntArrayToString(Int32[] array)
+        public static string ConvertIntArrayToString(int[] array)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -168,7 +168,7 @@ namespace Axe.Windows.Core.Misc
             return ConvertDoubleArrayToString((Double[])array);
         }
 
-        public static string ConvertInt32ArrayToString(Int32[] array)
+        public static string ConvertInt32ArrayToString(int[] array)
         {
             if (array != null && array.Length != 0)
             {
@@ -195,7 +195,7 @@ namespace Axe.Windows.Core.Misc
 
         public static string ConvertInt32ArrayToString(this Array array)
         {
-            return ConvertInt32ArrayToString((Int32[])array);
+            return ConvertInt32ArrayToString((int[])array);
         }
 
         /// <summary>
