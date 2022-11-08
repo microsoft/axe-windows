@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System.Text;
@@ -56,7 +56,7 @@ namespace Axe.Windows.Core.Types
         public const int UIA_AppBarControlTypeId = 50040;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-        private static ControlType sInstance;
+        private static ControlType TheInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
@@ -66,17 +66,17 @@ namespace Axe.Windows.Core.Types
         /// <returns></returns>
         public static ControlType GetInstance()
         {
-            if (sInstance == null)
+            if (TheInstance == null)
             {
-                sInstance = new ControlType();
+                TheInstance = new ControlType();
             }
 
-            return sInstance;
+            return TheInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
-        /// private constructor since it would be singleton model
+        /// private constructor since this uses a singleton model
         /// </summary>
         private ControlType() : base() { }
 
