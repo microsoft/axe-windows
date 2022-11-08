@@ -123,6 +123,9 @@ namespace Axe.Windows.Core.Bases
                     case PropertyType.UIA_LandmarkTypePropertyId:
                         txt = Value != 0 ? LandmarkType.GetInstance().GetNameById(Value) : null; // 0 is default value.
                         break;
+                    case PropertyType.UIA_LegacyIAccessiblePattern_RolePropertyId:
+                        txt = Value != 0 ? LegacyIAccessibleRoleType.GetInstance().GetNameById(Value) : null; // 0 is default value.
+                        break;
                     default:
                         if (TypeConverterMap.TryGetValue(Id, out ITypeConverter converter))
                         {

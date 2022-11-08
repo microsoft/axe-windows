@@ -54,7 +54,11 @@ namespace Axe.Windows.Actions
         /// </summary>
         private static void SaveSnapshotFromElement(int? focusedElementId, A11yFileMode mode, ElementContext ec, Package package, A11yElement root, IActionContext actionContext)
         {
-            var json = JsonConvert.SerializeObject(root, Formatting.Indented);
+            var json = JsonConvert.SerializeObject(root, Formatting.Indented,
+                new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                });
             using (MemoryStream mStrm = new MemoryStream(Encoding.UTF8.GetBytes(json)))
             {
                 AddStream(package, mStrm, StreamName.ElementFileName);
