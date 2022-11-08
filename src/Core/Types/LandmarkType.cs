@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System.Text;
@@ -25,7 +25,7 @@ namespace Axe.Windows.Core.Types
         public const int UIA_SearchLandmarkTypeId = 80004;
 #pragma warning restore CA1707 // Identifiers should not contain underscores
 
-        private static LandmarkType sInstance;
+        private static LandmarkType TheInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate
         /// <summary>
@@ -35,17 +35,17 @@ namespace Axe.Windows.Core.Types
         /// <returns></returns>
         public static LandmarkType GetInstance()
         {
-            if (sInstance == null)
+            if (TheInstance == null)
             {
-                sInstance = new LandmarkType();
+                TheInstance = new LandmarkType();
             }
 
-            return sInstance;
+            return TheInstance;
         }
 #pragma warning restore CA1024 // Use properties where appropriate
 
         /// <summary>
-        /// private constructor since it would be singleton model
+        /// private constructor since this uses a singleton model
         /// </summary>
         private LandmarkType() : base() { }
 
