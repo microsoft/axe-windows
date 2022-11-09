@@ -79,10 +79,13 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
         <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Telemetry.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Win32.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\CommandLine.dll" />
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\Microsoft.Win32.Registry.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\System.Drawing.Common.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\System.IO.Packaging.dll" />
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\System.Security.AccessControl.dll" />
+        <File Source="..\CLI\bin\Release\netcoreapp3.1\System.Security.Principal.Windows.dll" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\thirdpartynotices.html" />
         <File Source="..\CLI\bin\Release\netcoreapp3.1\README.MD" />
       </Component>
