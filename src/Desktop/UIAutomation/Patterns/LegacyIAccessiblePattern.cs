@@ -8,6 +8,7 @@ using Axe.Windows.Desktop.Utility;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.Patterns
@@ -26,6 +27,16 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
             PopulateProperties();
         }
 
+        private string GetDecoratedRoleValue()
+        {
+            using (A11yProperty ruleProperty = new A11yProperty(PropertyType.UIA_LegacyIAccessiblePattern_RolePropertyId, _pattern.CurrentRole))
+            {
+                string decoratedRuleValue = ruleProperty.ToString();
+
+                return decoratedRuleValue ?? _pattern.CurrentRole.ToString(CultureInfo.InvariantCulture);
+            }
+        }
+
         private void PopulateProperties()
         {
             try
@@ -37,7 +48,7 @@ namespace Axe.Windows.Desktop.UIAutomation.Patterns
                 Properties.Add(new A11yPatternProperty() { Name = "Help", Value = _pattern.CurrentHelp });
                 Properties.Add(new A11yPatternProperty() { Name = "KeyboardShorcut", Value = _pattern.CurrentKeyboardShortcut });
                 Properties.Add(new A11yPatternProperty() { Name = "Name", Value = _pattern.CurrentName });
-                Properties.Add(new A11yPatternProperty() { Name = "Role", Value = _pattern.CurrentRole });
+                Properties.Add(new A11yPatternProperty() { Name = "Role", Value = GetDecoratedRoleValue(), OmitQuotesFromString = true });
                 Properties.Add(new A11yPatternProperty() { Name = "State", Value = _pattern.CurrentState });
                 Properties.Add(new A11yPatternProperty() { Name = "Value", Value = _pattern.CurrentValue });
 #pragma warning restore CA2000 // Properties are disposed in A11yPattern.Dispose()

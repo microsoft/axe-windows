@@ -28,16 +28,16 @@ namespace Axe.Windows.Desktop.UIAutomation.CustomObjects
             _idToCustomPropertyMap = new Dictionary<int, CustomProperty>();
         }
 
-        static Registrar sDefaultInstance;
+        static Registrar DefaultInstance;
 
 #pragma warning disable CA1024 // Use properties where appropriate: backing field
         public static Registrar GetDefaultInstance()
 #pragma warning restore CA1024 // Use properties where appropriate: backing field
         {
             // This code is currently not thread safe.
-            if (sDefaultInstance == null)
-                sDefaultInstance = new Registrar();
-            return sDefaultInstance;
+            if (DefaultInstance == null)
+                DefaultInstance = new Registrar();
+            return DefaultInstance;
         }
 
         public void RegisterCustomProperty(CustomProperty prop)

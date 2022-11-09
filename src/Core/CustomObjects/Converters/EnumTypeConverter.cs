@@ -21,7 +21,7 @@ namespace Axe.Windows.Core.CustomObjects.Converters
             int raw = (int)value;
             if (_values.TryGetValue(raw, out string friendlyName))
                 return $"{friendlyName} ({raw})";
-            return String.Format(CultureInfo.CurrentCulture, DisplayStrings.UnknownFormat, raw);
+            return string.Format(CultureInfo.CurrentCulture, DisplayStrings.UnknownFormat, raw);
         }
     }
 }

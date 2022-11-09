@@ -20,13 +20,13 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <Property Id="NETCORERUNTIMEFOUNDX86">
       <DirectorySearch Id="NetCoreDirectoryFoundx86" Path="[ProgramFilesFolder]dotnet" >
-        <FileSearch Name="dotnet.exe" MinVersion="3.1"/>
+        <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
       </DirectorySearch>
     </Property>
 
     <Property Id="NETCORERUNTIMEFOUNDX64">
       <DirectorySearch Id="NetCoreDirectoryFoundx64" Path="[ProgramFiles64Folder]dotnet" >
-        <FileSearch Name="dotnet.exe" MinVersion="3.1"/>
+        <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
       </DirectorySearch>
     </Property>
 
@@ -34,10 +34,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <Feature Id="ProductFeature" Title="Axe.Windows CLI" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
-      <ComponentGroupRef Id="NetCoreApp20Components" />
-      <ComponentGroupRef Id="NetCoreApp21Components" />
-      <ComponentGroupRef Id="NetCoreApp31Components" />
-      <ComponentGroupRef Id="NetStandard20Components" />
+      <ComponentGroupRef Id="Net60Components" />
     </Feature>
 
     <Condition Message="[ProductName] requires .NET Core Runtime 3.1 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core">
@@ -51,10 +48,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
             <Directory Id="RuntimesFolder" Name="runtimes" >
               <Directory Id="WinFolder" Name="win" >
                 <Directory Id="LibFolder" Name="lib" >
-                  <Directory Id="NetCoreApp20Folder" Name="netcoreapp2.0" />
-                  <Directory Id="NetCoreApp21Folder" Name="netcoreapp2.1" />
-                  <Directory Id="NetCoreApp31Folder" Name="netcoreapp3.1" />
-                  <Directory Id="NetStandard20Folder" Name="netstandard2.0" />
+                  <Directory Id="Net60Folder" Name="net6.0" />
                 </Directory>
               </Directory>
             </Directory>
@@ -65,51 +59,33 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ProductComponent" Guid="548A9965-21AD-4CDF-99AD-A6F2A47D0AE8">
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\AxeWindowsCLI.exe" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\AxeWindowsCLI.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\AxeWindowsCLI.deps.json" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\AxeWindowsCLI.runtimeconfig.json" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Actions.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Automation.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Core.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Desktop.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Rules.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.RuleSelection.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.SystemAbstractions.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Telemetry.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Axe.Windows.Win32.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\CommandLine.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\System.Drawing.Common.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\System.IO.Packaging.dll" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\thirdpartynotices.html" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\README.MD" />
+        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.exe" />
+        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.deps.json" />
+        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.runtimeconfig.json" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Actions.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Automation.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Core.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Desktop.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Rules.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.RuleSelection.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.SystemAbstractions.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Telemetry.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Win32.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\CommandLine.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Microsoft.Win32.SystemEvents.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\Newtonsoft.Json.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\System.Drawing.Common.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\System.IO.Packaging.dll" />
+        <File Source="..\CLI\bin\Release\net6.0\thirdpartynotices.html" />
+        <File Source="..\CLI\bin\Release\net6.0\README.MD" />
       </Component>
     </ComponentGroup>
 
-    <ComponentGroup Id="NetCoreApp20Components" Directory="NetCoreApp20Folder">
+    <ComponentGroup Id="Net60Components" Directory="Net60Folder">
       <Component Id="NetCoreApp20Component" Guid="5002A1F9-EB89-441C-B757-8E214EFE82CF">
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Security.AccessControl.dll" Id="netcoreapp20_system_security_accesscontrol" />
-      </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="NetCoreApp21Components" Directory="NetCoreApp21Folder">
-      <Component Id="NetCoreApp21Component" Guid="8DAE90E7-271A-40A6-8B57-B967EC305130">
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll" Id="netcoreapp21_system_security_principal_windows" />
-      </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="NetCoreApp31Components" Directory="NetCoreApp31Folder">
-      <Component Id="NetCoreApp31Component" Guid="2F921C55-E303-46DF-81B7-95923D83C32D">
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll" Id="netcoreapp31_microsoft_win32_systemevents" />
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll" Id="netcoreapp31_system_drawing_common" />
-      </Component>
-    </ComponentGroup>
-
-    <ComponentGroup Id="NetStandard20Components" Directory="NetStandard20Folder">
-      <Component Id="NetStandard20Component" Guid="940EFA7D-6706-415A-9064-BAFE98B81855">
-        <File Source="..\CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0\Microsoft.Win32.Registry.dll" Id="netstandard20_microsoft_win32_registry" />
+        <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" Id="net60_systemevents" />
+        <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" Id="net60_systemdrawing" />
       </Component>
     </ComponentGroup>
 

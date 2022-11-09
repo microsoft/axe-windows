@@ -68,7 +68,7 @@
 	</Target>
 	-->
   <Target Condition=" '$(CreateAxeWindowsZippedCLI)' == 'true' AND '$(ConfigurationName)' == 'Release' " Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\BuildZippedCLI.ps1 -SrcDir $(SolutionDir)CLI_Full\bin\$(ConfigurationName)\netcoreapp3.1\win7-x86 -TargetDir $(TargetDir) " />
+    <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\BuildZippedCLI.ps1 -SrcDir $(SolutionDir)CLI_Full\bin\$(ConfigurationName)\net6.0\win7-x86 -TargetDir $(TargetDir) " />
   </Target>
   <Import Project="..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\Microsoft.VisualStudioEng.MicroBuild.Core.1.0.0\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
 </Project>

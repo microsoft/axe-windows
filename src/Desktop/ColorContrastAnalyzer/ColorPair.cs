@@ -7,23 +7,23 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
 {
     public class ColorPair
     {
-        internal readonly Color backgroundColor;
-        internal readonly Color foregroundColor;
+        internal Color BackgroundColor { get; }
+        internal Color ForegroundColor { get; }
 
-        public ColorPair(Color potentialBackgroundColor, Color potentialForegroundColor)
+        public ColorPair(Color backgroundColor, Color foregroundColor)
         {
-            backgroundColor = potentialBackgroundColor;
-            foregroundColor = potentialForegroundColor;
+            BackgroundColor = backgroundColor;
+            ForegroundColor = foregroundColor;
         }
 
         public Color DarkerColor
         {
             get
             {
-                double contrast1 = Color.WHITE.Contrast(backgroundColor);
-                double contrast2 = Color.WHITE.Contrast(foregroundColor);
+                double contrast1 = Color.WHITE.Contrast(BackgroundColor);
+                double contrast2 = Color.WHITE.Contrast(ForegroundColor);
 
-                return contrast1 < contrast2 ? foregroundColor : backgroundColor;
+                return contrast1 < contrast2 ? ForegroundColor : BackgroundColor;
             }
         }
 
@@ -31,14 +31,14 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         {
             get
             {
-                double contrast1 = Color.WHITE.Contrast(backgroundColor);
-                double contrast2 = Color.WHITE.Contrast(foregroundColor);
+                double contrast1 = Color.WHITE.Contrast(BackgroundColor);
+                double contrast2 = Color.WHITE.Contrast(ForegroundColor);
 
-                return contrast1 < contrast2 ? backgroundColor : foregroundColor;
+                return contrast1 < contrast2 ? BackgroundColor : ForegroundColor;
             }
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             //Check for null and compare run-time types.
             if ((obj == null) || !GetType().Equals(obj.GetType()))
@@ -55,7 +55,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * True when the pair of colors are not visually different.
          */
-        public Boolean AreVisuallySimilarColors()
+        public bool AreVisuallySimilarColors()
         {
             return LighterColor.IsSimilarColor(DarkerColor);
         }
@@ -63,7 +63,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
         /**
          * True when a pair of colors have visibly similar pairs of colors.
          */
-        public Boolean IsVisiblySimilarTo(ColorPair otherPair)
+        public bool IsVisiblySimilarTo(ColorPair otherPair)
         {
             if (otherPair == null) throw new ArgumentNullException(nameof(otherPair));
 

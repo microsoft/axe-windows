@@ -13,7 +13,7 @@ namespace Axe.Windows.Core.CustomObjects.Converters
         {
             if (value == null) throw new ArgumentNullException(nameof(value));
             double[] arr = (double[])value;
-            return String.Format(CultureInfo.CurrentCulture, DisplayStrings.PointFormat, arr[0], arr[1]);
+            return string.Format(CultureInfo.CurrentCulture, DisplayStrings.PointFormat, arr[0], arr[1]);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Axe.Windows.Core.Misc
         private static readonly Lazy<Assembly> ThisAssembly = new Lazy<Assembly>(() => Assembly.GetExecutingAssembly(), true);
         private static readonly Lazy<string> LazyInformationalVersion = new Lazy<string>(GetInformationalVersion, true);
 
-        private static String GetInformationalVersion()
+        private static string GetInformationalVersion()
         {
             var attribute = ThisAssembly.Value.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
 

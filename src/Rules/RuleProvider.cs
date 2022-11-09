@@ -21,7 +21,7 @@ namespace Axe.Windows.Rules
     {
         private readonly IRuleFactory _ruleFactory;
         private readonly ConcurrentDictionary<RuleId, IRule> _allRules = new ConcurrentDictionary<RuleId, IRule>();
-        private readonly Object _allRulesLock = new Object();
+        private readonly object _allRulesLock = new object();
         private bool _areAllRulesInitialized;
 
         public RuleProvider(IRuleFactory ruleFactory)
