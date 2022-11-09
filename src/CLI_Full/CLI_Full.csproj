@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>AxeWindowsCLI</AssemblyName>
     <RootNamespace>AxeWindowsCLI</RootNamespace>
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="del $(TargetDir)InteropDummy*.*&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\CommandLine.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\Newtonsoft.Json.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\netcoreapp3.1\AxeWindowsCLI.dll $(TargetDir)" />
+    <Exec Command="del $(TargetDir)InteropDummy*.*&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\net6.0\CommandLine.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\net6.0\Newtonsoft.Json.dll $(TargetDir)&#xD;&#xA;copy /y $(ProjectDir)\..\CLI\bin\$(Configuration)\net6.0\AxeWindowsCLI.dll $(TargetDir)" />
   </Target>
 
 </Project>

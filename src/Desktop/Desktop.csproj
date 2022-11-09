@@ -43,7 +43,7 @@
 
   <ItemGroup>
     <Reference Include="Interop.UIAutomationCore">
-      <HintPath>..\InteropDummy\bin\$(Configuration)\netcoreapp3.1\Interop.UIAutomationCore.dll</HintPath>
+      <HintPath>..\InteropDummy\bin\$(Configuration)\net6.0\Interop.UIAutomationCore.dll</HintPath>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
