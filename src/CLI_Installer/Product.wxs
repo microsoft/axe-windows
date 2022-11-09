@@ -20,13 +20,13 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <Property Id="NETCORERUNTIMEFOUNDX86">
       <DirectorySearch Id="NetCoreDirectoryFoundx86" Path="[ProgramFilesFolder]dotnet" >
-        <FileSearch Name="dotnet.exe" MinVersion="3.1"/>
+        <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
       </DirectorySearch>
     </Property>
 
     <Property Id="NETCORERUNTIMEFOUNDX64">
       <DirectorySearch Id="NetCoreDirectoryFoundx64" Path="[ProgramFiles64Folder]dotnet" >
-        <FileSearch Name="dotnet.exe" MinVersion="3.1"/>
+        <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
       </DirectorySearch>
     </Property>
 
