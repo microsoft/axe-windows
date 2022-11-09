@@ -93,7 +93,7 @@ namespace Axe.Windows.Core.Misc
         /// </summary>
         /// <param name="array"></param>
         /// <returns></returns>
-        public static string ConvertIntArrayToString(Int32[] array)
+        public static string ConvertIntArrayToString(int[] array)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -139,7 +139,7 @@ namespace Axe.Windows.Core.Misc
             return sb.ToString();
         }
 
-        public static string ConvertDoubleArrayToString(Double[] array)
+        public static string ConvertDoubleArrayToString(double[] array)
         {
             if (array != null && array.Length != 0)
             {
@@ -165,10 +165,10 @@ namespace Axe.Windows.Core.Misc
 
         public static string ConvertDoubleArrayToString(this Array array)
         {
-            return ConvertDoubleArrayToString((Double[])array);
+            return ConvertDoubleArrayToString((double[])array);
         }
 
-        public static string ConvertInt32ArrayToString(Int32[] array)
+        public static string ConvertInt32ArrayToString(int[] array)
         {
             if (array != null && array.Length != 0)
             {
@@ -195,7 +195,7 @@ namespace Axe.Windows.Core.Misc
 
         public static string ConvertInt32ArrayToString(this Array array)
         {
-            return ConvertInt32ArrayToString((Int32[])array);
+            return ConvertInt32ArrayToString((int[])array);
         }
 
         /// <summary>
@@ -601,7 +601,7 @@ namespace Axe.Windows.Core.Misc
 
         public static string ToLeftTopRightBottomString(this Rectangle r)
         {
-            return String.Format(CultureInfo.CurrentCulture, DisplayStrings.LeftTopRightBottomFormat, r.Left, r.Top, r.Right, r.Bottom);
+            return string.Format(CultureInfo.CurrentCulture, DisplayStrings.LeftTopRightBottomFormat, r.Left, r.Top, r.Right, r.Bottom);
         }
 
         /// <summary>

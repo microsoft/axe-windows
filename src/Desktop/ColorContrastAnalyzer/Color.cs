@@ -121,7 +121,7 @@ namespace Axe.Windows.Desktop.ColorContrastAnalyzer
                 Math.Pow((colorRatio + 0.055) / 1.055, 2.4);
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
             //Check for null and compare run-time types.
             if ((obj == null) || !GetType().Equals(obj.GetType()))

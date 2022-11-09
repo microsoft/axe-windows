@@ -41,7 +41,7 @@ namespace Axe.Windows.Rules.Extensions
                 ? value : default(T);
         }
 
-        public static Condition WithTimer(this Condition c, string message)
+        public static Condition WithTimer(this Condition c)
         {
             if (c == null) return null;
 

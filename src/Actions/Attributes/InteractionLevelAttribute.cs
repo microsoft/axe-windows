@@ -12,15 +12,10 @@ namespace Axe.Windows.Actions.Attributes
     [AttributeUsage(AttributeTargets.Class)]
     sealed class InteractionLevelAttribute : Attribute
     {
-        private readonly UxInteractionLevel _interactionLevel;
-
         /// <summary>
         /// The ux interaction level of described class
         /// </summary>
-        public UxInteractionLevel InteractionLevel
-        {
-            get { return _interactionLevel; }
-        }
+        public UxInteractionLevel InteractionLevel { get; }
 
         /// <summary>
         /// Constructor
@@ -28,7 +23,7 @@ namespace Axe.Windows.Actions.Attributes
         /// <param name="interactionLevel"></param>
         public InteractionLevelAttribute(UxInteractionLevel interactionLevel) : base()
         {
-            _interactionLevel = interactionLevel;
+            InteractionLevel = interactionLevel;
         }
     }
 }
