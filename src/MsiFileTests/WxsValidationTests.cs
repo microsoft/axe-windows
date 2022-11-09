@@ -14,7 +14,9 @@ namespace MsiFileTests
     [TestClass]
     public class WxsValidationTests
     {
+#if !DEBUG  // This test needs to run uniquely in release builds
         [TestMethod]
+#endif
         public void AllDropFilesAreAccountedFor()
         {
             // Fails if any non-pdb drop files exist without a corresponding entry in either
