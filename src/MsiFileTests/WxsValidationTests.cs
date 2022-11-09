@@ -30,11 +30,8 @@ namespace MsiFileTests
                 "AxeWindowsCLI.runtimeconfig.dev.json",
             };
 
-            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\netcoreapp3.1", wxsFile, "ProductComponent", productComponentExclusions);
-            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0", wxsFile, "NetCoreApp20Component");
-            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1", wxsFile, "NetCoreApp21Component");
-            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1", wxsFile, "NetCoreApp31Component");
-            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\netcoreapp3.1\runtimes\win\lib\netstandard2.0", wxsFile, "NetStandard20Component");
+            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\net6.0", wxsFile, "ProductComponent", productComponentExclusions);
+            CompareWxsSectionToDropPath(repoRoot, @"CLI\bin\Release\net6.0\runtimes\win\lib\net6.0", wxsFile, "Net60Components");
         }
 
         private static void CompareWxsSectionToDropPath(string repoRoot, string relativeDropPath,
