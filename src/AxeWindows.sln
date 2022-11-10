@@ -83,6 +83,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsiFileTests", "MsiFileTests\MsiFileTests.csproj", "{F2668943-4334-44BB-B80B-FEAA009599DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A086B12-CD59-4B37-89DB-499820D9435D} = {8A086B12-CD59-4B37-89DB-499820D9435D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -425,6 +430,18 @@ Global
 		{54177AEF-1D6D-42EE-8922-3630413917EA}.Release|x64.Build.0 = Release|Any CPU
 		{54177AEF-1D6D-42EE-8922-3630413917EA}.Release|x86.ActiveCfg = Release|Any CPU
 		{54177AEF-1D6D-42EE-8922-3630413917EA}.Release|x86.Build.0 = Release|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Debug|x64.Build.0 = Debug|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Debug|x86.Build.0 = Debug|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Release|x64.ActiveCfg = Release|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Release|x64.Build.0 = Release|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2668943-4334-44BB-B80B-FEAA009599DB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
