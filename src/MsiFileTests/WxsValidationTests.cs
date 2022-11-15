@@ -27,6 +27,7 @@ namespace MsiFileTests
             HashSet<string> productComponentExclusions = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "Axe.Windows.Automation.xml",
+                "AxeWindowsCLI.dll.lce",
                 "AxeWindowsCLI.runtimeconfig.dev.json",
             };
 
