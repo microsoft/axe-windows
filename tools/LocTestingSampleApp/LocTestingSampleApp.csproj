@@ -6,6 +6,7 @@
     <RootNamespace>AxeWinLocTesting</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Platform>AnyCPU</Platform>
   </PropertyGroup>
 
   <ItemGroup>

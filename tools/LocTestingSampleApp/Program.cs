@@ -22,9 +22,6 @@ namespace AxeWinLocTesting
         // descriptions/ text) and content that should not be localized (ex: property/field names).
         private static bool showFullResults = false;
 
-        // Wait time to allow process to start up before beginning scan.
-        private static int processStartupWaitTime = 1000;
-
         static void Main(string[] _)
         {
             var process = StartTestExe();
