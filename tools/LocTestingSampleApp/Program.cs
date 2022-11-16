@@ -47,15 +47,15 @@ namespace AxeWinLocTesting
         private static Process StartTestExe()
         {
             var process = Process.Start(exePath);
-            Thread.Sleep(processStartupWaitTime);
+            process.WaitForInputIdle();
             return process;
         }
 
         private static IScanner CreateScanner(int processId)
         {
             Console.WriteLine("Creating scanner...");
-            var configBuilder = Config.Builder.ForProcessId(processId);
-            configBuilder.WithOutputFileFormat(OutputFileFormat.None);
+            var configBuilder = Config.Builder.ForProcessId(processId)
+                .WithOutputFileFormat(OutputFileFormat.None);
             var config = configBuilder.Build();
             var scanner = ScannerFactory.CreateScanner(config);
             return scanner;
