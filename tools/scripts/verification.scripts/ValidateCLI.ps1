@@ -35,33 +35,35 @@ $ThirdPartyNoticesDisplayed = 3
 $BadInputParameters = 255
 
 Clear
-PromptAndWait 'This script assumes that you are running from the scripts folder and that you have built a release version of the CLI.'
+PromptAndWait 'This script assumes that you have built a release version of the
+CLI. It also assumes that you are running from the
+.\tools\scripts\verification.scripts folder.'
 
 # Note: I tried unsuccessfully to find a way to parameterize the command line and still get the exit code.
 # If you can find a way to make this work, then please refactor this code!
 
 Clear
-../../../src/cli/bin/Release/netcoreapp3.1/AxeWindowsCLI.exe
+../../../src/cli/bin/Release/net6.0/AxeWindowsCLI.exe
 ValidateExitCode $lastExitCode $BadInputParameters
 PromptAndWait 'The scenario should have displayed help text and thrown no exceptions'
 
 Clear
-../../../src/cli/bin/Release/netcoreapp3.1/AxeWindowsCLI.exe --UndefinedParameter
+../../../src/cli/bin/Release/net6.0/AxeWindowsCLI.exe --UndefinedParameter
 ValidateExitCode $lastExitCode $BadInputParameters
 PromptAndWait "The scenario should have identified 'UndefinedParameter' as an unknown `nparameter, shown the help text, and thrown no exceptions"
 
 Clear
-../../../src/cli/bin/Release/netcoreapp3.1/AxeWindowsCLI.exe --ProcessName
+../../../src/cli/bin/Release/net6.0/AxeWindowsCLI.exe --ProcessName
 ValidateExitCode $lastExitCode $BadInputParameters
 PromptAndWait "The scenario should have indicated that the user needs to specify either `nprocessId or processName, and thrown no exceptions"
 
 Clear
-../../../src/cli/bin/Release/netcoreapp3.1/AxeWindowsCLI.exe --ProcessName ThisProcessDoesNotExist
+../../../src/cli/bin/Release/net6.0/AxeWindowsCLI.exe --ProcessName ThisProcessDoesNotExist
 ValidateExitCode $lastExitCode $BadInputParameters
 PromptAndWait "The scenario should have indicated that it could not find a process named `nThisProcessDoesNotExist, and thrown no exceptions"
 
 Clear
-../../../src/cli/bin/Release/netcoreapp3.1/AxeWindowsCLI.exe --showthirdpartynotices
+../../../src/cli/bin/Release/net6.0/AxeWindowsCLI.exe --showthirdpartynotices
 ValidateExitCode $lastExitCode $ThirdPartyNoticesDisplayed
 PromptAndWait "The scenario should have opened the placeholder ThirdPartyNotices.html file `nin the default browser, and thrown no exceptions."
 
