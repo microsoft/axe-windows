@@ -34,7 +34,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <Feature Id="ProductFeature" Title="Axe.Windows CLI" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
-      <ComponentGroupRef Id="Net60Components" />
+      <ComponentGroupRef Id="Net60ComponentGroup" />
     </Feature>
 
     <Condition Message="[ProductName] requires .NET Core Runtime 3.1 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core">
@@ -82,8 +82,8 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       </Component>
     </ComponentGroup>
 
-    <ComponentGroup Id="Net60Components" Directory="Net60Folder">
-      <Component Id="NetCoreApp20Component" Guid="5002A1F9-EB89-441C-B757-8E214EFE82CF">
+    <ComponentGroup Id="Net60ComponentGroup" Directory="Net60Folder">
+      <Component Id="Net60Components" Guid="5002A1F9-EB89-441C-B757-8E214EFE82CF">
         <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" Id="net60_systemevents" />
         <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" Id="net60_systemdrawing" />
       </Component>
