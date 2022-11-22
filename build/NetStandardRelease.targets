@@ -20,11 +20,11 @@
   <Import Project="..\src\props\version.props" />
 
   <ItemGroup>
-    <Compile Include="$(TEMP)\AxeWindowsVersionInfo.cs" Link="AxeWindowsVersionInfo.cs" />
+    <Compile Include="$(MSBuildProjectDirectory)\..\bld\AxeWindowsVersionInfo.cs" Link="AxeWindowsVersionInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="$(TEMP)\AxeWindowsAttributesInfo.cs" Link="AxeWindowsAttributesInfo.cs" />
+    <Compile Include="$(MSBuildProjectDirectory)\..\Attributes\AttributesInfo.cs" Link="AttributesInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>

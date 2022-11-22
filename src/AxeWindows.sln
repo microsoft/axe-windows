@@ -55,6 +55,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RulesMD", "RulesMD\RulesMD.csproj", "{8380D3D7-3A17-42DE-96BE-721A83AD8E2E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Telemetry", "Telemetry\Telemetry.csproj", "{BB5FF97B-A758-40B1-B3FF-2DC1980BA3CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7E616C64-EAD7-458C-92AC-B50643E64D38} = {7E616C64-EAD7-458C-92AC-B50643E64D38}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelemetryTests", "TelemetryTests\TelemetryTests.csproj", "{272A1545-50DB-4FF8-958F-7A2BB29D9CB7}"
 EndProject
