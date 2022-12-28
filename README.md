@@ -29,21 +29,13 @@ To get the latest version of the Axe.Windows NuGet package, visit
         // Create scanner using myConfig
         var scanner = ScannerFactory.CreateScanner(myConfig);
 
-3. Call  the `Scan` method on the `Scanner` object.
+3. Call  the `Scan` or `ScanAsync` method on the `Scanner` object, to scan synchronously or asynchronously respectively.
 
-        var scanResults;
-        try
-        {
-            scanResults = scanner.Scan();
-        }
-        catch(AxeWindowsAutomationException e)
-        {
-            Console.WriteLine(e.ToString());
-        }
+        var scanOutput = scanner.Scan(null); // Synchronously scan with default options.
 
-4. Check the results.
+4. Check the output.
 
-        Console.WriteLine("Number of errors found in scan: " + scanResults.ErrorCount);
+        Console.WriteLine("Number of errors found in scan of first top-level window: " + scanOutput.WindowScanOutputs.first().ErrorCount);
 
 
 - Use an automation test framework like [UI Automation](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview) or [WinAppDriver](https://github.com/microsoft/WinAppDriver) to manipulate your application
