@@ -31,8 +31,7 @@ To get the latest version of the Axe.Windows NuGet package, visit
 
 3. Call  the `Scan` or `ScanAsync` method on the `Scanner` object, to scan synchronously or asynchronously respectively.
 
-        var scanOutput;
-        scanOutput = scanner.Scan(null); // Synchronously scan with default options.
+        var scanOutput = scanner.Scan(null); // Synchronously scan with default options.
 
 4. Check the output.
 
