@@ -520,4 +520,8 @@ HowToFix:    {2}
 Condition:  {3}</value>
     <comment>{0} is id, {1} is description, {2} is how to fix, and {3} is condition</comment>
   </data>
+  <data name="ChromiumComponentsShouldUseWebScanner" xml:space="preserve">
+    <value>Chromium components should be scanned with a web-based scanner.</value>
+    <comment>The description of a problem with an element currently under inspection.</comment>
+  </data>
 </root>

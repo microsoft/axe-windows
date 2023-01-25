@@ -9,9 +9,9 @@ using Moq;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-    public class EdgeBrowserHasBeenDeprecatedTests
+    public class ChromiumComponentsShouldUseWebScannerTests
     {
-        private static readonly Rules.IRule Rule = new Rules.Library.EdgeBrowserHasBeenDeprecated();
+        private static readonly Rules.IRule Rule = new Rules.Library.ChromiumComponentsShouldUseWebScanner();
         private Mock<IA11yElement> _elementMock;
 
         [TestInitialize]
@@ -21,32 +21,26 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void FrameworkIssueLink_IsNotNull()
+        public void Condition_FrameworkIsNotChrome_ReturnsFalse()
         {
-            Assert.IsNotNull(Rule.Info.FrameworkIssueLink);
-        }
+            string[] nonChromeValues = { FrameworkId.DirectUI, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, FrameworkId.Win32, FrameworkId.Edge, "NotChrome" };
 
-        [TestMethod]
-        public void Condition_FrameworkIsNotEdge_ReturnsFalse()
-        {
-            string[] nonWin32Values = { FrameworkId.DirectUI, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, FrameworkId.Win32, FrameworkId.Chrome, "NotEdge" };
-
-            foreach (string nonWin32Value in nonWin32Values)
+            foreach (string nonChromeValue in nonChromeValues)
             {
                 _elementMock.Setup(m => m.Framework)
-                    .Returns(nonWin32Value)
+                    .Returns(nonChromeValue)
                     .Verifiable();
 
                 Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
             }
 
-            _elementMock.Verify(m => m.Framework, Times.Exactly(nonWin32Values.Length));
+            _elementMock.Verify(m => m.Framework, Times.Exactly(nonChromeValues.Length));
         }
 
         [TestMethod]
-        public void Condition_FrameworkIsEdge_ReturnsTrue()
+        public void Condition_FrameworkIsChrome_ReturnsTrue()
         {
-            _elementMock.Setup(m => m.Framework).Returns(FrameworkId.Edge).Verifiable();
+            _elementMock.Setup(m => m.Framework).Returns(FrameworkId.Chrome).Verifiable();
 
             Assert.IsTrue(Rule.Condition.Matches(_elementMock.Object));
 
