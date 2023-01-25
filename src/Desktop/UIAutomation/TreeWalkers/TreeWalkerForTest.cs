@@ -7,9 +7,12 @@ using Axe.Windows.Core.Misc;
 using Axe.Windows.RuleSelection;
 using Axe.Windows.Telemetry;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices;
+using System.Xml.Linq;
 using UIAutomationClient;
 
 namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
@@ -100,12 +103,25 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 nuel.ToList().ForEach(e => e.PopulateAllPropertiesWithLiveData(dataContext));
             }
 
-            // run tests
             try
             {
+                // run exclusionary tests
+                var elementsToExclude = new List<A11yElement>();
                 list.AsParallel().ForAll(e =>
                 {
                     e.ScanResults?.Items.Clear();
+                    if (RuleRunner.ExcludeFromRun(e, dataContext.CancellationToken))
+                    {
+                        elementsToExclude.Add(e);
+                    }
+                });
+
+                // don't run further tests on elements that should be excluded
+                list.RemoveAll(e => elementsToExclude.Contains(e));
+
+                // run remaining tests
+                list.AsParallel().ForAll(e =>
+                {
                     RuleRunner.Run(e, dataContext.CancellationToken);
                 });
             }
@@ -115,7 +131,6 @@ namespace Axe.Windows.Desktop.UIAutomation.TreeWalkers
                 dataContext.CancellationToken.ThrowIfCancellationRequested();
                 throw;
             }
-
         }
 
         /// <summary>

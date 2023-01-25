@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -31,5 +31,10 @@ namespace Axe.Windows.Rules
         /// Otherwise, it should be null.
         /// </summary>
         public string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// True if this result should be included in user facing results.
+        /// </summary>
+        public bool IncludeInResults { get; set; } = true;
     } // class
 } // namespace

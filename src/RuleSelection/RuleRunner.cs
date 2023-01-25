@@ -54,14 +54,71 @@ namespace Axe.Windows.RuleSelection
                 if (r.EvaluationCode == EvaluationCode.NotApplicable) continue;
 
                 var scanResult = ConvertRunResultToScanResult(r);
-                results.AddScanResult(scanResult);
+                if (scanResult != null)
+                {
+                    results.AddScanResult(scanResult);
+                }
             } // for each
+        }
+
+        public static bool ExcludeFromRun(A11yElement e, CancellationToken cancellationToken)
+        {
+            try
+            {
+                return ExcludeFromRunUnsafe(e, cancellationToken);
+            }
+            catch (OperationCanceledException)
+            {
+                throw;
+            }
+//#pragma warning disable CA1031 // Do not catch general exception types
+//            catch (Exception ex)
+//            {
+//                ex.ReportException();
+//                return false;
+//            }
+//#pragma warning restore CA1031 // Do not catch general exception types
+        }
+
+        private static bool ExcludeFromRunUnsafe(A11yElement e, CancellationToken cancellationToken)
+        {
+            if (e == null) throw new ArgumentNullException(nameof(e));
+
+            if (e.ScanResults == null)
+                e.ScanResults = new ScanResults();
+
+            return ExcludeFromRun(e.ScanResults, e, cancellationToken);
+        }
+
+        private static bool ExcludeFromRun(ScanResults results, A11yElement e, CancellationToken cancellationToken)
+        {
+            var runResults = Axe.Windows.Rules.Rules.RunExclusionRules(e, cancellationToken);
+            bool exclude = false;
+            foreach (var r in runResults)
+            {
+                if (r.EvaluationCode == EvaluationCode.Error)
+                {
+                    exclude = true;
+                }
+
+                var scanResult = ConvertRunResultToScanResult(r);
+                if (scanResult != null)
+                {
+                    results.AddScanResult(scanResult);
+                }
+            } // for each
+            return exclude;
         }
 
         private static ScanResult ConvertRunResultToScanResult(RunResult runResult)
         {
             if (runResult == null) throw new ArgumentNullException(nameof(runResult));
             if (runResult.RuleInfo == null) throw new ArgumentException(ErrorMessages.RunResultRuleInfoNull, nameof(runResult));
+
+            if (!runResult.IncludeInResults)
+            {
+                return null;
+            }
 
             var scanResult = CreateResult(runResult.RuleInfo, runResult.element);
 

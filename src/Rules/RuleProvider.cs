@@ -12,6 +12,8 @@ namespace Axe.Windows.Rules
     {
         IRule GetRule(RuleId id);
         IEnumerable<IRule> All { get; }
+        IEnumerable<IRule> ExclusionRules { get; }
+        IEnumerable<IRule> IncludedRules { get; }
     }
 
     /// <summary>
@@ -21,6 +23,10 @@ namespace Axe.Windows.Rules
     {
         private readonly IRuleFactory _ruleFactory;
         private readonly ConcurrentDictionary<RuleId, IRule> _allRules = new ConcurrentDictionary<RuleId, IRule>();
+        // Rules that, if violated, cause an element to be excluded from the scan.
+        private readonly ConcurrentDictionary<RuleId, IRule> _exclusionRules = new ConcurrentDictionary<RuleId, IRule>();
+        // Rules that are not exclusionary.
+        private readonly ConcurrentDictionary<RuleId, IRule> _includedRules = new ConcurrentDictionary<RuleId, IRule>();
         private readonly object _allRulesLock = new object();
         private bool _areAllRulesInitialized;
 
@@ -42,9 +48,22 @@ namespace Axe.Windows.Rules
             {
                 if (_areAllRulesInitialized) return;
 
-                // Calling GetRule ensures that the rule is created.
                 foreach (var k in Axe.Windows.Rules.RuleFactory.RuleIds)
-                    GetRule(k);
+                {
+                    if (!_allRules.ContainsKey(k))
+                    {
+                        var rule = _ruleFactory.CreateRule(k);
+                        if (rule.Exclusionary)
+                        {
+                            _exclusionRules.TryAdd(k, rule);
+                        }
+                        else
+                        {
+                            _includedRules.TryAdd(k, rule);
+                        }
+                        _allRules.TryAdd(k, rule);
+                    }
+                }
 
                 _areAllRulesInitialized = true;
             } // lock
@@ -62,6 +81,26 @@ namespace Axe.Windows.Rules
                 InitAllRules();
 
                 return _allRules.Values;
+            }
+        }
+
+        public IEnumerable<IRule> ExclusionRules
+        {
+            get
+            {
+                InitAllRules();
+
+                return _exclusionRules.Values;
+            }
+        }
+
+        public IEnumerable<IRule> IncludedRules
+        {
+            get
+            {
+                InitAllRules();
+
+                return _includedRules.Values;
             }
         }
     } // class

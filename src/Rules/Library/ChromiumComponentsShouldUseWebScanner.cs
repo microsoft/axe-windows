@@ -11,6 +11,8 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.ChromiumComponentsShouldUseWebScanner)]
     class ChromiumComponentsShouldUseWebScanner : Rule
     {
+        public override bool Exclusionary => true;
+
         public ChromiumComponentsShouldUseWebScanner()
         {
             Info.Description = Descriptions.ChromiumComponentsShouldUseWebScanner;
@@ -26,6 +28,12 @@ namespace Axe.Windows.Rules.Library
         protected override Condition CreateCondition()
         {
             return Chrome;
+        }
+
+        public override bool IncludeInResults(IA11yElement element)
+        {
+            // Only include a failure for the top level element
+            return element.Parent == null || !element.Parent.Framework.Equals(FrameworkId.Chrome);
         }
     } // class
 } // namespace

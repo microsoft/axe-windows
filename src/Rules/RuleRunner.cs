@@ -8,6 +8,7 @@ using Axe.Windows.Rules.Resources;
 using Axe.Windows.Telemetry;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace Axe.Windows.Rules
@@ -39,11 +40,25 @@ namespace Axe.Windows.Rules
             return retVal;
         }
 
+        public IEnumerable<RunResult> RunExclusionRules(IA11yElement element, CancellationToken cancellationToken)
+        {
+            var results = new List<RunResult>();
+
+            foreach (var rule in _provider.ExclusionRules)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                var result = RunRule(rule, element);
+                results.Add(result);
+            } // for all rules
+
+            return results;
+        }
+
         public IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken cancellationToken)
         {
             var results = new List<RunResult>();
 
-            foreach (var rule in _provider.All)
+            foreach (var rule in _provider.IncludedRules)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 var result = RunRule(rule, element);
@@ -90,6 +105,7 @@ namespace Axe.Windows.Rules
                 return result;
 
             result.EvaluationCode = rule.PassesTest(element) ? EvaluationCode.Pass : rule.Info.ErrorCode;
+            result.IncludeInResults = rule.IncludeInResults(element);
 
             return result;
         }

@@ -13,12 +13,16 @@ namespace Axe.Windows.Rules
         RuleInfo Info { get; }
         Condition Condition { get; }
         bool PassesTest(IA11yElement element);
+        bool IncludeInResults(IA11yElement element);
+        // True if this rule failing should cause the element to be excluded from the rest of the scan.
+        bool Exclusionary { get; }
     }
 
     abstract class Rule : IRule
     {
         public RuleInfo Info { get; private set; }
         public Condition Condition { get; }
+        public virtual bool Exclusionary => false;
 
         protected Rule()
         {
@@ -56,5 +60,10 @@ namespace Axe.Windows.Rules
         public abstract bool PassesTest(IA11yElement element);
 
         protected abstract Condition CreateCondition();
+
+        public virtual bool IncludeInResults(IA11yElement element)
+        {
+            return true;
+        }
     }
 } // namespace

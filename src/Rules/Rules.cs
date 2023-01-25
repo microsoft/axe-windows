@@ -56,5 +56,15 @@ namespace Axe.Windows.Rules
         {
             return Runner.RunAll(element, cancellationToken);
         }
+
+        /// <summary>
+        /// Run all the exclusionary rules in the Rules assembly.
+        /// </summary>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static IEnumerable<RunResult> RunExclusionRules(IA11yElement element, CancellationToken cancellationToken)
+        {
+            return Runner.RunExclusionRules(element, cancellationToken);
+        }
     } // class
 } // namespace
