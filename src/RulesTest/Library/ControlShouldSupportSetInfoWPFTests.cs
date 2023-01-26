@@ -5,6 +5,7 @@ using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -78,7 +79,7 @@ namespace Axe.Windows.RulesTests.Library
         public void TestControlShouldSupportSetInfoWPFExpectedPlatform()
         {
             string[] expectedFrameworks = { FrameworkId.WPF };
-            string[] unexpectedFrameworks = Extensions.GetFilteredFrameworkIds(new string[] { FrameworkId.WPF }, Array.Empty<string>());
+            var unexpectedFrameworks = Extensions.GetFrameworkIds().Except(new string[] { FrameworkId.WPF });
 
             var e = new MockA11yElement();
             e.ControlTypeId = ControlType.ListItem;

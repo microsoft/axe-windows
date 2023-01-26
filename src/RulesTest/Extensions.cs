@@ -26,16 +26,13 @@ namespace Axe.Windows.RulesTests
                    select item;
         }
 
-        public static string[] GetFilteredFrameworkIds(string[] exclude, string[] additions)
+        public static IEnumerable<string> GetFrameworkIds()
         {
             var frameworkIds = typeof(FrameworkId)
                 .GetFields()
                 .Select(x => (string)x.GetRawConstantValue());
-
-            frameworkIds = frameworkIds.Except(exclude);
-            frameworkIds = frameworkIds.Concat(additions);
             
-            return frameworkIds.ToArray();
+            return frameworkIds;
         }
     }
 }
