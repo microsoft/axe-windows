@@ -5,6 +5,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -29,7 +30,7 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void Condition_FrameworkIsNotWin32_ReturnsFalse()
         {
-            string[] nonWin32Values = { FrameworkId.DirectUI, FrameworkId.Edge, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, "NotWin32" };
+            string[] nonWin32Values = Extensions.GetFilteredFrameworkIds(new string[] { FrameworkId.Win32 }, new string[] { "NotWin32" });
 
             foreach (string nonWin32Value in nonWin32Values)
             {
