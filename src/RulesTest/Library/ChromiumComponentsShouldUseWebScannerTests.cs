@@ -5,6 +5,8 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -23,7 +25,7 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void Condition_FrameworkIsNotChrome_ReturnsFalse()
         {
-            string[] nonChromeValues = { FrameworkId.DirectUI, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, FrameworkId.Win32, FrameworkId.Edge, "NotChrome" };
+            IEnumerable<string> nonChromeValues = Extensions.GetFrameworkIds().Append("NotChrome").Except(new string[] { FrameworkId.Chrome });
 
             foreach (string nonChromeValue in nonChromeValues)
             {
@@ -34,7 +36,7 @@ namespace Axe.Windows.RulesTests.Library
                 Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
             }
 
-            _elementMock.Verify(m => m.Framework, Times.Exactly(nonChromeValues.Length));
+            _elementMock.Verify(m => m.Framework, Times.Exactly(nonChromeValues.Count()));
         }
 
         [TestMethod]

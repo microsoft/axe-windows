@@ -79,7 +79,7 @@ namespace Axe.Windows.RulesTests.Library
         public void TestControlShouldSupportSetInfoWPFExpectedPlatform()
         {
             string[] expectedFrameworks = { FrameworkId.WPF };
-            var unexpectedFrameworks = Extensions.GetFrameworkIds().Except(new string[] { FrameworkId.WPF });
+            IEnumerable<string> unexpectedFrameworks = Extensions.GetFrameworkIds().Except(new string[] { FrameworkId.WPF });
 
             var e = new MockA11yElement();
             e.ControlTypeId = ControlType.ListItem;

@@ -5,6 +5,8 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -29,18 +31,18 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void Condition_FrameworkIsNotEdge_ReturnsFalse()
         {
-            string[] nonWin32Values = { FrameworkId.DirectUI, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, FrameworkId.Win32, FrameworkId.Chrome, "NotEdge" };
+            IEnumerable<string> nonEdgeValues = Extensions.GetFrameworkIds().Append("NotEdge").Except(new string[] { FrameworkId.Edge });
 
-            foreach (string nonWin32Value in nonWin32Values)
+            foreach (string nonEdgeValue in nonEdgeValues)
             {
                 _elementMock.Setup(m => m.Framework)
-                    .Returns(nonWin32Value)
+                    .Returns(nonEdgeValue)
                     .Verifiable();
 
                 Assert.IsFalse(Rule.Condition.Matches(_elementMock.Object));
             }
 
-            _elementMock.Verify(m => m.Framework, Times.Exactly(nonWin32Values.Length));
+            _elementMock.Verify(m => m.Framework, Times.Exactly(nonEdgeValues.Count()));
         }
 
         [TestMethod]
