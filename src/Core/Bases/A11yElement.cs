@@ -328,7 +328,7 @@ namespace Axe.Windows.Core.Bases
         /// the framework on which the application is based: WPF, UWP, etc
         /// </summary>
         [JsonIgnore]
-        public string Framework
+        public virtual string Framework
         {
             get
             {

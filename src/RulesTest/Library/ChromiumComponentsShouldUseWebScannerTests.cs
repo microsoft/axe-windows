@@ -15,11 +15,19 @@ namespace Axe.Windows.RulesTests.Library
     {
         private static readonly Rules.IRule Rule = new Rules.Library.ChromiumComponentsShouldUseWebScanner();
         private Mock<IA11yElement> _elementMock;
+        private Mock<IA11yElement> _elementParentMock;
 
         [TestInitialize]
         public void BeforeEach()
         {
             _elementMock = new Mock<IA11yElement>(MockBehavior.Strict);
+            _elementParentMock = new Mock<IA11yElement>(MockBehavior.Strict);
+        }
+
+        [TestMethod]
+        public void Exclusionary_ReturnsTrue()
+        {
+            Assert.IsTrue(Rule.Exclusionary);
         }
 
         [TestMethod]
@@ -53,6 +61,36 @@ namespace Axe.Windows.RulesTests.Library
         public void PassesTest_ReturnsFalse()
         {
             Assert.IsFalse(Rule.PassesTest(_elementMock.Object));
+        }
+
+
+        [TestMethod]
+        public void IncludeInResults_ParentFrameworkIsNotChrome_ReturnsTrue()
+        {
+            string[] nonChromeValues = { FrameworkId.DirectUI, FrameworkId.InternetExplorer, FrameworkId.WinForm, FrameworkId.WPF, FrameworkId.XAML, FrameworkId.Win32, FrameworkId.Edge, "NotChrome" };
+
+            foreach (string nonChromeValue in nonChromeValues)
+            {
+                _elementMock.Setup(m => m.Parent).Returns(_elementParentMock.Object).Verifiable();
+                _elementParentMock.Setup(m => m.Framework).Returns(nonChromeValue).Verifiable();
+
+                Assert.IsTrue(Rule.IncludeInResults(_elementMock.Object));
+            }
+
+            _elementMock.Verify(m => m.Parent, Times.Exactly(nonChromeValues.Length * 2));
+            _elementParentMock.Verify(m => m.Framework, Times.Exactly(nonChromeValues.Length));
+        }
+
+        [TestMethod]
+        public void IncludeInResults_ParentFrameworkIsChrome_ReturnsFalse()
+        {
+            _elementMock.Setup(m => m.Parent).Returns(_elementParentMock.Object).Verifiable();
+            _elementParentMock.Setup(m => m.Framework).Returns(FrameworkId.Chrome).Verifiable();
+
+            Assert.IsFalse(Rule.IncludeInResults(_elementMock.Object));
+
+            _elementMock.Verify(m => m.Parent, Times.Exactly(2));
+            _elementParentMock.Verify(m => m.Framework, Times.Once());
         }
     }
 }

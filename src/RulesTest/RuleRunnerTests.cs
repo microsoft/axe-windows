@@ -115,6 +115,7 @@ namespace Axe.Windows.RulesTests
             ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
             ruleMock.Setup(m => m.PassesTest(e)).Returns(true).Verifiable();
             ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+            ruleMock.Setup(m => m.IncludeInResults(It.IsAny<A11yElement>())).Returns(() => true).Verifiable();
 
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
             providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
@@ -148,6 +149,7 @@ namespace Axe.Windows.RulesTests
             ruleMock.Setup(m => m.Condition).Returns(conditionMock.Object).Verifiable();
             ruleMock.Setup(m => m.PassesTest(e)).Returns(false).Verifiable();
             ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+            ruleMock.Setup(m => m.IncludeInResults(It.IsAny<A11yElement>())).Returns(() => true).Verifiable();
 
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
             providerMock.Setup(m => m.GetRule(It.IsAny<RuleId>())).Returns(() => ruleMock.Object).Verifiable();
@@ -322,7 +324,7 @@ namespace Axe.Windows.RulesTests
             var rules = from m in ruleMocks select (m.Object);
 
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
-            providerMock.Setup(m => m.All).Returns(() => rules).Verifiable();
+            providerMock.Setup(m => m.IncludedRules).Returns(() => rules).Verifiable();
 
             var runner = new RuleRunner(providerMock.Object);
             var results = runner.RunAll(e, CancellationToken.None);
@@ -336,6 +338,7 @@ namespace Axe.Windows.RulesTests
                 var ruleMock = ruleMocks[i];
 
                 Assert.AreEqual(expectedCode, result.EvaluationCode);
+                Assert.IsTrue(result.IncludeInResults);
                 Assert.AreEqual(e, result.element);
                 Assert.AreEqual(ruleMock.Object.Info, result.RuleInfo);
 
@@ -351,12 +354,64 @@ namespace Axe.Windows.RulesTests
             var e = new MockA11yElement();
             var ruleMock = new Mock<IRule>(MockBehavior.Strict);
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
-            providerMock.Setup(m => m.All).Returns(() => new IRule[] { ruleMock.Object }).Verifiable();
+            providerMock.Setup(m => m.IncludedRules).Returns(() => new IRule[] { ruleMock.Object }).Verifiable();
 
             var runner = new RuleRunner(providerMock.Object);
             var cancellationToken = new CancellationTokenSource();
             cancellationToken.Cancel();
             Assert.ThrowsException<OperationCanceledException>(() => runner.RunAll(e, cancellationToken.Token));
+        }
+
+        [TestMethod]
+        public void RunAExclusionRules_ReturnsExpectedResults()
+        {
+            var e = new MockA11yElement();
+
+            var ruleMocks = new List<Mock<IRule>>();
+            var codes = Enum.GetValues(typeof(EvaluationCode)) as IEnumerable<EvaluationCode>;
+
+            foreach (var code in codes)
+                ruleMocks.Add(CreateRuleMock(Condition.True, code, e));
+
+            var rules = from m in ruleMocks select (m.Object);
+
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.ExclusionRules).Returns(() => rules).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var results = runner.RunExclusionRules(e, CancellationToken.None);
+
+            Assert.AreEqual(codes.Count(), results.Count());
+
+            for (var i = 0; i < results.Count(); ++i)
+            {
+                var result = results.ElementAt(i);
+                var expectedCode = codes.ElementAt(i);
+                var ruleMock = ruleMocks[i];
+
+                Assert.AreEqual(expectedCode, result.EvaluationCode);
+                Assert.IsTrue(result.IncludeInResults);
+                Assert.AreEqual(e, result.element);
+                Assert.AreEqual(ruleMock.Object.Info, result.RuleInfo);
+
+                ruleMock.VerifyAll();
+            }
+
+            providerMock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void RunExclusionRules_ThrowsOnCancellation()
+        {
+            var e = new MockA11yElement();
+            var ruleMock = new Mock<IRule>(MockBehavior.Strict);
+            var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
+            providerMock.Setup(m => m.ExclusionRules).Returns(() => new IRule[] { ruleMock.Object }).Verifiable();
+
+            var runner = new RuleRunner(providerMock.Object);
+            var cancellationToken = new CancellationTokenSource();
+            cancellationToken.Cancel();
+            Assert.ThrowsException<OperationCanceledException>(() => runner.RunExclusionRules(e, cancellationToken.Token));
         }
 
         private static Mock<IRule> CreateRuleMock(Condition condition, EvaluationCode code, A11yElement e)
@@ -370,6 +425,7 @@ namespace Axe.Windows.RulesTests
             ruleMock.Setup(m => m.Condition).Returns(() => condition).Verifiable();
             ruleMock.Setup(m => m.PassesTest(e)).Returns(() => false).Verifiable();
             ruleMock.Setup(m => m.Info).Returns(() => infoStub).Verifiable();
+            ruleMock.Setup(m => m.IncludeInResults(It.IsAny<A11yElement>())).Returns(() => true).Verifiable();
 
             return ruleMock;
         }
