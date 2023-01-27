@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Automation;
@@ -26,12 +26,15 @@ namespace Axe.Windows.AutomationTests
         const int WindowsFormsControlSamplerKnownErrorCount = 6;
         const int WpfControlSamplerKnownErrorCount = 7;
         const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 12;
+        // Note: This will be reduced to 1 when we add logic to ignore all but the top level chrome element
+        const int WebViewSampleKnownErrorCount = 35;
 
         readonly string _wildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string _win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
         readonly string _windowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
         readonly string _windowsFormsMultiWindowSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsMultiWindowSample/WindowsFormsMultiWindowSample.exe");
         readonly string _wpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
+        readonly string _webViewSampleAppPath = Path.GetFullPath("../../../../../tools/WebViewSample/WebViewSample.exe");
 
         readonly string _outputDir = Path.GetFullPath("./TestOutput");
         readonly string _validationAppFolder;
@@ -123,6 +126,16 @@ namespace Axe.Windows.AutomationTests
         public void Scan_Integration_WpfControlSampler(bool sync)
         {
             ScanIntegrationCore(sync, _wpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+        }
+
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        [Timeout(60000)]
+        public void Scan_Integration_WebViewSample(bool sync)
+        {
+            ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
         }
 
         [TestMethod]

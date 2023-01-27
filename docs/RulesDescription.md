@@ -156,6 +156,7 @@ ClickablePointOnScreenWPF | Error | An element's IsOffScreen property must be fa
 ClickablePointOffScreen | Warning | An element's IsOffScreen property must be true when its clickable point is off-screen. | Section 508 502.3.1 ObjectInformation
 FrameworkDoesNotSupportUIAutomation | Error | The framework used to build this application does not support. | Section 508 502.3.1 ObjectInformation
 EdgeBrowserHasBeenDeprecated | Error | The non-Chromium version of Microsoft Edge has been deprecated. | Section 508 502.3.1 ObjectInformation
+ChromiumComponentsShouldUseWebScanner | Error | Chromium components should be scanned with a web-based scanner. | Not applicable
 
 ## Severity descriptions
 

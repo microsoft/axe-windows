@@ -178,6 +178,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chromium components should be scanned with a web-based scanner..
+        /// </summary>
+        internal static string ChromiumComponentsShouldUseWebScanner {
+            get {
+                return ResourceManager.GetString("ChromiumComponentsShouldUseWebScanner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An element&apos;s IsOffScreen property must be true when its clickable point is off-screen..
         /// </summary>
         internal static string ClickablePointOffScreen {
