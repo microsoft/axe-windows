@@ -1,9 +1,11 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace Axe.Windows.RulesTests
 {
@@ -22,6 +24,15 @@ namespace Axe.Windows.RulesTests
             return from item in allItems
                    where !itemsToRemove.Contains(item)
                    select item;
+        }
+
+        public static IEnumerable<string> GetFrameworkIds()
+        {
+            var frameworkIds = typeof(FrameworkId)
+                .GetFields()
+                .Select(x => (string)x.GetRawConstantValue());
+            
+            return frameworkIds;
         }
     }
 }
