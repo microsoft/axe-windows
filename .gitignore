@@ -329,3 +329,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Tools webview run output
+tools/WebViewSample/WebViewSample.exe.WebView2

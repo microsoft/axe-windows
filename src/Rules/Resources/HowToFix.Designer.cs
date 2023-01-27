@@ -117,7 +117,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider removing the BoundingRectangle property when the element is off-screen..
+        ///   Looks up a localized string similar to Remove the BoundingRectangle property when the element is off-screen..
         /// </summary>
         internal static string BoundingRectangleNotValidButOffScreen {
             get {
@@ -203,6 +203,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component..
+        /// </summary>
+        internal static string ChromiumComponentsShouldUseWebScanner {
+            get {
+                return ResourceManager.GetString("ChromiumComponentsShouldUseWebScanner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to If the element&apos;s ClickablePoint property is correct, set the element&apos;s IsOffScreen property to true.
         ///If the element&apos;s ClickablePoint property is incorrect, please ensure it returns the correct value..
         /// </summary>
@@ -223,7 +232,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modify the combo box such that is does not support the Scroll pattern..
+        ///   Looks up a localized string similar to Modify the combo box to not support the Scroll pattern..
         /// </summary>
         internal static string ComboBoxShouldNotSupportScrollPattern {
             get {
@@ -470,7 +479,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this element does not contain data that is presented to the user (such as items in a list box or a button in a modal dialog box), set the IsContentElement UI Automation property to false..
+        ///   Looks up a localized string similar to Set the IsContentElement UI Automation property to false..
         /// </summary>
         internal static string IsContentElementFalseOptional {
             get {
@@ -490,7 +499,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this element contains data that is presented to the user (such as items in a list box or a button in a modal dialog box), set the IsContentElement UI Automation property to true..
+        ///   Looks up a localized string similar to Set the IsContentElement UI Automation property to true..
         /// </summary>
         internal static string IsContentElementTrueOptional {
             get {
@@ -510,7 +519,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this element represents an interactive UI control, set the IsControlElement UI Automation property to true..
+        ///   Looks up a localized string similar to Set the IsControlElement UI Automation property to true..
         /// </summary>
         internal static string IsControlElementTrueOptional {
             get {
@@ -528,7 +537,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider setting the IsKeyboardFocusable property to be false..
+        ///   Looks up a localized string similar to Set the IsKeyboardFocusable property to be false..
         /// </summary>
         internal static string IsKeyboardFocusableDescendantTextPattern {
             get {
@@ -537,7 +546,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this element is still reachable via the keyboard even when it is disabled (dimmed), set the IsKeyboardFocusable UI Automation property to true..
+        ///   Looks up a localized string similar to If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableFalseButDisabled {
             get {
@@ -555,7 +564,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true..
+        ///   Looks up a localized string similar to Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableForCustomShouldBeTrue {
             get {
@@ -564,7 +573,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider making this element focusable instead of its children..
+        ///   Looks up a localized string similar to Make this element focusable instead of its children..
         /// </summary>
         internal static string IsKeyboardFocusableForListItemShouldBeTrue {
             get {
@@ -573,7 +582,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true..
+        ///   Looks up a localized string similar to If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType..
         /// </summary>
         internal static string IsKeyboardFocusableOnEmptyContainer {
             get {
@@ -591,7 +600,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If this element represents a control that is reachable via the keyboard, set the IsKeyboardFocusable UI Automation property to true..
+        ///   Looks up a localized string similar to Set the IsKeyboardFocusable UI Automation property to true..
         /// </summary>
         internal static string IsKeyboardFocusableShouldBeTrue {
             get {
@@ -825,7 +834,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider setting the UI Automation Name property for the given element..
+        ///   Looks up a localized string similar to Set the UI Automation Name property for the given element..
         /// </summary>
         internal static string NameEmptyButElementNotKeyboardFocusable {
             get {
@@ -867,7 +876,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider setting the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type..
+        ///   Looks up a localized string similar to Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type..
         /// </summary>
         internal static string NameNoSiblingsOfSameType {
             get {
@@ -903,7 +912,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider setting the UI Automation Name property for the given element..
+        ///   Looks up a localized string similar to Set the UI Automation Name property for the given element..
         /// </summary>
         internal static string NameNullButElementNotKeyboardFocusable {
             get {
@@ -912,7 +921,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider setting the UI Automation Name property of this custom control to be empty..
+        ///   Looks up a localized string similar to Set the UI Automation Name property of this custom control to be empty..
         /// </summary>
         internal static string NameOnCustomWithParentWPFDataItem {
             get {
@@ -921,7 +930,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Consider removing the UI Automation Name property for this element..
+        ///   Looks up a localized string similar to Remove the UI Automation Name property for this element..
         /// </summary>
         internal static string NameOnOptionalType {
             get {

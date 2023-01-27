@@ -634,4 +634,8 @@ If the element's ClickablePoint property is incorrect, please ensure it returns 
     <value>The non-Chromium version of Edge has reached its end of life and should not be used for current product development. Please migrate your application to a supported browser.</value>
     <comment>Brief guidance on how to fix an accessibility problem.</comment>
   </data>
+  <data name="ChromiumComponentsShouldUseWebScanner" xml:space="preserve">
+    <value>Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.</value>
+    <comment>Brief guidance on how to fix a scan problem.</comment>
+  </data>
 </root>

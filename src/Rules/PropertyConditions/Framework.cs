@@ -9,6 +9,7 @@ namespace Axe.Windows.Rules.PropertyConditions
     {
         public static readonly Condition DirectUI = StringProperties.Framework.Is(FrameworkId.DirectUI);
         public static readonly Condition Edge = StringProperties.Framework.Is(FrameworkId.Edge);
+        public static readonly Condition Chrome = StringProperties.Framework.Is(FrameworkId.Chrome);
         // The following name includes "Framework" to avoid clashing with the Win32 namespace
         public static readonly Condition Win32Framework = StringProperties.Framework.Is(FrameworkId.Win32);
         public static readonly Condition WinForms = StringProperties.Framework.Is(FrameworkId.WinForm);
