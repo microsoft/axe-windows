@@ -48,16 +48,12 @@ namespace Axe.Windows.RuleSelection
 
         private static void Run(ScanResults results, A11yElement e, CancellationToken cancellationToken)
         {
-            var runResults = Axe.Windows.Rules.Rules.RunAll(e, cancellationToken);
+            var runResults = Axe.Windows.Rules.Rules.RunInclusionRules(e, cancellationToken);
             foreach (var r in runResults)
             {
                 if (r.EvaluationCode == EvaluationCode.NotApplicable) continue;
 
-                var scanResult = ConvertRunResultToScanResult(r);
-                if (scanResult != null)
-                {
-                    results.AddScanResult(scanResult);
-                }
+                ConvertAndAddNonExcludedRunResult(results, r);
             } // for each
         }
 
@@ -71,13 +67,13 @@ namespace Axe.Windows.RuleSelection
             {
                 throw;
             }
-//#pragma warning disable CA1031 // Do not catch general exception types
-//            catch (Exception ex)
-//            {
-//                ex.ReportException();
-//                return false;
-//            }
-//#pragma warning restore CA1031 // Do not catch general exception types
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception ex)
+            {
+                ex.ReportException();
+                return false;
+            }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         private static bool ExcludeFromRunUnsafe(A11yElement e, CancellationToken cancellationToken)
@@ -101,11 +97,7 @@ namespace Axe.Windows.RuleSelection
                     exclude = true;
                 }
 
-                var scanResult = ConvertRunResultToScanResult(r);
-                if (scanResult != null)
-                {
-                    results.AddScanResult(scanResult);
-                }
+                ConvertAndAddNonExcludedRunResult(results, r);
             } // for each
             return exclude;
         }
@@ -114,11 +106,6 @@ namespace Axe.Windows.RuleSelection
         {
             if (runResult == null) throw new ArgumentNullException(nameof(runResult));
             if (runResult.RuleInfo == null) throw new ArgumentException(ErrorMessages.RunResultRuleInfoNull, nameof(runResult));
-
-            if (!runResult.IncludeInResults)
-            {
-                return null;
-            }
 
             var scanResult = CreateResult(runResult.RuleInfo, runResult.element);
 
@@ -164,6 +151,15 @@ namespace Axe.Windows.RuleSelection
             } // switch
 
             return ScanStatus.Pass;
+        }
+
+        private static void ConvertAndAddNonExcludedRunResult(ScanResults results, RunResult runResult)
+        {
+            if (runResult.IncludeInResults)
+            {
+                ScanResult scanResult = ConvertRunResultToScanResult(runResult);
+                results.AddScanResult(scanResult);
+            }
         }
 
         public static string RuleVersion => RuleVersions.Version;

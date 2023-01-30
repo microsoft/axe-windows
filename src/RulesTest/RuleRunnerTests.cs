@@ -324,10 +324,10 @@ namespace Axe.Windows.RulesTests
             var rules = from m in ruleMocks select (m.Object);
 
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
-            providerMock.Setup(m => m.IncludedRules).Returns(() => rules).Verifiable();
+            providerMock.Setup(m => m.InclusionRules).Returns(() => rules).Verifiable();
 
             var runner = new RuleRunner(providerMock.Object);
-            var results = runner.RunAll(e, CancellationToken.None);
+            var results = runner.RunInclusionRules(e, CancellationToken.None);
 
             Assert.AreEqual(codes.Count(), results.Count());
 
@@ -354,12 +354,12 @@ namespace Axe.Windows.RulesTests
             var e = new MockA11yElement();
             var ruleMock = new Mock<IRule>(MockBehavior.Strict);
             var providerMock = new Mock<IRuleProvider>(MockBehavior.Strict);
-            providerMock.Setup(m => m.IncludedRules).Returns(() => new IRule[] { ruleMock.Object }).Verifiable();
+            providerMock.Setup(m => m.InclusionRules).Returns(() => new IRule[] { ruleMock.Object }).Verifiable();
 
             var runner = new RuleRunner(providerMock.Object);
             var cancellationToken = new CancellationTokenSource();
             cancellationToken.Cancel();
-            Assert.ThrowsException<OperationCanceledException>(() => runner.RunAll(e, cancellationToken.Token));
+            Assert.ThrowsException<OperationCanceledException>(() => runner.RunInclusionRules(e, cancellationToken.Token));
         }
 
         [TestMethod]

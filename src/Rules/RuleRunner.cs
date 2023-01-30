@@ -54,11 +54,11 @@ namespace Axe.Windows.Rules
             return results;
         }
 
-        public IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken cancellationToken)
+        public IEnumerable<RunResult> RunInclusionRules(IA11yElement element, CancellationToken cancellationToken)
         {
             var results = new List<RunResult>();
 
-            foreach (var rule in _provider.IncludedRules)
+            foreach (var rule in _provider.InclusionRules)
             {
                 cancellationToken.ThrowIfCancellationRequested();
                 var result = RunRule(rule, element);

@@ -11,7 +11,7 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.ChromiumComponentsShouldUseWebScanner)]
     class ChromiumComponentsShouldUseWebScanner : Rule
     {
-        public override bool Exclusionary => true;
+        public override bool IsExclusionRule => true;
 
         public ChromiumComponentsShouldUseWebScanner()
         {

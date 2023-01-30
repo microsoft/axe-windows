@@ -27,7 +27,7 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void Exclusionary_ReturnsTrue()
         {
-            Assert.IsTrue(Rule.Exclusionary);
+            Assert.IsTrue(Rule.IsExclusionRule);
         }
 
         [TestMethod]

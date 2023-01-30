@@ -15,14 +15,14 @@ namespace Axe.Windows.Rules
         bool PassesTest(IA11yElement element);
         bool IncludeInResults(IA11yElement element);
         // True if this rule failing should cause the element to be excluded from the rest of the scan.
-        bool Exclusionary { get; }
+        bool IsExclusionRule { get; }
     }
 
     abstract class Rule : IRule
     {
         public RuleInfo Info { get; private set; }
         public Condition Condition { get; }
-        public virtual bool Exclusionary => false;
+        public virtual bool IsExclusionRule => false;
 
         protected Rule()
         {

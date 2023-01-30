@@ -44,7 +44,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.TreeWalkers
         public void RefreshTreeData_RunsAllRules()
         {
             _elementMock.Setup(e => e.Framework).Returns(FrameworkId.WPF);
-            var dataContext = new DesktopDataContext(Registrar.GetDefaultInstance(), A11yAutomation.GetDefaultInstance(), CancellationToken.None);
+            var dataContext = DesktopDataContext.DefaultContext;
             _treeWalker.RefreshTreeData(TreeViewMode.Raw, dataContext);
             var scanResults = _elementMock.Object.ScanResults;
             Assert.AreEqual(2, scanResults.Items.Count);
@@ -57,7 +57,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.TreeWalkers
         public void RefreshTreeData_ExcludesElementsWhenTheyViolateExclusionRules()
         {
             _elementMock.Setup(e => e.Framework).Returns(FrameworkId.Chrome);
-            var dataContext = new DesktopDataContext(Registrar.GetDefaultInstance(), A11yAutomation.GetDefaultInstance(), CancellationToken.None);
+            var dataContext = DesktopDataContext.DefaultContext;
             _treeWalker.RefreshTreeData(TreeViewMode.Raw, dataContext);
             var scanResults = _elementMock.Object.ScanResults;
             Assert.AreEqual(1, scanResults.Items.Count);

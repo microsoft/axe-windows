@@ -48,13 +48,13 @@ namespace Axe.Windows.Rules
         }
 
         /// <summary>
-        /// Run all the rules in the Rules assembly.
+        /// Run all the inclusion rules in the Rules assembly.
         /// </summary>
         /// <param name="element"></param>
         /// <returns></returns>
-        public static IEnumerable<RunResult> RunAll(IA11yElement element, CancellationToken cancellationToken)
+        public static IEnumerable<RunResult> RunInclusionRules(IA11yElement element, CancellationToken cancellationToken)
         {
-            return Runner.RunAll(element, cancellationToken);
+            return Runner.RunInclusionRules(element, cancellationToken);
         }
 
         /// <summary>

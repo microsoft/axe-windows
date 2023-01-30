@@ -13,7 +13,7 @@ namespace Axe.Windows.Rules
         IRule GetRule(RuleId id);
         IEnumerable<IRule> All { get; }
         IEnumerable<IRule> ExclusionRules { get; }
-        IEnumerable<IRule> IncludedRules { get; }
+        IEnumerable<IRule> InclusionRules { get; }
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace Axe.Windows.Rules
         // Rules that, if violated, cause an element to be excluded from the scan.
         private readonly ConcurrentDictionary<RuleId, IRule> _exclusionRules = new ConcurrentDictionary<RuleId, IRule>();
         // Rules that are not exclusionary.
-        private readonly ConcurrentDictionary<RuleId, IRule> _includedRules = new ConcurrentDictionary<RuleId, IRule>();
+        private readonly ConcurrentDictionary<RuleId, IRule> _inclusionRules = new ConcurrentDictionary<RuleId, IRule>();
         private readonly object _allRulesLock = new object();
         private bool _areAllRulesInitialized;
 
@@ -53,13 +53,13 @@ namespace Axe.Windows.Rules
                     if (!_allRules.ContainsKey(k))
                     {
                         var rule = _ruleFactory.CreateRule(k);
-                        if (rule.Exclusionary)
+                        if (rule.IsExclusionRule)
                         {
                             _exclusionRules.TryAdd(k, rule);
                         }
                         else
                         {
-                            _includedRules.TryAdd(k, rule);
+                            _inclusionRules.TryAdd(k, rule);
                         }
                         _allRules.TryAdd(k, rule);
                     }
@@ -94,13 +94,13 @@ namespace Axe.Windows.Rules
             }
         }
 
-        public IEnumerable<IRule> IncludedRules
+        public IEnumerable<IRule> InclusionRules
         {
             get
             {
                 InitAllRules();
 
-                return _includedRules.Values;
+                return _inclusionRules.Values;
             }
         }
     } // class

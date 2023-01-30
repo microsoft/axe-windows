@@ -29,7 +29,7 @@ namespace Axe.Windows.RulesTests
         [TestMethod]
         public void RulesAreNotExclusionaryByDefault()
         {
-            Assert.IsFalse(ConcreteRule.Exclusionary);
+            Assert.IsFalse(ConcreteRule.IsExclusionRule);
         }
 
         [TestMethod]

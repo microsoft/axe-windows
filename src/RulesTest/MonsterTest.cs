@@ -209,7 +209,7 @@ namespace Axe.Windows.RulesTests
 
         private static Dictionary<RuleId, EvaluationCode> GetTestResultsAsDictionary(A11yElement e)
         {
-            var results = Axe.Windows.Rules.Rules.RunAll(e, CancellationToken.None);
+            var results = Axe.Windows.Rules.Rules.RunInclusionRules(e, CancellationToken.None);
             return results.ToDictionary(r => r.RuleInfo.ID, r => r.EvaluationCode);
         }
 

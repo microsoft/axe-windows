@@ -21,9 +21,9 @@ namespace Axe.Windows.RulesTests
         public void BeforeEach()
         {
             _exclusionRuleMock = new Mock<IRule>(MockBehavior.Strict);
-            _exclusionRuleMock.Setup(r => r.Exclusionary).Returns(true);
+            _exclusionRuleMock.Setup(r => r.IsExclusionRule).Returns(true);
             _includedRuleMock = new Mock<IRule>(MockBehavior.Strict);
-            _includedRuleMock.Setup(r => r.Exclusionary).Returns(false);
+            _includedRuleMock.Setup(r => r.IsExclusionRule).Returns(false);
             _factoryMock = new Mock<IRuleFactory>(MockBehavior.Strict);
             _factoryMock.Setup(o => o.CreateRule(It.IsAny<RuleId>())).Returns(_includedRuleMock.Object);
             _factoryMock.Setup(o => o.CreateRule(RuleId.NameNotNull)).Returns(_exclusionRuleMock.Object);
@@ -64,7 +64,7 @@ namespace Axe.Windows.RulesTests
         public void InclusionRulesContainsOnlyInclusionRules()
         {
             var provider = new RuleProvider(_factoryMock.Object);
-            var actualIncludedRules = provider.IncludedRules;
+            var actualIncludedRules = provider.InclusionRules;
             Assert.AreEqual(provider.All.Count() - 1, actualIncludedRules.Count());
             Assert.AreEqual(_includedRuleMock.Object, actualIncludedRules.FirstOrDefault());
         }
@@ -74,10 +74,10 @@ namespace Axe.Windows.RulesTests
         {
             var provider = new RuleProvider(_factoryMock.Object);
             var actualAllRules = provider.All;
-            var excludedResult = actualAllRules.Where(r => r.Exclusionary);
+            var excludedResult = actualAllRules.Where(r => r.IsExclusionRule);
             Assert.AreEqual(1, excludedResult.Count());
             Assert.AreEqual(_exclusionRuleMock.Object, excludedResult.FirstOrDefault());
-            var includedResult = actualAllRules.Where(r => !r.Exclusionary);
+            var includedResult = actualAllRules.Where(r => !r.IsExclusionRule);
             Assert.AreEqual(actualAllRules.Count() - 1, includedResult.Count());
             Assert.AreEqual(_includedRuleMock.Object, includedResult.FirstOrDefault());
         }
