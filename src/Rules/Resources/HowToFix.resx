@@ -581,13 +581,14 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
     <comment>Brief guidance on how to fix an accessibility problem. The terms "name" and "LocalizedControlType" should not be translated (i.e. they should be treated as loanwords).</comment>
   </data>
   <data name="NameIsInformative" xml:space="preserve">
-    <value>Provide a UI Automation Name property for the element that:
- · Concisely identifies the element, AND
- · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).</value>
+    <value>Examine the UI Automation Name property of this element:
+ · If the Name property contains a class name (of the form Microsoft.*.* or Windows.*.*) that provides no meaningful information to end-users, update the Name to a concise, user-facing label.
+ · If the Name property contains "Microsoft" or "Windows" in user-facing content, such as a reference to microsoft.com in on-screen text, you may safely ignore this issue.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
-    <value>Provide a UI Automation Name property that concisely identifies the element.</value>
+    <value>Provide a UI Automation Name property that concisely identifies the element.
+</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNotNull" xml:space="preserve">
