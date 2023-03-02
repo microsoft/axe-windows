@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -26,19 +26,11 @@ namespace Axe.Windows.Rules.Library
 
         public override bool PassesTest(IA11yElement e)
         {
-            string[] stringsToExclude =
-            {
-                @"^\s*Microsoft(\.(\w|\d)+)+\s*$",
-                @"^\s*Windows(\.(\w|\d)+)+\s*$"
-            };
+            string failExpr = @"^\s*(Microsoft|Windows)(\.(\w|\d)+)+\s*$";
 
-            foreach (var s in stringsToExclude)
-            {
-                if (Regex.IsMatch(e.Name, s, RegexOptions.IgnoreCase))
-                    return false;
-            }
+            string passExpr = @".+\.com|org|net|info$";
 
-            return true;
+            return !Regex.IsMatch(e.Name, failExpr, RegexOptions.IgnoreCase) || Regex.IsMatch(e.Name, passExpr);
         }
 
         protected override Condition CreateCondition()
