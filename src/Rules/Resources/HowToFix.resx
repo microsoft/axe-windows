@@ -587,8 +587,7 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
-    <value>Provide a UI Automation Name property that concisely identifies the element.
-</value>
+    <value>Provide a UI Automation Name property that concisely identifies the element.</value>
     <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword).</comment>
   </data>
   <data name="NameNotNull" xml:space="preserve">

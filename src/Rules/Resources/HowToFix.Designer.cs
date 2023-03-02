@@ -885,8 +885,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide a UI Automation Name property that concisely identifies the element.
-        ///.
+        ///   Looks up a localized string similar to Provide a UI Automation Name property that concisely identifies the element..
         /// </summary>
         internal static string NameNotEmpty {
             get {
