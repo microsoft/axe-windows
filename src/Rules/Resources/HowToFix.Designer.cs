@@ -865,9 +865,9 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide a UI Automation Name property for the element that:
-        /// · Concisely identifies the element, AND
-        /// · Does not include the element&apos;s class name (such as Microsoft.*.* or Windows.*.*)..
+        ///   Looks up a localized string similar to Examine the UI Automation Name property of this element:
+        /// · If the Name property contains &quot;Microsoft&quot; or &quot;Windows&quot; and is closely related to the on-screen text (for example, a reference to &quot;Microsoft.com&quot;), you may safely ignore this issue.
+        /// · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text..
         /// </summary>
         internal static string NameIsInformative {
             get {
