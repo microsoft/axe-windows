@@ -510,6 +510,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";ChromiumComponentsShouldUseWebScanner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Chromium components should be scanned with a web-based scanner.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Les composants de chrome doivent être scannés avec un scanner basé sur le Web.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ClickablePointOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[An element's IsOffScreen property must be true when its clickable point is off-screen.]]></Val>
@@ -1562,6 +1571,15 @@
           <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[Assurez-vous que la propriété IsContentElement de tous les enfants de l’élément a la valeur FALSE.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";ChromiumComponentsShouldUseWebScanner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Utilisez un analyseur Web (par exemple, Accessibility Insights for Web) pour analyser ce composant.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
