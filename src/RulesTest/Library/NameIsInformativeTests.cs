@@ -1,7 +1,8 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UIAutomationClient;
 
 namespace Axe.Windows.RulesTests.Library
 {
@@ -104,11 +105,33 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
-        public void FrameworkWind32_DoesNotMatch()
+        public void FrameworkWin32_DoesNotMatch()
         {
             var e = CreateMatchingElement();
             e.Framework = Core.Enums.FrameworkId.Win32;
             Assert.IsFalse(Rule.Condition.Matches(e));
+        }
+
+        [TestMethod]
+        public void GroupControlType_DoesNotMatch()
+        {
+            TestExcludedControlType(ControlType.Group);
+        }
+
+        [TestMethod]
+        public void TextControlType_DoesNotMatch()
+        {
+            TestExcludedControlType(ControlType.Text);
+        }
+
+        private void TestExcludedControlType(int controlType)
+        {
+            using (var e = new MockA11yElement())
+            {
+                e.ControlTypeId = controlType;
+                e.Name = "Microsoft.Windows.Some.Class.Name.Abc";
+                Assert.IsFalse(Rule.Condition.Matches(e));
+            }
         }
     } // class
 } // namespace
