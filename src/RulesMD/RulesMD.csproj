@@ -6,6 +6,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <!-- Keep the next element all on one line: -->
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <!-- Remove this line and the next line after moving to Roslyn V3 and build version set to 17.0 -->
+    <VSToolsPath>$(VSToolsPath)\..\v17.0</VSToolsPath>
     <TransformOnBuild>true</TransformOnBuild>
     <BeforeTransform>CustomPreTransform</BeforeTransform>
   </PropertyGroup>
