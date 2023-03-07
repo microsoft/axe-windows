@@ -636,6 +636,6 @@ If the element's ClickablePoint property is incorrect, please ensure it returns 
   </data>
   <data name="ChromiumComponentsShouldUseWebScanner" xml:space="preserve">
     <value>Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.</value>
-    <comment>Brief guidance on how to fix a scan problem.</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. The term "Accessibility Insights for Web" is a product name that should not be translated.</comment>
   </data>
 </root>
