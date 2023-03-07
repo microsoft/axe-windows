@@ -510,6 +510,15 @@
         </Str>
         <Disp Icon="Str" />
       </Item>
+      <Item ItemId=";ChromiumComponentsShouldUseWebScanner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Chromium components should be scanned with a web-based scanner.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Chromium 구성 요소는 웹 기반 스캐너를 사용하여 검사해야 합니다.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
       <Item ItemId=";ClickablePointOffScreen" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[An element's IsOffScreen property must be true when its clickable point is off-screen.]]></Val>
@@ -1562,6 +1571,15 @@
           <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
             <Val><![CDATA[요소의 모든 자식 요소에 IsContentElement 속성이 FALSE로 설정되어 있는지 확인합니다.]]></Val>
+          </Tgt>
+        </Str>
+        <Disp Icon="Str" />
+      </Item>
+      <Item ItemId=";ChromiumComponentsShouldUseWebScanner" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
+        <Str Cat="Text">
+          <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[웹 기반 스캐너(예: 웹용 Accessibility Insights)를 사용하여 이 구성 요소를 검사합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
