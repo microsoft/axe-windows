@@ -1579,7 +1579,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Use un escáner basado en la Web (por ejemplo, Información de accesibilidad para la Web) para examinar este componente.]]></Val>
+            <Val><![CDATA[Use un escáner basado en la Web (por ejemplo, Accessibility Insights for Web) para examinar este componente.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
