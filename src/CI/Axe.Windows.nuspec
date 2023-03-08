@@ -16,7 +16,7 @@
     <tags>axe windows accessibility automation</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
-        <dependency id="Newtonsoft.Json" version="13.0.2" />
+        <dependency id="Newtonsoft.Json" version="13.0.3" />
         <dependency id="Microsoft.Win32.Registry" version="5.0.0" />
         <dependency id="System.Drawing.Common" version="7.0.0" />
         <dependency id="System.IO.Packaging" version="7.0.0" />
