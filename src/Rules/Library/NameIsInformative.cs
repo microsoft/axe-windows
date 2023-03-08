@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -7,6 +7,7 @@ using Axe.Windows.Core.Types;
 using Axe.Windows.Rules.PropertyConditions;
 using Axe.Windows.Rules.Resources;
 using System.Text.RegularExpressions;
+using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
@@ -45,6 +46,8 @@ namespace Axe.Windows.Rules.Library
         {
             return Name.NotNullOrEmpty & Name.NotWhiteSpace & BoundingRectangle.Valid
                 & ~Win32Framework
+                & ~PropertyConditions.ControlType.Group
+                & ~Text
                 & (ElementGroups.NameRequired | ElementGroups.NameOptional);
         }
     } // class

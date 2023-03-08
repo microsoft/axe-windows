@@ -201,7 +201,6 @@ namespace Axe.Windows.RulesTests
                 { RuleId.LocalizedControlTypeReasonable, EvaluationCode.Pass },
                 { RuleId.NameEmptyButElementNotKeyboardFocusable, EvaluationCode.Pass },
                 { RuleId.NameExcludesPrivateUnicodeCharacters, EvaluationCode.Pass },
-                { RuleId.NameIsInformative, EvaluationCode.Pass },
                 { RuleId.NameNotWhiteSpace, EvaluationCode.Pass },
                 { RuleId.NameNullButElementNotKeyboardFocusable, EvaluationCode.Pass },
             });
