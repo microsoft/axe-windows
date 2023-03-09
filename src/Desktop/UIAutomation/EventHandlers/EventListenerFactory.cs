@@ -286,9 +286,8 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                         }
                         break;
                     default:
-                        if (EventListeners.ContainsKey(msgData.EventId))
+                        if (EventListeners.TryGetValue(msgData.EventId, out EventListener l))
                         {
-                            var l = EventListeners[msgData.EventId];
                             listener = l.ListenEventMessage;
                             EventListeners.Remove(msgData.EventId);
                             l.Dispose();
