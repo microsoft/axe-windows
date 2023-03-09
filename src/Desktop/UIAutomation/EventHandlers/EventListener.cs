@@ -49,11 +49,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     if (IsHooked)
                     {
                         IUIAutomation uia = IUIAutomation;
-
-                        if (uia != null)
-                        {
-                            uia.RemoveAutomationEventHandler(EventId, Element, this);
-                        }
+                        uia?.RemoveAutomationEventHandler(EventId, Element, this);
                     }
                 }
             }

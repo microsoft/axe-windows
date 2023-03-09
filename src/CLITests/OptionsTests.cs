@@ -32,7 +32,7 @@ namespace AxeWindowsCLITests
             return UnexpectedFailure;
         }
 
-        private int ValidateOptions(Options options, string processName = null,
+        private static int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
             string verbosity = null, bool showThirdPartyNotices = false,
             int delayInSeconds = 0, string customUia = null)

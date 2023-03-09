@@ -65,7 +65,11 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         internal ElementContext GetElementContext(Guid ecId)
         {
-            return _elementContexts.ContainsKey(ecId) ? _elementContexts[ecId] : null;
+            if (_elementContexts.TryGetValue(ecId, out ElementContext ec))
+            {
+                return ec;
+            }
+            return null;
         }
 
         /// <summary>
@@ -74,10 +78,9 @@ namespace Axe.Windows.Actions
         /// <param name="ecId">ElementContext Id</param>
         internal void RemoveElementContext(Guid ecId)
         {
-            if (_elementContexts.ContainsKey(ecId))
+            ElementContext ec = GetElementContext(ecId);
+            if (ec != null)
             {
-                var ec = _elementContexts[ecId];
-
                 _elementContexts.Remove(ecId);
                 ec.Dispose();
             }
@@ -91,20 +94,17 @@ namespace Axe.Windows.Actions
         internal void RemoveDataContext(Guid ecId, bool keepMainElement = true)
         {
             // check whether key exists. if not, just silently ignore.
-            if (_elementContexts.ContainsKey(ecId))
+            ElementContext ec = GetElementContext(ecId);
+            if (ec?.DataContext != null)
             {
-                var ec = _elementContexts[ecId];
-                if (ec.DataContext != null)
+                if (keepMainElement)
                 {
-                    if (keepMainElement)
-                    {
-                        // make sure that selected element is not disposed by removing it from the list in DataContext
-                        ec.DataContext.Elements.Remove(ec.Element.UniqueId);
-                    }
-
-                    ec.DataContext.Dispose();
-                    ec.DataContext = null;
+                    // make sure that selected element is not disposed by removing it from the list in DataContext
+                    ec.DataContext.Elements.Remove(ec.Element.UniqueId);
                 }
+
+                ec.DataContext.Dispose();
+                ec.DataContext = null;
             }
         }
 
@@ -116,19 +116,19 @@ namespace Axe.Windows.Actions
         /// <returns></returns>
         public A11yElement GetA11yElement(Guid ecId, int eId)
         {
-            if (_elementContexts.ContainsKey(ecId))
+            ElementContext ec = GetElementContext(ecId);
+            if (ec != null)
             {
-                var ec = _elementContexts[ecId];
                 if (eId == 0)
                 {
                     return ec.Element;
                 }
                 else
                 {
-                    var es = _elementContexts[ecId].DataContext.Elements;
-                    if (es.ContainsKey(eId))
+                    var es = ec.DataContext.Elements;
+                    if (es.TryGetValue(eId, out A11yElement element))
                     {
-                        return es[eId];
+                        return element;
                     }
                 }
             }

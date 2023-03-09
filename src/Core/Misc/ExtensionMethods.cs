@@ -480,9 +480,9 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static A11yProperty ById(this Dictionary<int, A11yProperty> ps, int id)
         {
-            if (ps != null && ps.ContainsKey(id))
+            if (ps != null && ps.TryGetValue(id, out A11yProperty property))
             {
-                return ps[id];
+                return property;
             }
 
             return null;

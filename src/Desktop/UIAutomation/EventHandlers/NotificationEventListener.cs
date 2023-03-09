@@ -61,10 +61,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     if (IsHooked)
                     {
                         IUIAutomation5 uia5 = IUIAutomation5;
-                        if (uia5 != null)
-                        {
-                            uia5.RemoveNotificationEventHandler(Element, this);
-                        }
+                        uia5?.RemoveNotificationEventHandler(Element, this);
                     }
                 }
             }

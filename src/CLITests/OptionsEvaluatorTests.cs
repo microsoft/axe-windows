@@ -29,7 +29,7 @@ namespace AxeWindowsCLITests
             _processHelperMock.VerifyAll();
         }
 
-        private void ValidateOptions(IOptions options, string processName = TestProcessName,
+        private static void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
             VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0)
         {

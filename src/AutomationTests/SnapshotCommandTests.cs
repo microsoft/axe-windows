@@ -63,7 +63,7 @@ namespace Axe.Windows.AutomationTests
                 .Returns(() => tempOutput);
         }
 
-        private IReadOnlyList<A11yElement> CreateMockElementArray()
+        private static IReadOnlyList<A11yElement> CreateMockElementArray()
         {
             var elements = new List<A11yElement>();
 

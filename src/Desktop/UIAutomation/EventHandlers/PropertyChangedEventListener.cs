@@ -62,10 +62,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     if (IsHooked)
                     {
                         IUIAutomation uia = IUIAutomation;
-                        if (uia != null)
-                        {
-                            uia.RemovePropertyChangedEventHandler(Element, this);
-                        }
+                        uia?.RemovePropertyChangedEventHandler(Element, this);
                     }
                 }
             }
