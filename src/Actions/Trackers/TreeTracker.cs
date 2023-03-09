@@ -123,8 +123,7 @@ namespace Axe.Windows.Actions.Trackers
         /// <param name="getElementMethod"></param>
         private void MoveToWithoutLock(GetElementDelegate getElementMethod)
         {
-            var element = GetNearbyElement(getElementMethod);
-            if (element == null) throw new TreeNavigationFailedException();
+            var element = GetNearbyElement(getElementMethod) ?? throw new TreeNavigationFailedException();
 
 #pragma warning disable CA2000 // Call IDisposable.Dispose()
             var desktopElement = new DesktopElement(element, true, false);

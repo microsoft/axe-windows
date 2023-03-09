@@ -29,9 +29,7 @@ namespace Axe.Windows.Rules
             return ruleTypes.ToDictionary(t =>
             {
                 var info = (RuleInfo)t.GetCustomAttribute(typeof(RuleInfo));
-                if (info == null) throw new InvalidOperationException(ErrorMessages.RuleInfoAttributeExpected);
-
-                return info.ID;
+                return info == null ? throw new InvalidOperationException(ErrorMessages.RuleInfoAttributeExpected) : info.ID;
             });
         }
 

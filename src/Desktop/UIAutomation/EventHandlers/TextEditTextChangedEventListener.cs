@@ -72,10 +72,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     if (IsHooked)
                     {
                         IUIAutomation4 uia4 = IUIAutomation4;
-                        if (uia4 != null)
-                        {
-                            uia4.RemoveTextEditTextChangedEventHandler(Element, this);
-                        }
+                        uia4?.RemoveTextEditTextChangedEventHandler(Element, this);
                     }
                 }
             }

@@ -61,10 +61,7 @@ namespace Axe.Windows.Desktop.UIAutomation.EventHandlers
                     if (IsHooked)
                     {
                         IUIAutomation6 uia6 = IUIAutomation6;
-                        if (uia6 != null)
-                        {
-                            uia6.RemoveActiveTextPositionChangedEventHandler(Element, this);
-                        }
+                        uia6?.RemoveActiveTextPositionChangedEventHandler(Element, this);
                     }
                 }
             }
