@@ -2180,10 +2180,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Specificare una proprietà Name di Automazione interfaccia utente per l'elemento che:]D;]A;  identifica in modo conciso l'elemento, E]D;]A;  non include il nome della classe dell'elemento (come Microsoft.*.* o Windows.*.*).]]></Val>
+            <Val><![CDATA[Esaminare la proprietà Name dell’automazione dell’interfaccia utente di questo elemento:]D;]A; · Se la proprietà Name contiene "Microsoft" o "Windows" ed è strettamente correlata al testo su schermo (ad esempio, un riferimento a "Microsoft.com"), è possibile ignorare il problema.]D;]A; · Se la proprietà Name non è strettamente correlata al testo su schermo (e non fornisce informazioni significative agli utenti finali), aggiornare il nome a un'etichetta concisa rivolta all'utente strettamente correlata al testo su schermo.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>

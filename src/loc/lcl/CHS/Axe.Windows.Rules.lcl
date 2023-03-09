@@ -2180,10 +2180,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[为符合以下条件的元素提供 UI 自动化 Name 属性:]D;]A; · 简洁标识元素，并且]D;]A; · 不包括元素的类名(如 Microsoft.*.* 或 Windows.*.*)。]]></Val>
+            <Val><![CDATA[检查此元素的 UI 自动化名称属性: ]D;]A;· 如果名称属性包含“Microsoft”或“Windows”并且与屏幕文本密切相关(例如，对“Microsoft.com”的引用)，则可以放心地忽略此问题。]D;]A;· 如果名称属性与屏幕文本没有密切关系(并且没有为最终用户提供有意义的信息)，则将“名称”更新为与屏幕文本密切相关的简洁、面向用户的标签。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
