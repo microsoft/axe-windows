@@ -42,7 +42,7 @@ namespace Axe.Windows.DesktopTests.UIAutomation.CustomObjects
             uiaRegistrarMock.VerifyAll();
         }
 
-        private CustomProperty CreateEmptyPropertyOfType(string type)
+        private static CustomProperty CreateEmptyPropertyOfType(string type)
         {
             CustomProperty prop = new CustomProperty
             {

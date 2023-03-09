@@ -295,7 +295,7 @@ namespace Axe.Windows.AutomationTests
             return output.First();
         }
 
-        private void ValidateTaskCancelled(Task<ScanOutput> task)
+        private static void ValidateTaskCancelled(Task<ScanOutput> task)
         {
             var exception = Assert.ThrowsException<AggregateException>(() => task.Result);
             Assert.AreEqual(typeof(TaskCanceledException), exception.InnerException.GetType());

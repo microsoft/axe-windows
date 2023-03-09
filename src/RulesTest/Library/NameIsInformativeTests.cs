@@ -124,7 +124,7 @@ namespace Axe.Windows.RulesTests.Library
             TestExcludedControlType(ControlType.Text);
         }
 
-        private void TestExcludedControlType(int controlType)
+        private static void TestExcludedControlType(int controlType)
         {
             using (var e = new MockA11yElement())
             {

@@ -18,7 +18,7 @@ namespace Axe.Windows.ActionsTests.Actions
     {
         // This sets the Bounding Rectangle. It breaks encapsulation in
         // many reproachable ways
-        private void SetBoundingRectangle(A11yElement element, Rectangle b)
+        private static void SetBoundingRectangle(A11yElement element, Rectangle b)
         {
             int typeId = PropertyType.UIA_BoundingRectanglePropertyId;
             double[] data = { b.Left, b.Top, b.Right - b.Left, b.Bottom - b.Top };

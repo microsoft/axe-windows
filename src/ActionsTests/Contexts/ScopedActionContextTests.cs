@@ -98,7 +98,7 @@ namespace Axe.Windows.ActionsTests.Contexts
             }
         }
 
-        private void AssertAreDifferentObjectsOfType<T>(object object1, object object2)
+        private static void AssertAreDifferentObjectsOfType<T>(object object1, object object2)
         {
             Assert.IsInstanceOfType(object1, typeof(T));
             Assert.IsInstanceOfType(object2, typeof(T));

@@ -235,7 +235,7 @@ namespace AxeWindowsCLITests
             VerifyAllMocks();
         }
 
-        private IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
+        private static IReadOnlyDictionary<string, string> BuildTestProperties(int? propertyCount)
         {
             if (!propertyCount.HasValue)
                 return null;
@@ -250,7 +250,7 @@ namespace AxeWindowsCLITests
             return properties;
         }
 
-        private IEnumerable<string> BuildTestPatterns(int? patternCount)
+        private static IEnumerable<string> BuildTestPatterns(int? patternCount)
         {
             if (!patternCount.HasValue)
                 return null;
@@ -265,7 +265,7 @@ namespace AxeWindowsCLITests
             return patterns;
         }
 
-        private WindowScanOutput BuildTestScanResults(int errorCount = 0, string a11yTestFile = null,
+        private static WindowScanOutput BuildTestScanResults(int errorCount = 0, string a11yTestFile = null,
             int? propertyCount = null, int? patternCount = null, string frameworkIssueLink = null)
         {
             List<ScanResult> errors = new List<ScanResult>(errorCount);
