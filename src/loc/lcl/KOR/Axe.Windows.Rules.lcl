@@ -2180,10 +2180,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[다음 요소의 UI 자동화 Name 속성을 제공합니다.]D;]A; · AND 요소를 간결하게 식별합니다.]D;]A; · 요소의 클래스 이름(예: Microsoft.*.* 또는 Windows.*.*)을 포함하지 않습니다.]]></Val>
+            <Val><![CDATA[이 요소의 UI 자동화 이름 속성을 검사합니다.]D;]A; · 이름 속성이 "Microsoft" 또는 "Windows"를 포함하며 화면 텍스트(예: "Microsoft.com"에 대한 참조)와 긴밀하게 관련된 경우 이 문제를 무시해도 됩니다.]D;]A; · 이름 속성이 화면 텍스트와 긴밀하게 관련되지 않고 최종 사용자에게 의미 있는 정보를 제공하지 않는 경우 화면 텍스트와 긴밀하게 관련된 간결하고 사용자 관련 레이블로 이름을 업데이트합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>

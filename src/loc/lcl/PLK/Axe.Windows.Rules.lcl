@@ -1579,7 +1579,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Aby przeskanować ten składnik, użyj skanera internetowego (na przykład usługi Szczegółowe informacje ułatwień dostępu dla sieci Web).]]></Val>
+            <Val><![CDATA[Aby przeskanować ten składnik, użyj skanera internetowego (na przykład usługi Accessibility Insights for Web).]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2180,10 +2180,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Określ właściwość Name automatyzacji interfejsu użytkownika dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Nie zawiera nazwy klasy elementu (np. Microsoft.*.* lub Windows.*.*).]]></Val>
+            <Val><![CDATA[Sprawdź właściwość Nazwa automatyzacji interfejsu użytkownika tego elementu:]D;]A; · Jeśli właściwość Nazwa zawiera ciąg „Microsoft” lub „Windows” i jest ściśle powiązana z tekstem wyświetlanym na ekranie (na przykład odwołaniem do elementu „Microsoft.com”), możesz bezpiecznie zignorować ten problem.]D;]A; · Jeśli właściwość Nazwa nie jest ściśle powiązana z tekstem wyświetlanym na ekranie (i nie udostępnia użytkownikom końcowym istotnych informacji), zaktualizuj właściwość Nazwa na zwięzłą etykietę skierowaną do użytkownika, która jest ściśle powiązana z tekstem wyświetlanym na ekranie.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>

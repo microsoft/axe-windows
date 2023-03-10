@@ -2180,10 +2180,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Öğe için şu özelliklere sahip olan bir UI Otomasyonu Name özelliği sağlayın:]D;]A; · Öğeyi kısa bir şekilde tanımlıyor VE]D;]A; · Öğenin sınıf adını (Microsoft.*.* veya Windows.*.*gibi) içermiyor.]]></Val>
+            <Val><![CDATA[Bu öğenin UI Otomasyonu Name özelliğini inceleyin:]D;]A;· Name özelliği "Microsoft" veya "Windows" içeriyorsa ve ekran metniyle yakından ilgiliyse (örneğin, "Microsoft.com" sitesinden bahsediyorsa), bu sorunu güvenle yok sayabilirsiniz.]D;]A;· Name özelliği, ekran metniyle yakından ilgili değilse (ve son kullanıcılara anlamlı bir bilgi sağlamıyorsa), Name özelliğini, ekran metniyle yakından ilgili, kısa ve kullanıcıya yönelik bir etikete güncelleştirin.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
