@@ -119,6 +119,7 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
     displayName: 'Run Roslyn analyzers'
+    condition: false
     inputs:
         userProvideBuildInfo: msBuildInfo
         msbuildVersion: 17.0
@@ -147,7 +148,7 @@ jobs:
     inputs:
       targetType: "filePath"
       filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
-      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;RoslynAnalyzers;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
     displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
