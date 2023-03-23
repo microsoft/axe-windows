@@ -153,7 +153,7 @@ jobs:
       filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
       arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
     displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
     inputs:
       GdnPublishTsaOnboard: true
