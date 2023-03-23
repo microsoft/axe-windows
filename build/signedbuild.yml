@@ -142,6 +142,8 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
     displayName: 'Post Analysis (CredScan, RoslynAnalyzers, and PoliCheck)'
+    inputs:
+      GdnBreakAllTools: false
 
   - task: PowerShell@2
     displayName: 'Create tsa.config file (CredScan, Roslyn, and PoliCheck)'
