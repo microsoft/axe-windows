@@ -180,6 +180,12 @@ jobs:
     inputs:
       ArtifactName: 'Compliance'
 
+  - task: PowerShell@2
+    displayName: 'Intentionally fail the build job to save resources'
+    inputs:
+      targetType: "filePath"
+      filePath: tools\scripts\bad-path\bad-file.ps1
+      
 - job: SignedRelease
   dependsOn: 
   - ComplianceRelease
