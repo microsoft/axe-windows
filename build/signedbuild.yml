@@ -104,6 +104,14 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: debug
 
+  - task: DotNetCoreCLI@2
+    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+    inputs:
+      arguments: --no-build --blame --verbosity normal --configuration debug
+      command: test
+      projects: |
+        **\*test*.csproj
+
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-autoapplicability.AutoApplicability@1
     displayName: 'Run AutoApplicability'
 
@@ -167,14 +175,6 @@ jobs:
       uploadModernCop: false
       uploadPREfast: false
       uploadTSLint: false
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    inputs:
-      arguments: --no-build --blame --verbosity normal --configuration debug
-      command: test
-      projects: |
-        **\*test*.csproj
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
