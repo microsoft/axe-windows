@@ -119,15 +119,17 @@ jobs:
     continueOnError: true
 
   - task: UseDotNet@2
-    displayName: Use .NET 6.0 (for Roslyn)
+    displayName: (Roslyn pre-req) Use .NET 6.0
     inputs:
       packageType: 'sdk'
       version: '6.0.x'
 
-  - task: CmdLine@2
-    displayName: 'Partial dotnet restore (for Roslyn)'
+  - task: DotNetCoreCLI@2
+    displayName: '(Roslyn pre-req) Patial dotnet restore'
     inputs:
-      script: 'dotnet restore --runtime win7-x86 $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj'
+      command: restore
+      projects: $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj
+      arguments: '--runtime win7-x86'
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
     displayName: 'Run Roslyn analyzers'
