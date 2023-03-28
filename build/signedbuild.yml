@@ -58,7 +58,6 @@ jobs:
 
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    condition: false
     inputs:
       arguments: --no-build --blame --verbosity normal --configuration release
       command: test
@@ -178,7 +177,6 @@ jobs:
 
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    condition: false
     inputs:
       arguments: --no-build --blame --verbosity normal --configuration debug
       command: test
@@ -284,7 +282,6 @@ jobs:
 
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    condition: false
     inputs:
       arguments: --no-build --blame --verbosity normal --configuration release --filter TestCategory!=Integration
       command: test
