@@ -146,6 +146,9 @@ jobs:
     continueOnError: true
     inputs:
       GdnBreakAllTools: false
+      GdnBreakGdnToolPoliCheck: false
+      GdnBreakGdnToolRoslynAnalyzers: false
+      GdnBreakGdnToolCredScan: true
 
   - task: PowerShell@2
     displayName: 'Create tsa.config file (CredScan, Roslyn, and PoliCheck)'
@@ -269,6 +272,8 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
     displayName: 'Post Analysis (BinSkim)'
+    inputs:
+      GdnBreakAllTools: true
 
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
