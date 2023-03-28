@@ -124,6 +124,11 @@ jobs:
       packageType: 'sdk'
       version: '6.0.x'
 
+  - task: CmdLine@2
+    displayName: 'Partial dotnet restore (for Roslyn)'
+    inputs:
+      script: 'dotnet restore --runtime win7-x86 $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj'
+
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
     displayName: 'Run Roslyn analyzers'
     continueOnError: true
