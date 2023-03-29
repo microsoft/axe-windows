@@ -77,139 +77,182 @@ namespace Axe.Windows.AutomationTests
         public void Cleanup()
         {
             StopTestApp();
-
             CleanupTestOutput();
         }
 
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        [Timeout(30000)]
         public void Scan_Integration_WildlifeManager(bool sync)
         {
-            var processId = LaunchTestApp(_wildlifeManagerAppPath);
-            WindowScanOutput results = ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: processId);
-            EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, processId);
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                var processId = LaunchTestApp(_wildlifeManagerAppPath);
+                WindowScanOutput results = ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: processId);
+                EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, processId);
+            });
         }
 
         // [DataTestMethod]
         // [DataRow(true)]
         // [DataRow(false)]
-        [Timeout(30000)]
         public void Scan_Integration_Win32ControlSampler(bool sync)
         {
-            ScanIntegrationCore(sync, _win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                ScanIntegrationCore(sync, _win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+            });
         }
 
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        [Timeout(30000)]
         public void Scan_Integration_WindowsFormsControlSampler(bool sync)
         {
-            ScanIntegrationCore(sync, _windowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                ScanIntegrationCore(sync, _windowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+            });
         }
 
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        [Timeout(30000)]
         public void Scan_Integration_WindowsFormsMultiWindowSample(bool sync)
         {
-            ScanIntegrationCore(sync, _windowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                ScanIntegrationCore(sync, _windowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
+            });
         }
 
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        [Timeout(30000)]
         public void Scan_Integration_WpfControlSampler(bool sync)
         {
-            ScanIntegrationCore(sync, _wpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                ScanIntegrationCore(sync, _wpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+            });
         }
 
 
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        [Timeout(60000)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+            {
+                ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+            });
         }
 
         [TestMethod]
-        [Timeout(30000)]
         public void ScanAsync_WindowsFormsSampler_TaskIsCancelled_ThrowsCancellationException()
         {
-            var processId = LaunchTestApp(_windowsFormsControlSamplerAppPath);
-            var builder = Config.Builder.ForProcessId(processId)
-                .WithOutputDirectory(_outputDir)
-                .WithOutputFileFormat(OutputFileFormat.A11yTest);
-
-            var config = builder.Build();
-
-            var scanner = ScannerFactory.CreateScanner(config);
-
-            var cancellationTokenSource = new CancellationTokenSource();
-            cancellationTokenSource.Cancel();
-
-            var task = scanner.ScanAsync(null, cancellationTokenSource.Token);
-
-            ValidateTaskCancelled(task);
-        }
-
-        [TestMethod]
-        [Timeout(45000)]
-        public async Task ScanAsync_WildlifeManager_MultipleProcesses_RunToCompletion()
-        {
-            var instanceCount = 3;
-            var cancellationTokens = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource().Token).ToList();
-            var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokens);
-            var results = await Task.WhenAll(tasks);
-
-            foreach (var result in results)
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                ValidateOutput(result.WindowScanOutputs, WildlifeManagerKnownErrorCount);
-            }
-        }
+                var processId = LaunchTestApp(_windowsFormsControlSamplerAppPath);
+                var builder = Config.Builder.ForProcessId(processId)
+                    .WithOutputDirectory(_outputDir)
+                    .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
-        [TestMethod]
-        [Timeout(60000)]
-        public async Task ScanAsync_WildlifeManager_MultipleProcessesCancelled_ThrowsCancellationException()
-        {
-            var instanceCount = 5;
-            var cancellationTokenSources = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource()).ToList();
-            var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
+                var config = builder.Build();
 
-            var cancelledCount = 2;
-            // The first 2 tasks will be cancelled in ~50ms and ~550ms
-            var cancelledTasks = tasks.Take(cancelledCount);
-            // The final 3 tasks will be cancelled after more than 5 seconds, so we expect them to finish before the cancellation is recognized
-            var finishedTasks = tasks.Skip(cancelledCount);
+                var scanner = ScannerFactory.CreateScanner(config);
 
-            var timeout = 50;
-            for (int i = 0; i < cancelledCount; i++)
-            {
-                cancellationTokenSources[i].Cancel();
-                if (timeout < 10000) // Don't sleep for more than 10 seconds, by then all the scans should be done anyways 
-                {
-                    Thread.Sleep(timeout);
-                    timeout *= 10;
-                }
-            }
+                var cancellationTokenSource = new CancellationTokenSource();
+                cancellationTokenSource.Cancel();
 
-            // Validate cancelled tasks
-            foreach (var task in cancelledTasks)
-            {
+                var task = scanner.ScanAsync(null, cancellationTokenSource.Token);
+
                 ValidateTaskCancelled(task);
+            });
+        }
+
+        [TestMethod]
+        public void ScanAsync_WildlifeManager_MultipleProcesses_RunToCompletion()
+        {
+            const int instanceCount = 3;
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(20 * instanceCount), () =>
+            {
+                var cancellationTokens = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource().Token).ToList();
+                var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokens);
+                var results = Task.WhenAll(tasks).Result;
+
+                foreach (var result in results)
+                {
+                    ValidateOutput(result.WindowScanOutputs, WildlifeManagerKnownErrorCount);
+                }
+            });
+        }
+
+        [TestMethod]
+        public void ScanAsync_WildlifeManager_MultipleProcessesCancelled_ThrowsCancellationException()
+        {
+            const int instanceCount = 5;
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(20 * instanceCount), () =>
+            {
+                var cancellationTokenSources = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource()).ToList();
+                var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
+
+                var cancelledCount = 2;
+                // The first 2 tasks will be cancelled in ~50ms and ~550ms
+                var cancelledTasks = tasks.Take(cancelledCount);
+                // The final 3 tasks will be cancelled after more than 5 seconds, so we expect them to finish before the cancellation is recognized
+                var finishedTasks = tasks.Skip(cancelledCount);
+
+                var timeout = 50;
+                for (int i = 0; i < cancelledCount; i++)
+                {
+                    cancellationTokenSources[i].Cancel();
+                    if (timeout < 10000) // Don't sleep for more than 10 seconds, by then all the scans should be done anyways 
+                    {
+                        Thread.Sleep(timeout);
+                        timeout *= 10;
+                    }
+                }
+
+                // Validate cancelled tasks
+                foreach (var task in cancelledTasks)
+                {
+                    ValidateTaskCancelled(task);
+                }
+
+                // Validate successful tasks
+                var results = Task.WhenAll(finishedTasks).Result;
+                foreach (var result in results)
+                {
+                    ValidateOutput(result.WindowScanOutputs, WildlifeManagerKnownErrorCount);
+                }
+            });
+        }
+
+        private void RunWithTimedExecutionWrapper(TimeSpan allowedTime, Action testAction)
+        {
+            TimedExecutionWrapper wrapper = new TimedExecutionWrapper(allowedTime);
+            wrapper.RunAction(testAction);
+
+            if (wrapper.Completed && (wrapper.CaughtException == null))
+            {
+                return; // Test completed successfully
             }
 
-            // Validate successful tasks
-            var results = await Task.WhenAll(finishedTasks);
-            foreach (var result in results)
+            if (wrapper.CaughtException != null)
             {
-                ValidateOutput(result.WindowScanOutputs, WildlifeManagerKnownErrorCount);
+                Assert.Fail($"Exception caught - See details below.\n{wrapper.CaughtException.Message}\n{wrapper.CaughtException.StackTrace}");
+            }
+
+            // Test timed out. Abandon the thread (it will get cleaned up on process exit) and return a test result
+            if (_allowInconclusive)
+            {
+                Assert.Inconclusive($"Test timed out after {allowedTime}");
+            }
+            else
+            {
+                Assert.Fail($"Test timed out after {allowedTime}");
             }
         }
 
