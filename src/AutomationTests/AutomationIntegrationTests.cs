@@ -137,7 +137,6 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
@@ -242,6 +241,10 @@ namespace Axe.Windows.AutomationTests
 
             if (wrapper.CaughtException != null)
             {
+                if (wrapper.CaughtException.GetType() == typeof(AssertInconclusiveException))
+                {
+                    Assert.Inconclusive($"AssertInconclusiveException caught - See details below.\n{wrapper.CaughtException.Message}\n{wrapper.CaughtException.StackTrace}");
+                }
                 Assert.Fail($"Exception caught - See details below.\n{wrapper.CaughtException.Message}\n{wrapper.CaughtException.StackTrace}");
             }
 
