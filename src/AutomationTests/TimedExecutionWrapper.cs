@@ -7,6 +7,12 @@ using System.Threading;
 
 namespace Axe.Windows.AutomationTests
 {
+    /// <summary>
+    /// A simple wrapper to bring our timeout behavior under our own control. Given a max allowed time
+    /// and an Action, it spins up a thread, runs the Action on that thread, and reports the outcome
+    /// via the Completed and CaughtException properties. The same object can be used to run multiple
+    /// Actions (or the same Action multiple times), as long as they all share the same timeout.
+    /// </summary>
     internal class TimedExecutionWrapper
     {
         private static readonly TimeSpan SleepTime = TimeSpan.FromMilliseconds(250);
@@ -31,6 +37,7 @@ namespace Axe.Windows.AutomationTests
             WaitForThreadToStart();
             WaitForThreadToComplete();
             Completed = !_thread.IsAlive;
+            _stopwatch.Stop();
         }
 
         private void CreateThreadForTest(Action testAction)
