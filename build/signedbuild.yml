@@ -112,69 +112,76 @@ jobs:
       projects: |
         **\*test*.csproj
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-autoapplicability.AutoApplicability@1
-    displayName: 'Run AutoApplicability'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@2
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@3
     displayName: 'Run CredScan'
     inputs:
-      toolMajorVersion: V2
+      outputFormat: 'pre'
       verboseOutput: true
       debugMode: false
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@1
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@2
     displayName: 'Run PoliCheck'
     inputs:
       targetType: F
     continueOnError: true
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@2
+  - task: UseDotNet@2
+    displayName: (Roslyn pre-req) Use .NET 6.0
+    inputs:
+      packageType: 'sdk'
+      version: '6.0.x'
+
+  - task: DotNetCoreCLI@2
+    displayName: '(Roslyn pre-req) Partial dotnet restore'
+    inputs:
+      command: restore
+      projects: $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj
+      arguments: '--runtime win7-x86'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
     displayName: 'Run Roslyn analyzers'
+    continueOnError: true
     inputs:
         userProvideBuildInfo: msBuildInfo
-        msbuildVersion: 16.0
+        msbuildVersion: 17.0
         msBuildArchitecture: '$(BuildPlatform)'
-        msBuildCommandline: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\msbuild.exe" "$(Build.SourcesDirectory)\src\AxeWindows.sln" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="16.0"'
-        rulesetName: recommended
+        setupCommandLine: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsMSBuildCmd.bat"'
+        msBuildCommandline: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\msbuild.exe" "$(Build.SourcesDirectory)\src\AxeWindows.sln" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="17.0"'
+        rulesetName: Recommended
         internalAnalyzersVersion: Latest
         microsoftAnalyzersVersion: Latest
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
     displayName: 'Create Security Analysis Report (CredScan, RoslynAnalyzers, and PoliCheck)'
     inputs:
       CredScan: true
       RoslynAnalyzers: true
       PoliCheck: true
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
     displayName: 'Publish Security Analysis Logs (CredScan, RoslynAnalyzers, and PoliCheck)'
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
     displayName: 'Post Analysis (CredScan, RoslynAnalyzers, and PoliCheck)'
+    continueOnError: true
     inputs:
-      CredScan: true
-      RoslynAnalyzers: true
-      PoliCheck: true
+      GdnBreakAllTools: false
+      GdnBreakGdnToolPoliCheck: false
+      GdnBreakGdnToolRoslynAnalyzers: false
+      GdnBreakGdnToolCredScan: true
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
+  - task: PowerShell@2
+    displayName: 'Create tsa.config file (CredScan, Roslyn, and PoliCheck)'
+    inputs:
+      targetType: "filePath"
+      filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
+      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;RoslynAnalyzers;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
     displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
     inputs:
-      tsaVersion: TsaV2
-      codebase: NewOrUpdate
-      codeBaseName: $(TSACodeBaseName)
-      notificationAlias: $(TSANotificationAlias)
-      codeBaseAdmins: $(TSACodeBaseAdmins)
-      instanceUrlForTsaV2: $(TSAInstance)
-      projectNameMSENG: $(TSAProjectName)
-      areaPath: $(TSAAreaPath)
-      iterationPath: $(TSAIterationPath)
-      uploadAPIScan: false
-      uploadBinSkim: false
-      uploadFortifySCA: false
-      uploadFxCop: false
-      uploadModernCop: false
-      uploadPREfast: false
-      uploadTSLint: false
+      GdnPublishTsaOnboard: true
+      GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
@@ -186,7 +193,7 @@ jobs:
     displayName: 'Publish Artifact: Compliance'
     inputs:
       ArtifactName: 'Compliance'
-
+      
 - job: SignedRelease
   dependsOn: 
   - ComplianceRelease
@@ -246,34 +253,32 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: release
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@4
     displayName: 'Run BinSkim'
     inputs:
       InputType: Basic
       # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTarget: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\Release\\**\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\Release\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\Release\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\Release\\**\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\Release\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\Release\\**\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\Release\\**\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\Release\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\Release\\*.dll;\
-                      $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\Release\\*.dll;"
+      AnalyzeTargetGlob: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\Release\\**\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\Release\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\Release\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\Release\\**\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\Release\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\Release\\**\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\Release\\**\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\Release\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\Release\\*.dll;\
+                          $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\Release\\*.dll;"
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@1
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
     displayName: 'Create Security Analysis Report (BinSkim)'
-    inputs:
-      BinSkim: true
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@2
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
     displayName: 'Publish Security Analysis Logs (BinSkim)'
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@1
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
     displayName: 'Post Analysis (BinSkim)'
     inputs:
-      BinSkim: true
+      GdnBreakAllTools: true
 
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
@@ -283,27 +288,18 @@ jobs:
       projects: |
         **\*test*.csproj
 
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@1
+  - task: PowerShell@2
+    displayName: 'Create tsa.config file (BinSkim)'
+    inputs:
+      targetType: "filePath"
+      filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
+      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAV2ProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAV2AreaPath)" -IterationPath "$(TSAV2IterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "BinSkim" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+
+  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
     displayName: 'TSA upload (BinSkim)'
     inputs:
-      tsaVersion: TsaV2
-      codebase: NewOrUpdate
-      codeBaseName: $(TSACodeBaseName)
-      notificationAlias: $(TSANotificationAlias)
-      codeBaseAdmins: $(TSACodeBaseAdmins)
-      instanceUrlForTsaV2: $(TSAInstance)
-      projectNameMSENG: $(TSAProjectName)
-      areaPath: $(TSAAreaPath)
-      iterationPath: $(TSAIterationPath)
-      uploadAPIScan: false
-      uploadCredScan: false
-      uploadFortifySCA: false
-      uploadFxCop: false
-      uploadModernCop: false
-      uploadPoliCheck: false
-      uploadPREfast: false
-      uploadRoslyn: false
-      uploadTSLint: false
+      GdnPublishTsaOnboard: true
+      GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
 
   - task: CopyFiles@2
     displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
