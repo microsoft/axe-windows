@@ -16,7 +16,8 @@ variables:
   TeamName: 'Axe Windows'
   system.debug: 'true' #set to true in case our signed build flakes out again
   runCodesignValidationInjection: 'false'
-
+  isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+  
 jobs:
 - job: ComplianceRelease
   pool:
@@ -179,6 +180,7 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
     displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
+    condition: and(succeeded(), eq(variables.isMain, true))
     inputs:
       GdnPublishTsaOnboard: true
       GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
@@ -297,6 +299,7 @@ jobs:
 
   - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
     displayName: 'TSA upload (BinSkim)'
+    condition: and(succeeded(), eq(variables.isMain, true))
     inputs:
       GdnPublishTsaOnboard: true
       GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
