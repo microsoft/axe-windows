@@ -131,7 +131,7 @@
   </data>
   <data name="BoundingRectangleCompletelyObscuresContainer" xml:space="preserve">
     <value>BoundingRectangle completely obscures container</value>
-    <comment>The name of a condition used by the automated accessibility scanner. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword).</comment>
+    <comment>The name of a condition used by the automated accessibility scanner. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword). {Locked="BoundingRectangle"}</comment>
   </data>
   <data name="ChildrenExist" xml:space="preserve">
     <value>children exist</value>
