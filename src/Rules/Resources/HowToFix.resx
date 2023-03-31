@@ -119,54 +119,54 @@
   </resheader>
   <data name="BoundingRectangleNotValidButOffScreen" xml:space="preserve">
     <value>Remove the BoundingRectangle property when the element is off-screen.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword). {Locked="BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="BoundingRectangle"}</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the Toggle pattern if the button can cycle through a series of up to three states.
  · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords). {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
   </data>
   <data name="SiblingUniqueAndNotFocusable" xml:space="preserve">
     <value>Verify that each element has a meaningful UI Automation Name property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
     <value>Modify the combo box to not support the Scroll pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Scroll" should not be translated (i.e. it should be treated as a loanword). {Locked="Scroll"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Scroll"}</comment>
   </data>
   <data name="ControlShouldNotSupportValuePattern" xml:space="preserve">
     <value>Modify the element to not support the Value pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Value" should not be translated (i.e. it should be treated as a loanword). {Locked="Value"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Value"}</comment>
   </data>
   <data name="ControlShouldNotSupportWindowPattern" xml:space="preserve">
     <value>Modify the element to not support the Window pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Window" should not be translated (i.e. it should be treated as a loanword). {Locked="Window"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Window"}</comment>
   </data>
   <data name="HelpTextNotEqualToName" xml:space="preserve">
     <value>Write meaningful text for the element's UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as "type here to search".</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "HelpText" should not be translated (i.e. it should be treated as a loanword). {Locked="HelpText"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="HelpText"}</comment>
   </data>
   <data name="IsContentElementFalseOptional" xml:space="preserve">
     <value>Set the IsContentElement UI Automation property to false.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsContentElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
   </data>
   <data name="IsContentElementTrueOptional" xml:space="preserve">
     <value>Set the IsContentElement UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsContentElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
   </data>
   <data name="IsControlElementTrueOptional" xml:space="preserve">
     <value>Set the IsControlElement UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsControlElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword). {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword). {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
     <value>Make this element focusable instead of its children.</value>
@@ -174,63 +174,63 @@
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword). {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
     <value>Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword). {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable property to be false.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "Text" should not be translated (i.e. they should be treated as loanwords). {Locked="IsKeyboardFocusable", "Text"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "Text"}</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
     <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords). {Locked="IsKeyboardFocusable", "ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsKeyboardFocusable" and "ControlType" should not be translated (i.e. they should be treated as loanwords). {Locked="IsKeyboardFocusable", "ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType"}</comment>
   </data>
   <data name="IsKeyboardFocusableTopLevelTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsKeyboardFocusable" should not be translated (i.e. it should be treated as a loanword). {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="ItemStatusExists" xml:space="preserve">
     <value>Add a meaningful ItemStatus UI Automation property to this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ItemStatus" should not be translated (i.e. it should be treated as a loanword). {Locked="ItemStatus"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ItemStatus"}</comment>
   </data>
   <data name="LocalizedControlTypeReasonable" xml:space="preserve">
     <value>Set a meaningful LocalizedControlType UI Automation property for this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="ItemTypeRecommended" xml:space="preserve">
     <value>If necessary, set the ItemType UI Automation property for this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ItemType" should not be translated (i.e. it should be treated as a loanword). {Locked="ItemType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ItemType"}</comment>
   </data>
   <data name="NameEmptyButElementNotKeyboardFocusable" xml:space="preserve">
     <value>Set the UI Automation Name property for the given element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
     <value>Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
     <value>Set the UI Automation Name property for the given element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" (with uppercase N) should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameOnCustomWithParentWPFDataItem" xml:space="preserve">
     <value>Set the UI Automation Name property of this custom control to be empty.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Name" and "dataitem" should not be translated (i.e. they should be treated as loanwords). {Locked="Name", "DataItem"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameOnOptionalType" xml:space="preserve">
     <value>Remove the UI Automation Name property for this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
     <value>Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Name" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords). {Locked="Name", "BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "BoundingRectangle"}</comment>
   </data>
   <data name="Structure" xml:space="preserve">
     <value>Set the element to conform to the following structure: {0}.</value>
@@ -238,155 +238,155 @@
   </data>
   <data name="SelectionPatternSelectionRequired" xml:space="preserve">
     <value>Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "IsSelectionRequired" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "IsSelectionRequired"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "IsSelectionRequired"}</comment>
   </data>
   <data name="ButtonInvokeAndExpandCollapsePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords). {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
   </data>
   <data name="ButtonShouldHavePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the Toggle pattern if the button can cycle through a series of up to three states.
  · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords). {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
   </data>
   <data name="ButtonInvokeAndTogglePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the Toggle pattern if the button can cycle through a series of up to three states.
  · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords). {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
   </data>
   <data name="ButtonToggleAndExpandCollapsePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the Toggle pattern if the button can cycle through a series of up to three states.
  · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke", "Toggle", and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords). {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
   </data>
   <data name="ProgressBarRangeValue" xml:space="preserve">
     <value>Implement the progress bar's RangeValue pattern using the following properties and values:
  · Minimum: 0.0
  · Maximum: 100.0
  · IsReadOnly: TRUE</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "RangeValue", "Minimum", "Maximum", and "IsReadOnly" should not be translated (i.e. they should be treated as loanwords). {Locked="RangeValue", "Minimum", "Maximum", "IsReadOnly"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="RangeValue", "Minimum", "Maximum", "IsReadOnly"}</comment>
   </data>
   <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
     <value>Implement the edit control's RangeValue pattern with a null LargeChange property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "RangeValue" and "LargeChange" should not be translated (i.e. they should be treated as loanwords). {Locked="RangeValue", "LargeChange"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="RangeValue", "LargeChange"}</comment>
   </data>
   <data name="SplitButtonInvokeAndTogglePatterns" xml:space="preserve">
     <value>Modify the split button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the Toggle pattern if the button can cycle through a series of up to three states.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Invoke" and "Toggle" should not be translated (i.e. they should be treated as loanwords). {Locked="Invoke", "Toggle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle"}</comment>
   </data>
   <data name="ControlShouldNotSupportInvokePattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. Modify the element to support only its allowed patterns.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType"}</comment>
   </data>
   <data name="ControlShouldNotSupportScrollPattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. Modify the element to support only its allowed patterns.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType"}</comment>
   </data>
   <data name="ControlShouldNotSupportTogglePattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. Modify the element to support only its allowed patterns.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType"}</comment>
   </data>
   <data name="ControlShouldSupportExpandCollapsePattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the ExpandCollapse pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "ExpandCollapse" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "ExpandCollapse"}</comment>
   </data>
   <data name="ControlShouldSupportGridItemPattern" xml:space="preserve">
     <value>Modify the element (or one of its children) to support the GridItem pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "GridItem" should not be translated (i.e. it should be treated as a loanword). {Locked="GridItem"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="GridItem"}</comment>
   </data>
   <data name="ControlShouldSupportGridPattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the Grid pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Grid" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Grid"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Grid"}</comment>
   </data>
   <data name="ControlShouldSupportInvokePattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the Invoke pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Invoke" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Invoke"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Invoke"}</comment>
   </data>
   <data name="ControlShouldSupportScrollItemPattern" xml:space="preserve">
     <value>Modify the element (or one of its children) to support the ScrollItem pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ScrollItem" should not be translated (i.e. it should be treated as a loanword). {Locked="ScrollItem"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ScrollItem"}</comment>
   </data>
   <data name="ControlShouldSupportSelectionItemPattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the SelectionItem pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "SelectionItem" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "SelectionItem"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "SelectionItem"}</comment>
   </data>
   <data name="ControlShouldSupportSelectionPattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the Selection pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Selection" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Selection"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Selection"}</comment>
   </data>
   <data name="ControlShouldSupportSpreadsheetItemPattern" xml:space="preserve">
     <value>Modify the element (or one of its children) to support the SpreadsheetItem pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "SpreadsheetItem" should not be translated (i.e. it should be treated as a loanword). {Locked="SpreadsheetItem"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="SpreadsheetItem"}</comment>
   </data>
   <data name="ControlShouldSupportTableItemPattern" xml:space="preserve">
     <value>Modify the element (or one of its children) to support the TableItem pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "TableItem" should not be translated (i.e. it should be treated as a loanword). {Locked="TableItem"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="TableItem"}</comment>
   </data>
   <data name="ControlShouldSupportTablePattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the Table pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Table" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Table"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Table"}</comment>
   </data>
   <data name="ControlShouldSupportTextPattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the Text pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Text" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Text"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Text"}</comment>
   </data>
   <data name="ControlShouldSupportTogglePattern" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. If the current ControlType is correct, modify the element to support the Toggle pattern.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType" and "Toggle" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Toggle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Toggle"}</comment>
   </data>
   <data name="ControlShouldSupportTransformPattern" xml:space="preserve">
     <value>If the element can be resized, implement the Transform pattern.
 If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "Transform" and "TransformPattern_CanResize" should not be translated (i.e. they should be treated as loanwords). {Locked="Transform", "TransformPattern_CanResize"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Transform", "TransformPattern_CanResize"}</comment>
   </data>
   <data name="ChildrenNotAllowedInContentView" xml:space="preserve">
     <value>Make sure all of the element's children have the IsContentElement property set to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsContentElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
   </data>
   <data name="SelectionPatternSingleSelection" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. Make sure Selection is the correct pattern.
 3. Set the element's CanSelectMultiple property to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ControlType", "Selection", and "CanSelectMultiple" should not be translated (i.e. they should be treated as loanwords). {Locked="ControlType", "Selection", "CanSelectMultiple"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Selection", "CanSelectMultiple"}</comment>
   </data>
   <data name="SelectionItemPatternSingleSelection" xml:space="preserve">
     <value>Do one of the following:
  1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR
  2. Modify the parent element so its CanSelectMultiple property is TRUE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "CanSelectMultiple" should not be translated (i.e. it should be treated as a loanword). {Locked="CanSelectMultiple"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="CanSelectMultiple"}</comment>
   </data>
   <data name="ParentChildShouldNotHaveSameNameAndLocalizedControlType" xml:space="preserve">
     <value>Provide unique names for controls that have a parent/child relationship and the same ControlType property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType"}</comment>
   </data>
   <data name="SiblingUniqueAndFocusable" xml:space="preserve">
     <value>Provide unique names for sibling controls that have the same ControlType property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "ControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType"}</comment>
   </data>
   <data name="ControlShouldSupportSetInfo" xml:space="preserve">
     <value>Provide valid values for the SizeOfSet and PositionInSet properties.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "SizeOfSet" and "PositionInSet" should not be translated (i.e. they should be treated as loanwords). {Locked="SizeOfSet", "PositionInSet"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="SizeOfSet", "PositionInSet"}</comment>
   </data>
   <data name="BoundingRectangleCompletelyObscuresContainer" xml:space="preserve">
     <value>Modify one or both bounding rectangles to ensure that the bounding rectangle of the container element is not completely obscured.</value>
@@ -404,7 +404,7 @@ If the element can't be resized, ensure the TransformPattern_CanResize property 
     b. Left edge
     c. Width
     d. Height</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword). {Locked="BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="BoundingRectangle"}</comment>
   </data>
   <data name="BoundingRectangleNotAllZeros" xml:space="preserve">
     <value>Specify the rectangle's position and size (in pixels) by providing array values in the following order:
@@ -417,11 +417,11 @@ If the element can't be resized, ensure the TransformPattern_CanResize property 
   <data name="BoundingRectangleNotNull" xml:space="preserve">
     <value>If the element is off-screen, set its IsOffscreen property to TRUE.
 If the element is on-screen, provide a BoundingRectangle property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "IsOffscreen" and "BoundingRectangle" should not be translated (i.e. they should be treated as loanwords). {Locked="IsOffscreen", "BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsOffscreen", "BoundingRectangle"}</comment>
   </data>
   <data name="BoundingRectangleSizeReasonable" xml:space="preserve">
     <value>Modify the BoundingRectangle property so that its width and height define an area of at least 25 pixels.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "BoundingRectangle" should not be translated (i.e. it should be treated as a loanword). {Locked="BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="BoundingRectangle"}</comment>
   </data>
   <data name="HeadingLevelDescendsWhenNested" xml:space="preserve">
     <value>Modify the heading levels and/or nesting structure of the element and/or its ancestors.
@@ -432,17 +432,17 @@ For example, if an element has a level-5 heading, its descendants can have only 
     <value>Provide a value for the element's IsContentElement property:
  · If the element should be included in the content view, set the property to TRUE.
  · If the element should not be included in the content view, set the property to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsContentElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsContentElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
   </data>
   <data name="IsControlElementPropertyExists" xml:space="preserve">
     <value>Provide a value for the element's IsControlElement property:
  · If the element should be included in the control view, set the property to TRUE.
  · If the element should not be included in the control view, set the property to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsControlElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement"}</comment>
   </data>
   <data name="IsControlElementTrueRequired" xml:space="preserve">
     <value>Set the element's IsControlElement property to TRUE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "IsControlElement" should not be translated (i.e. it should be treated as a loanword). {Locked="IsControlElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement"}</comment>
   </data>
   <data name="LandmarkBannerIsTopLevel" xml:space="preserve">
     <value>Modify the banner element so it does not descend from any other landmark.
@@ -484,7 +484,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotCustom" xml:space="preserve">
     <value>Provide string for the LocalizedLandmarkType property that does not include "custom."
@@ -497,7 +497,7 @@ Where appropriate, use a standard localized landmark type:
     ·         Use "navigation" for an area containing links for page or site navigation.
     ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotEmpty" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -510,7 +510,7 @@ Where appropriate, use a standard localized landmark type:
     ·         Use "navigation" for an area containing links for page or site navigation.
     ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotNull" xml:space="preserve">
     <value>Provide a LocalizedLandmarkType property for the element.
@@ -523,7 +523,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotWhiteSpace" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -536,7 +536,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedLandmarkType" (written without spaces) should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotCustom" xml:space="preserve">
     <value>Sufficient:
@@ -544,7 +544,7 @@ Provide a string for the LocalizedControlType property that concisely describes 
 
 Better:
 If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotCustomWPFGridCell" xml:space="preserve">
     <value>{0}
@@ -554,55 +554,55 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
   </data>
   <data name="LocalizedControlTypeNotEmpty" xml:space="preserve">
     <value>Provide a string for the LocalizedControlType property that concisely describes the control's type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotNull" xml:space="preserve">
     <value>Provide a string for the LocalizedControlType property that concisely describes the control's type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotWhiteSpace" xml:space="preserve">
     <value>Provide a string for the LocalizedControlType property that concisely describes the control's type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "LocalizedControlType" should not be translated (i.e. it should be treated as a loanword). {Locked="LocalizedControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="OrientationPropertyExists" xml:space="preserve">
     <value>Provide an Orientation property for the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Orientation" should not be translated (i.e. it should be treated as a loanword). {Locked="Orientation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Orientation"}</comment>
   </data>
   <data name="NameExcludesControlType" xml:space="preserve">
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
  · Does not include the control type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameExcludesLocalizedControlType" xml:space="preserve">
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
  · Does not include the same text as the element's LocalizedControlType property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "name" and "LocalizedControlType" should not be translated (i.e. they should be treated as loanwords). {Locked="Name", "LocalizedControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "LocalizedControlType"}</comment>
   </data>
   <data name="NameIsInformative" xml:space="preserve">
     <value>Examine the UI Automation Name property of this element:
  · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.
  · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNotNull" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNotWhiteSpace" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameReasonableLength" xml:space="preserve">
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
  · Contains at most 512 characters.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The term "Name" should not be translated (i.e. it should be treated as a loanword). {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="ListItemSiblingsUnique" xml:space="preserve">
     <value>Provide unique names for sibling list items.</value>
@@ -619,12 +619,12 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
   <data name="ClickablePointOnScreen" xml:space="preserve">
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to false.
 If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ClickablePoint" and "IsOffscreen" should not be translated (i.e. they should be treated as loanwords). {Locked="ClickablePoint", "IsOffscreen"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ClickablePoint", "IsOffscreen"}</comment>
   </data>
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to true.
 If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. The terms "ClickablePoint" and "IsOffscreen" should not be translated (i.e. they should be treated as loanwords). {Locked="ClickablePoint", "IsOffscreen"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ClickablePoint", "IsOffscreen"}</comment>
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
     <value>Switch your application to a framework that supports UI Automation.</value>
