@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[A propriedade Name de um controle personalizado pode estar vazia se o pai for um dataitem da WPF.]]></Val>
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1579,7 +1582,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Use um scanner baseado na Web (por exemplo, Insights de Acessibilidade para Web) para verificar esse componente.]]></Val>
+            <Val><![CDATA[Use um scanner baseado na Web (por exemplo, Accessibility Insights for Web) para verificar esse componente.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2293,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Implemente o padrão RangeValue da barra de progresso usando as seguintes propriedades e valores:]D;]A; · Maximum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[Implemente o padrão RangeValue da barra de progresso usando as seguintes propriedades e valores:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

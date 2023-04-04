@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[親が WPF データ項目の場合、カスタム コントロールの Name プロパティは空である可能性があります。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2180,10 +2183,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[次の要素の UI オートメーション Name プロパティを指定します:]D;]A; · 要素を簡潔に識別し、かつ]D;]A; · 要素のクラス名 (Microsoft.*.* や Windows.*.*など) を含まない。]]></Val>
+            <Val><![CDATA[この要素の UI オートメーション Name プロパティを調べます:]D;]A; · Name プロパティに "Microsoft" または "Windows" が含まれ、画面上のテキストに密接に関連している場合 (たとえば、"Microsoft.com" への参照) は、この問題を無視しても問題ありません。]D;]A; · Name プロパティが画面上のテキストと密接に関連していない (エンドユーザーに意味のある情報を提供しない) 場合は、スクリーン テキストに密接に関連する簡潔なユーザー向けのラベルの Name を更新してください。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2290,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[次のプロパティと値を使用して、進行状況バーの RangeValue パターンを実装します:]D;]A; · 最小値: 0.0]D;]A; · 最大値: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[次のプロパティと値を使用して、進行状況バーの RangeValue パターンを実装します:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

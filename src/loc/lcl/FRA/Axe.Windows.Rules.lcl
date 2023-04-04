@@ -1099,7 +1099,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The Name must not include the same text as the LocalizedControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Le nom ne doit pas inclure le même texte que le LocalizedControlType.]]></Val>
+            <Val><![CDATA[Le Name ne doit pas inclure le même texte que le LocalizedControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[La propriété Name d’un contrôle personnalisé peut être vide si le parent est un élément de données WPF.]]></Val>
+            <Val><![CDATA[La propriété du Name de contrôle personnalisé peut être vide si le parent est un DataItem WPF.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2101,7 +2104,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set a meaningful LocalizedControlType UI Automation property for this element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Définissez une propriété localizedControlType UI Automation significative pour cet élément.]]></Val>
+            <Val><![CDATA[Définissez une propriété LocalizedControlType UI Automation significative pour cet élément.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2182,7 +2185,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Examinez la propriété name UI Automation de cet élément :]D;]A; · Si la propriété Name contient « Microsoft » ou « Windows » et est étroitement liée au texte à l’écran (par exemple, une référence à « Microsoft.com »), vous pouvez ignorer ce problème en toute sécurité.]D;]A; · Si la propriété Name n’est pas étroitement liée au texte à l’écran (et ne fournit aucune information significative aux utilisateurs finaux), mettez à jour le nom vers une étiquette concise orientée utilisateur qui est étroitement liée au texte à l’écran.]]></Val>
+            <Val><![CDATA[Examinez la propriété Name UI Automation de cet élément :]D;]A; · Si la propriété Name contient « Microsoft » ou « Windows » et est étroitement liée au texte à l’écran (par exemple, une référence à « Microsoft.com »), vous pouvez ignorer ce problème en toute sécurité.]D;]A; · Si la propriété Name n’est pas étroitement liée au texte à l’écran (et ne fournit aucune information significative aux utilisateurs finaux), mettez à jour le Name vers une étiquette concise orientée utilisateur qui est étroitement liée au texte à l’écran.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
@@ -2329,7 +2332,7 @@
         <Str Cat="Text">
           <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. Vérifiez que l’élément possède la propriété ControlType appropriée pour sa fonction.]D;]A;2. Vérifiez que la sélection est le modèle correct.]D;]A;3. Définissez la propriété CanSelectMultiple de l’élément sur FALSE.]]></Val>
+            <Val><![CDATA[1. Vérifiez que l’élément possède la propriété ControlType appropriée pour sa fonction.]D;]A;2. Vérifiez que la Selection est le modèle correct.]D;]A;3. Définissez la propriété CanSelectMultiple de l’élément sur FALSE.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

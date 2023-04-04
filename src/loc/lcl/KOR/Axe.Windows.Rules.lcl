@@ -577,7 +577,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element of the given type should not support the Value pattern.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 형식의 요소는 값 패턴을 지원하지 않아야 합니다.]]></Val>
+            <Val><![CDATA[주어진 형식의 요소는 Value 패턴을 지원하지 않아야 합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -829,7 +829,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 요소가 Text 패턴을 지원하고 텍스트 패턴도 지원하는 요소의 하위 요소인 경우 IsKeyboardFocusable 속성은 false일 수 있습니다. 주어진 요소의 포커스 가능 여부를 고려하세요.]]></Val>
+            <Val><![CDATA[주어진 요소가 Text 패턴을 지원하고 Text 패턴도 지원하는 요소의 하위 요소인 경우 IsKeyboardFocusable 속성은 false일 수 있습니다. 주어진 요소의 포커스 가능 여부를 고려하세요.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -901,7 +901,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[IsKeyboardFocusable 속성은 텍스트 패턴을 지원하고 텍스트 패턴을 지원하는 요소의 하위 항목이 아니며 텍스트 선택을 지원하는 요소에 대해 true여야 합니다.]]></Val>
+            <Val><![CDATA[IsKeyboardFocusable 속성은 Text 패턴을 지원하고 Text 패턴을 지원하는 요소의 하위 항목이 아니며 텍스트 선택을 지원하는 요소에 대해 true여야 합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[부모가 WPF 데이터 항목인 경우 사용자 지정 컨트롤의 Name 속성이 비어 있을 수 있습니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1579,7 +1582,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[웹 기반 스캐너(예: 웹용 Accessibility Insights)를 사용하여 이 구성 요소를 검사합니다.]]></Val>
+            <Val><![CDATA[웹 기반 스캐너(예: Accessibility Insights for Web)를 사용하여 이 구성 요소를 검사합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2293,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[다음 속성 및 값을 사용하여 진행률 표시줄의 RangeValue 패턴을 구현합니다.]D;]A; · 최소: 0.0]D;]A; · 최대: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[다음 속성 및 값을 사용하여 진행률 표시줄의 RangeValue 패턴을 구현합니다.]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2329,7 +2332,7 @@
         <Str Cat="Text">
           <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. 요소의 해당 함수에 적절한 ControlType 속성이 있는지 확인합니다.]D;]A;2. 선택 항목이 올바른 패턴인지 확인합니다.]D;]A;3. 요소의 CanSelectMultiple 속성을 FALSE로 설정합니다.]]></Val>
+            <Val><![CDATA[1. 요소의 해당 함수에 적절한 ControlType 속성이 있는지 확인합니다.]D;]A;2. Selection 항목이 올바른 패턴인지 확인합니다.]D;]A;3. 요소의 CanSelectMultiple 속성을 FALSE로 설정합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
