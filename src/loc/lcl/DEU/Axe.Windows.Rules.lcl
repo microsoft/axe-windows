@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[Die Eigenschaft „Name“ eines benutzerdefinierten Steuerelements ist möglicherweise leer, wenn das übergeordnete Element ein WPF-Dataitem ist.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1579,7 +1582,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Verwenden Sie einen webbasierten Scanner (z. B. Accessibility Insights für das Web), um diese Komponente zu überprüfen.]]></Val>
+            <Val><![CDATA[Verwenden Sie einen webbasierten Scanner (z. B. Accessibility Insights for Web), um diese Komponente zu überprüfen.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2180,10 +2183,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Geben Sie eine Eigenschaft “Name“ der Benutzeroberflächenautomatisierung für das Element an, das:]D;]A; · das Element präzise identifiziert, UND]D;]A; · nicht den Klassennamen des Elements (z. B. Microsoft.*.* oder Windows.*.*) enthält.]]></Val>
+            <Val><![CDATA[Überprüfen Sie die Eigenschaft „Name“ der Benutzeroberflächenautomatisierung dieses Elements:]D;]A; · Wenn die Eigenschaft Name“ den Wert „Microsoft“ oder „Windows“ enthält und eng mit dem Bildschirmtext verknüpft ist (z. B. ein Verweis auf „Microsoft.com“), dann können Sie dieses Problem sicher ignorieren.]D;]A; · Wenn die Eigenschaft „Name“ nicht eng mit dem Bildschirmtext verknüpft ist (und Endbenutzern keine aussagekräftigen Informationen bereitstellt), aktualisieren Sie den Namen auf eine präzise, benutzerorientierte Bezeichnung, die eng mit dem Bildschirmtext verknüpft ist.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>

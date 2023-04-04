@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[La proprietà Name di un controllo personalizzato può essere vuota se l’elemento padre è un dataitem WPF.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2180,10 +2183,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Specificare una proprietà Name di Automazione interfaccia utente per l'elemento che:]D;]A;  identifica in modo conciso l'elemento, E]D;]A;  non include il nome della classe dell'elemento (come Microsoft.*.* o Windows.*.*).]]></Val>
+            <Val><![CDATA[Esaminare la proprietà Name dell’automazione dell’interfaccia utente di questo elemento:]D;]A; · Se la proprietà Name contiene "Microsoft" o "Windows" ed è strettamente correlata al testo su schermo (ad esempio, un riferimento a "Microsoft.com"), è possibile ignorare il problema.]D;]A; · Se la proprietà Name non è strettamente correlata al testo su schermo (e non fornisce informazioni significative agli utenti finali), aggiornare il Name a un'etichetta concisa rivolta all'utente strettamente correlata al testo su schermo.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2290,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Implementare il criterio RangeValue dell'indicatore di stato usando le proprietà e i valori seguenti:]D;]A; · Minimo: 0,0]D;]A; · Massimo: 100,0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[Implementare il criterio RangeValue dell'indicatore di stato usando le proprietà e i valori seguenti:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: TRUE]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2326,7 +2332,7 @@
         <Str Cat="Text">
           <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. Assicurarsi che l'elemento disponga della proprietà ControlType appropriata per la relativa funzione.]D;]A;2. Assicurarsi che il criterio di selezione sia corretto.]D;]A;3. Impostare la proprietà CanSelectMultiple dell'elemento su FALSE.]]></Val>
+            <Val><![CDATA[1. Assicurarsi che l'elemento disponga della proprietà ControlType appropriata per la relativa funzione.]D;]A;2. Assicurarsi che il criterio di Selection sia corretto.]D;]A;3. Impostare la proprietà CanSelectMultiple dell'elemento su FALSE.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

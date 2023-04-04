@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[La propiedad Name de un control personalizado podría estar vacía si el elemento primario fuera un dataitem WPF.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1552,7 +1555,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de alternancia si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
+            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de Toggle si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1777,7 +1780,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Si se pudiera cambiar el tamaño del elemento, implemente el patrón de transformación.]D;]A;Si no se pudiera cambiar el tamaño del elemento, asegúrese de que la propiedad TransformPattern_CanResize sea FALSO.]]></Val>
+            <Val><![CDATA[Si se pudiera cambiar el tamaño del elemento, implemente el patrón de Transform.]D;]A;Si no se pudiera cambiar el tamaño del elemento, asegúrese de que la propiedad TransformPattern_CanResize sea FALSO.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2180,10 +2183,13 @@
       </Item>
       <Item ItemId=";NameIsInformative" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Proporcione una propiedad Name de Automatización de la interfaz de usuario para el elemento que:]D;]A; · Identifique de forma concisa el elemento, Y]D;]A; · No incluya el nombre de clase del elemento (como Microsoft.*.* o Windows.*.*).]]></Val>
+            <Val><![CDATA[Examinar la propiedad Automatización de la interfaz de usuario Name de este elemento:]D;]A; · Si la propiedad Name contiene "Microsoft" o "Windows" y está estrechamente relacionada con el texto en pantalla (por ejemplo, una referencia a "Microsoft.com"), puede omitir este problema de forma segura.]D;]A; · Si la propiedad Name no está estrechamente relacionada con el texto en pantalla (y no proporciona información significativa a los usuarios finales), actualice Name a una etiqueta concisa y orientada al usuario que esté estrechamente relacionada con el texto en pantalla.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2290,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Implemente el patrón RangeValue de la barra de progreso con las siguientes propiedades y valores:]D;]A; · Mínimo: 0,0]D;]A; · Máximo: 100,0]D;]A; · IsReadOnly: VERDADERO]]></Val>
+            <Val><![CDATA[Implemente el patrón RangeValue de la barra de progreso con las siguientes propiedades y valores:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: VERDADERO]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2326,7 +2332,7 @@
         <Str Cat="Text">
           <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. Asegúrese de que el elemento tenga la propiedad ControlType adecuada para su función.]D;]A;2. Asegúrese de la selección sea el patrón correcto.]D;]A;3. Establezca la propiedad CanSelectMultiple del elemento en FALSO.]]></Val>
+            <Val><![CDATA[1. Asegúrese de que el elemento tenga la propiedad ControlType adecuada para su función.]D;]A;2. Asegúrese de la Selection sea el patrón correcto.]D;]A;3. Establezca la propiedad CanSelectMultiple del elemento en FALSO.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2353,7 +2359,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the split button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modifique el botón de expansión para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de alternancia si el botón puede recorrer una serie de hasta tres estados.]]></Val>
+            <Val><![CDATA[Modifique el botón de expansión para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de Toggle si el botón puede recorrer una serie de hasta tres estados.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

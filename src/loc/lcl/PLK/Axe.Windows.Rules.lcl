@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[Właściwość Name kontrolki niestandardowej może być pusta, jeśli elementem nadrzędnym jest elementem WPF dataitem.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1867,7 +1870,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj wartość dla właściwości IsContentElement elementu:]D;]A; · Jeśli element powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość TRUE.]D;]A; · Jeśli element nie powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość FALSE.]]></Val>
+            <Val><![CDATA[Podaj wartość dla właściwości IsControlElement elementu:]D;]A; · Jeśli element powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość TRUE.]D;]A; · Jeśli element nie powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość FALSE.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1876,7 +1879,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsControlElement UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsContentElement na wartość true.]]></Val>
+            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsControlElement na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2293,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zaimplementuj wzorzec RangeValue paska postępu przy użyciu następujących właściwości i wartości:]D;]A; · Wartość minimalna: 0,0]D;]A; · Wartość maksymalna: 100,0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[Zaimplementuj wzorzec RangeValue paska postępu przy użyciu następujących właściwości i wartości:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: TRUE]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2329,7 +2332,7 @@
         <Str Cat="Text">
           <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. Upewnij się, że element ma odpowiednią właściwość ControlType dla swojej funkcji.]D;]A;2. Upewnij się, że zaznaczenie jest poprawnym wzorcem.]D;]A;3. Ustaw właściwość CanSelectMultiple elementu na wartość FALSE.]]></Val>
+            <Val><![CDATA[1. Upewnij się, że element ma odpowiednią właściwość ControlType dla swojej funkcji.]D;]A;2. Upewnij się, że Selection jest poprawnym wzorcem.]D;]A;3. Ustaw właściwość CanSelectMultiple elementu na wartość FALSE.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

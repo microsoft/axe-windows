@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
-          <Tgt Cat="Text" Stat="Loc" Orig="New">
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
+          <Tgt Cat="Text" Stat="Update" Orig="New">
             <Val><![CDATA[如果父级是 WPF dataitem，则自定义控件的 Name 属性可以为空。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2293,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[使用以下属性和值实现进度栏的 RangeValue 模式:]D;]A; · 最小值: 0.0]D;]A; · 最大值: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[使用以下属性和值实现进度栏的 RangeValue 模式:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

@@ -541,7 +541,7 @@
         <Str Cat="Text">
           <Val><![CDATA[A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Pole se seznamem by nemělo podporovat vzor Scroll. Toto pravidlo může být nahlášeno jako upozornění, protože některé platformy mají pole se seznamem, která ve výchozím nastavení podporují vzor posouvání, což vývojáři aplikací nemůžou snadno opravit.]]></Val>
+            <Val><![CDATA[Pole se seznamem by nemělo podporovat vzor Scroll. Toto pravidlo může být nahlášeno jako upozornění, protože některé platformy mají pole se seznamem, která ve výchozím nastavení podporují vzor Scroll, což vývojáři aplikací nemůžou snadno opravit.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -577,7 +577,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element of the given type should not support the Value pattern.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element daného typu by neměl podporovat vzor Hodnoty.]]></Val>
+            <Val><![CDATA[Element daného typu by neměl podporovat vzor Value.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -685,7 +685,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element of the given ControlType must support the Table pattern.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element daného elementu ControlType musí podporovat vzor tabulky.]]></Val>
+            <Val><![CDATA[Element daného elementu ControlType musí podporovat vzor Table.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -919,7 +919,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The ItemType property for the given element has no content, and the element has a child image. Please consider including an ItemType so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the ItemType may not be necessary.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Vlastnost ItemType pro daný element nemá žádný obsah a element má podřízený obrázek. Zvažte zahrnutí itemType, aby uživatelé technologie pro usnadnění mohli získat obrázkem znázorněné informace. Pokud jsou tyto informace již poskytnuty jiným způsobem, itemType nemusí být nutný.]]></Val>
+            <Val><![CDATA[Vlastnost ItemType pro daný element nemá žádný obsah a element má podřízený obrázek. Zvažte zahrnutí ItemType, aby uživatelé technologie pro usnadnění mohli získat obrázkem znázorněné informace. Pokud jsou tyto informace již poskytnuty jiným způsobem, ItemType nemusí být nutný.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -937,7 +937,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element with LocalizedLandmarkType "complementary" must not descend from another landmark.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element s typem localizedLandmarkType "doplňkový" nesmí pocházet z jiného orientačního bodu.]]></Val>
+            <Val><![CDATA[Element s typem LocalizedLandmarkType "doplňkový" nesmí pocházet z jiného orientačního bodu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -946,7 +946,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element with LocalizedLandmarkType "contentinfo" must not descend from another landmark.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element s typem localizedLandmarkType „contentinfo“ nesmí pocházet z jiného orientačního bodu.]]></Val>
+            <Val><![CDATA[Element s typem LocalizedLandmarkType „contentinfo“ nesmí pocházet z jiného orientačního bodu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -955,7 +955,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element with LocalizedLandmarkType "main" must not descend from another landmark.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element s typem localizedLandmarkType „main“ nesmí pocházet z jiného orientačního bodu.]]></Val>
+            <Val><![CDATA[Element s typem LocalizedLandmarkType „main“ nesmí pocházet z jiného orientačního bodu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -973,7 +973,7 @@
         <Str Cat="Text">
           <Val><![CDATA[A page must not have multiple elements with LocalizedLandmarkType "contentinfo".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Stránka nesmí mít více elementů s typem localizedLandmarkType „contentinfo“.]]></Val>
+            <Val><![CDATA[Stránka nesmí mít více elementů s typem LocalizedLandmarkType „contentinfo“.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1099,7 +1099,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The Name must not include the same text as the LocalizedControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Název nesmí obsahovat stejný text jako LocalizedControlType.]]></Val>
+            <Val><![CDATA[Name nesmí obsahovat stejný text jako LocalizedControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1160,10 +1160,13 @@
       </Item>
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Vlastnost Name vlastního ovládacího prvku může být prázdná, pokud je nadřazeným objektem datová položka WPF.]]></Val>
+            <Val><![CDATA[Vlastnost Name vlastního ovládacího prvku může být prázdná, pokud je nadřazeným objektem WPF DataItem.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1189,7 +1192,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Běžně se očekává, že interaktivní element s platnou vlastností Name bude mít platný boundingRectangle, který není null a má oblast.]]></Val>
+            <Val><![CDATA[Běžně se očekává, že interaktivní element s platnou vlastností Name bude mít platný BoundingRectangle, který není null a má oblast.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1939,7 +1942,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Pokud by tento kontejner měl být zjistitelný pro uživatelé klávesnice, nastavte vlastnost IsKeyboardFocusable UI Automation na true. V opačném případě zvažte změnu controlType.]]></Val>
+            <Val><![CDATA[Pokud by tento kontejner měl být zjistitelný pro uživatelé klávesnice, nastavte vlastnost IsKeyboardFocusable UI Automation na true. V opačném případě zvažte změnu ControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1948,7 +1951,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nastavte vlastnost UI Automation IsKeyboardFocusable na hodnotu false. Pokud by tento prvek měl být skutečně dostupný prostřednictvím klávesnice, ověřte jeho controlType.]]></Val>
+            <Val><![CDATA[Nastavte vlastnost UI Automation IsKeyboardFocusable na hodnotu false. Pokud by tento prvek měl být skutečně dostupný prostřednictvím klávesnice, ověřte jeho ControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2182,7 +2185,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Prozkoumejte vlastnost model UI Automation Name tohoto elementu:]D;]A;· Pokud vlastnost Name obsahuje „Microsoft“ nebo „Windows“ a úzce souvisí s textem na obrazovce (například odkazem na „Microsoft.com“), můžete tento problém bez obav ignorovat.]D;]A; · Pokud vlastnost Name úzce nesouvisí s textem na obrazovce (a neposkytuje koncovým uživatelům žádné smysluplné informace), aktualizujte název na stručný, uživatelsky orientovaný popisek, který úzce souvisí s textem na obrazovce.]]></Val>
+            <Val><![CDATA[Prozkoumejte vlastnost model UI Automation Name tohoto elementu:]D;]A;· Pokud vlastnost Name obsahuje „Microsoft“ nebo „Windows“ a úzce souvisí s textem na obrazovce (například odkazem na „Microsoft.com“), můžete tento problém bez obav ignorovat.]D;]A; · Pokud vlastnost Name úzce nesouvisí s textem na obrazovce (a neposkytuje koncovým uživatelům žádné smysluplné informace), aktualizujte Name na stručný, uživatelsky orientovaný popisek, který úzce souvisí s textem na obrazovce.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
@@ -2266,7 +2269,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Upravte vlastnost model UI Automation Name tak, aby měla platný boundingRectangle (tj. BoundingRectangle není null a má oblast).]]></Val>
+            <Val><![CDATA[Upravte vlastnost model UI Automation Name tak, aby měla platný BoundingRectangle (tj. BoundingRectangle není null a má oblast).]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
