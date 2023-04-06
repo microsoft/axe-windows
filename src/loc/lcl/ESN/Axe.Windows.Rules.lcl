@@ -406,7 +406,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element's BoundingRectangle must be contained within its parent element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[El boundingRectangle de un elemento debe estar incluido en su elemento primario.]]></Val>
+            <Val><![CDATA[El BoundingRectangle de un elemento debe estar incluido en su elemento primario.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -541,7 +541,7 @@
         <Str Cat="Text">
           <Val><![CDATA[A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Un cuadro combinado no debe admitir el patrón de desplazamiento. Esta regla se puede notificar como una advertencia porque algunas plataformas tienen cuadros combinados que admiten el patrón de desplazamiento de forma predeterminada, algo que los desarrolladores de aplicaciones no pueden corregir fácilmente.]]></Val>
+            <Val><![CDATA[Un cuadro combinado no debe admitir el patrón Scroll. Esta regla se puede notificar como una advertencia porque algunas plataformas tienen cuadros combinados que admiten el patrón Scroll de forma predeterminada, algo que los desarrolladores de aplicaciones no pueden corregir fácilmente.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1161,8 +1161,8 @@
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[La propiedad Name de un control personalizado podría estar vacía si el elemento primario fuera un dataitem WPF.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[La propiedad Name de un control personalizado puede estar vacía si el principal es un DataItem WPF.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
@@ -1537,7 +1537,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de alternancia si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
+            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón Toggle si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1546,7 +1546,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de alternancia si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
+            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón Toggle si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1564,7 +1564,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the button to support exactly one of the following patterns:]D;]A; · Support the Invoke pattern if the button performs a command at the request of the user.]D;]A; · Support the Toggle pattern if the button can cycle through a series of up to three states.]D;]A; · Support the ExpandCollapse pattern if the button shows or hides additional content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón de alternancia si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
+            <Val><![CDATA[Modifique el botón para que admita exactamente uno de los siguientes patrones:]D;]A; · Admitir el patrón Invoke si el botón ejecuta un comando a petición del usuario.]D;]A; · Admitir el patrón Toggle si el botón puede recorrer una serie de hasta tres estados.]D;]A; · Admitir el patrón ExpandCollapse si el botón muestra u oculta contenido adicional.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1609,7 +1609,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the combo box to not support the Scroll pattern.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Modifique el cuadro combinado para que no admita el patrón de desplazamiento.]]></Val>
+            <Val><![CDATA[Modifique el cuadro combinado para que no admita el patrón Scroll.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

@@ -541,7 +541,7 @@
         <Str Cat="Text">
           <Val><![CDATA[A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[コンボ ボックスが Scroll パターンをサポートすることはできません。一部のプラットフォームには、既定でスクロール パターンをサポートし、アプリ開発者は簡単に修正できないコンボ ボックスがあるため、このルールは警告として報告される可能性があります。]]></Val>
+            <Val><![CDATA[コンボ ボックスが Scroll パターンをサポートすることはできません。一部のプラットフォームには、既定で Scroll パターンをサポートし、アプリ開発者は簡単に修正できないコンボ ボックスがあるため、このルールは警告として報告される可能性があります。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -811,7 +811,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The recommended value of the IsControlElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as a control. Note that almost all controls are required to have the IsControl Property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[指定されたコントロールの型に対する IsContentElement プロパティの推奨値は true です。これが支援技術ユーザーにコンテンツとして報告する必要のある要素かどうかをご検討ください。ほとんどすべてのコントロールで IsControl プロパティを true に設定する必要があることに注意してください。]]></Val>
+            <Val><![CDATA[指定されたコントロールの型に対する IsControlElement プロパティの推奨値は true です。これが支援技術ユーザーにコンテンツとして報告する必要のある要素かどうかをご検討ください。ほとんどすべてのコントロールで IsControl プロパティを true に設定する必要があることに注意してください。]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
