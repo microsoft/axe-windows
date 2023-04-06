@@ -505,7 +505,7 @@
         <Str Cat="Text">
           <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Разделитель не должен иметь дочерних элементов со свойством isContentElement, для которого задано значение TRUE.]]></Val>
+            <Val><![CDATA[Разделитель не должен иметь дочерних элементов со свойством IsContentElement, для которого задано значение TRUE.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1161,8 +1161,8 @@
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Свойство Name пользовательского элемента управления может быть пустым, если родительский элемент является элементом данных WPF.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Свойство Name пользовательского элемента управления может быть пустым, если родительский элемент является DataItem WPF.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>

@@ -838,7 +838,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[IsKeyboardFocusable özelliği normalde true olacakken bir öğe için false durumunda. Ancak öğedeki IsOffscreen özelliği de false olduğundan IsKeyboardFocusable değeri kabul edilebilir.]]></Val>
+            <Val><![CDATA[IsKeyboardFocusable özelliği normalde true olacakken bir öğe için false durumunda. Ancak öğedeki IsEnabled özelliği de false olduğundan IsKeyboardFocusable değeri kabul edilebilir.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

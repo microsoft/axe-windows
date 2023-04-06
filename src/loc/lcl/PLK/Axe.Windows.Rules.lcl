@@ -802,7 +802,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The given ControlType must have a non-null IsControlElement property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Dany element ControlType musi mieć właściwość IsContentElement o wartości innej niż null.]]></Val>
+            <Val><![CDATA[Dany element ControlType musi mieć właściwość IsControlElement o wartości innej niż null.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

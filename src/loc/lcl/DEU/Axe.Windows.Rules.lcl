@@ -577,7 +577,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element of the given type should not support the Value pattern.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ein Element des angegebenen Typs sollte das Wertmuster nicht unterstützen.]]></Val>
+            <Val><![CDATA[Ein Element des angegebenen Typs sollte das Value-Muster nicht unterstützen.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1099,7 +1099,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The Name must not include the same text as the LocalizedControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Der Name darf nicht denselben Text wie localizedControlType enthalten.]]></Val>
+            <Val><![CDATA[Der Name darf nicht denselben Text wie LocalizedControlType enthalten.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1161,8 +1161,8 @@
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Die Eigenschaft „Name“ eines benutzerdefinierten Steuerelements ist möglicherweise leer, wenn das übergeordnete Element ein WPF-Dataitem ist.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Die Name-Eigenschaft eines benutzerdefinierten Steuerelements ist möglicherweise leer, wenn das übergeordnete Element ein WPF-DataItem ist.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
