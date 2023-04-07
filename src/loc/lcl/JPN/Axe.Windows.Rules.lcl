@@ -1161,8 +1161,8 @@
       <Item ItemId=";NameOnCustomWithParentWPFDataItem" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF DataItem.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[親が WPF データ項目の場合、カスタム コントロールの Name プロパティは空である可能性があります。]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[親が WPF DataItem の場合、カスタム コントロールの Name プロパティは空になることがあります。]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[The Name property of a custom control may be empty if the parent is a WPF dataitem.]]></Val>
