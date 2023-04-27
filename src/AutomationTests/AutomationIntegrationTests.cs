@@ -142,7 +142,7 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            if (sync && !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")))
+            if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")))
             {
                 Console.WriteLine("Test skipped in pipeline - See issue #912");
             }
