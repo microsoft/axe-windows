@@ -10,5 +10,5 @@ You can build and run the project from within Visual Studio. If you need to upda
 dotnet publish -r win-x64 -c release 
 ```
 
-Then copy `bin\release\net6.0-windows\win-x64\publish\WebViewSample.exe` over the binary that is stored in the repo.
+Then copy `bin\release\net6.0-windows\win-x64\publish\WebViewSample.exe` and `bin\release\net6.0-windows\win-x64\publish\DemoPage.mhtml` over the binary that is stored in the repo.
 

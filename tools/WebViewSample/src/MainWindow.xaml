@@ -12,7 +12,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <wv2:WebView2 Name="webView" Source="https://www.washington.edu/accesscomputing/AU/before.html" />
+            <wv2:WebView2 Name="webView" />
         </DockPanel>
     </Grid>
 </Window>
