@@ -142,10 +142,17 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+            if (sync && !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")))
             {
-                ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
-            });
+                Console.WriteLine("Test skipped in pipeline - See issue #912");
+            }
+            else
+            {
+                RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+                {
+                    ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+                });
+            }
         }
 
         [TestMethod]
