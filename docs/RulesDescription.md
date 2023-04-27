@@ -136,7 +136,7 @@ NameEmptyButElementNotKeyboardFocusable | NeedsReview | The Name property for th
 NameWithValidBoundingRectangle | Warning | An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area. | Section 508 502.3.1 ObjectInformation
 NameOnOptionalType | NeedsReview | The Name property for the given element type is optional. | Section 508 502.3.1 ObjectInformation
 NameNoSiblingsOfSameType | NeedsReview | The Name property of the given element may be null or empty if the element has no siblings of the same type. | Section 508 502.3.1 ObjectInformation
-NameOnCustomWithParentWPFDataItem | NeedsReview | The Name property of a custom control may be empty if the parent is a WPF dataitem. | Section 508 502.3.1 ObjectInformation
+NameOnCustomWithParentWPFDataItem | NeedsReview | The Name property of a custom control may be empty if the parent is a WPF DataItem. | Section 508 502.3.1 ObjectInformation
 NameIsInformative | Error | The Name property of an element should not contain class names like 'Microsoft.*.*' or 'Windows.*.*' as these are not usually informative. | Section 508 502.3.1 ObjectInformation
 LocalizedControlTypeNotWhiteSpace | Error | The LocalizedControlType property must not contain only white space. | Section 508 502.3.1 ObjectInformation
 LocalizedControlTypeNotEmpty | Error | The LocalizedControlType property must not be an empty string. | Section 508 502.3.1 ObjectInformation
@@ -156,7 +156,7 @@ ClickablePointOnScreenWPF | Error | An element's IsOffScreen property must be fa
 ClickablePointOffScreen | Warning | An element's IsOffScreen property must be true when its clickable point is off-screen. | Section 508 502.3.1 ObjectInformation
 FrameworkDoesNotSupportUIAutomation | Error | The framework used to build this application does not support. | Section 508 502.3.1 ObjectInformation
 EdgeBrowserHasBeenDeprecated | Error | The non-Chromium version of Microsoft Edge has been deprecated. | Section 508 502.3.1 ObjectInformation
-ChromiumComponentsShouldUseWebScanner | Error | Chromium components should be scanned with a web-based scanner. | Not applicable
+ChromiumComponentsShouldUseWebScanner | Error | Chromium components should be scanned with a web-based scanner. | WCAG 1.3.1 InfoAndRelationships
 
 ## Severity descriptions
 
