@@ -5,7 +5,6 @@ using Axe.Windows.Automation;
 using Axe.Windows.Automation.Data;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Bson;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
