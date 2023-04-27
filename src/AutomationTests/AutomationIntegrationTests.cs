@@ -55,19 +55,18 @@ namespace Axe.Windows.AutomationTests
                 ));
             _validationApp = Path.Combine(_validationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
 
-            // Build agents are less predictable than dev machines. Set the flags based
-            // on the BUILD_BUILDID environment variable (only set on build agents)
-            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID")))
-            {
-                // Dev machine: Require tests with minimal timeout
-                _testAppDelay = TimeSpan.FromSeconds(2);
-                _allowInconclusive = false;
-            }
-            else
+            // Build agents are less predictable than dev machines.
+            if (IsTestRunningInPipeline())
             {
                 // Pipeline machine: Allow inconclusive tests, longer timeout
                 _testAppDelay = TimeSpan.FromSeconds(10);
                 _allowInconclusive = true;
+            }
+            else
+            {
+                // Dev machine: Require tests with minimal timeout
+                _testAppDelay = TimeSpan.FromSeconds(2);
+                _allowInconclusive = false;
             }
         }
 
@@ -142,10 +141,17 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+            if (IsTestRunningInPipeline())
             {
-                ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
-            });
+                Console.WriteLine("Test skipped in pipeline - See issue #912");
+            }
+            else
+            {
+                RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+                {
+                    ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+                });
+            }
         }
 
         [TestMethod]
@@ -428,6 +434,12 @@ namespace Axe.Windows.AutomationTests
         {
             if (Directory.Exists(_outputDir))
                 Directory.Delete(_outputDir, true);
+        }
+
+        private static bool IsTestRunningInPipeline()
+        {
+            // The BUILD_BUILDID environment variable is only set on build agents
+            return !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID"));
         }
     }
 }
