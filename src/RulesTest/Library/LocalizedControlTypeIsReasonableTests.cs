@@ -13,6 +13,7 @@ namespace Axe.Windows.RulesTests.Library
         private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsReasonable();
 
         [TestMethod]
+        [Timeout(1000)]
         public void Condition_IsNotEnglish_Returns_False()
         {
             SystemProperties.OverriddenISOLanguageName = "spa";
@@ -25,6 +26,7 @@ namespace Axe.Windows.RulesTests.Library
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void Condition_IsEnglish_Returns_True()
         {
             SystemProperties.OverriddenISOLanguageName = "eng";

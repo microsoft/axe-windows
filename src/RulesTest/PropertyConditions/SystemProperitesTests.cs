@@ -17,6 +17,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void IsEnglish_DefaultInput_MatchesSystemLocale()
         {
             string languageName = CultureInfo.CurrentCulture.ThreeLetterISOLanguageName;
@@ -24,18 +25,21 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void IsEnglish_English_CaseInsensitive_ReturnsTrue()
         {
             SetOverrideAndAssertConditionMatches("EnG", true);
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void IsEnglish_IsGerman_ReturnsFalse()
         {
             SetOverrideAndAssertConditionMatches("deu", false);
         }
 
         [TestMethod]
+        [Timeout(1000)]
         public void OverriddenCultureName_ResetsToDefault()
         {
             if (!IsSystemSetToEnglish(CultureInfo.CurrentCulture.ThreeLetterISOLanguageName))
