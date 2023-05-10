@@ -15,21 +15,29 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void Condition_IsNotEnglish_Returns_False()
         {
-            SystemProperties.OverriddenCultureName = "es-ES";
+            SystemProperties.OverriddenISOLanguageName = "spa";
 
-            Assert.IsFalse(Rule.Condition.Matches(null));
+            bool matches = Rule.Condition.Matches(null);
+
+            SystemProperties.OverriddenISOLanguageName = null;
+
+            Assert.IsFalse(matches);
         }
 
         [TestMethod]
         public void Condition_IsEnglish_Returns_True()
         {
-            SystemProperties.OverriddenCultureName = "en-US";
+            SystemProperties.OverriddenISOLanguageName = "eng";
 
             var e = new MockA11yElement();
             e.ControlTypeId = Axe.Windows.Core.Types.ControlType.UIA_AppBarControlTypeId;
             e.LocalizedControlType = "app bar";
 
-            Assert.IsTrue(Rule.Condition.Matches(e));
+            bool matches = Rule.Condition.Matches(e);
+
+            SystemProperties.OverriddenISOLanguageName = null;
+
+            Assert.IsTrue(matches);
         }
 
         [TestMethod]

@@ -13,68 +13,62 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         [TestCleanup]
         public void Cleanup()
         {
-            SystemProperties.OverriddenCultureName = null;
+            SystemProperties.OverriddenISOLanguageName = null;
         }
 
         [TestMethod]
         public void IsEnglish_DefaultInput_MatchesSystemLocale()
         {
-            string cultureName = CultureInfo.CurrentCulture.Name;
-            AssertConditionMatches(cultureName, IsSystemSetToEnglish(cultureName));
+            string languageName = CultureInfo.CurrentCulture.ThreeLetterISOLanguageName;
+            AssertConditionMatches(languageName, IsSystemSetToEnglish(languageName));
         }
 
         [TestMethod]
-        public void IsEnglish_IsSimpleEnglish_CaseInsensitive_ReturnsTrue()
+        public void IsEnglish_English_CaseInsensitive_ReturnsTrue()
         {
-            SetOverrideAndAssertConditionMatches("En", true);
-        }
-
-        [TestMethod]
-        public void IsEnglish_IsUKEnglish_CaseInsensitive_ReturnsTrue()
-        {
-            SetOverrideAndAssertConditionMatches("eN-Uk", true);
+            SetOverrideAndAssertConditionMatches("EnG", true);
         }
 
         [TestMethod]
         public void IsEnglish_IsGerman_ReturnsFalse()
         {
-            SetOverrideAndAssertConditionMatches("de-DE", false);
+            SetOverrideAndAssertConditionMatches("deu", false);
         }
 
         [TestMethod]
         public void OverriddenCultureName_ResetsToDefault()
         {
-            if (!IsSystemSetToEnglish(CultureInfo.CurrentCulture.Name))
+            if (!IsSystemSetToEnglish(CultureInfo.CurrentCulture.ThreeLetterISOLanguageName))
             {
                 Assert.Inconclusive("This test can only be run with English locale settings");
             }
 
             AssertConditionMatches("system default", true);
-            SetOverrideAndAssertConditionMatches("de-DE", false);
-            SystemProperties.OverriddenCultureName = null;
+            SetOverrideAndAssertConditionMatches("deu", false);
+            SystemProperties.OverriddenISOLanguageName = null;
             AssertConditionMatches("system default", true);
         }
 
-        private static bool IsSystemSetToEnglish(string cultureName)
+        private static bool IsSystemSetToEnglish(string languageName)
         {
-            return (cultureName.ToLowerInvariant() == "en" || cultureName.ToLowerInvariant().StartsWith("en-"));
+            return string.Equals(languageName, "eng", System.StringComparison.OrdinalIgnoreCase);
         }
 
-        private void SetOverrideAndAssertConditionMatches(string cultureName, bool expectsEnglish)
+        private void SetOverrideAndAssertConditionMatches(string languageName, bool expectsEnglish)
         {
-            SystemProperties.OverriddenCultureName = cultureName;
-            AssertConditionMatches(cultureName, expectsEnglish);
+            SystemProperties.OverriddenISOLanguageName = languageName;
+            AssertConditionMatches(languageName, expectsEnglish);
         }
 
-        private void AssertConditionMatches(string cultureName, bool expectsEnglish)
+        private void AssertConditionMatches(string languageName, bool expectsEnglish)
         {
             if (expectsEnglish)
             {
-                Assert.IsTrue(SystemProperties.IsEnglish.Matches(null), $"Expected {cultureName} to report true");
+                Assert.IsTrue(SystemProperties.IsEnglish.Matches(null), $"Expected {languageName} to report true");
             }
             else
             {
-                Assert.IsFalse(SystemProperties.IsEnglish.Matches(null), $"Expected {cultureName} to report false");
+                Assert.IsFalse(SystemProperties.IsEnglish.Matches(null), $"Expected {languageName} to report false");
             }
         }
     } // class

@@ -5,17 +5,17 @@ namespace Axe.Windows.Rules.PropertyConditions
 {
     static class SystemProperties
     {
-        private static string SystemCultureName = System.Globalization.CultureInfo.CurrentCulture.Name;
+        private static readonly string SystemISOLanguageName = System.Globalization.CultureInfo.CurrentCulture.ThreeLetterISOLanguageName;
 
-        internal static string OverriddenCultureName { get; set; }
+        internal static string OverriddenISOLanguageName { get; set; }
 
         public static Condition IsEnglish = CreateEnglishConditionWithTestOverride();
 
         private static Condition CreateEnglishConditionWithTestOverride()
         {
-            StringProperty cultureName = new StringProperty(_ => (OverriddenCultureName ?? SystemCultureName).ToLowerInvariant());
+            StringProperty cultureName = new StringProperty(_ => (OverriddenISOLanguageName ?? SystemISOLanguageName));
 
-            return new OrCondition(cultureName.IsNoCase("en"), cultureName.MatchesRegEx("^en-.*"));
+            return cultureName.IsNoCase("eng");
         }
     } // class
 } // namespace
