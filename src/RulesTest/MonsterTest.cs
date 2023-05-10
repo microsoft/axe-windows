@@ -16,6 +16,11 @@ namespace Axe.Windows.RulesTests
     [TestClass]
     public class MonsterTest
     {
+        private static readonly IEnumerable<RuleId> EnglishSpecificRuleIds = new RuleId[]
+        {
+            RuleId.LocalizedControlTypeReasonable,
+        };
+
         [TestMethod()]
         public void MonsterButtonTest()
         {
@@ -243,9 +248,12 @@ namespace Axe.Windows.RulesTests
         {
             if (!string.Equals(CultureInfo.CurrentCulture.ThreeLetterISOLanguageName, "eng", System.StringComparison.OrdinalIgnoreCase))
             {
-                if (expectedResults.ContainsKey(RuleId.LocalizedControlTypeReasonable))
+                foreach (RuleId ruleId in EnglishSpecificRuleIds)
                 {
-                    expectedResults.Remove(RuleId.LocalizedControlTypeReasonable);
+                    if (expectedResults.ContainsKey(ruleId))
+                    {
+                        expectedResults.Remove(ruleId);
+                    }
                 }
             }
         }
