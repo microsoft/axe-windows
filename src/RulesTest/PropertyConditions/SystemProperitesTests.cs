@@ -58,13 +58,13 @@ namespace Axe.Windows.RulesTests.PropertyConditions
             return string.Equals(languageName, "eng", System.StringComparison.OrdinalIgnoreCase);
         }
 
-        private void SetOverrideAndAssertConditionMatches(string languageName, bool expectsEnglish)
+        private static void SetOverrideAndAssertConditionMatches(string languageName, bool expectsEnglish)
         {
             SystemProperties.OverriddenISOLanguageName = languageName;
             AssertConditionMatches(languageName, expectsEnglish);
         }
 
-        private void AssertConditionMatches(string languageName, bool expectsEnglish)
+        private static void AssertConditionMatches(string languageName, bool expectsEnglish)
         {
             if (expectsEnglish)
             {
