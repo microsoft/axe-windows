@@ -8,6 +8,7 @@ using Axe.Windows.Rules.Resources;
 using System;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.StringProperties;
+using static Axe.Windows.Rules.PropertyConditions.SystemProperties;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -174,7 +175,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return ~Custom & LocalizedControlType.NotNullOrEmpty & LocalizedControlType.NotWhiteSpace;
+            return IsEnglish & ~Custom & LocalizedControlType.NotNullOrEmpty & LocalizedControlType.NotWhiteSpace;
         }
     } // class
 } // namespace
