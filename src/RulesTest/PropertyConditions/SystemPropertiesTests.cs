@@ -8,7 +8,7 @@ using System.Globalization;
 namespace Axe.Windows.RulesTests.PropertyConditions
 {
     [TestClass]
-    public class SystemProperitesTests
+    public class SystemPropertiesTests
     {
         [TestCleanup]
         public void Cleanup()
