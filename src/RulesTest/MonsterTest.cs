@@ -6,6 +6,7 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using EvaluationCode = Axe.Windows.Rules.EvaluationCode;
@@ -217,6 +218,8 @@ namespace Axe.Windows.RulesTests
         {
             DoNotPassNotApplicableAsExpectedResults(expectedResults);
 
+            RemoveEnglishSpecificRulesIfNeeded(expectedResults);
+
             foreach (KeyValuePair<RuleId, EvaluationCode> actualPair in actualResults)
             {
                 if (actualPair.Value == EvaluationCode.NotApplicable)
@@ -234,6 +237,17 @@ namespace Axe.Windows.RulesTests
             }
 
             CheckForExtraRules(expectedResults);
+        }
+
+        private static void RemoveEnglishSpecificRulesIfNeeded(Dictionary<RuleId, EvaluationCode> expectedResults)
+        {
+            if (!string.Equals(CultureInfo.CurrentCulture.ThreeLetterISOLanguageName, "eng", System.StringComparison.OrdinalIgnoreCase))
+            {
+                if (expectedResults.ContainsKey(RuleId.LocalizedControlTypeReasonable))
+                {
+                    expectedResults.Remove(RuleId.LocalizedControlTypeReasonable);
+                }
+            }
         }
 
         private static void DoNotPassNotApplicableAsExpectedResults(Dictionary<RuleId, EvaluationCode> expectedResults)
