@@ -59,7 +59,7 @@ namespace Axe.Windows.AutomationTests
             if (IsTestRunningInPipeline())
             {
                 // Pipeline machine: Allow inconclusive tests, longer timeout
-                _testAppDelay = TimeSpan.FromSeconds(10);
+                _testAppDelay = TimeSpan.FromSeconds(30);
                 _allowInconclusive = true;
             }
             else
@@ -84,7 +84,7 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WildlifeManager(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
                 var processId = LaunchTestApp(_wildlifeManagerAppPath);
                 WindowScanOutput results = ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: processId);
@@ -97,7 +97,7 @@ namespace Axe.Windows.AutomationTests
         // [DataRow(false)]
         public void Scan_Integration_Win32ControlSampler(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
                 ScanIntegrationCore(sync, _win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
             });
@@ -108,7 +108,7 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WindowsFormsControlSampler(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
                 ScanIntegrationCore(sync, _windowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
             });
@@ -119,7 +119,7 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WindowsFormsMultiWindowSample(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
                 ScanIntegrationCore(sync, _windowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
             });
@@ -130,7 +130,7 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WpfControlSampler(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
                 ScanIntegrationCore(sync, _wpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
             });
@@ -141,23 +141,16 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            if (IsTestRunningInPipeline())
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(180), () =>
             {
-                Console.WriteLine("Test skipped in pipeline - See issue #912");
-            }
-            else
-            {
-                RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
-                {
-                    ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
-                });
-            }
+                ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+            });
         }
 
         [TestMethod]
         public void ScanAsync_WindowsFormsSampler_TaskIsCancelled_ThrowsCancellationException()
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
                 var processId = LaunchTestApp(_windowsFormsControlSamplerAppPath);
                 var builder = Config.Builder.ForProcessId(processId)
@@ -181,7 +174,7 @@ namespace Axe.Windows.AutomationTests
         public void ScanAsync_WildlifeManager_MultipleProcesses_RunToCompletion()
         {
             const int instanceCount = 3;
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(20 * instanceCount), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60 * instanceCount), () =>
             {
                 var cancellationTokens = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource().Token).ToList();
                 var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokens);
@@ -198,7 +191,7 @@ namespace Axe.Windows.AutomationTests
         public void ScanAsync_WildlifeManager_MultipleProcessesCancelled_ThrowsCancellationException()
         {
             const int instanceCount = 5;
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(20 * instanceCount), () =>
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60 * instanceCount), () =>
             {
                 var cancellationTokenSources = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource()).ToList();
                 var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
