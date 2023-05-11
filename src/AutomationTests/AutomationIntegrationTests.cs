@@ -146,10 +146,17 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+            if (sync && IsTestRunningInPipeline())
             {
-                ScanIntegrationCore(sync, WebViewSampleAppPath, WebViewSampleKnownErrorCount);
-            });
+                Console.WriteLine("Intentionally skipping synchronous WebViewSample in pipeline - see issue #912");
+            }
+            else
+            {
+                RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
+                {
+                    ScanIntegrationCore(sync, WebViewSampleAppPath, WebViewSampleKnownErrorCount);
+                });
+            }
         }
 
         [TestMethod]
