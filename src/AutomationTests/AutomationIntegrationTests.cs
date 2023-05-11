@@ -68,6 +68,8 @@ namespace Axe.Windows.AutomationTests
                 _testAppDelay = TimeSpan.FromSeconds(2);
                 _allowInconclusive = false;
             }
+
+            CleanupTestOutput();  // Delete previous test results before starting new run
         }
 
         readonly List<Process> _testProcesses = new List<Process>();
@@ -76,10 +78,6 @@ namespace Axe.Windows.AutomationTests
         public void Cleanup()
         {
             StopTestApp();
-            if (!IsTestRunningInPipeline())  // Keep pipeline output for investigation
-            {
-                CleanupTestOutput();
-            }
         }
 
         [DataTestMethod]
