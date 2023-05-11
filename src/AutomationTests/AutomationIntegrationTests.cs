@@ -29,25 +29,28 @@ namespace Axe.Windows.AutomationTests
         // Note: This will be reduced to 1 when we add logic to ignore all but the top level chrome element
         const int WebViewSampleKnownErrorCount = 21;
 
-        readonly string _wildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
-        readonly string _win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
-        readonly string _windowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
-        readonly string _windowsFormsMultiWindowSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsMultiWindowSample/WindowsFormsMultiWindowSample.exe");
-        readonly string _wpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
-        readonly string _webViewSampleAppPath = Path.GetFullPath("../../../../../tools/WebViewSample/WebViewSample.exe");
+        const string Sync = "Sync";
+        const string Async = "Async";
 
-        readonly string _outputDir = Path.GetFullPath("./TestOutput");
-        readonly string _validationAppFolder;
-        readonly string _validationApp;
+        static readonly string WildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
+        static readonly string Win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
+        static readonly string WindowsFormsControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsControlSampler/WindowsFormsControlSampler.exe");
+        static readonly string WindowsFormsMultiWindowSamplerAppPath = Path.GetFullPath("../../../../../tools/WindowsFormsMultiWindowSample/WindowsFormsMultiWindowSample.exe");
+        static readonly string WpfControlSamplerAppPath = Path.GetFullPath("../../../../../tools/WpfControlSampler/WpfControlSampler.exe");
+        static readonly string WebViewSampleAppPath = Path.GetFullPath("../../../../../tools/WebViewSample/WebViewSample.exe");
 
-        private readonly TimeSpan _testAppDelay;
-        private readonly bool _allowInconclusive;
+        static readonly string OutputDir = Path.GetFullPath("./TestOutput");
+        static readonly string ValidationAppFolder;
+        static readonly string ValidationApp;
+
+        static readonly TimeSpan TestAppDelay;
+        static readonly bool AllowInconclusive;
 
         public TestContext TestContext { get; set; }
 
-        public AutomationIntegrationTests()
+        static AutomationIntegrationTests()
         {
-            _validationAppFolder = Path.GetFullPath(
+            ValidationAppFolder = Path.GetFullPath(
                 Path.Combine(Directory.GetCurrentDirectory(), @"../../../../CurrentFileVersionCompatibilityTests/bin",
 #if DEBUG
                     "debug"
@@ -55,23 +58,22 @@ namespace Axe.Windows.AutomationTests
                     "release"
 #endif
                 ));
-            _validationApp = Path.Combine(_validationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
+            ValidationApp = Path.Combine(ValidationAppFolder, @"CurrentFileVersionCompatibilityTests.exe");
 
             // Build agents are less predictable than dev machines.
             if (IsTestRunningInPipeline())
             {
                 // Pipeline machine: Allow inconclusive tests, longer timeout
-                _testAppDelay = TimeSpan.FromSeconds(10);
-                _allowInconclusive = true;
+                TestAppDelay = TimeSpan.FromSeconds(10);
+                AllowInconclusive = true;
             }
             else
             {
                 // Dev machine: Require tests with minimal timeout
-                _testAppDelay = TimeSpan.FromSeconds(2);
-                _allowInconclusive = false;
+                TestAppDelay = TimeSpan.FromSeconds(2);
+                AllowInconclusive = false;
             }
-
-            CleanupTestOutput();  // Delete previous test results before starting new run
+            CleanupTestOutputDir();  // Delete previous test results before starting new run
         }
 
         readonly List<Process> _testProcesses = new List<Process>();
@@ -89,8 +91,8 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                var processId = LaunchTestApp(_wildlifeManagerAppPath);
-                WindowScanOutput results = ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: processId);
+                var processId = LaunchTestApp(WildlifeManagerAppPath);
+                WindowScanOutput results = ScanIntegrationCore(sync, WildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: processId);
                 EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(results, processId);
             });
         }
@@ -102,7 +104,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                ScanIntegrationCore(sync, _win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
+                ScanIntegrationCore(sync, Win32ControlSamplerAppPath, Win32ControlSamplerKnownErrorCount);
             });
         }
 
@@ -113,7 +115,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                ScanIntegrationCore(sync, _windowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
+                ScanIntegrationCore(sync, WindowsFormsControlSamplerAppPath, WindowsFormsControlSamplerKnownErrorCount);
             });
         }
 
@@ -124,7 +126,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                ScanIntegrationCore(sync, _windowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
+                ScanIntegrationCore(sync, WindowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
             });
         }
 
@@ -135,7 +137,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                ScanIntegrationCore(sync, _wpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
+                ScanIntegrationCore(sync, WpfControlSamplerAppPath, WpfControlSamplerKnownErrorCount);
             });
         }
 
@@ -146,7 +148,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
-                ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+                ScanIntegrationCore(sync, WebViewSampleAppPath, WebViewSampleKnownErrorCount);
             });
         }
 
@@ -155,9 +157,9 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                var processId = LaunchTestApp(_windowsFormsControlSamplerAppPath);
+                var processId = LaunchTestApp(WindowsFormsControlSamplerAppPath);
                 var builder = Config.Builder.ForProcessId(processId)
-                    .WithOutputDirectory(_outputDir)
+                    .WithOutputDirectory(OutputDir)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
                 var config = builder.Build();
@@ -180,7 +182,7 @@ namespace Axe.Windows.AutomationTests
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(20 * instanceCount), () =>
             {
                 var cancellationTokens = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource().Token).ToList();
-                var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokens);
+                var tasks = GetAsyncScanTasks(WildlifeManagerAppPath, cancellationTokens);
                 var results = Task.WhenAll(tasks).Result;
 
                 foreach (var result in results)
@@ -197,7 +199,7 @@ namespace Axe.Windows.AutomationTests
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(20 * instanceCount), () =>
             {
                 var cancellationTokenSources = Enumerable.Range(0, instanceCount).Select(_ => new CancellationTokenSource()).ToList();
-                var tasks = GetAsyncScanTasks(_wildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
+                var tasks = GetAsyncScanTasks(WildlifeManagerAppPath, cancellationTokenSources.Select(tokenSource => tokenSource.Token));
 
                 var cancelledCount = 2;
                 // The first 2 tasks will be cancelled in ~50ms and ~550ms
@@ -231,7 +233,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        private void RunWithTimedExecutionWrapper(TimeSpan allowedTime, Action testAction)
+        private static void RunWithTimedExecutionWrapper(TimeSpan allowedTime, Action testAction)
         {
             TimedExecutionWrapper wrapper = new TimedExecutionWrapper(allowedTime);
             wrapper.RunAction(testAction);
@@ -251,7 +253,7 @@ namespace Axe.Windows.AutomationTests
             }
 
             // Test timed out. Abandon the thread (it will get cleaned up on process exit) and return a test result
-            if (_allowInconclusive)
+            if (AllowInconclusive)
             {
                 Assert.Inconclusive($"Test timed out after {allowedTime}");
             }
@@ -268,7 +270,7 @@ namespace Axe.Windows.AutomationTests
                 processId = LaunchTestApp(testAppPath);
             }
             var builder = Config.Builder.ForProcessId((int)processId)
-                .WithOutputDirectory(_outputDir)
+                .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
             var config = builder.Build();
@@ -291,20 +293,21 @@ namespace Axe.Windows.AutomationTests
         private IEnumerable<Task<ScanOutput>> GetAsyncScanTasks(string testAppPath, IEnumerable<CancellationToken> cancellationTokens)
         {
             var taskFuncs = new List<Func<Task<ScanOutput>>>();
+            int index = 0;
 
             // Prepare scan tasks
             foreach (var token in cancellationTokens)
             {
                 var processId = LaunchTestApp(testAppPath);
                 var builder = Config.Builder.ForProcessId(processId)
-                    .WithOutputDirectory(_outputDir)
+                    .WithOutputDirectory(OutputDir)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
                 var config = builder.Build();
 
                 var scanner = ScannerFactory.CreateScanner(config);
 
-                taskFuncs.Add(() => scanner.ScanAsync(null, token));
+                taskFuncs.Add(() => scanner.ScanAsync(BuildScanOptions(Async, ++index), token));
             }
 
             // Kick scan tasks off
@@ -317,7 +320,7 @@ namespace Axe.Windows.AutomationTests
             return tasks;
         }
 
-        private WindowScanOutput ValidateOutput(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
+        private static WindowScanOutput ValidateOutput(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
         {
             Assert.AreEqual(expectedWindowCount, output.Count);
             Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
@@ -325,7 +328,7 @@ namespace Axe.Windows.AutomationTests
 
             if (expectedErrorCount > 0)
             {
-                var regexForExpectedFile = $"{_outputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
+                var regexForExpectedFile = $"{OutputDir.Replace("\\", "\\\\")}.*\\.a11ytest";
 
                 // Validate the output file exists where it is expected
                 Assert.IsTrue(Regex.IsMatch(output.First().OutputFile.A11yTest, regexForExpectedFile));
@@ -354,11 +357,11 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.Scan(BuildScanOptions(true)).WindowScanOutputs;
+                return scanner.Scan(BuildScanOptions(Sync)).WindowScanOutputs;
             }
             catch (Exception)
             {
-                if (_allowInconclusive)
+                if (AllowInconclusive)
                 {
                     Assert.Inconclusive("Unable to complete Integration tests");
                 }
@@ -370,11 +373,11 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.ScanAsync(BuildScanOptions(false), CancellationToken.None).Result.WindowScanOutputs;
+                return scanner.ScanAsync(BuildScanOptions(Async), CancellationToken.None).Result.WindowScanOutputs;
             }
             catch (Exception)
             {
-                if (_allowInconclusive)
+                if (AllowInconclusive)
                 {
                     Assert.Inconclusive("Unable to complete Integration tests");
                 }
@@ -382,21 +385,24 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private ScanOptions BuildScanOptions(bool sync)
+        private ScanOptions BuildScanOptions(string suffix, int? index = null)
         {
-            return new ScanOptions($"{TestContext.TestName}-{sync}");
+            return
+                index.HasValue ?
+                new ScanOptions($"{TestContext.TestName}-{suffix}-{index.Value}") :
+                new ScanOptions($"{TestContext.TestName}-{suffix}");
         }
 
-        private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(WindowScanOutput scanResults, int processId)
+        private static void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(WindowScanOutput scanResults, int processId)
         {
-            Assert.IsTrue(File.Exists(_validationApp), _validationApp + " was not found");
+            Assert.IsTrue(File.Exists(ValidationApp), ValidationApp + " was not found");
 
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = _validationApp,
+                FileName = ValidationApp,
                 Arguments = string.Format(CultureInfo.InvariantCulture, @"""{0}"" {1} {2}",
                     scanResults.OutputFile.A11yTest, scanResults.ErrorCount, processId),
-                WorkingDirectory = _validationAppFolder
+                WorkingDirectory = ValidationAppFolder
             };
 
             Process testApp = Process.Start(startInfo);
@@ -417,7 +423,7 @@ namespace Axe.Windows.AutomationTests
             process.WaitForInputIdle();
             _testProcesses.Add(process);
 
-            Thread.Sleep(_testAppDelay);
+            Thread.Sleep(TestAppDelay);
 
             return process.Id;
         }
@@ -431,10 +437,12 @@ namespace Axe.Windows.AutomationTests
             _testProcesses.Clear();
         }
 
-        private void CleanupTestOutput()
+        private static void CleanupTestOutputDir()
         {
-            if (Directory.Exists(_outputDir))
-                Directory.Delete(_outputDir, true);
+            if (Directory.Exists(OutputDir))
+            {
+                Directory.Delete(OutputDir, true);
+            }
         }
 
         private static bool IsTestRunningInPipeline()
