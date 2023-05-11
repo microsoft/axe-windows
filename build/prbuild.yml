@@ -92,15 +92,6 @@ jobs:
       platform: '$(BuildPlatform)'
       configuration: debug
 
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\debug\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-
   - task: DotNetCoreCLI@2
     displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
     inputs:
@@ -108,6 +99,17 @@ jobs:
       command: test
       projects: |
         **\*test*.csproj
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    condition: always()
+    inputs:
+      Contents: '**\bin\debug\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+    condition: always()
 
   # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
   - task: CmdLine@2

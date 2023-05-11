@@ -76,7 +76,10 @@ namespace Axe.Windows.AutomationTests
         public void Cleanup()
         {
             StopTestApp();
-            CleanupTestOutput();
+            if (!IsTestRunningInPipeline())  // Keep pipeline output for investigation
+            {
+                CleanupTestOutput();
+            }
         }
 
         [DataTestMethod]
@@ -141,17 +144,10 @@ namespace Axe.Windows.AutomationTests
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
         {
-            if (sync && IsTestRunningInPipeline())
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
             {
-                Console.WriteLine("Test skipped in pipeline - See issue #912");
-            }
-            else
-            {
-                RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(60), () =>
-                {
-                    ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
-                });
-            }
+                ScanIntegrationCore(sync, _webViewSampleAppPath, WebViewSampleKnownErrorCount);
+            });
         }
 
         [TestMethod]
