@@ -43,6 +43,8 @@ namespace Axe.Windows.AutomationTests
         private readonly TimeSpan _testAppDelay;
         private readonly bool _allowInconclusive;
 
+        public TestContext TestContext { get; set; }
+
         public AutomationIntegrationTests()
         {
             _validationAppFolder = Path.GetFullPath(
@@ -352,7 +354,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.Scan(null).WindowScanOutputs;
+                return scanner.Scan(BuildScanOptions(true)).WindowScanOutputs;
             }
             catch (Exception)
             {
@@ -368,7 +370,7 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.ScanAsync(null, CancellationToken.None).Result.WindowScanOutputs;
+                return scanner.ScanAsync(BuildScanOptions(false), CancellationToken.None).Result.WindowScanOutputs;
             }
             catch (Exception)
             {
@@ -378,6 +380,11 @@ namespace Axe.Windows.AutomationTests
                 }
                 throw;
             }
+        }
+
+        private ScanOptions BuildScanOptions(bool sync)
+        {
+            return new ScanOptions($"{TestContext.TestName}-{sync}");
         }
 
         private void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(WindowScanOutput scanResults, int processId)
