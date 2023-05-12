@@ -166,6 +166,7 @@ namespace Axe.Windows.AutomationTests
             {
                 var processId = LaunchTestApp(WindowsFormsControlSamplerAppPath);
                 var builder = Config.Builder.ForProcessId(processId)
+                    .WithOutputFilesIfNoErrorsAreFound()
                     .WithOutputDirectory(OutputDir)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
@@ -277,6 +278,7 @@ namespace Axe.Windows.AutomationTests
                 processId = LaunchTestApp(testAppPath);
             }
             var builder = Config.Builder.ForProcessId((int)processId)
+                .WithOutputFilesIfNoErrorsAreFound()
                 .WithOutputDirectory(OutputDir)
                 .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
@@ -307,6 +309,7 @@ namespace Axe.Windows.AutomationTests
             {
                 var processId = LaunchTestApp(testAppPath);
                 var builder = Config.Builder.ForProcessId(processId)
+                    .WithOutputFilesIfNoErrorsAreFound()
                     .WithOutputDirectory(OutputDir)
                     .WithOutputFileFormat(OutputFileFormat.A11yTest);
 
