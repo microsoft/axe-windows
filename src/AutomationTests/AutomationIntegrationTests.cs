@@ -48,6 +48,8 @@ namespace Axe.Windows.AutomationTests
 
         public TestContext TestContext { get; set; }
 
+        private readonly List<string> _outputFiles = new List<string>();
+
         static AutomationIntegrationTests()
         {
             ValidationAppFolder = Path.GetFullPath(
@@ -82,6 +84,8 @@ namespace Axe.Windows.AutomationTests
         public void Cleanup()
         {
             StopTestApp();
+            DeleteOutputFilesIfTestPassed();
+            _outputFiles.Clear();
         }
 
         [DataTestMethod]
@@ -317,7 +321,8 @@ namespace Axe.Windows.AutomationTests
 
                 var scanner = ScannerFactory.CreateScanner(config);
 
-                taskFuncs.Add(() => scanner.ScanAsync(BuildScanOptions(Async, ++index), token));
+                string outputFile = AssignOutputFileName(Async, ++index);
+                taskFuncs.Add(() => scanner.ScanAsync(new ScanOptions(outputFile), token));
             }
 
             // Kick scan tasks off
@@ -367,7 +372,8 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.Scan(BuildScanOptions(Sync)).WindowScanOutputs;
+                string outputFile = AssignOutputFileName(Sync);
+                return scanner.Scan(new ScanOptions(outputFile)).WindowScanOutputs;
             }
             catch (Exception)
             {
@@ -383,7 +389,8 @@ namespace Axe.Windows.AutomationTests
         {
             try
             {
-                return scanner.ScanAsync(BuildScanOptions(Async), CancellationToken.None).Result.WindowScanOutputs;
+                string outputFile = AssignOutputFileName(Sync);
+                return scanner.ScanAsync(new ScanOptions(outputFile), CancellationToken.None).Result.WindowScanOutputs;
             }
             catch (Exception)
             {
@@ -395,12 +402,11 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private ScanOptions BuildScanOptions(string suffix, int? index = null)
+        private string AssignOutputFileName(string suffix, int? index = null)
         {
-            return
-                index.HasValue ?
-                new ScanOptions($"{TestContext.TestName}-{suffix}-{index.Value}") :
-                new ScanOptions($"{TestContext.TestName}-{suffix}");
+            return index.HasValue ?
+                $"{TestContext.TestName}-{suffix}-{index.Value}" :
+                $"{TestContext.TestName}-{suffix}";
         }
 
         private static void EnsureGeneratedFileIsReadableByOldVersionsOfAxeWindows(WindowScanOutput scanResults, int processId)
@@ -452,6 +458,22 @@ namespace Axe.Windows.AutomationTests
             if (Directory.Exists(OutputDir))
             {
                 Directory.Delete(OutputDir, true);
+            }
+        }
+
+        private void DeleteOutputFilesIfTestPassed()
+        {
+            if (TestContext.CurrentTestOutcome == UnitTestOutcome.Passed)
+            {
+                foreach (string outputFile in _outputFiles)
+                {
+                    string fullPath = Path.Combine(OutputDir, outputFile);
+
+                    if (File.Exists(fullPath))
+                    {
+                        File.Delete(fullPath);
+                    }
+                }
             }
         }
 
