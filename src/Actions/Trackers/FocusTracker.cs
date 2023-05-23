@@ -64,11 +64,11 @@ namespace Axe.Windows.Actions.Trackers
             // only when focus is chosen for highlight
             if (message.EventId == EventType.UIA_AutomationFocusChangedEventId)
             {
-                // exclude tooltip since it is transient UI.
+                // exclude transient UI.
                 if (IsStarted && message.Element != null)
                 {
-                    var element = GetElementBasedOnScope(message.Element);
-                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId)
+                    A11yElement element = GetElementBasedOnScope(message.Element);
+                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId && !IsTaskSwitcher(element))
                     {
                         SelectElementIfItIsEligible(element);
                     }
@@ -78,6 +78,12 @@ namespace Axe.Windows.Actions.Trackers
                     message.Dispose();
                 }
             }
+        }
+
+        private bool IsTaskSwitcher(A11yElement element)
+        {
+            if (element == null) return false;
+            return (element.ProcessName == "explorer" && element.ClassName == "Windows.UI.Input.InputSite.WindowClass" && element.ControlTypeId == ControlType.UIA_PaneControlTypeId);
         }
 
         protected override void Dispose(bool disposing)
