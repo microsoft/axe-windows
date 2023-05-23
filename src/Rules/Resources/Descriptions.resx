@@ -122,8 +122,8 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="BoundingRectangle"}</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
-    <value>A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a split button is the parent. </value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <value>A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. </value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Invoke", "Toggle", "ExpandCollapse", "SplitButton"}</comment>
   </data>
   <data name="SiblingUniqueAndNotFocusable" xml:space="preserve">
     <value>The given element has siblings with the same Name and LocalizedControlType.</value>

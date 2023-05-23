@@ -160,7 +160,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a split button is the parent. .
+        ///   Looks up a localized string similar to A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. .
         /// </summary>
         internal static string ButtonWithSplitButtonParentPattern {
             get {
