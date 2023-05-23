@@ -160,7 +160,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. .
+        ///   Looks up a localized string similar to A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. .
         /// </summary>
         internal static string ButtonWithSplitButtonParentPattern {
             get {
@@ -403,7 +403,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The framework used to build this application does not support..
+        ///   Looks up a localized string similar to The framework used to build this application does not support UI Automation..
         /// </summary>
         internal static string FrameworkDoesNotSupportUIAutomation {
             get {
@@ -520,7 +520,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns..
         /// </summary>
         internal static string IsKeyboardFocusableForCustomShouldBeTrue {
             get {
@@ -547,7 +547,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element is expected to be false because of the element&apos;s control type..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element is expected to be false because of the element&apos;s ControlType..
         /// </summary>
         internal static string IsKeyboardFocusableShouldBeFalse {
             get {
@@ -556,7 +556,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element should be true based on its control type..
+        ///   Looks up a localized string similar to The IsKeyboardFocusable property for the given element should be true based on its ControlType..
         /// </summary>
         internal static string IsKeyboardFocusableShouldBeTrue {
             get {
@@ -808,7 +808,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Name property must not contain only space characters..
+        ///   Looks up a localized string similar to The Name property must not contain only whitespace..
         /// </summary>
         internal static string NameNotWhiteSpace {
             get {
@@ -826,7 +826,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Name property of a custom control may be empty if the parent is a WPF dataitem..
+        ///   Looks up a localized string similar to The Name property of a custom control may be empty if the parent is a WPF DataItem..
         /// </summary>
         internal static string NameOnCustomWithParentWPFDataItem {
             get {

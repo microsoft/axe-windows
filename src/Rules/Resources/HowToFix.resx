@@ -182,7 +182,7 @@
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable property to be false.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "Text"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
     <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
@@ -234,7 +234,7 @@
   </data>
   <data name="Structure" xml:space="preserve">
     <value>Set the element to conform to the following structure: {0}.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. Developers: {0} is the element structure.</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {0} is the element structure.</comment>
   </data>
   <data name="SelectionPatternSelectionRequired" xml:space="preserve">
     <value>Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.</value>
@@ -244,7 +244,7 @@
     <value>Modify the button to support exactly one of the following patterns:
  · Support the Invoke pattern if the button performs a command at the request of the user.
  · Support the ExpandCollapse pattern if the button shows or hides additional content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Invoke", "ExpandCollapse"}</comment>
   </data>
   <data name="ButtonShouldHavePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
@@ -487,17 +487,17 @@ If none of the standard landmark types is applicable, provide a string that conc
     <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotCustom" xml:space="preserve">
-    <value>Provide string for the LocalizedLandmarkType property that does not include "custom."
+    <value>Provide a string for the LocalizedLandmarkType property that does not include "custom."
 Where appropriate, use a standard localized landmark type:
  · Use "banner" for an area at the beginning of the page with site-oriented content.
  · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.
  · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.
  · Use "form" for an area containing a set of form-related elements.
-    ·         Use "main" for the area with the page's primary content.
-    ·         Use "navigation" for an area containing links for page or site navigation.
-    ·         Use "search" for an area of the page containing search functionality.
+ ·         Use "main" for the area with the page's primary content.
+ ·         Use "navigation" for an area containing links for page or site navigation.
+ ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="custom", "LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotEmpty" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -507,8 +507,8 @@ Where appropriate, use a standard localized landmark type:
  · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.
  · Use "form" for an area containing a set of form-related elements.
  · Use "main" for the area with the page's primary content.
-    ·         Use "navigation" for an area containing links for page or site navigation.
-    ·         Use "search" for an area of the page containing search functionality.
+ ·         Use "navigation" for an area containing links for page or site navigation.
+ ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
     <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
@@ -584,7 +584,7 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
     <value>Examine the UI Automation Name property of this element:
  · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.
  · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Microsoft", "Name", "Windows"}</comment>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
@@ -632,10 +632,10 @@ If the element's ClickablePoint property is incorrect, please ensure it returns 
   </data>
   <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
     <value>The non-Chromium version of Edge has reached its end of life and should not be used for current product development. Please migrate your application to a supported browser.</value>
-    <comment>Brief guidance on how to fix an accessibility problem.</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Chromium", "Edge"}</comment>
   </data>
   <data name="ChromiumComponentsShouldUseWebScanner" xml:space="preserve">
     <value>Use a web-based scanner (for example, Accessibility Insights for Web) to scan this component.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Accessibility Insights for Web"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Accessibility Insights"}</comment>
   </data>
 </root>
