@@ -115,5 +115,14 @@ namespace Axe.Windows.Win32
         {
             return IsAtLeastWin10WithSpecificBuild(17713); // Build 17713 is confirmed in the RS5 range
         }
+
+        /// <summary>
+        /// Check whether current OS is Win11 (Sun Valley) or later
+        /// </summary>
+        /// <returns>True if and only if the OS is at least Win11</returns>
+        internal bool IsWindowsSVOrLater()
+        {
+            return IsAtLeastWin10WithSpecificBuild(22000);
+        }
     }
 }

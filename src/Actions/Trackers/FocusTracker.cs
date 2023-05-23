@@ -6,6 +6,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Types;
 using Axe.Windows.Desktop.UIAutomation.EventHandlers;
+using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
 
 namespace Axe.Windows.Actions.Trackers
@@ -19,6 +20,7 @@ namespace Axe.Windows.Actions.Trackers
         /// Event Handler
         /// </summary>
         EventListenerFactory _eventListenerFactory;
+        readonly bool _isWin11;
 
         /// <summary>
         /// Constructor
@@ -27,6 +29,7 @@ namespace Axe.Windows.Actions.Trackers
         public FocusTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
             _eventListenerFactory = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
+            _isWin11 = new Win32.Win32Helper().IsWindowsSVOrLater();
         }
 
         /// <summary>
@@ -64,11 +67,11 @@ namespace Axe.Windows.Actions.Trackers
             // only when focus is chosen for highlight
             if (message.EventId == EventType.UIA_AutomationFocusChangedEventId)
             {
-                // exclude tooltip since it is transient UI.
+                // exclude transient UI.
                 if (IsStarted && message.Element != null)
                 {
-                    var element = GetElementBasedOnScope(message.Element);
-                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId)
+                    A11yElement element = GetElementBasedOnScope(message.Element);
+                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId && !IsTaskSwitcher(element))
                     {
                         SelectElementIfItIsEligible(element);
                     }
@@ -78,6 +81,33 @@ namespace Axe.Windows.Actions.Trackers
                     message.Dispose();
                 }
             }
+        }
+
+        /// <summary>
+        /// microsoft/accessibility-insights-windows#1610: The "task switching"
+        /// interface that appears on Alt+Tab causes severe focus tracking
+        /// interference, especially on Sun Valley.
+        /// Therefore, this method detects whether this element is part of the
+        /// task switcher so that it can be filtered from focus tracking.
+        /// </summary>
+        /// <param name="element">The element to check.</param>
+        /// <returns>true if the element is part of the Alt+Tab task switching UI, false otherwise.</returns>
+        private bool IsTaskSwitcher(A11yElement element)
+        {
+            if (!_isWin11) return false;
+            if (element == null) return false;
+            if (element.ProcessName != "explorer") return false;
+            if (element.ClassName == "XamlExplorerHostIslandWindow") // "PANE" WINDOW THAT SOMETIMES TAKES FOCUS WHEN initiating Alt+Tab
+            {
+                DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
+                return anc.Items.Count == 1;
+            }
+            else if (element.ClassName == "ListViewItem") // Individual "task switching" item
+            {
+                DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
+                return anc.Items.Count > 0 && anc.Items[0].AutomationId == "SwitchItemListControl";
+            }
+            else return false;
         }
 
         protected override void Dispose(bool disposing)
