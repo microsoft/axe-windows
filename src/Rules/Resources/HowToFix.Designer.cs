@@ -778,12 +778,12 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Provide string for the LocalizedLandmarkType property that does not include &quot;custom.&quot;
+        ///   Looks up a localized string similar to Provide a string for the LocalizedLandmarkType property that does not include &quot;custom.&quot;
         ///Where appropriate, use a standard localized landmark type:
         /// · Use &quot;banner&quot; for an area at the beginning of the page with site-oriented content.
         /// · Use &quot;complementary&quot; for an area with supporting content that remains meaningful when separated from the primary content.
         /// · Use &quot;contentinfo&quot; for an area at the end of the page containing information about the site or the primary content.
-        /// · Use &quot;form&quot; for an area containin [rest of string was truncated]&quot;;.
+        /// · Use &quot;form&quot; for an area contain [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string LocalizedLandmarkTypeNotCustom {
             get {

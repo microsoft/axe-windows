@@ -122,12 +122,12 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="BoundingRectangle"}</comment>
   </data>
   <data name="ButtonWithSplitButtonParentPattern" xml:space="preserve">
-    <value>A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. </value>
+    <value>A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a split button is the parent. </value>
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Invoke", "Toggle", "ExpandCollapse"}</comment>
   </data>
   <data name="SiblingUniqueAndNotFocusable" xml:space="preserve">
     <value>The given element has siblings with the same Name and LocalizedControlType.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LocalizedControlType"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LocalizedControlType", "Name"}</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
     <value>A combo box should not support the Scroll pattern. This rule may be reported as a warning because some platforms have combo boxes that support the Scroll pattern by default, which app developers can't easily fix.</value>
@@ -158,8 +158,8 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsControlElement"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for the given element should be true based on its control type.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable"}</comment>
+    <value>The IsKeyboardFocusable property for the given element should be true based on its ControlType.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
     <value>The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable.</value>
@@ -174,8 +174,8 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable", "IsOffscreen"}</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable"}</comment>
+    <value>The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Custom", "IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable.</value>
@@ -186,8 +186,8 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
-    <value>The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable"}</comment>
+    <value>The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableTopLevelTextPattern" xml:space="preserve">
     <value>The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection.</value>
@@ -315,7 +315,7 @@
   </data>
   <data name="ControlShouldSupportTextPattern" xml:space="preserve">
     <value>An element of the given ControlType must support the Text pattern.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "Table"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "Text"}</comment>
   </data>
   <data name="ControlShouldSupportTogglePattern" xml:space="preserve">
     <value>An element of the given ControlType must support the Toggle pattern.</value>
@@ -347,7 +347,7 @@
   </data>
   <data name="SiblingUniqueAndFocusable" xml:space="preserve">
     <value>Focusable sibling elements must not have the same Name and LocalizedControlType.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection.</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LocalizedControlType", "Name"}</comment>
   </data>
   <data name="ControlShouldSupportSetInfo" xml:space="preserve">
     <value>The element's ControlType requires valid values for SizeOfSet and PositionInSet.</value>
@@ -423,7 +423,7 @@
   </data>
   <data name="LocalizedLandmarkTypeNotCustom" xml:space="preserve">
     <value>The LandmarkType and LocalizedLandmarkType must not both be set to "custom".</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LandmarkType", "LocalizedLandmarkType"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="custom", "LandmarkType", "LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotEmpty" xml:space="preserve">
     <value>An element with LandmarkType set must not have an empty LocalizedLandmarkType.</value>
@@ -439,7 +439,7 @@
   </data>
   <data name="LocalizedControlTypeNotCustom" xml:space="preserve">
     <value>The ControlType and LocalizedControlType must not both be set to "custom."</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "LocalizedControlType"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "LocalizedControlType", "custom"}</comment>
   </data>
   <data name="LocalizedControlTypeNotEmpty" xml:space="preserve">
     <value>The LocalizedControlType property must not be an empty string.</value>
@@ -467,7 +467,7 @@
   </data>
   <data name="NameIsInformative" xml:space="preserve">
     <value>The Name property of an element should not contain class names like 'Microsoft.*.*' or 'Windows.*.*' as these are not usually informative.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Microsoft.*.*", "Name", "Windows.*.*"}</comment>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
     <value>The Name property of a focusable element must not be an empty string.</value>
@@ -478,7 +478,7 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name"}</comment>
   </data>
   <data name="NameNotWhiteSpace" xml:space="preserve">
-    <value>The Name property must not contain only space characters.</value>
+    <value>The Name property must not contain only whitespace.</value>
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name"}</comment>
   </data>
   <data name="NameReasonableLength" xml:space="preserve">
@@ -506,12 +506,12 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsOffScreen"}</comment>
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
-    <value>The framework used to build this application does not support.</value>
+    <value>The framework used to build this application does not support UI Automation.</value>
     <comment>The description of an accessibility problem with an application currently under inspection.</comment>
   </data>
   <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
     <value>The non-Chromium version of Microsoft Edge has been deprecated.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection.</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Chromium", "Microsoft Edge"}</comment>
   </data>
   <data name="SummaryFormat" xml:space="preserve">
     <value>ID:   {0}
@@ -522,6 +522,6 @@ Condition:  {3}</value>
   </data>
   <data name="ChromiumComponentsShouldUseWebScanner" xml:space="preserve">
     <value>Chromium components should be scanned with a web-based scanner.</value>
-    <comment>The description of a problem with an element currently under inspection.</comment>
+    <comment>The description of a problem with an element currently under inspection.  {Locked="Chromium"}</comment>
   </data>
 </root>
