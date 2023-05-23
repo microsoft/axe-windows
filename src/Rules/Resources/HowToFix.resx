@@ -493,11 +493,11 @@ Where appropriate, use a standard localized landmark type:
  · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.
  · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.
  · Use "form" for an area containing a set of form-related elements.
-    ·         Use "main" for the area with the page's primary content.
-    ·         Use "navigation" for an area containing links for page or site navigation.
-    ·         Use "search" for an area of the page containing search functionality.
+ ·         Use "main" for the area with the page's primary content.
+ ·         Use "navigation" for an area containing links for page or site navigation.
+ ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="banner", "complementary", "contentinfo", "custom", "form", "LocalizedLandmarkType", "navigation", "search"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="custom", "LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotEmpty" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -507,10 +507,10 @@ Where appropriate, use a standard localized landmark type:
  · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.
  · Use "form" for an area containing a set of form-related elements.
  · Use "main" for the area with the page's primary content.
-    ·         Use "navigation" for an area containing links for page or site navigation.
-    ·         Use "search" for an area of the page containing search functionality.
+ ·         Use "navigation" for an area containing links for page or site navigation.
+ ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="banner", "complementary", "contentinfo", "form", "LocalizedLandmarkType", "navigation", "search"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotNull" xml:space="preserve">
     <value>Provide a LocalizedLandmarkType property for the element.
@@ -523,7 +523,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="banner", "complementary", "contentinfo", "form", "LocalizedLandmarkType", "navigation", "search"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotWhiteSpace" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -536,7 +536,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="banner", "complementary", "contentinfo", "form", "LocalizedLandmarkType", "navigation", "search"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotCustom" xml:space="preserve">
     <value>Sufficient:
