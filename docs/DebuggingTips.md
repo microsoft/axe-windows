@@ -14,7 +14,7 @@ If you are working on a client that consumes Axe.Windows (for example, Accessibi
 
 This loop will be needed for changes that modify the interface, but since most cases do _not_ modify the interface, a simple script can often streamline the process:
 ```
-xcopy /a "$(AxeWindowsRoot)\src\CI\bin\release\axe.windows\*.dll" "$(YourClientDropFolder)"
+xcopy /y "$(AxeWindowsRoot)\src\CI\bin\release\axe.windows\*.dll" "$(YourClientDropFolder)"
 ```
 
 You'll still need to build your project the first time, then your inner dev loop simplifies to
