@@ -72,4 +72,4 @@ The `RulesMD` project creates a tool to auto-generate [RulesDescription.md](Rule
 
 #### Build utility
 
-The `InteropDummy` project provides a reliable way to consume the [Interop.UIAutomationCore.Signed](https://www.nuget.org/packages/Interop.UIAutomationCore.Signed) NuGet package as an embedded resource. This pacakge provides types that are needed for custom UIA properties.
+The `InteropDummy` project provides a reliable way to consume the [Interop.UIAutomationCore.Signed](https://www.nuget.org/packages/Interop.UIAutomationCore.Signed) NuGet package as an embedded resource. This package provides types that are needed for custom UIA properties.
