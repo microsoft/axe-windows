@@ -494,10 +494,13 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[當分割按鈕是父代時，按鈕元素應該只支援 Invoke、Toggle 或 ExpandCollapse 模式中的其中一項。 ]]></Val>
+            <Val><![CDATA[當 SplitButton 是父代時，按鈕元素應該只支援 Invoke、Toggle 或 ExpandCollapse 模式中的其中一項。 ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -737,10 +740,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[不支援用於建置此應用程式的架構。]]></Val>
+            <Val><![CDATA[用於建置此應用程式的架構不支援 UI 自動化。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +860,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[當元素支援可採取動作模式時，自訂元素的 IsKeyboardFocusable 屬性應為 True。]]></Val>
+            <Val><![CDATA[當元素支援可採取動作模式時，Custom 元素的 IsKeyboardFocusable 屬性應為 True。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +890,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[因為元素的控制項類型，指定元素的 IsKeyboardFocusable 屬性預期為 False。]]></Val>
+            <Val><![CDATA[因為元素的 ControlType，指定元素的 IsKeyboardFocusable 屬性預期為 False。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[指定元素的 IsKeyboardFocusable 屬性應根據其控制項類型為 True。]]></Val>
+            <Val><![CDATA[指定元素的 IsKeyboardFocusable 屬性應根據其 ControlType 為 True。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1142,10 +1157,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Name 屬性不能只包含空白字元。]]></Val>
+            <Val><![CDATA[Name 屬性不能只包含空白。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2120,19 +2138,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[為不包含 "custom" 的 LocalizedLandmarkType 屬性提供字串。]D;]A;如果適用，請使用標準的當地語系化地標類型:]D;]A; · 針對頁面開頭有網站導向內容的區域使用 "banner"。]D;]A; · 針對具有支援內容的區域使用 "complementary"，此支援內容在從主要內容分隔時仍具有意義。]D;]A; · 針對頁面結尾包含網站或主要內容相關資訊的區域使用 "contentinfo"。]D;]A; · 針對包含一組表單相關元素的區域，使用 "form"。]D;]A;    ·        針對具有頁面主要內容的區域使用 "main"。]D;]A;    ·         針對包含頁面或網站導覽連結的區域，使用 "navigation"。]D;]A;    ·         在包含搜尋功能的頁面區域使用 "search"。]D;]A;如果沒有任何標準地標類型適用，請提供精簡描述其內容的字串。]]></Val>
+            <Val><![CDATA[為不包含 "custom" 的 LocalizedLandmarkType 屬性提供字串。]D;]A;如果適用，請使用標準的當地語系化地標類型:]D;]A; · 針對頁面開頭有網站導向內容的區域使用 "banner"。]D;]A; · 針對具有支援內容的區域使用 "complementary"，此支援內容在從主要內容分隔時仍具有意義。]D;]A; · 針對頁面結尾包含網站或主要內容相關資訊的區域使用 "contentinfo"。]D;]A; · 針對包含一組表單相關元素的區域，使用 "form"。]D;]A; ·         針對具有頁面主要內容的區域使用 "main"。]D;]A; ·         針對包含頁面或網站導覽連結的區域，使用 "navigation"。]D;]A; ·         在包含搜尋功能的頁面區域使用 "search"。]D;]A;如果沒有任何標準地標類型適用，請提供精簡描述其內容的字串。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[為 LocalizedLandmarkType 屬性提供字串。]D;]A;如果適用，請使用標準的當地語系化地標類型:]D;]A; · 針對頁面開頭有網站導向內容的區域使用 "banner"。]D;]A; · 針對具有支援內容的區域使用 "complementary"，此支援內容在從主要內容分隔時仍具有意義。]D;]A; · 針對頁面結尾包含網站或主要內容相關資訊的區域使用 "contentinfo"。]D;]A; · 針對包含一組表單相關元素的區域，使用 "form"。]D;]A; · 針對具有頁面主要內容的區域使用 "main"。]D;]A;    ·         針對包含頁面或網站導覽連結的區域，使用 "navigation"。]D;]A;    ·         在包含搜尋功能的頁面區域使用 "search"。]D;]A;如果沒有任何標準地標類型適用，請提供精簡描述其內容的字串。]]></Val>
+            <Val><![CDATA[為 LocalizedLandmarkType 屬性提供字串。]D;]A;如果適用，請使用標準的當地語系化地標類型:]D;]A; · 針對頁面開頭有網站導向內容的區域使用 "banner"。]D;]A; · 針對具有支援內容的區域使用 "complementary"，此支援內容在從主要內容分隔時仍具有意義。]D;]A; · 針對頁面結尾包含網站或主要內容相關資訊的區域使用 "contentinfo"。]D;]A; · 針對包含一組表單相關元素的區域，使用 "form"。]D;]A; · 針對具有頁面主要內容的區域使用 "main"。]D;]A; ·         針對包含頁面或網站導覽連結的區域，使用 "navigation"。]D;]A; ·         在包含搜尋功能的頁面區域使用 "search"。]D;]A;如果沒有任何標準地標類型適用，請提供精簡描述其內容的字串。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>

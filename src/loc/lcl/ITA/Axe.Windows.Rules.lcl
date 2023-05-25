@@ -494,10 +494,13 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Un elemento pulsante deve supportare solo uno dei pattern Invoke, Toggle o ExpandCollapse quando il pulsante splitbutton è l’elemento padre. ]]></Val>
+            <Val><![CDATA[Un elemento pulsante deve supportare solo uno dei pattern Invoke, Toggle o ExpandCollapse quando il pulsante SplitButton è l’elemento padre. ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -737,10 +740,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Il framework usato per compilare questa applicazione non è supportato.]]></Val>
+            <Val><![CDATA[Il framework usato per compilare questa applicazione non supporta Automazione interfaccia utente.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +860,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[La proprietà IsKeyboardFocusable di un elemento personalizzato deve essere true quando l'elemento supporta criteri eseguibili.]]></Val>
+            <Val><![CDATA[La proprietà IsKeyboardFocusable per un elemento Custom deve essere true quando l'elemento supporta modelli interattivi.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +890,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[La proprietà IsKeyboardFocusable per l'elemento dato dovrebbe essere false a causa del tipo di controllo dell'elemento.]]></Val>
+            <Val><![CDATA[La proprietà IsKeyboardFocusable per l'elemento specificato deve essere false a causa del ControlType dell'elemento.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[La proprietà IsKeyboardFocusable per l'elemento specificato deve essere true in base al relativo tipo di controllo.]]></Val>
+            <Val><![CDATA[La proprietà IsKeyboardFocusable per l'elemento specificato deve essere true in base al relativo ControlType.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -991,7 +1006,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The ControlType and LocalizedControlType must not both be set to "custom."]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[ControlType e LocalizedControlType non devono essere entrambi impostati su "personalizzato".]]></Val>
+            <Val><![CDATA[ControlType e LocalizedControlType non devono essere entrambi impostati su "custom".]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1045,7 +1060,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The LandmarkType and LocalizedLandmarkType must not both be set to "custom".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[LandmarkType e LocalizedLandmarkType non devono essere entrambi impostati su "personalizzato".]]></Val>
+            <Val><![CDATA[LandmarkType e LocalizedLandmarkType non devono essere entrambi impostati su "custom".]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1142,10 +1157,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[La proprietà Name non deve contenere solo spazi.]]></Val>
+            <Val><![CDATA[La proprietà Name non deve contenere solo spazi vuoti.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1264,7 +1282,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Focusable sibling elements must not have the same Name and LocalizedControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Gli elementi di pari livello con stato attivabile non devono avere lo stesso nome e LocalizedControlType.]]></Val>
+            <Val><![CDATA[Gli elementi di pari livello con stato attivabile non devono avere lo stesso Name e LocalizedControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2120,19 +2138,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Specificare la stringa per la proprietà LocalizedLandmarkType che non include "custom".]D;]A;Quando appropriato, usare un tipo di punto di riferimento localizzato standard:]D;]A; · Usare "banner" per un'area all'inizio della pagina con contenuto orientato al sito.]D;]A; · Usare "complementare" per un'area con contenuto di supporto che rimane significativo se separato dal contenuto primario.]D;]A; · Usare "contentinfo" per un'area alla fine della pagina contenente informazioni sul sito o sul contenuto primario.]D;]A; · Usare "modulo" per un'area contenente un set di elementi correlati al modulo.]D;]A;    ·         Usare "principale" per l'area con il contenuto principale della pagina.]D;]A;    ·         Usare "esplorazione" per un'area contenente collegamenti per l’esplorazione di pagine o siti.]D;]A;    ·         Usare "cerca" per un'area della pagina contenente la funzionalità di ricerca.]D;]A;Se non è applicabile alcun tipo di riferimento standard, fornire una stringa che descriva in modo conciso il contenuto.]]></Val>
+            <Val><![CDATA[Specificare una stringa per la proprietà LocalizedLandmarkType che non includa "custom."]D;]A;Se necessario, usare un tipo di punto di riferimento localizzato standard:]D;]A; · Usare "banner" per un'area all'inizio della pagina con contenuto orientato al sito.]D;]A; · Usare "complementare" per un'area con contenuto di supporto che rimane significativo se separato dal contenuto primario.]D;]A; · Usare "contentinfo" per un'area alla fine della pagina contenente informazioni sul sito o sul contenuto primario.]D;]A; · Usare "modulo" per un'area contenente un set di elementi correlati al modulo.]D;]A; ·         Usare "principale" per l'area con il contenuto principale della pagina.]D;]A; ·         Usare "esplorazione" per un'area contenente collegamenti per l’esplorazione di pagine o siti.]D;]A; ·         Usare "cerca" per un'area della pagina contenente la funzionalità di ricerca.]D;]A;Se non è applicabile alcun tipo di riferimento standard, fornire una stringa che descriva in modo conciso il contenuto.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Specificare una stringa per la proprietà LocalizedLandmarkType.]D;]A;Quando appropriato, usare un tipo di punto di riferimento localizzato standard:]D;]A; · Usare "banner" per un'area all'inizio della pagina con contenuto orientato al sito.]D;]A; · Usare "complementare" per un'area con contenuti di supporto che non perdano significato se separati dal contenuto principale.]D;]A; · Usare "contentinfo" per un'area alla fine della pagina contenente informazioni sul sito o sul contenuto primario.]D;]A; · Usare "modulo" per un'area contenente un set di elementi correlati al modulo.]D;]A; · Usare "principale" per l'area con il contenuto principale della pagina.]D;]A; e punto intermedio;         Usare "esplorazione" per un'area contenente collegamenti per l’esplorazione di pagine o siti.]D;]A; ·         Usare "cerca" per un'area della pagina contenente la funzionalità di ricerca.]D;]A;Se nessuno dei tipi di riferimento standard è applicabile, specificare una stringa che ne descriva in modo conciso il contenuto.]]></Val>
+            <Val><![CDATA[Specificare una stringa per la proprietà LocalizedLandmarkType.]D;]A;Se necessario, usare un tipo di punto di riferimento localizzato standard:]D;]A; · Usare "banner" per un'area all'inizio della pagina con contenuto orientato al sito.]D;]A; · Usare "complementare" per un'area con contenuti di supporto che non perdano significato se separati dal contenuto principale.]D;]A; · Usare "contentinfo" per un'area alla fine della pagina contenente informazioni sul sito o sul contenuto primario.]D;]A; · Usare "modulo" per un'area contenente un set di elementi correlati al modulo.]D;]A; · Usare "principale" per l'area con il contenuto principale della pagina.]D;]A; e punto intermedio;         Usare "esplorazione" per un'area contenente collegamenti per l’esplorazione di pagine o siti.]D;]A; ·         Usare "cerca" per un'area della pagina contenente la funzionalità di ricerca.]D;]A;Se non è applicabile alcun tipo di riferimento standard, fornire una stringa che descriva in modo conciso il contenuto.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
