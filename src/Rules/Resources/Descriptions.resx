@@ -147,51 +147,51 @@
   </data>
   <data name="IsContentElementFalseOptional" xml:space="preserve">
     <value>The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsContentElement"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsContentElement"}</comment>
   </data>
   <data name="IsContentElementTrueOptional" xml:space="preserve">
     <value>The recommended value of the IsContentElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as content.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsContentElement"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsContentElement", "true"}</comment>
   </data>
   <data name="IsControlElementTrueOptional" xml:space="preserve">
     <value>The recommended value of the IsControlElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as a control. Note that almost all controls are required to have the IsControl Property set to true.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsControlElement"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsControlElement", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
     <value>The IsKeyboardFocusable property for the given element should be true based on its ControlType.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsKeyboardFocusable"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
     <value>The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable", "IsEnabled"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsKeyboardFocusable", "IsEnabled", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
     <value>The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
     <value>The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable", "IsOffscreen"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsKeyboardFocusable", "IsOffscreen", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
     <value>The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Custom", "IsKeyboardFocusable"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Custom", "IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable", "Text"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsKeyboardFocusable", "Text"}</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
     <value>The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by assistive technology users.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
     <value>The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsKeyboardFocusable"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "false", "IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableTopLevelTextPattern" xml:space="preserve">
     <value>The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable", "Text"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsKeyboardFocusable", "Text", "true"}</comment>
   </data>
   <data name="ItemStatusExists" xml:space="preserve">
     <value>The ItemStatus property for the given element should exist.</value>
@@ -211,11 +211,11 @@
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
     <value>The Name property of the given element may be null or empty if the element has no siblings of the same type.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name", "null"}</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
     <value>The Name property for the given element is null, but the element isn't focusable. Please consider whether or not the element should have a name.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name", "null"}</comment>
   </data>
   <data name="NameOnCustomWithParentWPFDataItem" xml:space="preserve">
     <value>The Name property of a custom control may be empty if the parent is a WPF DataItem.</value>
@@ -227,7 +227,7 @@
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
     <value>An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name", "BoundingRectangle"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name", "BoundingRectangle", "null"}</comment>
   </data>
   <data name="Structure" xml:space="preserve">
     <value>The given element is expected to have the following structure: {0}.</value>
@@ -255,7 +255,7 @@
   </data>
   <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
     <value>The RangeValue pattern of an edit control must have a null LargeChange property.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="RangeValue", "LargeChange"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="RangeValue", "LargeChange", "null"}</comment>
   </data>
   <data name="SplitButtonInvokeAndTogglePatterns" xml:space="preserve">
     <value>A split button must support exactly one of the Invoke or Toggle patterns.</value>
@@ -326,12 +326,12 @@
     <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Transform"}</comment>
   </data>
   <data name="ChildrenNotAllowedInContentView" xml:space="preserve">
-    <value>A separator must not have any children with IsContentElement set to TRUE.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsContentElement"}</comment>
+    <value>A separator must not have any children with IsContentElement set to true.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsContentElement", "true"}</comment>
   </data>
   <data name="SelectionPatternSelectionRequired" xml:space="preserve">
-    <value>An element of the given ControlType must have the IsSelectionRequired property set to TRUE.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsSelectionRequired"}</comment>
+    <value>An element of the given ControlType must have the IsSelectionRequired property set to true.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsSelectionRequired", "true"}</comment>
   </data>
   <data name="SelectionPatternSingleSelection" xml:space="preserve">
     <value>An element of the given ControlType must not support multiple selection.</value>
@@ -371,7 +371,7 @@
   </data>
   <data name="BoundingRectangleNotNull" xml:space="preserve">
     <value>An on-screen element must not have a null BoundingRectangle property.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="BoundingRectangle"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="BoundingRectangle", "null"}</comment>
   </data>
   <data name="BoundingRectangleSizeReasonable" xml:space="preserve">
     <value>The BoundingRectangle property must represent an area of at least 25 pixels.</value>
@@ -383,15 +383,15 @@
   </data>
   <data name="IsContentElementPropertyExists" xml:space="preserve">
     <value>The given ControlType must have a non-null IsContentElement property.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsContentElement"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsContentElement", "null"}</comment>
   </data>
   <data name="IsControlElementPropertyExists" xml:space="preserve">
     <value>The given ControlType must have a non-null IsControlElement property.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsControlElement"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsControlElement", "null"}</comment>
   </data>
   <data name="IsControlElementTrueRequired" xml:space="preserve">
-    <value>The given ControlType must have the IsControlElement property set to TRUE.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsControlElement"}</comment>
+    <value>The given ControlType must have the IsControlElement property set to true.</value>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="ControlType", "IsControlElement", "true"}</comment>
   </data>
   <data name="LandmarkBannerIsTopLevel" xml:space="preserve">
     <value>An element with LocalizedLandmarkType "banner" must not descend from another landmark.</value>
@@ -431,7 +431,7 @@
   </data>
   <data name="LocalizedLandmarkTypeNotNull" xml:space="preserve">
     <value>An element with LandmarkType set must not have a null LocalizedLandmarkType.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LandmarkType", "LocalizedLandmarkType"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LandmarkType", "LocalizedLandmarkType", "null"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotWhiteSpace" xml:space="preserve">
     <value>The LocalizedLandmarkType property must not contain only white space.</value>
@@ -447,7 +447,7 @@
   </data>
   <data name="LocalizedControlTypeNotNull" xml:space="preserve">
     <value>The LocalizedControlType property must not be null.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LocalizedControlType"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="LocalizedControlType", "null"}</comment>
   </data>
   <data name="LocalizedControlTypeNotWhiteSpace" xml:space="preserve">
     <value>The LocalizedControlType property must not contain only white space.</value>
@@ -475,7 +475,7 @@
   </data>
   <data name="NameNotNull" xml:space="preserve">
     <value>The Name property of a focusable element must not be null.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="Name", "null"}</comment>
   </data>
   <data name="NameNotWhiteSpace" xml:space="preserve">
     <value>The Name property must not contain only whitespace.</value>
@@ -499,7 +499,7 @@
   </data>
   <data name="ClickablePointOnScreen" xml:space="preserve">
     <value>An element's IsOffScreen property must be false when its clickable point is on-screen.</value>
-    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="IsOffScreen"}</comment>
+    <comment>The description of an accessibility problem with an element currently under inspection. {Locked="false", "IsOffScreen"}</comment>
   </data>
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>An element's IsOffScreen property must be true when its clickable point is off-screen.</value>

@@ -169,7 +169,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A separator must not have any children with IsContentElement set to TRUE..
+        ///   Looks up a localized string similar to A separator must not have any children with IsContentElement set to true..
         /// </summary>
         internal static string ChildrenNotAllowedInContentView {
             get {
@@ -484,7 +484,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given ControlType must have the IsControlElement property set to TRUE..
+        ///   Looks up a localized string similar to The given ControlType must have the IsControlElement property set to true..
         /// </summary>
         internal static string IsControlElementTrueRequired {
             get {
@@ -907,7 +907,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An element of the given ControlType must have the IsSelectionRequired property set to TRUE..
+        ///   Looks up a localized string similar to An element of the given ControlType must have the IsSelectionRequired property set to true..
         /// </summary>
         internal static string SelectionPatternSelectionRequired {
             get {

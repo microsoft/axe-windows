@@ -150,23 +150,23 @@
   </data>
   <data name="IsContentElementFalseOptional" xml:space="preserve">
     <value>Set the IsContentElement UI Automation property to false.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsContentElement"}</comment>
   </data>
   <data name="IsContentElementTrueOptional" xml:space="preserve">
     <value>Set the IsContentElement UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement", "true"}</comment>
   </data>
   <data name="IsControlElementTrueOptional" xml:space="preserve">
     <value>Set the IsControlElement UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
     <value>Make this element focusable instead of its children.</value>
@@ -174,27 +174,27 @@
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
     <value>Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable property to be false.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsKeyboardFocusable"}</comment>
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
     <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType", "false"}</comment>
   </data>
   <data name="IsKeyboardFocusableTopLevelTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="ItemStatusExists" xml:space="preserve">
     <value>Add a meaningful ItemStatus UI Automation property to this element.</value>
@@ -214,7 +214,7 @@
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
     <value>Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "null"}</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
     <value>Set the UI Automation Name property for the given element.</value>
@@ -230,15 +230,15 @@
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
     <value>Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "BoundingRectangle", "null"}</comment>
   </data>
   <data name="Structure" xml:space="preserve">
     <value>Set the element to conform to the following structure: {0}.</value>
     <comment>Brief guidance on how to fix an accessibility problem. {0} is the element structure.</comment>
   </data>
   <data name="SelectionPatternSelectionRequired" xml:space="preserve">
-    <value>Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "IsSelectionRequired"}</comment>
+    <value>Set the element's IsSelectionRequired property of the SelectionPattern to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "IsSelectionRequired", "true"}</comment>
   </data>
   <data name="ButtonInvokeAndExpandCollapsePatterns" xml:space="preserve">
     <value>Modify the button to support exactly one of the following patterns:
@@ -271,12 +271,12 @@
     <value>Implement the progress bar's RangeValue pattern using the following properties and values:
  · Minimum: 0.0
  · Maximum: 100.0
- · IsReadOnly: TRUE</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="RangeValue", "Minimum", "Maximum", "IsReadOnly"}</comment>
+ · IsReadOnly: true</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="RangeValue", "Minimum", "Maximum", "IsReadOnly", "true"}</comment>
   </data>
   <data name="EditSupportsIncorrectRangeValuePattern" xml:space="preserve">
     <value>Implement the edit control's RangeValue pattern with a null LargeChange property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="RangeValue", "LargeChange"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="RangeValue", "LargeChange", "null"}</comment>
   </data>
   <data name="SplitButtonInvokeAndTogglePatterns" xml:space="preserve">
     <value>Modify the split button to support exactly one of the following patterns:
@@ -357,24 +357,24 @@
   </data>
   <data name="ControlShouldSupportTransformPattern" xml:space="preserve">
     <value>If the element can be resized, implement the Transform pattern.
-If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Transform", "TransformPattern_CanResize"}</comment>
+If the element can't be resized, ensure the TransformPattern_CanResize property is false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "Transform", "TransformPattern_CanResize"}</comment>
   </data>
   <data name="ChildrenNotAllowedInContentView" xml:space="preserve">
-    <value>Make sure all of the element's children have the IsContentElement property set to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
+    <value>Make sure all of the element's children have the IsContentElement property set to false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsContentElement"}</comment>
   </data>
   <data name="SelectionPatternSingleSelection" xml:space="preserve">
     <value>1. Make sure the element has the appropriate ControlType property for its function.
 2. Make sure Selection is the correct pattern.
-3. Set the element's CanSelectMultiple property to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Selection", "CanSelectMultiple"}</comment>
+3. Set the element's CanSelectMultiple property to false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ControlType", "Selection", "CanSelectMultiple", "false"}</comment>
   </data>
   <data name="SelectionItemPatternSingleSelection" xml:space="preserve">
     <value>Do one of the following:
  1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR
- 2. Modify the parent element so its CanSelectMultiple property is TRUE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="CanSelectMultiple"}</comment>
+ 2. Modify the parent element so its CanSelectMultiple property is true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="CanSelectMultiple", "true"}</comment>
   </data>
   <data name="ParentChildShouldNotHaveSameNameAndLocalizedControlType" xml:space="preserve">
     <value>Provide unique names for controls that have a parent/child relationship and the same ControlType property.</value>
@@ -415,9 +415,9 @@ If the element can't be resized, ensure the TransformPattern_CanResize property 
     <comment>Brief guidance on how to fix an accessibility problem.</comment>
   </data>
   <data name="BoundingRectangleNotNull" xml:space="preserve">
-    <value>If the element is off-screen, set its IsOffscreen property to TRUE.
+    <value>If the element is off-screen, set its IsOffscreen property to true.
 If the element is on-screen, provide a BoundingRectangle property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsOffscreen", "BoundingRectangle"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsOffscreen", "BoundingRectangle", "true"}</comment>
   </data>
   <data name="BoundingRectangleSizeReasonable" xml:space="preserve">
     <value>Modify the BoundingRectangle property so that its width and height define an area of at least 25 pixels.</value>
@@ -430,19 +430,19 @@ For example, if an element has a level-5 heading, its descendants can have only 
   </data>
   <data name="IsContentElementPropertyExists" xml:space="preserve">
     <value>Provide a value for the element's IsContentElement property:
- · If the element should be included in the content view, set the property to TRUE.
- · If the element should not be included in the content view, set the property to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement"}</comment>
+ · If the element should be included in the content view, set the property to true.
+ · If the element should not be included in the content view, set the property to false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsContentElement", "true"}</comment>
   </data>
   <data name="IsControlElementPropertyExists" xml:space="preserve">
     <value>Provide a value for the element's IsControlElement property:
- · If the element should be included in the control view, set the property to TRUE.
- · If the element should not be included in the control view, set the property to FALSE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement"}</comment>
+ · If the element should be included in the control view, set the property to true.
+ · If the element should not be included in the control view, set the property to false.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsControlElement", "true"}</comment>
   </data>
   <data name="IsControlElementTrueRequired" xml:space="preserve">
-    <value>Set the element's IsControlElement property to TRUE.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement"}</comment>
+    <value>Set the element's IsControlElement property to true.</value>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement", "true"}</comment>
   </data>
   <data name="LandmarkBannerIsTopLevel" xml:space="preserve">
     <value>Modify the banner element so it does not descend from any other landmark.
@@ -484,7 +484,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. The list of standard landmark types should be sorted alphabetically or equivalent. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotCustom" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property that does not include "custom."
@@ -497,7 +497,7 @@ Where appropriate, use a standard localized landmark type:
  ·         Use "navigation" for an area containing links for page or site navigation.
  ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="custom", "LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. The list of standard landmark types should be sorted alphabetically or equivalent. {Locked="custom", "LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotEmpty" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -510,7 +510,7 @@ Where appropriate, use a standard localized landmark type:
  ·         Use "navigation" for an area containing links for page or site navigation.
  ·         Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. The list of standard landmark types should be sorted alphabetically or equivalent. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotNull" xml:space="preserve">
     <value>Provide a LocalizedLandmarkType property for the element.
@@ -523,7 +523,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. The list of standard landmark types should be sorted alphabetically or equivalent. {Locked="LocalizedLandmarkType", "null"}</comment>
   </data>
   <data name="LocalizedLandmarkTypeNotWhiteSpace" xml:space="preserve">
     <value>Provide a string for the LocalizedLandmarkType property.
@@ -536,7 +536,7 @@ Where appropriate, use a standard localized landmark type:
  · Use "navigation" for an area containing links for page or site navigation.
  · Use "search" for an area of the page containing search functionality.
 If none of the standard landmark types is applicable, provide a string that concisely describes its content.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedLandmarkType"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. The list of standard landmark types should be sorted alphabetically or equivalent. {Locked="LocalizedLandmarkType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotCustom" xml:space="preserve">
     <value>Sufficient:
@@ -619,12 +619,12 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
   <data name="ClickablePointOnScreen" xml:space="preserve">
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to false.
 If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ClickablePoint", "IsOffscreen"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ClickablePoint", "IsOffscreen", "false"}</comment>
   </data>
   <data name="ClickablePointOffScreen" xml:space="preserve">
     <value>If the element's ClickablePoint property is correct, set the element's IsOffScreen property to true.
 If the element's ClickablePoint property is incorrect, please ensure it returns the correct value.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ClickablePoint", "IsOffscreen"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ClickablePoint", "IsOffscreen", "true"}</comment>
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
     <value>Switch your application to a framework that supports UI Automation.</value>
