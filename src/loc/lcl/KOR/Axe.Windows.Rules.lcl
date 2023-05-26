@@ -494,10 +494,13 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[단추 요소는 splitbutton이 부모인 경우 Invoke, Toggle 또는 ExpandCollapse 패턴 중 하나만 지원해야 합니다.]]></Val>
+            <Val><![CDATA[단추 요소는 SplitButton이 부모 요소인 경우 Invoke, Toggle 또는 ExpandCollapse 패턴 중 하나만 지원해야 합니다. ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -737,10 +740,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[이 애플리케이션을 빌드하는 데 사용되는 프레임워크는 지원하지 않습니다.]]></Val>
+            <Val><![CDATA[이 애플리케이션을 빌드하는 데 사용되는 프레임워크는 UI 자동화를 지원하지 않습니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +860,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소가 실행 가능한 패턴을 지원하는 경우 사용자 지정 요소의 IsKeyboardFocusable 속성은 true여야 합니다.]]></Val>
+            <Val><![CDATA[요소가 실행 가능한 패턴을 지원하는 경우 Custom 요소의 IsKeyboardFocusable 속성은 true여야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +890,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 컨트롤 형식 때문에 주어진 요소의 IsKeyboardFocusable 속성이 false여야 합니다.]]></Val>
+            <Val><![CDATA[해당 요소의 IsKeyboardFocusable 속성은 해당 ControlType으로 인해 false여야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 요소의 IsKeyboardFocusable 속성은 해당 컨트롤 형식에 따라 true여야 합니다.]]></Val>
+            <Val><![CDATA[해당 요소의 IsKeyboardFocusable 속성은 해당 ControlType에 따라 true여야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1142,10 +1157,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Name 속성은 공백 문자만 포함할 수 없습니다.]]></Val>
+            <Val><![CDATA[Name 속성에는 공백만 있어서는 안 됩니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2120,19 +2138,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA["custom"이 포함되지 않은 LocalizedLandmarkType 속성의 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A;    ·         페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A;    ·         페이지 또는 사이트 탐색의 링크가 포함된 영역에 대해 "navigation"을 사용합니다.]D;]A;    ·         검색 기능이 포함된 페이지의 영역에 대해 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
+            <Val><![CDATA["custom"이 포함되지 않은 LocalizedLandmarkType 속성의 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A; ·         페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A; ·         페이지 또는 사이트 탐색의 링크가 포함된 영역에 "navigation"을 사용합니다.]D;]A; ·         검색 기능이 포함된 페이지의 영역에 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[LocalizedLandmarkType 속성에 대한 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A;    · 페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A;    ·        페이지 또는 사이트 탐색의 링크가 포함된 영역에 대해 "navigation"을 사용합니다.]D;]A;    ·        검색 기능이 포함된 페이지의 영역에 대해 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
+            <Val><![CDATA[LocalizedLandmarkType 속성에 대한 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A; · 페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A; ·         페이지 또는 사이트 탐색의 링크가 포함된 영역에 "navigation"을 사용합니다.]D;]A; ·         검색 기능이 포함된 페이지의 영역에 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>

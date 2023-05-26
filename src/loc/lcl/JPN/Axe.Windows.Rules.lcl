@@ -494,10 +494,13 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[splitbutton が親である場合、button 要素は Invoke、Toggle、ExpandCollapse パターンのいずれか 1 つのみをサポートする必要があります。 ]]></Val>
+            <Val><![CDATA[SplitButton が親である場合、button 要素は Invoke、Toggle、ExpandCollapse パターンのいずれか 1 つのみをサポートする必要があります。 ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -737,10 +740,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[このアプリケーションのビルドに使用されるフレームワークではサポートされません。]]></Val>
+            <Val><![CDATA[このアプリケーションのビルドに使用されるフレームワークでは、UI オートメーションをサポートしていません。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +860,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[カスタム要素がアクション可能なパターンをサポートする場合、カスタム要素の IsKeyboardFocusable プロパティは true である必要があります。]]></Val>
+            <Val><![CDATA[カスタム要素がアクション可能なパターンをサポートする場合、Custom 要素の IsKeyboardFocusable プロパティは true である必要があります。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +890,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[要素のコントロールの型が原因で、指定された要素の IsKeyboardFocusable プロパティは false である必要があります。]]></Val>
+            <Val><![CDATA[要素の ControlType が原因で、指定された要素の IsKeyboardFocusable プロパティは false である必要があります。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[指定された要素の IsKeyboardFocusable プロパティは、コントロールの型に基づいて true である必要があります。]]></Val>
+            <Val><![CDATA[指定された要素の IsKeyboardFocusable プロパティは、ControlType に基づいて true である必要があります。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1142,10 +1157,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Name プロパティにスペース文字のみを含めることはできません。]]></Val>
+            <Val><![CDATA[Name プロパティに空白のみを含めることはできません。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2120,19 +2138,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[LocalizedLandmarkType プロパティに "custom" を含まない文字列を指定します。]D;]A;適切であれば、標準のローカライズされたランドマーク型を使用します。]D;]A; · サイト指向のコンテンツを含むページの先頭の領域に "banner" を使用します。]D;]A; · 補助コンテンツがプライマリ コンテンツから分離された場合にも意味を持つ領域に "complementary" を使用します。]D;]A; · サイトまたはプライマリ コンテンツに関する情報を含むページの最後の領域に "contentinfo" を使用します。]D;]A; · ·フォーム関連の要素のセットを含む領域に "form" を使用します。]D;]A;    ·         ページのプライマリ コンテンツを含む領域に "main" を使用します。]D;]A;    ·         ページまたはサイト ナビゲーションのリンクを含む領域に "navigation" を使用します。]D;]A;    ·         検索機能を含むページの領域に "search" を使用します。]D;]A;標準的なランドマーク型のいずれも適用できない場合は、その内容を簡潔に説明する文字列を指定します。]]></Val>
+            <Val><![CDATA[LocalizedLandmarkType プロパティに "custom" を含まない文字列を指定します。]D;]A;適切であれば、標準のローカライズされたランドマーク型を使用します。]D;]A; · サイト指向のコンテンツを含むページの先頭の領域に "banner" を使用します。]D;]A; · 補助コンテンツがプライマリ コンテンツから分離された場合にも意味を持つ領域に "complementary" を使用します。]D;]A; · サイトまたはプライマリ コンテンツに関する情報を含むページの最後の領域に "contentinfo" を使用します。]D;]A; · ·フォーム関連の要素のセットを含む領域に "form" を使用します。]D;]A; ·         ページのプライマリ コンテンツを含む領域に "main" を使用します。]D;]A; ·         ページまたはサイト ナビゲーションのリンクを含む領域に "navigation" を使用します。]D;]A; ·         検索機能を含むページの領域に "search" を使用します。]D;]A;標準的なランドマーク型のいずれも適用できない場合は、その内容を簡潔に説明する文字列を指定します。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[LocalizedLandmarkType プロパティに文字列を指定します。]D;]A;適切であれば、標準のローカライズされたランドマーク型を使用します。]D;]A; · サイト指向のコンテンツを含むページの先頭の領域に "banner" を使用します。]D;]A; · 補助コンテンツがプライマリ コンテンツから分離された場合にも意味を持つ領域に "complementary" を使用します。]D;]A; · サイトまたはプライマリ コンテンツに関する情報を含むページの最後の領域に "contentinfo" を使用します。]D;]A; · ·フォーム関連の要素のセットを含む領域に "form" を使用します。]D;]A; ·  ページのプライマリ コンテンツを含む領域に "main" を使用します。]D;]A;    ·         ページまたはサイト ナビゲーションのリンクを含む領域に "navigation" を使用します。]D;]A;    ·         検索機能を含むページの領域に "search" を使用します。]D;]A;標準的なランドマーク型のいずれも適用できない場合は、その内容を簡潔に説明する文字列を指定します。]]></Val>
+            <Val><![CDATA[LocalizedLandmarkType プロパティに文字列を指定します。]D;]A;適切であれば、標準のローカライズされたランドマーク型を使用します。]D;]A; · サイト指向のコンテンツを含むページの先頭の領域に "banner" を使用します。]D;]A; · 補助コンテンツがプライマリ コンテンツから分離された場合にも意味を持つ領域に "complementary" を使用します。]D;]A; · サイトまたはプライマリ コンテンツに関する情報を含むページの最後の領域に "contentinfo" を使用します。]D;]A; · ·フォーム関連の要素のセットを含む領域に "form" を使用します。]D;]A; ·  ページのプライマリ コンテンツを含む領域に "main" を使用します。]D;]A; ·         ページまたはサイト ナビゲーションのリンクを含む領域に "navigation" を使用します。]D;]A; ·         検索機能を含むページの領域に "search" を使用します。]D;]A;標準的なランドマーク型のいずれも適用できない場合は、その内容を簡潔に説明する文字列を指定します。]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
