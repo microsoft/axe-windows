@@ -83,7 +83,7 @@ namespace Axe.Windows.RulesTests.Library
 
             _elementMock.Verify(m => m.Framework, Times.Exactly(nonDocumentTypes.Count()));
             _elementMock.Verify(m => m.ControlTypeId, Times.Exactly(nonDocumentTypes.Count()));
-            _elementMock.Verify(m => m.Parent, Times.Exactly(2 * nonDocumentTypes.Count()));
+            _elementMock.Verify(m => m.Parent, Times.Exactly(nonDocumentTypes.Count()));
             _parentMock.Verify(m => m.ControlTypeId, Times.Exactly(nonDocumentTypes.Count()));
             _parentMock.Verify(m => m.Parent, Times.Exactly(nonDocumentTypes.Count()));
         }
@@ -100,7 +100,7 @@ namespace Axe.Windows.RulesTests.Library
 
             _elementMock.Verify(m => m.Framework, Times.Once());
             _elementMock.Verify(m => m.ControlTypeId, Times.Once());
-            _elementMock.Verify(m => m.Parent, Times.Exactly(2));
+            _elementMock.Verify(m => m.Parent, Times.Once());
             _parentMock.Verify(m => m.ControlTypeId, Times.Once());
         }
 
