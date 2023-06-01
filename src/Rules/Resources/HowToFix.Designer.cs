@@ -107,7 +107,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the element is off-screen, set its IsOffscreen property to TRUE.
+        ///   Looks up a localized string similar to If the element is off-screen, set its IsOffscreen property to true.
         ///If the element is on-screen, provide a BoundingRectangle property..
         /// </summary>
         internal static string BoundingRectangleNotNull {
@@ -194,7 +194,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Make sure all of the element&apos;s children have the IsContentElement property set to FALSE..
+        ///   Looks up a localized string similar to Make sure all of the element&apos;s children have the IsContentElement property set to false..
         /// </summary>
         internal static string ChildrenNotAllowedInContentView {
             get {
@@ -415,7 +415,7 @@ namespace Axe.Windows.Rules.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to If the element can be resized, implement the Transform pattern.
-        ///If the element can&apos;t be resized, ensure the TransformPattern_CanResize property is FALSE..
+        ///If the element can&apos;t be resized, ensure the TransformPattern_CanResize property is false..
         /// </summary>
         internal static string ControlShouldSupportTransformPattern {
             get {
@@ -489,8 +489,8 @@ namespace Axe.Windows.Rules.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Provide a value for the element&apos;s IsContentElement property:
-        /// · If the element should be included in the content view, set the property to TRUE.
-        /// · If the element should not be included in the content view, set the property to FALSE..
+        /// · If the element should be included in the content view, set the property to true.
+        /// · If the element should not be included in the content view, set the property to false..
         /// </summary>
         internal static string IsContentElementPropertyExists {
             get {
@@ -509,8 +509,8 @@ namespace Axe.Windows.Rules.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to Provide a value for the element&apos;s IsControlElement property:
-        /// · If the element should be included in the control view, set the property to TRUE.
-        /// · If the element should not be included in the control view, set the property to FALSE..
+        /// · If the element should be included in the control view, set the property to true.
+        /// · If the element should not be included in the control view, set the property to false..
         /// </summary>
         internal static string IsControlElementPropertyExists {
             get {
@@ -528,7 +528,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the element&apos;s IsControlElement property to TRUE..
+        ///   Looks up a localized string similar to Set the element&apos;s IsControlElement property to true..
         /// </summary>
         internal static string IsControlElementTrueRequired {
             get {
@@ -980,7 +980,7 @@ namespace Axe.Windows.Rules.Resources {
         ///   Looks up a localized string similar to Implement the progress bar&apos;s RangeValue pattern using the following properties and values:
         /// · Minimum: 0.0
         /// · Maximum: 100.0
-        /// · IsReadOnly: TRUE.
+        /// · IsReadOnly: true.
         /// </summary>
         internal static string ProgressBarRangeValue {
             get {
@@ -1000,7 +1000,7 @@ namespace Axe.Windows.Rules.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Do one of the following:
         /// 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR
-        /// 2. Modify the parent element so its CanSelectMultiple property is TRUE..
+        /// 2. Modify the parent element so its CanSelectMultiple property is true..
         /// </summary>
         internal static string SelectionItemPatternSingleSelection {
             get {
@@ -1009,7 +1009,7 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the element&apos;s IsSelectionRequired property of the SelectionPattern to TRUE..
+        ///   Looks up a localized string similar to Set the element&apos;s IsSelectionRequired property of the SelectionPattern to true..
         /// </summary>
         internal static string SelectionPatternSelectionRequired {
             get {
@@ -1020,7 +1020,7 @@ namespace Axe.Windows.Rules.Resources {
         /// <summary>
         ///   Looks up a localized string similar to 1. Make sure the element has the appropriate ControlType property for its function.
         ///2. Make sure Selection is the correct pattern.
-        ///3. Set the element&apos;s CanSelectMultiple property to FALSE..
+        ///3. Set the element&apos;s CanSelectMultiple property to false..
         /// </summary>
         internal static string SelectionPatternSingleSelection {
             get {
