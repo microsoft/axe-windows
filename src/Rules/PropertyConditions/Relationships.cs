@@ -43,7 +43,7 @@ namespace Axe.Windows.Rules.PropertyConditions
             if (siblings == null) return false;
             if (index < 1 || index > siblings.Count()) return false;
 
-            return e.Parent.Children.ElementAt(index - 1).RuntimeId == e.RuntimeId;
+            return siblings.ElementAt(index - 1).RuntimeId == e.RuntimeId;
         }
 
         private static bool HasSiblingsOfSameType(IA11yElement e)
