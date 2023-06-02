@@ -130,7 +130,7 @@
   </data>
   <data name="SiblingUniqueAndNotFocusable" xml:space="preserve">
     <value>Verify that each element has a meaningful UI Automation Name property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="ComboBoxShouldNotSupportScrollPattern" xml:space="preserve">
     <value>Modify the combo box to not support the Scroll pattern.</value>
@@ -146,27 +146,27 @@
   </data>
   <data name="HelpTextNotEqualToName" xml:space="preserve">
     <value>Write meaningful text for the element's UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as "type here to search".</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="HelpText", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="HelpText"}</comment>
   </data>
   <data name="IsContentElementFalseOptional" xml:space="preserve">
     <value>Set the IsContentElement UI Automation property to false.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsContentElement", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="false", "IsContentElement"}</comment>
   </data>
   <data name="IsContentElementTrueOptional" xml:space="preserve">
     <value>Set the IsContentElement UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsContentElement", "true"}</comment>
   </data>
   <data name="IsControlElementTrueOptional" xml:space="preserve">
     <value>Set the IsControlElement UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsControlElement", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeTrue" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableFalseButDisabled" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableForListItemShouldBeTrue" xml:space="preserve">
     <value>Make this element focusable instead of its children.</value>
@@ -174,11 +174,11 @@
   </data>
   <data name="IsKeyboardFocusableFalseButOffscreen" xml:space="preserve">
     <value>If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableForCustomShouldBeTrue" xml:space="preserve">
     <value>Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableDescendantTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable property to be false.</value>
@@ -186,51 +186,51 @@
   </data>
   <data name="IsKeyboardFocusableOnEmptyContainer" xml:space="preserve">
     <value>If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType", "true"}</comment>
   </data>
   <data name="IsKeyboardFocusableShouldBeFalse" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType", "false", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "ControlType", "false"}</comment>
   </data>
   <data name="IsKeyboardFocusableTopLevelTextPattern" xml:space="preserve">
     <value>Set the IsKeyboardFocusable UI Automation property to true.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="IsKeyboardFocusable", "true"}</comment>
   </data>
   <data name="ItemStatusExists" xml:space="preserve">
     <value>Add a meaningful ItemStatus UI Automation property to this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ItemStatus", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ItemStatus"}</comment>
   </data>
   <data name="LocalizedControlTypeReasonable" xml:space="preserve">
     <value>Set a meaningful LocalizedControlType UI Automation property for this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="ItemTypeRecommended" xml:space="preserve">
     <value>If necessary, set the ItemType UI Automation property for this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ItemType", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="ItemType"}</comment>
   </data>
   <data name="NameEmptyButElementNotKeyboardFocusable" xml:space="preserve">
     <value>Set the UI Automation Name property for the given element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNoSiblingsOfSameType" xml:space="preserve">
     <value>Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "null", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "null"}</comment>
   </data>
   <data name="NameNullButElementNotKeyboardFocusable" xml:space="preserve">
     <value>Set the UI Automation Name property for the given element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameOnCustomWithParentWPFDataItem" xml:space="preserve">
     <value>Set the UI Automation Name property of this custom control to be empty.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameOnOptionalType" xml:space="preserve">
     <value>Remove the UI Automation Name property for this element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameWithValidBoundingRectangle" xml:space="preserve">
     <value>Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "BoundingRectangle", "null", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "BoundingRectangle", "null"}</comment>
   </data>
   <data name="Structure" xml:space="preserve">
     <value>Set the element to conform to the following structure: {0}.</value>
@@ -544,7 +544,7 @@ Provide a string for the LocalizedControlType property that concisely describes 
 
 Better:
 If possible, use a predefined (non-custom) control type and the default localized control type. The UI Automation framework will provide the correct localized control type automatically.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="LocalizedControlType"}</comment>
   </data>
   <data name="LocalizedControlTypeNotCustomWPFGridCell" xml:space="preserve">
     <value>{0}
@@ -572,37 +572,37 @@ If your application targets a version of .NET Framework before 4.7.1, but is run
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
  · Does not include the control type.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameExcludesLocalizedControlType" xml:space="preserve">
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
  · Does not include the same text as the element's LocalizedControlType property.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "LocalizedControlType", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "LocalizedControlType"}</comment>
   </data>
   <data name="NameIsInformative" xml:space="preserve">
     <value>Examine the UI Automation Name property of this element:
  · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.
  · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Microsoft", "Name", "UI Automation", "Windows"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Microsoft", "Name", "Windows"}</comment>
   </data>
   <data name="NameNotEmpty" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNotNull" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameNotWhiteSpace" xml:space="preserve">
     <value>Provide a UI Automation Name property that concisely identifies the element.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="NameReasonableLength" xml:space="preserve">
     <value>Provide a UI Automation Name property for the element that:
  · Concisely identifies the element, AND
  · Contains at most 512 characters.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name", "UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem. {Locked="Name"}</comment>
   </data>
   <data name="ListItemSiblingsUnique" xml:space="preserve">
     <value>Provide unique names for sibling list items.</value>
@@ -628,7 +628,7 @@ If the element's ClickablePoint property is incorrect, please ensure it returns 
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
     <value>Switch your application to a framework that supports UI Automation.</value>
-    <comment>Brief guidance on how to fix an accessibility problem. {Locked="UI Automation"}</comment>
+    <comment>Brief guidance on how to fix an accessibility problem.</comment>
   </data>
   <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
     <value>The non-Chromium version of Edge has reached its end of life and should not be used for current product development. Please migrate your application to a supported browser.</value>
