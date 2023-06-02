@@ -507,7 +507,7 @@
   </data>
   <data name="FrameworkDoesNotSupportUIAutomation" xml:space="preserve">
     <value>The framework used to build this application does not support UI Automation.</value>
-    <comment>The description of an accessibility problem with an application currently under inspection. {Locked="UI Automation"}</comment>
+    <comment>The description of an accessibility problem with an application currently under inspection.</comment>
   </data>
   <data name="EdgeBrowserHasBeenDeprecated" xml:space="preserve">
     <value>The non-Chromium version of Microsoft Edge has been deprecated.</value>
