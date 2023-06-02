@@ -6,6 +6,7 @@ using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.Resources;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Axe.Windows.Rules.PropertyConditions
@@ -38,17 +39,19 @@ namespace Axe.Windows.Rules.PropertyConditions
         private static bool MatchOrderInSiblings(IA11yElement e, int index)
         {
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (e.Parent == null || e.Parent.Children == null) return false;
-            if (index < 1 || index > e.Parent.Children.Count()) return false;
+            IEnumerable<IA11yElement> siblings = e.Parent?.Children;
+            if (siblings == null) return false;
+            if (index < 1 || index > siblings.Count()) return false;
 
-            return e.Parent.Children.ElementAt(index - 1).RuntimeId == e.RuntimeId;
+            return siblings.ElementAt(index - 1).RuntimeId == e.RuntimeId;
         }
 
         private static bool HasSiblingsOfSameType(IA11yElement e)
         {
-            if (e?.Parent == null) return false;
+            IA11yElement parent = e?.Parent;
+            if (parent == null) return false;
 
-            var count = (from c in e.Parent.Children
+            var count = (from c in parent.Children
                          where c.ControlTypeId == e.ControlTypeId
                          select c).Count();
 
@@ -66,9 +69,10 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (e.Parent == null) return false;
+            IA11yElement parent = e.Parent;
+            if (parent == null) return false;
 
-            return c.Matches(e.Parent);
+            return c.Matches(parent);
         }
 
         public static ValueCondition<int> SiblingCount(Condition c)
@@ -86,11 +90,11 @@ namespace Axe.Windows.Rules.PropertyConditions
         {
             if (c == null) throw new ArgumentNullException(nameof(c));
             if (e == null) throw new ArgumentNullException(nameof(e));
-            if (e.Parent == null) return -1;
-            if (e.Parent.Children == null) return -1;
+            IEnumerable<IA11yElement> children = e.Parent?.Children;
+            if (children == null) return -1;
 
             int count = 0;
-            foreach (var child in e.Parent.Children)
+            foreach (var child in children)
             {
                 if (c.Matches(child))
                     ++count;
