@@ -494,19 +494,25 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Prvek tlačítka by měl podporovat pouze jeden ze vzorů Invoke, Toggle nebo ExpandCollapse, pokud je nadřazené tlačítko splitbutton. ]]></Val>
+            <Val><![CDATA[Prvek tlačítka by měl podporovat pouze jeden ze vzorů Invoke, Toggle nebo ExpandCollapse, pokud je nadřazené tlačítko SplitButton. ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+          <Val><![CDATA[A separator must not have any children with IsContentElement set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Oddělovač nesmí mít žádné podřízené prvky s elementem IsContentElement nastaveným na hodnotu TRUE.]]></Val>
+            <Val><![CDATA[Oddělovač nesmí mít žádné podřízené prvky s elementem IsContentElement nastaveným na hodnotu true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -514,7 +520,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Chromium components should be scanned with a web-based scanner.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Komponenty chromia by se měly naskenovat pomocí webového skeneru.]]></Val>
+            <Val><![CDATA[Komponenty Chromium by se měly naskenovat pomocí webového skeneru.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -737,10 +743,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Architektura použitá k sestavení této aplikace nepodporuje.]]></Val>
+            <Val><![CDATA[Architektura použitá k sestavení této aplikace nepodporuje UI Automation.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -818,10 +827,13 @@
       </Item>
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+          <Val><![CDATA[The given ControlType must have the IsControlElement property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Daná vlastnost ControlType musí mít vlastnost IsControlElement nastavenou na hodnotu TRUE.]]></Val>
+            <Val><![CDATA[Daná vlastnost ControlType musí mít vlastnost IsControlElement nastavenou na hodnotu true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +866,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Vlastnost IsKeyboardFocusable pro vlastní prvek by měla být true, pokud element podporuje vzory s akcemi.]]></Val>
+            <Val><![CDATA[Vlastnost IsKeyboardFocusable pro element Custom by měla být true, pokud element podporuje vzory s akcemi.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +896,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Očekává se, že vlastnost IsKeyboardFocusable pro daný element bude false kvůli typu ovládacího prvku.]]></Val>
+            <Val><![CDATA[Očekává se, že vlastnost IsKeyboardFocusable pro daný element bude false kvůli typu ControlType.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Vlastnost IsKeyboardFocusable pro daný element by měla být true na v závislosti na typu jeho ovládacího prvku.]]></Val>
+            <Val><![CDATA[Vlastnost IsKeyboardFocusable pro daný element by měla být true na v závislosti na jeho typu ControlType.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1142,10 +1163,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Vlastnost Name nesmí obsahovat pouze mezery.]]></Val>
+            <Val><![CDATA[Vlastnost Name nesmí obsahovat pouze bílé znaky.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1244,10 +1268,13 @@
       </Item>
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element daného elementu ControlType musí mít vlastnost IsSelectionRequired nastavenou na hodnotu TRUE.]]></Val>
+            <Val><![CDATA[Element daného elementu ControlType musí mít vlastnost IsSelectionRequired nastavenou na hodnotu true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1499,10 +1526,13 @@
       </Item>
       <Item ItemId=";BoundingRectangleNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to true.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Pokud je element mimo obrazovku, nastavte jeho vlastnost IsOffscreen na hodnotu TRUE.]D;]A;Pokud je element na obrazovce, zadejte vlastnost BoundingRectangle.]]></Val>
+            <Val><![CDATA[Pokud je element mimo obrazovku, nastavte jeho vlastnost IsOffscreen na hodnotu true.]D;]A;Pokud je element na obrazovce, zadejte vlastnost BoundingRectangle.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1571,10 +1601,13 @@
       </Item>
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ujistěte se, že všechny podřízené prvky elementu mají vlastnost IsContentElement nastavenou na hodnotu FALSE.]]></Val>
+            <Val><![CDATA[Ujistěte se, že všechny podřízené prvky elementu mají vlastnost IsContentElement nastavenou na hodnotu false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1778,10 +1811,13 @@
       </Item>
       <Item ItemId=";ControlShouldSupportTransformPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Pokud lze změnit velikost elementu, implementujte vzor Transform.]D;]A;Pokud velikost elementu nelze změnit, zajistěte, aby vlastnost TransformPattern_CanResize byla FALSE.]]></Val>
+            <Val><![CDATA[Pokud lze změnit velikost elementu, implementujte vzor Transform.]D;]A;Pokud velikost elementu nelze změnit, zajistěte, aby vlastnost TransformPattern_CanResize byla false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1850,10 +1886,13 @@
       </Item>
       <Item ItemId=";IsContentElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to true.]D;]A; · If the element should not be included in the content view, set the property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zadejte hodnotu vlastnosti IsContentElement elementu:]D;]A; · Pokud má být element zahrnut do zobrazení obsahu, nastavte vlastnost na hodnotu TRUE.]D;]A; · Pokud by prvek neměl být zahrnut do zobrazení obsahu, nastavte vlastnost na FALSE.]]></Val>
+            <Val><![CDATA[Zadejte hodnotu vlastnosti IsContentElement elementu:]D;]A; · Pokud má být element zahrnut do zobrazení obsahu, nastavte vlastnost na hodnotu true.]D;]A; · Pokud by prvek neměl být zahrnut do zobrazení obsahu, nastavte vlastnost na false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1868,10 +1907,13 @@
       </Item>
       <Item ItemId=";IsControlElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to true.]D;]A; · If the element should not be included in the control view, set the property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zadejte hodnotu vlastnosti IsControlElement elementu:]D;]A; · Pokud by měl být element zahrnutý v zobrazení ovládacího prvku, nastavte vlastnost na TRUE.]D;]A; · Pokud by prvek neměl být zahrnut do zobrazení ovládacího prvku, nastavte vlastnost na FALSE.]]></Val>
+            <Val><![CDATA[Zadejte hodnotu vlastnosti IsControlElement elementu:]D;]A; · Pokud by měl být element zahrnutý v zobrazení ovládacího prvku, nastavte vlastnost na true.]D;]A; · Pokud by prvek neměl být zahrnut do zobrazení ovládacího prvku, nastavte vlastnost na false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1886,10 +1928,13 @@
       </Item>
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+          <Val><![CDATA[Set the element's IsControlElement property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nastavte vlastnost IsControlElement elementu na hodnotu TRUE.]]></Val>
+            <Val><![CDATA[Nastavte vlastnost IsControlElement elementu na hodnotu true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2057,10 +2102,13 @@
       </Item>
       <Item ItemId=";LocalizedControlTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UI Automation framework will provide the correct localized control type automatically.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Dostatečné:]D;]A;Zadejte řetězec pro vlastnost LocalizedControlType, která stručně popisuje funkci nebo účel ovládacího prvku.]D;]A;]D;]A;Lepší:]D;]A;Pokud je to možné, použijte předdefinovaný (nepřizpůsobený) typ ovládacího prvku a výchozí lokalizovaný typ ovládacího prvku. Rozhraní UIA automaticky poskytne správný lokalizovaný typ ovládacího prvku.]]></Val>
+            <Val><![CDATA[Dostatečné:]D;]A;Zadejte řetězec pro vlastnost LocalizedControlType, která stručně popisuje funkci nebo účel ovládacího prvku.]D;]A;]D;]A;Lepší:]D;]A;Pokud je to možné, použijte předdefinovaný (nepřizpůsobený) typ ovládacího prvku a výchozí lokalizovaný typ ovládacího prvku. Architektura UI Automation automaticky poskytne správný lokalizovaný typ ovládacího prvku.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2120,19 +2168,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zadejte řetězec pro vlastnost LocalizedLandmarkType, která neobsahuje hodnotu „custom“.]D;]A;V případě potřeby použijte standardní lokalizovaný typ orientačního bodu:]D;]A; · Pro oblast na začátku stránky s obsahem orientovaným na web použijte typ „banner“.]D;]A; · Pro oblast s podpůrným obsahem, který zůstává smysluplný i když je oddělený od primárního obsahu, použijte typ „complementary“.]D;]A; · Pro oblast na konci stránky, která obsahuje informace o webu nebo primárním obsahu, použijte typ „contentinfo“.]D;]A; · Pro oblast obsahující sadu prvků souvisejících s formulářem použijte typ „form“.]D;]A;    ·         Pro oblast s primárním obsahem stránky použijte typ „main“.]D;]A;    ·         Pro oblast obsahující odkazy pro navigaci na stránce nebo na webu použijte typ „navigation“.]D;]A;    ·         Pro oblast stránky, která obsahuje funkce vyhledávání, použijte typ „search“.]D;]A;Pokud není použitelný žádný ze standardních typů orientačních bodů, zadejte řetězec, který stručně popisuje jeho obsah.]]></Val>
+            <Val><![CDATA[Zadejte řetězec pro vlastnost LocalizedLandmarkType, která neobsahuje hodnotu custom.]D;]A;V případě potřeby použijte standardní lokalizovaný typ orientačního bodu:]D;]A; · Pro oblast na začátku stránky s obsahem orientovaným na web použijte typ banner.]D;]A; · Pro oblast s podpůrným obsahem, který zůstává smysluplný i když je oddělený od primárního obsahu, použijte typ complementary.]D;]A; · Pro oblast na konci stránky, která obsahuje informace o webu nebo primárním obsahu, použijte typ contentinfo.]D;]A; · Pro oblast obsahující sadu prvků souvisejících s formulářem použijte typ form.]D;]A;·         Pro oblast s primárním obsahem stránky použijte typ main.]D;]A;·         Pro oblast obsahující odkazy pro navigaci na stránce nebo na webu použijte typ navigation.]D;]A; ·         Pro oblast stránky, která obsahuje funkce vyhledávání, použijte typ search.]D;]A;Pokud není použitelný žádný ze standardních typů orientačních bodů, zadejte řetězec, který stručně popisuje jeho obsah.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zadejte řetězec pro vlastnost LocalizedLandmarkType.]D;]A;V případě potřeby použijte standardní lokalizovaný typ orientačního bodu:]D;]A; · Pro oblast na začátku stránky s obsahem orientovaným na web. použijte typ „banner“.]D;]A; · Pro oblast s podpůrným obsahem, který zůstává smysluplný i když je oddělený od primárního obsahu, použijte typ „complementary“.]D;]A; · Pro oblast na konci stránky obsahující informace o lokalitě nebo primárním obsahu použijte typ „contentinfo“.]D;]A; · Pro oblast obsahující sadu prvků souvisejících s formulářem použijte typ „form“.]D;]A; · Pro oblast s primárním obsahem stránky použijte typ „main“.]D;]A;    ·         Pro oblast obsahující odkazy pro navigaci na stránce nebo na webu použijte typ „navigation“.]D;]A;    ·         Pro oblast stránky obsahující funkci vyhledávání použijte typ „search“.]D;]A;Pokud  se nedá použít žádný ze standardních typů orientačních bodů, zadejte řetězec, který stručně popisuje jeho obsah.]]></Val>
+            <Val><![CDATA[Zadejte řetězec pro vlastnost LocalizedLandmarkType.]D;]A;V případě potřeby použijte standardní lokalizovaný typ orientačního bodu:]D;]A; · Pro oblast na začátku stránky s obsahem orientovaným na web. použijte typ banner.]D;]A; · Pro oblast s podpůrným obsahem, který zůstává smysluplný i když je oddělený od primárního obsahu, použijte typ complementary.]D;]A; · Pro oblast na konci stránky obsahující informace o lokalitě nebo primárním obsahu použijte typ contentinfo.]D;]A; · Pro oblast obsahující sadu prvků souvisejících s formulářem použijte typ form.]D;]A; · Pro oblast s primárním obsahem stránky použijte typ main.]D;]A;·         Pro oblast obsahující odkazy pro navigaci na stránce nebo na webu použijte typ navigation.]D;]A;·         Pro oblast stránky obsahující funkci vyhledávání použijte typ search.]D;]A;Pokud se nedá použít žádný ze standardních typů orientačních bodů, zadejte řetězec, který stručně popisuje jeho obsah.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2294,10 +2348,13 @@
       </Item>
       <Item ItemId=";ProgressBarRangeValue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: true]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Implementujte vzor RangeValue indikátoru průběhu pomocí následujících vlastností a hodnot:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[Implementujte vzor RangeValue indikátoru průběhu pomocí následujících vlastností a hodnot:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: true]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2312,28 +2369,37 @@
       </Item>
       <Item ItemId=";SelectionItemPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Proveďte jednu z následujících akcí:]D;]A; 1. Upravte element a/nebo jeho prvky na stejné úrovni tak, aby byl v daném okamžiku vybrán pouze jeden z nich, NEBO]D;]A; 2. Upravte nadřazený element tak, aby jeho vlastnost CanSelectMultiple byla TRUE.]]></Val>
+            <Val><![CDATA[Proveďte jednu z následujících akcí:]D;]A; 1. Upravte element a/nebo jeho prvky na stejné úrovni tak, aby byl v daném okamžiku vybrán pouze jeden z nich, NEBO]D;]A; 2. Upravte nadřazený element tak, aby jeho vlastnost CanSelectMultiple byla true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Nastavte vlastnost IsSelectionRequired prvku SelectionPattern na hodnotu TRUE.]]></Val>
+            <Val><![CDATA[Nastavte vlastnost IsSelectionRequired prvku SelectionPattern na hodnotu true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";SelectionPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. Ujistěte se, že má element odpovídající vlastnost ControlType pro svou funkci.]D;]A;2. Ujistěte se, že je Selection správným vzorem.]D;]A;3. Nastavte vlastnost CanSelectMultiple elementu na FALSE.]]></Val>
+            <Val><![CDATA[1. Ujistěte se, že má element odpovídající vlastnost ControlType pro svou funkci.]D;]A;2. Ujistěte se, že je Selection správným vzorem.]D;]A;3. Nastavte vlastnost CanSelectMultiple elementu na false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
