@@ -494,19 +494,25 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element przycisku powinien obsługiwać tylko jeden z wzorców Invoke, Toggle lub ExpandCollapse, gdy elementem nadrzędnym jest element splitbutton. ]]></Val>
+            <Val><![CDATA[Element przycisku powinien obsługiwać tylko jeden z wzorców Invoke, Toggle lub ExpandCollapse, gdy element SplitButton jest elementem nadrzędnym. ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+          <Val><![CDATA[A separator must not have any children with IsContentElement set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Separator nie może mieć żadnych elementów podrzędnych z właściwością IsContentElement ustawioną na wartość TRUE.]]></Val>
+            <Val><![CDATA[Separator nie może mieć żadnych elementów podrzędnych z właściwością IsContentElement ustawioną na wartość true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -737,10 +743,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Platforma używana do kompilowania tej aplikacji nie zapewnia obsługi.]]></Val>
+            <Val><![CDATA[Struktura używana do kompilowania tej aplikacji nie obsługuje UI Automation.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -818,10 +827,13 @@
       </Item>
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+          <Val><![CDATA[The given ControlType must have the IsControlElement property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Dany element ControlType musi mieć właściwość IsControlElement ustawioną na wartość TRUE.]]></Val>
+            <Val><![CDATA[Dany element ControlType musi mieć właściwość IsControlElement ustawioną na wartość true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +866,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Właściwość IsKeyboardFocusable elementu niestandardowego powinna mieć wartość true, gdy element obsługuje wzorce z akcjami.]]></Val>
+            <Val><![CDATA[Właściwość IsKeyboardFocusable elementu Custom powinna mieć wartość true, gdy element obsługuje wzorce z akcjami.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +896,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Oczekuje się, że właściwość IsKeyboardFocusable danego elementu będzie mieć wartość false ze względu na typ kontrolki elementu.]]></Val>
+            <Val><![CDATA[Oczekuje się, że właściwość IsKeyboardFocusable danego elementu będzie mieć wartość false ze względu na typ ControlType.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Właściwość IsKeyboardFocusable danego elementu powinna mieć wartość true na podstawie jego typu kontrolki.]]></Val>
+            <Val><![CDATA[Właściwość IsKeyboardFocusable dla danego elementu powinna mieć wartość true na podstawie jego typu ControlType.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -991,7 +1012,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The ControlType and LocalizedControlType must not both be set to "custom."]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Właściwości ControlType i LocalizedControlType nie mogą być jednocześnie ustawione na wartość „niestandardowa”.]]></Val>
+            <Val><![CDATA[Właściwości ControlType i LocalizedControlType nie mogą być jednocześnie ustawione na wartość „custom”.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1045,7 +1066,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The LandmarkType and LocalizedLandmarkType must not both be set to "custom".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Właściwości LandmarkType i LocalizedLandmarkType nie mogą być jednocześnie ustawione na wartość „niestandardowa”.]]></Val>
+            <Val><![CDATA[Właściwości LandmarkType i LocalizedLandmarkType nie mogą być jednocześnie ustawione na wartość „custom”.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1142,10 +1163,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Właściwość Name nie może zawierać samych znaków spacji.]]></Val>
+            <Val><![CDATA[Właściwość Name nie może zawierać tylko białych znaków.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1244,10 +1268,13 @@
       </Item>
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Element danego elementu ControlType musi mieć właściwość IsSelectionRequired ustawioną na wartość TRUE.]]></Val>
+            <Val><![CDATA[Element danego elementu ControlType musi mieć właściwość IsSelectionRequired ustawioną na wartość true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1499,10 +1526,13 @@
       </Item>
       <Item ItemId=";BoundingRectangleNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to true.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Jeśli element znajduje się poza ekranem, ustaw jego właściwość IsOffscreen na wartość TRUE.]D;]A;Jeśli element jest wyświetlany na ekranie, określ właściwość BoundingRectangle.]]></Val>
+            <Val><![CDATA[Jeśli element znajduje się poza ekranem, ustaw jego właściwość IsOffscreen na wartość true.]D;]A;Jeśli element jest wyświetlany na ekranie, określ właściwość BoundingRectangle.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1571,10 +1601,13 @@
       </Item>
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Upewnij się, że w przypadku wszystkich elementów podrzędnych elementu właściwość IsContentElement jest ustawiona na wartość FALSE.]]></Val>
+            <Val><![CDATA[Upewnij się, że w przypadku wszystkich elementów podrzędnych elementu właściwość IsContentElement jest ustawiona na wartość false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1778,10 +1811,13 @@
       </Item>
       <Item ItemId=";ControlShouldSupportTransformPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Jeśli można zmienić rozmiar elementu, zaimplementuj wzorzec Transform.]D;]A;Jeśli nie można zmienić rozmiaru elementu, upewnij się, że właściwość TransformPattern_CanResize ma wartość FALSE.]]></Val>
+            <Val><![CDATA[Jeśli można zmienić rozmiar elementu, zaimplementuj wzorzec Transform.]D;]A;Jeśli nie można zmienić rozmiaru elementu, upewnij się, że właściwość TransformPattern_CanResize ma wartość false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1807,7 +1843,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Switch your application to a framework that supports UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Przełącz aplikację na platformę obsługującą automatyzację interfejsu użytkownika.]]></Val>
+            <Val><![CDATA[Przełącz aplikację na platformę obsługującą UI Automation.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1825,7 +1861,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Write meaningful text for the element's UI Automation HelpText property. This text is typically similar to, or taken from, a tooltip or placeholder, such as "type here to search".]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Napisz zrozumiały tekst dla właściwości HelpText automatyzacji interfejsu użytkownika elementu. Ten tekst jest zazwyczaj podobny do etykietki narzędzia lub symbolu zastępczego bądź jest z tego miejsca pobierany, na przykład „wpisz tutaj, aby wyszukać”.]]></Val>
+            <Val><![CDATA[Napisz zrozumiały tekst dla właściwości HelpText UI Automation elementu. Ten tekst jest zazwyczaj podobny do etykietki narzędzia lub symbolu zastępczego bądź jest z tego miejsca pobierany, na przykład „wpisz tutaj, aby wyszukać”.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1843,17 +1879,20 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsContentElement UI Automation property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsContentElement na wartość false.]]></Val>
+            <Val><![CDATA[Ustaw właściwość UI Automation IsContentElement na wartość false.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsContentElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to true.]D;]A; · If the element should not be included in the content view, set the property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj wartość właściwości IsContentElement elementu:]D;]A; · Jeśli element powinien być uwzględniony w widoku zawartości, ustaw dla tę właściwość na wartość TRUE.]D;]A; · Jeśli element nie powinien być uwzględniony w widoku zawartości, ustaw dla właściwości na wartość FALSE.]]></Val>
+            <Val><![CDATA[Podaj wartość właściwości IsContentElement elementu:]D;]A; · Jeśli element powinien być uwzględniony w widoku zawartości, ustaw tę właściwość na wartość true.]D;]A; · Jeśli element nie powinien być uwzględniony w widoku zawartości, ustaw właściwość na wartość false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1861,17 +1900,20 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsContentElement UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsContentElement na wartość true.]]></Val>
+            <Val><![CDATA[Ustaw właściwość UI Automation IsContentElement na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsControlElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to true.]D;]A; · If the element should not be included in the control view, set the property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj wartość dla właściwości IsControlElement elementu:]D;]A; · Jeśli element powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość TRUE.]D;]A; · Jeśli element nie powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość FALSE.]]></Val>
+            <Val><![CDATA[Podaj wartość dla właściwości IsControlElement elementu:]D;]A; · Jeśli element powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość true.]D;]A; · Jeśli element nie powinien być uwzględniony w widoku kontrolki, ustaw tę właściwość na wartość false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1879,17 +1921,20 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsControlElement UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsControlElement na wartość true.]]></Val>
+            <Val><![CDATA[Ustaw właściwość UI Automation IsControlElement na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+          <Val><![CDATA[Set the element's IsControlElement property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość IsControlElement elementu na wartość TRUE.]]></Val>
+            <Val><![CDATA[Ustaw właściwość IsControlElement elementu na wartość true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1906,7 +1951,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Jeśli ten element jest nadal osiągalny za pomocą klawiatury, nawet jeśli jest wyłączony, ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość true.]]></Val>
+            <Val><![CDATA[Jeśli ten element jest nadal osiągalny za pomocą klawiatury, nawet jeśli jest wyłączony, ustaw właściwość UI Automation IsKeyboardFocusable na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1915,7 +1960,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Jeśli ten element jest nadal osiągalny za pomocą klawiatury, nawet jeśli znajduje się poza ekranem, ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość true.]]></Val>
+            <Val><![CDATA[Jeśli ten element jest nadal osiągalny za pomocą klawiatury, nawet jeśli znajduje się poza ekranem, ustaw właściwość UI Automation IsKeyboardFocusable na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1924,7 +1969,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Upewnij się, że ten element może być modyfikowany za pomocą klawiatury, a następnie ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość true.]]></Val>
+            <Val><![CDATA[Upewnij się, że ten element może być modyfikowany za pomocą klawiatury, a następnie ustaw właściwość UI Automation IsKeyboardFocusable na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1942,7 +1987,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Jeśli ten kontener powinien być wykrywalny przez użytkowników klawiatury, ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość true. W przeciwnym razie rozważ zmianę elementu ControlType.]]></Val>
+            <Val><![CDATA[Jeśli ten kontener powinien być wykrywalny przez użytkowników klawiatury, ustaw właściwość UI Automation IsKeyboardFocusable na wartość true. W przeciwnym razie rozważ zmianę elementu ControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1951,7 +1996,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość false. Jeśli ten element faktycznie powinien być osiągalny za pomocą klawiatury, zweryfikuj jego właściwość ControlType.]]></Val>
+            <Val><![CDATA[Ustaw właściwość UI Automation IsKeyboardFocusable na wartość false. Jeśli ten element faktycznie powinien być osiągalny za pomocą klawiatury, zweryfikuj jego właściwość ControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1960,7 +2005,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość true.]]></Val>
+            <Val><![CDATA[Ustaw właściwość UI Automation IsKeyboardFocusable na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1969,7 +2014,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość automatyzacji interfejsu użytkownika IsKeyboardFocusable na wartość true.]]></Val>
+            <Val><![CDATA[Ustaw właściwość UI Automation IsKeyboardFocusable na wartość true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1978,7 +2023,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Add a meaningful ItemStatus UI Automation property to this element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Dodaj sensowną właściwość automatyzacji interfejsu użytkownika ItemStatus do tego elementu.]]></Val>
+            <Val><![CDATA[Dodaj sensowną właściwość UI Automation ItemStatus do tego elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1987,7 +2032,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If necessary, set the ItemType UI Automation property for this element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[W razie potrzeby ustaw właściwość automatyzacji interfejsu użytkownika ItemType dla tego elementu.]]></Val>
+            <Val><![CDATA[W razie potrzeby ustaw właściwość UI Automation ItemType dla tego elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2057,10 +2102,13 @@
       </Item>
       <Item ItemId=";LocalizedControlTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UI Automation framework will provide the correct localized control type automatically.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Wystarczające:]D;]A;Podaj ciąg dla właściwości LocalizedControlType, który zwięźle opisuje funkcję lub przeznaczenie kontrolki.]D;]A;]D;]A;Lepsze:]D;]A;W miarę możliwości użyj wstępnie zdefiniowanego (innego niż niestandardowy) typu kontrolki i domyślnego zlokalizowanego typu kontrolki. Platforma automatyzacji interfejsu użytkownika automatycznie zapewnia poprawny zlokalizowany typ kontrolki.]]></Val>
+            <Val><![CDATA[Wystarczające:]D;]A;Podaj ciąg dla właściwości LocalizedControlType, który zwięźle opisuje funkcję lub przeznaczenie kontrolki.]D;]A;]D;]A;Lepsze:]D;]A;W miarę możliwości użyj wstępnie zdefiniowanego (innego niż niestandardowy) typu kontrolki i domyślnego zlokalizowanego typu kontrolki. Platforma usługi Automation interfejsu użytkownika (UI Automation) automatycznie zapewnia poprawny zlokalizowany typ kontrolki.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2104,7 +2152,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set a meaningful LocalizedControlType UI Automation property for this element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw sensowną właściwość automatyzacji interfejsu użytkownika LocalizedControlType dla tego elementu.]]></Val>
+            <Val><![CDATA[Ustaw sensowną właściwość UI Automation LocalizedControlType dla tego elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2120,19 +2168,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj ciąg dla właściwości LocalizedLandmarkType, która nie zawiera wartości „niestandardowa”.]D;]A;W razie potrzeby użyj standardowego zlokalizowanego typu punktu orientacyjnego:]D;]A; · Użyj wartości „baner” dla obszaru na początku strony z zawartością zorientowaną na witrynę.]D;]A; · Użyj wartości „uzupełniająca” dla obszaru z zawartością pomocniczą, która nadal jest zrozumiała, gdy jest odseparowana od zawartości podstawowej.]D;]A; · Użyj wartości „contentinfo” dla obszaru na końcu strony zawierającego informacje o witrynie lub zawartości podstawowej.]D;]A; · Użyj wartości „formularz” dla obszaru zawierającego zestaw elementów związanych z formularzem.]D;]A;    ·         Użyj wartości „główna” dla obszaru z podstawową zawartością strony.]D;]A;    ·         Użyj pozycji „nawigacja” dla obszaru zawierającego linki na potrzeby nawigacji po stronie lub witrynie.]D;]A;    ·         Użyj wartości „wyszukiwanie” dla obszaru strony zawierającej funkcję wyszukiwania.]D;]A;Jeśli żaden ze standardowych typów punktów orientacyjnych nie ma zastosowania, podaj ciąg, który zwięźle opisuje jego zawartość.]]></Val>
+            <Val><![CDATA[Podaj ciąg dla właściwości LocalizedLandmarkType, która nie zawiera wartości „custom”.]D;]A;W razie potrzeby użyj standardowego zlokalizowanego typu punktu orientacyjnego:]D;]A; · Użyj wartości „baner” dla obszaru na początku strony z zawartością zorientowaną na witrynę.]D;]A; · Użyj wartości „uzupełniająca” dla obszaru z zawartością pomocniczą, która nadal jest zrozumiała, gdy jest odseparowana od zawartości podstawowej.]D;]A; · Użyj wartości „contentinfo” dla obszaru na końcu strony zawierającego informacje o witrynie lub zawartości podstawowej.]D;]A; · Użyj wartości „formularz” dla obszaru zawierającego zestaw elementów związanych z formularzem.]D;]A; ·         Użyj wartości „główna” dla obszaru z podstawową zawartością strony.]D;]A; ·         Użyj pozycji „nawigacja” dla obszaru zawierającego linki na potrzeby nawigacji po stronie lub witrynie.]D;]A; ·         Użyj wartości „wyszukiwanie” dla obszaru strony zawierającej funkcję wyszukiwania.]D;]A;Jeśli żaden ze standardowych typów punktów orientacyjnych nie ma zastosowania, podaj ciąg, który zwięźle opisuje jego zawartość.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj ciąg dla właściwości LocalizedLandmarkType.]D;]A;W razie potrzeby użyj standardowego zlokalizowanego typu punktu orientacyjnego:]D;]A; · Użyj wartości „baner” dla obszaru na początku strony z zawartością zorientowaną na witrynę.]D;]A; · Użyj wartości „uzupełniająca” dla obszaru z zawartością pomocniczą, która nadal jest zrozumiała, gdy jest odseparowana od zawartości podstawowej.]D;]A; · Użyj wartości „contentinfo” dla obszaru na końcu strony zawierającego informacje o witrynie lub zawartości podstawowej.]D;]A; · Użyj wartości „formularz” dla obszaru zawierającego zestaw elementów związanych z formularzem.]D;]A; · Użyj wartości „główna” dla obszaru z podstawową zawartością strony.]D;]A;    ·         Użyj wartości „nawigacja” dla obszaru zawierającego linki na potrzeby nawigacji po stronie lub witrynie.]D;]A;    ·         Użyj wartości „wyszukiwanie” dla obszaru strony zawierającej funkcję wyszukiwania.]D;]A;Jeśli żaden ze standardowych typów punktów orientacyjnych nie ma zastosowania, podaj ciąg, który zwięźle opisuje jego zawartość.]]></Val>
+            <Val><![CDATA[Podaj ciąg dla właściwości LocalizedLandmarkType.]D;]A;W razie potrzeby użyj standardowego zlokalizowanego typu punktu orientacyjnego:]D;]A; · Użyj wartości „baner” dla obszaru na początku strony z zawartością zorientowaną na witrynę.]D;]A; · Użyj wartości „uzupełniająca” dla obszaru z zawartością pomocniczą, która nadal jest zrozumiała, gdy jest odseparowana od zawartości podstawowej.]D;]A; · Użyj wartości „contentinfo” dla obszaru na końcu strony zawierającego informacje o witrynie lub zawartości podstawowej.]D;]A; · Użyj wartości „formularz” dla obszaru zawierającego zestaw elementów związanych z formularzem.]D;]A; · Użyj wartości „główna” dla obszaru z podstawową zawartością strony.]D;]A; ·         Użyj wartości „nawigacja” dla obszaru zawierającego linki na potrzeby nawigacji po stronie lub witrynie.]D;]A; ·         Użyj wartości „wyszukiwanie” dla obszaru strony zawierającej funkcję wyszukiwania.]D;]A;Jeśli żaden ze standardowych typów punktów orientacyjnych nie ma zastosowania, podaj ciąg, który zwięźle opisuje jego zawartość.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2158,7 +2212,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the UI Automation Name property for the given element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość Name automatyzacji interfejsu użytkownika dla danego elementu.]]></Val>
+            <Val><![CDATA[Ustaw właściwość Name UI Automation dla danego elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2167,7 +2221,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the control type.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj właściwość Name automatyzacji interfejsu użytkownika dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Nie zawiera typu kontrolki.]]></Val>
+            <Val><![CDATA[Podaj właściwość Name UI Automation dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Nie zawiera typu kontrolki.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2176,7 +2230,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the same text as the element's LocalizedControlType property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Określ właściwość Name automatyzacji interfejsu użytkownika dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Nie zawiera tego samego tekstu jako właściwości LocalizedControlType elementu.]]></Val>
+            <Val><![CDATA[Określ właściwość Name UI Automation dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Nie zawiera tego samego tekstu jako właściwości LocalizedControlType elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2185,7 +2239,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Examine the UI Automation Name property of this element:]D;]A; · If the Name property contains "Microsoft" or "Windows" and is closely related to the on-screen text (for example, a reference to "Microsoft.com"), you may safely ignore this issue.]D;]A; · If the Name property is not closely related to the on-screen text (and provides no meaningful information to end-users), update the Name to a concise, user-facing label that is closely related to the on-screen text.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Sprawdź właściwość Name automatyzacji interfejsu użytkownika tego elementu:]D;]A; · Jeśli właściwość Name zawiera ciąg „Microsoft” lub „Windows” i jest ściśle powiązana z tekstem wyświetlanym na ekranie (na przykład odwołaniem do elementu „Microsoft.com”), możesz bezpiecznie zignorować ten problem.]D;]A; · Jeśli właściwość Name nie jest ściśle powiązana z tekstem wyświetlanym na ekranie (i nie udostępnia użytkownikom końcowym istotnych informacji), zaktualizuj właściwość Name na zwięzłą etykietę skierowaną do użytkownika, która jest ściśle powiązana z tekstem wyświetlanym na ekranie.]]></Val>
+            <Val><![CDATA[Sprawdź właściwość Name UI Automation tego elementu:]D;]A; · Jeśli właściwość Name zawiera ciąg „Microsoft” lub „Windows” i jest ściśle powiązana z tekstem wyświetlanym na ekranie (na przykład odwołaniem do elementu „Microsoft.com”), możesz bezpiecznie zignorować ten problem.]D;]A; · Jeśli właściwość Name nie jest ściśle powiązana z tekstem wyświetlanym na ekranie (i nie udostępnia użytkownikom końcowym istotnych informacji), zaktualizuj właściwość Name na zwięzłą etykietę skierowaną do użytkownika, która jest ściśle powiązana z tekstem wyświetlanym na ekranie.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Does not include the element's class name (such as Microsoft.*.* or Windows.*.*).]]></Val>
@@ -2197,7 +2251,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość Name automatyzacji interfejsu użytkownika tego elementu w taki sposób, aby miała wartość null lub była pusta, jeśli element nie ma elementów równorzędnych tego samego typu.]]></Val>
+            <Val><![CDATA[Ustaw właściwość Name UI Automation tego elementu w taki sposób, aby miała wartość null lub była pusta, jeśli element nie ma elementów równorzędnych tego samego typu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2206,7 +2260,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a UI Automation Name property that concisely identifies the element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj właściwość Name automatyzacji interfejsu użytkownika, która zwięźle identyfikuje element.]]></Val>
+            <Val><![CDATA[Podaj właściwość Name UI Automation, która zwięźle identyfikuje element.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2215,7 +2269,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a UI Automation Name property that concisely identifies the element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj właściwość Name automatyzacji interfejsu użytkownika, która zwięźle identyfikuje element.]]></Val>
+            <Val><![CDATA[Podaj właściwość Name UI Automation, która zwięźle identyfikuje element.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2224,7 +2278,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a UI Automation Name property that concisely identifies the element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj właściwość Name automatyzacji interfejsu użytkownika, która zwięźle identyfikuje element.]]></Val>
+            <Val><![CDATA[Podaj właściwość Name UI Automation, która zwięźle identyfikuje element.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2233,7 +2287,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the UI Automation Name property for the given element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość Name automatyzacji interfejsu użytkownika dla danego elementu.]]></Val>
+            <Val><![CDATA[Ustaw właściwość Name UI Automation dla danego elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2242,7 +2296,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the UI Automation Name property of this custom control to be empty.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość Name automatyzacji interfejsu użytkownika tej kontrolki niestandardowej w taki sposób, aby była ona pusta.]]></Val>
+            <Val><![CDATA[Ustaw właściwość Name UI Automation tej kontrolki niestandardowej w taki sposób, aby była ona pusta.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2251,7 +2305,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Remove the UI Automation Name property for this element.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Usuń właściwość Name automatyzacji interfejsu użytkownika dla tego elementu.]]></Val>
+            <Val><![CDATA[Usuń właściwość Name UI Automation dla tego elementu.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2260,7 +2314,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Provide a UI Automation Name property for the element that:]D;]A; · Concisely identifies the element, AND]D;]A; · Contains at most 512 characters.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Podaj właściwość Name automatyzacji interfejsu użytkownika dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Zawiera maksymalnie 512 znaków.]]></Val>
+            <Val><![CDATA[Podaj właściwość Name UI Automation dla elementu, który:]D;]A; · Zwięźle identyfikuje element, ORAZ]D;]A; · Zawiera maksymalnie 512 znaków.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2269,7 +2323,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zmodyfikuj właściwość Name automatyzacji interfejsu użytkownika, aby miała prawidłową właściwość BoundingRectangle (tzn. właściwość BoundingRectangle nie ma wartości null i ma obszar).]]></Val>
+            <Val><![CDATA[Zmodyfikuj właściwość Name UI Automation, aby miała prawidłową właściwość BoundingRectangle (tzn. właściwość BoundingRectangle nie ma wartości null i ma obszar).]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2294,10 +2348,13 @@
       </Item>
       <Item ItemId=";ProgressBarRangeValue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: true]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Zaimplementuj wzorzec RangeValue paska postępu przy użyciu następujących właściwości i wartości:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[Zaimplementuj wzorzec RangeValue paska postępu przy użyciu następujących właściwości i wartości:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: wartość true]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2312,28 +2369,37 @@
       </Item>
       <Item ItemId=";SelectionItemPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Wykonaj jedną z następujących czynności:]D;]A; 1. Zmodyfikuj element i/lub jego elementy równorzędne w taki sposób, aby w dowolnym momencie był zaznaczony tylko jeden z nich, LUB]D;]A; 2. Zmodyfikuj element nadrzędny, tak aby jego właściwość CanSelectMultiple była ustawiona na wartość TRUE.]]></Val>
+            <Val><![CDATA[Wykonaj jedną z następujących czynności:]D;]A; 1. Zmodyfikuj element i/lub jego elementy równorzędne w taki sposób, aby w dowolnym momencie był zaznaczony tylko jeden z nich, LUB]D;]A; 2. Zmodyfikuj element nadrzędny, tak aby jego właściwość CanSelectMultiple była ustawiona na wartość true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Ustaw właściwość IsSelectionRequired elementu SelectionPattern na wartość TRUE.]]></Val>
+            <Val><![CDATA[Ustaw właściwość IsSelectionRequired elementu SelectionPattern na wartość true.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";SelectionPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. Upewnij się, że element ma odpowiednią właściwość ControlType dla swojej funkcji.]D;]A;2. Upewnij się, że Selection jest poprawnym wzorcem.]D;]A;3. Ustaw właściwość CanSelectMultiple elementu na wartość FALSE.]]></Val>
+            <Val><![CDATA[1. Upewnij się, że element ma odpowiednią właściwość ControlType dla swojej funkcji.]D;]A;2. Upewnij się, że poprawnym wzorcem jest Selection.]D;]A;3. Ustaw właściwość CanSelectMultiple elementu na wartość false.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2350,7 +2416,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Verify that each element has a meaningful UI Automation Name property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Sprawdź, czy każdy element ma sensowną właściwość Name automatyzacji interfejsu użytkownika.]]></Val>
+            <Val><![CDATA[Sprawdź, czy każdy element ma sensowną właściwość Name UI Automation.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

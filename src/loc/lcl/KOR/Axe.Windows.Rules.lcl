@@ -433,7 +433,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An on-screen element must not have a null BoundingRectangle property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[화면상의 요소에는 Null BoundingRectangle 속성이 없어야 합니다.]]></Val>
+            <Val><![CDATA[화면상의 요소에는 null BoundingRectangle 속성이 없어야 합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -494,19 +494,25 @@
       </Item>
       <Item ItemId=";ButtonWithSplitButtonParentPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a SplitButton is the parent. ]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[단추 요소는 splitbutton이 부모인 경우 Invoke, Toggle 또는 ExpandCollapse 패턴 중 하나만 지원해야 합니다.]]></Val>
+            <Val><![CDATA[단추 요소는 SplitButton이 부모 요소인 경우 Invoke, Toggle 또는 ExpandCollapse 패턴 중 하나만 지원해야 합니다. ]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A button element should only support one of the Invoke, Toggle, or ExpandCollapse patterns when a splitbutton is the parent. ]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+          <Val><![CDATA[A separator must not have any children with IsContentElement set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[구분 기호에는 IsContentElement가 TRUE로 설정된 자식 요소가 없어야 합니다.]]></Val>
+            <Val><![CDATA[구분 기호에는 IsContentElement가 true로 설정된 자식 요소가 없어야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -737,10 +743,13 @@
       </Item>
       <Item ItemId=";FrameworkDoesNotSupportUIAutomation" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[이 애플리케이션을 빌드하는 데 사용되는 프레임워크는 지원하지 않습니다.]]></Val>
+            <Val><![CDATA[이 애플리케이션을 빌드하는 데 사용되는 프레임워크는 UI 자동화를 지원하지 않습니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The framework used to build this application does not support.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -775,7 +784,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 컨트롤 형식에 대한 IsContentElement 속성의 권장 값은 true입니다. 보조 기술 사용자에게 콘텐츠로 보고해야 하는 요소인지 확인하세요.]]></Val>
+            <Val><![CDATA[주어진 컨트롤 형식에 대한 IsContentElement 속성의 권장 값은 false입니다. 보조 기술 사용자에게 콘텐츠로 보고해야 하는 요소인지 확인하세요.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -818,10 +827,13 @@
       </Item>
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+          <Val><![CDATA[The given ControlType must have the IsControlElement property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 ControlType에는 IsControlElement 속성이 TRUE로 설정되어 있어야 합니다.]]></Val>
+            <Val><![CDATA[주어진 ControlType에는 IsControlElement 속성이 true로 설정되어 있어야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -854,10 +866,13 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableForCustomShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소가 실행 가능한 패턴을 지원하는 경우 사용자 지정 요소의 IsKeyboardFocusable 속성은 true여야 합니다.]]></Val>
+            <Val><![CDATA[요소가 실행 가능한 패턴을 지원하는 경우 Custom 요소의 IsKeyboardFocusable 속성은 true여야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -881,19 +896,25 @@
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeFalse" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 컨트롤 형식 때문에 주어진 요소의 IsKeyboardFocusable 속성이 false여야 합니다.]]></Val>
+            <Val><![CDATA[해당 요소의 IsKeyboardFocusable 속성은 해당 ControlType으로 인해 false여야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";IsKeyboardFocusableShouldBeTrue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 요소의 IsKeyboardFocusable 속성은 해당 컨트롤 형식에 따라 true여야 합니다.]]></Val>
+            <Val><![CDATA[해당 요소의 IsKeyboardFocusable 속성은 해당 ControlType에 따라 true여야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The IsKeyboardFocusable property for the given element should be true based on its control type.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1063,7 +1084,7 @@
         <Str Cat="Text">
           <Val><![CDATA[An element with LandmarkType set must not have a null LocalizedLandmarkType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[LandmarkType 집합이 있는 요소에는 Null LocalizedLandmarkType이 없어야 합니다.]]></Val>
+            <Val><![CDATA[LandmarkType 집합이 있는 요소에는 null LocalizedLandmarkType이 없어야 합니다.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1142,10 +1163,13 @@
       </Item>
       <Item ItemId=";NameNotWhiteSpace" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          <Val><![CDATA[The Name property must not contain only whitespace.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Name 속성은 공백 문자만 포함할 수 없습니다.]]></Val>
+            <Val><![CDATA[Name 속성에는 공백만 있어서는 안 됩니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[The Name property must not contain only space characters.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1244,10 +1268,13 @@
       </Item>
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+          <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[주어진 ControlType의 요소에는 IsSelectionRequired 속성이 TRUE로 설정되어 있어야 합니다.]]></Val>
+            <Val><![CDATA[주어진 ControlType의 요소에는 IsSelectionRequired 속성이 true로 설정되어 있어야 합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1499,10 +1526,13 @@
       </Item>
       <Item ItemId=";BoundingRectangleNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+          <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to true.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소가 화면 외부에 있는 경우 IsOffscreen 속성을 TRUE로 설정합니다.]D;]A;요소가 화면상에 있는 경우 BoundingRectangle 속성을 제공합니다.]]></Val>
+            <Val><![CDATA[요소가 화면 외부에 있는 경우 IsOffscreen 속성을 true로 설정합니다.]D;]A;요소가 화면상에 있는 경우 BoundingRectangle 속성을 제공합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1571,10 +1601,13 @@
       </Item>
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+          <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 모든 자식 요소에 IsContentElement 속성이 FALSE로 설정되어 있는지 확인합니다.]]></Val>
+            <Val><![CDATA[요소의 모든 자식 요소에 IsContentElement 속성이 false로 설정되어 있는지 확인합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1778,10 +1811,13 @@
       </Item>
       <Item ItemId=";ControlShouldSupportTransformPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+          <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 크기를 조정할 수 있는 경우 Transform 패턴을 구현합니다.]D;]A;요소의 크기를 조정할 수 없는 경우 TransformPattern_CanResize 속성이 FALSE인지 확인합니다.]]></Val>
+            <Val><![CDATA[요소의 크기를 조정할 수 있는 경우 Transform 패턴을 구현합니다.]D;]A;요소의 크기를 조정할 수 없는 경우 TransformPattern_CanResize 속성이 false인지 확인합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1850,10 +1886,13 @@
       </Item>
       <Item ItemId=";IsContentElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+          <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to true.]D;]A; · If the element should not be included in the content view, set the property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 IsContentElement 속성에 대한 값을 제공합니다.]D;]A; · 요소가 콘텐츠 뷰에 포함되어야 하는 경우 속성을 TRUE로 설정합니다.]D;]A; · 요소가 콘텐츠 뷰에 포함되지 않아야 하는 경우 속성을 FALSE로 설정합니다.]]></Val>
+            <Val><![CDATA[요소의 IsContentElement 속성에 대한 값을 제공합니다.]D;]A; · 요소가 콘텐츠 뷰에 포함되어야 하는 경우 속성을 true로 설정합니다.]D;]A; · 요소가 콘텐츠 뷰에 포함되지 않아야 하는 경우 속성을 false로 설정합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1868,10 +1907,13 @@
       </Item>
       <Item ItemId=";IsControlElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+          <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to true.]D;]A; · If the element should not be included in the control view, set the property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 IsControlElement 속성에 대한 값을 제공합니다.]D;]A; ·  요소가 컨트롤 뷰에 포함되어야 하는 경우 속성을 TRUE로 설정합니다.]D;]A; ·  요소가 컨트롤 뷰에 포함되지 않아야 하는 경우 속성을 FALSE로 설정합니다.]]></Val>
+            <Val><![CDATA[요소의 IsControlElement 속성에 대한 값을 제공합니다.]D;]A; · 요소가 컨트롤 뷰에 포함되어야 하는 경우 속성을 true로 설정합니다.]D;]A; · 요소가 컨트롤 뷰에 포함되지 않아야 하는 경우 속성을 false로 설정합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -1886,10 +1928,13 @@
       </Item>
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+          <Val><![CDATA[Set the element's IsControlElement property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[요소의 IsControlElement 속성을 TRUE로 설정합니다.]]></Val>
+            <Val><![CDATA[요소의 IsControlElement 속성을 true로 설정합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2057,10 +2102,13 @@
       </Item>
       <Item ItemId=";LocalizedControlTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+          <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UI Automation framework will provide the correct localized control type automatically.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[충분:]D;]A;컨트롤의 함수 또는 용도를 간결하게 설명하는 LocalizedControlType 속성에 대한 문자열을 제공합니다.]D;]A;]D;]A;향상:]D;]A;가능한 경우 미리 정의된(사용자 지정이 아닌) 컨트롤 형식과 기본 지역화된 컨트롤 형식을 사용합니다. UIA 프레임워크는 올바른 지역화된 컨트롤 형식을 자동으로 제공합니다.]]></Val>
+            <Val><![CDATA[충분:]D;]A;컨트롤의 함수 또는 용도를 간결하게 설명하는 LocalizedControlType 속성에 대한 문자열을 제공합니다.]D;]A;]D;]A;향상:]D;]A;가능한 경우 미리 정의된(사용자 지정이 아닌) 컨트롤 형식과 기본 지역화된 컨트롤 형식을 사용합니다. UI Automation 프레임워크는 올바른 지역화된 컨트롤 형식을 자동으로 제공합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2120,19 +2168,25 @@
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; ·         Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA["custom"이 포함되지 않은 LocalizedLandmarkType 속성의 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A;    ·         페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A;    ·         페이지 또는 사이트 탐색의 링크가 포함된 영역에 대해 "navigation"을 사용합니다.]D;]A;    ·         검색 기능이 포함된 페이지의 영역에 대해 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
+            <Val><![CDATA["custom"이 포함되지 않은 LocalizedLandmarkType 속성의 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A; ·         페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A; ·         페이지 또는 사이트 탐색의 링크가 포함된 영역에 "navigation"을 사용합니다.]D;]A; ·         검색 기능이 포함된 페이지의 영역에 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide string for the LocalizedLandmarkType property that does not include "custom."]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A;    ·         Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";LocalizedLandmarkTypeNotEmpty" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A; ·         Use "navigation" for an area containing links for page or site navigation.]D;]A; ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[LocalizedLandmarkType 속성에 대한 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A;    · 페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A;    ·        페이지 또는 사이트 탐색의 링크가 포함된 영역에 대해 "navigation"을 사용합니다.]D;]A;    ·        검색 기능이 포함된 페이지의 영역에 대해 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
+            <Val><![CDATA[LocalizedLandmarkType 속성에 대한 문자열을 제공합니다.]D;]A;해당하는 경우 표준 지역화된 랜드마크 유형을 사용합니다.]D;]A; · 사이트 지향 콘텐츠가 있는 페이지 시작 부분의 영역에 "banner"를 사용합니다.]D;]A; · 기본 콘텐츠와 분리될 때 의미 있는 내용을 지원하는 영역에 대해 "complementary"를 사용합니다.]D;]A; · 사이트 또는 기본 콘텐츠에 대한 정보가 들어 있는 페이지 끝 영역의 경우 "contentinfo"를 사용합니다.]D;]A; · 양식 관련 요소 집합을 포함하는 영역에 "form"을 사용합니다.]D;]A; · 페이지의 기본 콘텐츠가 있는 영역에 "main"을 사용합니다.]D;]A; ·         페이지 또는 사이트 탐색의 링크가 포함된 영역에 "navigation"을 사용합니다.]D;]A; ·         검색 기능이 포함된 페이지의 영역에 "search"를 사용합니다.]D;]A;표준 랜드마크 유형을 적용할 수 없는 경우 해당 콘텐츠를 간결하게 설명하는 문자열을 제공합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Provide a string for the LocalizedLandmarkType property.]D;]A;Where appropriate, use a standard localized landmark type:]D;]A; · Use "banner" for an area at the beginning of the page with site-oriented content.]D;]A; · Use "complementary" for an area with supporting content that remains meaningful when separated from the primary content.]D;]A; · Use "contentinfo" for an area at the end of the page containing information about the site or the primary content.]D;]A; · Use "form" for an area containing a set of form-related elements.]D;]A; · Use "main" for the area with the page's primary content.]D;]A;    ·         Use "navigation" for an area containing links for page or site navigation.]D;]A;    ·         Use "search" for an area of the page containing search functionality.]D;]A;If none of the standard landmark types is applicable, provide a string that concisely describes its content.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2294,10 +2348,13 @@
       </Item>
       <Item ItemId=";ProgressBarRangeValue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+          <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: true]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[다음 속성 및 값을 사용하여 진행률 표시줄의 RangeValue 패턴을 구현합니다.]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+            <Val><![CDATA[다음 속성 및 값을 사용하여 진행률 표시줄의 RangeValue 패턴을 구현합니다.]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: true]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
@@ -2312,28 +2369,37 @@
       </Item>
       <Item ItemId=";SelectionItemPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+          <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[다음 중 하나를 수행합니다.]D;]A; 1.  요소 및/또는 해당 형제 중 하나만 주어진 시간에 선택되도록 수정하거나]D;]A; 2.  CanSelectMultiple 속성이 TRUE가 되도록 부모 요소를 수정합니다.]]></Val>
+            <Val><![CDATA[다음 중 하나를 수행합니다.]D;]A; 1. 요소 및/또는 해당 형제 중 하나만 주어진 시간에 선택되도록 수정하거나]D;]A; 2. CanSelectMultiple 속성이 true가 되도록 부모 요소를 수정합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+          <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[SelectionPattern의 요소 IsSelectionRequired 속성을 TRUE로 설정합니다.]]></Val>
+            <Val><![CDATA[SelectionPattern의 요소 IsSelectionRequired 속성을 true로 설정합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
       <Item ItemId=";SelectionPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
-          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+          <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[1. 요소의 해당 함수에 적절한 ControlType 속성이 있는지 확인합니다.]D;]A;2. Selection 항목이 올바른 패턴인지 확인합니다.]D;]A;3. 요소의 CanSelectMultiple 속성을 FALSE로 설정합니다.]]></Val>
+            <Val><![CDATA[1. 요소의 해당 함수에 적절한 ControlType 속성이 있는지 확인합니다.]D;]A;2. 선택 항목이 (Selection) 올바른 패턴인지 확인합니다.]D;]A;3. 요소의 CanSelectMultiple 속성을 false로 설정합니다.]]></Val>
           </Tgt>
+          <Prev Cat="Text">
+            <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
+          </Prev>
         </Str>
         <Disp Icon="Str" />
       </Item>
