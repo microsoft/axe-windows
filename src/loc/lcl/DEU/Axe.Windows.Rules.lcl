@@ -507,8 +507,8 @@
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[A separator must not have any children with IsContentElement set to true.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Ein Trennzeichen darf keine untergeordneten Elemente aufweisen, für die IsContentElement WAHR ist.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Ein Trennzeichen darf keine untergeordneten Elemente aufweisen, für die IsContentElement true ist.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[A separator must not have any children with IsContentElement set to TRUE.]]></Val>
@@ -828,8 +828,8 @@
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[The given ControlType must have the IsControlElement property set to true.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Für den angegebenen ControlType muss die Eigenschaft „IsControlElement“ auf WAHR festgelegt sein.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Für den angegebenen ControlType muss die Eigenschaft „IsControlElement“ auf true festgelegt sein.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[The given ControlType must have the IsControlElement property set to TRUE.]]></Val>
@@ -1269,8 +1269,8 @@
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to true.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Für ein Element des angegebenen ControlType muss die Eigenschaft „IsSelectionRequired“ WAHR sein.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Für ein Element des angegebenen ControlType muss die Eigenschaft „IsSelectionRequired“ true sein.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[An element of the given ControlType must have the IsSelectionRequired property set to TRUE.]]></Val>
@@ -1527,8 +1527,8 @@
       <Item ItemId=";BoundingRectangleNotNull" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to true.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Wenn das Element außerhalb des Bildschirms liegt, legen Sie seine Eigenschaft „IsOffscreen“ auf WAHR.]D;]A;Wenn das Element auf dem Bildschirm liegt, geben Sie eine BoundingRectangle-Eigenschaft an.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Wenn das Element außerhalb des Bildschirms liegt, legen Sie seine Eigenschaft „IsOffscreen“ auf true.]D;]A;Wenn das Element auf dem Bildschirm liegt, geben Sie eine BoundingRectangle-Eigenschaft an.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[If the element is off-screen, set its IsOffscreen property to TRUE.]D;]A;If the element is on-screen, provide a BoundingRectangle property.]]></Val>
@@ -1602,8 +1602,8 @@
       <Item ItemId=";ChildrenNotAllowedInContentView" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to false.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Stellen Sie sicher, dass für alle untergeordneten Elemente des Elements die Eigenschaft „IsContentElement“ auf FALSCH festgelegt ist.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Stellen Sie sicher, dass für alle untergeordneten Elemente des Elements die Eigenschaft „IsContentElement“ auf false festgelegt ist.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Make sure all of the element's children have the IsContentElement property set to FALSE.]]></Val>
@@ -1812,8 +1812,8 @@
       <Item ItemId=";ControlShouldSupportTransformPattern" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is false.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Wenn die Größe des Elements geändert werden kann, implementieren Sie das Transform-Muster.]D;]A;Wenn die Größe des Elements nicht geändert werden kann, stellen Sie sicher, dass die Eigenschaft „TransformPattern_CanResize“ FALSCH ist.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Wenn die Größe des Elements geändert werden kann, implementieren Sie das Transform-Muster.]D;]A;Wenn die Größe des Elements nicht geändert werden kann, stellen Sie sicher, dass die Eigenschaft „TransformPattern_CanResize“ false ist.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[If the element can be resized, implement the Transform pattern.]D;]A;If the element can't be resized, ensure the TransformPattern_CanResize property is FALSE.]]></Val>
@@ -1887,8 +1887,8 @@
       <Item ItemId=";IsContentElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to true.]D;]A; · If the element should not be included in the content view, set the property to false.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Geben Sie einen Wert für die Eigenschaft „IsContentElement“ des Elements an:]D;]A; · Wenn das Element in der Inhaltsansicht enthalten sein soll, legen Sie die Eigenschaft auf WAHR fest.]D;]A; · Wenn das Element nicht in der Inhaltsansicht enthalten sein soll, legen Sie die Eigenschaft auf FALSCH fest.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Geben Sie einen Wert für die Eigenschaft „IsContentElement“ des Elements an:]D;]A; · Wenn das Element in der Inhaltsansicht enthalten sein soll, legen Sie die Eigenschaft auf true fest.]D;]A; · Wenn das Element nicht in der Inhaltsansicht enthalten sein soll, legen Sie die Eigenschaft auf false fest.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Provide a value for the element's IsContentElement property:]D;]A; · If the element should be included in the content view, set the property to TRUE.]D;]A; · If the element should not be included in the content view, set the property to FALSE.]]></Val>
@@ -1908,8 +1908,8 @@
       <Item ItemId=";IsControlElementPropertyExists" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to true.]D;]A; · If the element should not be included in the control view, set the property to false.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Geben Sie einen Wert für die Eigenschaft „IsControlElement“ des Elements an:]D;]A; · Wenn das Element in der Inhaltsansicht enthalten sein soll, legen Sie die Eigenschaft auf WAHR fest.]D;]A; · Wenn das Element nicht in der Steuerelementansicht enthalten sein soll, legen Sie die Eigenschaft auf FALSCH fest.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Geben Sie einen Wert für die Eigenschaft „IsControlElement“ des Elements an:]D;]A; · Wenn das Element in der Inhaltsansicht enthalten sein soll, legen Sie die Eigenschaft auf true fest.]D;]A; · Wenn das Element nicht in der Steuerelementansicht enthalten sein soll, legen Sie die Eigenschaft auf false fest.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Provide a value for the element's IsControlElement property:]D;]A; · If the element should be included in the control view, set the property to TRUE.]D;]A; · If the element should not be included in the control view, set the property to FALSE.]]></Val>
@@ -1929,8 +1929,8 @@
       <Item ItemId=";IsControlElementTrueRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Set the element's IsControlElement property to true.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Legen Sie die Eigenschaft „IsControlElement“ des Elements auf WAHR fest.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Legen Sie die Eigenschaft „IsControlElement“ des Elements auf true fest.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Set the element's IsControlElement property to TRUE.]]></Val>
@@ -2349,8 +2349,8 @@
       <Item ItemId=";ProgressBarRangeValue" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: true]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Implementieren Sie das RangeValue-Muster der Fortschrittsleiste mithilfe der folgenden Eigenschaften und Werte:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: WAHR]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Implementieren Sie das RangeValue-Muster der Fortschrittsleiste mithilfe der folgenden Eigenschaften und Werte:]D;]A; · Minimum: 0,0]D;]A; · Maximum: 100,0]D;]A; · IsReadOnly: true]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Implement the progress bar's RangeValue pattern using the following properties and values:]D;]A; · Minimum: 0.0]D;]A; · Maximum: 100.0]D;]A; · IsReadOnly: TRUE]]></Val>
@@ -2370,8 +2370,8 @@
       <Item ItemId=";SelectionItemPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is true.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Führen Sie eine der folgenden Aktionen aus:]D;]A; 1. Ändern Sie das Element und/oder seine gleichgeordneten Elemente so, dass immer nur eines ausgewählt ist, ODER]D;]A; 2. Ändern Sie das übergeordnete Element so, dass seine CanSelectMultiple-Eigenschaft WAHR ist.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Führen Sie eine der folgenden Aktionen aus:]D;]A; 1. Ändern Sie das Element und/oder seine gleichgeordneten Elemente so, dass immer nur eines ausgewählt ist, ODER]D;]A; 2. Ändern Sie das übergeordnete Element so, dass seine CanSelectMultiple-Eigenschaft true ist.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Do one of the following:]D;]A; 1. Modify the element and/or its siblings so that only one of them is selected at any given time, OR]D;]A; 2. Modify the parent element so its CanSelectMultiple property is TRUE.]]></Val>
@@ -2382,8 +2382,8 @@
       <Item ItemId=";SelectionPatternSelectionRequired" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to true.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Legen Sie die Eigenschaft „IsSelectionRequired“ des Elements von SelectionPattern auf WAHR fest.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Legen Sie die Eigenschaft „IsSelectionRequired“ des Elements von SelectionPattern auf true fest.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Set the element's IsSelectionRequired property of the SelectionPattern to TRUE.]]></Val>
@@ -2394,8 +2394,8 @@
       <Item ItemId=";SelectionPatternSingleSelection" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to false.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[1. Stellen Sie sicher, dass das Element über die entsprechende ControlType-Eigenschaft für seine Funktion verfügt.]D;]A;2. Stellen Sie sicher, dass „Selection“ das richtige Muster ist.]D;]A;3. Legen Sie die CanSelectMultiple-Eigenschaft des Elements auf FALSCH fest.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[1. Stellen Sie sicher, dass das Element über die entsprechende ControlType-Eigenschaft für seine Funktion verfügt.]D;]A;2. Stellen Sie sicher, dass „Selection“ das richtige Muster ist.]D;]A;3. Legen Sie die CanSelectMultiple-Eigenschaft des Elements auf false fest.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[1. Make sure the element has the appropriate ControlType property for its function.]D;]A;2. Make sure Selection is the correct pattern.]D;]A;3. Set the element's CanSelectMultiple property to FALSE.]]></Val>
