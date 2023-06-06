@@ -1879,7 +1879,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsContentElement UI Automation property to false.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Establezca la propiedad IsContentElement de Automation de la interfaz de usuario en FALSO.]]></Val>
+            <Val><![CDATA[Establezca la propiedad IsContentElement de Automation de la interfaz de usuario en false.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1900,7 +1900,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsContentElement UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Establezca la propiedad IsContentElement de Automation de la interfaz de usuario en VERDADERO.]]></Val>
+            <Val><![CDATA[Establezca la propiedad IsContentElement de Automation de la interfaz de usuario en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1921,7 +1921,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsControlElement UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Establezca la propiedad IsControlElement de Automation de la interfaz de usuario en VERDADERO.]]></Val>
+            <Val><![CDATA[Establezca la propiedad IsControlElement de Automation de la interfaz de usuario en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1951,7 +1951,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this element is still reachable via the keyboard even when it is disabled, set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Si aún se pudiera acceder a este elemento a través del teclado aunque esté deshabilitado, establezca la propiedad de Automation de la interfaz de usuario IsKeyboardFocusable en VERDADERO.]]></Val>
+            <Val><![CDATA[Si aún se pudiera acceder a este elemento a través del teclado aunque esté deshabilitado, establezca la propiedad de Automation de la interfaz de usuario IsKeyboardFocusable en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1960,7 +1960,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this element is still reachable via the keyboard even when it is off-screen, set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Si aún se pudiera acceder a este elemento a través del teclado aunque esté fuera de la pantalla, establezca la propiedad de Automation de la interfaz de usuario IsKeyboardFocusable en VERDADERO.]]></Val>
+            <Val><![CDATA[Si aún se pudiera acceder a este elemento a través del teclado aunque esté fuera de la pantalla, establezca la propiedad de Automation de la interfaz de usuario IsKeyboardFocusable en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1969,7 +1969,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Ensure that this element can be manipulated via the keyboard, then set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Asegúrese de que este elemento se pueda manipular mediante el teclado y establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en VERDADERO.]]></Val>
+            <Val><![CDATA[Asegúrese de que este elemento se pueda manipular mediante el teclado y establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1987,7 +1987,7 @@
         <Str Cat="Text">
           <Val><![CDATA[If this container should be discoverable by keyboard users, set the IsKeyboardFocusable UI Automation property to true. Otherwise, consider changing the ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Si los usuarios del teclado deberían poder detectar este contenedor, establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en VERDADERO. De lo contrario, considere cambiar el ControlType.]]></Val>
+            <Val><![CDATA[Si los usuarios del teclado deberían poder detectar este contenedor, establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en true. De lo contrario, considere cambiar el ControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -1996,7 +1996,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to false. If this element really should be reachable via the keyboard, verify its ControlType.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Establecer la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en FALSO. Si realmente este elemento debiera ser accesible a través del teclado, compruebe su ControlType.]]></Val>
+            <Val><![CDATA[Establecer la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en false. Si realmente este elemento debiera ser accesible a través del teclado, compruebe su ControlType.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2005,7 +2005,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en VERDADERO.]]></Val>
+            <Val><![CDATA[Establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2014,7 +2014,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the IsKeyboardFocusable UI Automation property to true.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en VERDADERO.]]></Val>
+            <Val><![CDATA[Establezca la propiedad IsKeyboardFocusable de Automation de la interfaz de usuario en true.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2103,8 +2103,8 @@
       <Item ItemId=";LocalizedControlTypeNotCustom" ItemType="0" PsrId="211" InstFlg="true" Leaf="true">
         <Str Cat="Text">
           <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UI Automation framework will provide the correct localized control type automatically.]]></Val>
-          <Tgt Cat="Text" Stat="Update" Orig="New">
-            <Val><![CDATA[Suficiente:]D;]A;proporcione una cadena para la propiedad LocalizedControlType que describa de forma concisa la función o el propósito del control.]D;]A;]D;]A;Mejor:]D;]A;si es posible, use un tipo de control predefinido (no personalizado) y el tipo de control localizado predeterminado. El marco de trabajo UIA proporcionará automáticamente el tipo de control localizado correcto.]]></Val>
+          <Tgt Cat="Text" Stat="Loc" Orig="New">
+            <Val><![CDATA[Suficiente:]D;]A;Proporcione una cadena para la propiedad LocalizedControlType que describa concisamente la función o el propósito del control.]D;]A;]D;]A;Mejor:]D;]A;Si es posible, use un tipo de control predefinido (no personalizado) y el tipo de control localizado predeterminado. El marco de trabajo de automatización de la interfaz de usuario proporcionará automáticamente el tipo de control localizado correcto.]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[Sufficient:]D;]A;Provide a string for the LocalizedControlType property that concisely describes the control's function or purpose.]D;]A;]D;]A;Better:]D;]A;If possible, use a predefined (non-custom) control type and the default localized control type. The UIA framework will provide the correct localized control type automatically.]]></Val>
