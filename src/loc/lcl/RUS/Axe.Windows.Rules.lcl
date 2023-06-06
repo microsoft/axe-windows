@@ -2251,7 +2251,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Set the UI Automation Name property of this element to be null or empty if the element has no siblings of the same type.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Задайте для свойства Name автоматизации пользовательского интерфейса этого элемента значение NULL или оставьте его пустым, если у элемента нет родственных элементов того же типа.]]></Val>
+            <Val><![CDATA[Задайте для свойства Name автоматизации пользовательского интерфейса этого элемента значение null или оставьте его пустым, если у элемента нет родственных элементов того же типа.]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />
@@ -2323,7 +2323,7 @@
         <Str Cat="Text">
           <Val><![CDATA[Modify the UI Automation Name property to have a valid BoundingRectangle (i.e. the BoundingRectangle is not null and has area).]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[Измените свойство Name автоматизации пользовательского интерфейса, чтобы оно имело допустимый BoundingRectangle (т. е. BoundingRectangle не имеет значение NULL и имеет область).]]></Val>
+            <Val><![CDATA[Измените свойство Name автоматизации пользовательского интерфейса, чтобы оно имело допустимый BoundingRectangle (т. е. BoundingRectangle не имеет значение null и имеет область).]]></Val>
           </Tgt>
         </Str>
         <Disp Icon="Str" />

@@ -745,7 +745,7 @@
         <Str Cat="Text">
           <Val><![CDATA[The framework used to build this application does not support UI Automation.]]></Val>
           <Tgt Cat="Text" Stat="Loc" Orig="New">
-            <Val><![CDATA[用於建置此應用程式的架構不支援 UI 自動化。]]></Val>
+            <Val><![CDATA[用於建置此應用程式的架構不支援使用者介面自動化。]]></Val>
           </Tgt>
           <Prev Cat="Text">
             <Val><![CDATA[The framework used to build this application does not support.]]></Val>
