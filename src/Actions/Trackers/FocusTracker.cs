@@ -113,7 +113,7 @@ namespace Axe.Windows.Actions.Trackers
             );
         }
 
-        private bool DoesAncestryMatchCondition(A11yElement element, string className, Func<DesktopElementAncestry, bool> f)
+        private static bool DoesAncestryMatchCondition(A11yElement element, string className, Func<DesktopElementAncestry, bool> f)
         {
             if (element?.ClassName == className)
             {
