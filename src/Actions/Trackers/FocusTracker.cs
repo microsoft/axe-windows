@@ -102,12 +102,12 @@ namespace Axe.Windows.Actions.Trackers
                 DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
                 return anc.Items.Count == 1;
             }
-            else if (element.ClassName == "ListViewItem") // Individual "task switching" item
+            if (element.ClassName == "ListViewItem") // Individual "task switching" item
             {
                 DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
                 return anc.Items.Count > 0 && anc.Items[0].AutomationId == "SwitchItemListControl";
             }
-            else return false;
+            return false;
         }
 
         protected override void Dispose(bool disposing)
