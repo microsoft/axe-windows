@@ -9,7 +9,6 @@ using Axe.Windows.Desktop.Types;
 using Axe.Windows.Desktop.UIAutomation.EventHandlers;
 using Axe.Windows.Desktop.UIAutomation.TreeWalkers;
 using System;
-using System.IO;
 
 namespace Axe.Windows.Actions.Trackers
 {
@@ -116,17 +115,13 @@ namespace Axe.Windows.Actions.Trackers
 
         private bool DoesAncestryMatchCondition(A11yElement element, string className, Func<DesktopElementAncestry, bool> f)
         {
-            File.AppendAllText(@"c:\anc.txt", $"In DoesAncestryMatchCondition for {className}\n");
             if (element?.ClassName == className)
             {
-                File.AppendAllText(@"c:\anc.txt", "Class name match hit\n");
                 DesktopElementAncestry ancestry = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
                 bool res = f(ancestry);
-                File.AppendAllText(@"c:\anc.txt", $"Check returned {res}\n");
                 ListHelper.DisposeAllItems(ancestry.Items);
                 return res;
             }
-            File.AppendAllText(@"c:\anc.txt", $"Class name match miss: {element.ClassName}\n");
             return false;
         }
 
