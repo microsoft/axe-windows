@@ -3,6 +3,7 @@
 
 using Axe.Windows.Actions.Contexts;
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Misc;
 using Axe.Windows.Core.Types;
 using Axe.Windows.Desktop.Types;
 using Axe.Windows.Desktop.UIAutomation.EventHandlers;
@@ -94,18 +95,33 @@ namespace Axe.Windows.Actions.Trackers
         /// <returns>true if the element is part of the Alt+Tab task switching UI, false otherwise.</returns>
         private bool IsTaskSwitcher(A11yElement element)
         {
-            if (!_isWin11) return false;
-            if (element == null) return false;
-            if (element.ProcessName != "explorer") return false;
-            if (element.ClassName == "XamlExplorerHostIslandWindow") // "PANE" WINDOW THAT SOMETIMES TAKES FOCUS WHEN initiating Alt+Tab
+            return (
+                _isWin11
+                && element != null
+                && element.ProcessName != "explorer"
+                && (
+                    DoesAncestryMatchCondition(
+                        element,
+                        "XamlExplorerHostIslandWindow", // "PANE" WINDOW THAT SOMETIMES TAKES FOCUS WHEN initiating Alt+Tab
+                        (DesktopElementAncestry anc) => anc.Items.Count == 1
+                    )
+                    || DoesAncestryMatchCondition(
+                        element,
+                        "ListViewItem", // Individual "task switching" item
+                        (DesktopElementAncestry anc) => anc.Items.Count > 0 && anc.Items[0].AutomationId == "SwitchItemListControl"
+                    )
+                )
+            );
+        }
+
+        private bool DoesAncestryMatchCondition(A11yElement element, string className, Func<DesktopElementAncestry, bool> f)
+        {
+            if (element.ClassName == className)
             {
                 DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
-                return anc.Items.Count == 1;
-            }
-            if (element.ClassName == "ListViewItem") // Individual "task switching" item
-            {
-                DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
-                return anc.Items.Count > 0 && anc.Items[0].AutomationId == "SwitchItemListControl";
+                bool res = f(anc);
+                ListHelper.DisposeAllItems(anc.Items);
+                return res;
             }
             return false;
         }
