@@ -118,9 +118,9 @@ namespace Axe.Windows.Actions.Trackers
         {
             if (element.ClassName == className)
             {
-                DesktopElementAncestry anc = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
-                bool res = f(anc);
-                ListHelper.DisposeAllItems(anc.Items);
+                DesktopElementAncestry ancestry = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
+                bool res = f(ancestry);
+                ListHelper.DisposeAllItems(ancestry.Items);
                 return res;
             }
             return false;
