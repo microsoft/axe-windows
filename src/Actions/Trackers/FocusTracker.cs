@@ -98,12 +98,11 @@ namespace Axe.Windows.Actions.Trackers
         {
             return (
                 _isWin11
-                && element != null
-                && element.ProcessName == "explorer"
+                && element?.ProcessName == "explorer"
                 && (
                     DoesAncestryMatchCondition(
                         element,
-                        "XamlExplorerHostIslandWindow", // "PANE" WINDOW THAT SOMETIMES TAKES FOCUS WHEN initiating Alt+Tab
+                        "XamlExplorerHostIslandWindow", // "pane" window that sometimes takes focus when initiating Alt+Tab
                         (DesktopElementAncestry anc) => anc.Items.Count == 1
                     )
                     || DoesAncestryMatchCondition(
@@ -118,7 +117,7 @@ namespace Axe.Windows.Actions.Trackers
         private bool DoesAncestryMatchCondition(A11yElement element, string className, Func<DesktopElementAncestry, bool> f)
         {
             File.AppendAllText(@"c:\anc.txt", $"In DoesAncestryMatchCondition for {className}\n");
-            if (element.ClassName == className)
+            if (element?.ClassName == className)
             {
                 File.AppendAllText(@"c:\anc.txt", "Class name match hit\n");
                 DesktopElementAncestry ancestry = new DesktopElementAncestry(Axe.Windows.Core.Enums.TreeViewMode.Control, element, true);
