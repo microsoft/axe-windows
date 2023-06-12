@@ -30,7 +30,7 @@ namespace Axe.Windows.Actions.Trackers
         public FocusTracker(Action<A11yElement> action) : base(action, DefaultActionContext.GetDefaultInstance())
         {
             _eventListenerFactory = new EventListenerFactory(null); // listen for all element. it works only for FocusChangedEvent
-            _isWin11 = new Win32.Win32Helper().IsWindowsSVOrLater();
+            _isWin11 = new Win32.Win32Helper().IsWindows11OrLater();
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Axe.Windows.Actions.Trackers
                 if (IsStarted && message.Element != null)
                 {
                     A11yElement element = GetElementBasedOnScope(message.Element);
-                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId && !IsTaskSwitcher(element))
+                    if (element?.ControlTypeId != ControlType.UIA_ToolTipControlTypeId && !IsWin11TaskSwitcher(element))
                     {
                         SelectElementIfItIsEligible(element);
                     }
@@ -93,12 +93,12 @@ namespace Axe.Windows.Actions.Trackers
         /// </summary>
         /// <param name="element">The element to check.</param>
         /// <returns>true if the element is part of the Alt+Tab task switching UI, false otherwise.</returns>
-        private bool IsTaskSwitcher(A11yElement element)
+        private bool IsWin11TaskSwitcher(A11yElement element)
         {
             return (
                 _isWin11
                 && element != null
-                && element.ProcessName != "explorer"
+                && element.ProcessName == "explorer"
                 && (
                     DoesAncestryMatchCondition(
                         element,

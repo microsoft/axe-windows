@@ -120,7 +120,7 @@ namespace Axe.Windows.Win32
         /// Check whether current OS is Win11 (Sun Valley) or later
         /// </summary>
         /// <returns>True if and only if the OS is at least Win11</returns>
-        internal bool IsWindowsSVOrLater()
+        internal bool IsWindows11OrLater()
         {
             return IsAtLeastWin10WithSpecificBuild(22000);
         }
