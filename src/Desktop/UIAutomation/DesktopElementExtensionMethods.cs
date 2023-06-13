@@ -29,7 +29,9 @@ namespace Axe.Windows.Desktop.UIAutomation
             PropertyType.UIA_ControlTypePropertyId,
             PropertyType.UIA_BoundingRectanglePropertyId,
             PropertyType.UIA_RuntimeIdPropertyId,
-            PropertyType.UIA_ProcessIdPropertyId
+            PropertyType.UIA_ProcessIdPropertyId,
+            PropertyType.UIA_AutomationIdPropertyId,
+            PropertyType.UIA_ClassNamePropertyId
         };
 
         /// <summary>
