@@ -19,7 +19,7 @@ ButtonInvokeAndExpandCollapsePatterns | Warning | A button may have the Invoke a
 ButtonToggleAndExpandCollapsePatterns | Error | A button must not support both the Toggle and ExpandCollapse patterns. | WCAG 4.1.2 NameRoleValue
 SiblingUniqueAndFocusable | Error | Focusable sibling elements must not have the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue
 SiblingUniqueAndNotFocusable | NeedsReview | The given element has siblings with the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue
-ChildrenNotAllowedInContentView | Error | A separator must not have any children with IsContentElement set to TRUE. | Section 508 502.3.1 ObjectInformation
+ChildrenNotAllowedInContentView | Error | A separator must not have any children with IsContentElement set to true. | Section 508 502.3.1 ObjectInformation
 ContentViewButtonStructure | NeedsReview | The given element is expected to have the following structure: Button and NoChild(IsContentElement). | WCAG 1.3.1 InfoAndRelationships
 ContentViewCalendarStructure | NeedsReview | The given element is expected to have the following structure: Calendar and (NoChild(IsContentElement) or AllChildren(not(IsContentElement) or ListItem)). | WCAG 1.3.1 InfoAndRelationships
 ContentViewCheckBoxStructure | NeedsReview | The given element is expected to have the following structure: CheckBox and NoChild(IsContentElement). | WCAG 1.3.1 InfoAndRelationships
@@ -108,17 +108,17 @@ IsContentElementPropertyExists | Error | The given ControlType must have a non-n
 IsContentElementFalseOptional | NeedsReview | The recommended value of the IsContentElement property for the given control type is false. Please consider if this is an element that should be reported to an assistive technology user as content. | Section 508 502.3.1 ObjectInformation
 IsContentElementTrueOptional | NeedsReview | The recommended value of the IsContentElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as content. | Section 508 502.3.1 ObjectInformation
 IsControlElementTrueOptional | NeedsReview | The recommended value of the IsControlElement property for the given control type is true. Please consider if this is an element that should be reported to an assistive technology user as a control. Note that almost all controls are required to have the IsControl Property set to true. | Section 508 502.3.1 ObjectInformation
-IsControlElementTrueRequired | Error | The given ControlType must have the IsControlElement property set to TRUE. | Section 508 502.3.1 ObjectInformation
-IsControlElementTrueRequiredButtonWPF | Error | The given ControlType must have the IsControlElement property set to TRUE. | Section 508 502.3.1 ObjectInformation
-IsControlElementTrueRequiredTextInEditXAML | Error | The given ControlType must have the IsControlElement property set to TRUE. | Section 508 502.3.1 ObjectInformation
-IsKeyboardFocusableShouldBeTrue | Warning | The IsKeyboardFocusable property for the given element should be true based on its control type. | WCAG 2.1.1 Keyboard
+IsControlElementTrueRequired | Error | The given ControlType must have the IsControlElement property set to true. | Section 508 502.3.1 ObjectInformation
+IsControlElementTrueRequiredButtonWPF | Error | The given ControlType must have the IsControlElement property set to true. | Section 508 502.3.1 ObjectInformation
+IsControlElementTrueRequiredTextInEditXAML | Error | The given ControlType must have the IsControlElement property set to true. | Section 508 502.3.1 ObjectInformation
+IsKeyboardFocusableShouldBeTrue | Warning | The IsKeyboardFocusable property for the given element should be true based on its ControlType. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableFalseButDisabled | NeedsReview | The IsKeyboardFocusable property is false for an element where it would normally be true. However, the IsEnabled property on the element is also false, so the value of IsKeyboardFocusable may be acceptable. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableForListItemShouldBeTrue | Warning | The IsKeyboardFocusable property for the given list item is false, but the element has children that are focusable. The element should probably be focusable instead of its children. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableFalseButOffscreen | NeedsReview | The IsKeyboardFocusable property for the given element is false for an element where it would normally be true. However, the IsOffscreen property on the element is true, so the value of IsKeyboardFocusable may be acceptable. | WCAG 2.1.1 Keyboard
-IsKeyboardFocusableForCustomShouldBeTrue | Warning | The IsKeyboardFocusable property for a custom element should be true when the element supports actionable patterns. | WCAG 2.1.1 Keyboard
+IsKeyboardFocusableForCustomShouldBeTrue | Warning | The IsKeyboardFocusable property for a Custom element should be true when the element supports actionable patterns. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableDescendantTextPattern | NeedsReview | The IsKeyboardFocusable property may be false when the given element supports the Text pattern and is the descendant of an element that also supports the Text pattern. Please consider if the given element should or should not be focusable. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableOnEmptyContainer | NeedsReview | The IsKeyboardFocusable property should be true when you want an empty container to be discoverable by assistive technology users. IsKeyboardFocusable may be false when you want an empty container not to be discoverable by assistive technology users. | WCAG 2.1.1 Keyboard
-IsKeyboardFocusableShouldBeFalse | Warning | The IsKeyboardFocusable property for the given element is expected to be false because of the element's control type. | WCAG 2.1.1 Keyboard
+IsKeyboardFocusableShouldBeFalse | Warning | The IsKeyboardFocusable property for the given element is expected to be false because of the element's ControlType. | WCAG 2.1.1 Keyboard
 IsKeyboardFocusableTopLevelTextPattern | Warning | The IsKeyboardFocusable property should be true for an element that supports the Text pattern, is not a descendant of an element that supports the Text pattern, and which supports text selection. | WCAG 2.1.1 Keyboard
 ItemTypeRecommended | NeedsReview | The ItemType property for the given element has no content, and the element has a child image. Please consider including an ItemType so that assistive technology users can obtain the information provided by the image. If this information is already provided in another way, the ItemType may not be necessary. | Section 508 502.3.1 ObjectInformation
 LocalizedControlTypeReasonable | Warning | The LocalizedControlType should be reasonable based on the element's ControlTypeId. | Section 508 502.3.1 ObjectInformation
@@ -130,7 +130,7 @@ OrientationPropertyExists | Error | Controls that can be horizontal or vertical 
 ProgressBarRangeValue | Error | The RangeValue pattern of a progress bar must have specific Minimum, Maximum, and IsReadOnly values. | Section 508 502.3.1 ObjectInformation
 ItemStatusExists | NeedsReview | The ItemStatus property for the given element should exist. | Section 508 502.3.1 ObjectInformation
 NameNotNull | Error | The Name property of a focusable element must not be null. | Section 508 502.3.1 ObjectInformation
-NameNotWhiteSpace | Error | The Name property must not contain only space characters. | Section 508 502.3.1 ObjectInformation
+NameNotWhiteSpace | Error | The Name property must not contain only whitespace. | Section 508 502.3.1 ObjectInformation
 NameNullButElementNotKeyboardFocusable | NeedsReview | The Name property for the given element is null, but the element isn't focusable. Please consider whether or not the element should have a name. | Section 508 502.3.1 ObjectInformation
 NameEmptyButElementNotKeyboardFocusable | NeedsReview | The Name property for the given element is empty, but the element isn't focusable. Please consider whether or not the element should have a name. | Section 508 502.3.1 ObjectInformation
 NameWithValidBoundingRectangle | Warning | An interactive element with a valid Name property is usually expected to have a valid BoundingRectangle that is not null and has area. | Section 508 502.3.1 ObjectInformation
@@ -144,7 +144,7 @@ LocalizedControlTypeNotNull | Error | The LocalizedControlType property must not
 LocalizedControlTypeNotCustom | Error | The ControlType and LocalizedControlType must not both be set to "custom." | Section 508 502.3.1 ObjectInformation
 LocalizedControlTypeNotCustomWPFGridCell | Error | The ControlType and LocalizedControlType must not both be set to "custom." | Section 508 502.3.1 ObjectInformation
 ParentChildShouldNotHaveSameNameAndLocalizedControlType | Error | An element must not have the same Name and LocalizedControlType as its parent. | Section 508 502.3.1 ObjectInformation
-SelectionPatternSelectionRequired | Error | An element of the given ControlType must have the IsSelectionRequired property set to TRUE. | Section 508 502.3.10 AvailableActions
+SelectionPatternSelectionRequired | Error | An element of the given ControlType must have the IsSelectionRequired property set to true. | Section 508 502.3.10 AvailableActions
 SelectionPatternSingleSelection | Error | An element of the given ControlType must not support multiple selection. | Section 508 502.3.10 AvailableActions
 SelectionItemPatternSingleSelection | Error | An element whose parent supports single selection must not have selected siblings. | Section 508 502.3.10 AvailableActions
 ListItemSiblingsUnique | Warning | The Name property of sibling list items should be unique. | WCAG 4.1.2 NameRoleValue
@@ -154,7 +154,7 @@ LocalizedControlTypeExcludesPrivateUnicodeCharacters | Error | The LocalizedCont
 ClickablePointOnScreen | Error | An element's IsOffScreen property must be false when its clickable point is on-screen. | Section 508 502.3.1 ObjectInformation
 ClickablePointOnScreenWPF | Error | An element's IsOffScreen property must be false when its clickable point is on-screen. | Section 508 502.3.1 ObjectInformation
 ClickablePointOffScreen | Warning | An element's IsOffScreen property must be true when its clickable point is off-screen. | Section 508 502.3.1 ObjectInformation
-FrameworkDoesNotSupportUIAutomation | Error | The framework used to build this application does not support. | Section 508 502.3.1 ObjectInformation
+FrameworkDoesNotSupportUIAutomation | Error | The framework used to build this application does not support UI Automation. | Section 508 502.3.1 ObjectInformation
 EdgeBrowserHasBeenDeprecated | Error | The non-Chromium version of Microsoft Edge has been deprecated. | Section 508 502.3.1 ObjectInformation
 ChromiumComponentsShouldUseWebScanner | Error | Chromium components should be scanned with a web-based scanner. | WCAG 1.3.1 InfoAndRelationships
 
