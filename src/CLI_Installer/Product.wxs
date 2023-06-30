@@ -6,8 +6,8 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <MajorUpgrade Schedule="afterInstallInitialize" RemoveFeatures="All"
                   AllowDowngrades="no"
-                  DowngradeErrorMessage="A newer version of [ProductName] is already installed."
-                  AllowSameVersionUpgrades="no" />
+                  DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
+                  AllowSameVersionUpgrades="no"/>
 
     <ui:WixUI Id="WixUI_InstallDir" />
 
@@ -15,17 +15,17 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
     <WixVariable Id="WixUIBannerBmp" Value="Resources\WixDialogBanner.png" />
     <WixVariable Id="WixUILicenseRtf" Value="Resources\eula.rtf" />
 
-    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
 
     <Property Id="NETCORERUNTIMEFOUNDX86">
-      <DirectorySearch Id="NetCoreDirectoryFoundx86" Path="[ProgramFilesFolder]dotnet">
-        <FileSearch Name="dotnet.exe" MinVersion="6.0" />
+      <DirectorySearch Id="NetCoreDirectoryFoundx86" Path="[ProgramFilesFolder]dotnet" >
+        <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
       </DirectorySearch>
     </Property>
 
     <Property Id="NETCORERUNTIMEFOUNDX64">
-      <DirectorySearch Id="NetCoreDirectoryFoundx64" Path="[ProgramFiles64Folder]dotnet">
-        <FileSearch Name="dotnet.exe" MinVersion="6.0" />
+      <DirectorySearch Id="NetCoreDirectoryFoundx64" Path="[ProgramFiles64Folder]dotnet" >
+        <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
       </DirectorySearch>
     </Property>
 
@@ -80,8 +80,8 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
     <ComponentGroup Id="Net60ComponentGroup" Directory="Net60Folder">
       <Component Id="Net60Components" Guid="5002A1F9-EB89-441C-B757-8E214EFE82CF">
-        <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" Id="net60_systemevents" />
-        <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" Id="net60_systemdrawing" />
+        <File Source="runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" Id="net60_systemevents" />
+        <File Source="runtimes\win\lib\net6.0\System.Drawing.Common.dll" Id="net60_systemdrawing" />
       </Component>
     </ComponentGroup>
 
