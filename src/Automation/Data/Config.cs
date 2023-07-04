@@ -39,6 +39,9 @@ namespace Axe.Windows.Automation
         ///  <summary>The path to a file containing configuration instructing Axe Windows how to interpret custom UI Automation data.</summary>
         public string CustomUIAConfigPath { get; private set; }
 
+        /// <summary>Override the default behavior of only saving a11ytest files if errors are found.</summary>
+        public bool AlwaysSaveTestFile { get; private set; }
+
         /// <summary>
         /// Custom handling of DPI awareness. The default handling is to set the entire process as DPI-aware
         /// before running the scan, and to leave it in that state after the scan completes. If your process
@@ -118,6 +121,15 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
+            /// Override the default behavior of only creating a11ytest files if errors are found.
+            /// </summary>
+            public Builder WithAlwaysSaveTestFile()
+            {
+                _config.AlwaysSaveTestFile = true;
+                return this;
+            }
+
+            /// <summary>
             /// Build an instance of <see cref="Config"/>
             /// </summary>
             /// <returns></returns>
@@ -130,6 +142,7 @@ namespace Axe.Windows.Automation
                     OutputDirectory = _config.OutputDirectory,
                     CustomUIAConfigPath = _config.CustomUIAConfigPath,
                     DPIAwareness = _config.DPIAwareness,
+                    AlwaysSaveTestFile = _config.AlwaysSaveTestFile,
                 };
             }
         } // Builder

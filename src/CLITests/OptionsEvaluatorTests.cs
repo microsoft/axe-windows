@@ -31,7 +31,8 @@ namespace AxeWindowsCLITests
 
         private static void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
-            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0)
+            VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0,
+            bool alwaysWriteTestFile = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -39,6 +40,7 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosityLevel, options.VerbosityLevel);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
+            Assert.AreEqual(alwaysWriteTestFile, options.AlwaysSaveTestFile);
         }
 
         [TestMethod]
@@ -285,6 +287,21 @@ namespace AxeWindowsCLITests
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
                 processId: TestProcessId);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_SpecifiesAlwaysSaveTestFile_SetsSaveTestFile()
+        {
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = TestProcessName,
+                AlwaysSaveTestFile = true,
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, alwaysWriteTestFile: true);
             VerifyAllMocks();
         }
     }

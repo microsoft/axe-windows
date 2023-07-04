@@ -61,6 +61,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If specified, always save the test file. By default, the test file is saved only if errors are found..
+        /// </summary>
+        public static string AlwaysSaveTestFile {
+            get {
+                return ResourceManager.GetString("AlwaysSaveTestFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The path to a configuration file specifying custom UI Automation attributes.
         /// </summary>
         public static string CustomUia {
