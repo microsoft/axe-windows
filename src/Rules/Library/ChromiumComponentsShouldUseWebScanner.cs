@@ -4,7 +4,9 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.Resources;
+using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
+using static Axe.Windows.Rules.PropertyConditions.Relationships;
 
 namespace Axe.Windows.Rules.Library
 {
@@ -25,7 +27,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Chrome;
+            return Chrome & (Document | AnyAncestor(Document));
         }
     } // class
 } // namespace

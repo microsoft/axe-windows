@@ -55,10 +55,21 @@ The folllowing projects exist for testing purposes:
 - AutomationTests
 - CLITests
 - CoreTests
+- CurrentFileVersionCompatibilityTests
 - DesktopTests
+- MsiFileTests
+- OldFileVersionCompatibilityTests
 - RuleSelectionTests
 - RulesTest
 - SystemAbstractionsTests
-- UnitTestSharedLibrary
 - TelemetryTests
+- UnitTestSharedLibrary
 - Win32Tests 
+
+#### Documentation
+
+The `RulesMD` project creates a tool to auto-generate [RulesDescription.md](RulesDescription.md). Any PR that modifies a rule should use this tool to incorporate the necessary changes to [RulesDescription.md](RulesDescription.md).
+
+#### Build utility
+
+The `InteropDummy` project provides a reliable way to consume the [Interop.UIAutomationCore.Signed](https://www.nuget.org/packages/Interop.UIAutomationCore.Signed) NuGet package as an embedded resource. This package provides types that are needed for custom UIA properties.
