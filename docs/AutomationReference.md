@@ -92,6 +92,14 @@ path | `string` | The path to the configuration file.
 
 The `WithCustomUIAConfig` method returns the  `Config.Builder` configured with the specified custom UIA configuration file.
 
+##### `WithAlwaysSaveTestFile`
+
+Cause each scan to save a test file, even if no errors are reported. The default is to save a test file only is errors are found.
+
+###### Return object
+
+The `WithAlwaysSaveTestFile` method returns the  `Config.Builder` configured to always save a test file.
+
 ##### Build
 
 Build an instance of `Config`.

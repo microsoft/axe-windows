@@ -64,6 +64,7 @@ namespace AxeWindowsCLI
                 VerbosityLevel = verbosityLevel,
                 DelayInSeconds = delayInSeconds,
                 CustomUia = rawInputs.CustomUia,
+                AlwaysSaveTestFile = rawInputs.AlwaysSaveTestFile,
             };
         }
 

@@ -22,6 +22,7 @@ namespace AxeWindowsCLITests
         const string ShowThirdPartyNoticesKey = "--showthirdpartynotices";
         const string DelayInSecondsKey = "--delayinseconds";
         const string CustomUiaKey = "--customuia";
+        const string AlwaysSaveTestFileKey = "--alwayssavetestfile";
 
         const string TestProcessName = "MyProcess";
         const int TestProcessId = 42;
@@ -35,7 +36,7 @@ namespace AxeWindowsCLITests
         private static int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
             string verbosity = null, bool showThirdPartyNotices = false,
-            int delayInSeconds = 0, string customUia = null)
+            int delayInSeconds = 0, string customUia = null, bool alwaysSaveTestFile = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -46,6 +47,8 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(showThirdPartyNotices, options.ShowThirdPartyNotices);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
             Assert.AreEqual(customUia, options.CustomUia);
+            Assert.AreEqual(alwaysSaveTestFile, options.AlwaysSaveTestFile);
+
             return ExpectedParseSuccess;
         }
 
@@ -151,6 +154,22 @@ namespace AxeWindowsCLITests
             int parseResult = Parser.Default.ParseArguments<Options>(args)
                 .MapResult(
                     (o) => ValidateOptions(o, customUia: expectedCustomUia),
+                    FailIfCalled);
+
+            Assert.AreEqual(ExpectedParseSuccess, parseResult);
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ParseArguments_AlwaysSaveTestFileIsSpecified_SucceedsWithAlwaysSaveTestFile()
+        {
+            bool expectedAlwaysSaveTestFile = true;
+
+            string[] args = { AlwaysSaveTestFileKey };
+
+            int parseResult = Parser.Default.ParseArguments<Options>(args)
+                .MapResult(
+                    (o) => ValidateOptions(o, alwaysSaveTestFile: expectedAlwaysSaveTestFile),
                     FailIfCalled);
 
             Assert.AreEqual(ExpectedParseSuccess, parseResult);

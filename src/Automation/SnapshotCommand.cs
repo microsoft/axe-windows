@@ -126,7 +126,7 @@ namespace Axe.Windows.Automation
                 }
                 else
                 {
-                    if (results.ErrorCount > 0)
+                    if (results.ErrorCount > 0 || config.AlwaysSaveTestFile)
                     {
                         results.OutputFile = WriteOutputFiles(config.OutputFileFormat, scanTools, element, elementId, null, actionContext);
                     }
