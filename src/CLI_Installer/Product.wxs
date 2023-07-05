@@ -1,16 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright (c) Microsoft. All rights reserved.
 Licensed under the MIT license. See LICENSE file in the project root for full license information.-->
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="Axe.Windows Command Line Interface (CLI)" Language="1033" Version="$(var.SemVer)" Manufacturer="Microsoft" UpgradeCode="186aeebb-f5d4-4161-a0ba-0f22d8d8a15a">
-    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Platform="x86" />
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="Axe.Windows Command Line Interface (CLI)" Language="1033" Version="$(var.SemVer)" Manufacturer="Microsoft" UpgradeCode="186aeebb-f5d4-4161-a0ba-0f22d8d8a15a" InstallerVersion="200">
 
     <MajorUpgrade Schedule="afterInstallInitialize" RemoveFeatures="All"
                   AllowDowngrades="no"
                   DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
                   AllowSameVersionUpgrades="no"/>
 
-    <UIRef Id="WixUI_InstallDir"/>
+    <ui:WixUI Id="WixUI_InstallDir" />
 
     <WixVariable Id="WixUIDialogBmp" Value="Resources\DialogBackground.png" />
     <WixVariable Id="WixUIBannerBmp" Value="Resources\WixDialogBanner.png" />
@@ -37,58 +36,55 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       <ComponentGroupRef Id="Net60ComponentGroup" />
     </Feature>
 
-    <Condition Message="[ProductName] requires .NET Core Runtime 3.1 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core">
-      <![CDATA[Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86]]>
-    </Condition>
+    <Launch Message="[ProductName] requires .NET Core Runtime 3.1 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
+            Condition="Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86" />
 
-    <Directory Id="TARGETDIR" Name="SourceDir" >
-      <Directory Id="ProgramFilesFolder" >
-        <Directory Id="AxeWindowsCLIFolder" Name ="AxeWindowsCLI" >
-          <Directory Id="INSTALLFOLDER" Name="$(var.SemVer)" >
-            <Directory Id="RuntimesFolder" Name="runtimes" >
-              <Directory Id="WinFolder" Name="win" >
-                <Directory Id="LibFolder" Name="lib" >
-                  <Directory Id="Net60Folder" Name="net6.0" />
-                </Directory>
+    <StandardDirectory Id="ProgramFilesFolder">
+      <Directory Id="AxeWindowsCLIFolder" Name="AxeWindowsCLI">
+        <Directory Id="INSTALLFOLDER" Name="$(var.SemVer)">
+          <Directory Id="RuntimesFolder" Name="runtimes">
+            <Directory Id="WinFolder" Name="win">
+              <Directory Id="LibFolder" Name="lib">
+                <Directory Id="Net60Folder" Name="net6.0" />
               </Directory>
             </Directory>
           </Directory>
         </Directory>
       </Directory>
-    </Directory>
+    </StandardDirectory>
 
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="ProductComponent" Guid="548A9965-21AD-4CDF-99AD-A6F2A47D0AE8">
-        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.exe" />
-        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.deps.json" />
-        <File Source="..\CLI\bin\Release\net6.0\AxeWindowsCLI.runtimeconfig.json" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Actions.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Automation.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Core.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Desktop.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Rules.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.RuleSelection.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.SystemAbstractions.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Telemetry.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Axe.Windows.Win32.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\CommandLine.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Microsoft.Win32.SystemEvents.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\Newtonsoft.Json.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\System.Drawing.Common.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\System.IO.Packaging.dll" />
-        <File Source="..\CLI\bin\Release\net6.0\thirdpartynotices.html" />
-        <File Source="..\CLI\bin\Release\net6.0\README.MD" />
+        <File Source="AxeWindowsCLI.exe" Id="AxeWindowsCLI.exe" />
+        <File Source="AxeWindowsCLI.dll" Id="AxeWindowsCLI.dll" />
+        <File Source="AxeWindowsCLI.deps.json" Id="AxeWindowsCLI.deps.json" />
+        <File Source="AxeWindowsCLI.runtimeconfig.json" Id="AxeWindowsCLI.runtimeconfig.json" />
+        <File Source="Axe.Windows.Actions.dll" Id="Axe.Windows.Actions.dll" />
+        <File Source="Axe.Windows.Automation.dll" Id="Axe.Windows.Automation.dll" />
+        <File Source="Axe.Windows.Core.dll" Id="Axe.Windows.Core.dll" />
+        <File Source="Axe.Windows.Desktop.dll" Id="Axe.Windows.Desktop.dll" />
+        <File Source="Axe.Windows.Rules.dll" Id="Axe.Windows.Rules.dll" />
+        <File Source="Axe.Windows.RuleSelection.dll" Id="Axe.Windows.RuleSelection.dll" />
+        <File Source="Axe.Windows.SystemAbstractions.dll" Id="Axe.Windows.SystemAbstractions.dll" />
+        <File Source="Axe.Windows.Telemetry.dll" Id="Axe.Windows.Telemetry.dll" />
+        <File Source="Axe.Windows.Win32.dll" Id="Axe.Windows.Win32.dll" />
+        <File Source="CommandLine.dll" Id="CommandLine.dll" />
+        <File Source="Microsoft.Win32.SystemEvents.dll" Id="Microsoft.Win32.SystemEvents.dll" />
+        <File Source="Newtonsoft.Json.dll" Id="Newtonsoft.Json.dll" />
+        <File Source="System.Drawing.Common.dll" Id="System.Drawing.Common.dll" />
+        <File Source="System.IO.Packaging.dll" Id="System.IO.Packaging.dll" />
+        <File Source="thirdpartynotices.html" Id="thirdpartynotices.html" />
+        <File Source="README.MD" Id="README.MD" />
       </Component>
     </ComponentGroup>
 
     <ComponentGroup Id="Net60ComponentGroup" Directory="Net60Folder">
       <Component Id="Net60Components" Guid="5002A1F9-EB89-441C-B757-8E214EFE82CF">
-        <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" Id="net60_systemevents" />
-        <File Source="..\CLI\bin\Release\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" Id="net60_systemdrawing" />
+        <File Source="runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" Id="net60_systemevents" />
+        <File Source="runtimes\win\lib\net6.0\System.Drawing.Common.dll" Id="net60_systemdrawing" />
       </Component>
     </ComponentGroup>
 
-  </Product>
+  </Package>
 
 </Wix>

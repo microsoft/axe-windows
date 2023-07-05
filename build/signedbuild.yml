@@ -310,6 +310,12 @@ jobs:
       Contents: '**\bin\release\**'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
+  - task: CopyFiles@2
+    displayName: 'Copy MSI File to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      Contents: '**\CLI_Installer\bin\x86\Release\**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
 
@@ -328,13 +334,13 @@ jobs:
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: CLI (msi)'
     inputs:
-      PathtoPublish: 'src\CLI_Installer\bin\Release\AxeWindowsCLI.msi'
+      PathtoPublish: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.msi'
       ArtifactName: 'CLI-msi'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: CLI (zip)'
     inputs:
-      PathtoPublish: 'src\CLI_Installer\bin\Release\AxeWindowsCLI.zip'
+      PathtoPublish: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.zip'
       ArtifactName: 'CLI-zip'
 
   - task: CopyFiles@2

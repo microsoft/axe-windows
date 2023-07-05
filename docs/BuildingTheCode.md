@@ -17,10 +17,13 @@
   cd axe-windows
   ```
 
-### 2. Open the solution in Visual Studio
+### 2. Install the HeatWave extension for Visual Studio
+The `CLI_Installer` project uses WiX 4.X. It will build correctly from the command line, but if you intend to use Visual Studio's IDE, you should consider installing the [HeatWave extension for VS2022](https://marketplace.visualstudio.com/items?itemName=FireGiant.FireGiantHeatWaveDev17). The IDE will continue to work without this extension, but you may encounter errors from the `CLI_Installer` project.
+
+### 3. Open the solution in Visual Studio
 - Use the `src/AxeWindows.sln` file to open the solution.
 
-### 3. Build and run unit tests
+### 4. Build and run unit tests
 
 For details about how the code is organized, please visit the [solution overview](./solution.md).
 
