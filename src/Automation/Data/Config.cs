@@ -121,7 +121,8 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
-            /// Override the default behavior of only creating a11ytest files if errors are found.
+            /// Configure Axe.Windows to always save test files in the specified format, even if no errors are found.
+            /// By default, test files are saved only if errors are found or if multiple top-level windows exist.
             /// </summary>
             public Builder WithAlwaysSaveTestFile()
             {

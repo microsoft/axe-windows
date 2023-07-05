@@ -59,7 +59,7 @@ verbosity|Identifies the level of detail you want in the output. Valid values ar
 showThirdPartyNotices|If specified, displays the third party notices for components used by AxeWindowsCLI. This information is also available in the `thirdpartynotices.html` file that is installed with AxeWindowsCLI.
 delayInSeconds|Optionally inserts a delay before triggering the scan. This allows transient controls (menus, drop-down-lists, etc.) to be scanned.
 customUia|Optionally provides a path to a [custom UIA configuration file](../../docs/CustomUIA.md). By default, only system-defined UIA properties will be included in the scan.
-alwayssavetestfile|Optionally causes the test file to always be saved. By defualt, the test file is saved only if errors are found.
+alwayssavetestfile|Optionally causes the test file to always be saved. By default, the test file is saved only if errors are found.
 
 ### Scan results
 A summary of scan results will be displayed after the scan is run. In addition, an `.a11ytest` file will be generated if 1 or more errors were detected or if the `alwayssavetestfile` option was specified. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io. If you scan an application with multiple top-level windows, an `.a11ytest` file will be generated for _each_ top-level window, even if no errors are detected.
