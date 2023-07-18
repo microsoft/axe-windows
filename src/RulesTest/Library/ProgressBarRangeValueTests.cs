@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -103,6 +104,7 @@ namespace Axe.Windows.RulesTests.Library
         [TestMethod]
         public void ProgressBarRangeValue_Match()
         {
+            _elementMock.Setup(m => m.Framework).Returns(FrameworkId.WPF); // Arbitrary non-Chrome value
             TestControlTypeMatchesCondition(ControlType.ProgressBar, true);
         }
 

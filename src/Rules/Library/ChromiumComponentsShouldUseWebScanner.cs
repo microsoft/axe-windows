@@ -13,7 +13,7 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.ChromiumComponentsShouldUseWebScanner)]
     class ChromiumComponentsShouldUseWebScanner : Rule
     {
-        public ChromiumComponentsShouldUseWebScanner()
+        public ChromiumComponentsShouldUseWebScanner() : base(appliesToChromiumContent: true)
         {
             Info.Description = Descriptions.ChromiumComponentsShouldUseWebScanner;
             Info.HowToFix = HowToFix.ChromiumComponentsShouldUseWebScanner;
@@ -27,7 +27,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Chrome & (Document | AnyAncestor(Document));
+            return Chrome & Document;
         }
     } // class
 } // namespace

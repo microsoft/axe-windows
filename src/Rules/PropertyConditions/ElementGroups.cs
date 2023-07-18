@@ -13,7 +13,7 @@ using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 namespace Axe.Windows.Rules.PropertyConditions
 {
     /// <summary>
-    /// A collection of conditions representing elements grouped for miscellaneous  rules.
+    /// A collection of conditions representing elements grouped for miscellaneous rules.
     /// These are conditions which tend to be reused by multiple rules.
     /// </summary>
     static class ElementGroups
@@ -45,6 +45,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition WPFButton = WPF & Button;
         public static Condition XAMLTextInEdit = XAML & Text & Parent(Edit);
         public static Condition WinFormsEdit = Edit & WinForms;
+        public static Condition IsChromiumContent = Chrome & (Document | AnyAncestor(Document));
 
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 

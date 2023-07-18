@@ -66,8 +66,7 @@ namespace Axe.Windows.RulesTests.Library
 
             Assert.IsTrue(Rule.Condition.Matches(_elementMock.Object));
 
-            _elementMock.Verify(m => m.Framework, Times.Once());
-            _elementMock.Verify(m => m.ControlTypeId, Times.Once());
+            _elementMock.Verify(m => m.Framework, Times.Exactly(2)); // Once for this call, once for the IsChromiumContent check
         }
 
         [TestMethod]

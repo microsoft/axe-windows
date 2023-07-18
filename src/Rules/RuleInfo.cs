@@ -66,6 +66,11 @@ namespace Axe.Windows.Rules
         public string FrameworkIssueLink { get; set; }
 
         /// <summary>
+        /// True if this rule applies to Chromium content, otherwise false
+        /// </summary>
+        public bool AppliesToChromiumContent { get; set; }
+
+        /// <summary>
         /// Provides a string summary of the information contained in the RuleInfo object.
         /// </summary>
         public override string ToString()

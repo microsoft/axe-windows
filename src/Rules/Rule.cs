@@ -5,6 +5,7 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Exceptions;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Rules.Resources;
+using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
 
 namespace Axe.Windows.Rules
 {
@@ -20,20 +21,24 @@ namespace Axe.Windows.Rules
         public RuleInfo Info { get; private set; }
         public Condition Condition { get; }
 
-        protected Rule()
+        protected Rule(bool appliesToChromiumContent = false)
         {
             // keep these two calls in the following order or the RuleInfo.Condition string won't get populated
 #pragma warning disable CA2214
             Condition = CreateCondition();
 #pragma warning restore CA2214
 
+            if (!appliesToChromiumContent)
+            {
+                Condition = Condition - IsChromiumContent;
+            }
+
             InitRuleInfo();
         }
 
         private void InitRuleInfo()
         {
-            var info = GetRuleInfoFromAttributes();
-            if (info == null) throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(GetType().Name));
+            var info = GetRuleInfoFromAttributes() ?? throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(GetType().Name));
 
             info.Condition = Condition?.ToString();
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
+using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -52,6 +53,7 @@ namespace Axe.Windows.RulesTests.Library
         public void ClickablePointOffScreen_IsNotClickable_Matches()
         {
             SetupTryGetProperty(new Point(-100, -100));
+            _mockElement.Setup(m => m.Framework).Returns(FrameworkId.WPF);  // Arbitrary non-Chrome value
             Assert.IsTrue(Rule.Condition.Matches(_mockElement.Object));
             _mockElement.VerifyAll();
         }
