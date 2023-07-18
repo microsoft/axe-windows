@@ -13,7 +13,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class EdgeBrowserHasBeenDeprecatedTests
     {
-        private static readonly Rules.IRule Rule = new Rules.Library.EdgeBrowserHasBeenDeprecated();
+        private static readonly Rules.IRule Rule = new Rules.Library.EdgeBrowserHasBeenDeprecated(excludeChromiumContent: false);
         private Mock<IA11yElement> _elementMock;
 
         [TestInitialize]
@@ -52,7 +52,7 @@ namespace Axe.Windows.RulesTests.Library
 
             Assert.IsTrue(Rule.Condition.Matches(_elementMock.Object));
 
-            _elementMock.Verify(m => m.Framework, Times.Exactly(2)); // Once for this call, once for the IsChromiumContent check
+            _elementMock.Verify(m => m.Framework, Times.Once());
         }
 
         [TestMethod]

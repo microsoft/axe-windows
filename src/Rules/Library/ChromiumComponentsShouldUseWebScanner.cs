@@ -6,14 +6,13 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.Resources;
 using static Axe.Windows.Rules.PropertyConditions.ControlType;
 using static Axe.Windows.Rules.PropertyConditions.Framework;
-using static Axe.Windows.Rules.PropertyConditions.Relationships;
 
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.ChromiumComponentsShouldUseWebScanner)]
     class ChromiumComponentsShouldUseWebScanner : Rule
     {
-        public ChromiumComponentsShouldUseWebScanner() : base(appliesToChromiumContent: true)
+        public ChromiumComponentsShouldUseWebScanner() : base(excludeChromiumContent: false)
         {
             Info.Description = Descriptions.ChromiumComponentsShouldUseWebScanner;
             Info.HowToFix = HowToFix.ChromiumComponentsShouldUseWebScanner;

@@ -21,14 +21,14 @@ namespace Axe.Windows.Rules
         public RuleInfo Info { get; private set; }
         public Condition Condition { get; }
 
-        protected Rule(bool appliesToChromiumContent = false)
+        protected Rule(bool excludeChromiumContent = true)
         {
             // keep these two calls in the following order or the RuleInfo.Condition string won't get populated
 #pragma warning disable CA2214
             Condition = CreateCondition();
 #pragma warning restore CA2214
 
-            if (!appliesToChromiumContent)
+            if (excludeChromiumContent)
             {
                 Condition = Condition - IsChromiumContent;
             }
@@ -38,7 +38,8 @@ namespace Axe.Windows.Rules
 
         private void InitRuleInfo()
         {
-            var info = GetRuleInfoFromAttributes() ?? throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(GetType().Name));
+            var info = GetRuleInfoFromAttributes();
+            if (info == null) throw new AxeWindowsException(ErrorMessages.MissingRuleInforAttribute.WithParameters(GetType().Name));
 
             info.Condition = Condition?.ToString();
 

@@ -5,7 +5,6 @@ using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,7 +13,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class FrameworkDoesNotSupportUIAutomationTests
     {
-        private static readonly Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation();
+        private static readonly Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation(excludeChromiumContent: false);
         private Mock<IA11yElement> _elementMock;
 
         [TestInitialize]
@@ -66,7 +65,7 @@ namespace Axe.Windows.RulesTests.Library
 
             Assert.IsTrue(Rule.Condition.Matches(_elementMock.Object));
 
-            _elementMock.Verify(m => m.Framework, Times.Exactly(2)); // Once for this call, once for the IsChromiumContent check
+            _elementMock.Verify(m => m.Framework, Times.Once());
         }
 
         [TestMethod]

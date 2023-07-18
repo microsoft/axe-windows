@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
-using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Types;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -13,7 +12,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ClickablePointOffScreenTests
     {
-        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOffScreen();
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ClickablePointOffScreen(excludeChromiumContent: false);
         private readonly Mock<IA11yElement> _mockElement = new Mock<IA11yElement>(MockBehavior.Strict);
         private delegate void TryGetDelegate(int propertyId, out Point value);
 
@@ -53,7 +52,6 @@ namespace Axe.Windows.RulesTests.Library
         public void ClickablePointOffScreen_IsNotClickable_Matches()
         {
             SetupTryGetProperty(new Point(-100, -100));
-            _mockElement.Setup(m => m.Framework).Returns(FrameworkId.WPF);  // Arbitrary non-Chrome value
             Assert.IsTrue(Rule.Condition.Matches(_mockElement.Object));
             _mockElement.VerifyAll();
         }
