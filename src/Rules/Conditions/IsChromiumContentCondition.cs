@@ -14,7 +14,7 @@ namespace Axe.Windows.Rules
     /// </summary>
     class IsChromiumContentCondition : Condition
     {
-        Condition _isChromiumElement = IsChromeDocument | AnyAncestor(IsChromeDocument);
+        private readonly Condition _isChromiumElement = IsChromiumDocument | AnyAncestor(IsChromiumDocument);
 
         public IsChromiumContentCondition()
         {

@@ -15,7 +15,7 @@ namespace Axe.Windows.Rules.Library
     class ProgressBarRangeValue : Rule
     {
         // Testable constructor
-        internal ProgressBarRangeValue(bool excludeChromiumContent) : base(excludeChromiumContent)
+        internal ProgressBarRangeValue(Condition excludedCondition) : base(excludedCondition)
         {
             Info.Description = Descriptions.ProgressBarRangeValue;
             Info.HowToFix = HowToFix.ProgressBarRangeValue;
@@ -24,7 +24,7 @@ namespace Axe.Windows.Rules.Library
             Info.ErrorCode = EvaluationCode.Error;
         }
 
-        public ProgressBarRangeValue() : this(excludeChromiumContent: true)
+        public ProgressBarRangeValue() : this(excludedCondition: DefaultExcludedCondition)
         {
         }
 

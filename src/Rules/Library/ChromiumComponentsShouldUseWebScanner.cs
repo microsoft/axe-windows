@@ -12,7 +12,7 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.ChromiumComponentsShouldUseWebScanner)]
     class ChromiumComponentsShouldUseWebScanner : Rule
     {
-        public ChromiumComponentsShouldUseWebScanner() : base(excludeChromiumContent: false)
+        public ChromiumComponentsShouldUseWebScanner() : base(excludedCondition: null)
         {
             Info.Description = Descriptions.ChromiumComponentsShouldUseWebScanner;
             Info.HowToFix = HowToFix.ChromiumComponentsShouldUseWebScanner;

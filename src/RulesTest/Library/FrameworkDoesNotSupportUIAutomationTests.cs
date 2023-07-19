@@ -13,7 +13,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class FrameworkDoesNotSupportUIAutomationTests
     {
-        private static readonly Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation(excludeChromiumContent: false);
+        private static readonly Rules.IRule Rule = new Rules.Library.FrameworkDoesNotSupportUIAutomation(excludedCondition: null);
         private Mock<IA11yElement> _elementMock;
 
         [TestInitialize]

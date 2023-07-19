@@ -12,7 +12,7 @@ namespace Axe.Windows.RulesTests.Library
     [TestClass]
     public class ProgressBarRangeValueTests
     {
-        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ProgressBarRangeValue(excludeChromiumContent: false);
+        private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ProgressBarRangeValue(excludedCondition: null);
         private Mock<IA11yElement> _elementMock = null;
         private Mock<IA11yPattern> _patternMock = null;
 

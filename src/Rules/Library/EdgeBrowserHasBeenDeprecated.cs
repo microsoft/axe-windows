@@ -12,7 +12,7 @@ namespace Axe.Windows.Rules.Library
     class EdgeBrowserHasBeenDeprecated : Rule
     {
         // Testable constructor
-        internal EdgeBrowserHasBeenDeprecated(bool excludeChromiumContent) : base (excludeChromiumContent)
+        internal EdgeBrowserHasBeenDeprecated(Condition excludedCondition) : base (excludedCondition)
         {
             Info.Description = Descriptions.EdgeBrowserHasBeenDeprecated;
             Info.HowToFix = HowToFix.EdgeBrowserHasBeenDeprecated;
@@ -21,7 +21,7 @@ namespace Axe.Windows.Rules.Library
             Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214421";
         }
 
-        public EdgeBrowserHasBeenDeprecated() : this (excludeChromiumContent: true)
+        public EdgeBrowserHasBeenDeprecated() : this (excludedCondition: DefaultExcludedCondition)
         {
         }
 

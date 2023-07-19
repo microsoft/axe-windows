@@ -15,7 +15,7 @@ namespace Axe.Windows.Rules.Library
     class ClickablePointOffScreen : Rule
     {
         // Testable constructor
-        internal ClickablePointOffScreen(bool excludeChromiumContent) : base(excludeChromiumContent)
+        internal ClickablePointOffScreen(Condition excludedCondition) : base(excludedCondition)
         {
             Info.Description = Descriptions.ClickablePointOffScreen;
             Info.HowToFix = HowToFix.ClickablePointOffScreen;
@@ -24,7 +24,7 @@ namespace Axe.Windows.Rules.Library
             Info.ErrorCode = EvaluationCode.Warning;
         }
 
-        public ClickablePointOffScreen() : this(excludeChromiumContent: true)
+        public ClickablePointOffScreen() : this(DefaultExcludedCondition)
         {
         }
 

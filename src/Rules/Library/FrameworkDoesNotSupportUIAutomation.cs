@@ -19,7 +19,7 @@ namespace Axe.Windows.Rules.Library
         };
 
         // Testable constructor
-        internal FrameworkDoesNotSupportUIAutomation(bool excludeChromiumContent) : base (excludeChromiumContent)
+        internal FrameworkDoesNotSupportUIAutomation(Condition excludedCondition) : base (excludedCondition)
         {
             Info.Description = Descriptions.FrameworkDoesNotSupportUIAutomation;
             Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;
@@ -28,7 +28,7 @@ namespace Axe.Windows.Rules.Library
             Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214160";
         }
 
-        public FrameworkDoesNotSupportUIAutomation() : this(excludeChromiumContent: true)
+        public FrameworkDoesNotSupportUIAutomation() : this(excludedCondition: DefaultExcludedCondition)
         {
         }
 
