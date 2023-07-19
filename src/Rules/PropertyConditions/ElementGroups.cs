@@ -46,6 +46,7 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition XAMLTextInEdit = XAML & Text & Parent(Edit);
         public static Condition WinFormsEdit = Edit & WinForms;
         public static Condition IsChromiumContent = Chrome & (Document | AnyAncestor(Document));
+        public static Condition IsChromeDocument = Chrome & Document;
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
         private static Condition CreateMinMaxCloseButtonCondition()

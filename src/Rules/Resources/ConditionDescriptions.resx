@@ -286,4 +286,8 @@
     <value>LocalizedLandmarkType</value>
     <comment>Do not translate: the name of a UI Automation property.</comment>
   </data>
+  <data name="IsChromiumContent" xml:space="preserve">
+    <value>IsChromiumContent</value>
+    <comment>{Locked}: a token used by the Axe.Windows domain-specific language for accessibility descriptions.</comment>
+  </data>
 </root>

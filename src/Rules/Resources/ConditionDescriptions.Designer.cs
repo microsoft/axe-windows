@@ -232,6 +232,15 @@ namespace Axe.Windows.Rules.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IsChromiumContent.
+        /// </summary>
+        internal static string IsChromiumContent {
+            get {
+                return ResourceManager.GetString("IsChromiumContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IsContentElement.
         /// </summary>
         internal static string IsContentElement {
