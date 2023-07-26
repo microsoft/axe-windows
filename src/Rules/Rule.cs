@@ -28,7 +28,6 @@ namespace Axe.Windows.Rules
 #pragma warning disable CA2214
             Condition = CreateCondition();
 #pragma warning restore CA2214
-            Condition = CreateCondition();
 
             if (excludedCondition != null)
             {
