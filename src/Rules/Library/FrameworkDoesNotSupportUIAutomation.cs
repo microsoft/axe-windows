@@ -18,13 +18,18 @@ namespace Axe.Windows.Rules.Library
             @"^\s*SunAwt.*$",
         };
 
-        public FrameworkDoesNotSupportUIAutomation()
+        // Testable constructor
+        internal FrameworkDoesNotSupportUIAutomation(Condition excludedCondition) : base (excludedCondition)
         {
             Info.Description = Descriptions.FrameworkDoesNotSupportUIAutomation;
             Info.HowToFix = HowToFix.FrameworkDoesNotSupportUIAutomation;
             Info.Standard = A11yCriteriaId.ObjectInformation;
             Info.ErrorCode = EvaluationCode.Error;
             Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214160";
+        }
+
+        public FrameworkDoesNotSupportUIAutomation() : this(excludedCondition: DefaultExcludedCondition)
+        {
         }
 
         public override bool PassesTest(IA11yElement e)

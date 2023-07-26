@@ -15,7 +15,8 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.ClickablePointOnScreenWPF)]
     class ClickablePointOnScreenWPF : Rule
     {
-        public ClickablePointOnScreenWPF()
+        // Testable constructor
+        public ClickablePointOnScreenWPF(Condition excludedCondition) : base(excludedCondition)
         {
             Info.Description = Descriptions.ClickablePointOnScreen;
             Info.HowToFix = HowToFix.ClickablePointOnScreen;
@@ -23,6 +24,10 @@ namespace Axe.Windows.Rules.Library
             Info.PropertyID = PropertyType.UIA_IsOffscreenPropertyId;
             Info.ErrorCode = EvaluationCode.Error;
             Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214600";
+        }
+
+        public ClickablePointOnScreenWPF() : this(DefaultExcludedCondition)
+        {
         }
 
         public override bool PassesTest(IA11yElement e)

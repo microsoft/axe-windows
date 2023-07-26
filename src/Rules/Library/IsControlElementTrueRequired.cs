@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -14,13 +14,18 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.IsControlElementTrueRequired)]
     class IsControlElementTrueRequired : Rule
     {
-        public IsControlElementTrueRequired()
+        // Testable constructor
+        public IsControlElementTrueRequired(Condition excludedCondition) : base(excludedCondition)
         {
             Info.Description = Descriptions.IsControlElementTrueRequired;
             Info.HowToFix = HowToFix.IsControlElementTrueRequired;
             Info.Standard = A11yCriteriaId.ObjectInformation;
             Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
             Info.ErrorCode = EvaluationCode.Error;
+        }
+
+        public IsControlElementTrueRequired() : this(DefaultExcludedCondition)
+        {
         }
 
         public override bool PassesTest(IA11yElement e)

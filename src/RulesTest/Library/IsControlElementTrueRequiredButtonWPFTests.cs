@@ -18,7 +18,7 @@ namespace Axe.Windows.RulesTests.Library
         private const int TextType = Axe.Windows.Core.Types.ControlType.UIA_TextControlTypeId;
         private const int ButtonType = Axe.Windows.Core.Types.ControlType.UIA_ButtonControlTypeId;
 
-        private static readonly Rules.IRule Rule = new Rules.Library.IsControlElementTrueRequiredButtonWPF();
+        private static readonly Rules.IRule Rule = new Rules.Library.IsControlElementTrueRequiredButtonWPF(excludedCondition: null);
         private Mock<IA11yElement> _elementMock;
         private Mock<IA11yElement> _parentMock;
 

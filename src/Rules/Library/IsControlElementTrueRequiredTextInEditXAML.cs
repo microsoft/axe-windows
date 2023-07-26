@@ -14,7 +14,8 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.IsControlElementTrueRequiredTextInEditXAML)]
     class IsControlElementTrueRequiredTextInEditXAML : Rule
     {
-        public IsControlElementTrueRequiredTextInEditXAML()
+        // Testable constructor
+        public IsControlElementTrueRequiredTextInEditXAML(Condition excludedCondition) : base(excludedCondition)
         {
             Info.Description = Descriptions.IsControlElementTrueRequired;
             Info.HowToFix = HowToFix.IsControlElementTrueRequired;
@@ -22,6 +23,10 @@ namespace Axe.Windows.Rules.Library
             Info.PropertyID = PropertyType.UIA_IsControlElementPropertyId;
             Info.ErrorCode = EvaluationCode.Error;
             Info.FrameworkIssueLink = "https://go.microsoft.com/fwlink/?linkid=2214418";
+        }
+
+        public IsControlElementTrueRequiredTextInEditXAML() : this(DefaultExcludedCondition)
+        {
         }
 
         public override bool PassesTest(IA11yElement e)

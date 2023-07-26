@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Core.Bases;
@@ -14,13 +14,18 @@ namespace Axe.Windows.Rules.Library
     [RuleInfo(ID = RuleId.ProgressBarRangeValue)]
     class ProgressBarRangeValue : Rule
     {
-        public ProgressBarRangeValue()
+        // Testable constructor
+        internal ProgressBarRangeValue(Condition excludedCondition) : base(excludedCondition)
         {
             Info.Description = Descriptions.ProgressBarRangeValue;
             Info.HowToFix = HowToFix.ProgressBarRangeValue;
             Info.Standard = A11yCriteriaId.ObjectInformation;
             Info.PropertyID = PropertyType.UIA_IsRangeValuePatternAvailablePropertyId;
             Info.ErrorCode = EvaluationCode.Error;
+        }
+
+        public ProgressBarRangeValue() : this(excludedCondition: DefaultExcludedCondition)
+        {
         }
 
         public override bool PassesTest(IA11yElement e)

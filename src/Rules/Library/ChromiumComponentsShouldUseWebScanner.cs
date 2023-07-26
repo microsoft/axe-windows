@@ -4,16 +4,14 @@
 using Axe.Windows.Core.Bases;
 using Axe.Windows.Core.Enums;
 using Axe.Windows.Rules.Resources;
-using static Axe.Windows.Rules.PropertyConditions.ControlType;
-using static Axe.Windows.Rules.PropertyConditions.Framework;
-using static Axe.Windows.Rules.PropertyConditions.Relationships;
+using static Axe.Windows.Rules.PropertyConditions.ElementGroups;
 
 namespace Axe.Windows.Rules.Library
 {
     [RuleInfo(ID = RuleId.ChromiumComponentsShouldUseWebScanner)]
     class ChromiumComponentsShouldUseWebScanner : Rule
     {
-        public ChromiumComponentsShouldUseWebScanner()
+        public ChromiumComponentsShouldUseWebScanner() : base(excludedCondition: null)
         {
             Info.Description = Descriptions.ChromiumComponentsShouldUseWebScanner;
             Info.HowToFix = HowToFix.ChromiumComponentsShouldUseWebScanner;
@@ -27,7 +25,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            return Chrome & (Document | AnyAncestor(Document));
+            return IsChromiumDocument;
         }
     } // class
 } // namespace
