@@ -445,6 +445,8 @@ namespace Axe.Windows.RulesTests.PropertyConditions
                 e.Parent = null;
                 Assert.IsTrue(ElementGroups.IsChromiumContent.Matches(e));
             } // using
+
+            Assert.AreEqual("IsChromiumContent", ElementGroups.IsChromiumContent.ToString());
         }
     } // class
 } // namespace
