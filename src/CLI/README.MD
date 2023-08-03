@@ -16,7 +16,7 @@ You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool get
 If you run the tool without parameters, you'll be presented with the help screen. An example follows:
 
 ```
-AxeWindowsCLI 2.2.0
+AxeWindowsCLI 2.2.1
 Copyright c 2020
 
   --processid                Process Id
