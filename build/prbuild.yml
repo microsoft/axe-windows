@@ -120,3 +120,4 @@ jobs:
 - template: check-dependencies.yml
   parameters:
     configuration: release
+  
