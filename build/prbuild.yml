@@ -117,3 +117,7 @@ jobs:
     #workingDirectory: # Optional
     #failOnStderr: false # Optional
     
+- template: check-dependencies.yml
+  parameters:
+    configuration: release
+  
