@@ -42,3 +42,6 @@ updates:
   - dependency-name: MSTest.TestAdapter
     versions:
     - 2.2.2
+  - dependency-name: Moq
+    versions:
+    - ">= 4.20"  # moq/moq#1372
