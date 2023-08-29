@@ -1,4 +1,5 @@
 [
 "-/Microsoft.CodeAnalysis.NetAnalyzers",
+"-/Microsoft.NET.Test.Sdk",
 "-/Moq"
 ]
