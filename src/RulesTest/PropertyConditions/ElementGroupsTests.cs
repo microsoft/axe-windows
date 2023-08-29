@@ -448,5 +448,22 @@ namespace Axe.Windows.RulesTests.PropertyConditions
 
             Assert.AreEqual("IsChromiumContent", ElementGroups.IsChromiumContent.ToString());
         }
+
+        [TestMethod]
+        public void TestAllChromiumContent_MatchExpected()
+        {
+            Assert.IsFalse(ElementGroups.TestAllChromiumContentState);
+
+            using (var e = new MockA11yElement())
+            {
+                ElementGroups.TestAllChromiumContentState = false;
+                Assert.IsFalse(ElementGroups.TestAllChromiumContent.Matches(e));
+
+                ElementGroups.TestAllChromiumContentState = true;
+                Assert.IsTrue(ElementGroups.TestAllChromiumContent.Matches(e));
+            } // using
+
+            ElementGroups.TestAllChromiumContentState = false;
+        }
     } // class
 } // namespace

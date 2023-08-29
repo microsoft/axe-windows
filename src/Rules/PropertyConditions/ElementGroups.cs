@@ -17,8 +17,14 @@ namespace Axe.Windows.Rules.PropertyConditions
     /// A collection of conditions representing elements grouped for miscellaneous rules.
     /// These are conditions which tend to be reused by multiple rules.
     /// </summary>
-    static class ElementGroups
+    internal static class ElementGroups
     {
+        /// <summary>
+        /// This can be set to true allow browser teams to test and debug code that converts from HTML to UIA.
+        /// It should be set to false for all other scenarios.
+        /// </summary>
+        public static bool TestAllChromiumContentState { get; set; }
+
         // the following occurs for xaml expand/collapse controls
         private static readonly Condition FocusableGroup = Group & IsKeyboardFocusable & (WPF | XAML);
 
@@ -48,6 +54,8 @@ namespace Axe.Windows.Rules.PropertyConditions
         public static Condition WinFormsEdit = Edit & WinForms;
         public static Condition IsChromiumDocument = Chrome & Document;
         public static Condition IsChromiumContent = (IsChromiumDocument | AnyAncestor(IsChromiumDocument))[ConditionDescriptions.IsChromiumContent];
+        public static ValueCondition<bool> TestAllChromiumContentValueCondition = new ValueCondition<bool>((e) => TestAllChromiumContentState, "TestAllChromiumContent");
+        public static Condition TestAllChromiumContent = TestAllChromiumContentValueCondition == true;
         public static Condition AllowSameNameAndControlType = CreateAllowSameNameAndControlTypeCondition();
 
         private static Condition CreateMinMaxCloseButtonCondition()
