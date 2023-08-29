@@ -13,5 +13,6 @@ namespace AxeWindowsCLI
         int DelayInSeconds { get; }
         string CustomUia { get; }
         bool AlwaysSaveTestFile { get; }
+        bool TestAllChromiumContent { get; }
     }
 }

@@ -10,6 +10,7 @@ using Axe.Windows.Core.Enums;
 using Axe.Windows.Core.Misc;
 using Axe.Windows.Desktop.Settings;
 using Axe.Windows.Desktop.UIAutomation;
+using Axe.Windows.Rules.PropertyConditions;
 using System;
 using System.Linq;
 
@@ -354,6 +355,12 @@ namespace Axe.Windows.Actions
         }
 
         #region static methods
+
+        public static void SetTestAllChromiumContent(bool testAllChromiumContent)
+        {
+            ElementGroups.TestAllChromiumContentState = testAllChromiumContent;
+        }
+
         /// <summary>
         /// default instance
         /// </summary>

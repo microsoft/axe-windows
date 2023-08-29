@@ -64,5 +64,10 @@ namespace Axe.Windows.Automation
             Core.CustomObjects.Config conf = CustomUIAAction.ReadConfigFromFile(path);
             CustomUIAAction.RegisterCustomProperties(conf.Properties);
         }
+
+        public void SetTestAllChromiumContent(bool testAllChromiumContent)
+        {
+            SelectAction.SetTestAllChromiumContent(testAllChromiumContent);
+        }
     } // class
 } // namespace

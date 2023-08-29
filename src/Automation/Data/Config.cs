@@ -42,6 +42,9 @@ namespace Axe.Windows.Automation
         /// <summary>Override the default behavior of only saving a11ytest files if errors are found.</summary>
         public bool AlwaysSaveTestFile { get; private set; }
 
+        /// <summary>Override the default behavior or not testing Chromium content.</summary>
+        public bool TestAllChromiumContent { get; private set; }
+
         /// <summary>
         /// Custom handling of DPI awareness. The default handling is to set the entire process as DPI-aware
         /// before running the scan, and to leave it in that state after the scan completes. If your process
@@ -131,6 +134,15 @@ namespace Axe.Windows.Automation
             }
 
             /// <summary>
+            /// Configure Axe.Windows to test all Chromium content. By default, Chromium content is not tested.
+            /// </summary>
+            public Builder WithTestAllChromiumContent()
+            {
+                _config.TestAllChromiumContent = true;
+                return this;
+            }
+
+            /// <summary>
             /// Build an instance of <see cref="Config"/>
             /// </summary>
             /// <returns></returns>
@@ -144,6 +156,7 @@ namespace Axe.Windows.Automation
                     CustomUIAConfigPath = _config.CustomUIAConfigPath,
                     DPIAwareness = _config.DPIAwareness,
                     AlwaysSaveTestFile = _config.AlwaysSaveTestFile,
+                    TestAllChromiumContent = _config.TestAllChromiumContent,
                 };
             }
         } // Builder
