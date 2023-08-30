@@ -65,9 +65,9 @@ namespace Axe.Windows.Automation
             CustomUIAAction.RegisterCustomProperties(conf.Properties);
         }
 
-        public void SetTestAllChromiumContent(bool testAllChromiumContent)
+        public void SetShouldTestAllChromiumContent(bool shouldTestAllChromiumContent)
         {
-            SelectAction.SetTestAllChromiumContent(testAllChromiumContent);
+            SelectAction.ShouldTestAllChromiumContent = shouldTestAllChromiumContent;
         }
     } // class
 } // namespace

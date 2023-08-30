@@ -53,8 +53,8 @@ namespace Axe.Windows.Automation
         /// <summary>
         /// Specify how Chromium content should be evaluated
         /// </summary>
-        /// <param name="testAllChromiumContent">This can be set to true allow browser teams to test and debug code that converts from HTML to UIA.
+        /// <param name="shouldTestAllChromiumContent">This can be set to true allow browser teams to test and debug code that converts from HTML to UIA.
         /// It should be set to false for all other scenarios.</param>
-        void SetTestAllChromiumContent(bool testAllChromiumContent);
+        void SetShouldTestAllChromiumContent(bool shouldTestAllChromiumContent);
     } // interface
 } // namespace
