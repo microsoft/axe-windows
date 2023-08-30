@@ -24,18 +24,6 @@ namespace Axe.Windows.Actions
     public class SelectAction : IDisposable
     {
         /// <summary>
-        /// Allow testing of all Chromium content
-        /// </summary>
-        public static bool ShouldTestAllChromiumContent
-        {
-            get => RulesSettings.ShouldTestAllChromiumContent;
-            set
-            {
-                RulesSettings.ShouldTestAllChromiumContent = value;
-            }
-        }
-
-        /// <summary>
         /// UIATree state
         /// </summary>
         UIATreeState _uiaTreeState = UIATreeState.Resumed;
@@ -367,7 +355,6 @@ namespace Axe.Windows.Actions
         }
 
         #region static methods
-
         /// <summary>
         /// default instance
         /// </summary>
@@ -403,6 +390,18 @@ namespace Axe.Windows.Actions
             {
                 DefaultInstance.Dispose();
                 DefaultInstance = null;
+            }
+        }
+
+        /// <summary>
+        /// Allow testing of all Chromium content
+        /// </summary>
+        public static bool ShouldTestAllChromiumContent
+        {
+            get => RulesSettings.ShouldTestAllChromiumContent;
+            set
+            {
+                RulesSettings.ShouldTestAllChromiumContent = value;
             }
         }
         #endregion
