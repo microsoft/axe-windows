@@ -19,30 +19,36 @@ If you run the tool without parameters, you'll be presented with the help screen
 AxeWindowsCLI 2.2.1
 Copyright c 2020
 
-  --processid                Process Id
+  --processid                 Process Id
 
-  --processname              Process Name
+  --processname               Process Name
 
-  --outputdirectory          Output directory
+  --outputdirectory           Output directory
 
-  --scanid                   Scan ID
+  --scanid                    Scan ID
 
-  --verbosity                Verbosity level (Quiet/Default/Verbose)
+  --verbosity                 Verbosity level (Quiet/Default/Verbose)
 
-  --showthirdpartynotices    Display Third Party Notices (opens file in browser
-                             without executing scan). If specified, all other
-                             options will be ignored.
+  --showthirdpartynotices     Display Third Party Notices (opens file in browser
+                              without executing scan). If specified, all other
+                              options will be ignored.
 
-  --delayinseconds           How many seconds to delay before triggering the
-                             scan. Valid range is 0 to 60 seconds, with a
-                             default of 0.
+  --delayinseconds            How many seconds to delay before triggering the
+                              scan. Valid range is 0 to 60 seconds, with a
+                              default of 0.
 
-  --customuia                The path to a configuration file specifying custom
-                             UI Automation attributes
+  --customuia                 The path to a configuration file specifying custom
+                              UI Automation attributes
 
-  --alwayssavetestfile       If specified, always save the test file. By
-                             default, the test file is saved only if errors are
-                             found.
+  --alwayssavetestfile        If specified, always save the test file. By
+                              default, the test file is saved only if errors are
+                              found.
+
+  --testallchromiumcontent    If specified, causes Chromium HTML content to be
+                              scanned. Chromium HTML content is ignored without
+                              this flag. This is intended primarily for browser
+                              development teams and is discouraged for other
+                              scenarios.
 ```
 
 To scan an application, you need to specify the application's process via either the `--processId` or `--processName` parameters

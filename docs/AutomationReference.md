@@ -100,6 +100,14 @@ Cause each scan to save a test file, even if no errors are reported. The default
 
 The `WithAlwaysSaveTestFile` method returns the  `Config.Builder` configured to always save a test file.
 
+##### `WithTestAllChromiumContent`
+
+Cause all Chromium HTML content to be included in scan results. The default is to omit Chromium HTML content from the scan results. This is intended only for use by browser development teams and should be omitted in other scenarios.
+
+###### Return object
+
+The `WithTestAllChromiumContent` method returns the  `Config.Builder` configured to always save a test file.
+
 ##### Build
 
 Build an instance of `Config`.
