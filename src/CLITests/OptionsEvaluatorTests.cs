@@ -32,7 +32,7 @@ namespace AxeWindowsCLITests
         private static void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
             VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0,
-            bool alwaysWriteTestFile = false, bool testAllChromiumContnet = false)
+            bool alwaysWriteTestFile = false, bool testAllChromiumContent = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
@@ -41,7 +41,7 @@ namespace AxeWindowsCLITests
             Assert.AreEqual(verbosityLevel, options.VerbosityLevel);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
             Assert.AreEqual(alwaysWriteTestFile, options.AlwaysSaveTestFile);
-            Assert.AreEqual(testAllChromiumContnet, options.TestAllChromiumContent);
+            Assert.AreEqual(testAllChromiumContent, options.TestAllChromiumContent);
         }
 
         [TestMethod]
@@ -317,7 +317,7 @@ namespace AxeWindowsCLITests
                 TestAllChromiumContent = true,
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
-                processId: TestProcessId, testAllChromiumContnet: true);
+                processId: TestProcessId, testAllChromiumContent: true);
             VerifyAllMocks();
         }
     }
