@@ -10,7 +10,6 @@ using System.Linq;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-    [TestCategory("Axe.Windows.Rules")]
     public class ControlShouldSupportSetInfoXAMLTests
     {
         private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldSupportSetInfoXAML();

@@ -8,7 +8,6 @@ using static Axe.Windows.RulesTests.ControlType;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-    [TestCategory("Axe.Windows.Rules")]
     public class NameIsNotNullTests
     {
         private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.NameIsNotNull();

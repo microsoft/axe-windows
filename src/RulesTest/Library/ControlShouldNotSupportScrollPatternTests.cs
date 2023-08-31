@@ -8,7 +8,6 @@ using System.Collections.Generic;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-    [TestCategory("Axe.Windows.Rules")]
     public class ControlShouldNotSupportScrollPatternTests
     {
         private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.ControlShouldNotSupportScrollPattern();

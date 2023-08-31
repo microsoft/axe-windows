@@ -6,7 +6,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Axe.Windows.RulesTests.Library
 {
     [TestClass]
-    [TestCategory("Axe.Windows.Rules")]
     public class LocalizedControlTypeIsNotEmptyTests
     {
         private static readonly Axe.Windows.Rules.IRule Rule = new Axe.Windows.Rules.Library.LocalizedControlTypeIsNotEmpty();
