@@ -7,7 +7,7 @@ using Moq;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
-    [TestClass()]
+    [TestClass]
     public class BitmapCollectionTests
     {
         private Mock<IColorContrastConfig> _configMock;

@@ -13,7 +13,7 @@ using CCColor = Axe.Windows.Desktop.ColorContrastAnalyzer.Color;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
-    [TestClass()]
+    [TestClass]
     public class ImageTests
     {
         private static readonly IColorContrastConfig ColorContrastConfig =

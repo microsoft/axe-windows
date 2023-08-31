@@ -12,10 +12,10 @@ namespace Axe.Windows.CoreTests.Bases
     /// <summary>
     /// Tests A11yElement class
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class A11yElementTests
     {
-        [TestMethod()]
+        [TestMethod]
         [Timeout(2000)]
         public void FindDescendent_SimpleCondition_ReturnsChild()
         {
@@ -31,7 +31,7 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.AreEqual(result, child);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [Timeout(2000)]
         public void FindDescendent_SimpleCondition_ReturnsNull()
         {
@@ -47,7 +47,7 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.IsNull(result);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [Timeout(2000)]
         public void FindDescendent_SimpleCondition_ReturnsGrandchild()
         {
@@ -73,7 +73,7 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.AreEqual(result, grandChild);
         }
 
-        [TestMethod()]
+        [TestMethod]
         [Timeout(2000)]
         public void FindDescendent_SimpleConditionNonePass_ReturnsNull()
         {
@@ -99,7 +99,7 @@ namespace Axe.Windows.CoreTests.Bases
         /// <summary>
         /// Test various getters which use GetPropertySafely
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetPropertySafelyTest()
         {
             A11yElement element = Utility.LoadA11yElementsFromJSON("Resources/A11yElementTest.hier");

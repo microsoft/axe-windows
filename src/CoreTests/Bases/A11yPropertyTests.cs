@@ -12,14 +12,14 @@ namespace Axe.Windows.CoreTests.Bases
     /// <summary>
     /// Tests A11yProperty class
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class A11yPropertyTests
     {
         /// <summary>
         /// Tests A11yProperty.ToString() through A11yProperty.TextValue.
         /// Also tests constructor.
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ToStringTest()
         {
             A11yElement element = Utility.LoadA11yElementsFromJSON("Resources/A11yPropertyTest.hier");
@@ -44,7 +44,7 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.AreEqual("False", kpVal);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void SimpleCustomPropertyTest()
         {
             const int testId = 42;
@@ -55,7 +55,7 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.AreEqual(expectedRendering, kp.ToString());
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RegisterTwiceCustomPropertyTest()
         {
             const int testId = 42;

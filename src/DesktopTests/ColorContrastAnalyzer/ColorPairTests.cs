@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
-    [TestClass()]
+    [TestClass]
     public class ColorPairTests
     {
         [TestMethod, Timeout(2000)]

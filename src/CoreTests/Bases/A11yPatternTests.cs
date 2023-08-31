@@ -10,13 +10,13 @@ namespace Axe.Windows.CoreTests.Bases
     /// <summary>
     /// Tests A11yPattern class
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class A11yPatternTests
     {
         /// <summary>
         /// Test ToString and constructor for A11yPattern
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ToStringTest()
         {
             A11yElement element = Utility.LoadA11yElementsFromJSON("Resources/A11yPatternTest.hier");
