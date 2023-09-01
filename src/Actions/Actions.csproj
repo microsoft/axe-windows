@@ -32,6 +32,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\Desktop\Desktop.csproj" />
+    <ProjectReference Include="..\Rules\Rules.csproj" />
     <ProjectReference Include="..\Win32\Win32.csproj" />
   </ItemGroup>
 

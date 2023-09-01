@@ -133,6 +133,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If specified, causes Chromium HTML content to be scanned. Chromium HTML content is ignored without this flag. This is intended primarily for browser development teams and is discouraged for other scenarios..
+        /// </summary>
+        public static string TestAllChromiumContent {
+            get {
+                return ResourceManager.GetString("TestAllChromiumContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verbosity level (Quiet/Default/Verbose).
         /// </summary>
         public static string Verbosity {

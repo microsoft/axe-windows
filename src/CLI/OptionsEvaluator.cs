@@ -65,6 +65,7 @@ namespace AxeWindowsCLI
                 DelayInSeconds = delayInSeconds,
                 CustomUia = rawInputs.CustomUia,
                 AlwaysSaveTestFile = rawInputs.AlwaysSaveTestFile,
+                TestAllChromiumContent = rawInputs.TestAllChromiumContent,
             };
         }
 
