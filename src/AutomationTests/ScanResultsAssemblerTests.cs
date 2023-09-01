@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace Axe.Windows.AutomationTests
 {
-    [TestClass()]
+    [TestClass]
     public class ScanResultsAssemblerTests
     {
         readonly ScanResultsAssembler _assembler = new ScanResultsAssembler();

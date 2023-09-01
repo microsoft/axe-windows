@@ -7,7 +7,7 @@ using System;
 
 namespace Axe.Windows.DesktopTests.ColorContrastAnalyzer
 {
-    [TestClass()]
+    [TestClass]
     public class ColorTests
     {
         [TestMethod, Timeout(2000)]

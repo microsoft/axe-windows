@@ -10,7 +10,7 @@ using System.IO;
 
 namespace Axe.Windows.CoreTests.CustomObjects
 {
-    [TestClass()]
+    [TestClass]
     public class CustomPropertyTests
     {
         [TestMethod, Timeout(1000)]

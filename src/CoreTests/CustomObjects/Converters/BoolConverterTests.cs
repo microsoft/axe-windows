@@ -7,7 +7,7 @@ using System;
 
 namespace Axe.Windows.CoreTests.CustomObjects.Converters
 {
-    [TestClass()]
+    [TestClass]
     public class BoolConverterTests
     {
         [TestMethod, Timeout(1000)]

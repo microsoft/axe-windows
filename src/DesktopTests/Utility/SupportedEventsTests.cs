@@ -9,13 +9,13 @@ using System.Linq;
 
 namespace Axe.Windows.DesktopTests.Utility
 {
-    [TestClass()]
+    [TestClass]
     public class SupportedEventsTests
     {
         /// <summary>
         /// Testing whether the mappings contain / don't contain correct button events
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void EventTypeMappingsTest()
         {
             var mappings = SupportedEvents.EventTypeMappings.ToList();
