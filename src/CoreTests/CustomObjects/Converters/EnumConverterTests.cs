@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Axe.Windows.CoreTests.CustomObjects.Converters
 {
-    [TestClass()]
+    [TestClass]
     public class EnumConverterTests
     {
         [TestMethod, Timeout(1000)]

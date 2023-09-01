@@ -8,7 +8,7 @@ using System;
 
 namespace Axe.Windows.CoreTests.CustomObjects
 {
-    [TestClass()]
+    [TestClass]
     public class ConfigTests
     {
         [TestMethod, Timeout(1000)]

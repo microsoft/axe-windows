@@ -8,7 +8,7 @@ using System;
 
 namespace Axe.Windows.CoreTests.CustomObjects.Converters
 {
-    [TestClass()]
+    [TestClass]
     public class ElementConverterTests
     {
         [TestMethod, Timeout(1000)]

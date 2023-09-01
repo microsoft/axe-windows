@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft. All rights reserved.
+﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Axe.Windows.Actions.Misc;
@@ -12,14 +12,14 @@ using System.Linq;
 
 namespace Axe.Windows.ActionsTests.Misc
 {
-    [TestClass()]
+    [TestClass]
     public class ExtensionMethodsTests
     {
         /// <summary>
         /// Create 10 elements with bounding rectangle (i, i, i, i) from [0, 9]
         /// See which one is identified as smallest enclosing area of (5, 5)
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetSmallestElementFromPointTest()
         {
             var boundingRects = new List<System.Drawing.Rectangle>();
@@ -39,7 +39,7 @@ namespace Axe.Windows.ActionsTests.Misc
         /// See which one is identified as smallest enclosing area of (5, 5)
         /// Normal answer (3, 3, 3, 3) is off-screen
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetSmallestElementFromPointTest_Offscreen()
         {
             var boundingRects = new List<System.Drawing.Rectangle>();
@@ -59,7 +59,7 @@ namespace Axe.Windows.ActionsTests.Misc
         /// Create 10 elements with bounding rectangle (i, i, i, i) from [0, 9]
         /// See which one is identified as smallest enclosing area of (200, 200)
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetSmallestElementFromPointTest_NoneOverlaps()
         {
             var boundingRects = new List<System.Drawing.Rectangle>();
@@ -74,13 +74,13 @@ namespace Axe.Windows.ActionsTests.Misc
             Assert.AreEqual(null, answer);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetSmallestElementFromPointTest_NullArgument()
         {
             Assert.ThrowsException<ArgumentNullException>(() => ExtensionMethods.GetSmallestElementFromPoint(null, System.Drawing.Point.Empty));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetSmallestElementFromPointTest_NoElementsProvided()
         {
             Assert.ThrowsException<ArgumentException>(() => ExtensionMethods.GetSmallestElementFromPoint(new Dictionary<int, ICoreA11yElement>(), System.Drawing.Point.Empty));

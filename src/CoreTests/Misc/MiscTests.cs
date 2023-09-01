@@ -13,14 +13,14 @@ namespace Axe.Windows.CoreTests.Misc
     /// <summary>
     /// Tests for the misc folder in Axe.Windows.Core
     /// </summary>
-    [TestClass()]
+    [TestClass]
     public class MiscTests
     {
         /// <summary>
         /// Tests whether the aggregates status counts of a monster
         /// snapshot are accurate
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void GetStatusCounts()
         {
             A11yElement element = UnitTestSharedLibrary.Utility.LoadA11yElementsFromJSON("Snapshots/Taskbar.snapshot");

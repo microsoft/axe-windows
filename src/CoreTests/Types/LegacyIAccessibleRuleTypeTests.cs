@@ -7,10 +7,10 @@ using System.Linq;
 
 namespace Axe.Windows.CoreTests.Types
 {
-    [TestClass()]
+    [TestClass]
     public class LegacyIAccessibleRuleTypeTests
     {
-        [TestMethod()]
+        [TestMethod]
         [Timeout(1000)]
         public void CheckExists()
         {
@@ -18,14 +18,14 @@ namespace Axe.Windows.CoreTests.Types
             Assert.AreEqual(false, LegacyIAccessibleRoleType.GetInstance().Exists(0));
         }
 
-        [TestMethod()]
+        [TestMethod]
         [Timeout(1000)]
         public void CheckGetNameById()
         {
             Assert.AreEqual("ROLE_SYSTEM_OUTLINEBUTTON(64)", LegacyIAccessibleRoleType.GetInstance().GetNameById(LegacyIAccessibleRoleType.ROLE_SYSTEM_OUTLINEBUTTON));
         }
 
-        [TestMethod()]
+        [TestMethod]
         [Timeout(1000)]
         public void CheckHasExpectedValues()
         {

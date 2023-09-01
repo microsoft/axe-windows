@@ -7,23 +7,23 @@ using System.Linq;
 
 namespace Axe.Windows.CoreTests.Types
 {
-    [TestClass()]
+    [TestClass]
     public class ControlTypesTest
     {
-        [TestMethod()]
+        [TestMethod]
         public void CheckExists()
         {
             Assert.AreEqual(true, ControlType.GetInstance().Exists(ControlType.UIA_AppBarControlTypeId));
             Assert.AreEqual(false, ControlType.GetInstance().Exists(0));
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void CheckGetNameById()
         {
             Assert.AreEqual("AppBar(50040)", ControlType.GetInstance().GetNameById(ControlType.UIA_AppBarControlTypeId));
         }
 
-        [TestMethod()]
+        [TestMethod]
         [Timeout(1000)]
         public void CheckHasExpectedValues()
         {

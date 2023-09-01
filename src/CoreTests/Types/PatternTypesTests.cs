@@ -6,10 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Axe.Windows.CoreTests.Types
 {
-    [TestClass()]
+    [TestClass]
     public class PatternTypesTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void CheckExists()
         {
             Assert.AreEqual(PatternType.GetInstance().Exists(PatternType.UIA_DockPatternId), true);

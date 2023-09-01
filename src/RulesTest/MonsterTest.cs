@@ -21,7 +21,7 @@ namespace Axe.Windows.RulesTests
             RuleId.LocalizedControlTypeReasonable,
         };
 
-        [TestMethod()]
+        [TestMethod]
         public void MonsterButtonTest()
         {
             A11yElement e = Utility.LoadA11yElementsFromJSON("Snapshots/MonsterButton.snapshot");

@@ -9,13 +9,13 @@ using System.Collections.Generic;
 
 namespace Axe.Windows.CoreTests.Results
 {
-    [TestClass()]
+    [TestClass]
     public class ScanMetaInfoTests
     {
         /// <summary>
         /// Test with PropertyId Set
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ScanMetaInfoTest()
         {
             A11yElement e = new A11yElement
@@ -37,7 +37,7 @@ namespace Axe.Windows.CoreTests.Results
         /// <summary>
         /// Test without PropertyId
         /// </summary>
-        [TestMethod()]
+        [TestMethod]
         public void ScanMetaInfoTest2()
         {
             A11yElement e = new A11yElement
