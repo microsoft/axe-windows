@@ -106,7 +106,7 @@ Cause all Chromium HTML content to be included in scan results. The default is t
 
 ###### Return object
 
-The `WithTestAllChromiumContent` method returns the  `Config.Builder` configured to always save a test file.
+The `WithTestAllChromiumContent` method returns the  `Config.Builder` configured to include all Chromium HTML content in the scan results..
 
 ##### Build
 

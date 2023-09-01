@@ -42,7 +42,7 @@ namespace Axe.Windows.Automation
         /// <summary>Override the default behavior of only saving a11ytest files if errors are found.</summary>
         public bool AlwaysSaveTestFile { get; private set; }
 
-        /// <summary>Override the default behavior or not testing Chromium content.</summary>
+        /// <summary>Override the default behavior of not testing Chromium content.</summary>
         public bool TestAllChromiumContent { get; private set; }
 
         /// <summary>
