@@ -80,7 +80,7 @@ namespace Axe.Windows.AutomationTests
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns(_dpiAwarenessMock.Object);
         }
 
-        private void SetupScanToolsMock(bool withResultsAssembler = true, bool withOutputFileHelper = false)
+        private void SetupScanToolsMock(bool withResultsAssembler = true, bool withOutputFileHelper = false, bool withShouldTestAllChromiumContent = true)
         {
             _scanToolsMock.Setup(x => x.TargetElementLocator).Returns(_targetElementLocatorMock.Object);
             _scanToolsMock.Setup(x => x.Actions).Returns(_actionsMock.Object);
@@ -91,6 +91,10 @@ namespace Axe.Windows.AutomationTests
             if (withOutputFileHelper)
             {
                 _scanToolsMock.Setup(x => x.OutputFileHelper).Returns(_outputFileHelperMock.Object);
+            }
+            if (withShouldTestAllChromiumContent)
+            {
+                _actionsMock.Setup(x => x.SetShouldTestAllChromiumContent(false));
             }
         }
 
@@ -190,7 +194,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public async Task ExecuteAsync_NullDpiAwareness_ThrowsException()
         {
-            SetupScanToolsMock(withResultsAssembler: false);
+            SetupScanToolsMock(withResultsAssembler: false, withShouldTestAllChromiumContent: false);
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns<IDPIAwareness>(null);
 
             var action = new Func<Task>(() => SnapshotCommand.ExecuteAsync(_minimalConfig, _scanToolsMock.Object, CancellationToken.None));
@@ -204,7 +208,7 @@ namespace Axe.Windows.AutomationTests
         [Timeout(1000)]
         public async Task ExecuteAsync_TargetElementLocatorReturnsNull_PassesNullToScan()
         {
-            SetupScanToolsMock(withResultsAssembler: false);
+            SetupScanToolsMock(withResultsAssembler: false, withShouldTestAllChromiumContent: false);
             _scanToolsMock.Setup(x => x.DpiAwareness).Returns(_dpiAwarenessMock.Object);
             SetupTargetElementLocatorMock(overrideElements: true, elements: null);
 

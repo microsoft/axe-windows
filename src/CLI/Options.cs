@@ -35,6 +35,9 @@ namespace AxeWindowsCLI
         [Option(Required = false, HelpText = "AlwaysSaveTestFile", ResourceType = typeof(Resources.OptionsHelpText))]
         public bool AlwaysSaveTestFile { get; set; }
 
+        [Option(Required = false, HelpText = "TestAllChromiumContent", ResourceType = typeof(Resources.OptionsHelpText))]
+        public bool TestAllChromiumContent { get; set; }
+
         // CommandLineParser will never set this value!
         public VerbosityLevel VerbosityLevel { get; set; } = VerbosityLevel.Default;
     }

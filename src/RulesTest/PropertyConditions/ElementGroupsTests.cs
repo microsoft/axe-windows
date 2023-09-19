@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Axe.Windows.Rules;
 using Axe.Windows.Rules.PropertyConditions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
@@ -447,6 +448,23 @@ namespace Axe.Windows.RulesTests.PropertyConditions
             } // using
 
             Assert.AreEqual("IsChromiumContent", ElementGroups.IsChromiumContent.ToString());
+        }
+
+        [TestMethod]
+        public void TestAllChromiumContent_MatchExpected()
+        {
+            Assert.IsFalse(RulesSettings.ShouldTestAllChromiumContent);
+
+            using (var e = new MockA11yElement())
+            {
+                RulesSettings.ShouldTestAllChromiumContent = false;
+                Assert.IsFalse(ElementGroups.ShouldTestAllChromiumContent.Matches(e));
+
+                RulesSettings.ShouldTestAllChromiumContent = true;
+                Assert.IsTrue(ElementGroups.ShouldTestAllChromiumContent.Matches(e));
+            } // using
+
+            RulesSettings.ShouldTestAllChromiumContent = false;
         }
     } // class
 } // namespace

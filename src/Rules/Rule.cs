@@ -20,7 +20,7 @@ namespace Axe.Windows.Rules
     {
         public RuleInfo Info { get; private set; }
         public Condition Condition { get; }
-        protected static Condition DefaultExcludedCondition => IsChromiumContent;
+        protected static Condition DefaultExcludedCondition => IsChromiumContent - ShouldTestAllChromiumContent;
 
         protected Rule(Condition excludedCondition)
         {

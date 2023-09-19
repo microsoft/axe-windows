@@ -16,33 +16,39 @@ You invoke the scanner by running `AxeWindowsCLI.exe`. By default, this tool get
 If you run the tool without parameters, you'll be presented with the help screen. An example follows:
 
 ```
-AxeWindowsCLI 2.2.1
+AxeWindowsCLI 2.3.1
 Copyright c 2020
 
-  --processid                Process Id
+  --processid                 Process Id
 
-  --processname              Process Name
+  --processname               Process Name
 
-  --outputdirectory          Output directory
+  --outputdirectory           Output directory
 
-  --scanid                   Scan ID
+  --scanid                    Scan ID
 
-  --verbosity                Verbosity level (Quiet/Default/Verbose)
+  --verbosity                 Verbosity level (Quiet/Default/Verbose)
 
-  --showthirdpartynotices    Display Third Party Notices (opens file in browser
-                             without executing scan). If specified, all other
-                             options will be ignored.
+  --showthirdpartynotices     Display Third Party Notices (opens file in browser
+                              without executing scan). If specified, all other
+                              options will be ignored.
 
-  --delayinseconds           How many seconds to delay before triggering the
-                             scan. Valid range is 0 to 60 seconds, with a
-                             default of 0.
+  --delayinseconds            How many seconds to delay before triggering the
+                              scan. Valid range is 0 to 60 seconds, with a
+                              default of 0.
 
-  --customuia                The path to a configuration file specifying custom
-                             UI Automation attributes
+  --customuia                 The path to a configuration file specifying custom
+                              UI Automation attributes
 
-  --alwayssavetestfile       If specified, always save the test file. By
-                             default, the test file is saved only if errors are
-                             found.
+  --alwayssavetestfile        If specified, always save the test file. By
+                              default, the test file is saved only if errors are
+                              found.
+
+  --testallchromiumcontent    If specified, causes Chromium HTML content to be
+                              scanned. Chromium HTML content is ignored without
+                              this flag. This is intended primarily for browser
+                              development teams and is discouraged for other
+                              scenarios.
 ```
 
 To scan an application, you need to specify the application's process via either the `--processId` or `--processName` parameters
@@ -60,6 +66,7 @@ showThirdPartyNotices|If specified, displays the third party notices for compone
 delayInSeconds|Optionally inserts a delay before triggering the scan. This allows transient controls (menus, drop-down-lists, etc.) to be scanned.
 customUia|Optionally provides a path to a [custom UIA configuration file](../../docs/CustomUIA.md). By default, only system-defined UIA properties will be included in the scan.
 alwayssavetestfile|Optionally causes the test file to always be saved. By default, the test file is saved only if errors are found.
+testAllChromiumContent|Optionally causes Chromium HTML content to be scanned. Chromium HTML content is ignored without this flag. This is intended primarily for browser development teams and is discouraged for other scenarios.
 
 ### Scan results
 A summary of scan results will be displayed after the scan is run. In addition, an `.a11ytest` file will be generated if 1 or more errors were detected or if the `alwayssavetestfile` option was specified. The location of this file will be reported in the tool output (see the documentation of the `--outputDirectory` and `--scanId` parameters for ways to alter the name or location of the output file). This file can then be opened with **Accessibility Insights for Windows**, which is freely available at http://accessibilityinsights.io. If you scan an application with multiple top-level windows, an `.a11ytest` file will be generated for _each_ top-level window, even if no errors are detected.
