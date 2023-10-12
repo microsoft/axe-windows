@@ -4,7 +4,7 @@ updates:
   directory: "/src"
   schedule:
     interval: daily
-    time: "13:00"
+    time: "9:00"  # UTC
   ignore:
   - dependency-name: Axe.Windows
     versions:
