@@ -45,3 +45,4 @@ updates:
   - dependency-name: Moq
     versions:
     - ">= 4.20"  # moq/moq#1372
+  open-pull-requests-limit: 10  # Default value of 5 has been problematic
