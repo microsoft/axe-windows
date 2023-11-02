@@ -50,8 +50,8 @@ extends:
   template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     pool:
-      name: OneESHostedPool
-      image: windows-2022
+      name: a11y-insights-pool-prod
+      image: windows-2022-secure
       os: windows
     customBuildTags:
     - ES365AIMigrationTooling
