@@ -97,11 +97,11 @@ extends:
           inputs:
             Contents: '**\bin\release\**'
             TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        templateContext:
-          outputs:
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: Compliance'
-            artifactName: 'Compliance'
+#        templateContext:
+#          outputs:
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: Compliance'
+#            artifactName: 'Compliance'
       - job: ComplianceDebug
         steps:
         - task: NuGetToolInstaller@1
@@ -151,11 +151,11 @@ extends:
           inputs:
             Contents: '**\bin\debug\**'
             TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        templateContext:
-          outputs:
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: Compliance'
-            artifactName: 'Compliance'
+#        templateContext:
+#          outputs:
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: Compliance'
+#           artifactName: 'Compliance'
       - job: SignedRelease
         dependsOn:
         - ComplianceRelease
@@ -249,23 +249,23 @@ extends:
         - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
           displayName: 'Perform Cleanup Tasks'
           condition: succeededOrFailed()
-        templateContext:
-          outputs:
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: drop'
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: NuGet package'
-            targetPath: 'src\CI\bin\Release\NuGet'
-            artifactName: 'NuGet'
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: Rules markdown'
-            targetPath: 'src\RulesMD\bin\Release\axe-windows-rules.md'
-            artifactName: 'axe-windows-rules'
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: CLI (msi)'
-            targetPath: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.msi'
-            artifactName: 'CLI-msi'
-          - output: pipelineArtifact
-            displayName: 'Publish Artifact: CLI (zip)'
-            targetPath: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.zip'
-            artifactName: 'CLI-zip'
+#        templateContext:
+#          outputs:
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: drop'
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: NuGet package'
+#            targetPath: 'src\CI\bin\Release\NuGet'
+#            artifactName: 'NuGet'
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: Rules markdown'
+#            targetPath: 'src\RulesMD\bin\Release\axe-windows-rules.md'
+#            artifactName: 'axe-windows-rules'
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: CLI (msi)'
+#            targetPath: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.msi'
+#            artifactName: 'CLI-msi'
+#          - output: pipelineArtifact
+#            displayName: 'Publish Artifact: CLI (zip)'
+#            targetPath: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.zip'
+#            artifactName: 'CLI-zip'
