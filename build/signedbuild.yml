@@ -11,6 +11,7 @@
 name: $(date:yyyy-MM-dd)$(rev:.rr)
 trigger: none
 pr: none
+
 parameters:
 - name: LocLanguages
   displayName: Localization Languages
@@ -37,24 +38,27 @@ variables:
   value: 'false'
 - name: isMain
   value: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
 resources:
   repositories:
   - repository: 1ESPipelineTemplates
     type: git
     name: 1ESPipelineTemplates/1ESPipelineTemplates
     ref: refs/tags/release
+
 extends:
   template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     pool:
-      name: MSEngSS-MicroBuild2022-1ES
-#      image: windows-2022
+      name: OneESHostedPool
+      image: windows-2022
       os: windows
     customBuildTags:
     - ES365AIMigrationTooling
     stages:
     - stage: __default
       jobs:
+
       - job: ComplianceRelease
         steps:
         - task: NuGetToolInstaller@1
@@ -102,6 +106,7 @@ extends:
 #          - output: pipelineArtifact
 #            displayName: 'Publish Artifact: Compliance'
 #            artifactName: 'Compliance'
+
       - job: ComplianceDebug
         steps:
         - task: NuGetToolInstaller@1
@@ -156,6 +161,7 @@ extends:
 #          - output: pipelineArtifact
 #            displayName: 'Publish Artifact: Compliance'
 #           artifactName: 'Compliance'
+
       - job: SignedRelease
         dependsOn:
         - ComplianceRelease
@@ -164,33 +170,32 @@ extends:
         variables:
         - name: PublicRelease
           value: 'true'
-        - name: MicroBuild_NuPkgSigningEnabled
-          value: 'true'
-        - name: SignAppForRelease
-          value: 'true'
-        - name: runCodesignValidationInjection
-          value: 'true'
-        - name: GDN_CODESIGN_TARGETDIRECTORY
-          value: '$(Build.ArtifactStagingDirectory)\SigningValidation'
-        - name: Codeql.Enabled
-          value: 'true'
+#        - name: MicroBuild_NuPkgSigningEnabled
+#          value: 'true'
+#        - name: SignAppForRelease
+#          value: 'true'
+#        - name: runCodesignValidationInjection
+#          value: 'true'
+#        - name: GDN_CODESIGN_TARGETDIRECTORY
+#          value: '$(Build.ArtifactStagingDirectory)\SigningValidation'
+#          value: 'true'
         steps:
-        - task: ms-vseng.MicroBuildTasks.30666190-6959-11e5-9f96-f56098202fef.MicroBuildSigningPlugin@4
-          displayName: 'Install Signing Plugin'
-          inputs:
-            signType: real
-            esrpSigning: true
-            feedSource: '$(MicrobuildPluginFeedSource)'
-          condition: and(succeeded(), ne(variables['SignType'], ''))
+#        - task: ms-vseng.MicroBuildTasks.30666190-6959-11e5-9f96-f56098202fef.MicroBuildSigningPlugin@4
+#          displayName: 'Install Signing Plugin'
+#          inputs:
+#            signType: real
+#            esrpSigning: true
+#            feedSource: '$(MicrobuildPluginFeedSource)'
+#          condition: and(succeeded(), ne(variables['SignType'], ''))
         - task: NuGetToolInstaller@1
           displayName: 'Use NuGet 5.x'
           inputs:
             versionSpec: '5.x'
-        - task: MicroBuildLocalizationPlugin@1
-          inputs:
-            languages: VS
-            feedSource: '$(MicrobuildPluginFeedSource)'
-          displayName: Install MicroBuild Localization plugin
+#        - task: MicroBuildLocalizationPlugin@1
+#          inputs:
+#            languages: VS
+#            feedSource: '$(MicrobuildPluginFeedSource)'
+#          displayName: Install MicroBuild Localization plugin
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
         - task: DotNetCoreCLI@2
@@ -233,22 +238,22 @@ extends:
           inputs:
             Contents: '**\CLI_Installer\bin\x86\Release\**'
             TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        - task: CopyFiles@2
-          displayName: 'Copy CLI_Full Files for Signing Validation'
-          inputs:
-            SourceFolder: '$(Build.SourcesDirectory)\src'
-            Contents: |
-              CLI_Full\bin\release\net6.0\win7-x86\?(*.exe|*.dll)
-            TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
-        - task: CopyFiles@2
-          displayName: 'Copy CLI Files for Signing Validation'
-          inputs:
-            SourceFolder: '$(Build.SourcesDirectory)\src'
-            Contents: 'CLI\bin\release\net6.0\**\?(*.exe|*.dll)'
-            TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
-        - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
-          displayName: 'Perform Cleanup Tasks'
-          condition: succeededOrFailed()
+#        - task: CopyFiles@2
+#          displayName: 'Copy CLI_Full Files for Signing Validation'
+#          inputs:
+#            SourceFolder: '$(Build.SourcesDirectory)\src'
+#            Contents: |
+#              CLI_Full\bin\release\net6.0\win7-x86\?(*.exe|*.dll)
+#            TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
+#        - task: CopyFiles@2
+#          displayName: 'Copy CLI Files for Signing Validation'
+#          inputs:
+#            SourceFolder: '$(Build.SourcesDirectory)\src'
+#            Contents: 'CLI\bin\release\net6.0\**\?(*.exe|*.dll)'
+#            TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
+#        - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
+#          displayName: 'Perform Cleanup Tasks'
+#          condition: succeededOrFailed()
 #        templateContext:
 #          outputs:
 #          - output: pipelineArtifact
