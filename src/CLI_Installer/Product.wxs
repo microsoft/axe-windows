@@ -36,7 +36,7 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       <ComponentGroupRef Id="Net60ComponentGroup" />
     </Feature>
 
-    <Launch Message="[ProductName] requires .NET Core Runtime 3.1 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
+    <Launch Message="[ProductName] requires .NET Core Runtime 6.0 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
             Condition="Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86" />
 
     <StandardDirectory Id="ProgramFilesFolder">
