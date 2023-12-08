@@ -36,8 +36,13 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       <ComponentGroupRef Id="Net60ComponentGroup" />
     </Feature>
 
-    <Launch Message="[ProductName] requires .NET Core Runtime 6.0 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
+    <Launch Message="[ProductName] requires .NET Core Runtime 6.0 or newer. But .NET Core Runtime 6.0 or newer requires Windows 10 or newer. Install .NET Core Runtime 6.0 or newer only if your operating system is Windows 10 or newer. To download NET Core Runtime 6.0 or newer, please visit https://dotnet.microsoft.com/download/dotnet-core"
             Condition="Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86" />
+
+    <!--
+    <Launch Message="This application requires Windows 10 or newer"
+            Condition="Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86" />
+    -->
 
     <StandardDirectory Id="ProgramFilesFolder">
       <Directory Id="AxeWindowsCLIFolder" Name="AxeWindowsCLI">
