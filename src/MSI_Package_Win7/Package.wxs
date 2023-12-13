@@ -1,0 +1,9 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="MSI_Package_Win7" Manufacturer="TODO Manufacturer" Version="1.0.0.0" UpgradeCode="770e335c-d0aa-4b3c-a68d-4f1d90a4ee06">
+    <MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+
+    <Feature Id="Main">
+      <ComponentGroupRef Id="ExampleComponents" />
+    </Feature>
+  </Package>
+</Wix>
