@@ -17,12 +17,6 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
 
         <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"/>
 
-        <!--<Property Id="Windows10OrNewer">
-          <Condition Message="[ProductName] requires Windows 10 or newer.">
-              <![CDATA[VersionNT >= 603]]>
-          </Condition>
-      </Property>-->
-
         <Property Id="NETCORERUNTIMEFOUNDX86">
             <DirectorySearch Id="NetCoreDirectoryFoundx86" Path="[ProgramFilesFolder]dotnet" >
                 <FileSearch Name="dotnet.exe" MinVersion="6.0"/>
@@ -42,8 +36,8 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
             <ComponentGroupRef Id="Net60ComponentGroup" />
         </Feature>
 
-        <Launch Message="[ProductName] requires .NET Core Runtime 6.0 or newer and Windows 10 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
-          Condition="Installed OR (VersionNT >= 603 AND NETCORERUNTIMEFOUNDX64) OR (VersionNT >= 603 AND NETCORERUNTIMEFOUNDX86)" />
+        <Launch Message="[ProductName] requires .NET 6, which is supported on Windows 10 or newer."
+         Condition="VersionNT >= 603"/>
 
         <Launch Message="[ProductName] requires .NET Core Runtime 6.0 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
                 Condition="Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86" />
