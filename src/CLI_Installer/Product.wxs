@@ -35,6 +35,9 @@ Licensed under the MIT license. See LICENSE file in the project root for full li
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="Net60ComponentGroup" />
     </Feature>
+      
+    <Launch Message="[ProductName] requires .NET 6, which is supported on Windows 10 or newer."
+            Condition="VersionNT >= 603"/>
 
     <Launch Message="[ProductName] requires .NET Core Runtime 6.0 or newer. Please visit https://dotnet.microsoft.com/download/dotnet-core"
             Condition="Installed OR NETCORERUNTIMEFOUNDX64 OR NETCORERUNTIMEFOUNDX86" />
