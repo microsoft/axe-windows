@@ -2,5 +2,6 @@
   "-/Microsoft.CodeAnalysis.NetAnalyzers",
   "-/Microsoft.NET.Test.Sdk",
   "-/Microsoft.SourceLink.GitHub",
-  "-/Moq"
+  "-/Moq",
+  "-/System.Drawing.Common"
 ]
