@@ -1,123 +1,168 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
 name: $(date:yyyy-MM-dd)$(rev:.rr)
 trigger: none
 pr: none
+# The `resources` specify the location and version of the 1ES PT.
+resources:
+  repositories:
+    - repository: 1esPipelines
+      type: git
+      name: 1ESPipelineTemplates/1ESPipelineTemplates
+      ref: refs/tags/release
 variables:
-  BuildPlatform: 'x86'
-  CreateAxeWindowsNugetPackage: 'true'
-  CreateAxeWindowsZippedCLI: 'true'
-  PublicRelease: 'false'
-  SignAppForRelease: 'false'
-
-jobs:
-- job: Release
-  pool:
-    vmImage: 'windows-2022'
-  steps:
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet 5.x'
-    inputs:
-      versionSpec: '5.x'
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: restore
-      projects: |
-        **\*.csproj
-
-  - task: PowerShell@2
-    displayName: 'License Header Check'
-    inputs:
-      targetType: "filePath"
-      filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
-      arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
-
-  - task: PowerShell@2
-    displayName: 'Resource String Translator Comment Check'
-    inputs:
-      targetType: "filePath"
-      filePath: tools\scripts\verification.scripts\ResourceStringCommentVerification.ps1
-      arguments: '-target  $(Build.Repository.LocalPath)'
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 17.0
-      platform: '$(BuildPlatform)'
-      configuration: release
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\release\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    inputs:
-      arguments: --no-build --blame --verbosity normal --configuration release
-      command: test
-      projects: |
-        **\*test*.csproj
-
-- job: Debug
-  pool:
-    vmImage: 'windows-2022'
-  steps:
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet 5.x'
-    inputs:
-      versionSpec: '5.x'
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: restore
-      projects: |
-        **\*.csproj
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 17.0
-      platform: '$(BuildPlatform)'
-      configuration: debug
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\debug\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    inputs:
-      arguments: --no-build --blame --verbosity normal --configuration debug /p:CollectCoverage=true /p:CoverletOutput=./CodeCoverage/ /p:CoverletOutputFormat=cobertura
-      command: test
-      projects: |
-        **\*test*.csproj
-
-  # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
-  - task: CmdLine@2
-    displayName: 'Upload coverage to codecov.io'
-    inputs:
-      script: $(USERPROFILE)\.nuget\packages\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe -t $(CODECOV_TOKEN) -f **/*coverage.cobertura.xml
-    #workingDirectory: # Optional
-    #failOnStderr: false # Optional
-    
-- template: check-dependencies.yml
+  BuildPlatform: "x86"
+  CreateAxeWindowsNugetPackage: "true"
+  CreateAxeWindowsZippedCLI: "true"
+  PublicRelease: "false"
+  SignAppForRelease: "false"
+extends:
+  # The pipeline extends the 1ES PT which will inject different SDL and compliance tasks.
+  # For non-production pipelines, use "Unofficial" as defined below.
+  # For productions pipelines, use "Official".
+  template: v1/1ES.Unofficial.PipelineTemplate.yml@1esPipelines
   parameters:
-    configuration: release
-  
+    # Update the pool with your team's 1ES hosted pool.
+    pool:
+      name: $(a11yInsightsPool) # Name of your hosted pool
+      image: windows-2022-secure # Name of the image in your pool. If not specified, first image of the pool is used
+      os: windows # OS of the image. Allowed values: windows, linux, macOS
+    sdl:
+      codeql:
+        compiled:
+          enabled: true
+      binskim:
+        analyzeTargetGlob:
+          "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\**\\*.dll;\
+          $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\**\\*.dll;"
+    stages:
+      - stage: Stage
+        jobs:
+          - job: Release
+            templateContext:
+              outputs:
+                - output: buildArtifacts
+                  artifactName: drop
+                  displayName: "Publish Artifact: drop"
+                  PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+            pool:
+              name: $(a11yInsightsPool)
+              image: windows-2022-secure
+              os: windows
+            steps:
+              - task: NuGetToolInstaller@1
+                displayName: "Use NuGet 5.x"
+                inputs:
+                  versionSpec: "5.x"
+
+              - task: NuGetCommand@2
+                displayName: "NuGet restore"
+
+              - task: DotNetCoreCLI@2
+                displayName: "dotnet restore"
+                inputs:
+                  command: restore
+                  projects: |
+                    **\*.csproj
+
+              - task: PowerShell@2
+                displayName: "License Header Check"
+                inputs:
+                  targetType: "filePath"
+                  filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
+                  arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
+
+              - task: PowerShell@2
+                displayName: "Resource String Translator Comment Check"
+                inputs:
+                  targetType: "filePath"
+                  filePath: tools\scripts\verification.scripts\ResourceStringCommentVerification.ps1
+                  arguments: "-target  $(Build.Repository.LocalPath)"
+
+              - task: VSBuild@1
+                displayName: 'Build Solution **\*.sln'
+                inputs:
+                  vsVersion: 17.0
+                  platform: "$(BuildPlatform)"
+                  configuration: release
+
+              - task: CopyFiles@2
+                displayName: "Copy Files to: $(Build.ArtifactStagingDirectory)"
+                inputs:
+                  Contents: '**\bin\release\**'
+                  TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+              - task: DotNetCoreCLI@2
+                displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+                inputs:
+                  arguments: --no-build --blame --verbosity normal --configuration release
+                  command: test
+                  projects: |
+                    **\*test*.csproj
+
+          - job: Debug
+            templateContext:
+              outputs:
+                - output: buildArtifacts
+                  artifactName: drop
+                  displayName: "Publish Artifact: drop"
+                  PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+            pool:
+              name: $(a11yInsightsPool)
+              image: windows-2022-secure
+              os: windows
+            steps:
+              - task: NuGetToolInstaller@1
+                displayName: "Use NuGet 5.x"
+                inputs:
+                  versionSpec: "5.x"
+
+              - task: NuGetCommand@2
+                displayName: "NuGet restore"
+
+              - task: DotNetCoreCLI@2
+                displayName: "dotnet restore"
+                inputs:
+                  command: restore
+                  projects: |
+                    **\*.csproj
+
+              - task: VSBuild@1
+                displayName: 'Build Solution **\*.sln'
+                inputs:
+                  vsVersion: 17.0
+                  platform: "$(BuildPlatform)"
+                  configuration: debug
+
+              - task: CopyFiles@2
+                displayName: "Copy Files to: $(Build.ArtifactStagingDirectory)"
+                inputs:
+                  Contents: '**\bin\debug\**'
+                  TargetFolder: "$(Build.ArtifactStagingDirectory)"
+
+              - task: DotNetCoreCLI@2
+                displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+                inputs:
+                  arguments: --no-build --blame --verbosity normal --configuration debug /p:CollectCoverage=true /p:CoverletOutput=./CodeCoverage/ /p:CoverletOutputFormat=cobertura
+                  command: test
+                  projects: |
+                    **\*test*.csproj
+
+              # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
+              - task: CmdLine@2
+                displayName: "Upload coverage to codecov.io"
+                inputs:
+                  script: $(NUGET_PACKAGES)\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe -t $(CODECOV_TOKEN) -f **/*coverage.cobertura.xml
+                #workingDirectory: # Optional
+                #failOnStderr: false # Optional
+          - template: build/check-dependencies.yml@self
+            parameters:
+              configuration: release
