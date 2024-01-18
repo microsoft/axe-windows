@@ -51,6 +51,10 @@ extends:
                   artifactName: drop
                   displayName: "Publish Artifact: drop"
                   PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+            pool:
+              name: $(a11yInsightsPool)
+              image: windows-2022-secure
+              os: windows
             steps:
               - task: NuGetToolInstaller@1
                 displayName: "Use NuGet 5.x"
@@ -109,6 +113,10 @@ extends:
                   artifactName: drop
                   displayName: "Publish Artifact: drop"
                   PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+            pool:
+              name: $(a11yInsightsPool)
+              image: windows-2022-secure
+              os: windows
             steps:
               - task: NuGetToolInstaller@1
                 displayName: "Use NuGet 5.x"
