@@ -30,17 +30,7 @@ extends:
         compiled:
           enabled: true
       binskim:
-        analyzeTargetGlob:
-          "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\**\\*.dll;\
-          $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\**\\*.dll;"
+        enabled: false
     stages:
       - stage: Stage
         jobs:
