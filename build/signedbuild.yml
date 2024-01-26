@@ -17,347 +17,378 @@ variables:
   system.debug: 'true' #set to true in case our signed build flakes out again
   runCodesignValidationInjection: 'false'
   isMain: $[eq(variables['Build.SourceBranch'], 'refs/heads/main')]
+
+resources:
+  repositories:
+  - repository: MicroBuildTemplate
+    type: git
+    name: 1ESPipelineTemplates/MicroBuildTemplate
+    ref: refs/tags/release
+
+extends:
+  template: azure-pipelines/MicroBuild.1ES.Official.yml@MicroBuildTemplate
+  parameters:
+    pool: 
+      name: MSEngSS-MicroBuild2022-1ES
+    sdl:
+      binskim:
+        # If you modify this list, you also need to modify the list in the Run BinSkim task in Signed Release Job or vice-versa to keep them in sync
+        analyzeTargetGlob: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\**\\*.dll;\
+                            $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\**\\*.dll;"
+         
+    stages:
+    - stage: Stage
+
+      jobs:
+      - job: ComplianceRelease
+        templateContext:
+            outputParentDirectory: $(Build.ArtifactStagingDirectory)
+            outputs:
+            - output: buildArtifacts
+              PathtoPublish: $(Build.ArtifactStagingDirectory)
+              ArtifactName: Compliance
+        steps:
+        - task: NuGetToolInstaller@1
+          displayName: 'Use NuGet 5.x'
+          inputs:
+            versionSpec: '5.x'
+
+        - task: NuGetCommand@2
+          displayName: 'NuGet restore'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet restore'
+          inputs:
+            command: restore
+            projects: |
+              **\*.csproj
+
+        - task: PowerShell@2
+          displayName: 'License Header Check'
+          inputs:
+            targetType: "filePath"
+            filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
+            arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
+
+        - task: VSBuild@1
+          displayName: 'Build Solution **\*.sln'
+          inputs:
+            vsVersion: 17.0
+            platform: '$(BuildPlatform)'
+            configuration: release
+
+        - task: ms.build-release-task.custom-build-release-task.wpf-static-analysis@0
+          displayName: 'WPF Static Analysis'
+          inputs:
+            input: 'src\Axe.Windows\bin\Release'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+          inputs:
+            arguments: --no-build --blame --verbosity normal --configuration release --filter TestCategory!=Integration
+            command: test
+            projects: |
+              **\*test*.csproj
+
+        - task: CopyFiles@2
+          displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\bin\release\**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - job: ComplianceDebug
+        templateContext:
+            outputParentDirectory: $(Build.ArtifactStagingDirectory)
+            outputs:
+            - output: buildArtifacts
+              PathtoPublish: $(Build.ArtifactStagingDirectory)
+              ArtifactName: Compliance
+        steps:
+        - task: NuGetToolInstaller@1
+          displayName: 'Use NuGet 5.x'
+          inputs:
+            versionSpec: '5.x'
+
+        - task: NuGetCommand@2
+          displayName: 'NuGet restore'
+
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet restore'
+          inputs:
+            command: restore
+            projects: |
+              **\*.csproj
+
+        - task: VSBuild@1
+          displayName: 'Build Solution **\*.sln'
+          inputs:
+            vsVersion: 17.0
+            platform: '$(BuildPlatform)'
+            configuration: debug
+
+        - task: DotNetCoreCLI@2
+          displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+          inputs:
+            arguments: --no-build --blame --verbosity normal --configuration debug --filter TestCategory!=Integration
+            command: test
+            projects: |
+              **\*test*.csproj
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@3
+          displayName: 'Run CredScan'
+          inputs:
+            outputFormat: 'pre'
+            verboseOutput: true
+            debugMode: false
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@2
+          displayName: 'Run PoliCheck'
+          inputs:
+            targetType: F
+          continueOnError: true
+
+        - task: UseDotNet@2
+          displayName: (Roslyn pre-req) Use .NET 6.0
+          inputs:
+            packageType: 'sdk'
+            version: '6.0.x'
+
+        - task: DotNetCoreCLI@2
+          displayName: '(Roslyn pre-req) Partial dotnet restore'
+          inputs:
+            command: restore
+            projects: $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj
+            arguments: '--runtime win7-x86'
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
+          displayName: 'Run Roslyn analyzers'
+          continueOnError: true
+          inputs:
+              userProvideBuildInfo: msBuildInfo
+              msbuildVersion: 17.0
+              msBuildArchitecture: '$(BuildPlatform)'
+              setupCommandLine: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsMSBuildCmd.bat"'
+              msBuildCommandline: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\msbuild.exe" "$(Build.SourcesDirectory)\src\AxeWindows.sln" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="17.0"'
+              rulesetName: Recommended
+              internalAnalyzersVersion: Latest
+              microsoftAnalyzersVersion: Latest
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
+          displayName: 'Create Security Analysis Report (CredScan, RoslynAnalyzers, and PoliCheck)'
+          inputs:
+            CredScan: true
+            RoslynAnalyzers: true
+            PoliCheck: true
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
+          displayName: 'Publish Security Analysis Logs (CredScan, RoslynAnalyzers, and PoliCheck)'
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
+          displayName: 'Post Analysis (CredScan, RoslynAnalyzers, and PoliCheck)'
+          continueOnError: true
+          inputs:
+            GdnBreakAllTools: false
+            GdnBreakGdnToolPoliCheck: false
+            GdnBreakGdnToolRoslynAnalyzers: false
+            GdnBreakGdnToolCredScan: true
+
+        - task: PowerShell@2
+          displayName: 'Create tsa.config file (CredScan, Roslyn, and PoliCheck)'
+          inputs:
+            targetType: "filePath"
+            filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
+            arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAAreaPath)" -IterationPath "$(TSAIterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;RoslynAnalyzers;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
+          displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
+          condition: and(succeeded(), eq(variables.isMain, true))
+          inputs:
+            GdnPublishTsaOnboard: true
+            GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
+
+        - task: CopyFiles@2
+          displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\bin\debug\**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - job: SignedRelease
+        templateContext:
+          mb:
+            signing:
+              enabled: true
+              feedSource: '$(MicrobuildPluginFeedSource)'
+              signType: real
+            localization:
+              enabled: true
+              feedSource: '$(MicrobuildPluginFeedSource)'
+              languages: ${{ parameters.LocLanguages }}
+          outputParentDirectory: $(Build.ArtifactStagingDirectory)
+          outputs:
+          - output: buildArtifacts
+            PathtoPublish: $(Build.ArtifactStagingDirectory)\drop
+            ArtifactName: drop
+          - output: buildArtifacts
+            PathtoPublish: $(Build.ArtifactStagingDirectory)\NuGet\src\CI\bin\Release\NuGet
+            ArtifactName: NuGet
+          - output: buildArtifacts
+            PathtoPublish: $(Build.ArtifactStagingDirectory)\axe-windows-rules\src\RulesMD\bin\Release\ #axe-windows-rules.md
+            ArtifactName: axe-windows-rules
+          - output: buildArtifacts
+            PathtoPublish: $(Build.ArtifactStagingDirectory)\CLI-msi\src\CLI_Installer\bin\x86\Release\ #AxeWindowsCLI.msi
+            ArtifactName: CLI-msi
+          - output: buildArtifacts
+            PathtoPublish: $(Build.ArtifactStagingDirectory)\CLI-zip\src\CLI_Installer\bin\x86\Release\ #AxeWindowsCLI.zip
+            ArtifactName: CLI-zip
+
+        dependsOn: 
+        - ComplianceRelease
+        - ComplianceDebug
+        condition: and(succeeded(), succeeded())
+        variables:
+          PublicRelease: 'true'
+          MicroBuild_NuPkgSigningEnabled: 'true'
+          SignAppForRelease: 'true'
+          runCodesignValidationInjection: 'true'
+          GDN_CODESIGN_TARGETDIRECTORY: '$(Build.ArtifactStagingDirectory)\SigningValidation'
+        steps:
+        - task: NuGetToolInstaller@1
+          displayName: 'Use NuGet 5.x'
+          inputs:
+            versionSpec: '5.x'
+    
+        - task: NuGetCommand@2
+          displayName: 'NuGet restore'
   
-jobs:
-- job: ComplianceRelease
-  pool:
-    vmImage: 'windows-2022'
-  steps:
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet 5.x'
-    inputs:
-      versionSpec: '5.x'
+        - task: DotNetCoreCLI@2
+          displayName: 'dotnet restore'
+          inputs:
+            command: restore
+            projects: |
+              **\*.csproj
+  
+        - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+          displayName: 'Component Detection'
+  
+        - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
+          displayName: 'generate thirdpartynotices.html file'
+          inputs:
+              outputfile: '$(System.DefaultWorkingDirectory)/thirdpartynotices.html'
+              outputformat: html
+  
+        - task: VSBuild@1
+          displayName: 'Build Solution **\*.sln'
+          inputs:
+            vsVersion: 17.0
+            platform: '$(BuildPlatform)'
+            configuration: release
+  
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@4
+          displayName: 'Run BinSkim'
+          inputs:
+            InputType: Basic
+            # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
+            # If you modify this list, you also need to modify the list in the sdl: binskim parameter of the 1ES template or vice-versa to keep them in sync
+            AnalyzeTargetGlob: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\Release\\**\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\Release\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\Release\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\Release\\**\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\Release\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\Release\\**\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\Release\\**\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\Release\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\Release\\*.dll;\
+                                $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\Release\\*.dll;"
+  
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
+          displayName: 'Create Security Analysis Report (BinSkim)'
+  
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
+          displayName: 'Publish Security Analysis Logs (BinSkim)'
+  
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
+          displayName: 'Post Analysis (BinSkim)'
+          inputs:
+            GdnBreakAllTools: true
+  
+        - task: DotNetCoreCLI@2
+          displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
+          inputs:
+            arguments: --no-build --blame --verbosity normal --configuration release --filter TestCategory!=Integration
+            command: test
+            projects: |
+              **\*test*.csproj
+  
+        - task: PowerShell@2
+          displayName: 'Create tsa.config file (BinSkim)'
+          inputs:
+            targetType: "filePath"
+            filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
+            arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAAreaPath)" -IterationPath "$(TSAIterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "BinSkim" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
+  
+        - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
+          displayName: 'TSA upload (BinSkim)'
+          condition: and(succeeded(), eq(variables.isMain, true))
+          inputs:
+            GdnPublishTsaOnboard: true
+            GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
 
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: restore
-      projects: |
-        **\*.csproj
-
-  - task: PowerShell@2
-    displayName: 'License Header Check'
-    inputs:
-      targetType: "filePath"
-      filePath: tools\scripts\verification.scripts\LicenseHeaderVerification.ps1
-      arguments: '-target  $(Build.Repository.LocalPath) -licenseHeaderPath tools\scripts\verification.scripts\LicenseHeader.txt -extensions *.xaml,*.xml,*.cs,*.ps1 -addIfAbsent $false'
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 17.0
-      platform: '$(BuildPlatform)'
-      configuration: release
-
-  - task: ms.build-release-task.custom-build-release-task.wpf-static-analysis@0
-    displayName: 'WPF Static Analysis'
-    inputs:
-      input: 'src\Axe.Windows\bin\Release'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    inputs:
-      arguments: --no-build --blame --verbosity normal --configuration release
-      command: test
-      projects: |
-        **\*test*.csproj
-
-  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-    displayName: 'Component Detection'
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\release\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: Compliance'
-    inputs:
-      ArtifactName: 'Compliance'
-
-- job: ComplianceDebug
-  pool:
-    vmImage: 'windows-2022'
-  steps:
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet 5.x'
-    inputs:
-      versionSpec: '5.x'
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: restore
-      projects: |
-        **\*.csproj
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 17.0
-      platform: '$(BuildPlatform)'
-      configuration: debug
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    inputs:
-      arguments: --no-build --blame --verbosity normal --configuration debug
-      command: test
-      projects: |
-        **\*test*.csproj
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-credscan.CredScan@3
-    displayName: 'Run CredScan'
-    inputs:
-      outputFormat: 'pre'
-      verboseOutput: true
-      debugMode: false
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-policheck.PoliCheck@2
-    displayName: 'Run PoliCheck'
-    inputs:
-      targetType: F
-    continueOnError: true
-
-  - task: UseDotNet@2
-    displayName: (Roslyn pre-req) Use .NET 6.0
-    inputs:
-      packageType: 'sdk'
-      version: '6.0.x'
-
-  - task: DotNetCoreCLI@2
-    displayName: '(Roslyn pre-req) Partial dotnet restore'
-    inputs:
-      command: restore
-      projects: $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj
-      arguments: '--runtime win7-x86'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
-    displayName: 'Run Roslyn analyzers'
-    continueOnError: true
-    inputs:
-        userProvideBuildInfo: msBuildInfo
-        msbuildVersion: 17.0
-        msBuildArchitecture: '$(BuildPlatform)'
-        setupCommandLine: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsMSBuildCmd.bat"'
-        msBuildCommandline: '"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\msbuild.exe" "$(Build.SourcesDirectory)\src\AxeWindows.sln" /p:platform="$(BuildPlatform)" /p:configuration="debug" /p:VisualStudioVersion="17.0"'
-        rulesetName: Recommended
-        internalAnalyzersVersion: Latest
-        microsoftAnalyzersVersion: Latest
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
-    displayName: 'Create Security Analysis Report (CredScan, RoslynAnalyzers, and PoliCheck)'
-    inputs:
-      CredScan: true
-      RoslynAnalyzers: true
-      PoliCheck: true
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
-    displayName: 'Publish Security Analysis Logs (CredScan, RoslynAnalyzers, and PoliCheck)'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
-    displayName: 'Post Analysis (CredScan, RoslynAnalyzers, and PoliCheck)'
-    continueOnError: true
-    inputs:
-      GdnBreakAllTools: false
-      GdnBreakGdnToolPoliCheck: false
-      GdnBreakGdnToolRoslynAnalyzers: false
-      GdnBreakGdnToolCredScan: true
-
-  - task: PowerShell@2
-    displayName: 'Create tsa.config file (CredScan, Roslyn, and PoliCheck)'
-    inputs:
-      targetType: "filePath"
-      filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
-      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAAreaPath)" -IterationPath "$(TSAIterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "CredScan;RoslynAnalyzers;PoliCheck" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
-    displayName: 'TSA upload (CredScan, RoslynAnalyzers, and PoliCheck)'
-    condition: and(succeeded(), eq(variables.isMain, true))
-    inputs:
-      GdnPublishTsaOnboard: true
-      GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\debug\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: Compliance'
-    inputs:
-      ArtifactName: 'Compliance'
-      
-- job: SignedRelease
-  dependsOn: 
-  - ComplianceRelease
-  - ComplianceDebug
-  condition: and(succeeded(), succeeded())
-  pool: MSEngSS-MicroBuild2022-1ES
-  variables:
-    PublicRelease: 'true'
-    MicroBuild_NuPkgSigningEnabled: 'true'
-    SignAppForRelease: 'true'
-    runCodesignValidationInjection: 'true'
-    GDN_CODESIGN_TARGETDIRECTORY: '$(Build.ArtifactStagingDirectory)\SigningValidation'
-    Codeql.Enabled: 'true'
-  steps:
-  - task: ms-vseng.MicroBuildTasks.30666190-6959-11e5-9f96-f56098202fef.MicroBuildSigningPlugin@4
-    displayName: 'Install Signing Plugin'
-    inputs:
-      signType: real
-      esrpSigning: true
-      feedSource: '$(MicrobuildPluginFeedSource)'
-    condition: and(succeeded(), ne(variables['SignType'], ''))
-
-  - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet 5.x'
-    inputs:
-      versionSpec: '5.x'
-
-  - task: MicroBuildLocalizationPlugin@1
-    inputs:
-      languages: ${{ parameters.LocLanguages }}
-      feedSource: '$(MicrobuildPluginFeedSource)'
-    displayName: Install MicroBuild Localization plugin
-
-  - task: NuGetCommand@2
-    displayName: 'NuGet restore'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
-    inputs:
-      command: restore
-      projects: |
-        **\*.csproj
-
-  - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-    displayName: 'Component Detection'
-
-  - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
-    displayName: 'generate thirdpartynotices.html file'
-    inputs:
-        outputfile: '$(System.DefaultWorkingDirectory)/thirdpartynotices.html'
-        outputformat: html
-
-  - task: VSBuild@1
-    displayName: 'Build Solution **\*.sln'
-    inputs:
-      vsVersion: 17.0
-      platform: '$(BuildPlatform)'
-      configuration: release
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@4
-    displayName: 'Run BinSkim'
-    inputs:
-      InputType: Basic
-      # Double-quote syntax with trailing backslash on each line concatenates lines without spaces
-      AnalyzeTargetGlob: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\Release\\**\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\Release\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\Release\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Core\\bin\\Release\\**\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Desktop\\bin\\Release\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Rules\\bin\\Release\\**\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\RuleSelection\\bin\\Release\\**\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\SystemAbstractions\\bin\\Release\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Telemetry\\bin\\Release\\*.dll;\
-                          $(System.DefaultWorkingDirectory)\\src\\Win32\\bin\\Release\\*.dll;"
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-report.SdtReport@2
-    displayName: 'Create Security Analysis Report (BinSkim)'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-publishsecurityanalysislogs.PublishSecurityAnalysisLogs@3
-    displayName: 'Publish Security Analysis Logs (BinSkim)'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-postanalysis.PostAnalysis@2
-    displayName: 'Post Analysis (BinSkim)'
-    inputs:
-      GdnBreakAllTools: true
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Test Assemblies (.NET Core) **\*test*.csproj'
-    inputs:
-      arguments: --no-build --blame --verbosity normal --configuration release --filter TestCategory!=Integration
-      command: test
-      projects: |
-        **\*test*.csproj
-
-  - task: PowerShell@2
-    displayName: 'Create tsa.config file (BinSkim)'
-    inputs:
-      targetType: "filePath"
-      filePath: tools\scripts\pipeline\build\create-tsa-config.ps1
-      arguments: '-InstanceUrl "$(TSAInstanceUrl)" -ProjectName "$(TSAProjectName)" -CodeBaseAdmins "$(TSACodeBaseAdmins)" -AreaPath "$(TSAAreaPath)" -IterationPath "$(TSAIterationPath)" -NotificationAliases "$(TSANotificationAlias)" -Tools "BinSkim" -OutputFile "$(Build.SourcesDirectory)\tsa.config"'
-
-  - task: securedevelopmentteam.vss-secure-development-tools.build-task-uploadtotsa.TSAUpload@2
-    displayName: 'TSA upload (BinSkim)'
-    condition: and(succeeded(), eq(variables.isMain, true))
-    inputs:
-      GdnPublishTsaOnboard: true
-      GdnPublishTsaConfigFile: '$(Build.SourcesDirectory)\tsa.config'
-
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\bin\release\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: CopyFiles@2
-    displayName: 'Copy MSI File to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      Contents: '**\CLI_Installer\bin\x86\Release\**'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: NuGet package'
-    inputs:
-      PathtoPublish: 'src\CI\bin\Release\NuGet'
-      ArtifactName: 'NuGet'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: Rules markdown'
-    inputs:
-      PathtoPublish: 'src\RulesMD\bin\Release\axe-windows-rules.md'
-      ArtifactName: 'axe-windows-rules'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: CLI (msi)'
-    inputs:
-      PathtoPublish: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.msi'
-      ArtifactName: 'CLI-msi'
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: CLI (zip)'
-    inputs:
-      PathtoPublish: 'src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.zip'
-      ArtifactName: 'CLI-zip'
-
-  - task: CopyFiles@2
-    displayName: 'Copy CLI_Full Files for Signing Validation'
-    inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\src'
-      Contents: |
-       CLI_Full\bin\release\net6.0\win7-x86\?(*.exe|*.dll)
-      TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
-
-  - task: CopyFiles@2
-    displayName: 'Copy CLI Files for Signing Validation'
-    inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\src'
-      Contents: 'CLI\bin\release\net6.0\**\?(*.exe|*.dll)'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
-
-  - task: ms-vseng.MicroBuildTasks.521a94ea-9e68-468a-8167-6dcf361ea776.MicroBuildCleanup@1
-    displayName: 'Perform Cleanup Tasks'
-    condition: succeededOrFailed()
+        - task: CopyFiles@2
+          displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\bin\release\**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\drop'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy MSI File to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\CLI_Installer\bin\x86\Release\**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\drop'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy NuGet package to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\src\CI\bin\Release\NuGet\**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\NuGet'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy axe-windows-rules file to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\src\RulesMD\bin\Release\axe-windows-rules.md'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\axe-windows-rules'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy CLI-msi to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.msi'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\CLI-msi'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy CLI-zip to: $(Build.ArtifactStagingDirectory)'
+          inputs:
+            Contents: '**\src\CLI_Installer\bin\x86\Release\AxeWindowsCLI.zip'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\CLI-zip'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy CLI_Full Files for Signing Validation'
+          inputs:
+            SourceFolder: '$(Build.SourcesDirectory)\src'
+            Contents: |
+             CLI_Full\bin\release\net6.0\win7-x86\?(*.exe|*.dll)
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
+  
+        - task: CopyFiles@2
+          displayName: 'Copy CLI Files for Signing Validation'
+          inputs:
+            SourceFolder: '$(Build.SourcesDirectory)\src'
+            Contents: 'CLI\bin\release\net6.0\**\?(*.exe|*.dll)'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)\SigningValidation'
+  
