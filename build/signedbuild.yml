@@ -32,6 +32,7 @@ extends:
       name: MSEngSS-MicroBuild2022-1ES
     sdl:
       binskim:
+        #If you modify this list, you also need to modify the list in the Run BinSkim task in Signed Release Job or vice-versa to keep them in sync
         analyzeTargetGlob: "$(System.DefaultWorkingDirectory)\\src\\CI\\bin\\**\\*.dll;\
                             $(System.DefaultWorkingDirectory)\\src\\Actions\\bin\\**\\*.dll;\
                             $(System.DefaultWorkingDirectory)\\src\\Automation\\bin\\**\\*.dll;\
