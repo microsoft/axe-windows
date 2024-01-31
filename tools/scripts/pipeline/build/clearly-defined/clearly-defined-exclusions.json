@@ -3,6 +3,7 @@
   "-/Microsoft.NET.Test.Sdk",
   "-/Microsoft.SourceLink.GitHub",
   "-/Moq",
+  "-/MSTest.TestAdapter",
   "-/MSTest.TestFramework",
   "-/System.Drawing.Common"
 ]
