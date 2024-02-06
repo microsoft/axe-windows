@@ -108,7 +108,6 @@ $PSLicense= Get-LineCommentedHeader $SplitVanillaLicenseHeader "#"
 
 (Get-ChildItem $Target\* -Include $Extensions -Recurse) | Where {$_.FullName -notmatch $excludeList} | Foreach-Object {
     $path = $_.FullName
-	Write-Host "Path = $path"
     $copyRightHeader=Get-CopyrightHeader $_.Extension
     $fileContent=Get-FileText $path
     if($fileContent -ne $Null -and $fileContent.Contains($copyRightHeader)){
