@@ -1,34 +1,28 @@
 <Project Sdk="WixToolset.Sdk/4.0.1">
   <Import Project="..\props\version.props" Condition="Exists('..\props\version.props')" />
-
   <PropertyGroup>
     <OutputName>AxeWindowsCLI</OutputName>
     <SignOutput>true</SignOutput>
     <Name>AxeWindowsCLI</Name>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DefineConstants>Debug;SemVer=$(SemVerNumber);</DefineConstants>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DefineConstants>SemVer=$(SemVerNumber);</DefineConstants>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="WixToolset.NetFx.wixext" Version="4.0.1" />
-    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.1" />
-    <PackageReference Include="WixToolset.Util.wixext" Version="4.0.1" />
+    <PackageReference Include="WixToolset.NetFx.wixext" Version="4.0.5" />
+    <PackageReference Include="WixToolset.UI.wixext" Version="4.0.5" />
+    <PackageReference Include="WixToolset.Util.wixext" Version="4.0.5" />
     <PackageReference Include="Microsoft.VisualStudioEng.MicroBuild.Core" Version="1.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\CLI\CLI.csproj" />
   </ItemGroup>
-
   <Target Condition=" '$(CreateAxeWindowsZippedCLI)' == 'true' AND '$(ConfigurationName)' == 'Release' " Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="powershell -f $(SolutionDir)..\tools\scripts\BuildZippedCLI.ps1 -SrcDir $(SolutionDir)CLI_Full\bin\$(ConfigurationName)\net6.0\win7-x86 -TargetDir $(TargetDir) " />
   </Target>
