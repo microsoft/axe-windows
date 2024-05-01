@@ -109,10 +109,14 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// <summary>
         /// Get DesktopElements based on Process Id.
         /// </summary>
-        /// <param name="pid"></param>
+        /// <param name="pid">The <see cref="Process.Id"/> whoese elements should be retrieved.</param>
+        /// <param name="rootWindowHandle">
+        /// The window handle for the <see cref="IUIAutomationElement"/> that should be used
+        /// as the root of the sub-tree to be scanned.
+        /// </param>
         /// <param name="dataContext">The data context</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, IntPtr rootWindowHandle, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
@@ -130,7 +134,9 @@ namespace Axe.Windows.Desktop.UIAutomation
                     // exists inside UIAutomation.GetRootElement, and this works around the problem.
                     lock (LockObject)
                     {
-                        root = dataContext.A11yAutomation.UIAutomation.GetRootElement();
+                        root = rootWindowHandle == IntPtr.Zero
+                            ? dataContext.A11yAutomation.UIAutomation.GetRootElement()
+                            : dataContext.A11yAutomation.UIAutomation.ElementFromHandle(rootWindowHandle);
                     }
                     matchingElements = dataContext.A11yAutomation.FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, dataContext);
