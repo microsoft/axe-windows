@@ -14,6 +14,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using UIAutomationClient;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("AutomationTests")]
+
 namespace Axe.Windows.Desktop.UIAutomation
 {
     /// <summary>
@@ -130,7 +132,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                 // if not, it will throw an ArgumentException
                 using (var proc = Process.GetProcessById(pid))
                 {
-                    // This lock should not be needed, but E2E tests hvae revealed that a problem
+                    // This lock should not be needed, but E2E tests have revealed that a problem
                     // exists inside UIAutomation.GetRootElement, and this works around the problem.
                     lock (LockObject)
                     {
@@ -151,6 +153,35 @@ namespace Axe.Windows.Desktop.UIAutomation
             }
 
             return elements;
+        }
+
+        internal static DesktopElement GetFocusedElement()
+        {
+            IUIAutomation uiAutomation = GetDefaultInstance().UIAutomation;
+            IUIAutomationElement focusedElement = uiAutomation.GetFocusedElement();
+            return new DesktopElement(focusedElement, keepElement: true, setMembers: true);
+        }
+
+        internal static DesktopElement GetDepthFirstLastLeafControlElement(DesktopElement rootElement)
+        {
+            var walker = GetDefaultInstance().GetTreeWalker(TreeViewMode.Control);
+            try
+            {
+                IUIAutomationElement leafElement = (IUIAutomationElement)rootElement.PlatformObject;
+                for (IUIAutomationElement currentElement = walker.GetLastChildElement(leafElement); currentElement != null; currentElement = walker.GetLastChildElement(leafElement))
+                {
+                    Marshal.ReleaseComObject(leafElement);
+                    leafElement = currentElement;
+                }
+
+                return leafElement is null
+                    ? rootElement
+                    : new DesktopElement(leafElement, keepElement: true, setMembers: true);
+            }
+            finally
+            {
+                Marshal.ReleaseComObject(walker);
+            }
         }
 
         /// <summary>

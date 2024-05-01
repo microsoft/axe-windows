@@ -3,6 +3,7 @@
 
 using Axe.Windows.Automation;
 using Axe.Windows.Automation.Data;
+using Axe.Windows.Desktop.UIAutomation;
 using Axe.Windows.UnitTestSharedLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -92,6 +93,25 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        public void Scan_Integration_WildlifeManager_Scoped(bool sync)
+        {
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                static ScanOptions makeScopedScanOptions(int pid)
+                {
+                    using (DesktopElement focusedElement = A11yAutomation.GetFocusedElement())
+                    {
+                        var leafElement = A11yAutomation.GetDepthFirstLastLeafControlElement(focusedElement);
+                        return new ScanOptions() { WindowHandle = leafElement.NativeWindowHandle };
+                    }
+                }
+                ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, expectedWindowCount: 1, processId: null, makeScopedScanOptions);
+            });
+        }
+
         // [DataTestMethod]
         // [DataRow(true)]
         // [DataRow(false)]
@@ -121,7 +141,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                ScanIntegrationCore(sync, _windowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, 2);
+                ScanIntegrationCore(sync, _windowsFormsMultiWindowSamplerAppPath, WindowsFormsMultiWindowSamplerAppAllErrorCount, expectedWindowCount: 2);
             });
         }
 
@@ -265,7 +285,7 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, int expectedWindowCount = 1, int? processId = null)
+        private WindowScanOutput ScanIntegrationCore(bool sync, string testAppPath, int expectedErrorCount, int expectedWindowCount = 1, int? processId = null, Func<int,ScanOptions> makeScanOptions = null)
         {
             if (processId == null)
             {
@@ -279,14 +299,15 @@ namespace Axe.Windows.AutomationTests
 
             var scanner = ScannerFactory.CreateScanner(config);
 
+            ScanOptions scanOptions = makeScanOptions is null ? null : makeScanOptions(processId.Value);
             IReadOnlyCollection<WindowScanOutput> output;
             if (sync)
             {
-                output = ScanSyncWithProvisionForBuildAgents(scanner);
+                output = ScanSyncWithProvisionForBuildAgents(scanner, scanOptions);
             }
             else
             {
-                output = ScanAsyncWithProvisionForBuildAgents(scanner);
+                output = ScanAsyncWithProvisionForBuildAgents(scanner, scanOptions);
             }
 
             return ValidateOutput(output, expectedErrorCount, expectedWindowCount);
@@ -324,8 +345,17 @@ namespace Axe.Windows.AutomationTests
         private WindowScanOutput ValidateOutput(IReadOnlyCollection<WindowScanOutput> output, int expectedErrorCount, int expectedWindowCount = 1)
         {
             Assert.AreEqual(expectedWindowCount, output.Count);
-            Assert.AreEqual(expectedErrorCount, output.Sum(x => x.ErrorCount));
-            Assert.AreEqual(expectedErrorCount, output.Sum(x => x.Errors.Count()));
+
+            int aggregateErrorCount = output.Sum(x => x.ErrorCount);
+            int totalErrors = output.Sum(x => x.Errors.Count());
+            Assert.AreEqual(expectedErrorCount, aggregateErrorCount, message: PrintOutput());
+            Assert.AreEqual(expectedErrorCount, totalErrors);
+
+            string PrintOutput() => StringJoin(output.Select(PrintErrors),Environment.NewLine);
+            static string PrintErrors(WindowScanOutput output, int index) => $"Output #{index}:\r\n\t{StringJoin(output.Errors.Select(PrintError), "\r\n\t")}";
+            static string PrintError(ScanResult error, int index) => $"Error #{index}: {error.Rule}\r\n\t\t{PrintElementProperties(error.Element)}";
+            static string PrintElementProperties(ElementInfo e) => StringJoin(e.Properties.Select(p => $"{p.Key}='{p.Value}'"),"\r\n\t\t");
+            static string StringJoin(IEnumerable<string> lines, string separator) => string.Join(separator, lines);
 
             if (expectedErrorCount > 0)
             {
@@ -354,11 +384,11 @@ namespace Axe.Windows.AutomationTests
             Assert.IsTrue(task.IsCanceled);
         }
 
-        private IReadOnlyCollection<WindowScanOutput> ScanSyncWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<WindowScanOutput> ScanSyncWithProvisionForBuildAgents(IScanner scanner, ScanOptions scanOptions = null)
         {
             try
             {
-                return scanner.Scan(null).WindowScanOutputs;
+                return scanner.Scan(scanOptions).WindowScanOutputs;
             }
             catch (Exception)
             {
@@ -370,11 +400,11 @@ namespace Axe.Windows.AutomationTests
             }
         }
 
-        private IReadOnlyCollection<WindowScanOutput> ScanAsyncWithProvisionForBuildAgents(IScanner scanner)
+        private IReadOnlyCollection<WindowScanOutput> ScanAsyncWithProvisionForBuildAgents(IScanner scanner, ScanOptions scanOptions = null)
         {
             try
             {
-                return scanner.ScanAsync(null, CancellationToken.None).Result.WindowScanOutputs;
+                return scanner.ScanAsync(scanOptions, CancellationToken.None).Result.WindowScanOutputs;
             }
             catch (Exception)
             {

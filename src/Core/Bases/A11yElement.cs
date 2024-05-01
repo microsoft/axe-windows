@@ -75,6 +75,12 @@ namespace Axe.Windows.Core.Bases
         }
 
         /// <summary>
+        /// the HWND for the element
+        /// </summary>
+        [JsonIgnore]
+        public IntPtr NativeWindowHandle => new IntPtr(value: GetPropertySafely(PropertyType.UIA_NativeWindowHandlePropertyId)?.Value);
+
+        /// <summary>
         /// a text description of a keystroke which activates the element; valid within a dialog, pane, or app
         /// </summary>
         [JsonIgnore]
