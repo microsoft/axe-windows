@@ -7,6 +7,7 @@ namespace AxeWindowsCLI
     {
         string OutputDirectory { get; }
         string ScanId { get; }
+        System.IntPtr ScanRootWindowHandle { get; }
         int ProcessId { get; }
         string ProcessName { get; }
         VerbosityLevel VerbosityLevel { get; }

@@ -19,6 +19,9 @@ namespace AxeWindowsCLI
 
         [Option(Required = false, HelpText = "ScanId", ResourceType = typeof(Resources.OptionsHelpText))]
         public string ScanId { get; set; }
+        
+        [Option(Required = false, HelpText = "ScanRootWindowHandle", ResourceType = typeof(Resources.OptionsHelpText))]
+        public System.IntPtr ScanRootWindowHandle { get; set; } = System.IntPtr.Zero;
 
         [Option(Required = false, HelpText = "Verbosity", ResourceType = typeof(Resources.OptionsHelpText))]
         public string Verbosity { get; set; }

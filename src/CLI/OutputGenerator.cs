@@ -84,6 +84,13 @@ namespace AxeWindowsCLI
                     {
                         _writer.Write(DisplayStrings.ScanTargetProcessIdFormat, options.ProcessId);
                     }
+
+                    bool haveScanRootWindowHandle = options.ScanRootWindowHandle != IntPtr.Zero;
+                    if (haveScanRootWindowHandle)
+                    {
+                        _writer.Write(DisplayStrings.ScanTargetSeparator);
+                        _writer.Write(DisplayStrings.ScanTargetRootWindowHandleFormat, options.ScanRootWindowHandle);
+                    }
                     _writer.WriteLine();
                 }
                 if (!string.IsNullOrEmpty(options.ScanId))
