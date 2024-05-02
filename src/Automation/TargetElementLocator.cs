@@ -14,13 +14,11 @@ namespace Axe.Windows.Automation
 {
     class TargetElementLocator : ITargetElementLocator
     {
-        private IntPtr _rootWindowHandle;
-
-        public IEnumerable<A11yElement> LocateRootElements(int processId, IActionContext actionContext)
+        public IEnumerable<A11yElement> LocateRootElements(int processId, IActionContext actionContext, IntPtr rootWindowHandle)
         {
             try
             {
-                var desktopElements = A11yAutomation.ElementsFromProcessId(processId, _rootWindowHandle, actionContext.DesktopDataContext);
+                var desktopElements = A11yAutomation.ElementsFromProcessId(processId, rootWindowHandle, actionContext.DesktopDataContext);
                 return GetA11yElementsFromDesktopElements(desktopElements);
             }
             catch (Exception ex)
@@ -40,7 +38,5 @@ namespace Axe.Windows.Automation
 #pragma warning restore CA2000
             }
         }
-
-        public void SetRootWindowHandle(IntPtr rootWindowHandle) => _rootWindowHandle = rootWindowHandle;
     }
 }

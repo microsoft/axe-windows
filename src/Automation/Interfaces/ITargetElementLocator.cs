@@ -9,7 +9,6 @@ namespace Axe.Windows.Automation
 {
     internal interface ITargetElementLocator
     {
-        IEnumerable<A11yElement> LocateRootElements(int processId, IActionContext actionContext);
-        void SetRootWindowHandle(System.IntPtr windowHandle);
+        IEnumerable<A11yElement> LocateRootElements(int processId, IActionContext actionContext, System.IntPtr rootWindowHandle);
     } // interface
 } // namespace

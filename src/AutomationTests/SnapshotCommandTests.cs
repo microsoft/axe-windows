@@ -120,7 +120,7 @@ namespace Axe.Windows.AutomationTests
         private void SetupTargetElementLocatorMock(int processId = -1, bool overrideElements = false, IEnumerable<A11yElement> elements = null)
         {
             var overriddenElements = overrideElements ? elements : CreateMockElementArray();
-            _targetElementLocatorMock.Setup(x => x.LocateRootElements(processId, It.IsAny<IActionContext>())).Returns(overriddenElements);
+            _targetElementLocatorMock.Setup(x => x.LocateRootElements(processId, It.IsAny<IActionContext>(), IntPtr.Zero)).Returns(overriddenElements);
         }
 
         private void SetupOutputFileHelperMock(string filePath = "Test.File")

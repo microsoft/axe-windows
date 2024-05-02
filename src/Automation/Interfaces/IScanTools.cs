@@ -3,6 +3,8 @@
 
 namespace Axe.Windows.Automation
 {
+    using System;
+
     /// <summary>
     /// Encapsulates the set of tools used to scan, assemble results, and write output files
     /// </summary>
@@ -13,5 +15,6 @@ namespace Axe.Windows.Automation
         ITargetElementLocator TargetElementLocator { get; }
         IAxeWindowsActions Actions { get; }
         IDPIAwareness DpiAwareness { get; }
+        IntPtr ScanRootWindowHandle { get; set; }
     } // interface
 } // namespace
