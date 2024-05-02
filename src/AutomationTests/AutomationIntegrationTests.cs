@@ -100,7 +100,7 @@ namespace Axe.Windows.AutomationTests
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
-                static ScanOptions makeScopedScanOptions(int pid)
+                static ScanOptions makeScopedScanOptions(int _)
                 {
                     using (DesktopElement focusedElement = A11yAutomationUtilities.GetFocusedElement())
                     {
@@ -109,6 +109,18 @@ namespace Axe.Windows.AutomationTests
                     }
                 }
                 ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, expectedWindowCount: 1, processId: null, makeScopedScanOptions);
+            });
+        }
+
+        [DataTestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        public void Scan_Integration_WildlifeManager_InvalidRoot(bool sync)
+        {
+            RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
+            {
+                static ScanOptions makeScanOptionsWithInvalidRoot(int _) => new(scanRootWindowHandle: new IntPtr(42));
+                ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, expectedWindowCount: WildlifeManagerKnownErrorCount, processId: null, makeScanOptionsWithInvalidRoot);
             });
         }
 

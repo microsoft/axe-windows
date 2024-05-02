@@ -61,20 +61,25 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             for (var child = walker.GetFirstChildElement(parent); child != null; child = walker.GetNextSiblingElement(child))
             {
-                if (child.CurrentProcessId == pid)
-                {
-                    matchingElements.Add(child);
-                }
-                else
-                {
-                    nonMatchingElements.Add(child);
-                }
+                TestProcessMatchingELement(pid, matchingElements, nonMatchingElements, child);
             }
 
             return matchingElements.Any();
         }
 
-        private IList<IUIAutomationElement> FindProcessMatchingChildrenOrGrandchildren(IUIAutomationElement root, int pid)
+        private static void TestProcessMatchingELement(int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements, IUIAutomationElement element)
+        {
+            if (element.CurrentProcessId == pid)
+            {
+                matchingElements.Add(element);
+            }
+            else
+            {
+                nonMatchingElements.Add(element);
+            }
+        }
+
+        private IList<IUIAutomationElement> FindProcessMatchingChildrenOrGrandchildren(IUIAutomationElement root, int pid, bool includeSelf = false)
         {
             IUIAutomationTreeWalker walker = GetTreeWalker(TreeViewMode.Control);
             List<IUIAutomationElement> matchingElements = new List<IUIAutomationElement>();
@@ -82,6 +87,11 @@ namespace Axe.Windows.Desktop.UIAutomation
             List<IUIAutomationElement> nonMatchingElementsSecondLevel = new List<IUIAutomationElement>();
             try
             {
+                if (includeSelf)
+                {
+                    TestProcessMatchingELement(pid, matchingElements, nonMatchingElements, root);
+                }
+
                 if (FindProcessMatchingChildren(root, walker, pid, matchingElements, nonMatchingElements))
                 {
                     return matchingElements;
@@ -118,13 +128,9 @@ namespace Axe.Windows.Desktop.UIAutomation
         /// Get DesktopElements based on Process Id.
         /// </summary>
         /// <param name="pid">The <see cref="Process.Id"/> whoese elements should be retrieved.</param>
-        /// <param name="rootWindowHandle">
-        /// The window handle for the <see cref="IUIAutomationElement"/> that should be used
-        /// as the root of the sub-tree to be scanned.
-        /// </param>
         /// <param name="dataContext">The data context</param>
         /// <returns>return null if we fail to get elements by process Id</returns>
-        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, IntPtr rootWindowHandle, DesktopDataContext dataContext)
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, DesktopDataContext dataContext)
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
@@ -142,9 +148,7 @@ namespace Axe.Windows.Desktop.UIAutomation
                     // exists inside UIAutomation.GetRootElement, and this works around the problem.
                     lock (LockObject)
                     {
-                        root = rootWindowHandle == IntPtr.Zero
-                            ? dataContext.A11yAutomation.UIAutomation.GetRootElement()
-                            : dataContext.A11yAutomation.UIAutomation.ElementFromHandle(rootWindowHandle);
+                        root = dataContext.A11yAutomation.UIAutomation.GetRootElement();
                     }
                     matchingElements = dataContext.A11yAutomation.FindProcessMatchingChildrenOrGrandchildren(root, pid);
                     elements = ElementsFromUIAElements(matchingElements, dataContext);
@@ -159,6 +163,36 @@ namespace Axe.Windows.Desktop.UIAutomation
             }
 
             return elements;
+        }
+
+        /// <summary>
+        /// Get DesktopElements whose <see cref="A11yElement.ProcessId"/> matches the <paramref name="pid"/>,
+        /// in the sub-tree rooted at the element with the specified <paramref name="rootWindowHandle"/>.
+        /// </summary>
+        /// <param name="pid">The <see cref="A11yElement.ProcessId"/> whoese <see cref="DesktopElement"/>s should be retrieved.</param>
+        /// <param name="rootWindowHandle">
+        /// The window handle for the <see cref="IUIAutomationElement"/> that should be used
+        /// as the root of the sub-tree to be scanned.  If the handle is invalid, scan the entire process tree.
+        /// </param>
+        /// <param name="dataContext">The data context</param>
+        /// <returns>
+        /// return all elements by process Id if the root window handle is invalid
+        /// return null if we fail to get elements by process Id
+        /// </returns>
+        public static IEnumerable<DesktopElement> ElementsFromProcessId(int pid, IntPtr rootWindowHandle, DesktopDataContext dataContext)
+        {
+            if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
+
+            IUIAutomationElement subtreeRootElement = dataContext.A11yAutomation.UIAutomation.ElementFromHandle(rootWindowHandle);
+            if (subtreeRootElement is null)
+            {
+                // If the root window handle is invalid, fallback to full-process scan.
+                return ElementsFromProcessId(pid, dataContext);
+            }
+
+            // Get all elements in the subtree rooted at the specified element - the root element should not be Released.
+            IList<IUIAutomationElement> matchingElements = dataContext.A11yAutomation.FindProcessMatchingChildrenOrGrandchildren(subtreeRootElement, pid, includeSelf: true);
+            return ElementsFromUIAElements(matchingElements, dataContext);
         }
 
         /// <summary>
