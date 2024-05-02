@@ -42,7 +42,7 @@ namespace Axe.Windows.Automation
         {
             scanOptions = scanOptions ?? DefaultScanOptions;
             _scanTools.OutputFileHelper.SetScanId(scanOptions.ScanId);
-            _scanTools.TargetElementLocator.SetRootWindowHandle(scanOptions.WindowHandle);
+            _scanTools.TargetElementLocator.SetRootWindowHandle(scanOptions.ScanRootWindowHandle);
         }
     } // class
 } // namespace

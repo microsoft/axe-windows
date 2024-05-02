@@ -105,7 +105,7 @@ namespace Axe.Windows.AutomationTests
                     using (DesktopElement focusedElement = A11yAutomation.GetFocusedElement())
                     {
                         var leafElement = A11yAutomation.GetDepthFirstLastLeafControlElement(focusedElement);
-                        return new ScanOptions() { WindowHandle = leafElement.NativeWindowHandle };
+                        return new() { ScanRootWindowHandle = leafElement.NativeWindowHandle };
                     }
                 }
                 ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, expectedWindowCount: 1, processId: null, makeScopedScanOptions);

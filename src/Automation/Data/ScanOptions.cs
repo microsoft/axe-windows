@@ -17,7 +17,7 @@ namespace Axe.Windows.Automation.Data
         /// <summary>
         /// The window handle for the root of the UIA subtree to scan.
         /// </summary>
-        public System.IntPtr WindowHandle { get; set; } = System.IntPtr.Zero;
+        public System.IntPtr ScanRootWindowHandle { get; set; } = System.IntPtr.Zero;
 
         /// <summary>
         /// Constructor
