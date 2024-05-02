@@ -12,6 +12,7 @@ namespace Axe.Windows.Automation
         public ITargetElementLocator TargetElementLocator { get; }
         public IAxeWindowsActions Actions { get; }
         public IDPIAwareness DpiAwareness { get; }
+        public IntPtr ScanRootWindowHandle { get; set; } = IntPtr.Zero;
 
         public ScanTools(IOutputFileHelper outputFileHelper, IScanResultsAssembler resultsAssembler, ITargetElementLocator targetElementLocator, IAxeWindowsActions actions, IDPIAwareness dpiAwareness)
         {

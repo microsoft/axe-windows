@@ -102,9 +102,9 @@ namespace Axe.Windows.AutomationTests
             {
                 static ScanOptions makeScopedScanOptions(int pid)
                 {
-                    using (DesktopElement focusedElement = A11yAutomation.GetFocusedElement())
+                    using (DesktopElement focusedElement = A11yAutomationUtilities.GetFocusedElement())
                     {
-                        var leafElement = A11yAutomation.GetDepthFirstLastLeafControlElement(focusedElement);
+                        var leafElement = A11yAutomationUtilities.GetDepthFirstLastLeafControlElement(focusedElement);
                         return new ScanOptions(scanRootWindowHandle: leafElement.NativeWindowHandle);
                     }
                 }

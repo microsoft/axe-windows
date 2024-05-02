@@ -26,6 +26,20 @@
     <ProjectReference Include="..\UnitTestSharedLibrary\UnitTestSharedLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Interop.UIAutomationClient">
+      <HintPath>..\UIAAssemblies\Win10.17713\Interop.UIAutomationClient.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Interop.UIAutomationCore">
+      <HintPath>..\InteropDummy\bin\$(Configuration)\net6.0\Interop.UIAutomationCore.dll</HintPath>
+      <EmbedInteropTypes>true</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+
   <Import Project="..\..\build\NetStandardTest.targets" />
 
 </Project>
