@@ -360,7 +360,7 @@ namespace Axe.Windows.AutomationTests
 
             int aggregateErrorCount = output.Sum(x => x.ErrorCount);
             int totalErrors = output.Sum(x => x.Errors.Count());
-            Assert.AreEqual(expectedErrorCount, aggregateErrorCount, message: PrintOutput());
+            Assert.AreEqual(expectedErrorCount, aggregateErrorCount, message: IsTestRunningInPipeline() ? string.Empty : PrintAll(output));
             Assert.AreEqual(expectedErrorCount, totalErrors);
 
             string PrintOutput() => StringJoin(output.Select(PrintErrors),Environment.NewLine);
@@ -483,5 +483,11 @@ namespace Axe.Windows.AutomationTests
             // The BUILD_BUILDID environment variable is only set on build agents
             return !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("BUILD_BUILDID"));
         }
+
+        static string PrintAll(IReadOnlyCollection<WindowScanOutput> output) => StringJoin(output.Select(PrintErrors), Environment.NewLine);
+        static string PrintErrors(WindowScanOutput output, int index) => $"Output #{index}:\r\n\t{StringJoin(output.Errors.Select(PrintError), "\r\n\t")}";
+        static string PrintError(ScanResult error, int index) => $"Error #{index}: {error.Rule}\r\n\t\t{PrintElementProperties(error.Element)}";
+        static string PrintElementProperties(ElementInfo e) => StringJoin(e.Properties.Select(p => $"{p.Key}='{p.Value}'"), "\r\n\t\t");
+        static string StringJoin(IEnumerable<string> lines, string separator) => string.Join(separator, lines);
     }
 }
