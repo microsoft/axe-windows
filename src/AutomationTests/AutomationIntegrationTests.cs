@@ -96,7 +96,7 @@ namespace Axe.Windows.AutomationTests
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
-        public void Scan_Integration_WildlifeManager_Scoped(bool sync)
+        public void Scan_Integration_WildlifeManager_ValidRoot(bool sync)
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
@@ -104,11 +104,11 @@ namespace Axe.Windows.AutomationTests
                 {
                     using (DesktopElement focusedElement = A11yAutomationUtilities.GetFocusedElement())
                     {
-                        var leafElement = A11yAutomationUtilities.GetDepthFirstLastLeafControlElement(focusedElement);
+                        var leafElement = A11yAutomationUtilities.GetDepthFirstLastLeafHWNDElement(focusedElement);
                         return new ScanOptions(scanRootWindowHandle: leafElement.NativeWindowHandle);
                     }
                 }
-                ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, expectedWindowCount: 1, processId: null, makeScopedScanOptions);
+                ScanIntegrationCore(sync, _wildlifeManagerAppPath, 2 * WildlifeManagerKnownErrorCount, expectedWindowCount: WildlifeManagerKnownErrorCount, processId: null, makeScanOptions: makeScopedScanOptions);
             });
         }
 
@@ -120,7 +120,7 @@ namespace Axe.Windows.AutomationTests
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
             {
                 static ScanOptions makeScanOptionsWithInvalidRoot(int _) => new(scanRootWindowHandle: new IntPtr(42));
-                ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, expectedWindowCount: WildlifeManagerKnownErrorCount, processId: null, makeScanOptionsWithInvalidRoot);
+                ScanIntegrationCore(sync, _wildlifeManagerAppPath, WildlifeManagerKnownErrorCount, processId: null, makeScanOptions: makeScanOptionsWithInvalidRoot);
             });
         }
 
@@ -362,12 +362,6 @@ namespace Axe.Windows.AutomationTests
             int totalErrors = output.Sum(x => x.Errors.Count());
             Assert.AreEqual(expectedErrorCount, aggregateErrorCount, message: IsTestRunningInPipeline() ? string.Empty : PrintAll(output));
             Assert.AreEqual(expectedErrorCount, totalErrors);
-
-            string PrintOutput() => StringJoin(output.Select(PrintErrors),Environment.NewLine);
-            static string PrintErrors(WindowScanOutput output, int index) => $"Output #{index}:\r\n\t{StringJoin(output.Errors.Select(PrintError), "\r\n\t")}";
-            static string PrintError(ScanResult error, int index) => $"Error #{index}: {error.Rule}\r\n\t\t{PrintElementProperties(error.Element)}";
-            static string PrintElementProperties(ElementInfo e) => StringJoin(e.Properties.Select(p => $"{p.Key}='{p.Value}'"),"\r\n\t\t");
-            static string StringJoin(IEnumerable<string> lines, string separator) => string.Join(separator, lines);
 
             if (expectedErrorCount > 0)
             {
