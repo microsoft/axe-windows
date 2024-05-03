@@ -27,6 +27,8 @@ Copyright c 2020
 
   --scanid                    Scan ID
 
+  --scanrootwindowhandle      The HWND of the window to scan.
+
   --verbosity                 Verbosity level (Quiet/Default/Verbose)
 
   --showthirdpartynotices     Display Third Party Notices (opens file in browser
@@ -61,6 +63,7 @@ processId|Identifies the process ID of the application to be scanned. Must be sp
 processName|Identifies the name of the process to be scanned. Requires that the process to scan be the _only_ process of that name currently running on the system.
 outputDirectory|Identifies the folder where output files will be created. If not specified, this will default to `.\AxeWindowsOutputFiles` (relative to the current working directory)
 scanId|Identifies the specific ID of the scan. This allows you to preassign a name to the given scan (and output file). If omitted, an dynamic name in the format AxeWindows_YY-MM-DD_hh-mm-ss.fffffff will be used.
+scanRootWindowHandle|The HWND of the UIA element whose subtree should be scanned.  If omitted, the root's children/grandchildren with matching processId will be scanned.
 verbosity|Identifies the level of detail you want in the output. Valid values are `quiet` (minimal output), `default` (typical output), or `verbose` (maximum output).
 showThirdPartyNotices|If specified, displays the third party notices for components used by AxeWindowsCLI. This information is also available in the `thirdpartynotices.html` file that is installed with AxeWindowsCLI.
 delayInSeconds|Optionally inserts a delay before triggering the scan. This allows transient controls (menus, drop-down-lists, etc.) to be scanned.
