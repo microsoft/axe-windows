@@ -61,13 +61,13 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             for (var child = walker.GetFirstChildElement(parent); child != null; child = walker.GetNextSiblingElement(child))
             {
-                TestProcessMatchingELement(pid, matchingElements, nonMatchingElements, child);
+                TestProcessMatchingElement(pid, matchingElements, nonMatchingElements, child);
             }
 
             return matchingElements.Any();
         }
 
-        private static void TestProcessMatchingELement(int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements, IUIAutomationElement element)
+        private static void TestProcessMatchingElement(int pid, IList<IUIAutomationElement> matchingElements, IList<IUIAutomationElement> nonMatchingElements, IUIAutomationElement element)
         {
             if (element.CurrentProcessId == pid)
             {
@@ -89,7 +89,7 @@ namespace Axe.Windows.Desktop.UIAutomation
             {
                 if (includeSelf)
                 {
-                    TestProcessMatchingELement(pid, matchingElements, nonMatchingElements, root);
+                    TestProcessMatchingElement(pid, matchingElements, nonMatchingElements, root);
                 }
 
                 if (FindProcessMatchingChildren(root, walker, pid, matchingElements, nonMatchingElements))
@@ -183,7 +183,16 @@ namespace Axe.Windows.Desktop.UIAutomation
         {
             if (dataContext == null) throw new ArgumentNullException(nameof(dataContext));
 
-            IUIAutomationElement subtreeRootElement = dataContext.A11yAutomation.UIAutomation.ElementFromHandle(rootWindowHandle);
+            IUIAutomationElement subtreeRootElement;
+            try
+            {
+                subtreeRootElement = dataContext.A11yAutomation.UIAutomation.ElementFromHandle(rootWindowHandle);
+            }
+            catch (COMException)
+            {
+                subtreeRootElement = null;
+            }
+
             if (subtreeRootElement is null)
             {
                 // If the root window handle is invalid, fallback to full-process scan.
