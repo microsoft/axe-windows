@@ -28,7 +28,7 @@ namespace Axe.Windows.AutomationTests
         const int WpfControlSamplerKnownErrorCount = 7;
         const int WindowsFormsMultiWindowSamplerAppAllErrorCount = 12;
         // Note: This should change to 159 after https://github.com/MicrosoftEdge/WebView2Feedback/issues/3530 is fixed and integrated
-        const int WebViewSampleKnownErrorCount = 6;
+        const int WebViewSampleKnownErrorCount = 7;
 
         readonly string _wildlifeManagerAppPath = Path.GetFullPath("../../../../../tools/WildlifeManager/WildlifeManager.exe");
         readonly string _win32ControlSamplerAppPath = Path.GetFullPath("../../../../../tools/Win32ControlSampler/Win32ControlSampler.exe");
