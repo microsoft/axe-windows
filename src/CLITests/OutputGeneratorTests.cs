@@ -69,6 +69,10 @@ namespace AxeWindowsCLITests
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
             _optionsMock.Setup(x => x.ProcessId).Returns(processId);
             _optionsMock.Setup(x => x.ScanId).Returns(scanId);
+            if (processId > 0 || !string.IsNullOrEmpty(processName))
+            {
+                _optionsMock.Setup(x => x.ScanRootWindowHandle).Returns(IntPtr.Zero);
+            }
         }
 
         [TestMethod]

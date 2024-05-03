@@ -31,12 +31,14 @@ namespace AxeWindowsCLITests
 
         private static void ValidateOptions(IOptions options, string processName = TestProcessName,
             int processId = TestProcessId, string outputDirectory = null, string scanId = null,
+            IntPtr scanRootWindowHandle = default,
             VerbosityLevel verbosityLevel = VerbosityLevel.Default, int delayInSeconds = 0,
             bool alwaysWriteTestFile = false, bool testAllChromiumContent = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
             Assert.AreEqual(scanId, options.ScanId);
+            Assert.AreEqual(scanRootWindowHandle, options.ScanRootWindowHandle);
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosityLevel, options.VerbosityLevel);
             Assert.AreEqual(delayInSeconds, options.DelayInSeconds);
@@ -156,7 +158,7 @@ namespace AxeWindowsCLITests
 
         [TestMethod]
         [Timeout(1000)]
-        public void ProcessInputs_SpecifiesScanId_RetainsOutputDirectory()
+        public void ProcessInputs_SpecifiesScanId_RetainsScanId()
         {
             const string testScanId = "SuperScan";
             _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
@@ -167,6 +169,23 @@ namespace AxeWindowsCLITests
             };
             ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
                 processId: TestProcessId, scanId: testScanId);
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void ProcessInputs_SpecifiesScanRootWindowHandle_RetainsScanRootWindowHandle()
+        {
+            const int testScanRootWindowHandleValue = 42;
+            IntPtr testScanRootWindowHandle = new(testScanRootWindowHandleValue);
+            _processHelperMock.Setup(x => x.ProcessIdFromName(TestProcessName)).Returns(TestProcessId);
+            Options input = new Options
+            {
+                ProcessName = TestProcessName,
+                ScanRootWindowHandle = testScanRootWindowHandle,
+            };
+            ValidateOptions(OptionsEvaluator.ProcessInputs(input, _processHelperMock.Object),
+                processId: TestProcessId, scanRootWindowHandle: testScanRootWindowHandle);
             VerifyAllMocks();
         }
 

@@ -35,12 +35,14 @@ namespace AxeWindowsCLITests
 
         private static int ValidateOptions(Options options, string processName = null,
             int processId = 0, string outputDirectory = null, string scanId = null,
+            System.IntPtr scanRootWindowHandle = default,
             string verbosity = null, bool showThirdPartyNotices = false,
             int delayInSeconds = 0, string customUia = null, bool alwaysSaveTestFile = false)
         {
             Assert.AreEqual(processName, options.ProcessName);
             Assert.AreEqual(processId, options.ProcessId);
             Assert.AreEqual(scanId, options.ScanId);
+            Assert.AreEqual(scanRootWindowHandle, options.ScanRootWindowHandle);
             Assert.AreEqual(outputDirectory, options.OutputDirectory);
             Assert.AreEqual(verbosity, options.Verbosity);
             Assert.AreEqual(VerbosityLevel.Default, options.VerbosityLevel);
