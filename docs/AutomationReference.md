@@ -172,7 +172,7 @@ The `ScanOptions` constructor accepts the following arguments:
 **Name** | **Type** | **Description** | **Default value**
 ---|---|---|---
 scanId | `string` | A string identifier for the scan. If the scan produces output files based on the `Config` object used to create the scanner, the output files will be given the name of the scan id (e.g., MyScanId.a11ytest). | `null`
-scanRootWindowHandle | `IntPtr?` | The native window handle (HWND) of the UIA element whose sub-tree should be scanned. If not specified or no element matches the HWND, the process's full UIA tree will be scanned. | `null`
+scanRootWindowHandle | `IntPtr` | The native window handle (HWND) of the UIA element whose sub-tree should be scanned. If not specified or no element matches the HWND, the process's full UIA tree will be scanned. | `null`
 
 #### ScanOutput
 Methods of `IScanner` return a `ScanOutput` object with the following properties:
