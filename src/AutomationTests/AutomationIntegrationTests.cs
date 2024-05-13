@@ -80,6 +80,14 @@ namespace Axe.Windows.AutomationTests
             CleanupTestOutput();
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(AxeWindowsAutomationException))]
+        public void Scan_Integration_InvalidProcessId()
+        {
+            const int BogusProcessId = 47;
+            ScanIntegrationCore(sync: true, testAppPath: null, expectedErrorCount: 0, processId: BogusProcessId);
+        }
+
         [DataTestMethod]
         [DataRow(true)]
         [DataRow(false)]
