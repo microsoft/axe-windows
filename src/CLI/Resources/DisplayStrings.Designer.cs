@@ -313,7 +313,7 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to HWND = {0}.
+        ///   Looks up a localized string similar to  HWND = {0}.
         /// </summary>
         internal static string ScanTargetRootWindowHandleFormat {
             get {

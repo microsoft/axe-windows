@@ -223,7 +223,7 @@
     <comment>{0} is the process name. Leading space is intentional</comment>
   </data>
   <data name="ScanTargetRootWindowHandleFormat" xml:space="preserve">
-    <value>HWND = {0}</value>
+    <value> HWND = {0}</value>
     <comment>{0} is the scan root window handle</comment>
   </data>
   <data name="ScanTargetSeparator" xml:space="preserve">
