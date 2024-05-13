@@ -100,7 +100,7 @@ namespace AxeWindowsCLITests
                 }
                 else
                 {
-                    Assert.IsTrue(actualCall.Format.StartsWith(expectedWriteCall.Format), "Actual Format = " + actualCall.Format);
+                    Assert.IsTrue(actualCall.Format.StartsWith(expectedWriteCall.Format), $"Actual Format = '{actualCall.Format}'; Expected Format = '{expectedWriteCall.Format}'");
                 }
                 verified++;
             }
