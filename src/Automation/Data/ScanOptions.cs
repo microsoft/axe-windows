@@ -15,12 +15,19 @@ namespace Axe.Windows.Automation.Data
         public string ScanId { get; }
 
         /// <summary>
+        /// The window handle for the root of the UIA subtree to scan.
+        /// </summary>
+        public System.IntPtr ScanRootWindowHandle { get; }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="scanId">The ID of this scan. Must be null or meet the requirements for a file name.</param>
-        public ScanOptions(string scanId = null)
+        /// <param name="scanRootWindowHandle">The window handle for the root of the UIA subtree to scan.</param>
+        public ScanOptions(string scanId = null, System.IntPtr? scanRootWindowHandle = null)
         {
             ScanId = scanId;
+            ScanRootWindowHandle = scanRootWindowHandle.GetValueOrDefault(System.IntPtr.Zero);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Axe.Windows.Automation
 
             using (var actionContext = ScopedActionContext.CreateInstance(cancellationToken))
             {
-                var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext);
+                var rootElements = scanTools.TargetElementLocator.LocateRootElements(config.ProcessId, actionContext, scanTools.ScanRootWindowHandle);
 
                 if (rootElements is null || !rootElements.Any())
                 {

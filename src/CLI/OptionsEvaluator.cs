@@ -61,6 +61,7 @@ namespace AxeWindowsCLI
                 ProcessId = processId,
                 ProcessName = processName,
                 ScanId = rawInputs.ScanId,
+                ScanRootWindowHandle = rawInputs.ScanRootWindowHandle,
                 VerbosityLevel = verbosityLevel,
                 DelayInSeconds = delayInSeconds,
                 CustomUia = rawInputs.CustomUia,

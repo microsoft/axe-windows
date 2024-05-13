@@ -124,6 +124,15 @@ namespace AxeWindowsCLI.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The HWND for a UI Automation element whose sub-tree should be scanned.
+        /// </summary>
+        public static string ScanRootWindowHandle {
+            get {
+                return ResourceManager.GetString("ScanRootWindowHandle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Display Third Party Notices (opens file in browser without executing scan). If specified, all other options will be ignored..
         /// </summary>
         public static string ShowThirdPartyNotices {

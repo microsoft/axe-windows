@@ -299,7 +299,7 @@ namespace Axe.Windows.RulesTests
             }
         }
 
-        public int NativeWindowHandle
+        public new int NativeWindowHandle
         {
             get
             {

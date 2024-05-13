@@ -12,7 +12,7 @@ namespace AxeWindowsCLI
         public static IReadOnlyCollection<WindowScanOutput> RunScan(IOptions options)
         {
             IScanner scanner = BuildScanner(options);
-            return scanner.Scan(new ScanOptions(options.ScanId)).WindowScanOutputs;
+            return scanner.Scan(new ScanOptions(options.ScanId, options.ScanRootWindowHandle)).WindowScanOutputs;
         }
 
         private static IScanner BuildScanner(IOptions options)

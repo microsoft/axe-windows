@@ -26,6 +26,7 @@ namespace AxeWindowsCLITests
         const string ScanTargetIntro = "Scan Target:";
         const string ScanTargetProcessNameStart = " Process Name =";
         const string ScanTargetProcessIdStart = " Process ID =";
+        const string ScanTargetRootWindowHandleStart = " HWND =";
         const string ScanTargetComma = ",";
         const string ScanIdStart = "Scan Id =";
         const string ErrorCountGeneralStart = "{0} errors ";
@@ -63,12 +64,16 @@ namespace AxeWindowsCLITests
 
         private void SetOptions(VerbosityLevel verbosityLevel = VerbosityLevel.Default,
             string processName = null, int processId = -1,
-            string scanId = null)
+            string scanId = null, IntPtr? scanRootWindowHandle = null)
         {
             _optionsMock.Setup(x => x.VerbosityLevel).Returns(verbosityLevel);
             _optionsMock.Setup(x => x.ProcessName).Returns(processName);
             _optionsMock.Setup(x => x.ProcessId).Returns(processId);
             _optionsMock.Setup(x => x.ScanId).Returns(scanId);
+            if (processId > 0 || !string.IsNullOrEmpty(processName))
+            {
+                _optionsMock.Setup(x => x.ScanRootWindowHandle).Returns(scanRootWindowHandle.GetValueOrDefault(IntPtr.Zero));
+            }
         }
 
         [TestMethod]
@@ -169,6 +174,28 @@ namespace AxeWindowsCLITests
                 new WriteCall(ScanTargetProcessNameStart, WriteSource.WriteOneParam),
                 new WriteCall(ScanTargetComma, WriteSource.WriteStringOnly),
                 new WriteCall(ScanTargetProcessIdStart, WriteSource.WriteOneParam),
+                new WriteCall(null, WriteSource.WriteLineEmpty),
+            };
+            TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
+
+            _testSubject.WriteBanner(_optionsMock.Object);
+
+            textWriterVerifier.VerifyAll();
+            VerifyAllMocks();
+        }
+
+        [TestMethod]
+        [Timeout(1000)]
+        public void WriteBanner_VerbosityIsDefault_ProcessId_ScanRootWindowHandle_WritesHWND()
+        {
+            SetOptions(processId: TestProcessId, scanRootWindowHandle: new(47));
+            WriteCall[] expectedCalls =
+            {
+                new WriteCall(AppTitleStart, WriteSource.WriteLineOneParam),
+                new WriteCall(ScanTargetIntro, WriteSource.WriteStringOnly),
+                new WriteCall(ScanTargetProcessIdStart, WriteSource.WriteOneParam),
+                new WriteCall(ScanTargetComma, WriteSource.WriteStringOnly),
+                new WriteCall(ScanTargetRootWindowHandleStart, WriteSource.WriteOneParam),
                 new WriteCall(null, WriteSource.WriteLineEmpty),
             };
             TextWriterVerifier textWriterVerifier = new TextWriterVerifier(_writerMock, expectedCalls);
