@@ -316,6 +316,15 @@ namespace Axe.Windows.Core.Bases
             }
         }
 
+        [JsonIgnore]
+        public Size LogicalSize
+        {
+            get
+            {
+                return GetPropertySafely(PropertyType.Axe_LogicalSizePseudoPropertyId).ToSize();
+            }
+        }
+
         /// <summary>
         /// the heading level if it exists; otherwise, 0
         /// </summary>

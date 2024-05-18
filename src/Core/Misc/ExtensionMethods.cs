@@ -599,6 +599,17 @@ namespace Axe.Windows.Core.Misc
             return retVal;
         }
 
+        /// <summary>
+        /// Convert Element Property value to Size
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns>A Size object</returns>
+        public static Size ToSize(this A11yProperty property)
+        {
+            if (property?.Value is null) return Size.Empty;
+            return new Size(property.Value[0], property.Value[1]);
+        }
+
         public static string ToLeftTopRightBottomString(this Rectangle r)
         {
             return string.Format(CultureInfo.CurrentCulture, DisplayStrings.LeftTopRightBottomFormat, r.Left, r.Top, r.Right, r.Bottom);

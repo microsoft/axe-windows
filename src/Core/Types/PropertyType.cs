@@ -17,6 +17,8 @@ namespace Axe.Windows.Core.Types
     public class PropertyType : TypeBase
     {
 #pragma warning disable CA1707 // Identifiers should not contain underscores
+        public const int Axe_LogicalSizePseudoPropertyId = 29999;
+
         public const int UIA_RuntimeIdPropertyId = 30000;
         public const int UIA_BoundingRectanglePropertyId = 30001;
         public const int UIA_ProcessIdPropertyId = 30002;
@@ -211,7 +213,11 @@ namespace Axe.Windows.Core.Types
         /// <summary>
         /// private constructor since this uses a singleton model
         /// </summary>
-        private PropertyType() : base() { }
+        private PropertyType() : base()
+        {
+            // Explicitly add pseudo-properties
+            Dic[Axe_LogicalSizePseudoPropertyId] = GetNameInProperFormat("Axe_LogicalSizePseudoPropertyId", Axe_LogicalSizePseudoPropertyId);
+        }
 
         /// <summary>
         /// change name into right format in dictionary and list.
@@ -221,6 +227,10 @@ namespace Axe.Windows.Core.Types
         protected override string GetNameInProperFormat(string name, int id)
         {
             StringBuilder sb = new StringBuilder(name);
+
+            // Handle pseudo-properties
+            sb.Replace("Axe_", "");
+            sb.Replace("PseudoPropertyId", "");
 
             sb.Replace("UIA_", "");
             sb.Replace("PropertyId", "");

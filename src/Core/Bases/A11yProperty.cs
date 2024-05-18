@@ -82,7 +82,10 @@ namespace Axe.Windows.Core.Bases
             if (Value != null)
             {
                 switch (Id)
-                {
+                    {
+                    case PropertyType.Axe_LogicalSizePseudoPropertyId:
+                        txt = $"[w={Value[0]},h={Value[1]}]";
+                        break;
                     case PropertyType.UIA_RuntimeIdPropertyId:
                         txt = this.ConvertIntArrayToString();
                         break;
