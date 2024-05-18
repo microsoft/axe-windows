@@ -234,6 +234,14 @@
       "Value": 0,
       "LabeledBy": null,
       "TextValue": "0"
+    },
+    "29999": {
+      "Value": [
+        995,
+        78
+      ],
+      "Id": 29999,
+      "Name": "LogicalSize"
     }
   },
   "Patterns": [

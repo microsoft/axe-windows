@@ -42,6 +42,9 @@ namespace Axe.Windows.CoreTests.Bases
 
             kpVal = element.Properties[PropertyType.UIA_HasKeyboardFocusPropertyId].ToString();
             Assert.AreEqual("False", kpVal);
+
+            kpVal = element.Properties[PropertyType.Axe_LogicalSizePseudoPropertyId].ToString();
+            Assert.AreEqual("[w=995,h=78]", kpVal);
         }
 
         [TestMethod]
