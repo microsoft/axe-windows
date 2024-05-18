@@ -607,6 +607,8 @@ namespace Axe.Windows.Core.Misc
         public static Size ToSize(this A11yProperty property)
         {
             if (property?.Value is null) return Size.Empty;
+            if (property.Id != PropertyType.Axe_LogicalSizePseudoPropertyId) throw new ArgumentException("ToSize is not supported for this property type", nameof(property));
+
             return new Size(property.Value[0], property.Value[1]);
         }
 
