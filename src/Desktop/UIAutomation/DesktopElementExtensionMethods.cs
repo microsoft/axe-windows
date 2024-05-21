@@ -145,14 +145,14 @@ namespace Axe.Windows.Desktop.UIAutomation
             Rectangle boundingRectangle = element.BoundingRectangle;
             if (boundingRectangle != null && !boundingRectangle.IsEmpty)
             {
-                Point logicalPoint = new Point(
+                Point boundingRectangleCenter = new Point(
                     (boundingRectangle.Left + boundingRectangle.Right) / 2, 
                     (boundingRectangle.Top + boundingRectangle.Bottom) / 2);
-                Win32Helper.GetDpi(logicalPoint, DpiType.Effective, out uint rawDPIX, out uint RawDPIY);
+                Win32Helper.GetDpi(boundingRectangleCenter, DpiType.Effective, out uint rawDPIX, out uint rawDPIY);
                 double xScale = rawDPIX / defaultDpi;
-                double yScale = RawDPIY / defaultDpi;
-                logicalSize[0] = (int)(boundingRectangle.Width * xScale);
-                logicalSize[1] = (int)(boundingRectangle.Height * yScale);
+                double yScale = rawDPIY / defaultDpi;
+                logicalSize[0] = (int)(boundingRectangle.Width / xScale);
+                logicalSize[1] = (int)(boundingRectangle.Height / yScale);
             }
 
             element.Properties.Add(propertyId, new A11yProperty(propertyId, logicalSize, "LogicalSize"));
