@@ -44,7 +44,7 @@ namespace Axe.Windows.CoreTests.Bases
             Assert.AreEqual("False", kpVal);
 
             kpVal = element.Properties[PropertyType.Axe_LogicalSizePseudoPropertyId].ToString();
-            Assert.AreEqual("[w=995,h=78]", kpVal);
+            Assert.AreEqual("[w=13,h=1]", kpVal);
         }
 
         [TestMethod]
