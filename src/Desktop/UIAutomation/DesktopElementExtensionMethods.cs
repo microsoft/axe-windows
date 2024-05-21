@@ -147,7 +147,8 @@ namespace Axe.Windows.Desktop.UIAutomation
             {
                 Point boundingRectangleCenter = new Point(
                     (boundingRectangle.Left + boundingRectangle.Right) / 2, 
-                    (boundingRectangle.Top + boundingRectangle.Bottom) / 2);
+                    (boundingRectangle.Top + boundingRectangle.Bottom) / 2
+                );
                 Win32Helper.GetDpi(boundingRectangleCenter, DpiType.Effective, out uint rawDPIX, out uint rawDPIY);
                 double xScale = rawDPIX / defaultDpi;
                 double yScale = rawDPIY / defaultDpi;
