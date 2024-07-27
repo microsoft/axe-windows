@@ -88,7 +88,6 @@ extends:
 
               - task: CopyFiles@2
                 displayName: "Copy Files to: $(Build.ArtifactStagingDirectory)"
-                condition: SucceededOrFailed()
                 inputs:
                   Contents: '**\bin\release\**'
                   TargetFolder: "$(Build.ArtifactStagingDirectory)"
@@ -137,7 +136,6 @@ extends:
 
               - task: CopyFiles@2
                 displayName: "Copy Files to: $(Build.ArtifactStagingDirectory)"
-                condition: SucceededOrFailed()
                 inputs:
                   Contents: '**\bin\debug\**'
                   TargetFolder: "$(Build.ArtifactStagingDirectory)"
