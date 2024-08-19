@@ -63,7 +63,7 @@ namespace Axe.Windows.Rules.Library
                 & WPF
                 & NoChild(Custom | Name.NullOrEmpty);
 
-            var ipAddressControl = ClassName.Is("SysIPAddress32");
+            var ipAddressControl = Win32Framework & ClassName.Is("SysIPAddress32");
 
             return EligibleChild
                 & NotParent(wpfDataItem)
