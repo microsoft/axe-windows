@@ -63,7 +63,12 @@ namespace Axe.Windows.Rules.Library
                 & WPF
                 & NoChild(Custom | Name.NullOrEmpty);
 
-            return EligibleChild & NotParent(wpfDataItem);
+            var ipAddressControl = Win32Framework & ClassName.Is("SysIPAddress32");
+
+            return EligibleChild
+                & NotParent(wpfDataItem)
+                // microsoft/accessibility-insights-windows#1838: The Win32 IP address control yields false positives for this rule.
+                & NotParent(ipAddressControl);
         }
     } // class
 } // namespace
