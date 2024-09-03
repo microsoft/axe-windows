@@ -18,6 +18,7 @@ ButtonInvokeAndTogglePatterns | Error | A button must not support both the Invok
 ButtonInvokeAndExpandCollapsePatterns | Warning | A button may have the Invoke and ExpandCollapse patterns together, but it is not recommended. If possible, please have only one of them.  | WCAG 1.3.1 InfoAndRelationships
 ButtonToggleAndExpandCollapsePatterns | Error | A button must not support both the Toggle and ExpandCollapse patterns. | WCAG 4.1.2 NameRoleValue
 SiblingUniqueAndFocusable | Error | Focusable sibling elements must not have the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue
+SiblingUniqueAndFocusableWin32 | NeedsReview | Focusable sibling elements must not have the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue
 SiblingUniqueAndNotFocusable | NeedsReview | The given element has siblings with the same Name and LocalizedControlType. | WCAG 4.1.2 NameRoleValue
 ChildrenNotAllowedInContentView | Error | A separator must not have any children with IsContentElement set to true. | Section 508 502.3.1 ObjectInformation
 ContentViewButtonStructure | NeedsReview | The given element is expected to have the following structure: Button and NoChild(IsContentElement). | WCAG 1.3.1 InfoAndRelationships

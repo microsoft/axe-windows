@@ -31,6 +31,7 @@ namespace Axe.Windows.Core.Enums
         ButtonToggleAndExpandCollapsePatterns, // Button should not have Toggle and ExpandCollapse patterns together.
 
         SiblingUniqueAndFocusable,
+        SiblingUniqueAndFocusableWin32,
         SiblingUniqueAndNotFocusable,
 
         ChildrenNotAllowedInContentView,
