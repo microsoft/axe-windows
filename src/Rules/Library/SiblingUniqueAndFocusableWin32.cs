@@ -16,18 +16,17 @@ using static Axe.Windows.Rules.PropertyConditions.StringProperties;
 
 namespace Axe.Windows.Rules.Library
 {
-    [RuleInfo(ID = RuleId.SiblingUniqueAndFocusable)]
-    class SiblingUniqueAndFocusable : Rule
+    [RuleInfo(ID = RuleId.SiblingUniqueAndFocusableWin32)]
+    class SiblingUniqueAndFocusableWin32 : Rule
     {
         private static readonly Condition EligibleChild = CreateEligibleChildCondition();
 
         private static Condition CreateEligibleChildCondition()
         {
-            var ExcludedType = DataItem | Image | Pane | ScrollBar | Thumb | TreeItem | ListItem | Hyperlink;
+            var ExcludedType = Image | Pane | ScrollBar | Thumb | TreeItem | ListItem | Hyperlink;
 
             return IsKeyboardFocusable
-                // #1047: covered by SiblingUniqueAndFocusableWin32
-                & ~Win32Framework
+                & Win32Framework
                 & IsContentOrControlElement
                 & ~ExcludedType
                 & ~Patterns.GridItem
@@ -37,12 +36,12 @@ namespace Axe.Windows.Rules.Library
                 & BoundingRectangle.Valid;
         }
 
-        public SiblingUniqueAndFocusable()
+        public SiblingUniqueAndFocusableWin32()
         {
             Info.Description = Descriptions.SiblingUniqueAndFocusable;
             Info.HowToFix = HowToFix.SiblingUniqueAndFocusable;
             Info.Standard = A11yCriteriaId.NameRoleValue;
-            Info.ErrorCode = EvaluationCode.Error;
+            Info.ErrorCode = EvaluationCode.NeedsReview;
         }
 
         public override bool PassesTest(IA11yElement e)
@@ -61,12 +60,7 @@ namespace Axe.Windows.Rules.Library
 
         protected override Condition CreateCondition()
         {
-            var wpfDataItem = DataItem
-                & WPF
-                & NoChild(Custom | Name.NullOrEmpty);
-
-            return EligibleChild
-                & NotParent(wpfDataItem);
+            return EligibleChild;
         }
-    } // class
-} // namespace
+    }
+}
