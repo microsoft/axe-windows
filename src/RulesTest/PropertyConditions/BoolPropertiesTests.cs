@@ -130,7 +130,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                var property = new A11yProperty(PropertyType.UIA_RuntimeIdPropertyId, new int[] { 0x2A, 0x10010 });
+                var property = new A11yProperty(PropertyType.UIA_ClassNamePropertyId, "#32769");
                 e.Properties.Add(property.Id, property);
                 Assert.IsTrue(IsDesktop.Matches(e));
             } // using
@@ -159,7 +159,7 @@ namespace Axe.Windows.RulesTests.PropertyConditions
         {
             using (var e = new MockA11yElement())
             {
-                var property = new A11yProperty(PropertyType.UIA_RuntimeIdPropertyId, new int[] { 0x2A, 0x10010 });
+                var property = new A11yProperty(PropertyType.UIA_ClassNamePropertyId, "#32769");
                 e.Properties.Add(property.Id, property);
                 Assert.IsFalse(IsNotDesktop.Matches(e));
             } // using

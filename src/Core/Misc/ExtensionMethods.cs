@@ -27,13 +27,14 @@ namespace Axe.Windows.Core.Misc
     public static class ExtensionMethods
     {
         /// <summary>
-        /// DesktopElement runtime Id.
+        /// UIA class name of the root (desktop) element
         /// </summary>
-        const string DesktopElementRuntimeId = "[2A,10010]";
+        const string DesktopElementClassName = "#32769";
+
         /// <summary>
         /// WCOS runtime ID
         /// </summary>
-        const string WCOSElementRuntimeId = "[0,0]";
+        const string WCOSDesktopElementRuntimeId = "[0,0]";
 
         /// <summary>
         /// Get A11yElementData object out of A11yElement
@@ -638,19 +639,12 @@ namespace Axe.Windows.Core.Misc
         /// <returns></returns>
         public static bool IsRootElement(this IA11yElement e)
         {
-            // on Desktop, RuntimeId is available with specific ID.
-            // however on WCOS, the desktop equivalent process is PID 0 and runtime ID is 0,0
-            return e != null && (e.RuntimeId == DesktopElementRuntimeId || (e.ProcessId == 0 && e.RuntimeId == WCOSElementRuntimeId));
-        }
-
-        /// <summary>
-        /// Check whether string is matched with DesktopElment runtime Id.
-        /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static bool IsDesktopElementRuntimeId(string str)
-        {
-            return DesktopElementRuntimeId == str;
+            // On Windows, check for the desktop (root) element by class name.
+            // On WCOS, check for the desktop by process and runtime IDs.
+            return e != null && (
+                e.ClassName == DesktopElementClassName
+                || (e.ProcessId == 0 && e.RuntimeId == WCOSDesktopElementRuntimeId)
+            );
         }
 
         /// <summary>
