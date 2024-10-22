@@ -19,7 +19,7 @@
         <dependency id="Newtonsoft.Json" version="13.0.3" />
         <dependency id="Microsoft.Win32.Registry" version="5.0.0" />
         <dependency id="System.Drawing.Common" version="8.0.8" />
-        <dependency id="System.IO.Packaging" version="8.0.0" />
+        <dependency id="System.IO.Packaging" version="8.0.1" />
       </group>
     </dependencies>
     <releaseNotes>https://github.com/microsoft/axe-windows/releases</releaseNotes>
