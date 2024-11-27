@@ -88,7 +88,7 @@ namespace Axe.Windows.AutomationTests
             ScanIntegrationCore(sync: true, testAppPath: null, expectedErrorCount: 0, processId: BogusProcessId);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WildlifeManager(bool sync)
@@ -101,7 +101,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WildlifeManager_ValidRoot(bool sync)
@@ -120,7 +120,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WildlifeManager_InvalidRoot(bool sync)
@@ -132,7 +132,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        // [DataTestMethod]
+        // [TestMethod]
         // [DataRow(true)]
         // [DataRow(false)]
         public void Scan_Integration_Win32ControlSampler(bool sync)
@@ -143,7 +143,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WindowsFormsControlSampler(bool sync)
@@ -154,7 +154,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WindowsFormsMultiWindowSample(bool sync)
@@ -165,7 +165,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WpfControlSampler(bool sync)
@@ -176,7 +176,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        [DataTestMethod]
+        [TestMethod]
         [DataRow(true)]
         [DataRow(false)]
         public void Scan_Integration_WebViewSample(bool sync)
