@@ -132,7 +132,7 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        // [TestMethod]
+        // [DataTestMethod]
         // [DataRow(true)]
         // [DataRow(false)]
         public void Scan_Integration_Win32ControlSampler(bool sync)
