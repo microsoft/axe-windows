@@ -71,7 +71,7 @@ namespace Axe.Windows.ActionsTests.Actions
             Assert.AreSame(_mockDataContext, _mockElementContext.DataContext);
         }
 
-        [DataTestMethod]
+        [TestMethod]
         // force == true should force a TreeWalker evaluation, even with an existing similar DataContext
         [DataRow(true, false, DataContextMode.Live, TreeViewMode.Raw)]
         // An element with a null DataContext should force a TreeWalker evaluation
@@ -127,7 +127,7 @@ namespace Axe.Windows.ActionsTests.Actions
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         // Matching combinations of mode/treemode should result in reloading being skipped
         [DataRow(DataContextMode.Test, TreeViewMode.Raw, DataContextMode.Test, TreeViewMode.Raw)]
         [DataRow(DataContextMode.Test, TreeViewMode.Control, DataContextMode.Test, TreeViewMode.Control)]
@@ -150,7 +150,7 @@ namespace Axe.Windows.ActionsTests.Actions
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         // force == true should force a TreeWalker evaluation, even with an existing similar DataContext
         [DataRow(true, false, DataContextMode.Test, TreeViewMode.Raw)]
         // An element with a null DataContext should force a TreeWalker evaluation
@@ -206,7 +206,7 @@ namespace Axe.Windows.ActionsTests.Actions
             }
         }
 
-        [DataTestMethod]
+        [TestMethod]
         // force == true should force a TreeWalker evaluation, even with an existing similar DataContext
         [DataRow(true, false, DataContextMode.Test, TreeViewMode.Raw)]
         // An element with a null DataContext should force a TreeWalker evaluation
