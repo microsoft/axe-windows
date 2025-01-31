@@ -22,7 +22,7 @@ To get the latest version of the Axe.Windows NuGet package, visit
         myConfigBuilder.WithOutputDirectory(".\test-directory");
 
         // Ready to use config
-        var myConfig = myConfigBuilder.build();
+        var myConfig = myConfigBuilder.Build();
 
 2. Create a `Scanner` object using the `ScannerFactory` object with the `Config`.
 
@@ -35,7 +35,7 @@ To get the latest version of the Axe.Windows NuGet package, visit
 
 4. Check the output.
 
-        Console.WriteLine("Number of errors found in scan of first top-level window: " + scanOutput.WindowScanOutputs.first().ErrorCount);
+        Console.WriteLine("Number of errors found in scan of first top-level window: " + scanOutput.WindowScanOutputs.First().ErrorCount);
 
 
 - Use an automation test framework like [UI Automation](https://docs.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview) or [WinAppDriver](https://github.com/microsoft/WinAppDriver) to manipulate your application
