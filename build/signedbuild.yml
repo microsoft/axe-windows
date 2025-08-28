@@ -231,6 +231,7 @@ extends:
               enabled: true
               feedSource: '$(MicrobuildPluginFeedSource)'
               signType: real
+              signWithProd: true
             localization:
               enabled: true
               feedSource: '$(MicrobuildPluginFeedSource)'
