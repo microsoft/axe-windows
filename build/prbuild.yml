@@ -45,6 +45,10 @@ extends:
                   artifactName: drop
                   displayName: "Publish Artifact: drop"
                   PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+                - output: pipelineArtifact
+                  artifactName: ASA-Results
+                  targetPath: "$(Build.ArtifactStagingDirectory)/ASA"
+                  displayName: "Publish ASA Results"
             pool:
               name: $(a11yInsightsPool)
               image: windows-2022-secure
@@ -151,13 +155,6 @@ extends:
                       Start-Process msiexec.exe -ArgumentList "/x `"$msiPath`" /quiet /norestart" -Wait -NoNewWindow
                       Write-Host "MSI uninstalled successfully"
                     }
-
-              - task: PublishBuildArtifacts@1
-                displayName: 'Publish ASA Results'
-                inputs:
-                  PathtoPublish: '$(Build.ArtifactStagingDirectory)\ASA'
-                  ArtifactName: 'ASA-Results'
-                  publishLocation: 'Container'
 
               - task: PowerShell@2
                 displayName: 'Validate ASA Results (Warning Mode)'
