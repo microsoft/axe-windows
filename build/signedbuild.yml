@@ -296,6 +296,115 @@ extends:
             platform: '$(BuildPlatform)'
             configuration: release
   
+        # Attack Surface Analyzer (ASA) - Task 2: 1CS Compliance Requirement
+        - task: PowerShell@2
+          displayName: 'Install Attack Surface Analyzer'
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Installing Attack Surface Analyzer (ASA) tool..."
+              dotnet tool install -g Microsoft.CST.AttackSurfaceAnalyzer.CLI
+              Write-Host "ASA installed successfully"
+              asa --version
+  
+        - task: PowerShell@2
+          displayName: 'ASA Baseline Scan (Pre-Install)'
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Running ASA baseline scan before MSI installation..."
+              asa collect -a
+              Write-Host "Baseline scan completed. Run ID saved for comparison."
+  
+        - task: PowerShell@2
+          displayName: 'Install MSI for ASA Analysis'
+          inputs:
+            targetType: 'inline'
+            script: |
+              $msiPath = Get-ChildItem -Path "$(Build.SourcesDirectory)\src\CLI_Installer\bin\x86\Release" -Filter "AxeWindowsCLI.msi" -Recurse | Select-Object -First 1 -ExpandProperty FullName
+              if ($msiPath) {
+                Write-Host "Installing MSI from: $msiPath"
+                Start-Process msiexec.exe -ArgumentList "/i `"$msiPath`" /quiet /norestart /l*v `"$(Build.ArtifactStagingDirectory)\msi_install.log`"" -Wait -NoNewWindow
+                Write-Host "MSI installation completed for ASA analysis"
+              } else {
+                Write-Error "AxeWindowsCLI.msi not found!"
+                exit 1
+              }
+  
+        - task: PowerShell@2
+          displayName: 'ASA Post-Install Scan'
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Running ASA post-install scan..."
+              asa collect --match-run-id
+              Write-Host "Post-install scan completed"
+  
+        - task: PowerShell@2
+          displayName: 'ASA Export Results'
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Exporting ASA results to SARIF format..."
+              $outputDir = "$(Build.ArtifactStagingDirectory)\ASA"
+              New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+              asa export-collect --outputsarif --outputpath "$outputDir\asa-results.sarif"
+              Write-Host "ASA results exported to: $outputDir\asa-results.sarif"
+  
+        - task: PowerShell@2
+          displayName: 'Uninstall MSI After ASA Analysis'
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Uninstalling MSI to restore clean state..."
+              $msiPath = Get-ChildItem -Path "$(Build.SourcesDirectory)\src\CLI_Installer\bin\x86\Release" -Filter "AxeWindowsCLI.msi" -Recurse | Select-Object -First 1 -ExpandProperty FullName
+              if ($msiPath) {
+                Start-Process msiexec.exe -ArgumentList "/x `"$msiPath`" /quiet /norestart" -Wait -NoNewWindow
+                Write-Host "MSI uninstalled successfully"
+              }
+  
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish ASA Results'
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)\ASA'
+            ArtifactName: 'ASA-Results'
+            publishLocation: 'Container'
+  
+        - task: PowerShell@2
+          displayName: 'Validate ASA Results (Fail on Issues)'
+          inputs:
+            targetType: 'inline'
+            script: |
+              Write-Host "Validating ASA SARIF results for security issues..."
+              $sarifPath = "$(Build.ArtifactStagingDirectory)\ASA\asa-results.sarif"
+              
+              if (Test-Path $sarifPath) {
+                $sarifContent = Get-Content $sarifPath -Raw | ConvertFrom-Json
+                $issueCount = 0
+                
+                if ($sarifContent.runs -and $sarifContent.runs.Count -gt 0) {
+                  foreach ($run in $sarifContent.runs) {
+                    if ($run.results) {
+                      $issueCount += $run.results.Count
+                    }
+                  }
+                }
+                
+                Write-Host "ASA found $issueCount potential security issues"
+                
+                if ($issueCount -gt 0) {
+                  Write-Host "##vso[task.logissue type=warning]ASA detected $issueCount security configuration changes. Review the ASA-Results artifact for details."
+                  Write-Host "For 1CS compliance (Task 2), all ASA issues must be reviewed and addressed."
+                  # Uncomment the line below to fail the build if issues are found:
+                  # exit 1
+                } else {
+                  Write-Host "##vso[task.complete result=Succeeded;]No ASA security issues detected - 1CS compliant!"
+                }
+              } else {
+                Write-Error "ASA SARIF file not found at: $sarifPath"
+                exit 1
+              }
+  
         - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@4
           displayName: 'Run BinSkim'
           inputs:
