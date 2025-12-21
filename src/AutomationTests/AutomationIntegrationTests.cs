@@ -132,9 +132,10 @@ namespace Axe.Windows.AutomationTests
             });
         }
 
-        // [DataTestMethod]
-        // [DataRow(true)]
-        // [DataRow(false)]
+        [TestMethod]
+        [DataRow(true)]
+        [DataRow(false)]
+        [Ignore]
         public void Scan_Integration_Win32ControlSampler(bool sync)
         {
             RunWithTimedExecutionWrapper(TimeSpan.FromSeconds(30), () =>
