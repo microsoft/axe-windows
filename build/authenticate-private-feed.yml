@@ -1,0 +1,26 @@
+# Copyright (c) Microsoft. All rights reserved.
+# Licensed under the MIT license. See LICENSE file in the project root for full license information.
+# Acquires an Azure DevOps token through the ARM (Workload Identity Federation) service connection
+# and exposes it as NuGet credentials for the package source declared in src/nuget.config.
+# Include this in every job that restores packages, before any NuGet / dotnet restore step.
+
+parameters:
+  - name: serviceConnection
+    type: string
+    default: "a11y-insights-public-feed-identity-axe-windows"
+  - name: sourceName
+    type: string
+    default: "a11y-insights-public"
+
+steps:
+  - task: AzureCLI@2
+    displayName: "Authenticate to ${{ parameters.sourceName }} feed"
+    inputs:
+      azureSubscription: ${{ parameters.serviceConnection }}
+      scriptType: pscore
+      scriptLocation: inlineScript
+      inlineScript: |
+        $token = az account get-access-token --resource 499b84ac-1321-427f-aa17-267ca6975798 --query accessToken -o tsv
+        if (-not $token) { throw 'Failed to acquire Azure DevOps token' }
+        Write-Host "##vso[task.setvariable variable=NuGetPackageSourceCredentials_${{ parameters.sourceName }};issecret=true]Username=az;Password=$token"
+ 

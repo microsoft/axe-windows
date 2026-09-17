@@ -65,10 +65,7 @@ extends:
           inputs:
             versionSpec: '5.x'
 
-        - task: NuGetAuthenticate@1
-          displayName: 'Authenticate to NuGet feeds'
-          inputs:
-            nuGetServiceConnections: 'a11y-insights-public-nuget-feed-axe-windows'
+        - template: build/authenticate-private-feed.yml
 
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
@@ -131,10 +128,7 @@ extends:
           inputs:
             versionSpec: '5.x'
 
-        - task: NuGetAuthenticate@1
-          displayName: 'Authenticate to NuGet feeds'
-          inputs:
-            nuGetServiceConnections: 'a11y-insights-public-nuget-feed-axe-windows'
+        - template: build/authenticate-private-feed.yml
 
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
@@ -292,10 +286,7 @@ extends:
           inputs:
             versionSpec: '5.x'
 
-        - task: NuGetAuthenticate@1
-          displayName: 'Authenticate to NuGet feeds'
-          inputs:
-            nuGetServiceConnections: 'a11y-insights-public-nuget-feed-axe-windows'
+        - template: build/authenticate-private-feed.yml
 
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
