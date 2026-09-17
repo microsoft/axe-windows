@@ -67,6 +67,8 @@ extends:
 
         - task: NuGetAuthenticate@1
           displayName: 'Authenticate to NuGet feeds'
+          inputs:
+            nuGetServiceConnections: 'a11y-insights-public-feed-identity-axe-windows'
 
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
@@ -131,6 +133,8 @@ extends:
 
         - task: NuGetAuthenticate@1
           displayName: 'Authenticate to NuGet feeds'
+          inputs:
+            nuGetServiceConnections: 'a11y-insights-public-feed-identity-axe-windows'
 
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
@@ -287,9 +291,11 @@ extends:
           displayName: 'Use NuGet 5.x'
           inputs:
             versionSpec: '5.x'
-    
+
         - task: NuGetAuthenticate@1
           displayName: 'Authenticate to NuGet feeds'
+          inputs:
+            nuGetServiceConnections: 'a11y-insights-public-feed-identity-axe-windows'
 
         - task: NuGetCommand@2
           displayName: 'NuGet restore'

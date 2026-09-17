@@ -24,6 +24,8 @@ jobs:
 
   - task: NuGetAuthenticate@1
     displayName: 'Authenticate to NuGet feeds'
+    inputs:
+      nuGetServiceConnections: 'a11y-insights-public-feed-identity-axe-windows'
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
