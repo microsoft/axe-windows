@@ -22,7 +22,7 @@ jobs:
     inputs:
       versionSpec: '5.x'
   
-  - template: build/authenticate-private-feed.yml@self
+  - template: authenticate-private-feed.yml@self
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
