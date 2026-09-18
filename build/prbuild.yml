@@ -9,6 +9,9 @@ variables:
   CreateAxeWindowsZippedCLI: "true"
   PublicRelease: "false"
   SignAppForRelease: "false"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+  DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE: "true"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
 # The `resources` specify the location and version of the 1ES PT.
 resources:
   repositories:
