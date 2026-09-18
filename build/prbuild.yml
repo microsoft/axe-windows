@@ -166,19 +166,7 @@ extends:
               - task: CmdLine@2
                 displayName: "Upload coverage to codecov.io"
                 inputs:
-                  script: |
-                    powershell -Command "
-                      $codecovPath = '${env:NUGET_PACKAGES}\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe'
-                  
-                      if (-not (Test-Path $codecovPath)) {
-                          throw 'Codecov executable not found: ' + $codecovPath
-                      }
-                  
-                      Get-ChildItem -Path '$(Build.SourcesDirectory)' -Filter '*coverage.cobertura.xml' -Recurse |
-                        ForEach-Object {
-                          & $codecovPath -t '$(CODECOV_TOKEN)' -f $_.FullName
-                        }
-                    "
+                  script: powershell -Command "$codecovPath = '$env:NUGET_PACKAGES\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe'; Get-ChildItem -Path '$(Build.SourcesDirectory)' -Filter '*coverage.cobertura.xml' -Recurse | ForEach-Object { & $codecovPath -t $(CODECOV_TOKEN) -f $_.FullName }"
                 #workingDirectory: # Optional
                 #failOnStderr: false # Optional
           - template: build/check-dependencies.yml@self
