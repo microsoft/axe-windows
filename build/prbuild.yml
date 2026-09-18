@@ -9,6 +9,9 @@ variables:
   CreateAxeWindowsZippedCLI: "true"
   PublicRelease: "false"
   SignAppForRelease: "false"
+  DOTNET_CLI_TELEMETRY_OPTOUT: "true"
+  DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE: "true"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: "true"
 # The `resources` specify the location and version of the 1ES PT.
 resources:
   repositories:
@@ -24,6 +27,7 @@ extends:
   parameters:
     settings:
       skipBuildTagsForGitHubPullRequests: true
+      networkIsolationPolicy: Permissive,CFSClean
     # Update the pool with your team's 1ES hosted pool.
     pool:
       name: $(a11yInsightsPool) # Name of your hosted pool
@@ -55,8 +59,13 @@ extends:
                 inputs:
                   versionSpec: "5.x"
 
+              - template: build/authenticate-private-feed.yml@self
+
               - task: NuGetCommand@2
                 displayName: "NuGet restore"
+                inputs:
+                  feedsToUse: config
+                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
 
               - task: DotNetCoreCLI@2
                 displayName: "dotnet restore"
@@ -64,6 +73,8 @@ extends:
                   command: restore
                   projects: |
                     **\*.csproj
+                  feedsToUse: config
+                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
 
               - task: PowerShell@2
                 displayName: "License Header Check"
@@ -117,8 +128,13 @@ extends:
                 inputs:
                   versionSpec: "5.x"
 
+              - template: build/authenticate-private-feed.yml@self
+
               - task: NuGetCommand@2
                 displayName: "NuGet restore"
+                inputs:
+                  feedsToUse: config
+                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
 
               - task: DotNetCoreCLI@2
                 displayName: "dotnet restore"
@@ -126,6 +142,8 @@ extends:
                   command: restore
                   projects: |
                     **\*.csproj
+                  feedsToUse: config
+                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
 
               - task: VSBuild@1
                 displayName: 'Build Solution **\*.sln'
@@ -147,12 +165,11 @@ extends:
                   command: test
                   projects: |
                     **\*test*.csproj
-
               # Run a command line script using Bash on Linux and macOS and cmd.exe on Windows
               - task: CmdLine@2
                 displayName: "Upload coverage to codecov.io"
                 inputs:
-                  script: $(NUGET_PACKAGES)\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe -t $(CODECOV_TOKEN) -f **/*coverage.cobertura.xml
+                  script: powershell -Command "$codecovPath = '$env:NUGET_PACKAGES\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe'; Get-ChildItem -Path '$(Build.SourcesDirectory)' -Filter '*coverage.cobertura.xml' -Recurse | ForEach-Object { & $codecovPath -t $(CODECOV_TOKEN) -f $_.FullName }"
                 #workingDirectory: # Optional
                 #failOnStderr: false # Optional
           - template: build/check-dependencies.yml@self

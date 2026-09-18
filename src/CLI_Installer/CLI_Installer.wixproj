@@ -1,4 +1,4 @@
-<Project Sdk="WixToolset.Sdk/4.0.1">
+<Project Sdk="WixToolset.Sdk/4.0.2">
   <Import Project="..\props\version.props" Condition="Exists('..\props\version.props')" />
   <PropertyGroup>
     <OutputName>AxeWindowsCLI</OutputName>

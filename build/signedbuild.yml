@@ -65,8 +65,13 @@ extends:
           inputs:
             versionSpec: '5.x'
 
+        - template: build/authenticate-private-feed.yml@self
+
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
+          inputs:
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
 
         - task: DotNetCoreCLI@2
           displayName: 'dotnet restore'
@@ -74,6 +79,8 @@ extends:
             command: restore
             projects: |
               **\*.csproj
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
 
         - task: PowerShell@2
           displayName: 'License Header Check'
@@ -121,8 +128,13 @@ extends:
           inputs:
             versionSpec: '5.x'
 
+        - template: build/authenticate-private-feed.yml@self
+
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
+          inputs:
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
 
         - task: DotNetCoreCLI@2
           displayName: 'dotnet restore'
@@ -130,6 +142,8 @@ extends:
             command: restore
             projects: |
               **\*.csproj
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
 
         - task: VSBuild@1
           displayName: 'Build Solution **\*.sln'
@@ -171,6 +185,8 @@ extends:
             command: restore
             projects: $(Build.SourcesDirectory)\src\CLI_Full\CLI_Full.csproj
             arguments: '--runtime win7-x86'
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
 
         - task: securedevelopmentteam.vss-secure-development-tools.build-task-roslynanalyzers.RoslynAnalyzers@3
           displayName: 'Run Roslyn analyzers'
@@ -269,9 +285,14 @@ extends:
           displayName: 'Use NuGet 5.x'
           inputs:
             versionSpec: '5.x'
-    
+
+        - template: build/authenticate-private-feed.yml@self
+
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
+          inputs:
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
   
         - task: DotNetCoreCLI@2
           displayName: 'dotnet restore'
@@ -279,6 +300,8 @@ extends:
             command: restore
             projects: |
               **\*.csproj
+            feedsToUse: config
+            nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
   
         - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
           displayName: 'Component Detection'

@@ -13,14 +13,22 @@ jobs:
     name: $(a11yInsightsPool)
     image: windows-2022-secure
     os: windows
+  templateContext:
+    settings:
+      networkIsolationPolicy: Permissive,CFSClean
   steps:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet 5.x'
     inputs:
       versionSpec: '5.x'
+  
+  - template: authenticate-private-feed.yml@self
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
+    inputs:
+      feedsToUse: config
+      nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
 
   - task: PowerShell@2
     displayName: 'Check ClearlyDefined'
