@@ -65,7 +65,7 @@ extends:
                 displayName: "NuGet restore"
                 inputs:
                   feedsToUse: config
-                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
+                  nugetConfigPath: "$(Build.SourcesDirectory)\\build\\nuget.config"
 
               - task: DotNetCoreCLI@2
                 displayName: "dotnet restore"
@@ -74,7 +74,7 @@ extends:
                   projects: |
                     **\*.csproj
                   feedsToUse: config
-                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
+                  nugetConfigPath: "$(Build.SourcesDirectory)\\build\\nuget.config"
 
               - task: PowerShell@2
                 displayName: "License Header Check"
@@ -134,7 +134,7 @@ extends:
                 displayName: "NuGet restore"
                 inputs:
                   feedsToUse: config
-                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
+                  nugetConfigPath: "$(Build.SourcesDirectory)\\build\\nuget.config"
 
               - task: DotNetCoreCLI@2
                 displayName: "dotnet restore"
@@ -143,7 +143,7 @@ extends:
                   projects: |
                     **\*.csproj
                   feedsToUse: config
-                  nugetConfigPath: "$(Build.SourcesDirectory)/src/nuget.config"
+                  nugetConfigPath: "$(Build.SourcesDirectory)\\build\\nuget.config"
 
               - task: VSBuild@1
                 displayName: 'Build Solution **\*.sln'
@@ -169,7 +169,7 @@ extends:
               - task: CmdLine@2
                 displayName: "Upload coverage to codecov.io"
                 inputs:
-                  script: powershell -Command "$codecovPath = '$env:NUGET_PACKAGES\codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe'; Get-ChildItem -Path '$(Build.SourcesDirectory)' -Filter '*coverage.cobertura.xml' -Recurse | ForEach-Object { & $codecovPath -t $(CODECOV_TOKEN) -f $_.FullName }"
+                  script: powershell -Command "$codecovPath = Join-Path -Path $env:NUGET_PACKAGES -ChildPath 'codecov\$(CODECOV_VERSION)\tools\win7-x86\codecov.exe'; Get-ChildItem -Path '$(Build.SourcesDirectory)' -Filter '*coverage.cobertura.xml' -Recurse | ForEach-Object { & $codecovPath -t $(CODECOV_TOKEN) -f $_.FullName }"
                 #workingDirectory: # Optional
                 #failOnStderr: false # Optional
           - template: build/check-dependencies.yml@self

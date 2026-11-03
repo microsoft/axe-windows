@@ -1,19 +1,19 @@
 # Copyright (c) Microsoft. All rights reserved.
 # Licensed under the MIT license. See LICENSE file in the project root for full license information.
 # Acquires an Azure DevOps token through the ARM (Workload Identity Federation) service connection
-# and stores it as the credential for the private feed in the agent's copy of src/nuget.config.
+# and stores it as the credential for the private feed in the agent's copy of build/nuget.config.
 # Include this in every job that restores packages, before any NuGet / dotnet restore step.
 
 parameters:
 - name: serviceConnection
   type: string
   default: 'a11y-insights-public-feed-identity-axe-windows'
-- name: sourceName          # Must match the <add key="..."> value in src/nuget.config
+- name: sourceName          # Must match the <add key="..."> value in build/nuget.config
   type: string
   default: 'a11y-insights-public'
 - name: nugetConfigPath
   type: string
-  default: '$(Build.SourcesDirectory)/src/nuget.config'
+  default: '$(Build.SourcesDirectory)\build\nuget.config'
 
 steps:
 - task: AzureCLI@2

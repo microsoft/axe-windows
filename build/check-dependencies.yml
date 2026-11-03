@@ -22,13 +22,13 @@ jobs:
     inputs:
       versionSpec: '5.x'
   
-  - template: authenticate-private-feed.yml@self
+  - template: build/authenticate-private-feed.yml@self
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
     inputs:
       feedsToUse: config
-      nugetConfigPath: '$(Build.SourcesDirectory)/src/nuget.config'
+      nugetConfigPath: '$(Build.SourcesDirectory)\build\nuget.config'
 
   - task: PowerShell@2
     displayName: 'Check ClearlyDefined'
