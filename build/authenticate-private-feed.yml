@@ -2,6 +2,7 @@
 # Licensed under the MIT license. See LICENSE file in the project root for full license information.
 # Acquires an Azure DevOps token through the ARM (Workload Identity Federation) service connection
 # and stores it as the credential for the private feed in the agent's copy of build/nuget.config.
+# Copies the authenticated config into src so MSBuild's SDK resolver can discover it during CI.
 # Include this in every job that restores packages, before any NuGet / dotnet restore step.
 
 parameters:
@@ -32,3 +33,6 @@ steps:
         --store-password-in-clear-text `
         --configfile '${{ parameters.nugetConfigPath }}'
       if ($LASTEXITCODE -ne 0) { throw 'Failed to store feed credential in nuget.config' }
+      Copy-Item -LiteralPath '${{ parameters.nugetConfigPath }}' `
+        -Destination '$(Build.SourcesDirectory)\src\nuget.config' `
+        -Force -ErrorAction Stop
